@@ -948,10 +948,10 @@ class QAction(QtCore.QObject):
     Trigger = ... # type: 'QAction.ActionEvent'
     Hover = ... # type: 'QAction.ActionEvent'
 
-    triggered = pyqtSignal
-    toggled = pyqtSignal
-    hovered = pyqtSignal
-    changed = pyqtSignal
+    triggered: QtCore.pyqtSignal
+    toggled: QtCore.pyqtSignal
+    hovered: QtCore.pyqtSignal
+    changed: QtCore.pyqtSignal
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
