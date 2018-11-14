@@ -1,4 +1,4 @@
-![mypy Header](https://camo.githubusercontent.com/68c7827eeb796f3a664f48f5657c04e65e04ae6e/687474703a2f2f6d7970792d6c616e672e6f72672f7374617469632f6d7970795f6c696768742e737667)
+<img src="http://mypy-lang.org/static/mypy_light.svg" alt="mypy logo" width="300px"/>
 
 # Mypy stubs for the PyQt5 framework
 
