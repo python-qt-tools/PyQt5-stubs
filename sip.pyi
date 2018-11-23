@@ -15,7 +15,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
-from typing import overload, Sequence, Union
+from typing import overload, Sequence, Union, Any
 
 
 # Constants.
@@ -35,7 +35,15 @@ Buffer = Union['array', 'voidptr', str, bytes, bytearray]
 
 
 # The array type.
-class array(Sequence): ...
+class array(Sequence):
+
+    @overload
+    def __getitem__(self, i: int) -> Any: ...
+
+    @overload
+    def __getitem__(self, s: slice) -> 'array': ...
+
+    def __len__(self) -> int: ...
 
 
 # The voidptr type.
