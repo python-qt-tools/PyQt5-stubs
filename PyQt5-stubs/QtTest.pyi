@@ -25,6 +25,7 @@ import sip
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from PyQt5 import QtGui
 
 # Support for QDate, QDateTime and QTime.
 import datetime
@@ -42,7 +43,7 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 
 class QSignalSpy(QtCore.QObject):
 
-    def __init__(self, signal: pyqtBoundSignal) -> None: ...
+    def __init__(self, signal: QtCore.pyqtBoundSignal) -> None: ...
 
     def __delitem__(self, i: int) -> None: ...
     def __setitem__(self, i: int, value: typing.Iterable[typing.Any]) -> None: ...
