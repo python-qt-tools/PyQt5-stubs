@@ -7,11 +7,13 @@
 :last modified time: 2018-12-08 18:18:29
 
 """
-from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QCheckBox 
 
+
+app = QApplication([])
 
 # Check signals
-checkbox = QtWidgets.QCheckBox()
+checkbox = QCheckBox()
 checkbox.stateChanged.connect(lambda: None)
 checkbox.pressed.connect(lambda: None)
 checkbox.released.connect(lambda: None )
