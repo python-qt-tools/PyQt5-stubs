@@ -10,3 +10,15 @@ This repository holds the stubs of the PyQt5 framework. It uses the stub files t
 produced during compilation process of PyQt5. These stub files have been modified by the author
 to allow using them for type-checking via Mypy. This repository is far from complete and the author will
 appreciate any PRs or Issues that help making this stub-repository more reliable.
+
+# Installation
+
+Simply install PyQt5-stubs with pip:
+
+    $ pip install PyQt5-stubs
+
+Or clone the latest version from Github and install it via Python setuptools:
+
+    $ git clone https://github.com/stlehmann/PyQt5-stubs.git
+    $ python setup.py install
+
