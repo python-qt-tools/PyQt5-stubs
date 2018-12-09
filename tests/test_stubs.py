@@ -1,6 +1,6 @@
 import os.path
-
 import pytest
+from subprocess import Popen, PIPE
 from mypy import api
 
 
@@ -12,6 +12,14 @@ def gen_tests():
         if filename.endswith('.py') and not filename.startswith('test_'):
             yield filename
 
+
+def test_package():
+    breakpoint()
+    p = Popen(["mypy", "-p", "PyQt5-stubs"], stdout=PIPE, stderr=PIPE)
+    stdout, stderr = p.communicate()
+
+    assert not stdout
+    assert not stderr
 
 @pytest.mark.parametrize('filename', list(gen_tests()))
 def test_stubs(filename):
