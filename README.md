@@ -22,3 +22,18 @@ Or clone the latest version from Github and install it via Python setuptools:
     $ git clone https://github.com/stlehmann/PyQt5-stubs.git
     $ python setup.py install
 
+
+# Supported Modules
+
+The following modules are supported by PyQt5-stubs:
+
+* QtCore
+* QtWidgets
+* QtGui
+* QtDBus
+* QtNetwork
+* QtOpenGL
+* QtPrintSupport
+* QtSql
+* QtTest
+* QtXml
