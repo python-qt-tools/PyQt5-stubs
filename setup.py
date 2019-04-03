@@ -4,8 +4,8 @@
 :license: MIT, see license file or https://opensource.org/licenses/MIT
 
 :created on 2018-10-06 10:55:36
-:last modified by:   Stefan Lehmann
-:last modified time: 2019-02-09 18:13:41
+:last modified by: Stefan Lehmann
+:last modified time: 2019-04-03 13:12:52
 
 """
 import io
@@ -47,7 +47,7 @@ setup(
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
     package_data={"PyQt5-stubs": ['*.pyi']},
-    install_requires=["PyQt5==5.11.3"],
+    install_requires=["PyQt5==5.12.1"],
     packages=["PyQt5-stubs"],
     classifiers=[
         "Development Status :: 4 - Beta",
