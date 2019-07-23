@@ -4,20 +4,22 @@
 
 :created on: 2019-07-22 14:41:45
 :last modified by: Stefan Lehmann
-:last modified time: 2019-07-22 15:22:20
+:last modified time: 2019-07-23 08:38:42
 
 """
 import sys
 import pathlib
-import subprocess as sp
+from subprocess import call
 
 
 p = pathlib.Path()
 stubs_path = p / "stubs"
 
+# build docker image
+call(["docker", "build", "-tpyqt5-buildenv", "."])
 
-sp.call(["docker", "build", "-tpyqt5-buildenv", "."])
-sp.call(
+# run docker image
+call(
     [
         "docker",
         "run",

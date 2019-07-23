@@ -1,7 +1,7 @@
 # @Author: Stefan Lehmann
 # @Date:   2018-12-06 11:24:07
 # @Last Modified by:   Stefan Lehmann
-# @Last Modified time: 2019-07-22 15:22:07
+# @Last Modified time: 2019-07-23 08:43:52
 PYQT_VERSION="5.13.0"
 SIP_VERSION="4.19.18"
 
@@ -25,4 +25,5 @@ make install
 
 # copy stubs
 cd /root
-cp /root/PyQt5_gpl-$PYQT5_VERSION/*.pyi /root/stubs/
+mkdir /root/stubs/$PYQT_VERSION
+cp /root/PyQt5_gpl-$PYQT_VERSION/*.pyi /root/stubs/$PYQT_VERSION/
