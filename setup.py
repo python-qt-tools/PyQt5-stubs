@@ -5,7 +5,7 @@
 
 :created on 2018-10-06 10:55:36
 :last modified by: Stefan Lehmann
-:last modified time: 2019-04-03 13:12:52
+:last modified time: 2019-07-23 10:27:04
 
 """
 import io
@@ -47,7 +47,7 @@ setup(
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
     package_data={"PyQt5-stubs": ['*.pyi']},
-    install_requires=["PyQt5==5.12.1"],
+    install_requires=["PyQt5==5.13.0"],
     packages=["PyQt5-stubs"],
     classifiers=[
         "Development Status :: 4 - Beta",
