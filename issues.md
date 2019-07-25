@@ -1,5 +1,5 @@
 
-# Errors in PyQt5-Stubs
+# Common issues in PyQt5-Stubs
 
 ## #1 Mixed overloads with static and non-static methods
 
@@ -196,3 +196,80 @@ definition in base class "QPaintDevice".`
 
 This error is due to the Qt5 codebase and can not be fixed without breaking the current
 codebase. So silencing the error with # type: ignore seems to be the right way to go.
+
+## #5 Signals need to be defined as pyqtSignal instead of functions
+
+### Description
+
+To allow the proper use of signal functions like connect() it is necessary to define
+signals as variables of type pyqtSignal instead of functions.
+
+### Example
+
+```python
+class QSignalMapper(QObject):
+
+    from PyQt5.QtWidgets import QWidget
+
+    def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
+
+    # ...
+    @typing.overload
+    def mapped(self, a0: int) -> None: ...
+    @typing.overload
+    def mapped(self, a0: str) -> None: ...
+    @typing.overload
+    def mapped(self, a0: QWidget) -> None: ...
+    @typing.overload
+    def mapped(self, a0: QObject) -> None: ...
+    # ...
+```
+
+### Solution
+
+```python
+class QSignalMapper(QObject):
+
+    from PyQt5.QtWidgets import QWidget
+
+    def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
+
+    mapped: pyqtSignal
+
+    # ...
+    # @typing.overload
+    # def mapped(self, a0: int) -> None: ...
+    # @typing.overload
+    # def mapped(self, a0: str) -> None: ...
+    # @typing.overload
+    # def mapped(self, a0: QWidget) -> None: ...
+    # @typing.overload
+    # def mapped(self, a0: QObject) -> None: ...
+    # ...
+```
+The disadvantage of this approach is that the signature of the signal is lost. But that
+actually does not matter as you will always need to define a slot function with the
+right signature anyway.
+
+This should be fixed in the original PyQt5 stubs.
+
+## #6 Missing type annotation for typing.Any
+
+### Description
+
+By default PyQt5 stubs do not contain type annotations for typing.Any.
+
+### Example
+
+```python
+def Q_FLAGS(*a0) -> None: ...
+```
+
+**mypy error:**
+`Function is missing a type annotation for one or more arguments.`
+
+### Solution
+
+Add type annotation of type `typing.Any`.
+
+This should be fixed in the original PyQt5 stubs.
