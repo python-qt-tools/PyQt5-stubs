@@ -2,8 +2,8 @@
 # @Date:   2018-12-06 11:24:07
 # @Last Modified by:   Stefan Lehmann
 # @Last Modified time: 2019-07-23 08:43:52
-PYQT_VERSION="5.13.0"
-SIP_VERSION="4.19.18"
+PYQT_VERSION="5.13.1"
+SIP_VERSION="4.19.19"
 
 # build sip
 cd /root
