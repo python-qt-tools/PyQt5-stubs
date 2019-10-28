@@ -108,3 +108,4 @@ venv.bak/
 
 # created stubs
 buildenv/stubs
+/.idea/
