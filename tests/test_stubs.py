@@ -20,7 +20,7 @@ def test_stubs(filename):
     if stdout:
         print(stdout)
 
-    assert not stdout
+    assert stdout.startswith("Success: no issues found")
     assert not stderr
     assert exitcode == 0
 
