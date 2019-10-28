@@ -21,7 +21,7 @@
 
 
 import typing
-import sip
+from PyQt5 import sip
 import enum  # import was missing
 
 # Support for QDate, QDateTime and QTime.
