@@ -1715,7 +1715,7 @@ class QAbstractAnimation(QObject):
     DeleteWhenStopped = ... # type: 'QAbstractAnimation.DeletionPolicy'
 
     class State(int): ...
-    Stopped:  QAbstractAnimation.State  = ... # type: 'QAbstractAnimation.State'
+    Stopped = ... # type: 'QAbstractAnimation.State'
     Paused = ... # type: 'QAbstractAnimation.State'
     Running = ... # type: 'QAbstractAnimation.State'
 
