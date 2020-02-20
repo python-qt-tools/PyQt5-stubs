@@ -37,3 +37,4 @@ The following modules are supported by PyQt5-stubs:
 * QtSql
 * QtTest
 * QtXml
+* sip
