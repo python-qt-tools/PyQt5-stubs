@@ -15,8 +15,8 @@ setup(
     url="https://github.com/stlehmann/PyQt5-stubs",
     author="Stefan Lehmann",
     author_email="stlm@posteo.de",
-    version="5.11.3.0",
+    version="5.14.1.0",
     package_data={"PyQt5-stubs": ['*.pyi']},
-    install_requires=["PyQt5==5.11.3"],
+    install_requires=["PyQt5==5.14.1"],
     packages=["PyQt5-stubs"]
 )
