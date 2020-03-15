@@ -47,7 +47,7 @@ setup(
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
     package_data={"PyQt5-stubs": ['*.pyi']},
-    install_requires=["PyQt5==5.13.*"],
+    install_requires=["PyQt5==5.14.*"],
     packages=["PyQt5-stubs"],
     classifiers=[
         "Development Status :: 4 - Beta",
