@@ -48,6 +48,7 @@ setup(
     version=find_version('PyQt5-stubs', '__init__.pyi'),
     package_data={"PyQt5-stubs": ['*.pyi']},
     packages=["PyQt5-stubs"],
+    tests_require=["PyQt5==5.13.*"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
