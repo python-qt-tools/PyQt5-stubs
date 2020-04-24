@@ -18,5 +18,6 @@ setup(
     version="5.14.2.0",
     package_data={"PyQt5-stubs": ['*.pyi']},
     install_requires=["PyQt5==5.14.2"],
+    extras_requires={"build": ["docker==4.2.0"]},
     packages=["PyQt5-stubs"]
 )
