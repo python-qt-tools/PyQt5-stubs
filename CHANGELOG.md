@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+* [#39](https://github.com/stlehmann/PyQt5-stubs/pull/39) Add this changelog file
 
 ### Changed
 
