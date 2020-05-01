@@ -35,7 +35,7 @@ Buffer = Union['array', 'voidptr', str, bytes, bytearray]
 
 
 # The array type.
-class array(Sequence): ...
+array = Sequence
 
 
 # The voidptr type.
@@ -70,7 +70,7 @@ class voidptr:
 
     def setsize(self, size: int) -> None: ...
 
-    def setwriteable(self, bool) -> None: ...
+    def setwriteable(self, bool: bool) -> None: ...
 
 
 # Remaining functions.
