@@ -1,13 +1,22 @@
 # Careful, the version and build date are both dates, but different formats
 ARG ARCH_VERSION="20200407"
 ARG BUILD_DATE="2020/04/22"
+
 ARG PYQT_VERSION="5.14.2"
+ARG PYQT_3D_VERSION="5.14.0"
+ARG PYQT_CHART_VERSION="5.14.0"
+ARG PYQT_DATA_VISUALIZATION_VERSION="5.14.0"
+ARG PYQT_PURCHASING_VERSION="5.14.0"
+ARG PYQT_WEB_ENGINE_VERSION="5.14.0"
 
-FROM archlinux:${ARCH_VERSION}
+################################################################################
+# Build dependencies
+################################################################################
 
-# Reuse arguments from previous build scope
+FROM archlinux:${ARCH_VERSION} AS build-dep
+
+# Reuse argument from previous build scope
 ARG BUILD_DATE
-ARG PYQT_VERSION
 
 # Use Arch archive to freeze packages to a certain date
 RUN echo "Server=https://archive.archlinux.org/repos/${BUILD_DATE}/\$repo/os/\$arch" \
@@ -20,10 +29,13 @@ RUN pacman --noconfirm -S \
         base-devel wget \
         # PyQt stuff
         pyqt-builder python-sip sip5 \
+        # Used to build other PyQt modules in later build stages
+        python-pyqt5 \
         # Qt core
         qt5-base  \
         # Qt modules not included in qt5-base
         qt5-3d \
+        qt5-charts \
         qt5-connectivity \
         qt5-datavis3d \
         qt5-declarative \
@@ -50,14 +62,28 @@ RUN pacman --noconfirm -S \
         # Required for QtDBus
         python-dbus
 
+################################################################################
+# PyQt5 core stubs
+################################################################################
+
+FROM build-dep AS pyqt5
+
+# Reuse argument from previous build scope
+ARG PYQT_VERSION
+
 # Download source tar
-WORKDIR /upstream/
-RUN wget --no-verbose https://pypi.io/packages/source/p/pyqt5/PyQt5-${PYQT_VERSION}.tar.gz
-RUN tar -xf PyQt5-${PYQT_VERSION}.tar.gz
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqt5/PyQt5-${PYQT_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
 
 # Build PyQt with stubs
 # TODO: Find way to build only stubs. This takes way too long
-WORKDIR PyQt5-${PYQT_VERSION}/
+WORKDIR /upstream/
 RUN sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --confirm-license \
@@ -67,4 +93,182 @@ RUN sip-install \
 
 # Copy all .pyi files to output dir
 WORKDIR /output/
-RUN find /upstream/PyQt5-${PYQT_VERSION}/ -name \*.pyi -exec cp {} . \;
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQt3D
+################################################################################
+
+FROM build-dep AS pyqt-3d
+
+# Reuse argument from previous build scope
+ARG PYQT_3D_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqt3d/PyQt3D-${PYQT_3D_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQt3D with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQtChart
+################################################################################
+
+FROM build-dep AS pyqt-chart
+
+# Reuse argument from previous build scope
+ARG PYQT_CHART_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtchart/PyQtChart-${PYQT_CHART_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtChart with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQtDataVisualization
+################################################################################
+
+FROM build-dep AS pyqt-data-visualization
+
+# Reuse argument from previous build scope
+ARG PYQT_DATA_VISUALIZATION_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtdatavisualization/PyQtDataVisualization-${PYQT_DATA_VISUALIZATION_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtDataVisualization with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQtPurchasing
+################################################################################
+
+FROM build-dep AS pyqt-purchasing
+
+# Reuse argument from previous build scope
+ARG PYQT_PURCHASING_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtpurchasing/PyQtPurchasing-${PYQT_PURCHASING_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtPurchasing with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQtWebEngine
+################################################################################
+
+FROM build-dep AS pyqt-web-engine
+
+# Reuse argument from previous build scope
+ARG PYQT_WEB_ENGINE_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtwebengine/PyQtWebEngine-${PYQT_WEB_ENGINE_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtWebEngine with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# Output
+################################################################################
+
+FROM scratch AS output
+
+# Get all the outputs from the build layers
+WORKDIR /output/
+COPY --from=pyqt5 /output/* ./
+COPY --from=pyqt-3d /output/* ./
+COPY --from=pyqt-chart /output/* ./
+COPY --from=pyqt-data-visualization /output/* ./
+COPY --from=pyqt-purchasing /output/* ./
+COPY --from=pyqt-web-engine /output/* ./
+
+# Required to run the image (which we need to do to get the files)
+CMD /bin/true
