@@ -49,6 +49,7 @@ setup(
     package_data={"PyQt5-stubs": ['*.pyi']},
     packages=["PyQt5-stubs"],
     tests_require=["PyQt5==5.14.*"],
+    extras_requires={"build": ["docker==4.2.0"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
