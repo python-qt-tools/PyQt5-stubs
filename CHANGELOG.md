@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 5.14.2.2 [unreleased]
+
+### Added
+
+### Changed
+* [#43](https://github.com/stlehmann/PyQt5-stubs/pull/43) Update stubs to PyQt5.14.2
+
+### Removed
+
 ## 5.14.2.1
 
 ### Added
@@ -16,4 +25,4 @@ like QtWebEngine and Qt3D
 ### Changed
 * [#38](https://github.com/stlehmann/PyQt5-stubs/pull/38) Changed license to GPLv3 to be compilient with PyQt5 license
 
-### Fixed
+### Removed
