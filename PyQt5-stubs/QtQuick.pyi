@@ -1380,7 +1380,7 @@ class QSGTexture(QtCore.QObject):
     Anisotropy16x = ... # type: 'QSGTexture.AnisotropyLevel'
 
     class Filtering(int): ...
-    None = ... # type: 'QSGTexture.Filtering'
+    None_ = ... # type: 'QSGTexture.Filtering'
     Nearest = ... # type: 'QSGTexture.Filtering'
     Linear = ... # type: 'QSGTexture.Filtering'
 
