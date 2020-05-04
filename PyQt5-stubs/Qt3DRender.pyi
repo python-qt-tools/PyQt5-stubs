@@ -244,7 +244,7 @@ class Qt3DRender(sip.simplewrapper):
         TargetBuffer = ... # type: 'QAbstractTexture.Target'
 
         class Status(int): ...
-        None = ... # type: 'QAbstractTexture.Status'
+        None_ = ... # type: 'QAbstractTexture.Status'
         Loading = ... # type: 'QAbstractTexture.Status'
         Ready = ... # type: 'QAbstractTexture.Status'
         Error = ... # type: 'QAbstractTexture.Status'
@@ -721,7 +721,7 @@ class Qt3DRender(sip.simplewrapper):
     class QClearBuffers('QFrameGraphNode'):
 
         class BufferType(int): ...
-        None = ... # type: 'QClearBuffers.BufferType'
+        None_ = ... # type: 'QClearBuffers.BufferType'
         ColorBuffer = ... # type: 'QClearBuffers.BufferType'
         DepthBuffer = ... # type: 'QClearBuffers.BufferType'
         StencilBuffer = ... # type: 'QClearBuffers.BufferType'
@@ -1140,7 +1140,7 @@ class Qt3DRender(sip.simplewrapper):
     class QMemoryBarrier('QFrameGraphNode'):
 
         class Operation(int): ...
-        None = ... # type: 'QMemoryBarrier.Operation'
+        None_ = ... # type: 'QMemoryBarrier.Operation'
         VertexAttributeArray = ... # type: 'QMemoryBarrier.Operation'
         ElementArray = ... # type: 'QMemoryBarrier.Operation'
         Uniform = ... # type: 'QMemoryBarrier.Operation'
@@ -1181,7 +1181,7 @@ class Qt3DRender(sip.simplewrapper):
     class QMesh('QGeometryRenderer'):
 
         class Status(int): ...
-        None = ... # type: 'QMesh.Status'
+        None_ = ... # type: 'QMesh.Status'
         Loading = ... # type: 'QMesh.Status'
         Ready = ... # type: 'QMesh.Status'
         Error = ... # type: 'QMesh.Status'
@@ -1663,7 +1663,7 @@ class Qt3DRender(sip.simplewrapper):
         CameraLensComponent = ... # type: 'QSceneLoader.ComponentType'
 
         class Status(int): ...
-        None = ... # type: 'QSceneLoader.Status'
+        None_ = ... # type: 'QSceneLoader.Status'
         Loading = ... # type: 'QSceneLoader.Status'
         Ready = ... # type: 'QSceneLoader.Status'
         Error = ... # type: 'QSceneLoader.Status'
@@ -2193,7 +2193,7 @@ class Qt3DRender(sip.simplewrapper):
     class QTextureImage('QAbstractTextureImage'):
 
         class Status(int): ...
-        None = ... # type: 'QTextureImage.Status'
+        None_ = ... # type: 'QTextureImage.Status'
         Loading = ... # type: 'QTextureImage.Status'
         Ready = ... # type: 'QTextureImage.Status'
         Error = ... # type: 'QTextureImage.Status'

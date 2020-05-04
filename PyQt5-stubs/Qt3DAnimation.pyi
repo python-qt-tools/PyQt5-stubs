@@ -331,7 +331,7 @@ class Qt3DAnimation(sip.simplewrapper):
     class QKeyframeAnimation('QAbstractAnimation'):
 
         class RepeatMode(int): ...
-        None = ... # type: 'QKeyframeAnimation.RepeatMode'
+        None_ = ... # type: 'QKeyframeAnimation.RepeatMode'
         Constant = ... # type: 'QKeyframeAnimation.RepeatMode'
         Repeat = ... # type: 'QKeyframeAnimation.RepeatMode'
 

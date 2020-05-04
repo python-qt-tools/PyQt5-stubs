@@ -273,3 +273,25 @@ def Q_FLAGS(*a0) -> None: ...
 Add type annotation of type `typing.Any`.
 
 This should be fixed in the original PyQt5 stubs.
+
+## #7 Can't assign to keyword
+
+### Description
+
+When "None" is used as an enum member, mypy will fail.
+
+### Example
+
+```python
+class RepeatMode(int): ...
+None = ... # type: 'QKeyframeAnimation.RepeatMode'
+```
+
+**mypy error:**
+`error: can't assign to keyword`
+
+### Solution
+
+Rename `None` to `None_`.
+
+This should be fixed in the original PyQt5 stubs -> [Reported upstream](https://www.riverbankcomputing.com/pipermail/pyqt/2020-May/042878.html)
