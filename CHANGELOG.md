@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 5.14.2.3 [unreleased]
+
+### Added
+
+### Changed
+* [#46](https://github.com/stlehmann/PyQt5-stubs/pull/46]) fixes QCoreApplication and QObject signals
+
+### Removed
+
 ## 5.14.2.2
 
 ### Added
