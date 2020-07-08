@@ -36,6 +36,8 @@ class pyqtSignal:  # add methods
 
 
 class pyqtBoundSignal:
+    signal = ... # type: 'str'
+
     def emit(self, *args: typing.Any) -> None: ...
 
 # Convenient type aliases.
