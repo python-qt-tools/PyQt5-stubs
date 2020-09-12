@@ -29,7 +29,6 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
@@ -913,10 +912,10 @@ class QClipboard(QtCore.QObject):
     Selection = ... # type: 'QClipboard.Mode'
     FindBuffer = ... # type: 'QClipboard.Mode'
 
-    selectionChanged: PYQT_SIGNAL
-    findBufferChanged: PYQT_SIGNAL
-    dataChanged: PYQT_SIGNAL
-    changed: PYQT_SIGNAL
+    selectionChanged: QtCore.pyqtSignal
+    findBufferChanged: QtCore.pyqtSignal
+    dataChanged: QtCore.pyqtSignal
+    changed: QtCore.pyqtSignal
     def setPixmap(self, a0: QPixmap, mode: 'QClipboard.Mode' = ...) -> None: ...
     def setImage(self, a0: 'QImage', mode: 'QClipboard.Mode' = ...) -> None: ...
     def pixmap(self, mode: 'QClipboard.Mode' = ...) -> QPixmap: ...
@@ -4449,9 +4448,9 @@ class QWindow(QtCore.QObject, QSurface):
     def setWindowStates(self, states: typing.Union[QtCore.Qt.WindowStates, QtCore.Qt.WindowState]) -> None: ...
     def windowStates(self) -> QtCore.Qt.WindowStates: ...
     def setFlag(self, a0: QtCore.Qt.WindowType, on: bool = ...) -> None: ...
-    opacityChanged: PYQT_SIGNAL
-    activeChanged: PYQT_SIGNAL
-    visibilityChanged: PYQT_SIGNAL
+    opacityChanged: QtCore.pyqtSignal
+    activeChanged: QtCore.pyqtSignal
+    visibilityChanged: QtCore.pyqtSignal
     @staticmethod
     def fromWinId(id: sip.voidptr) -> 'QWindow': ...
     def mask(self) -> 'QRegion': ...
@@ -4476,21 +4475,21 @@ class QWindow(QtCore.QObject, QSurface):
     def moveEvent(self, a0: QMoveEvent) -> None: ...
     def resizeEvent(self, a0: QResizeEvent) -> None: ...
     def exposeEvent(self, a0: QExposeEvent) -> None: ...
-    windowTitleChanged: PYQT_SIGNAL
-    focusObjectChanged: PYQT_SIGNAL
-    contentOrientationChanged: PYQT_SIGNAL
-    visibleChanged: PYQT_SIGNAL
-    maximumHeightChanged: PYQT_SIGNAL
-    maximumWidthChanged: PYQT_SIGNAL
-    minimumHeightChanged: PYQT_SIGNAL
-    minimumWidthChanged: PYQT_SIGNAL
-    heightChanged: PYQT_SIGNAL
-    widthChanged: PYQT_SIGNAL
-    yChanged: PYQT_SIGNAL
-    xChanged: PYQT_SIGNAL
-    windowStateChanged: PYQT_SIGNAL
-    modalityChanged: PYQT_SIGNAL
-    screenChanged: PYQT_SIGNAL
+    windowTitleChanged: QtCore.pyqtSignal
+    focusObjectChanged: QtCore.pyqtSignal
+    contentOrientationChanged: QtCore.pyqtSignal
+    visibleChanged: QtCore.pyqtSignal
+    maximumHeightChanged: QtCore.pyqtSignal
+    maximumWidthChanged: QtCore.pyqtSignal
+    minimumHeightChanged: QtCore.pyqtSignal
+    minimumWidthChanged: QtCore.pyqtSignal
+    heightChanged: QtCore.pyqtSignal
+    widthChanged: QtCore.pyqtSignal
+    yChanged: QtCore.pyqtSignal
+    xChanged: QtCore.pyqtSignal
+    windowStateChanged: QtCore.pyqtSignal
+    modalityChanged: QtCore.pyqtSignal
+    screenChanged: QtCore.pyqtSignal
     def requestUpdate(self) -> None: ...
     def alert(self, msec: int) -> None: ...
     def setMaximumHeight(self, h: int) -> None: ...
