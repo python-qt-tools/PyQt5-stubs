@@ -42,7 +42,7 @@ class pyqtBoundSignal:
 
 # Convenient type aliases.
 PYQT_SIGNAL = typing.Union[pyqtSignal, pyqtBoundSignal]
-PYQT_SLOT = typing.Union[typing.Callable[..., None], pyqtBoundSignal]
+PYQT_SLOT = typing.Union[typing.Callable[..., object], pyqtBoundSignal]
 
 
 class QtMsgType(int): ...
