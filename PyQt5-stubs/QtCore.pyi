@@ -27,22 +27,23 @@ import enum  # import was missing
 # Support for QDate, QDateTime and QTime.
 import datetime
 
-# Support for new-style signals and slots.
-class pyqtSignal:  # add methods
-    def __init__(self, *types: typing.Any, name: str = ...) -> None: ...
+class pyqtBoundSignal:
+    signal = ... # type: str
+
     def emit(self, *args: typing.Any) -> None: ...
     def connect(self, slot: "PYQT_SLOT") -> "QMetaObject.Connection": ...
     def disconnect(self, slot: typing.Union["PYQT_SLOT", "QMetaObject.Connection"]=None) -> None: ...
 
 
-class pyqtBoundSignal:
-    signal = ... # type: str
+# Support for new-style signals and slots.
+class pyqtSignal:  # add methods
+    def __init__(self, *types: typing.Any, name: str = ...) -> None: ...
+    def __get__(self, instance: "QObject", owner: typing.Type["QObject"]) -> pyqtBoundSignal: ...
 
-    def emit(self, *args: typing.Any) -> None: ...
 
 # Convenient type aliases.
 PYQT_SIGNAL = typing.Union[pyqtSignal, pyqtBoundSignal]
-PYQT_SLOT = typing.Union[typing.Callable[..., None], pyqtBoundSignal]
+PYQT_SLOT = typing.Union[typing.Callable[..., object], pyqtBoundSignal]
 
 
 class QtMsgType(int): ...
