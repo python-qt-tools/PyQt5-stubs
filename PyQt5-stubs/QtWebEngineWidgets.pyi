@@ -23,6 +23,7 @@
 import typing
 import sip
 
+from PyQt5 import QtGui
 from PyQt5 import QtWebChannel
 from PyQt5 import QtWebEngineCore
 from PyQt5 import QtWidgets

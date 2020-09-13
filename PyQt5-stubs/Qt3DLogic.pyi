@@ -24,6 +24,7 @@ import typing
 import sip
 
 from PyQt5 import Qt3DCore
+from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
