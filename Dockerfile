@@ -111,7 +111,6 @@ ARG SIP_VERSION
 ARG SIP_ABI_VERSION
 
 # Install SIP including stubs
-# TODO: Find way to build only stubs. This takes way too long
 WORKDIR /upstream/
 RUN pip install --no-deps --target build sip==${SIP_VERSION}
 
