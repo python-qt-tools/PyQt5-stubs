@@ -44,7 +44,6 @@ The following modules are supported by PyQt5-stubs:
 # Building upstream stubs
 The Dockerfile is used to build all of the stubs for the upstream PyQt5 modules.
 The Dockerfile consists of multiple build layers:
-layers:
 * core: `PyQt5`
 * `PyQt3D`
 * `PyQtChart`
