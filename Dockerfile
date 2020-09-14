@@ -2,6 +2,9 @@
 ARG ARCH_VERSION="20200407"
 ARG BUILD_DATE="2020/04/22"
 
+ARG SIP_VERSION="5.2.0"
+# Also the major.minor of PyQt5-sip
+ARG SIP_ABI_VERSION="12.7"
 ARG PYQT_VERSION="5.14.2"
 ARG PYQT_3D_VERSION="5.14.0"
 ARG PYQT_CHART_VERSION="5.14.0"
@@ -27,6 +30,8 @@ RUN echo "Server=https://archive.archlinux.org/repos/${BUILD_DATE}/\$repo/os/\$a
 RUN pacman --noconfirm -S \
         # Build stuff
         base-devel wget \
+        # Python stuff
+        python-pip \
         # PyQt stuff
         pyqt-builder python-sip sip5 \
         # Used to build other PyQt modules in later build stages
@@ -94,6 +99,25 @@ RUN sip-install \
 # Copy all .pyi files to output dir
 WORKDIR /output/
 RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQt5-SIP stubs
+################################################################################
+
+FROM build-dep AS sip
+
+# Reuse arguments from previous build scope
+ARG SIP_VERSION
+ARG SIP_ABI_VERSION
+
+# Install SIP including stubs
+# TODO: Find way to build only stubs. This takes way too long
+WORKDIR /upstream/
+RUN pip install --no-deps --target build sip==${SIP_VERSION}
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -wholename \*/${SIP_ABI_VERSION}/\*.pyi -exec cp {} . \;
 
 ################################################################################
 # PyQt3D
@@ -264,6 +288,7 @@ FROM scratch AS output
 # Get all the outputs from the build layers
 WORKDIR /output/
 COPY --from=pyqt5 /output/* ./
+COPY --from=sip /output/* ./
 COPY --from=pyqt-3d /output/* ./
 COPY --from=pyqt-chart /output/* ./
 COPY --from=pyqt-data-visualization /output/* ./
