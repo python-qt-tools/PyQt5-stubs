@@ -47,6 +47,7 @@ setup(
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
     package_data={"PyQt5-stubs": ['*.pyi']},
+    extras_requires={"build": ["docker==4.2.0"]},
     packages=["PyQt5-stubs"],
     tests_require=["PyQt5==5.14.*"],
     extras_requires={"build": ["docker==4.2.0"]},
