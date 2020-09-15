@@ -30,8 +30,6 @@ RUN echo "Server=https://archive.archlinux.org/repos/${BUILD_DATE}/\$repo/os/\$a
 RUN pacman --noconfirm -S \
         # Build stuff
         base-devel wget \
-        # Python stuff
-        python-pip \
         # PyQt stuff
         pyqt-builder python-sip sip5 \
         # Used to build other PyQt modules in later build stages
