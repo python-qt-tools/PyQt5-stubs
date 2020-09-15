@@ -110,9 +110,15 @@ FROM build-dep AS sip
 ARG SIP_VERSION
 ARG SIP_ABI_VERSION
 
-# Install SIP including stubs
-WORKDIR /upstream/
-RUN pip install --no-deps --target build sip==${SIP_VERSION}
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/s/sip/sip-${SIP_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
 
 # Copy all .pyi files to output dir
 WORKDIR /output/
