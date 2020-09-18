@@ -9,6 +9,8 @@ ARG PYQT_DATA_VISUALIZATION_VERSION="5.14.0"
 ARG PYQT_PURCHASING_VERSION="5.14.0"
 ARG PYQT_WEB_ENGINE_VERSION="5.14.0"
 
+ARG MAKEFLAGS=""
+
 ################################################################################
 # Build dependencies
 ################################################################################
@@ -68,7 +70,8 @@ RUN pacman --noconfirm -S \
 
 FROM build-dep AS pyqt5
 
-# Reuse argument from previous build scope
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
 ARG PYQT_VERSION
 
 # Download source tar
@@ -101,7 +104,8 @@ RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 FROM build-dep AS pyqt-3d
 
-# Reuse argument from previous build scope
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
 ARG PYQT_3D_VERSION
 
 # Download source tar
@@ -133,7 +137,8 @@ RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 FROM build-dep AS pyqt-chart
 
-# Reuse argument from previous build scope
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
 ARG PYQT_CHART_VERSION
 
 # Download source tar
@@ -165,7 +170,8 @@ RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 FROM build-dep AS pyqt-data-visualization
 
-# Reuse argument from previous build scope
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
 ARG PYQT_DATA_VISUALIZATION_VERSION
 
 # Download source tar
@@ -197,7 +203,8 @@ RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 FROM build-dep AS pyqt-purchasing
 
-# Reuse argument from previous build scope
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
 ARG PYQT_PURCHASING_VERSION
 
 # Download source tar
@@ -229,7 +236,8 @@ RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 FROM build-dep AS pyqt-web-engine
 
-# Reuse argument from previous build scope
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
 ARG PYQT_WEB_ENGINE_VERSION
 
 # Download source tar
