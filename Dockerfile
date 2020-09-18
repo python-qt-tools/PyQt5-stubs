@@ -1,10 +1,10 @@
 # Careful, the version and build date are both dates, but different formats
 ARG ARCH_VERSION="20200908"
-ARG BUILD_DATE="2020/09/13"
+ARG BUILD_DATE="2020/09/18"
 
-ARG SIP_VERSION="5.2.0"
+ARG SIP_VERSION="5.4.0"
 # Also the major.minor of PyQt5-sip
-ARG SIP_ABI_VERSION="12.7"
+ARG SIP_ABI_VERSION="12.8"
 ARG PYQT_VERSION="5.15.0"
 ARG PYQT_3D_VERSION="5.15.0"
 ARG PYQT_CHART_VERSION="5.15.0"
