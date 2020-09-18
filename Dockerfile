@@ -2,6 +2,9 @@
 ARG ARCH_VERSION="20200407"
 ARG BUILD_DATE="2020/04/22"
 
+ARG SIP_VERSION="5.2.0"
+# Also the major.minor of PyQt5-sip
+ARG SIP_ABI_VERSION="12.7"
 ARG PYQT_VERSION="5.14.2"
 ARG PYQT_3D_VERSION="5.14.0"
 ARG PYQT_CHART_VERSION="5.14.0"
@@ -97,6 +100,30 @@ RUN sip-install \
 # Copy all .pyi files to output dir
 WORKDIR /output/
 RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
+# PyQt5-SIP stubs
+################################################################################
+
+FROM build-dep AS sip
+
+# Reuse arguments from previous build scope
+ARG SIP_VERSION
+ARG SIP_ABI_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/s/sip/sip-${SIP_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -wholename \*/${SIP_ABI_VERSION}/\*.pyi -exec cp {} . \;
 
 ################################################################################
 # PyQt3D
@@ -272,6 +299,7 @@ FROM scratch AS output
 # Get all the outputs from the build layers
 WORKDIR /output/
 COPY --from=pyqt5 /output/* ./
+COPY --from=sip /output/* ./
 COPY --from=pyqt-3d /output/* ./
 COPY --from=pyqt-chart /output/* ./
 COPY --from=pyqt-data-visualization /output/* ./
