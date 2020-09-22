@@ -28,6 +28,17 @@ def parse_args() -> argparse.Namespace:
                         help="Directory to find package(s) to be built. "
                              "Defaults to ./pkg")
 
+    # noinspection PyTypeChecker
+    parser.add_argument('-j', '--jobs', type=int,
+                        default=1,
+                        help="The number of jobs to launch in parallel. "
+                             "Defaults to 1")
+
+    # noinspection PyTypeChecker
+    parser.add_argument('--no-cache',
+                        action='store_true',
+                        help="Do not use Docker caches. Defaults to false")
+
     return parser.parse_args()
 
 
@@ -36,12 +47,12 @@ def main():
 
     docker_client = docker.from_env()
 
-    image_id = build_image(docker_client, args.dockerfile)
+    image_id = build_image(docker_client, args.dockerfile, args.jobs, args.no_cache)
 
     extract_output(docker_client, image_id, args.output_dir)
 
 
-def build_image(docker_client: DockerClient, dockerfile: Path) -> str:
+def build_image(docker_client: DockerClient, dockerfile: Path, jobs: int, no_cache: bool) -> str:
     image_name = "pyqt5-stubs"
 
     # Using low-level API so that we can log as it occurs instead of only
@@ -49,7 +60,9 @@ def build_image(docker_client: DockerClient, dockerfile: Path) -> str:
     resp = docker_client.api.build(
         path=str(dockerfile.parent),
         rm=True,
-        tag=image_name)
+        tag=image_name,
+        buildargs={"MAKEFLAGS": f"-j{jobs}"},
+        nocache=no_cache)
 
     image_id: str = typing.cast(str, None)
     for chunk in json_stream(resp):
