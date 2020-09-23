@@ -39,14 +39,12 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
         typing.Sequence[float], sip.Buffer, int, None]
 
 
-class Qt3DLogic(sip.simplewrapper):
+class QFrameAction(Qt3DCore.QComponent):
 
-    class QFrameAction(Qt3DCore.QComponent):
+    def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
-        def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
+    def triggered(self, dt: float) -> None: ...
 
-        def triggered(self, dt: float) -> None: ...
+class QLogicAspect(Qt3DCore.QAbstractAspect):
 
-    class QLogicAspect(Qt3DCore.QAbstractAspect):
-
-        def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
+    def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
