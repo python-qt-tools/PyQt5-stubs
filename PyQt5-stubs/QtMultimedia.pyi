@@ -2278,7 +2278,8 @@ class QSound(QtCore.QObject):
     @staticmethod
     def play(filename: str) -> None: ...
     @typing.overload
-    def play(self) -> None: ...
+    @staticmethod
+    def play() -> None: ...
 
 
 class QSoundEffect(QtCore.QObject):
