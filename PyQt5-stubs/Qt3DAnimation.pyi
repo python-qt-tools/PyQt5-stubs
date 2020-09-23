@@ -21,7 +21,7 @@
 
 
 import typing
-import sip
+from PyQt5 import sip
 
 from PyQt5 import QtCore
 from PyQt5 import Qt3DRender
