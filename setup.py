@@ -46,8 +46,8 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
-    package_data={"PyQt5-stubs": ['*.pyi']},
-    packages=["PyQt5-stubs"],
+    package_data={"PyQt5-stubs": ['*.pyi'], "sip-stubs": ["*.pyi"]},
+    packages=["PyQt5-stubs", "sip-stubs"],
     tests_require=["PyQt5==5.14.*"],
     extras_require={"build": ["docker==4.2.0"]},
     classifiers=[

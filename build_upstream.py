@@ -11,7 +11,7 @@ from docker.models.images import Image
 from docker.utils.json_stream import json_stream
 
 DEFAULT_DOCKERFILE = Path("Dockerfile")
-DEFAULT_OUTPUT_DIR = Path("PyQt5-stubs")
+DEFAULT_OUTPUT_DIR = Path(".")
 
 
 def parse_args() -> argparse.Namespace:
@@ -116,7 +116,7 @@ def extract_output(docker_client: DockerClient, image_id: str,
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # Filename (without outer directory)
-        tar_deb_info.name = Path(tar_deb_info.name).name
+        tar_deb_info.name = Path(*Path(tar_deb_info.name).parts[1:])
 
         # Extract
         package_tar.extract(tar_deb_info, output_dir)

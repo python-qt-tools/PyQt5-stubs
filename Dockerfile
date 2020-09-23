@@ -123,7 +123,7 @@ RUN mkdir /upstream/ && \
 
 # Copy all .pyi files to output dir
 WORKDIR /output/
-RUN find /upstream/ -wholename \*/${SIP_ABI_VERSION}/\*.pyi -exec cp {} . \;
+RUN find /upstream/ -wholename \*/${SIP_ABI_VERSION}/\sip.pyi -exec cp {} __init__.pyi \;
 
 ################################################################################
 # PyQt3D
@@ -297,9 +297,10 @@ RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 FROM scratch AS output
 
 # Get all the outputs from the build layers
-WORKDIR /output/
-COPY --from=pyqt5 /output/* ./
+WORKDIR /output/sip-stubs/
 COPY --from=sip /output/* ./
+WORKDIR /output/PyQt5-stubs/
+COPY --from=pyqt5 /output/* ./
 COPY --from=pyqt-3d /output/* ./
 COPY --from=pyqt-chart /output/* ./
 COPY --from=pyqt-data-visualization /output/* ./
