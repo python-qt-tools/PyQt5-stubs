@@ -21,8 +21,8 @@
 
 
 import typing
-from PyQt5 import sip
 
+from PyQt5 import sip
 from PyQt5 import QtQml
 from PyQt5 import QtGui
 from PyQt5 import QtCore
