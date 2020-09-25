@@ -7855,7 +7855,7 @@ class QStyleOptionTab(QStyleOption):
 class QStyleOptionTabV4(QStyleOptionTab):
 
     class StyleOptionVersion(int): ...
-    Version = ... # type: 'QStyleOptionTabV4.StyleOptionVersion'
+    Version = ... # type: 'QStyleOptionTabV4.StyleOptionVersion'  # type: ignore[assignment]
 
     tabIndex = ... # type: int
 
