@@ -21,8 +21,8 @@
 
 
 import typing
-import sip
 
+from PyQt5 import sip
 from PyQt5 import QtWidgets
 from PyQt5 import QtWebKit
 from PyQt5 import QtPrintSupport
