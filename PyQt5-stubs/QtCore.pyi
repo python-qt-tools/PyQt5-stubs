@@ -22,6 +22,7 @@
 
 import typing
 from PyQt5 import sip
+from PyQt5 import QtCore
 import enum  # import was missing
 
 # Support for QDate, QDateTime and QTime.
@@ -6220,7 +6221,7 @@ class QMetaType(sip.simplewrapper):
 
     def __init__(self, type: int = ...) -> None: ...
 
-    def name(self) -> QByteArray: ...
+    def name(self) -> QtCore.QByteArray: ...
     def id(self) -> int: ...
     @staticmethod
     def metaObjectForType(type: int) -> 'QMetaObject': ...

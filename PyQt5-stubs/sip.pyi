@@ -41,7 +41,7 @@ Buffer = Union['array', 'voidptr', str, bytes, bytearray]
 
 
 # The array type.
-class array(Sequence): ...
+class array(Sequence): ...  # type: ignore[misc]
 
 
 # The voidptr type.
