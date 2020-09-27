@@ -21,7 +21,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from typing import overload, Any, Sequence, TypeVar, Union
+from typing import overload, Sequence, TypeVar, Union
 
 
 # Constants.
@@ -40,12 +40,16 @@ class wrapper(simplewrapper): ...
 Buffer = Union['array', 'voidptr', str, bytes, bytearray]
 
 
+C = TypeVar("C")
 T = TypeVar("T")
 
 
 # The array type.
 class array(Sequence[T]):
-    def __getitem__(self, key: Any) -> Any: ...
+    @overload
+    def __getitem__(self, key: int) -> T: ...
+    @overload
+    def __getitem__(self: C, key: slice) -> C: ...
     def __len__(self) -> int: ...
 
 
