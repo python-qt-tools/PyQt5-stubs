@@ -21,7 +21,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from typing import overload, Sequence, TypeVar, Union
+from typing import overload, Any, Sequence, TypeVar, Union
 
 
 # Constants.
@@ -45,7 +45,7 @@ T = TypeVar("T")
 
 # The array type.
 class array(Sequence[T]):
-    def __getitem__(self, params: int) -> T: ...
+    def __getitem__(self, key: Any) -> Any: ...
     def __len__(self) -> int: ...
 
 
