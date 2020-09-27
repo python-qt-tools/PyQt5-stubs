@@ -4164,7 +4164,7 @@ class QFile(QFileDevice):
     @typing.overload
     def __init__(self, name: str, parent: QObject) -> None: ...
 
-    @typing.overload
+    @typing.overload  # type: ignore[misc]
     def moveToTrash(self) -> bool: ...
     @typing.overload
     @staticmethod

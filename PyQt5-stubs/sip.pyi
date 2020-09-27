@@ -21,7 +21,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from typing import overload, Sequence, Union
+from typing import overload, Sequence, TypeVar, Union
 
 
 # Constants.
@@ -40,8 +40,11 @@ class wrapper(simplewrapper): ...
 Buffer = Union['array', 'voidptr', str, bytes, bytearray]
 
 
+T = TypeVar("T")
+
+
 # The array type.
-class array(Sequence): ...  # type: ignore[misc]
+class array(Sequence[T]): ...  # type: ignore[misc]
 
 
 # The voidptr type.
