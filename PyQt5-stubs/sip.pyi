@@ -44,7 +44,9 @@ T = TypeVar("T")
 
 
 # The array type.
-class array(Sequence[T]): ...  # type: ignore[misc]
+class array(Sequence[T]):
+    def __getitem__(self, a0: int) -> T: ...
+    def __len__(self) -> int: ...
 
 
 # The voidptr type.
