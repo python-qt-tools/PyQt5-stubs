@@ -21,7 +21,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from typing import overload, Generic, Sequence, TypeVar, Union
+from typing import overload, Generic, Iterable, Sequence, TypeVar, Union
 
 
 # Constants.
