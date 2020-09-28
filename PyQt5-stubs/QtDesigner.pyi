@@ -21,9 +21,10 @@
 
 
 import typing
-import sip
 
+from PyQt5 import sip
 from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
@@ -143,7 +144,7 @@ class QDesignerFormWindowInterface(QtWidgets.QWidget):
     def setMainContainer(self, mainContainer: QtWidgets.QWidget) -> None: ...
     def mainContainer(self) -> QtWidgets.QWidget: ...
     def grid(self) -> QtCore.QPoint: ...
-    def cursor(self) -> 'QDesignerFormWindowCursorInterface': ...
+    def cursor(self) -> 'QDesignerFormWindowCursorInterface': ...  # type: ignore[override]
     def core(self) -> QDesignerFormEditorInterface: ...
     def setIncludeHints(self, includeHints: typing.Iterable[str]) -> None: ...
     def includeHints(self) -> typing.List[str]: ...
@@ -472,7 +473,7 @@ class QPyDesignerTaskMenuExtension(QtCore.QObject, QDesignerTaskMenuExtension):
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
 
-class QPyDesignerPropertySheetExtension(QtCore.QObject, QDesignerPropertySheetExtension):
+class QPyDesignerPropertySheetExtension(QtCore.QObject, QDesignerPropertySheetExtension):  # type: ignore[misc]
 
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
