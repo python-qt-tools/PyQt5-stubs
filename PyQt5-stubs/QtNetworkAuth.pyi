@@ -21,8 +21,8 @@
 
 
 import typing
-import sip
 
+from PyQt5 import sip
 from PyQt5 import QtNetwork
 from PyQt5 import QtCore
 
@@ -239,7 +239,7 @@ class QOAuth1Signature(sip.simplewrapper):
     def setCustomMethodString(self, verb: typing.Union[QtCore.QByteArray, bytes, bytearray]) -> None: ...
     def customMethodString(self) -> QtCore.QByteArray: ...
     def swap(self, other: 'QOAuth1Signature') -> None: ...
-    @typing.overload
+    @typing.overload  # type: ignore[misc]
     def plainText(self) -> QtCore.QByteArray: ...
     @typing.overload
     @staticmethod
