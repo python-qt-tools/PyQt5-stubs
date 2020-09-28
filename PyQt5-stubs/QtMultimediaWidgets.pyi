@@ -21,10 +21,11 @@
 
 
 import typing
-import sip
 
+from PyQt5 import sip
 from PyQt5 import QtWidgets
 from PyQt5 import QtMultimedia
+from PyQt5 import QtGui
 from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.

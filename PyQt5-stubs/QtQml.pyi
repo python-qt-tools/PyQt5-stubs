@@ -21,8 +21,8 @@
 
 
 import typing
-import sip
 
+from PyQt5 import sip
 from PyQt5 import QtNetwork
 from PyQt5 import QtCore
 
@@ -568,7 +568,7 @@ class QQmlProperty(sip.simplewrapper):
     def needsNotifySignal(self) -> bool: ...
     def hasNotifySignal(self) -> bool: ...
     def reset(self) -> bool: ...
-    @typing.overload
+    @typing.overload  # type: ignore[misc]
     def write(self, a0: typing.Any) -> bool: ...
     @typing.overload
     @staticmethod
@@ -579,7 +579,7 @@ class QQmlProperty(sip.simplewrapper):
     @typing.overload
     @staticmethod
     def write(a0: QtCore.QObject, a1: str, a2: typing.Any, a3: QQmlEngine) -> bool: ...
-    @typing.overload
+    @typing.overload  # type: ignore[misc]
     def read(self) -> typing.Any: ...
     @typing.overload
     @staticmethod

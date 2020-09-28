@@ -21,8 +21,8 @@
 
 
 import typing
-import sip
 
+from PyQt5 import sip
 from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
@@ -67,7 +67,7 @@ class QAccelerometerFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QAccelerometerFilter') -> None: ...
 
-    def filter(self, reading: QAccelerometerReading) -> bool: ...
+    def filter(self, reading: QAccelerometerReading) -> bool: ...  # type: ignore[override]
 
 
 class QSensor(QtCore.QObject):
@@ -178,7 +178,7 @@ class QAltimeterFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QAltimeterFilter') -> None: ...
 
-    def filter(self, reading: QAltimeterReading) -> bool: ...
+    def filter(self, reading: QAltimeterReading) -> bool: ...  # type: ignore[override]
 
 
 class QAltimeter(QSensor):
@@ -209,7 +209,7 @@ class QAmbientLightFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QAmbientLightFilter') -> None: ...
 
-    def filter(self, reading: QAmbientLightReading) -> bool: ...
+    def filter(self, reading: QAmbientLightReading) -> bool: ...  # type: ignore[override]
 
 
 class QAmbientLightSensor(QSensor):
@@ -232,7 +232,7 @@ class QAmbientTemperatureFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QAmbientTemperatureFilter') -> None: ...
 
-    def filter(self, reading: QAmbientTemperatureReading) -> bool: ...
+    def filter(self, reading: QAmbientTemperatureReading) -> bool: ...  # type: ignore[override]
 
 
 class QAmbientTemperatureSensor(QSensor):
@@ -257,7 +257,7 @@ class QCompassFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QCompassFilter') -> None: ...
 
-    def filter(self, reading: QCompassReading) -> bool: ...
+    def filter(self, reading: QCompassReading) -> bool: ...  # type: ignore[override]
 
 
 class QCompass(QSensor):
@@ -280,7 +280,7 @@ class QDistanceFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QDistanceFilter') -> None: ...
 
-    def filter(self, reading: QDistanceReading) -> bool: ...
+    def filter(self, reading: QDistanceReading) -> bool: ...  # type: ignore[override]
 
 
 class QDistanceSensor(QSensor):
@@ -307,7 +307,7 @@ class QGyroscopeFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QGyroscopeFilter') -> None: ...
 
-    def filter(self, reading: QGyroscopeReading) -> bool: ...
+    def filter(self, reading: QGyroscopeReading) -> bool: ...  # type: ignore[override]
 
 
 class QGyroscope(QSensor):
@@ -330,7 +330,7 @@ class QHolsterFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QHolsterFilter') -> None: ...
 
-    def filter(self, reading: QHolsterReading) -> bool: ...
+    def filter(self, reading: QHolsterReading) -> bool: ...  # type: ignore[override]
 
 
 class QHolsterSensor(QSensor):
@@ -355,7 +355,7 @@ class QHumidityFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QHumidityFilter') -> None: ...
 
-    def filter(self, reading: QHumidityReading) -> bool: ...
+    def filter(self, reading: QHumidityReading) -> bool: ...  # type: ignore[override]
 
 
 class QHumiditySensor(QSensor):
@@ -378,7 +378,7 @@ class QIRProximityFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QIRProximityFilter') -> None: ...
 
-    def filter(self, reading: QIRProximityReading) -> bool: ...
+    def filter(self, reading: QIRProximityReading) -> bool: ...  # type: ignore[override]
 
 
 class QIRProximitySensor(QSensor):
@@ -405,7 +405,7 @@ class QLidFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QLidFilter') -> None: ...
 
-    def filter(self, reading: QLidReading) -> bool: ...
+    def filter(self, reading: QLidReading) -> bool: ...  # type: ignore[override]
 
 
 class QLidSensor(QSensor):
@@ -428,7 +428,7 @@ class QLightFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QLightFilter') -> None: ...
 
-    def filter(self, reading: QLightReading) -> bool: ...
+    def filter(self, reading: QLightReading) -> bool: ...  # type: ignore[override]
 
 
 class QLightSensor(QSensor):
@@ -460,7 +460,7 @@ class QMagnetometerFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QMagnetometerFilter') -> None: ...
 
-    def filter(self, reading: QMagnetometerReading) -> bool: ...
+    def filter(self, reading: QMagnetometerReading) -> bool: ...  # type: ignore[override]
 
 
 class QMagnetometer(QSensor):
@@ -495,7 +495,7 @@ class QOrientationFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QOrientationFilter') -> None: ...
 
-    def filter(self, reading: QOrientationReading) -> bool: ...
+    def filter(self, reading: QOrientationReading) -> bool: ...  # type: ignore[override]
 
 
 class QOrientationSensor(QSensor):
@@ -520,7 +520,7 @@ class QPressureFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QPressureFilter') -> None: ...
 
-    def filter(self, reading: QPressureReading) -> bool: ...
+    def filter(self, reading: QPressureReading) -> bool: ...  # type: ignore[override]
 
 
 class QPressureSensor(QSensor):
@@ -543,7 +543,7 @@ class QProximityFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QProximityFilter') -> None: ...
 
-    def filter(self, reading: QProximityReading) -> bool: ...
+    def filter(self, reading: QProximityReading) -> bool: ...  # type: ignore[override]
 
 
 class QProximitySensor(QSensor):
@@ -595,7 +595,7 @@ class QTapFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QTapFilter') -> None: ...
 
-    def filter(self, reading: QTapReading) -> bool: ...
+    def filter(self, reading: QTapReading) -> bool: ...  # type: ignore[override]
 
 
 class QTapSensor(QSensor):
@@ -623,7 +623,7 @@ class QTiltFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QTiltFilter') -> None: ...
 
-    def filter(self, reading: QTiltReading) -> bool: ...
+    def filter(self, reading: QTiltReading) -> bool: ...  # type: ignore[override]
 
 
 class QTiltSensor(QSensor):
@@ -649,7 +649,7 @@ class QRotationFilter(QSensorFilter):
     @typing.overload
     def __init__(self, a0: 'QRotationFilter') -> None: ...
 
-    def filter(self, reading: QRotationReading) -> bool: ...
+    def filter(self, reading: QRotationReading) -> bool: ...  # type: ignore[override]
 
 
 class QRotationSensor(QSensor):
