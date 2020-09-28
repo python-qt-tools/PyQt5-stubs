@@ -473,7 +473,7 @@ class QPyDesignerTaskMenuExtension(QtCore.QObject, QDesignerTaskMenuExtension):
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
 
-class QPyDesignerPropertySheetExtension(QtCore.QObject, QDesignerPropertySheetExtension):
+class QPyDesignerPropertySheetExtension(QtCore.QObject, QDesignerPropertySheetExtension):  # type: ignore[misc]
 
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
