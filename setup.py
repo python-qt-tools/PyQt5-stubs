@@ -46,6 +46,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
+    python_requires=">= 3.5",
     package_data={"PyQt5-stubs": ['*.pyi']},
     packages=["PyQt5-stubs"],
     tests_require=["PyQt5==5.14.*"],
