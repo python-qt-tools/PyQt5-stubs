@@ -38,8 +38,7 @@ class pyqtBoundSignal:
     def disconnect(self, slot: typing.Union["PYQT_SLOT", "QMetaObject.Connection"]=None) -> None: ...
 
 
-# Support for new-style signals and slots.
-class pyqtSignal:  # add methods
+class pyqtSignal:
     def __init__(self, *types: typing.Any, name: str = ...) -> None: ...
 
     @typing.overload
