@@ -2251,7 +2251,6 @@ class QBitArray(sip.simplewrapper):
 
 class QIODevice(QObject):
 
-    class OpenModeFlag(int): ...
     NotOpen = ... # type: 'QIODevice.OpenModeFlag'
     ReadOnly = ... # type: 'QIODevice.OpenModeFlag'
     WriteOnly = ... # type: 'QIODevice.OpenModeFlag'
@@ -2262,6 +2261,11 @@ class QIODevice(QObject):
     Unbuffered = ... # type: 'QIODevice.OpenModeFlag'
     NewOnly = ... # type: 'QIODevice.OpenModeFlag'
     ExistingOnly = ... # type: 'QIODevice.OpenModeFlag'
+
+    class OpenModeFlag(int):
+        def __and__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
+        def __or__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
+        def __xor__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
 
     class OpenMode(sip.simplewrapper):
 
@@ -2277,6 +2281,12 @@ class QIODevice(QObject):
         def __invert__(self) -> 'QIODevice.OpenMode': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
+        def __and__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag']) -> 'QIODevice.OpenMode': ... #type: ignore[override]
+        def __iand__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag']) -> 'QIODevice.OpenMode': ... #type: ignore[override]
+        def __or__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag']) -> 'QIODevice.OpenMode': ... #type: ignore[override]
+        def __ior__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag']) -> 'QIODevice.OpenMode': ... #type: ignore[override]
+        def __xor__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag']) -> 'QIODevice.OpenMode': ... #type: ignore[override]
+        def __ixor__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag']) -> 'QIODevice.OpenMode': ... #type: ignore[override]
 
     @typing.overload
     def __init__(self) -> None: ...
