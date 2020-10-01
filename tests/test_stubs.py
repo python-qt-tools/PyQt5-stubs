@@ -31,4 +31,4 @@ def test_files(filename):
     path = os.path.join(TESTS_DIR, filename)
     with open(path, 'r') as f:
         code = f.read()
-    exec(compile(code, filename, 'exec'))
+    exec(compile(code, filename, 'exec'), {})
