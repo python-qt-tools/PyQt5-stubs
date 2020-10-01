@@ -3,7 +3,7 @@ from PyQt5 import QtCore
 
 
 class Class(QtCore.QObject):
-    signal: typing.ClassVar[QtCore.pyqtSignal] = QtCore.pyqtSignal([str])
+    signal = QtCore.pyqtSignal([str])  # type: typing.ClassVar[QtCore.pyqtSignal]
 
 
 Class.signal.__get__
