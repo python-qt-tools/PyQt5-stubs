@@ -912,10 +912,10 @@ class QClipboard(QtCore.QObject):
     Selection = ... # type: 'QClipboard.Mode'
     FindBuffer = ... # type: 'QClipboard.Mode'
 
-    selectionChanged: QtCore.pyqtSignal
-    findBufferChanged: QtCore.pyqtSignal
-    dataChanged: QtCore.pyqtSignal
-    changed: QtCore.pyqtSignal
+    selectionChanged: typing.ClassVar[QtCore.pyqtSignal]
+    findBufferChanged: typing.ClassVar[QtCore.pyqtSignal]
+    dataChanged: typing.ClassVar[QtCore.pyqtSignal]
+    changed: typing.ClassVar[QtCore.pyqtSignal]
     def setPixmap(self, a0: QPixmap, mode: 'QClipboard.Mode' = ...) -> None: ...
     def setImage(self, a0: 'QImage', mode: 'QClipboard.Mode' = ...) -> None: ...
     def pixmap(self, mode: 'QClipboard.Mode' = ...) -> QPixmap: ...
@@ -4451,9 +4451,9 @@ class QWindow(QtCore.QObject, QSurface):
     def setWindowStates(self, states: typing.Union[QtCore.Qt.WindowStates, QtCore.Qt.WindowState]) -> None: ...
     def windowStates(self) -> QtCore.Qt.WindowStates: ...
     def setFlag(self, a0: QtCore.Qt.WindowType, on: bool = ...) -> None: ...
-    opacityChanged: QtCore.pyqtSignal
-    activeChanged: QtCore.pyqtSignal
-    visibilityChanged: QtCore.pyqtSignal
+    opacityChanged: typing.ClassVar[QtCore.pyqtSignal]
+    activeChanged: typing.ClassVar[QtCore.pyqtSignal]
+    visibilityChanged: typing.ClassVar[QtCore.pyqtSignal]
     @staticmethod
     def fromWinId(id: sip.voidptr) -> 'QWindow': ...
     def mask(self) -> 'QRegion': ...
@@ -4478,21 +4478,21 @@ class QWindow(QtCore.QObject, QSurface):
     def moveEvent(self, a0: QMoveEvent) -> None: ...
     def resizeEvent(self, a0: QResizeEvent) -> None: ...
     def exposeEvent(self, a0: QExposeEvent) -> None: ...
-    windowTitleChanged: QtCore.pyqtSignal
-    focusObjectChanged: QtCore.pyqtSignal
-    contentOrientationChanged: QtCore.pyqtSignal
-    visibleChanged: QtCore.pyqtSignal
-    maximumHeightChanged: QtCore.pyqtSignal
-    maximumWidthChanged: QtCore.pyqtSignal
-    minimumHeightChanged: QtCore.pyqtSignal
-    minimumWidthChanged: QtCore.pyqtSignal
-    heightChanged: QtCore.pyqtSignal
-    widthChanged: QtCore.pyqtSignal
-    yChanged: QtCore.pyqtSignal
-    xChanged: QtCore.pyqtSignal
-    windowStateChanged: QtCore.pyqtSignal
-    modalityChanged: QtCore.pyqtSignal
-    screenChanged: QtCore.pyqtSignal
+    windowTitleChanged: typing.ClassVar[QtCore.pyqtSignal]
+    focusObjectChanged: typing.ClassVar[QtCore.pyqtSignal]
+    contentOrientationChanged: typing.ClassVar[QtCore.pyqtSignal]
+    visibleChanged: typing.ClassVar[QtCore.pyqtSignal]
+    maximumHeightChanged: typing.ClassVar[QtCore.pyqtSignal]
+    maximumWidthChanged: typing.ClassVar[QtCore.pyqtSignal]
+    minimumHeightChanged: typing.ClassVar[QtCore.pyqtSignal]
+    minimumWidthChanged: typing.ClassVar[QtCore.pyqtSignal]
+    heightChanged: typing.ClassVar[QtCore.pyqtSignal]
+    widthChanged: typing.ClassVar[QtCore.pyqtSignal]
+    yChanged: typing.ClassVar[QtCore.pyqtSignal]
+    xChanged: typing.ClassVar[QtCore.pyqtSignal]
+    windowStateChanged: typing.ClassVar[QtCore.pyqtSignal]
+    modalityChanged: typing.ClassVar[QtCore.pyqtSignal]
+    screenChanged: typing.ClassVar[QtCore.pyqtSignal]
     def requestUpdate(self) -> None: ...
     def alert(self, msec: int) -> None: ...
     def setMaximumHeight(self, h: int) -> None: ...
