@@ -31,7 +31,6 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
@@ -383,7 +382,7 @@ class QPrintPreviewDialog(QtWidgets.QDialog):
     @typing.overload
     def __init__(self, printer: QPrinter, parent: typing.Optional[QtWidgets.QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...
 
-    paintRequested: QtCore.pyqtSignal
+    paintRequested: typing.ClassVar[QtCore.pyqtSignal]
 
     def done(self, result: int) -> None: ...
     def printer(self) -> QPrinter: ...
@@ -412,8 +411,8 @@ class QPrintPreviewWidget(QtWidgets.QWidget):
     def __init__(self, parent: typing.Optional[QtWidgets.QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...
 
     def pageCount(self) -> int: ...
-    previewChanged: QtCore.pyqtSignal
-    paintRequested: QtCore.pyqtSignal
+    previewChanged: typing.ClassVar[QtCore.pyqtSignal]
+    paintRequested: typing.ClassVar[QtCore.pyqtSignal]
     def updatePreview(self) -> None: ...
     def setAllPagesViewMode(self) -> None: ...
     def setFacingPagesViewMode(self) -> None: ...
