@@ -30,7 +30,6 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
@@ -183,9 +182,9 @@ class QQmlEngine(QJSEngine):
     def singletonInstance(self, qmlTypeId: int) -> QtCore.QObject: ...
     def retranslate(self) -> None: ...
     def offlineStorageDatabaseFilePath(self, databaseName: str) -> str: ...
-    exit: PYQT_SIGNAL
-    warnings: PYQT_SIGNAL
-    quit: PYQT_SIGNAL
+    exit: typing.ClassVar[QtCore.pyqtSignal]
+    warnings: typing.ClassVar[QtCore.pyqtSignal]
+    quit: typing.ClassVar[QtCore.pyqtSignal]
     def event(self, a0: QtCore.QEvent) -> bool: ...
     @staticmethod
     def objectOwnership(a0: QtCore.QObject) -> 'QQmlEngine.ObjectOwnership': ...
@@ -231,7 +230,7 @@ class QQmlApplicationEngine(QQmlEngine):
     @typing.overload
     def __init__(self, filePath: str, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
-    objectCreated: PYQT_SIGNAL
+    objectCreated: typing.ClassVar[QtCore.pyqtSignal]
     def setInitialProperties(self, initialProperties: typing.Dict[str, typing.Any]) -> None: ...
     def loadData(self, data: typing.Union[QtCore.QByteArray, bytes, bytearray], url: QtCore.QUrl = ...) -> None: ...
     @typing.overload
