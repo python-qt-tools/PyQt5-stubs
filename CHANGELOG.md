@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#94](https://github.com/stlehmann/PyQt5-stubs/pull/94) add several operators to QIODevice.OpenMode\[Flag\]
 * [#93](https://github.com/stlehmann/PyQt5-stubs/pull/93) test against 3.5, 3.6, 3.7, 3.8, and 3.9
 * [#71](https://github.com/stlehmann/PyQt5-stubs/pull/71) update to PyQt 5.15.1
-* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) adds .__getitem__() to pyqtBoundSignal allowing for indexing
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) adds .\_\_getitem__() to pyqtBoundSignal allowing for indexing
 * [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds pyqtBoundSignal.signal: str
 
 ### Changed
