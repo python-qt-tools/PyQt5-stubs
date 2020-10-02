@@ -31,7 +31,6 @@ from PyQt5 import QtGui  # add import of QtGui
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
@@ -159,25 +158,25 @@ class QTest(sip.simplewrapper):
     def keyRelease(widget: QtWidgets.QWidget, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
-    def keyRelease(widget: QtWidgets.QWidget, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...  # type: ignore
+    def keyRelease(widget: QtWidgets.QWidget, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
     def keyRelease(window: QtGui.QWindow, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
-    def keyRelease(window: QtGui.QWindow, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...  # type: ignore
+    def keyRelease(window: QtGui.QWindow, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
     def keyPress(widget: QtWidgets.QWidget, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
-    def keyPress(widget: QtWidgets.QWidget, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...  # type: ignore
+    def keyPress(widget: QtWidgets.QWidget, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
     def keyPress(window: QtGui.QWindow, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
-    def keyPress(window: QtGui.QWindow, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...  # type: ignore
+    def keyPress(window: QtGui.QWindow, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
     def keyEvent(action: 'QTest.KeyAction', widget: QtWidgets.QWidget, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
@@ -197,12 +196,12 @@ class QTest(sip.simplewrapper):
     def keyClick(widget: QtWidgets.QWidget, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
-    def keyClick(widget: QtWidgets.QWidget, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...  # type: ignore
+    def keyClick(widget: QtWidgets.QWidget, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
     def keyClick(window: QtGui.QWindow, key: QtCore.Qt.Key, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @typing.overload
     @staticmethod
-    def keyClick(window: QtGui.QWindow, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...  # type: ignore
+    def keyClick(window: QtGui.QWindow, key: str, modifier: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier] = ..., delay: int = ...) -> None: ...
     @staticmethod
     def qSleep(ms: int) -> None: ...
