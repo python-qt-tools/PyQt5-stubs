@@ -4,11 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 5.14.2.3 [unreleased]
+## 5.15.1.0 [unreleased]
 
 ### Added
+* [#94](https://github.com/stlehmann/PyQt5-stubs/pull/94) add several operators to QIODevice.OpenMode\[Flag\]
+* [#93](https://github.com/stlehmann/PyQt5-stubs/pull/93) test against 3.5, 3.6, 3.7, 3.8, and 3.9
+* [#71](https://github.com/stlehmann/PyQt5-stubs/pull/71) update to PyQt 5.15.1
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) adds .__getitem__() to pyqtBoundSignal allowing for indexing
+* [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds pyqtBoundSignal.signal: str
 
 ### Changed
+* [#83](https://github.com/stlehmann/PyQt5-stubs/pull/83) fixes sip.array to be generic
+* [#79](https://github.com/stlehmann/PyQt5-stubs/pull/79) fixes extra class layer in several modules
+* [#57](https://github.com/stlehmann/PyQt5-stubs/pull/57) fixes PYQT_SLOT to allow callables returning any object
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) fixes pyqtSignal as a descriptor and moves .emit()/.connect()/.disconnect() to pyqtBoundSignal
+* [#54](https://github.com/stlehmann/PyQt5-stubs/pull/54) fixes pyqtSignal.connect() and .disconnect() to support QMetaObject.Connection
 * [#50](https://github.com/stlehmann/PyQt5-stubs/pull/50) fixes QTest QAbstractItemModelTester.FailureReportingMode attributes
 * [#46](https://github.com/stlehmann/PyQt5-stubs/pull/46) fixes QCoreApplication and QObject signals
 * [#48](https://github.com/stlehmann/PyQt5-stubs/pull/48) fixes some signals for QClipBoard, QWindows, QQuickView and QQml{Application,}Engine
