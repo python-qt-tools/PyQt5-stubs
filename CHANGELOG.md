@@ -7,13 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## 5.15.1.0 [unreleased]
 
 ### Added
+* [#92](https://github.com/stlehmann/PyQt5-stubs/pull/92) add Sequence methods (and .\_\_setitem_\_\()) to sip.array
 * [#94](https://github.com/stlehmann/PyQt5-stubs/pull/94) add several operators to QIODevice.OpenMode\[Flag\]
 * [#93](https://github.com/stlehmann/PyQt5-stubs/pull/93) test against 3.5, 3.6, 3.7, 3.8, and 3.9
 * [#71](https://github.com/stlehmann/PyQt5-stubs/pull/71) update to PyQt 5.15.1
-* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) adds .\_\_getitem__() to pyqtBoundSignal allowing for indexing
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) adds .\_\_getitem\_\_() to pyqtBoundSignal allowing for indexing
 * [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds pyqtBoundSignal.signal: str
 
 ### Changed
+* [#92](https://github.com/stlehmann/PyQt5-stubs/pull/92) remove self from qDefaultSurfaceFormat() and qIdForNode()
 * [#83](https://github.com/stlehmann/PyQt5-stubs/pull/83) fixes sip.array to be generic
 * [#79](https://github.com/stlehmann/PyQt5-stubs/pull/79) fixes extra class layer in several modules
 * [#57](https://github.com/stlehmann/PyQt5-stubs/pull/57) fixes PYQT_SLOT to allow callables returning any object
