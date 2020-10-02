@@ -19,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#83](https://github.com/stlehmann/PyQt5-stubs/pull/83) fixes `sip.array` to be generic
 * [#79](https://github.com/stlehmann/PyQt5-stubs/pull/79) fixes extra class layer in several modules
 * [#57](https://github.com/stlehmann/PyQt5-stubs/pull/57) fixes `PYQT_SLOT` to allow callables returning any object
-* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) fixes `pyqtSignal` as a descriptor and moves `.emit()`, `.connect()`, `.disconnect()` to `pyqtBoundSignal`
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) fixes `pyqtSignal` as a descriptor and moves `.emit()`, `.connect()`, and `.disconnect()` to `pyqtBoundSignal`
 * [#54](https://github.com/stlehmann/PyQt5-stubs/pull/54) fixes `pyqtSignal.connect()` and `pyqtSignal.disconnect()` to support `QMetaObject.Connection`
 * [#59](https://github.com/stlehmann/PyQt5-stubs/pull/59) fixes `QGuiApplication.lastWindowClosed` to be a signal
 * [#58](https://github.com/stlehmann/PyQt5-stubs/pull/50) improves `QObject.findChild` and `QObject.findChildren`
