@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 * [#59](https://github.com/stlehmann/PyQt5-stubs/pull/59) fixes QGuiApplication.lastWindowClosed to be a signal
+* [#58](https://github.com/stlehmann/PyQt5-stubs/pull/50) improves QObject.findChild and findChildren
 * [#50](https://github.com/stlehmann/PyQt5-stubs/pull/50) fixes QTest QAbstractItemModelTester.FailureReportingMode attributes
 * [#46](https://github.com/stlehmann/PyQt5-stubs/pull/46) fixes QCoreApplication and QObject signals
 * [#48](https://github.com/stlehmann/PyQt5-stubs/pull/48) fixes some signals for QClipBoard, QWindows, QQuickView and QQml{Application,}Engine
