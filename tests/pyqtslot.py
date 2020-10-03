@@ -9,4 +9,4 @@ def func_int(s: str) -> int:
     return 42
 
 func_none("test")
-x: int = func_int("test")
+x = func_int("test")  # type: int
