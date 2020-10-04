@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds `pyqtBoundSignal.signal` hinted as `str`
 
 ### Changed
+* [#103](https://github.com/stlehmann/PyQt5-stubs/pull/103) `pyqtBoundSignal.disconnect()`'s `slot` parameter is optional
 * [#92](https://github.com/stlehmann/PyQt5-stubs/pull/92) remove self from `qDefaultSurfaceFormat()` and `qIdForNode()`
 * [#83](https://github.com/stlehmann/PyQt5-stubs/pull/83) fixes `sip.array` to be generic
 * [#79](https://github.com/stlehmann/PyQt5-stubs/pull/79) fixes extra class layer in several modules
