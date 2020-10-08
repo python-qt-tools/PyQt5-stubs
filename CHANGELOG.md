@@ -4,15 +4,34 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 5.14.2.3 [unreleased]
+## 5.15.1.0 [unreleased]
 
 ### Added
+* [#99](https://github.com/stlehmann/PyQt5-stubs/pull/99) enable mypy's strict mode
+* [#92](https://github.com/stlehmann/PyQt5-stubs/pull/92) add `Sequence` methods and `.__setitem__()` to `sip.array`
+* [#94](https://github.com/stlehmann/PyQt5-stubs/pull/94) add several operators to `QIODevice.OpenMode` and `QIODevice.OpenModeFlag`
+* [#93](https://github.com/stlehmann/PyQt5-stubs/pull/93) test against 3.5, 3.6, 3.7, 3.8, and 3.9
+* [#71](https://github.com/stlehmann/PyQt5-stubs/pull/71) update to PyQt5 5.15.1
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) adds `pyqtBoundSignal.__getitem__()` allowing for indexing
+* [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds `pyqtBoundSignal.signal` hinted as `str`
 
 ### Changed
-* [#50](https://github.com/stlehmann/PyQt5-stubs/pull/50) fixes QTest QAbstractItemModelTester.FailureReportingMode attributes
-* [#46](https://github.com/stlehmann/PyQt5-stubs/pull/46) fixes QCoreApplication and QObject signals
-* [#48](https://github.com/stlehmann/PyQt5-stubs/pull/48) fixes some signals for QClipBoard, QWindows, QQuickView and QQml{Application,}Engine
-* [#49](https://github.com/stlehmann/PyQt5-stubs/pull/49) fixes QAbstractItemView.setModel to accept None
+* [#102](https://github.com/stlehmann/PyQt5-stubs/pull/102) fix `pyqtSlot` parameter typing and overloads
+* [#104](https://github.com/stlehmann/PyQt5-stubs/pull/104) `sip.voidptr` handles integer values and sequences and takes `self`
+* [#103](https://github.com/stlehmann/PyQt5-stubs/pull/103) `pyqtBoundSignal.disconnect()`'s `slot` parameter is optional
+* [#100](https://github.com/stlehmann/PyQt5-stubs/pull/100) fill generic parameter as `sip.array[int]` for QtDataVisualization textures
+* [#92](https://github.com/stlehmann/PyQt5-stubs/pull/92) remove self from `qDefaultSurfaceFormat()` and `qIdForNode()`
+* [#83](https://github.com/stlehmann/PyQt5-stubs/pull/83) fixes `sip.array` to be generic
+* [#79](https://github.com/stlehmann/PyQt5-stubs/pull/79) fixes extra class layer in several modules
+* [#57](https://github.com/stlehmann/PyQt5-stubs/pull/57) fixes `PYQT_SLOT` to allow callables returning any object
+* [#56](https://github.com/stlehmann/PyQt5-stubs/pull/56) fixes `pyqtSignal` as a descriptor and moves `.emit()`, `.connect()`, and `.disconnect()` to `pyqtBoundSignal`
+* [#54](https://github.com/stlehmann/PyQt5-stubs/pull/54) fixes `pyqtSignal.connect()` and `pyqtSignal.disconnect()` to support `QMetaObject.Connection`
+* [#59](https://github.com/stlehmann/PyQt5-stubs/pull/59) fixes `QGuiApplication.lastWindowClosed` to be a signal
+* [#58](https://github.com/stlehmann/PyQt5-stubs/pull/50) improves `QObject.findChild` and `QObject.findChildren`
+* [#50](https://github.com/stlehmann/PyQt5-stubs/pull/50) fixes `QAbstractItemModelTester.FailureReportingMode` attributes
+* [#46](https://github.com/stlehmann/PyQt5-stubs/pull/46) fixes `QCoreApplication` and `QObject` signals
+* [#48](https://github.com/stlehmann/PyQt5-stubs/pull/48) fixes some signals for `QClipBoard`, `QWindows`, `QQuickView`, `QQmlApplicationEngine` and `QQmlEngine`
+* [#49](https://github.com/stlehmann/PyQt5-stubs/pull/49) fixes `QAbstractItemView.setModel()` to accept `None`
 
 ### Removed
 
@@ -21,7 +40,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 ### Changed
-* [#43](https://github.com/stlehmann/PyQt5-stubs/pull/43) Update stubs to PyQt5.14.2
+* [#43](https://github.com/stlehmann/PyQt5-stubs/pull/43) Update stubs to PyQt5 5.14.2
 
 ### Removed
 
@@ -29,10 +48,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 * [#39](https://github.com/stlehmann/PyQt5-stubs/pull/39) Add this changelog file
-* [#36](https://github.com/stlehmann/PyQt5-stubs/pull/36), [#41](https://github.com/stlehmann/PyQt5-stubs/pull/41
-) New build script for upstream stubs includes extra
- packages
-like QtWebEngine and Qt3D
+* [#36](https://github.com/stlehmann/PyQt5-stubs/pull/36),
+[#41](https://github.com/stlehmann/PyQt5-stubs/pull/41)
+New build script for upstream stubs includes extra packages like `QtWebEngine` and `Qt3D`
 
 ### Changed
 * [#38](https://github.com/stlehmann/PyQt5-stubs/pull/38) Changed license to GPLv3 to be compilient with PyQt5 license

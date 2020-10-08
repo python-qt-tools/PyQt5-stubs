@@ -31,7 +31,6 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
@@ -475,8 +474,8 @@ class QQuickWindow(QtGui.QWindow):
 
     def __init__(self, parent: typing.Optional[QtGui.QWindow] = ...) -> None: ...
 
-    afterRenderPassRecording: PYQT_SIGNAL
-    beforeRenderPassRecording: PYQT_SIGNAL
+    afterRenderPassRecording: typing.ClassVar[QtCore.pyqtSignal]
+    beforeRenderPassRecording: typing.ClassVar[QtCore.pyqtSignal]
     def endExternalCommands(self) -> None: ...
     def beginExternalCommands(self) -> None: ...
     @staticmethod
@@ -497,14 +496,14 @@ class QQuickWindow(QtGui.QWindow):
     def isSceneGraphInitialized(self) -> bool: ...
     def effectiveDevicePixelRatio(self) -> float: ...
     def scheduleRenderJob(self, job: QtCore.QRunnable, schedule: 'QQuickWindow.RenderStage') -> None: ...
-    sceneGraphError: PYQT_SIGNAL
-    sceneGraphAboutToStop: PYQT_SIGNAL
-    afterAnimating: PYQT_SIGNAL
-    afterSynchronizing: PYQT_SIGNAL
-    openglContextCreated: PYQT_SIGNAL
+    sceneGraphError: typing.ClassVar[QtCore.pyqtSignal]
+    sceneGraphAboutToStop: typing.ClassVar[QtCore.pyqtSignal]
+    afterAnimating: typing.ClassVar[QtCore.pyqtSignal]
+    afterSynchronizing: typing.ClassVar[QtCore.pyqtSignal]
+    openglContextCreated: typing.ClassVar[QtCore.pyqtSignal]
     def resetOpenGLState(self) -> None: ...
-    activeFocusItemChanged: PYQT_SIGNAL
-    closing: PYQT_SIGNAL
+    activeFocusItemChanged: typing.ClassVar[QtCore.pyqtSignal]
+    closing: typing.ClassVar[QtCore.pyqtSignal]
     @staticmethod
     def setDefaultAlphaBuffer(useAlpha: bool) -> None: ...
     @staticmethod
@@ -526,13 +525,13 @@ class QQuickWindow(QtGui.QWindow):
     def exposeEvent(self, a0: QtGui.QExposeEvent) -> None: ...
     def releaseResources(self) -> None: ...
     def update(self) -> None: ...
-    colorChanged: PYQT_SIGNAL
-    afterRendering: PYQT_SIGNAL
-    beforeRendering: PYQT_SIGNAL
-    beforeSynchronizing: PYQT_SIGNAL
-    sceneGraphInvalidated: PYQT_SIGNAL
-    sceneGraphInitialized: PYQT_SIGNAL
-    frameSwapped: PYQT_SIGNAL
+    colorChanged: typing.ClassVar[QtCore.pyqtSignal]
+    afterRendering: typing.ClassVar[QtCore.pyqtSignal]
+    beforeRendering: typing.ClassVar[QtCore.pyqtSignal]
+    beforeSynchronizing: typing.ClassVar[QtCore.pyqtSignal]
+    sceneGraphInvalidated: typing.ClassVar[QtCore.pyqtSignal]
+    sceneGraphInitialized: typing.ClassVar[QtCore.pyqtSignal]
+    frameSwapped: typing.ClassVar[QtCore.pyqtSignal]
     def openglContext(self) -> QtGui.QOpenGLContext: ...
     def isPersistentSceneGraph(self) -> bool: ...
     def setPersistentSceneGraph(self, persistent: bool) -> None: ...
