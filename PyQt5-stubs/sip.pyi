@@ -21,7 +21,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from typing import overload, Generic, Iterable, Sequence, TypeVar, Union
+from typing import overload, Any, Generic, Iterable, Sequence, TypeVar, Union
 
 
 # Constants.
@@ -73,16 +73,13 @@ class voidptr:
     @overload
     def __getitem__(self, s: slice) -> 'voidptr': ...
 
-    def __hex__(self) -> str: ...
-
     def __len__(self) -> int: ...
 
     def __setitem__(self, i: Union[int, slice], v: Buffer) -> None: ...
 
     def asarray(self, size: int = -1) -> array[int]: ...
 
-    # Python doesn't expose the capsule type.
-    #def ascapsule(self) -> capsule: ...
+    def ascapsule(self) -> Any: ...
 
     def asstring(self, size: int = -1) -> bytes: ...
 

@@ -1036,10 +1036,10 @@ class QAction(QtCore.QObject):
 
 class QActionGroup(QtCore.QObject):
 
-    class ExclusionPolicy(int): ...
-    # None = ... # type: 'QActionGroup.ExclusionPolicy'
-    Exclusive = ... # type: 'QActionGroup.ExclusionPolicy'
-    ExclusiveOptional = ... # type: 'QActionGroup.ExclusionPolicy'
+    class ExclusionPolicy(int):
+        # None = ... # type: 'QActionGroup.ExclusionPolicy'
+        Exclusive = ... # type: 'QActionGroup.ExclusionPolicy'
+        ExclusiveOptional = ... # type: 'QActionGroup.ExclusionPolicy'
 
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
