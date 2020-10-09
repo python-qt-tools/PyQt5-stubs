@@ -58,3 +58,4 @@ PyQt5.QtXmlPatterns.QXmlResultItems.__init__
 PyQt5.sip.array
 PyQt5.sip.simplewrapper.__init__
 PyQt5.sip.wrappertype.__init__
+PyQt5.QtNetwork.QOcspRevocationReason.None

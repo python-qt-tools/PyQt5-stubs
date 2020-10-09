@@ -10,7 +10,6 @@ PyQt5.QtGui.QColorSpace.Primaries.__new__
 PyQt5.QtGui.QColorSpace.TransferFunction.__new__
 PyQt5.QtGui.QTextBlockFormat.MarkerType.__new__
 PyQt5.QtNetwork.QOcspCertificateStatus.__new__
-PyQt5.QtNetwork.QOcspRevocationReason.None
 PyQt5.QtNetwork.QOcspRevocationReason.__new__
 PyQt5.QtNetwork.QSslCertificate.PatternSyntax.__new__
 PyQt5.QtNetworkAuth.QAbstractOAuth.ContentType.__new__
