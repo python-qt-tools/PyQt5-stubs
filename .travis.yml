@@ -13,6 +13,11 @@ matrix:
     - python: 3.9-dev
       env: TOXENV=py39
 
+addons:
+  apt:
+    packages:
+      - libpulse-mainloop-glib0
+
 install:
   - pip install tox
 
