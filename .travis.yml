@@ -16,6 +16,7 @@ matrix:
 addons:
   apt:
     packages:
+      # Required to stubtest QtMultimedia
       - libpulse-mainloop-glib0
 
 install:
