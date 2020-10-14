@@ -1,4 +1,4 @@
 from PyQt5 import QtWidgets
 
-a: QtWidgets.QMessageBox.StandardButtons = QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Ok
-b: int = QtWidgets.QMessageBox.Ok | 0
+a = QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Ok  # type: QtWidgets.QMessageBox.StandardButtons
+b = QtWidgets.QMessageBox.Ok | 0  # type: int
