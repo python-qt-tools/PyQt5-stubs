@@ -6,3 +6,6 @@ QtWidgets.QMessageBox.question(
     "Are you sure?",
     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
 )
+
+a: QtWidgets.QMessageBox.StandardButtons = QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Ok
+b: int = QtWidgets.QMessageBox.Ok | 0

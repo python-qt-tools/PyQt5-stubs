@@ -6479,7 +6479,7 @@ class QMessageBox(QDialog):
 
     class StandardButton(int):
         @typing.overload  # type: ignore[override]
-        def __or__(self, other: typing.Union['QMessageBox.StandardButton', 'QMessageBox.StandardButtons']) -> 'QMessageBox.StandardButtons': ...
+        def __or__(self, other: typing.Union['QMessageBox.StandardButton', 'QMessageBox.StandardButtons']) -> 'QMessageBox.StandardButtons': ...  # type: ignore[misc]
         @typing.overload
         def __or__(self, other: int) -> int: ...
 
