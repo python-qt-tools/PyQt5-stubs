@@ -1,4 +1,7 @@
-# Careful, the version and build date are both dates, but different formats
+# ARCH_VERSION is a tag available from:
+#       https://hub.docker.com/_/archlinux?tab=tags&page=1&ordering=last_updated
+# BUILD_DATE is a path from:
+#       https://archive.archlinux.org/repos/
 ARG ARCH_VERSION="base-20201129.0.10056"
 ARG BUILD_DATE="2020/12/02"
 
