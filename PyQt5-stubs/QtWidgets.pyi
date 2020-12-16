@@ -1038,7 +1038,7 @@ class QAction(QtCore.QObject):
 class QActionGroup(QtCore.QObject):
 
     class ExclusionPolicy(int): ...
-    None = ... # type: 'QActionGroup.ExclusionPolicy'
+    None_ = ... # type: 'QActionGroup.ExclusionPolicy'
     Exclusive = ... # type: 'QActionGroup.ExclusionPolicy'
     ExclusiveOptional = ... # type: 'QActionGroup.ExclusionPolicy'
 
