@@ -42,7 +42,6 @@ PyQt5.QtQuick.QSGVertexColorMaterial.__init__
 PyQt5.QtSvg.QSvgGenerator.__init__
 PyQt5.QtWebKit
 PyQt5.QtWebKitWidgets
-PyQt5.QtWidgets.QActionGroup.ExclusionPolicy.None
 PyQt5.QtWidgets.QCommonStyle.__init__
 PyQt5.QtWidgets.QDesktopWidget.__init__
 PyQt5.QtWidgets.QFileIconProvider.__init__
@@ -58,4 +57,3 @@ PyQt5.QtXmlPatterns.QXmlResultItems.__init__
 PyQt5.sip.array
 PyQt5.sip.simplewrapper.__init__
 PyQt5.sip.wrappertype.__init__
-PyQt5.QtNetwork.QOcspRevocationReason.None
