@@ -33,7 +33,7 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QOcspRevocationReason(int): ...
-# None = ... # type: QOcspRevocationReason
+None_ = ... # type: QOcspRevocationReason
 Unspecified = ... # type: QOcspRevocationReason
 KeyCompromise = ... # type: QOcspRevocationReason
 CACompromise = ... # type: QOcspRevocationReason
