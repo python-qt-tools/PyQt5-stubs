@@ -42,8 +42,6 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 
 class QAbstractFunctor(sip.simplewrapper):
 
-    def __init__(self) -> None: ...
-
     def id(self) -> sip.voidptr: ...
 
 class QAbstractLight(Qt3DCore.QComponent):

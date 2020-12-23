@@ -293,10 +293,10 @@ class QWebEngineHistory(sip.simplewrapper):
 
 class QWebEnginePage(QtCore.QObject):
 
-    class LifecycleState(int): ...
-    Active = ... # type: 'QWebEnginePage.LifecycleState'
-    Frozen = ... # type: 'QWebEnginePage.LifecycleState'
-    Discarded = ... # type: 'QWebEnginePage.LifecycleState'
+    class LifecycleState(int):
+        Active = ... # type: 'QWebEnginePage.LifecycleState'
+        Frozen = ... # type: 'QWebEnginePage.LifecycleState'
+        Discarded = ... # type: 'QWebEnginePage.LifecycleState'
 
     class RenderProcessTerminationStatus(int): ...
     NormalTerminationStatus = ... # type: 'QWebEnginePage.RenderProcessTerminationStatus'
