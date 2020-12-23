@@ -25,6 +25,7 @@ jobs:
           - name: Linux
             runs-on: ubuntu-latest
             matrix: linux
+#          https://github.com/stlehmann/PyQt5-stubs/issues/122
 #          - name: Windows
 #            runs-on: windows-latest
 #            matrix: windows
