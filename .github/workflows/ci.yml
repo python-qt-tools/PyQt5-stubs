@@ -25,12 +25,14 @@ jobs:
           - name: Linux
             runs-on: ubuntu-latest
             matrix: linux
-          - name: Windows
-            runs-on: windows-latest
-            matrix: windows
-          - name: macOS
-            runs-on: macos-latest
-            matrix: macos
+#          https://github.com/stlehmann/PyQt5-stubs/issues/122
+#          - name: Windows
+#            runs-on: windows-latest
+#            matrix: windows
+#          https://github.com/stlehmann/PyQt5-stubs/issues/122
+#          - name: macOS
+#            runs-on: macos-latest
+#            matrix: macos
         python:
           - name: CPython 3.5
             tox: py35
