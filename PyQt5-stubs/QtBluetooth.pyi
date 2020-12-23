@@ -157,11 +157,11 @@ class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
 
 class QBluetoothDeviceInfo(sip.wrapper):
 
-    class Field(int): ...
-    None_ = ... # type: 'QBluetoothDeviceInfo.Field'
-    RSSI = ... # type: 'QBluetoothDeviceInfo.Field'
-    ManufacturerData = ... # type: 'QBluetoothDeviceInfo.Field'
-    All = ... # type: 'QBluetoothDeviceInfo.Field'
+    class Field(int):
+        None_ = ... # type: 'QBluetoothDeviceInfo.Field'
+        RSSI = ... # type: 'QBluetoothDeviceInfo.Field'
+        ManufacturerData = ... # type: 'QBluetoothDeviceInfo.Field'
+        All = ... # type: 'QBluetoothDeviceInfo.Field'
 
     class CoreConfiguration(int): ...
     UnknownCoreConfiguration = ... # type: 'QBluetoothDeviceInfo.CoreConfiguration'
