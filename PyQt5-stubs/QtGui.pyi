@@ -24,6 +24,7 @@ import typing
 from PyQt5 import sip
 
 from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 
 # Support for QDate, QDateTime and QTime.
 import datetime
@@ -951,12 +952,12 @@ class QColorSpace(sip.simplewrapper):
         DciP3D65 = ... # type: 'QColorSpace.Primaries'
         ProPhotoRgb = ... # type: 'QColorSpace.Primaries'
 
-    class NamedColorSpace(int):
-        SRgb = ... # type: 'QColorSpace.NamedColorSpace'
-        SRgbLinear = ... # type: 'QColorSpace.NamedColorSpace'
-        AdobeRgb = ... # type: 'QColorSpace.NamedColorSpace'
-        DisplayP3 = ... # type: 'QColorSpace.NamedColorSpace'
-        ProPhotoRgb = ... # type: 'QColorSpace.NamedColorSpace'
+    class NamedColorSpace(int): ...
+    SRgb = ... # type: 'QColorSpace.NamedColorSpace'
+    SRgbLinear = ... # type: 'QColorSpace.NamedColorSpace'
+    AdobeRgb = ... # type: 'QColorSpace.NamedColorSpace'
+    DisplayP3 = ... # type: 'QColorSpace.NamedColorSpace'
+    ProPhotoRgb = ... # type: 'QColorSpace.NamedColorSpace'
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1488,15 +1489,13 @@ class QWhatsThisClickedEvent(QtCore.QEvent):
 
 class QActionEvent(QtCore.QEvent):
 
-    from PyQt5.QtWidgets import QAction
-
     @typing.overload
-    def __init__(self, type: int, action: QAction, before: typing.Optional[QAction] = ...) -> None: ...
+    def __init__(self, type: int, action: QtWidgets.QAction, before: typing.Optional[QtWidgets.QAction] = ...) -> None: ...
     @typing.overload
     def __init__(self, a0: 'QActionEvent') -> None: ...
 
-    def before(self) -> QAction: ...
-    def action(self) -> QAction: ...
+    def before(self) -> QtWidgets.QAction: ...
+    def action(self) -> QtWidgets.QAction: ...
 
 
 class QFileOpenEvent(QtCore.QEvent):
@@ -7271,12 +7270,6 @@ class QTextCursor(sip.simplewrapper):
     def isNull(self) -> bool: ...
 
 
-class Qt(sip.simplewrapper):
-
-    def convertFromPlainText(self, plain: str, mode: QtCore.Qt.WhiteSpaceMode = ...) -> str: ...
-    def mightBeRichText(self, a0: str) -> bool: ...
-
-
 class QTextDocument(QtCore.QObject):
 
     class MarkdownFeature(int): ...
@@ -7819,10 +7812,10 @@ class QTextCharFormat(QTextFormat):
 
 class QTextBlockFormat(QTextFormat):
 
-    class MarkerType(int): ...
-    NoMarker = ... # type: 'QTextBlockFormat.MarkerType'
-    Unchecked = ... # type: 'QTextBlockFormat.MarkerType'
-    Checked = ... # type: 'QTextBlockFormat.MarkerType'
+    class MarkerType(int):
+        NoMarker = ... # type: 'QTextBlockFormat.MarkerType'
+        Unchecked = ... # type: 'QTextBlockFormat.MarkerType'
+        Checked = ... # type: 'QTextBlockFormat.MarkerType'
 
     class LineHeightTypes(int): ...
     SingleHeight = ... # type: 'QTextBlockFormat.LineHeightTypes'

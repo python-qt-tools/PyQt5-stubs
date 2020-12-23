@@ -240,11 +240,11 @@ class QWebEngineUrlScheme(sip.simplewrapper):
     class SpecialPort(int): ...
     PortUnspecified = ... # type: 'QWebEngineUrlScheme.SpecialPort'
 
-    class Syntax(int): ...
-    HostPortAndUserInformation = ... # type: 'QWebEngineUrlScheme.Syntax'
-    HostAndPort = ... # type: 'QWebEngineUrlScheme.Syntax'
-    Host = ... # type: 'QWebEngineUrlScheme.Syntax'
-    Path = ... # type: 'QWebEngineUrlScheme.Syntax'
+    class Syntax(int):
+        HostPortAndUserInformation = ... # type: 'QWebEngineUrlScheme.Syntax'
+        HostAndPort = ... # type: 'QWebEngineUrlScheme.Syntax'
+        Host = ... # type: 'QWebEngineUrlScheme.Syntax'
+        Path = ... # type: 'QWebEngineUrlScheme.Syntax'
 
     class Flags(sip.simplewrapper):
 

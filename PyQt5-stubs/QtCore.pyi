@@ -23,6 +23,7 @@
 import typing
 from PyQt5 import sip
 from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 import enum  # import was missing
 
 # Support for QDate, QDateTime and QTime.
@@ -42,6 +43,9 @@ class pyqtBoundSignal:
 
 
 class pyqtSignal:
+
+    signatures = ...  # type: typing.Tuple[str, ...]
+
     def __init__(self, *types: typing.Any, name: str = ...) -> None: ...
 
     @typing.overload
@@ -66,47 +70,47 @@ QtSystemMsg = ... # type: QtMsgType
 QtInfoMsg = ... # type: QtMsgType
 
 
-class QCborKnownTags(int): ...
-DateTimeString = ... # type: QCborKnownTags
-UnixTime_t = ... # type: QCborKnownTags
-PositiveBignum = ... # type: QCborKnownTags
-NegativeBignum = ... # type: QCborKnownTags
-Decimal = ... # type: QCborKnownTags
-Bigfloat = ... # type: QCborKnownTags
-COSE_Encrypt0 = ... # type: QCborKnownTags
-COSE_Mac0 = ... # type: QCborKnownTags
-COSE_Sign1 = ... # type: QCborKnownTags
-ExpectedBase64url = ... # type: QCborKnownTags
-ExpectedBase64 = ... # type: QCborKnownTags
-ExpectedBase16 = ... # type: QCborKnownTags
-EncodedCbor = ... # type: QCborKnownTags
-Url = ... # type: QCborKnownTags
-Base64url = ... # type: QCborKnownTags
-Base64 = ... # type: QCborKnownTags
-RegularExpression = ... # type: QCborKnownTags
-MimeMessage = ... # type: QCborKnownTags
-Uuid = ... # type: QCborKnownTags
-COSE_Encrypt = ... # type: QCborKnownTags
-COSE_Mac = ... # type: QCborKnownTags
-COSE_Sign = ... # type: QCborKnownTags
-Signature = ... # type: QCborKnownTags
+class QCborKnownTags(int):
+    DateTimeString = ... # type: QCborKnownTags
+    UnixTime_t = ... # type: QCborKnownTags
+    PositiveBignum = ... # type: QCborKnownTags
+    NegativeBignum = ... # type: QCborKnownTags
+    Decimal = ... # type: QCborKnownTags
+    Bigfloat = ... # type: QCborKnownTags
+    COSE_Encrypt0 = ... # type: QCborKnownTags
+    COSE_Mac0 = ... # type: QCborKnownTags
+    COSE_Sign1 = ... # type: QCborKnownTags
+    ExpectedBase64url = ... # type: QCborKnownTags
+    ExpectedBase64 = ... # type: QCborKnownTags
+    ExpectedBase16 = ... # type: QCborKnownTags
+    EncodedCbor = ... # type: QCborKnownTags
+    Url = ... # type: QCborKnownTags
+    Base64url = ... # type: QCborKnownTags
+    Base64 = ... # type: QCborKnownTags
+    RegularExpression = ... # type: QCborKnownTags
+    MimeMessage = ... # type: QCborKnownTags
+    Uuid = ... # type: QCborKnownTags
+    COSE_Encrypt = ... # type: QCborKnownTags
+    COSE_Mac = ... # type: QCborKnownTags
+    COSE_Sign = ... # type: QCborKnownTags
+    Signature = ... # type: QCborKnownTags
 
 
-class QCborSimpleType(int): ...
-False_ = ... # type: QCborSimpleType
-True_ = ... # type: QCborSimpleType
-Null = ... # type: QCborSimpleType
-Undefined = ... # type: QCborSimpleType
+class QCborSimpleType(int):
+    False_ = ... # type: QCborSimpleType
+    True_ = ... # type: QCborSimpleType
+    Null = ... # type: QCborSimpleType
+    Undefined = ... # type: QCborSimpleType
 
 
 class Qt(sip.simplewrapper):
 
-    class HighDpiScaleFactorRoundingPolicy(int): ...
-    Round = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
-    Ceil = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
-    Floor = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
-    RoundPreferFloor = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
-    PassThrough = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
+    class HighDpiScaleFactorRoundingPolicy(int):
+        Round = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
+        Ceil = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
+        Floor = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
+        RoundPreferFloor = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
+        PassThrough = ... # type: 'Qt.HighDpiScaleFactorRoundingPolicy'
 
     class ChecksumType(int): ...
     ChecksumIso3309 = ... # type: 'Qt.ChecksumType'
@@ -1761,6 +1765,9 @@ class Qt(sip.simplewrapper):
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
 
+    def convertFromPlainText(self, plain: str, mode: QtCore.Qt.WhiteSpaceMode = ...) -> str: ...
+    def mightBeRichText(self, a0: str) -> bool: ...
+
 
 class QObject(sip.wrapper):
 
@@ -1964,11 +1971,11 @@ class QPersistentModelIndex(sip.simplewrapper):
 
 class QAbstractItemModel(QObject):
 
-    class CheckIndexOption(int): ...
-    NoOption = ... # type: 'QAbstractItemModel.CheckIndexOption'
-    IndexIsValid = ... # type: 'QAbstractItemModel.CheckIndexOption'
-    DoNotUseParent = ... # type: 'QAbstractItemModel.CheckIndexOption'
-    ParentIsInvalid = ... # type: 'QAbstractItemModel.CheckIndexOption'
+    class CheckIndexOption(int):
+        NoOption = ... # type: 'QAbstractItemModel.CheckIndexOption'
+        IndexIsValid = ... # type: 'QAbstractItemModel.CheckIndexOption'
+        DoNotUseParent = ... # type: 'QAbstractItemModel.CheckIndexOption'
+        ParentIsInvalid = ... # type: 'QAbstractItemModel.CheckIndexOption'
 
     class LayoutChangeHint(int): ...
     NoLayoutChangeHint = ... # type: 'QAbstractItemModel.LayoutChangeHint'
@@ -2274,9 +2281,7 @@ class QIODevice(QObject):
     ExistingOnly = ... # type: 'QIODevice.OpenModeFlag'
 
     class OpenModeFlag(int):
-        def __and__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
         def __or__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
-        def __xor__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
 
     class OpenMode(sip.simplewrapper):
 
@@ -2385,11 +2390,11 @@ class QBuffer(QIODevice):
 
 class QByteArray(sip.simplewrapper):
 
-    class Base64DecodingStatus(int): ...
-    Ok = ... # type: 'QByteArray.Base64DecodingStatus'
-    IllegalInputLength = ... # type: 'QByteArray.Base64DecodingStatus'
-    IllegalCharacter = ... # type: 'QByteArray.Base64DecodingStatus'
-    IllegalPadding = ... # type: 'QByteArray.Base64DecodingStatus'
+    class Base64DecodingStatus(int):
+        Ok = ... # type: 'QByteArray.Base64DecodingStatus'
+        IllegalInputLength = ... # type: 'QByteArray.Base64DecodingStatus'
+        IllegalCharacter = ... # type: 'QByteArray.Base64DecodingStatus'
+        IllegalPadding = ... # type: 'QByteArray.Base64DecodingStatus'
 
     class Base64Option(int): ...
     Base64Encoding = ... # type: 'QByteArray.Base64Option'
@@ -2575,12 +2580,12 @@ class QByteArrayMatcher(sip.simplewrapper):
 
 class QCalendar(sip.simplewrapper):
 
-    class System(int): ...
-    Gregorian = ... # type: 'QCalendar.System'
-    Julian = ... # type: 'QCalendar.System'
-    Milankovic = ... # type: 'QCalendar.System'
-    Jalali = ... # type: 'QCalendar.System'
-    IslamicCivil = ... # type: 'QCalendar.System'
+    class System(int):
+        Gregorian = ... # type: 'QCalendar.System'
+        Julian = ... # type: 'QCalendar.System'
+        Milankovic = ... # type: 'QCalendar.System'
+        Jalali = ... # type: 'QCalendar.System'
+        IslamicCivil = ... # type: 'QCalendar.System'
 
     Unspecified = ... # type: int
 
@@ -3552,9 +3557,9 @@ class QTime(sip.simplewrapper):
 
 class QDateTime(sip.simplewrapper):
 
-    class YearRange(int): ...
-    First = ... # type: 'QDateTime.YearRange'
-    Last = ... # type: 'QDateTime.YearRange'
+    class YearRange(int):
+        First = ... # type: 'QDateTime.YearRange'
+        Last = ... # type: 'QDateTime.YearRange'
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -7469,8 +7474,6 @@ class QSharedMemory(QObject):
 
 class QSignalMapper(QObject):
 
-    from PyQt5.QtWidgets import QWidget
-
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
 
     @typing.overload
@@ -7478,7 +7481,7 @@ class QSignalMapper(QObject):
     @typing.overload
     def map(self, sender: QObject) -> None: ...
     def mappedObject(self, a0: QObject) -> None: ...
-    def mappedWidget(self, a0: QWidget) -> None: ...
+    def mappedWidget(self, a0: QtWidgets.QWidget) -> None: ...
     def mappedString(self, a0: str) -> None: ...
     def mappedInt(self, a0: int) -> None: ...
     mapped: typing.ClassVar[pyqtSignal]
@@ -7487,7 +7490,7 @@ class QSignalMapper(QObject):
     @typing.overload
     def mapping(self, text: str) -> QObject: ...
     @typing.overload
-    def mapping(self, widget: QWidget) -> QObject: ...
+    def mapping(self, widget: QtWidgets.QWidget) -> QObject: ...
     @typing.overload
     def mapping(self, object: QObject) -> QObject: ...
     def removeMappings(self, sender: QObject) -> None: ...
@@ -7496,7 +7499,7 @@ class QSignalMapper(QObject):
     @typing.overload
     def setMapping(self, sender: QObject, text: str) -> None: ...
     @typing.overload
-    def setMapping(self, sender: QObject, widget: QWidget) -> None: ...
+    def setMapping(self, sender: QObject, widget: QtWidgets.QWidget) -> None: ...
     @typing.overload
     def setMapping(self, sender: QObject, object: QObject) -> None: ...
 
@@ -8052,8 +8055,6 @@ class QTextCodec(sip.wrapper):
     class ConverterState(sip.simplewrapper):
 
         def __init__(self, flags: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag'] = ...) -> None: ...
-
-    def __init__(self) -> None: ...
 
     def convertFromUnicode(self, in_: str, state: 'QTextCodec.ConverterState') -> QByteArray: ...
     def convertToUnicode(self, in_: bytes, state: 'QTextCodec.ConverterState') -> str: ...

@@ -220,11 +220,11 @@ class QNdefNfcUriRecord(QNdefRecord):
 
 class QNearFieldManager(QtCore.QObject):
 
-    class AdapterState(int): ...
-    Offline = ... # type: 'QNearFieldManager.AdapterState'
-    TurningOn = ... # type: 'QNearFieldManager.AdapterState'
-    Online = ... # type: 'QNearFieldManager.AdapterState'
-    TurningOff = ... # type: 'QNearFieldManager.AdapterState'
+    class AdapterState(int):
+        Offline = ... # type: 'QNearFieldManager.AdapterState'
+        TurningOn = ... # type: 'QNearFieldManager.AdapterState'
+        Online = ... # type: 'QNearFieldManager.AdapterState'
+        TurningOff = ... # type: 'QNearFieldManager.AdapterState'
 
     class TargetAccessMode(int): ...
     NoTargetAccess = ... # type: 'QNearFieldManager.TargetAccessMode'
