@@ -32,22 +32,22 @@ import datetime
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
-class QOcspRevocationReason(int): ...
-None_ = ... # type: QOcspRevocationReason
-Unspecified = ... # type: QOcspRevocationReason
-KeyCompromise = ... # type: QOcspRevocationReason
-CACompromise = ... # type: QOcspRevocationReason
-AffiliationChanged = ... # type: QOcspRevocationReason
-Superseded = ... # type: QOcspRevocationReason
-CessationOfOperation = ... # type: QOcspRevocationReason
-CertificateHold = ... # type: QOcspRevocationReason
-RemoveFromCRL = ... # type: QOcspRevocationReason
+class QOcspRevocationReason(int):
+    None_ = ... # type: QOcspRevocationReason
+    Unspecified = ... # type: QOcspRevocationReason
+    KeyCompromise = ... # type: QOcspRevocationReason
+    CACompromise = ... # type: QOcspRevocationReason
+    AffiliationChanged = ... # type: QOcspRevocationReason
+    Superseded = ... # type: QOcspRevocationReason
+    CessationOfOperation = ... # type: QOcspRevocationReason
+    CertificateHold = ... # type: QOcspRevocationReason
+    RemoveFromCRL = ... # type: QOcspRevocationReason
 
 
-class QOcspCertificateStatus(int): ...
-Good = ... # type: QOcspCertificateStatus
-Revoked = ... # type: QOcspCertificateStatus
-Unknown = ... # type: QOcspCertificateStatus
+class QOcspCertificateStatus(int):
+    Good = ... # type: QOcspCertificateStatus
+    Revoked = ... # type: QOcspCertificateStatus
+    Unknown = ... # type: QOcspCertificateStatus
 
 
 class QNetworkCacheMetaData(sip.simplewrapper):
@@ -1592,10 +1592,10 @@ class QSsl(sip.simplewrapper):
 
 class QSslCertificate(sip.simplewrapper):
 
-    class PatternSyntax(int): ...
-    RegularExpression = ... # type: 'QSslCertificate.PatternSyntax'
-    Wildcard = ... # type: 'QSslCertificate.PatternSyntax'
-    FixedString = ... # type: 'QSslCertificate.PatternSyntax'
+    class PatternSyntax(int):
+        RegularExpression = ... # type: 'QSslCertificate.PatternSyntax'
+        Wildcard = ... # type: 'QSslCertificate.PatternSyntax'
+        FixedString = ... # type: 'QSslCertificate.PatternSyntax'
 
     class SubjectInfo(int): ...
     Organization = ... # type: 'QSslCertificate.SubjectInfo'
@@ -1702,8 +1702,8 @@ class QSslConfiguration(sip.simplewrapper):
     NextProtocolNegotiationNegotiated = ... # type: 'QSslConfiguration.NextProtocolNegotiationStatus'
     NextProtocolNegotiationUnsupported = ... # type: 'QSslConfiguration.NextProtocolNegotiationStatus'
 
-    NextProtocolHttp1_1 = ... # type: str
-    NextProtocolSpdy3_0 = ... # type: str
+    NextProtocolHttp1_1 = ... # type: bytes
+    NextProtocolSpdy3_0 = ... # type: bytes
 
     @typing.overload
     def __init__(self) -> None: ...

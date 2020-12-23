@@ -35,29 +35,29 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 class QAbstractOAuth(QtCore.QObject):
 
-    class ContentType(int): ...
-    WwwFormUrlEncoded = ... # type: 'QAbstractOAuth.ContentType'
-    Json = ... # type: 'QAbstractOAuth.ContentType'
+    class ContentType(int):
+        WwwFormUrlEncoded = ... # type: 'QAbstractOAuth.ContentType'
+        Json = ... # type: 'QAbstractOAuth.ContentType'
 
-    class Error(int): ...
-    NoError = ... # type: 'QAbstractOAuth.Error'
-    NetworkError = ... # type: 'QAbstractOAuth.Error'
-    ServerError = ... # type: 'QAbstractOAuth.Error'
-    OAuthTokenNotFoundError = ... # type: 'QAbstractOAuth.Error'
-    OAuthTokenSecretNotFoundError = ... # type: 'QAbstractOAuth.Error'
-    OAuthCallbackNotVerified = ... # type: 'QAbstractOAuth.Error'
+    class Error(int):
+        NoError = ... # type: 'QAbstractOAuth.Error'
+        NetworkError = ... # type: 'QAbstractOAuth.Error'
+        ServerError = ... # type: 'QAbstractOAuth.Error'
+        OAuthTokenNotFoundError = ... # type: 'QAbstractOAuth.Error'
+        OAuthTokenSecretNotFoundError = ... # type: 'QAbstractOAuth.Error'
+        OAuthCallbackNotVerified = ... # type: 'QAbstractOAuth.Error'
 
-    class Stage(int): ...
-    RequestingTemporaryCredentials = ... # type: 'QAbstractOAuth.Stage'
-    RequestingAuthorization = ... # type: 'QAbstractOAuth.Stage'
-    RequestingAccessToken = ... # type: 'QAbstractOAuth.Stage'
-    RefreshingAccessToken = ... # type: 'QAbstractOAuth.Stage'
+    class Stage(int):
+        RequestingTemporaryCredentials = ... # type: 'QAbstractOAuth.Stage'
+        RequestingAuthorization = ... # type: 'QAbstractOAuth.Stage'
+        RequestingAccessToken = ... # type: 'QAbstractOAuth.Stage'
+        RefreshingAccessToken = ... # type: 'QAbstractOAuth.Stage'
 
-    class Status(int): ...
-    NotAuthenticated = ... # type: 'QAbstractOAuth.Status'
-    TemporaryCredentialsReceived = ... # type: 'QAbstractOAuth.Status'
-    Granted = ... # type: 'QAbstractOAuth.Status'
-    RefreshingToken = ... # type: 'QAbstractOAuth.Status'
+    class Status(int):
+        NotAuthenticated = ... # type: 'QAbstractOAuth.Status'
+        TemporaryCredentialsReceived = ... # type: 'QAbstractOAuth.Status'
+        Granted = ... # type: 'QAbstractOAuth.Status'
+        RefreshingToken = ... # type: 'QAbstractOAuth.Status'
 
     @staticmethod
     def generateRandomString(length: int) -> QtCore.QByteArray: ...
@@ -161,10 +161,10 @@ class QAbstractOAuthReplyHandler(QtCore.QObject):
 
 class QOAuth1(QAbstractOAuth):
 
-    class SignatureMethod(int): ...
-    Hmac_Sha1 = ... # type: 'QOAuth1.SignatureMethod'
-    Rsa_Sha1 = ... # type: 'QOAuth1.SignatureMethod'
-    PlainText = ... # type: 'QOAuth1.SignatureMethod'
+    class SignatureMethod(int):
+        Hmac_Sha1 = ... # type: 'QOAuth1.SignatureMethod'
+        Rsa_Sha1 = ... # type: 'QOAuth1.SignatureMethod'
+        PlainText = ... # type: 'QOAuth1.SignatureMethod'
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -219,14 +219,14 @@ class QOAuth1(QAbstractOAuth):
 
 class QOAuth1Signature(sip.simplewrapper):
 
-    class HttpRequestMethod(int): ...
-    Head = ... # type: 'QOAuth1Signature.HttpRequestMethod'
-    Get = ... # type: 'QOAuth1Signature.HttpRequestMethod'
-    Put = ... # type: 'QOAuth1Signature.HttpRequestMethod'
-    Post = ... # type: 'QOAuth1Signature.HttpRequestMethod'
-    Delete = ... # type: 'QOAuth1Signature.HttpRequestMethod'
-    Custom = ... # type: 'QOAuth1Signature.HttpRequestMethod'
-    Unknown = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+    class HttpRequestMethod(int):
+        Head = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+        Get = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+        Put = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+        Post = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+        Delete = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+        Custom = ... # type: 'QOAuth1Signature.HttpRequestMethod'
+        Unknown = ... # type: 'QOAuth1Signature.HttpRequestMethod'
 
     @typing.overload
     def __init__(self, url: QtCore.QUrl = ..., method: 'QOAuth1Signature.HttpRequestMethod' = ..., parameters: typing.Dict[str, typing.Any] = ...) -> None: ...
