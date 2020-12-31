@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## 5.15.1.0 [unreleased]
 
 ### Added
+* [#125](https://github.com/stlehmann/PyQt5-stubs/pull/125) on `QtWidgets.QMessageBox`, enumerators are also attributes of their enumerations
 * [#99](https://github.com/stlehmann/PyQt5-stubs/pull/99) enable mypy's strict mode
 * [#92](https://github.com/stlehmann/PyQt5-stubs/pull/92) add `Sequence` methods and `.__setitem__()` to `sip.array`
 * [#94](https://github.com/stlehmann/PyQt5-stubs/pull/94) add several operators to `QIODevice.OpenMode` and `QIODevice.OpenModeFlag`
