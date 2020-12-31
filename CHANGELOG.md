@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds `pyqtBoundSignal.signal` hinted as `str`
 
 ### Changed
+* [#126](https://github.com/stlehmann/PyQt5-stubs/pull/126) fix `QCoreApplication.instance()` return type to be optional
 * [#102](https://github.com/stlehmann/PyQt5-stubs/pull/102) fix `pyqtSlot` parameter typing and overloads
 * [#104](https://github.com/stlehmann/PyQt5-stubs/pull/104) `sip.voidptr` handles integer values and sequences and takes `self`
 * [#103](https://github.com/stlehmann/PyQt5-stubs/pull/103) `pyqtBoundSignal.disconnect()`'s `slot` parameter is optional
