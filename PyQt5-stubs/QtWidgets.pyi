@@ -6477,7 +6477,7 @@ class QMenuBar(QWidget):
 
 class QMessageBox(QDialog):
 
-    class StandardButton(int): ...
+    class StandardButton(int):
         NoButton = ... # type: 'QMessageBox.StandardButton'
         Ok = ... # type: 'QMessageBox.StandardButton'
         Save = ... # type: 'QMessageBox.StandardButton'
@@ -6534,7 +6534,7 @@ class QMessageBox(QDialog):
     FlagMask = ... # type: 'QMessageBox.StandardButton'
     ButtonMask = ... # type: 'QMessageBox.StandardButton'
 
-    class Icon(int): ...
+    class Icon(int):
         NoIcon = ... # type: 'QMessageBox.Icon'
         Information = ... # type: 'QMessageBox.Icon'
         Warning = ... # type: 'QMessageBox.Icon'
@@ -6547,7 +6547,7 @@ class QMessageBox(QDialog):
     Critical = ... # type: 'QMessageBox.Icon'
     Question = ... # type: 'QMessageBox.Icon'
 
-    class ButtonRole(int): ...
+    class ButtonRole(int):
         InvalidRole = ... # type: 'QMessageBox.ButtonRole'
         AcceptRole = ... # type: 'QMessageBox.ButtonRole'
         RejectRole = ... # type: 'QMessageBox.ButtonRole'
