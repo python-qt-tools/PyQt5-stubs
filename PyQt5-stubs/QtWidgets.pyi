@@ -6483,6 +6483,34 @@ class QMessageBox(QDialog):
         @typing.overload
         def __or__(self, other: int) -> int: ...
 
+        NoButton = ... # type: 'QMessageBox.StandardButton'
+        Ok = ... # type: 'QMessageBox.StandardButton'
+        Save = ... # type: 'QMessageBox.StandardButton'
+        SaveAll = ... # type: 'QMessageBox.StandardButton'
+        Open = ... # type: 'QMessageBox.StandardButton'
+        Yes = ... # type: 'QMessageBox.StandardButton'
+        YesToAll = ... # type: 'QMessageBox.StandardButton'
+        No = ... # type: 'QMessageBox.StandardButton'
+        NoToAll = ... # type: 'QMessageBox.StandardButton'
+        Abort = ... # type: 'QMessageBox.StandardButton'
+        Retry = ... # type: 'QMessageBox.StandardButton'
+        Ignore = ... # type: 'QMessageBox.StandardButton'
+        Close = ... # type: 'QMessageBox.StandardButton'
+        Cancel = ... # type: 'QMessageBox.StandardButton'
+        Discard = ... # type: 'QMessageBox.StandardButton'
+        Help = ... # type: 'QMessageBox.StandardButton'
+        Apply = ... # type: 'QMessageBox.StandardButton'
+        Reset = ... # type: 'QMessageBox.StandardButton'
+        RestoreDefaults = ... # type: 'QMessageBox.StandardButton'
+        FirstButton = ... # type: 'QMessageBox.StandardButton'
+        LastButton = ... # type: 'QMessageBox.StandardButton'
+        YesAll = ... # type: 'QMessageBox.StandardButton'
+        NoAll = ... # type: 'QMessageBox.StandardButton'
+        Default = ... # type: 'QMessageBox.StandardButton'
+        Escape = ... # type: 'QMessageBox.StandardButton'
+        FlagMask = ... # type: 'QMessageBox.StandardButton'
+        ButtonMask = ... # type: 'QMessageBox.StandardButton'
+
     NoButton = ... # type: 'QMessageBox.StandardButton'
     Ok = ... # type: 'QMessageBox.StandardButton'
     Save = ... # type: 'QMessageBox.StandardButton'
@@ -6511,14 +6539,31 @@ class QMessageBox(QDialog):
     FlagMask = ... # type: 'QMessageBox.StandardButton'
     ButtonMask = ... # type: 'QMessageBox.StandardButton'
 
-    class Icon(int): ...
+    class Icon(int):
+        NoIcon = ... # type: 'QMessageBox.Icon'
+        Information = ... # type: 'QMessageBox.Icon'
+        Warning = ... # type: 'QMessageBox.Icon'
+        Critical = ... # type: 'QMessageBox.Icon'
+        Question = ... # type: 'QMessageBox.Icon'
+
     NoIcon = ... # type: 'QMessageBox.Icon'
     Information = ... # type: 'QMessageBox.Icon'
     Warning = ... # type: 'QMessageBox.Icon'
     Critical = ... # type: 'QMessageBox.Icon'
     Question = ... # type: 'QMessageBox.Icon'
 
-    class ButtonRole(int): ...
+    class ButtonRole(int):
+        InvalidRole = ... # type: 'QMessageBox.ButtonRole'
+        AcceptRole = ... # type: 'QMessageBox.ButtonRole'
+        RejectRole = ... # type: 'QMessageBox.ButtonRole'
+        DestructiveRole = ... # type: 'QMessageBox.ButtonRole'
+        ActionRole = ... # type: 'QMessageBox.ButtonRole'
+        HelpRole = ... # type: 'QMessageBox.ButtonRole'
+        YesRole = ... # type: 'QMessageBox.ButtonRole'
+        NoRole = ... # type: 'QMessageBox.ButtonRole'
+        ResetRole = ... # type: 'QMessageBox.ButtonRole'
+        ApplyRole = ... # type: 'QMessageBox.ButtonRole'
+
     InvalidRole = ... # type: 'QMessageBox.ButtonRole'
     AcceptRole = ... # type: 'QMessageBox.ButtonRole'
     RejectRole = ... # type: 'QMessageBox.ButtonRole'
