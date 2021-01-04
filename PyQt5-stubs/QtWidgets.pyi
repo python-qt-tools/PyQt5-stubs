@@ -6478,6 +6478,11 @@ class QMenuBar(QWidget):
 class QMessageBox(QDialog):
 
     class StandardButton(int):
+        @typing.overload  # type: ignore[override]
+        def __or__(self, other: typing.Union['QMessageBox.StandardButton', 'QMessageBox.StandardButtons']) -> 'QMessageBox.StandardButtons': ...  # type: ignore[misc]
+        @typing.overload
+        def __or__(self, other: int) -> int: ...
+
         NoButton = ... # type: 'QMessageBox.StandardButton'
         Ok = ... # type: 'QMessageBox.StandardButton'
         Save = ... # type: 'QMessageBox.StandardButton'
@@ -6584,6 +6589,7 @@ class QMessageBox(QDialog):
         def __invert__(self) -> 'QMessageBox.StandardButtons': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
+        def __or__(self, other: typing.Union[int, 'QMessageBox.StandardButtons', 'QMessageBox.StandardButton']) -> 'QMessageBox.StandardButtons': ...
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
