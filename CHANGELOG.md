@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#51](https://github.com/stlehmann/PyQt5-stubs/pull/51) adds `pyqtBoundSignal.signal` hinted as `str`
 
 ### Changed
+* [#129](https://github.com/stlehmann/PyQt5-stubs/pull/129) fixes `QThread` and `QNetworkAccessManager` signals
 * [#109](https://github.com/stlehmann/PyQt5-stubs/pull/109) `.__or__()` for `QMessageBox.StandardButton` and `QMessageBox.StandardButtons`
 * [#126](https://github.com/stlehmann/PyQt5-stubs/pull/126) fix `QCoreApplication.instance()` return type to be optional
 * [#102](https://github.com/stlehmann/PyQt5-stubs/pull/102) fix `pyqtSlot` parameter typing and overloads
