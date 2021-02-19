@@ -39,7 +39,7 @@ long_description = read('README.md')
 
 setup(
     name="PyQt5-stubs",
-    url="https://github.com/stlehmann/PyQt5-stubs",
+    url="https://github.com/python-qt-tools/PyQt5-stubs",
     author="Stefan Lehmann",
     author_email="stlm@posteo.de",
     description="PEP561 stub files for the PyQt5 framework",
