@@ -70,6 +70,15 @@ RUN pacman --noconfirm -S \
         # Required for QtDBus
         python-dbus
 
+# RUN wget --no-verbose \
+#     --output-document upstream.tar.gz \
+#     https://www.riverbankcomputing.com/static/Downloads/sip/sip-5.5.1.dev2011271026.tar.gz
+
+RUN python3 -m venv /venv
+RUN /venv/bin/python -m pip install --upgrade pip setuptools wheel
+RUN /venv/bin/python -m pip install https://www.riverbankcomputing.com/static/Downloads/sip/sip-5.5.1.dev2011271026.tar.gz
+RUN /venv/bin/python -m pip install https://www.riverbankcomputing.com/static/Downloads/PyQt-builder/PyQt-builder-1.7.0.dev2012311101.tar.gz
+
 ################################################################################
 # PyQt5 core stubs
 ################################################################################
@@ -83,7 +92,7 @@ ARG PYQT_VERSION
 # Download source tar
 RUN wget --no-verbose \
     --output-document upstream.tar.gz \
-    https://pypi.io/packages/source/p/pyqt5/PyQt5-${PYQT_VERSION}.tar.gz
+    https://www.riverbankcomputing.com/static/Downloads/PyQt5/PyQt5-5.15.3.dev2012241233.tar.gz
 RUN mkdir /upstream/ && \
     tar -xf \
         upstream.tar.gz \
@@ -93,7 +102,8 @@ RUN mkdir /upstream/ && \
 # Build PyQt with stubs
 # TODO: Find way to build only stubs. This takes way too long
 WORKDIR /upstream/
-RUN sip-install \
+    RUN /venv/bin/python --version --version
+    RUN /venv/bin/sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --confirm-license \
     --pep484-pyi \
@@ -117,7 +127,7 @@ ARG SIP_ABI_VERSION
 # Download source tar
 RUN wget --no-verbose \
     --output-document upstream.tar.gz \
-    https://pypi.io/packages/source/s/sip/sip-${SIP_VERSION}.tar.gz
+    https://www.riverbankcomputing.com/static/Downloads/sip/sip-5.5.1.dev2011271026.tar.gz
 RUN mkdir /upstream/ && \
     tar -xf \
         upstream.tar.gz \
@@ -151,7 +161,7 @@ RUN mkdir /upstream/ && \
 # Build PyQt3D with stubs
 # TODO: Find way to build only stubs
 WORKDIR /upstream/
-RUN sip-install \
+RUN /venv/bin/sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --pep484-pyi \
     --build-dir ./build \
@@ -184,7 +194,7 @@ RUN mkdir /upstream/ && \
 # Build PyQtChart with stubs
 # TODO: Find way to build only stubs
 WORKDIR /upstream/
-RUN sip-install \
+RUN /venv/bin/sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --pep484-pyi \
     --build-dir ./build \
@@ -217,7 +227,7 @@ RUN mkdir /upstream/ && \
 # Build PyQtDataVisualization with stubs
 # TODO: Find way to build only stubs
 WORKDIR /upstream/
-RUN sip-install \
+RUN /venv/bin/sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --pep484-pyi \
     --build-dir ./build \
@@ -250,7 +260,7 @@ RUN mkdir /upstream/ && \
 # Build PyQtPurchasing with stubs
 # TODO: Find way to build only stubs
 WORKDIR /upstream/
-RUN sip-install \
+RUN /venv/bin/sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --pep484-pyi \
     --build-dir ./build \
@@ -283,7 +293,7 @@ RUN mkdir /upstream/ && \
 # Build PyQtWebEngine with stubs
 # TODO: Find way to build only stubs
 WORKDIR /upstream/
-RUN sip-install \
+RUN /venv/bin/sip-install \
     --qmake /usr/bin/qmake-qt5 \
     --pep484-pyi \
     --build-dir ./build \
