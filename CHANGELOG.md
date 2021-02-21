@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 5.15.2.0 [unreleased]
+## 5.15.2.0
 
 ### Added
 * [#125](https://github.com/stlehmann/PyQt5-stubs/pull/125) on `QtWidgets.QMessageBox`, enumerators are also attributes of their enumerations
