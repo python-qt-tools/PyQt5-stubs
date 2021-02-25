@@ -2,10 +2,10 @@
 #       https://hub.docker.com/_/archlinux?tab=tags&page=1&ordering=last_updated
 # BUILD_DATE is a path from:
 #       https://archive.archlinux.org/repos/
-ARG ARCH_VERSION="base-20201129.0.10056"
-ARG BUILD_DATE="2020/12/02"
+ARG ARCH_VERSION="base-20210221.0.15908"
+ARG BUILD_DATE="2021/02/25"
 
-ARG SIP_VERSION="5.4.0"
+ARG SIP_VERSION="6.0.2"
 # Also the major.minor of PyQt5-sip
 ARG SIP_ABI_VERSION="12.8"
 ARG PYQT_VERSION="5.15.3"
@@ -26,6 +26,10 @@ FROM archlinux:${ARCH_VERSION} AS build-dep
 # Reuse argument from previous build scope
 ARG BUILD_DATE
 
+RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
+    curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
+    bsdtar -C / -xvf "$patched_glibc"
+
 # Use Arch archive to freeze packages to a certain date
 RUN echo "Server=https://archive.archlinux.org/repos/${BUILD_DATE}/\$repo/os/\$arch" \
         | tee /etc/pacman.d/mirrorlist && \
@@ -36,7 +40,7 @@ RUN pacman --noconfirm -S \
         # Build stuff
         base-devel wget \
         # PyQt stuff
-        pyqt-builder python-sip sip5 \
+        pyqt-builder sip \
         # Used to build other PyQt modules in later build stages
         python-pyqt5 \
         # Qt core
