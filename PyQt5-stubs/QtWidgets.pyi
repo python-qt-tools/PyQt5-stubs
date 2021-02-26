@@ -6512,7 +6512,7 @@ class QMessageBox(QDialog):
         FlagMask = ... # type: 'QMessageBox.StandardButton'
         ButtonMask = ... # type: 'QMessageBox.StandardButton'
 
-    NoButton = ... # type: QMessageBox.StandardButton
+        NoButton = ... # type: QMessageBox.StandardButton
         Ok = ... # type: QMessageBox.StandardButton
         Save = ... # type: QMessageBox.StandardButton
         SaveAll = ... # type: QMessageBox.StandardButton
