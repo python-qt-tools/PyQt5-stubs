@@ -42,37 +42,37 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 class QAbstract3DGraph(QtGui.QWindow):
 
     class OptimizationHint(int):
-    OptimizationDefault = ... # type: QAbstract3DGraph.OptimizationHint
-    OptimizationStatic = ... # type: QAbstract3DGraph.OptimizationHint
+        OptimizationDefault = ... # type: QAbstract3DGraph.OptimizationHint
+        OptimizationStatic = ... # type: QAbstract3DGraph.OptimizationHint
 
     class ElementType(int):
-    ElementNone = ... # type: QAbstract3DGraph.ElementType
-    ElementSeries = ... # type: QAbstract3DGraph.ElementType
-    ElementAxisXLabel = ... # type: QAbstract3DGraph.ElementType
-    ElementAxisYLabel = ... # type: QAbstract3DGraph.ElementType
-    ElementAxisZLabel = ... # type: QAbstract3DGraph.ElementType
-    ElementCustomItem = ... # type: QAbstract3DGraph.ElementType
+        ElementNone = ... # type: QAbstract3DGraph.ElementType
+        ElementSeries = ... # type: QAbstract3DGraph.ElementType
+        ElementAxisXLabel = ... # type: QAbstract3DGraph.ElementType
+        ElementAxisYLabel = ... # type: QAbstract3DGraph.ElementType
+        ElementAxisZLabel = ... # type: QAbstract3DGraph.ElementType
+        ElementCustomItem = ... # type: QAbstract3DGraph.ElementType
 
     class ShadowQuality(int):
-    ShadowQualityNone = ... # type: QAbstract3DGraph.ShadowQuality
-    ShadowQualityLow = ... # type: QAbstract3DGraph.ShadowQuality
-    ShadowQualityMedium = ... # type: QAbstract3DGraph.ShadowQuality
-    ShadowQualityHigh = ... # type: QAbstract3DGraph.ShadowQuality
-    ShadowQualitySoftLow = ... # type: QAbstract3DGraph.ShadowQuality
-    ShadowQualitySoftMedium = ... # type: QAbstract3DGraph.ShadowQuality
-    ShadowQualitySoftHigh = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualityNone = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualityLow = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualityMedium = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualityHigh = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualitySoftLow = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualitySoftMedium = ... # type: QAbstract3DGraph.ShadowQuality
+        ShadowQualitySoftHigh = ... # type: QAbstract3DGraph.ShadowQuality
 
     class SelectionFlag(int):
-    SelectionNone = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionItem = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionRow = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionItemAndRow = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionColumn = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionItemAndColumn = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionRowAndColumn = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionItemRowAndColumn = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionSlice = ... # type: QAbstract3DGraph.SelectionFlag
-    SelectionMultiSeries = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionNone = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionItem = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionRow = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionItemAndRow = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionColumn = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionItemAndColumn = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionRowAndColumn = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionItemRowAndColumn = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionSlice = ... # type: QAbstract3DGraph.SelectionFlag
+        SelectionMultiSeries = ... # type: QAbstract3DGraph.SelectionFlag
 
     class SelectionFlags(sip.simplewrapper):
 
@@ -242,31 +242,31 @@ class Q3DObject(QtCore.QObject):
 class Q3DCamera('Q3DObject'):
 
     class CameraPreset(int):
-    CameraPresetNone = ... # type: Q3DCamera.CameraPreset
-    CameraPresetFrontLow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetFront = ... # type: Q3DCamera.CameraPreset
-    CameraPresetFrontHigh = ... # type: Q3DCamera.CameraPreset
-    CameraPresetLeftLow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetLeft = ... # type: Q3DCamera.CameraPreset
-    CameraPresetLeftHigh = ... # type: Q3DCamera.CameraPreset
-    CameraPresetRightLow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetRight = ... # type: Q3DCamera.CameraPreset
-    CameraPresetRightHigh = ... # type: Q3DCamera.CameraPreset
-    CameraPresetBehindLow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetBehind = ... # type: Q3DCamera.CameraPreset
-    CameraPresetBehindHigh = ... # type: Q3DCamera.CameraPreset
-    CameraPresetIsometricLeft = ... # type: Q3DCamera.CameraPreset
-    CameraPresetIsometricLeftHigh = ... # type: Q3DCamera.CameraPreset
-    CameraPresetIsometricRight = ... # type: Q3DCamera.CameraPreset
-    CameraPresetIsometricRightHigh = ... # type: Q3DCamera.CameraPreset
-    CameraPresetDirectlyAbove = ... # type: Q3DCamera.CameraPreset
-    CameraPresetDirectlyAboveCW45 = ... # type: Q3DCamera.CameraPreset
-    CameraPresetDirectlyAboveCCW45 = ... # type: Q3DCamera.CameraPreset
-    CameraPresetFrontBelow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetLeftBelow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetRightBelow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetBehindBelow = ... # type: Q3DCamera.CameraPreset
-    CameraPresetDirectlyBelow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetNone = ... # type: Q3DCamera.CameraPreset
+        CameraPresetFrontLow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetFront = ... # type: Q3DCamera.CameraPreset
+        CameraPresetFrontHigh = ... # type: Q3DCamera.CameraPreset
+        CameraPresetLeftLow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetLeft = ... # type: Q3DCamera.CameraPreset
+        CameraPresetLeftHigh = ... # type: Q3DCamera.CameraPreset
+        CameraPresetRightLow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetRight = ... # type: Q3DCamera.CameraPreset
+        CameraPresetRightHigh = ... # type: Q3DCamera.CameraPreset
+        CameraPresetBehindLow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetBehind = ... # type: Q3DCamera.CameraPreset
+        CameraPresetBehindHigh = ... # type: Q3DCamera.CameraPreset
+        CameraPresetIsometricLeft = ... # type: Q3DCamera.CameraPreset
+        CameraPresetIsometricLeftHigh = ... # type: Q3DCamera.CameraPreset
+        CameraPresetIsometricRight = ... # type: Q3DCamera.CameraPreset
+        CameraPresetIsometricRightHigh = ... # type: Q3DCamera.CameraPreset
+        CameraPresetDirectlyAbove = ... # type: Q3DCamera.CameraPreset
+        CameraPresetDirectlyAboveCW45 = ... # type: Q3DCamera.CameraPreset
+        CameraPresetDirectlyAboveCCW45 = ... # type: Q3DCamera.CameraPreset
+        CameraPresetFrontBelow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetLeftBelow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetRightBelow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetBehindBelow = ... # type: Q3DCamera.CameraPreset
+        CameraPresetDirectlyBelow = ... # type: Q3DCamera.CameraPreset
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -303,9 +303,9 @@ class Q3DCamera('Q3DObject'):
 class QAbstract3DInputHandler(QtCore.QObject):
 
     class InputView(int):
-    InputViewNone = ... # type: QAbstract3DInputHandler.InputView
-    InputViewOnPrimary = ... # type: QAbstract3DInputHandler.InputView
-    InputViewOnSecondary = ... # type: QAbstract3DInputHandler.InputView
+        InputViewNone = ... # type: QAbstract3DInputHandler.InputView
+        InputViewOnPrimary = ... # type: QAbstract3DInputHandler.InputView
+        InputViewOnSecondary = ... # type: QAbstract3DInputHandler.InputView
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -446,20 +446,20 @@ class Q3DSurface('QAbstract3DGraph'):
 class Q3DTheme(QtCore.QObject):
 
     class Theme(int):
-    ThemeQt = ... # type: Q3DTheme.Theme
-    ThemePrimaryColors = ... # type: Q3DTheme.Theme
-    ThemeDigia = ... # type: Q3DTheme.Theme
-    ThemeStoneMoss = ... # type: Q3DTheme.Theme
-    ThemeArmyBlue = ... # type: Q3DTheme.Theme
-    ThemeRetro = ... # type: Q3DTheme.Theme
-    ThemeEbony = ... # type: Q3DTheme.Theme
-    ThemeIsabelle = ... # type: Q3DTheme.Theme
-    ThemeUserDefined = ... # type: Q3DTheme.Theme
+        ThemeQt = ... # type: Q3DTheme.Theme
+        ThemePrimaryColors = ... # type: Q3DTheme.Theme
+        ThemeDigia = ... # type: Q3DTheme.Theme
+        ThemeStoneMoss = ... # type: Q3DTheme.Theme
+        ThemeArmyBlue = ... # type: Q3DTheme.Theme
+        ThemeRetro = ... # type: Q3DTheme.Theme
+        ThemeEbony = ... # type: Q3DTheme.Theme
+        ThemeIsabelle = ... # type: Q3DTheme.Theme
+        ThemeUserDefined = ... # type: Q3DTheme.Theme
 
     class ColorStyle(int):
-    ColorStyleUniform = ... # type: Q3DTheme.ColorStyle
-    ColorStyleObjectGradient = ... # type: Q3DTheme.ColorStyle
-    ColorStyleRangeGradient = ... # type: Q3DTheme.ColorStyle
+        ColorStyleUniform = ... # type: Q3DTheme.ColorStyle
+        ColorStyleObjectGradient = ... # type: Q3DTheme.ColorStyle
+        ColorStyleRangeGradient = ... # type: Q3DTheme.ColorStyle
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -536,15 +536,15 @@ class Q3DTheme(QtCore.QObject):
 class QAbstract3DAxis(QtCore.QObject):
 
     class AxisType(int):
-    AxisTypeNone = ... # type: QAbstract3DAxis.AxisType
-    AxisTypeCategory = ... # type: QAbstract3DAxis.AxisType
-    AxisTypeValue = ... # type: QAbstract3DAxis.AxisType
+        AxisTypeNone = ... # type: QAbstract3DAxis.AxisType
+        AxisTypeCategory = ... # type: QAbstract3DAxis.AxisType
+        AxisTypeValue = ... # type: QAbstract3DAxis.AxisType
 
     class AxisOrientation(int):
-    AxisOrientationNone = ... # type: QAbstract3DAxis.AxisOrientation
-    AxisOrientationX = ... # type: QAbstract3DAxis.AxisOrientation
-    AxisOrientationY = ... # type: QAbstract3DAxis.AxisOrientation
-    AxisOrientationZ = ... # type: QAbstract3DAxis.AxisOrientation
+        AxisOrientationNone = ... # type: QAbstract3DAxis.AxisOrientation
+        AxisOrientationX = ... # type: QAbstract3DAxis.AxisOrientation
+        AxisOrientationY = ... # type: QAbstract3DAxis.AxisOrientation
+        AxisOrientationZ = ... # type: QAbstract3DAxis.AxisOrientation
 
     def titleFixedChanged(self, fixed: bool) -> None: ...
     def titleVisibilityChanged(self, visible: bool) -> None: ...
@@ -579,24 +579,24 @@ class QAbstract3DAxis(QtCore.QObject):
 class QAbstract3DSeries(QtCore.QObject):
 
     class Mesh(int):
-    MeshUserDefined = ... # type: QAbstract3DSeries.Mesh
-    MeshBar = ... # type: QAbstract3DSeries.Mesh
-    MeshCube = ... # type: QAbstract3DSeries.Mesh
-    MeshPyramid = ... # type: QAbstract3DSeries.Mesh
-    MeshCone = ... # type: QAbstract3DSeries.Mesh
-    MeshCylinder = ... # type: QAbstract3DSeries.Mesh
-    MeshBevelBar = ... # type: QAbstract3DSeries.Mesh
-    MeshBevelCube = ... # type: QAbstract3DSeries.Mesh
-    MeshSphere = ... # type: QAbstract3DSeries.Mesh
-    MeshMinimal = ... # type: QAbstract3DSeries.Mesh
-    MeshArrow = ... # type: QAbstract3DSeries.Mesh
-    MeshPoint = ... # type: QAbstract3DSeries.Mesh
+        MeshUserDefined = ... # type: QAbstract3DSeries.Mesh
+        MeshBar = ... # type: QAbstract3DSeries.Mesh
+        MeshCube = ... # type: QAbstract3DSeries.Mesh
+        MeshPyramid = ... # type: QAbstract3DSeries.Mesh
+        MeshCone = ... # type: QAbstract3DSeries.Mesh
+        MeshCylinder = ... # type: QAbstract3DSeries.Mesh
+        MeshBevelBar = ... # type: QAbstract3DSeries.Mesh
+        MeshBevelCube = ... # type: QAbstract3DSeries.Mesh
+        MeshSphere = ... # type: QAbstract3DSeries.Mesh
+        MeshMinimal = ... # type: QAbstract3DSeries.Mesh
+        MeshArrow = ... # type: QAbstract3DSeries.Mesh
+        MeshPoint = ... # type: QAbstract3DSeries.Mesh
 
     class SeriesType(int):
-    SeriesTypeNone = ... # type: QAbstract3DSeries.SeriesType
-    SeriesTypeBar = ... # type: QAbstract3DSeries.SeriesType
-    SeriesTypeScatter = ... # type: QAbstract3DSeries.SeriesType
-    SeriesTypeSurface = ... # type: QAbstract3DSeries.SeriesType
+        SeriesTypeNone = ... # type: QAbstract3DSeries.SeriesType
+        SeriesTypeBar = ... # type: QAbstract3DSeries.SeriesType
+        SeriesTypeScatter = ... # type: QAbstract3DSeries.SeriesType
+        SeriesTypeSurface = ... # type: QAbstract3DSeries.SeriesType
 
     def itemLabelVisibilityChanged(self, visible: bool) -> None: ...
     def itemLabelChanged(self, label: str) -> None: ...
@@ -651,10 +651,10 @@ class QAbstract3DSeries(QtCore.QObject):
 class QAbstractDataProxy(QtCore.QObject):
 
     class DataType(int):
-    DataTypeNone = ... # type: QAbstractDataProxy.DataType
-    DataTypeBar = ... # type: QAbstractDataProxy.DataType
-    DataTypeScatter = ... # type: QAbstractDataProxy.DataType
-    DataTypeSurface = ... # type: QAbstractDataProxy.DataType
+        DataTypeNone = ... # type: QAbstractDataProxy.DataType
+        DataTypeBar = ... # type: QAbstractDataProxy.DataType
+        DataTypeScatter = ... # type: QAbstractDataProxy.DataType
+        DataTypeSurface = ... # type: QAbstractDataProxy.DataType
 
     def type(self) -> 'QAbstractDataProxy.DataType': ...
 
@@ -966,10 +966,10 @@ class QHeightMapSurfaceDataProxy('QSurfaceDataProxy'):
 class QItemModelBarDataProxy('QBarDataProxy'):
 
     class MultiMatchBehavior(int):
-    MMBFirst = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
-    MMBLast = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
-    MMBAverage = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
-    MMBCumulative = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
+        MMBFirst = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
+        MMBLast = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
+        MMBAverage = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
+        MMBCumulative = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
 
     @typing.overload
     def __init__(self, itemModel: QtCore.QAbstractItemModel, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -1126,10 +1126,10 @@ class QItemModelScatterDataProxy('QScatterDataProxy'):
 class QItemModelSurfaceDataProxy('QSurfaceDataProxy'):
 
     class MultiMatchBehavior(int):
-    MMBFirst = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
-    MMBLast = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
-    MMBAverage = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
-    MMBCumulativeY = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
+        MMBFirst = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
+        MMBLast = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
+        MMBAverage = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
+        MMBCumulativeY = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
 
     @typing.overload
     def __init__(self, itemModel: QtCore.QAbstractItemModel, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -1302,9 +1302,9 @@ class QScatterDataItem(sip.simplewrapper):
 class QSurface3DSeries('QAbstract3DSeries'):
 
     class DrawFlag(int):
-    DrawWireframe = ... # type: QSurface3DSeries.DrawFlag
-    DrawSurface = ... # type: QSurface3DSeries.DrawFlag
-    DrawSurfaceAndWireframe = ... # type: QSurface3DSeries.DrawFlag
+        DrawWireframe = ... # type: QSurface3DSeries.DrawFlag
+        DrawSurface = ... # type: QSurface3DSeries.DrawFlag
+        DrawSurfaceAndWireframe = ... # type: QSurface3DSeries.DrawFlag
 
     class DrawFlags(sip.simplewrapper):
 

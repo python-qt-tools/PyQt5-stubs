@@ -64,9 +64,9 @@ class QAbstractAspect(QtCore.QObject):
 
 class QAspectEngine(QtCore.QObject):
 
-    class RunMode(int): 
-    Manual = ... # type: QAspectEngine.RunMode
-    Automatic = ... # type: QAspectEngine.RunMode
+    class RunMode(int):
+        Manual = ... # type: QAspectEngine.RunMode
+        Automatic = ... # type: QAspectEngine.RunMode
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -88,10 +88,10 @@ class QAspectEngine(QtCore.QObject):
 
 class QNode(QtCore.QObject):
 
-    class PropertyTrackingMode(int): 
-    TrackFinalValues = ... # type: QNode.PropertyTrackingMode
-    DontTrackValues = ... # type: QNode.PropertyTrackingMode
-    TrackAllValues = ... # type: QNode.PropertyTrackingMode
+    class PropertyTrackingMode(int):
+        TrackFinalValues = ... # type: QNode.PropertyTrackingMode
+        DontTrackValues = ... # type: QNode.PropertyTrackingMode
+        TrackAllValues = ... # type: QNode.PropertyTrackingMode
 
     def __init__(self, parent: typing.Optional['QNode'] = ...) -> None: ...
 
@@ -156,9 +156,9 @@ class QBackendNodeMapper(sip.simplewrapper):
 
 class QBackendNode(sip.simplewrapper):
 
-    class Mode(int): 
-    ReadOnly = ... # type: QBackendNode.Mode
-    ReadWrite = ... # type: QBackendNode.Mode
+    class Mode(int):
+        ReadOnly = ... # type: QBackendNode.Mode
+        ReadWrite = ... # type: QBackendNode.Mode
 
     def __init__(self, mode: 'QBackendNode.Mode' = ...) -> None: ...
 
@@ -173,10 +173,10 @@ class QBackendNode(sip.simplewrapper):
 
 class QSceneChange(sip.simplewrapper):
 
-    class DeliveryFlag(int): 
-    BackendNodes = ... # type: QSceneChange.DeliveryFlag
-    Nodes = ... # type: QSceneChange.DeliveryFlag
-    DeliverToAll = ... # type: QSceneChange.DeliveryFlag
+    class DeliveryFlag(int):
+        BackendNodes = ... # type: QSceneChange.DeliveryFlag
+        Nodes = ... # type: QSceneChange.DeliveryFlag
+        DeliverToAll = ... # type: QSceneChange.DeliveryFlag
 
     class DeliveryFlags(sip.simplewrapper):
 
@@ -418,10 +418,10 @@ class QSkeleton('QAbstractSkeleton'):
 
 class QSkeletonLoader('QAbstractSkeleton'):
 
-    class Status(int): 
-    NotReady = ... # type: QSkeletonLoader.Status
-    Ready = ... # type: QSkeletonLoader.Status
-    Error = ... # type: QSkeletonLoader.Status
+    class Status(int):
+        NotReady = ... # type: QSkeletonLoader.Status
+        Ready = ... # type: QSkeletonLoader.Status
+        Error = ... # type: QSkeletonLoader.Status
 
     @typing.overload
     def __init__(self, parent: typing.Optional['QNode'] = ...) -> None: ...

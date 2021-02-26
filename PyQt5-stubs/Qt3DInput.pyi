@@ -105,9 +105,9 @@ class QAxis(Qt3DCore.QNode):
 
 class QAxisAccumulator(Qt3DCore.QComponent):
 
-    class SourceAxisType(int): 
-    Velocity = ... # type: QAxisAccumulator.SourceAxisType
-    Acceleration = ... # type: QAxisAccumulator.SourceAxisType
+    class SourceAxisType(int):
+        Velocity = ... # type: QAxisAccumulator.SourceAxisType
+        Acceleration = ... # type: QAxisAccumulator.SourceAxisType
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -294,11 +294,11 @@ class QLogicalDevice(Qt3DCore.QComponent):
 
 class QMouseDevice('QAbstractPhysicalDevice'):
 
-    class Axis(int): 
-    X = ... # type: QMouseDevice.Axis
-    Y = ... # type: QMouseDevice.Axis
-    WheelX = ... # type: QMouseDevice.Axis
-    WheelY = ... # type: QMouseDevice.Axis
+    class Axis(int):
+        X = ... # type: QMouseDevice.Axis
+        Y = ... # type: QMouseDevice.Axis
+        WheelX = ... # type: QMouseDevice.Axis
+        WheelY = ... # type: QMouseDevice.Axis
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -318,20 +318,20 @@ class QMouseDevice('QAbstractPhysicalDevice'):
 
 class QMouseEvent(QtCore.QObject):
 
-    class Modifiers(int): 
-    NoModifier = ... # type: QMouseEvent.Modifiers
-    ShiftModifier = ... # type: QMouseEvent.Modifiers
-    ControlModifier = ... # type: QMouseEvent.Modifiers
-    AltModifier = ... # type: QMouseEvent.Modifiers
-    MetaModifier = ... # type: QMouseEvent.Modifiers
-    KeypadModifier = ... # type: QMouseEvent.Modifiers
+    class Modifiers(int):
+        NoModifier = ... # type: QMouseEvent.Modifiers
+        ShiftModifier = ... # type: QMouseEvent.Modifiers
+        ControlModifier = ... # type: QMouseEvent.Modifiers
+        AltModifier = ... # type: QMouseEvent.Modifiers
+        MetaModifier = ... # type: QMouseEvent.Modifiers
+        KeypadModifier = ... # type: QMouseEvent.Modifiers
 
-    class Buttons(int): 
-    LeftButton = ... # type: QMouseEvent.Buttons
-    RightButton = ... # type: QMouseEvent.Buttons
-    MiddleButton = ... # type: QMouseEvent.Buttons
-    BackButton = ... # type: QMouseEvent.Buttons
-    NoButton = ... # type: QMouseEvent.Buttons
+    class Buttons(int):
+        LeftButton = ... # type: QMouseEvent.Buttons
+        RightButton = ... # type: QMouseEvent.Buttons
+        MiddleButton = ... # type: QMouseEvent.Buttons
+        BackButton = ... # type: QMouseEvent.Buttons
+        NoButton = ... # type: QMouseEvent.Buttons
 
     def __init__(self, e: QtGui.QMouseEvent) -> None: ...
 
@@ -347,20 +347,20 @@ class QMouseEvent(QtCore.QObject):
 
 class QWheelEvent(QtCore.QObject):
 
-    class Modifiers(int): 
-    NoModifier = ... # type: QWheelEvent.Modifiers
-    ShiftModifier = ... # type: QWheelEvent.Modifiers
-    ControlModifier = ... # type: QWheelEvent.Modifiers
-    AltModifier = ... # type: QWheelEvent.Modifiers
-    MetaModifier = ... # type: QWheelEvent.Modifiers
-    KeypadModifier = ... # type: QWheelEvent.Modifiers
+    class Modifiers(int):
+        NoModifier = ... # type: QWheelEvent.Modifiers
+        ShiftModifier = ... # type: QWheelEvent.Modifiers
+        ControlModifier = ... # type: QWheelEvent.Modifiers
+        AltModifier = ... # type: QWheelEvent.Modifiers
+        MetaModifier = ... # type: QWheelEvent.Modifiers
+        KeypadModifier = ... # type: QWheelEvent.Modifiers
 
-    class Buttons(int): 
-    LeftButton = ... # type: QWheelEvent.Buttons
-    RightButton = ... # type: QWheelEvent.Buttons
-    MiddleButton = ... # type: QWheelEvent.Buttons
-    BackButton = ... # type: QWheelEvent.Buttons
-    NoButton = ... # type: QWheelEvent.Buttons
+    class Buttons(int):
+        LeftButton = ... # type: QWheelEvent.Buttons
+        RightButton = ... # type: QWheelEvent.Buttons
+        MiddleButton = ... # type: QWheelEvent.Buttons
+        BackButton = ... # type: QWheelEvent.Buttons
+        NoButton = ... # type: QWheelEvent.Buttons
 
     def __init__(self, e: QtGui.QWheelEvent) -> None: ...
 

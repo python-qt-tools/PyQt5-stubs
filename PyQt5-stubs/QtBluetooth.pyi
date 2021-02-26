@@ -97,6 +97,9 @@ class QBluetoothAddress(PyQt5.sip.wrapper):
 class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
 
     class DiscoveryMethod(int):
+        NoMethod = ... # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
+        ClassicMethod = ... # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
+        LowEnergyMethod = ... # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
 
     class InquiryType(int):
         GeneralUnlimitedInquiry = ... # type: QBluetoothDeviceDiscoveryAgent.InquiryType
