@@ -7649,10 +7649,10 @@ class QStyleOption(sip.simplewrapper):
 class QStyleOptionFocusRect(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionFocusRect.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionFocusRect.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionFocusRect.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionFocusRect.StyleOptionType = ...
 
     backgroundColor = ... # type: typing.Union[QtGui.QColor, QtCore.Qt.GlobalColor, QtGui.QGradient]
 
@@ -7670,10 +7670,10 @@ class QStyleOptionFrame(QStyleOption):
         Rounded = ... # type: QStyleOptionFrame.FrameFeature
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionFrame.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionFrame.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionFrame.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionFrame.StyleOptionType = ...
 
     class FrameFeatures(sip.simplewrapper):
 
@@ -7704,10 +7704,10 @@ class QStyleOptionFrame(QStyleOption):
 class QStyleOptionTabWidgetFrame(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionTabWidgetFrame.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionTabWidgetFrame.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionTabWidgetFrame.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionTabWidgetFrame.StyleOptionType = ...
 
     leftCornerWidgetSize = ... # type: QtCore.QSize
     lineWidth = ... # type: int
@@ -7727,10 +7727,10 @@ class QStyleOptionTabWidgetFrame(QStyleOption):
 class QStyleOptionTabBarBase(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionTabBarBase.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionTabBarBase.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionTabBarBase.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionTabBarBase.StyleOptionType = ...
 
     documentMode = ... # type: bool
     selectedTabRect = ... # type: QtCore.QRect
@@ -7763,10 +7763,10 @@ class QStyleOptionHeader(QStyleOption):
         OnlyOneSection = ... # type: QStyleOptionHeader.SectionPosition
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionHeader.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionHeader.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionHeader.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionHeader.StyleOptionType = ...
 
     icon = ... # type: QtGui.QIcon
     iconAlignment = ... # type: typing.Union[QtCore.Qt.Alignment, QtCore.Qt.AlignmentFlag]
@@ -7795,10 +7795,10 @@ class QStyleOptionButton(QStyleOption):
         CommandLinkButton = ... # type: QStyleOptionButton.ButtonFeature
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionButton.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionButton.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionButton.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionButton.StyleOptionType = ...
 
     class ButtonFeatures(sip.simplewrapper):
 
@@ -7849,10 +7849,10 @@ class QStyleOptionTab(QStyleOption):
         OnlyOneTab = ... # type: QStyleOptionTab.TabPosition
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionTab.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionTab.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionTab.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionTab.StyleOptionType = ...
 
     class CornerWidgets(sip.simplewrapper):
 
@@ -7906,7 +7906,7 @@ class QStyleOptionTab(QStyleOption):
 class QStyleOptionTabV4(QStyleOptionTab):
 
     class StyleOptionVersion(int):
-        Version = ... # type: QStyleOptionTabV4.StyleOptionVersion  # type: ignore[assignment]
+        Version = ... # type: QStyleOptionTabV4.StyleOptionVersion
 
     tabIndex = ... # type: int
 
@@ -7919,10 +7919,10 @@ class QStyleOptionTabV4(QStyleOptionTab):
 class QStyleOptionProgressBar(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionProgressBar.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionProgressBar.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionProgressBar.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionProgressBar.StyleOptionType = ...
 
     bottomToTop = ... # type: bool
     invertedAppearance = ... # type: bool
@@ -7958,10 +7958,10 @@ class QStyleOptionMenuItem(QStyleOption):
         EmptyArea = ... # type: QStyleOptionMenuItem.MenuItemType
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionMenuItem.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionMenuItem.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionMenuItem.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionMenuItem.StyleOptionType = ...
 
     checkType = ... # type: 'QStyleOptionMenuItem.CheckType'
     checked = ... # type: bool
@@ -7983,10 +7983,10 @@ class QStyleOptionMenuItem(QStyleOption):
 class QStyleOptionDockWidget(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionDockWidget.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionDockWidget.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionDockWidget.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionDockWidget.StyleOptionType = ...
 
     closable = ... # type: bool
     floatable = ... # type: bool
@@ -8024,10 +8024,10 @@ class QStyleOptionViewItem(QStyleOption):
         Bottom = ... # type: QStyleOptionViewItem.Position
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionViewItem.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionViewItem.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionViewItem.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionViewItem.StyleOptionType = ...
 
     class ViewItemFeatures(sip.simplewrapper):
 
@@ -8081,10 +8081,10 @@ class QStyleOptionToolBox(QStyleOption):
         OnlyOneTab = ... # type: QStyleOptionToolBox.TabPosition
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionToolBox.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionToolBox.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionToolBox.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionToolBox.StyleOptionType = ...
 
     icon = ... # type: QtGui.QIcon
     position = ... # type: 'QStyleOptionToolBox.TabPosition'
@@ -8100,10 +8100,10 @@ class QStyleOptionToolBox(QStyleOption):
 class QStyleOptionRubberBand(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionRubberBand.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionRubberBand.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionRubberBand.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionRubberBand.StyleOptionType = ...
 
     opaque = ... # type: bool
     shape = ... # type: QRubberBand.Shape
@@ -8117,10 +8117,10 @@ class QStyleOptionRubberBand(QStyleOption):
 class QStyleOptionComplex(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionComplex.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionComplex.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionComplex.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionComplex.StyleOptionType = ...
 
     activeSubControls = ... # type: typing.Union[QStyle.SubControls, QStyle.SubControl]
     subControls = ... # type: typing.Union[QStyle.SubControls, QStyle.SubControl]
@@ -8134,10 +8134,10 @@ class QStyleOptionComplex(QStyleOption):
 class QStyleOptionSlider(QStyleOptionComplex):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionSlider.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionSlider.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionSlider.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionSlider.StyleOptionType = ...
 
     dialWrapping = ... # type: bool
     maximum = ... # type: int
@@ -8161,10 +8161,10 @@ class QStyleOptionSlider(QStyleOptionComplex):
 class QStyleOptionSpinBox(QStyleOptionComplex):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionSpinBox.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionSpinBox.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionSpinBox.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionSpinBox.StyleOptionType = ...
 
     buttonSymbols = ... # type: QAbstractSpinBox.ButtonSymbols
     frame = ... # type: bool
@@ -8187,10 +8187,10 @@ class QStyleOptionToolButton(QStyleOptionComplex):
         HasMenu = ... # type: QStyleOptionToolButton.ToolButtonFeature
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionToolButton.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionToolButton.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionToolButton.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionToolButton.StyleOptionType = ...
 
     class ToolButtonFeatures(sip.simplewrapper):
 
@@ -8225,10 +8225,10 @@ class QStyleOptionToolButton(QStyleOptionComplex):
 class QStyleOptionComboBox(QStyleOptionComplex):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionComboBox.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionComboBox.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionComboBox.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionComboBox.StyleOptionType = ...
 
     currentIcon = ... # type: QtGui.QIcon
     currentText = ... # type: str
@@ -8246,10 +8246,10 @@ class QStyleOptionComboBox(QStyleOptionComplex):
 class QStyleOptionTitleBar(QStyleOptionComplex):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionTitleBar.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionTitleBar.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionTitleBar.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionTitleBar.StyleOptionType = ...
 
     icon = ... # type: QtGui.QIcon
     text = ... # type: str
@@ -8287,10 +8287,10 @@ class QStyleHintReturn(sip.simplewrapper):
 class QStyleHintReturnMask(QStyleHintReturn):
 
     class StyleOptionVersion(int):
-        Version: QStyleHintReturnMask.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleHintReturnMask.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleHintReturnMask.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleHintReturnMask.StyleOptionType = ...
 
     region = ... # type: QtGui.QRegion
 
@@ -8313,10 +8313,10 @@ class QStyleOptionToolBar(QStyleOption):
         OnlyOne = ... # type: QStyleOptionToolBar.ToolBarPosition
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionToolBar.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionToolBar.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionToolBar.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionToolBar.StyleOptionType = ...
 
     class ToolBarFeatures(sip.simplewrapper):
 
@@ -8349,10 +8349,10 @@ class QStyleOptionToolBar(QStyleOption):
 class QStyleOptionGroupBox(QStyleOptionComplex):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionGroupBox.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionGroupBox.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionGroupBox.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionGroupBox.StyleOptionType = ...
 
     features = ... # type: typing.Union[QStyleOptionFrame.FrameFeatures, QStyleOptionFrame.FrameFeature]
     lineWidth = ... # type: int
@@ -8370,10 +8370,10 @@ class QStyleOptionGroupBox(QStyleOptionComplex):
 class QStyleOptionSizeGrip(QStyleOptionComplex):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionSizeGrip.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionSizeGrip.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionSizeGrip.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionSizeGrip.StyleOptionType = ...
 
     corner = ... # type: QtCore.Qt.Corner
 
@@ -8386,10 +8386,10 @@ class QStyleOptionSizeGrip(QStyleOptionComplex):
 class QStyleOptionGraphicsItem(QStyleOption):
 
     class StyleOptionVersion(int):
-        Version: QStyleOptionGraphicsItem.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleOptionGraphicsItem.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleOptionGraphicsItem.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleOptionGraphicsItem.StyleOptionType = ...
 
     exposedRect = ... # type: QtCore.QRectF
 
@@ -8405,10 +8405,10 @@ class QStyleOptionGraphicsItem(QStyleOption):
 class QStyleHintReturnVariant(QStyleHintReturn):
 
     class StyleOptionVersion(int):
-        Version: QStyleHintReturnVariant.StyleOptionVersion = ...  # type: ignore[assignment]
+        Version: QStyleHintReturnVariant.StyleOptionVersion = ...
 
     class StyleOptionType(int):
-        Type: QStyleHintReturnVariant.StyleOptionType = ...  # type: ignore[assignment]
+        Type: QStyleHintReturnVariant.StyleOptionType = ...
 
     variant = ... # type: typing.Any
 
