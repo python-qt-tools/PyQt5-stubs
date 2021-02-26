@@ -217,7 +217,7 @@ class QWebHistoryInterface(QtCore.QObject):
 
 class QWebPluginFactory(QtCore.QObject):
 
-    class Extension(int):
+    class Extension(int): ...
 
     class MimeType(sip.simplewrapper):
 
