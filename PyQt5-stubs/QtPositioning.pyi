@@ -32,7 +32,7 @@ import datetime
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
-class QGeoAddress(PyQt5.sip.wrapper):
+class QGeoAddress(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -62,7 +62,7 @@ class QGeoAddress(PyQt5.sip.wrapper):
     def text(self) -> str: ...
 
 
-class QGeoAreaMonitorInfo(PyQt5.sip.wrapper):
+class QGeoAreaMonitorInfo(sip.wrapper):
 
     @typing.overload
     def __init__(self, name: str = ...) -> None: ...
@@ -95,7 +95,7 @@ class QGeoAreaMonitorSource(QtCore.QObject):
         UnknownSourceError = ... # type: QGeoAreaMonitorSource.Error
         NoError = ... # type: QGeoAreaMonitorSource.Error
 
-    class AreaMonitorFeatures(PyQt5.sip.wrapper):
+    class AreaMonitorFeatures(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -138,7 +138,7 @@ class QGeoAreaMonitorSource(QtCore.QObject):
     def createDefaultSource(parent: QtCore.QObject) -> 'QGeoAreaMonitorSource': ...
 
 
-class QGeoShape(PyQt5.sip.wrapper):
+class QGeoShape(sip.wrapper):
 
     class ShapeType(int):
         UnknownType = ... # type: QGeoShape.ShapeType
@@ -183,7 +183,7 @@ class QGeoCircle(QGeoShape):
     def setCenter(self, center: 'QGeoCoordinate') -> None: ...
 
 
-class QGeoCoordinate(PyQt5.sip.wrapper):
+class QGeoCoordinate(sip.wrapper):
 
     class CoordinateFormat(int):
         Degrees = ... # type: QGeoCoordinate.CoordinateFormat
@@ -222,7 +222,7 @@ class QGeoCoordinate(PyQt5.sip.wrapper):
     def isValid(self) -> bool: ...
 
 
-class QGeoLocation(PyQt5.sip.wrapper):
+class QGeoLocation(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -311,7 +311,7 @@ class QGeoPolygon(QGeoShape):
     def setPath(self, path: typing.Iterable[QGeoCoordinate]) -> None: ...
 
 
-class QGeoPositionInfo(PyQt5.sip.wrapper):
+class QGeoPositionInfo(sip.wrapper):
 
     class Attribute(int):
         Direction = ... # type: QGeoPositionInfo.Attribute
@@ -353,7 +353,7 @@ class QGeoPositionInfoSource(QtCore.QObject):
         UnknownSourceError = ... # type: QGeoPositionInfoSource.Error
         NoError = ... # type: QGeoPositionInfoSource.Error
 
-    class PositioningMethods(PyQt5.sip.wrapper):
+    class PositioningMethods(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -442,7 +442,7 @@ class QGeoRectangle(QGeoShape):
     def setTopLeft(self, topLeft: QGeoCoordinate) -> None: ...
 
 
-class QGeoSatelliteInfo(PyQt5.sip.wrapper):
+class QGeoSatelliteInfo(sip.wrapper):
 
     class SatelliteSystem(int):
         Undefined = ... # type: QGeoSatelliteInfo.SatelliteSystem

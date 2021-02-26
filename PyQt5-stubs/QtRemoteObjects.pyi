@@ -185,7 +185,7 @@ class QRemoteObjectSourceLocationInfo(sip.simplewrapper):
     def __init__(self, a0: 'QRemoteObjectSourceLocationInfo') -> None: ...
 
 
-class QtRemoteObjects(PyQt5.sip.simplewrapper):
+class QtRemoteObjects(sip.simplewrapper):
 
     class InitialAction(int):
         FetchRootSize = ... # type: QtRemoteObjects.InitialAction

@@ -612,7 +612,7 @@ class QGeoServiceProvider(QtCore.QObject):
     def availableServiceProviders() -> typing.List[str]: ...
 
 
-class QLocation(PyQt5.sip.simplewrapper):
+class QLocation(sip.simplewrapper):
 
     class Visibility(int):
         UnspecifiedVisibility = ... # type: QLocation.Visibility

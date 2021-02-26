@@ -22,7 +22,7 @@
 
 import typing
 
-from PyQt5 import PyQt5.sip
+from PyQt5 import sip
 
 from PyQt5 import QtCore
 
@@ -89,7 +89,7 @@ class QDBusArgument(sip.simplewrapper):
     def add(self, arg: typing.Any, id: int = ...) -> None: ...
 
 
-class QDBus(PyQt5.sip.simplewrapper):
+class QDBus(sip.simplewrapper):
 
     class CallMode(int):
         NoBlock = ... # type: QDBus.CallMode

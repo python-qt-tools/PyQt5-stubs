@@ -34,9 +34,9 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
 PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        PyQt5.sip.Buffer, None]
+        sip.Buffer, None]
 PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], PyQt5.sip.Buffer, int, None]
+        typing.Sequence[float], sip.Buffer, int, None]
 
 
 class QAbstract3DGraph(QtGui.QWindow):
@@ -876,7 +876,7 @@ class QCustom3DVolume('QCustom3DItem'):
     def textureFormat(self) -> QtGui.QImage.Format: ...
     def setTextureFormat(self, format: QtGui.QImage.Format) -> None: ...
     @typing.overload
-    def setSubTextureData(self, axis: QtCore.Qt.Axis, index: int, data: PyQt5.sip.voidptr) -> None: ...
+    def setSubTextureData(self, axis: QtCore.Qt.Axis, index: int, data: sip.voidptr) -> None: ...
     @typing.overload
     def setSubTextureData(self, axis: QtCore.Qt.Axis, index: int, image: QtGui.QImage) -> None: ...
     def textureData(self) -> sip.array[int]: ...

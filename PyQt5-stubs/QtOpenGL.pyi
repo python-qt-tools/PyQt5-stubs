@@ -22,7 +22,7 @@
 
 import typing
 
-from PyQt5 import PyQt5.sip
+from PyQt5 import sip
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
@@ -36,12 +36,12 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
 PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        PyQt5.sip.Buffer, None]
+        sip.Buffer, None]
 PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], PyQt5.sip.Buffer, int, None]
+        typing.Sequence[float], sip.Buffer, int, None]
 
 
-class QGL(PyQt5.sip.simplewrapper):
+class QGL(sip.simplewrapper):
 
     class FormatOption(int):
         DoubleBuffer = ... # type: QGL.FormatOption
@@ -198,7 +198,7 @@ class QGLFormat(sip.simplewrapper):
     def setDepthBufferSize(self, size: int) -> None: ...
 
 
-class QGLContext(PyQt5.sip.wrapper):
+class QGLContext(sip.wrapper):
 
     class BindOption(int):
         NoBindOption = ... # type: QGLContext.BindOption
@@ -238,7 +238,7 @@ class QGLContext(PyQt5.sip.wrapper):
     def currentContext() -> 'QGLContext': ...
     def overlayTransparentColor(self) -> QtGui.QColor: ...
     def device(self) -> QtGui.QPaintDevice: ...
-    def getProcAddress(self, proc: str) -> PyQt5.sip.voidptr: ...
+    def getProcAddress(self, proc: str) -> sip.voidptr: ...
     @staticmethod
     def textureCacheLimit() -> int: ...
     @staticmethod

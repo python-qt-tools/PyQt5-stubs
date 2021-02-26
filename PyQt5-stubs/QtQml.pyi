@@ -326,7 +326,7 @@ class QQmlContext(QtCore.QObject):
     def isValid(self) -> bool: ...
 
 
-class QQmlImageProviderBase(PyQt5.sip.wrapper):
+class QQmlImageProviderBase(sip.wrapper):
 
     class Flag(int):
         ForceAsynchronousImageLoading = ... # type: QQmlImageProviderBase.Flag

@@ -32,7 +32,7 @@ import datetime
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
-class QBluetooth(PyQt5.sip.simplewrapper):
+class QBluetooth(sip.simplewrapper):
 
     class AttAccessConstraint(int):
         AttAuthorizationRequired = ... # type: QBluetooth.AttAccessConstraint
@@ -46,7 +46,7 @@ class QBluetooth(PyQt5.sip.simplewrapper):
         Encryption = ... # type: QBluetooth.Security
         Secure = ... # type: QBluetooth.Security
 
-    class SecurityFlags(PyQt5.sip.wrapper):
+    class SecurityFlags(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -61,7 +61,7 @@ class QBluetooth(PyQt5.sip.simplewrapper):
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
 
-    class AttAccessConstraints(PyQt5.sip.wrapper):
+    class AttAccessConstraints(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -77,7 +77,7 @@ class QBluetooth(PyQt5.sip.simplewrapper):
         def __int__(self) -> int: ...
 
 
-class QBluetoothAddress(PyQt5.sip.wrapper):
+class QBluetoothAddress(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -114,7 +114,7 @@ class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
         UnsupportedDiscoveryMethod = ... # type: QBluetoothDeviceDiscoveryAgent.Error
         UnknownError = ... # type: QBluetoothDeviceDiscoveryAgent.Error
 
-    class DiscoveryMethods(PyQt5.sip.wrapper):
+    class DiscoveryMethods(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -158,7 +158,7 @@ class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
     def inquiryType(self) -> 'QBluetoothDeviceDiscoveryAgent.InquiryType': ...
 
 
-class QBluetoothDeviceInfo(PyQt5.sip.wrapper):
+class QBluetoothDeviceInfo(sip.wrapper):
 
     class Field(int):
         None_ = ... # type: QBluetoothDeviceInfo.Field
@@ -297,7 +297,7 @@ class QBluetoothDeviceInfo(PyQt5.sip.wrapper):
         HealthDevice = ... # type: QBluetoothDeviceInfo.MajorDeviceClass
         UncategorizedDevice = ... # type: QBluetoothDeviceInfo.MajorDeviceClass
 
-    class ServiceClasses(PyQt5.sip.wrapper):
+    class ServiceClasses(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -312,7 +312,7 @@ class QBluetoothDeviceInfo(PyQt5.sip.wrapper):
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
 
-    class CoreConfigurations(PyQt5.sip.wrapper):
+    class CoreConfigurations(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -327,7 +327,7 @@ class QBluetoothDeviceInfo(PyQt5.sip.wrapper):
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
 
-    class Fields(PyQt5.sip.wrapper):
+    class Fields(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -379,7 +379,7 @@ class QBluetoothDeviceInfo(PyQt5.sip.wrapper):
     def isValid(self) -> bool: ...
 
 
-class QBluetoothHostInfo(PyQt5.sip.wrapper):
+class QBluetoothHostInfo(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -510,7 +510,7 @@ class QBluetoothServiceDiscoveryAgent(QtCore.QObject):
     def isActive(self) -> bool: ...
 
 
-class QBluetoothServiceInfo(PyQt5.sip.wrapper):
+class QBluetoothServiceInfo(sip.wrapper):
 
     class Protocol(int):
         UnknownProtocol = ... # type: QBluetoothServiceInfo.Protocol
@@ -680,7 +680,7 @@ class QBluetoothTransferReply(QtCore.QObject):
     def isFinished(self) -> bool: ...
 
 
-class QBluetoothTransferRequest(PyQt5.sip.wrapper):
+class QBluetoothTransferRequest(sip.wrapper):
 
     class Attribute(int):
         DescriptionAttribute = ... # type: QBluetoothTransferRequest.Attribute
@@ -1002,7 +1002,7 @@ class QBluetoothUuid(QtCore.QUuid):
     def minimumSize(self) -> int: ...
 
 
-class QLowEnergyAdvertisingData(PyQt5.sip.wrapper):
+class QLowEnergyAdvertisingData(sip.wrapper):
 
     class Discoverability(int):
         DiscoverabilityNone = ... # type: QLowEnergyAdvertisingData.Discoverability
@@ -1032,7 +1032,7 @@ class QLowEnergyAdvertisingData(PyQt5.sip.wrapper):
     def setLocalName(self, name: str) -> None: ...
 
 
-class QLowEnergyAdvertisingParameters(PyQt5.sip.wrapper):
+class QLowEnergyAdvertisingParameters(sip.wrapper):
 
     class FilterPolicy(int):
         IgnoreWhiteList = ... # type: QLowEnergyAdvertisingParameters.FilterPolicy
@@ -1045,7 +1045,7 @@ class QLowEnergyAdvertisingParameters(PyQt5.sip.wrapper):
         AdvScanInd = ... # type: QLowEnergyAdvertisingParameters.Mode
         AdvNonConnInd = ... # type: QLowEnergyAdvertisingParameters.Mode
 
-    class AddressInfo(PyQt5.sip.wrapper):
+    class AddressInfo(sip.wrapper):
 
         address = ... # type: QBluetoothAddress
         type = ... # type: 'QLowEnergyController.RemoteAddressType'
@@ -1073,7 +1073,7 @@ class QLowEnergyAdvertisingParameters(PyQt5.sip.wrapper):
     def setMode(self, mode: 'QLowEnergyAdvertisingParameters.Mode') -> None: ...
 
 
-class QLowEnergyCharacteristic(PyQt5.sip.wrapper):
+class QLowEnergyCharacteristic(sip.wrapper):
 
     class PropertyType(int):
         Unknown = ... # type: QLowEnergyCharacteristic.PropertyType
@@ -1086,7 +1086,7 @@ class QLowEnergyCharacteristic(PyQt5.sip.wrapper):
         WriteSigned = ... # type: QLowEnergyCharacteristic.PropertyType
         ExtendedProperty = ... # type: QLowEnergyCharacteristic.PropertyType
 
-    class PropertyTypes(PyQt5.sip.wrapper):
+    class PropertyTypes(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -1116,7 +1116,7 @@ class QLowEnergyCharacteristic(PyQt5.sip.wrapper):
     def name(self) -> str: ...
 
 
-class QLowEnergyCharacteristicData(PyQt5.sip.wrapper):
+class QLowEnergyCharacteristicData(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1143,7 +1143,7 @@ class QLowEnergyCharacteristicData(PyQt5.sip.wrapper):
     def uuid(self) -> QBluetoothUuid: ...
 
 
-class QLowEnergyConnectionParameters(PyQt5.sip.wrapper):
+class QLowEnergyConnectionParameters(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1235,7 +1235,7 @@ class QLowEnergyController(QtCore.QObject):
     def localAddress(self) -> QBluetoothAddress: ...
 
 
-class QLowEnergyDescriptor(PyQt5.sip.wrapper):
+class QLowEnergyDescriptor(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1250,7 +1250,7 @@ class QLowEnergyDescriptor(PyQt5.sip.wrapper):
     def isValid(self) -> bool: ...
 
 
-class QLowEnergyDescriptorData(PyQt5.sip.wrapper):
+class QLowEnergyDescriptorData(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1300,7 +1300,7 @@ class QLowEnergyService(QtCore.QObject):
         PrimaryService = ... # type: QLowEnergyService.ServiceType
         IncludedService = ... # type: QLowEnergyService.ServiceType
 
-    class ServiceTypes(PyQt5.sip.wrapper):
+    class ServiceTypes(sip.wrapper):
 
         @typing.overload
         def __init__(self) -> None: ...
@@ -1343,7 +1343,7 @@ class QLowEnergyService(QtCore.QObject):
     def includedServices(self) -> typing.List[QBluetoothUuid]: ...
 
 
-class QLowEnergyServiceData(PyQt5.sip.wrapper):
+class QLowEnergyServiceData(sip.wrapper):
 
     class ServiceType(int):
         ServiceTypePrimary = ... # type: QLowEnergyServiceData.ServiceType

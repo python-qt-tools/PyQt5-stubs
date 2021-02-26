@@ -22,7 +22,7 @@
 
 import typing
 
-from PyQt5 import PyQt5.sip
+from PyQt5 import sip
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
@@ -35,12 +35,12 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
 PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        PyQt5.sip.Buffer, None]
+        sip.Buffer, None]
 PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], PyQt5.sip.Buffer, int, None]
+        typing.Sequence[float], sip.Buffer, int, None]
 
 
-class QSqlDriverCreatorBase(PyQt5.sip.wrapper):
+class QSqlDriverCreatorBase(sip.wrapper):
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -568,7 +568,7 @@ class QSqlRelationalTableModel(QSqlTableModel):
     def data(self, index: QtCore.QModelIndex, role: int = ...) -> typing.Any: ...  # Rename first argument from item to index
 
 
-class QSqlResult(PyQt5.sip.wrapper):
+class QSqlResult(sip.wrapper):
 
     class BindingSyntax(int):
         PositionalBinding = ... # type: QSqlResult.BindingSyntax
@@ -629,7 +629,7 @@ class QSqlResult(PyQt5.sip.wrapper):
     def handle(self) -> typing.Any: ...
 
 
-class QSql(PyQt5.sip.simplewrapper):
+class QSql(sip.simplewrapper):
 
     class NumericalPrecisionPolicy(int):
         LowPrecisionInt32 = ... # type: QSql.NumericalPrecisionPolicy

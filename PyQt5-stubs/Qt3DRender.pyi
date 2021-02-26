@@ -35,14 +35,14 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
 PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        PyQt5.sip.Buffer, None]
+        sip.Buffer, None]
 PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], PyQt5.sip.Buffer, int, None]
+        typing.Sequence[float], sip.Buffer, int, None]
 
 
 class QAbstractFunctor(sip.simplewrapper):
 
-    def id(self) -> PyQt5.sip.voidptr: ...
+    def id(self) -> sip.voidptr: ...
 
 class QAbstractLight(Qt3DCore.QComponent):
 
@@ -1489,7 +1489,7 @@ class QRayCasterHit(sip.simplewrapper):
     def entityId(self) -> Qt3DCore.QNodeId: ...
     def type(self) -> 'QRayCasterHit.HitType': ...
 
-class Render(PyQt5.sip.simplewrapper): ...
+class Render(sip.simplewrapper): ...
 
 class QRenderAspect(Qt3DCore.QAbstractAspect):
 
