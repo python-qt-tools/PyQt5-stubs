@@ -2288,7 +2288,6 @@ class QIODevice(QObject):
         NewOnly = ... # type: QIODevice.OpenModeFlag
         ExistingOnly = ... # type: QIODevice.OpenModeFlag
 
-    class OpenModeFlag(int):
         def __or__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
 
     class OpenMode(sip.simplewrapper):
