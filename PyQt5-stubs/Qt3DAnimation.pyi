@@ -43,10 +43,10 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 
 class QAbstractAnimation(QtCore.QObject):
 
-    class AnimationType(int): 
-    KeyframeAnimation = ... # type: QAbstractAnimation.AnimationType
-    MorphingAnimation = ... # type: QAbstractAnimation.AnimationType
-    VertexBlendAnimation = ... # type: QAbstractAnimation.AnimationType
+    class AnimationType(int):
+        KeyframeAnimation = ... # type: QAbstractAnimation.AnimationType
+        MorphingAnimation = ... # type: QAbstractAnimation.AnimationType
+        VertexBlendAnimation = ... # type: QAbstractAnimation.AnimationType
 
     def durationChanged(self, duration: float) -> None: ...
     def positionChanged(self, position: float) -> None: ...
@@ -70,7 +70,7 @@ class QAbstractChannelMapping(Qt3DCore.QNode): ...
 class QAbstractClipAnimator(Qt3DCore.QComponent):
 
     class Loops(int): 
-    Infinite = ... # type: QAbstractClipAnimator.Loops
+        Infinite = ... # type: QAbstractClipAnimator.Loops
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -142,9 +142,9 @@ class QAnimationClipData(sip.simplewrapper):
 class QAnimationClipLoader('QAbstractAnimationClip'):
 
     class Status(int): 
-    NotReady = ... # type: QAnimationClipLoader.Status
-    Ready = ... # type: QAnimationClipLoader.Status
-    Error = ... # type: QAnimationClipLoader.Status
+        NotReady = ... # type: QAnimationClipLoader.Status
+        Ready = ... # type: QAnimationClipLoader.Status
+        Error = ... # type: QAnimationClipLoader.Status
 
     @typing.overload
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
@@ -304,9 +304,9 @@ class QClock(Qt3DCore.QNode):
 class QKeyFrame(sip.simplewrapper):
 
     class InterpolationType(int): 
-    ConstantInterpolation = ... # type: QKeyFrame.InterpolationType
-    LinearInterpolation = ... # type: QKeyFrame.InterpolationType
-    BezierInterpolation = ... # type: QKeyFrame.InterpolationType
+        ConstantInterpolation = ... # type: QKeyFrame.InterpolationType
+        LinearInterpolation = ... # type: QKeyFrame.InterpolationType
+        BezierInterpolation = ... # type: QKeyFrame.InterpolationType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -329,9 +329,9 @@ class QKeyFrame(sip.simplewrapper):
 class QKeyframeAnimation('QAbstractAnimation'):
 
     class RepeatMode(int): 
-    None_ = ... # type: QKeyframeAnimation.RepeatMode
-    Constant = ... # type: QKeyframeAnimation.RepeatMode
-    Repeat = ... # type: QKeyframeAnimation.RepeatMode
+        None_ = ... # type: QKeyframeAnimation.RepeatMode
+        Constant = ... # type: QKeyframeAnimation.RepeatMode
+        Repeat = ... # type: QKeyframeAnimation.RepeatMode
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -375,8 +375,8 @@ class QLerpClipBlend('QAbstractClipBlendNode'):
 class QMorphingAnimation('QAbstractAnimation'):
 
     class Method(int): 
-    Normalized = ... # type: QMorphingAnimation.Method
-    Relative = ... # type: QMorphingAnimation.Method
+        Normalized = ... # type: QMorphingAnimation.Method
+        Relative = ... # type: QMorphingAnimation.Method
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
