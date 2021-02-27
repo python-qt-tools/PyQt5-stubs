@@ -47,6 +47,10 @@ class QWidget(QtCore.QObject, QtGui.QPaintDevice):
         DrawChildren = ... # type: QWidget.RenderFlag
         IgnoreMask = ... # type: QWidget.RenderFlag
 
+    DrawWindowBackground = ...  # type: QWidget.RenderFlag
+    DrawChildren = ...  # type: QWidget.RenderFlag
+    IgnoreMask = ...  # type: QWidget.RenderFlag
+
     class RenderFlags(sip.simplewrapper):
 
         @typing.overload
@@ -454,6 +458,12 @@ class QAbstractItemDelegate(QtCore.QObject):
         SubmitModelCache = ... # type: QAbstractItemDelegate.EndEditHint
         RevertModelCache = ... # type: QAbstractItemDelegate.EndEditHint
 
+    NoHint = ...  # type: QAbstractItemDelegate.EndEditHint
+    EditNextItem = ...  # type: QAbstractItemDelegate.EndEditHint
+    EditPreviousItem = ...  # type: QAbstractItemDelegate.EndEditHint
+    SubmitModelCache = ...  # type: QAbstractItemDelegate.EndEditHint
+    RevertModelCache = ...  # type: QAbstractItemDelegate.EndEditHint
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     sizeHintChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -476,6 +486,9 @@ class QFrame(QWidget):
         Shadow_Mask = ... # type: QFrame.StyleMask
         Shape_Mask = ... # type: QFrame.StyleMask
 
+    Shadow_Mask = ...  # type: QFrame.StyleMask
+    Shape_Mask = ...  # type: QFrame.StyleMask
+
     class Shape(int):
         NoFrame = ... # type: QFrame.Shape
         Box = ... # type: QFrame.Shape
@@ -485,10 +498,22 @@ class QFrame(QWidget):
         VLine = ... # type: QFrame.Shape
         StyledPanel = ... # type: QFrame.Shape
 
+    NoFrame = ...  # type: QFrame.Shape
+    Box = ...  # type: QFrame.Shape
+    Panel = ...  # type: QFrame.Shape
+    WinPanel = ...  # type: QFrame.Shape
+    HLine = ...  # type: QFrame.Shape
+    VLine = ...  # type: QFrame.Shape
+    StyledPanel = ...  # type: QFrame.Shape
+
     class Shadow(int):
         Plain = ... # type: QFrame.Shadow
         Raised = ... # type: QFrame.Shadow
         Sunken = ... # type: QFrame.Shadow
+
+    Plain = ...  # type: QFrame.Shadow
+    Raised = ...  # type: QFrame.Shadow
+    Sunken = ...  # type: QFrame.Shadow
 
     def __init__(self, parent: typing.Optional[QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...
 
@@ -519,6 +544,10 @@ class QAbstractScrollArea(QFrame):
         AdjustIgnored = ... # type: QAbstractScrollArea.SizeAdjustPolicy
         AdjustToContentsOnFirstShow = ... # type: QAbstractScrollArea.SizeAdjustPolicy
         AdjustToContents = ... # type: QAbstractScrollArea.SizeAdjustPolicy
+
+    AdjustIgnored = ...  # type: QAbstractScrollArea.SizeAdjustPolicy
+    AdjustToContentsOnFirstShow = ...  # type: QAbstractScrollArea.SizeAdjustPolicy
+    AdjustToContents = ...  # type: QAbstractScrollArea.SizeAdjustPolicy
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -575,6 +604,11 @@ class QAbstractItemView(QAbstractScrollArea):
         BelowItem = ... # type: QAbstractItemView.DropIndicatorPosition
         OnViewport = ... # type: QAbstractItemView.DropIndicatorPosition
 
+    OnItem = ...  # type: QAbstractItemView.DropIndicatorPosition
+    AboveItem = ...  # type: QAbstractItemView.DropIndicatorPosition
+    BelowItem = ...  # type: QAbstractItemView.DropIndicatorPosition
+    OnViewport = ...  # type: QAbstractItemView.DropIndicatorPosition
+
     class State(int):
         NoState = ... # type: QAbstractItemView.State
         DraggingState = ... # type: QAbstractItemView.State
@@ -583,6 +617,14 @@ class QAbstractItemView(QAbstractScrollArea):
         ExpandingState = ... # type: QAbstractItemView.State
         CollapsingState = ... # type: QAbstractItemView.State
         AnimatingState = ... # type: QAbstractItemView.State
+
+    NoState = ...  # type: QAbstractItemView.State
+    DraggingState = ...  # type: QAbstractItemView.State
+    DragSelectingState = ...  # type: QAbstractItemView.State
+    EditingState = ...  # type: QAbstractItemView.State
+    ExpandingState = ...  # type: QAbstractItemView.State
+    CollapsingState = ...  # type: QAbstractItemView.State
+    AnimatingState = ...  # type: QAbstractItemView.State
 
     class CursorAction(int):
         MoveUp = ... # type: QAbstractItemView.CursorAction
@@ -596,6 +638,17 @@ class QAbstractItemView(QAbstractScrollArea):
         MoveNext = ... # type: QAbstractItemView.CursorAction
         MovePrevious = ... # type: QAbstractItemView.CursorAction
 
+    MoveUp = ...  # type: QAbstractItemView.CursorAction
+    MoveDown = ...  # type: QAbstractItemView.CursorAction
+    MoveLeft = ...  # type: QAbstractItemView.CursorAction
+    MoveRight = ...  # type: QAbstractItemView.CursorAction
+    MoveHome = ...  # type: QAbstractItemView.CursorAction
+    MoveEnd = ...  # type: QAbstractItemView.CursorAction
+    MovePageUp = ...  # type: QAbstractItemView.CursorAction
+    MovePageDown = ...  # type: QAbstractItemView.CursorAction
+    MoveNext = ...  # type: QAbstractItemView.CursorAction
+    MovePrevious = ...  # type: QAbstractItemView.CursorAction
+
     class SelectionMode(int):
         NoSelection = ... # type: QAbstractItemView.SelectionMode
         SingleSelection = ... # type: QAbstractItemView.SelectionMode
@@ -603,20 +656,38 @@ class QAbstractItemView(QAbstractScrollArea):
         ExtendedSelection = ... # type: QAbstractItemView.SelectionMode
         ContiguousSelection = ... # type: QAbstractItemView.SelectionMode
 
+    NoSelection = ...  # type: QAbstractItemView.SelectionMode
+    SingleSelection = ...  # type: QAbstractItemView.SelectionMode
+    MultiSelection = ...  # type: QAbstractItemView.SelectionMode
+    ExtendedSelection = ...  # type: QAbstractItemView.SelectionMode
+    ContiguousSelection = ...  # type: QAbstractItemView.SelectionMode
+
     class SelectionBehavior(int):
         SelectItems = ... # type: QAbstractItemView.SelectionBehavior
         SelectRows = ... # type: QAbstractItemView.SelectionBehavior
         SelectColumns = ... # type: QAbstractItemView.SelectionBehavior
 
+    SelectItems = ...  # type: QAbstractItemView.SelectionBehavior
+    SelectRows = ...  # type: QAbstractItemView.SelectionBehavior
+    SelectColumns = ...  # type: QAbstractItemView.SelectionBehavior
+
     class ScrollMode(int):
         ScrollPerItem = ... # type: QAbstractItemView.ScrollMode
         ScrollPerPixel = ... # type: QAbstractItemView.ScrollMode
+
+    ScrollPerItem = ...  # type: QAbstractItemView.ScrollMode
+    ScrollPerPixel = ...  # type: QAbstractItemView.ScrollMode
 
     class ScrollHint(int):
         EnsureVisible = ... # type: QAbstractItemView.ScrollHint
         PositionAtTop = ... # type: QAbstractItemView.ScrollHint
         PositionAtBottom = ... # type: QAbstractItemView.ScrollHint
         PositionAtCenter = ... # type: QAbstractItemView.ScrollHint
+
+    EnsureVisible = ...  # type: QAbstractItemView.ScrollHint
+    PositionAtTop = ...  # type: QAbstractItemView.ScrollHint
+    PositionAtBottom = ...  # type: QAbstractItemView.ScrollHint
+    PositionAtCenter = ...  # type: QAbstractItemView.ScrollHint
 
     class EditTrigger(int):
         NoEditTriggers = ... # type: QAbstractItemView.EditTrigger
@@ -627,12 +698,26 @@ class QAbstractItemView(QAbstractScrollArea):
         AnyKeyPressed = ... # type: QAbstractItemView.EditTrigger
         AllEditTriggers = ... # type: QAbstractItemView.EditTrigger
 
+    NoEditTriggers = ...  # type: QAbstractItemView.EditTrigger
+    CurrentChanged = ...  # type: QAbstractItemView.EditTrigger
+    DoubleClicked = ...  # type: QAbstractItemView.EditTrigger
+    SelectedClicked = ...  # type: QAbstractItemView.EditTrigger
+    EditKeyPressed = ...  # type: QAbstractItemView.EditTrigger
+    AnyKeyPressed = ...  # type: QAbstractItemView.EditTrigger
+    AllEditTriggers = ...  # type: QAbstractItemView.EditTrigger
+
     class DragDropMode(int):
         NoDragDrop = ... # type: QAbstractItemView.DragDropMode
         DragOnly = ... # type: QAbstractItemView.DragDropMode
         DropOnly = ... # type: QAbstractItemView.DragDropMode
         DragDrop = ... # type: QAbstractItemView.DragDropMode
         InternalMove = ... # type: QAbstractItemView.DragDropMode
+
+    NoDragDrop = ...  # type: QAbstractItemView.DragDropMode
+    DragOnly = ...  # type: QAbstractItemView.DragDropMode
+    DropOnly = ...  # type: QAbstractItemView.DragDropMode
+    DragDrop = ...  # type: QAbstractItemView.DragDropMode
+    InternalMove = ...  # type: QAbstractItemView.DragDropMode
 
     class EditTriggers(sip.simplewrapper):
 
@@ -797,6 +882,11 @@ class QAbstractSlider(QWidget):
         SliderStepsChange = ... # type: QAbstractSlider.SliderChange
         SliderValueChange = ... # type: QAbstractSlider.SliderChange
 
+    SliderRangeChange = ...  # type: QAbstractSlider.SliderChange
+    SliderOrientationChange = ...  # type: QAbstractSlider.SliderChange
+    SliderStepsChange = ...  # type: QAbstractSlider.SliderChange
+    SliderValueChange = ...  # type: QAbstractSlider.SliderChange
+
     class SliderAction(int):
         SliderNoAction = ... # type: QAbstractSlider.SliderAction
         SliderSingleStepAdd = ... # type: QAbstractSlider.SliderAction
@@ -806,6 +896,15 @@ class QAbstractSlider(QWidget):
         SliderToMinimum = ... # type: QAbstractSlider.SliderAction
         SliderToMaximum = ... # type: QAbstractSlider.SliderAction
         SliderMove = ... # type: QAbstractSlider.SliderAction
+
+    SliderNoAction = ...  # type: QAbstractSlider.SliderAction
+    SliderSingleStepAdd = ...  # type: QAbstractSlider.SliderAction
+    SliderSingleStepSub = ...  # type: QAbstractSlider.SliderAction
+    SliderPageStepAdd = ...  # type: QAbstractSlider.SliderAction
+    SliderPageStepSub = ...  # type: QAbstractSlider.SliderAction
+    SliderToMinimum = ...  # type: QAbstractSlider.SliderAction
+    SliderToMaximum = ...  # type: QAbstractSlider.SliderAction
+    SliderMove = ...  # type: QAbstractSlider.SliderAction
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -855,19 +954,33 @@ class QAbstractSpinBox(QWidget):
         DefaultStepType = ... # type: QAbstractSpinBox.StepType
         AdaptiveDecimalStepType = ... # type: QAbstractSpinBox.StepType
 
+    DefaultStepType = ...  # type: QAbstractSpinBox.StepType
+    AdaptiveDecimalStepType = ...  # type: QAbstractSpinBox.StepType
+
     class CorrectionMode(int):
         CorrectToPreviousValue = ... # type: QAbstractSpinBox.CorrectionMode
         CorrectToNearestValue = ... # type: QAbstractSpinBox.CorrectionMode
+
+    CorrectToPreviousValue = ...  # type: QAbstractSpinBox.CorrectionMode
+    CorrectToNearestValue = ...  # type: QAbstractSpinBox.CorrectionMode
 
     class ButtonSymbols(int):
         UpDownArrows = ... # type: QAbstractSpinBox.ButtonSymbols
         PlusMinus = ... # type: QAbstractSpinBox.ButtonSymbols
         NoButtons = ... # type: QAbstractSpinBox.ButtonSymbols
 
+    UpDownArrows = ...  # type: QAbstractSpinBox.ButtonSymbols
+    PlusMinus = ...  # type: QAbstractSpinBox.ButtonSymbols
+    NoButtons = ...  # type: QAbstractSpinBox.ButtonSymbols
+
     class StepEnabledFlag(int):
         StepNone = ... # type: QAbstractSpinBox.StepEnabledFlag
         StepUpEnabled = ... # type: QAbstractSpinBox.StepEnabledFlag
         StepDownEnabled = ... # type: QAbstractSpinBox.StepEnabledFlag
+
+    StepNone = ...  # type: QAbstractSpinBox.StepEnabledFlag
+    StepUpEnabled = ...  # type: QAbstractSpinBox.StepEnabledFlag
+    StepDownEnabled = ...  # type: QAbstractSpinBox.StepEnabledFlag
 
     class StepEnabled(sip.simplewrapper):
 
@@ -950,6 +1063,10 @@ class QAction(QtCore.QObject):
         NormalPriority = ... # type: QAction.Priority
         HighPriority = ... # type: QAction.Priority
 
+    LowPriority = ...  # type: QAction.Priority
+    NormalPriority = ...  # type: QAction.Priority
+    HighPriority = ...  # type: QAction.Priority
+
     class MenuRole(int):
         NoRole = ... # type: QAction.MenuRole
         TextHeuristicRole = ... # type: QAction.MenuRole
@@ -959,9 +1076,20 @@ class QAction(QtCore.QObject):
         PreferencesRole = ... # type: QAction.MenuRole
         QuitRole = ... # type: QAction.MenuRole
 
+    NoRole = ...  # type: QAction.MenuRole
+    TextHeuristicRole = ...  # type: QAction.MenuRole
+    ApplicationSpecificRole = ...  # type: QAction.MenuRole
+    AboutQtRole = ...  # type: QAction.MenuRole
+    AboutRole = ...  # type: QAction.MenuRole
+    PreferencesRole = ...  # type: QAction.MenuRole
+    QuitRole = ...  # type: QAction.MenuRole
+
     class ActionEvent(int):
         Trigger = ... # type: QAction.ActionEvent
         Hover = ... # type: QAction.ActionEvent
+
+    Trigger = ...  # type: QAction.ActionEvent
+    Hover = ...  # type: QAction.ActionEvent
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -1042,6 +1170,10 @@ class QActionGroup(QtCore.QObject):
         Exclusive = ... # type: QActionGroup.ExclusionPolicy
         ExclusiveOptional = ... # type: QActionGroup.ExclusionPolicy
 
+    None_ = ...  # type: QActionGroup.ExclusionPolicy
+    Exclusive = ...  # type: QActionGroup.ExclusionPolicy
+    ExclusiveOptional = ...  # type: QActionGroup.ExclusionPolicy
+
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
     def setExclusionPolicy(self, policy: 'QActionGroup.ExclusionPolicy') -> None: ...
@@ -1072,6 +1204,10 @@ class QApplication(QtGui.QGuiApplication):
         NormalColor = ... # type: QApplication.ColorSpec
         CustomColor = ... # type: QApplication.ColorSpec
         ManyColor = ... # type: QApplication.ColorSpec
+
+    NormalColor = ...  # type: QApplication.ColorSpec
+    CustomColor = ...  # type: QApplication.ColorSpec
+    ManyColor = ...  # type: QApplication.ColorSpec
 
     def __init__(self, argv: typing.List[str]) -> None: ...
 
@@ -1232,6 +1368,13 @@ class QLayout(QtCore.QObject, QLayoutItem):
         SetMaximumSize = ... # type: QLayout.SizeConstraint
         SetMinAndMaxSize = ... # type: QLayout.SizeConstraint
 
+    SetDefaultConstraint = ...  # type: QLayout.SizeConstraint
+    SetNoConstraint = ...  # type: QLayout.SizeConstraint
+    SetMinimumSize = ...  # type: QLayout.SizeConstraint
+    SetFixedSize = ...  # type: QLayout.SizeConstraint
+    SetMaximumSize = ...  # type: QLayout.SizeConstraint
+    SetMinAndMaxSize = ...  # type: QLayout.SizeConstraint
+
     @typing.overload
     def __init__(self, parent: QWidget) -> None: ...
     @typing.overload
@@ -1305,6 +1448,13 @@ class QBoxLayout(QLayout):
         BottomToTop = ... # type: QBoxLayout.Direction
         Down = ... # type: QBoxLayout.Direction
         Up = ... # type: QBoxLayout.Direction
+
+    LeftToRight = ...  # type: QBoxLayout.Direction
+    RightToLeft = ...  # type: QBoxLayout.Direction
+    TopToBottom = ...  # type: QBoxLayout.Direction
+    BottomToTop = ...  # type: QBoxLayout.Direction
+    Down = ...  # type: QBoxLayout.Direction
+    Up = ...  # type: QBoxLayout.Direction
 
     def __init__(self, direction: 'QBoxLayout.Direction', parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -1391,15 +1541,26 @@ class QCalendarWidget(QWidget):
         NoSelection = ... # type: QCalendarWidget.SelectionMode
         SingleSelection = ... # type: QCalendarWidget.SelectionMode
 
+    NoSelection = ...  # type: QCalendarWidget.SelectionMode
+    SingleSelection = ...  # type: QCalendarWidget.SelectionMode
+
     class VerticalHeaderFormat(int):
         NoVerticalHeader = ... # type: QCalendarWidget.VerticalHeaderFormat
         ISOWeekNumbers = ... # type: QCalendarWidget.VerticalHeaderFormat
+
+    NoVerticalHeader = ...  # type: QCalendarWidget.VerticalHeaderFormat
+    ISOWeekNumbers = ...  # type: QCalendarWidget.VerticalHeaderFormat
 
     class HorizontalHeaderFormat(int):
         NoHorizontalHeader = ... # type: QCalendarWidget.HorizontalHeaderFormat
         SingleLetterDayNames = ... # type: QCalendarWidget.HorizontalHeaderFormat
         ShortDayNames = ... # type: QCalendarWidget.HorizontalHeaderFormat
         LongDayNames = ... # type: QCalendarWidget.HorizontalHeaderFormat
+
+    NoHorizontalHeader = ...  # type: QCalendarWidget.HorizontalHeaderFormat
+    SingleLetterDayNames = ...  # type: QCalendarWidget.HorizontalHeaderFormat
+    ShortDayNames = ...  # type: QCalendarWidget.HorizontalHeaderFormat
+    LongDayNames = ...  # type: QCalendarWidget.HorizontalHeaderFormat
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -1491,6 +1652,9 @@ class QDialog(QWidget):
         Rejected = ... # type: QDialog.DialogCode
         Accepted = ... # type: QDialog.DialogCode
 
+    Rejected = ...  # type: QDialog.DialogCode
+    Accepted = ...  # type: QDialog.DialogCode
+
     def __init__(self, parent: typing.Optional[QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...
 
     def eventFilter(self, a0: QtCore.QObject, a1: QtCore.QEvent) -> bool: ...
@@ -1524,6 +1688,10 @@ class QColorDialog(QDialog):
         ShowAlphaChannel = ... # type: QColorDialog.ColorDialogOption
         NoButtons = ... # type: QColorDialog.ColorDialogOption
         DontUseNativeDialog = ... # type: QColorDialog.ColorDialogOption
+
+    ShowAlphaChannel = ...  # type: QColorDialog.ColorDialogOption
+    NoButtons = ...  # type: QColorDialog.ColorDialogOption
+    DontUseNativeDialog = ...  # type: QColorDialog.ColorDialogOption
 
     class ColorDialogOptions(sip.simplewrapper):
 
@@ -1616,6 +1784,11 @@ class QComboBox(QWidget):
         AdjustToMinimumContentsLength = ... # type: QComboBox.SizeAdjustPolicy
         AdjustToMinimumContentsLengthWithIcon = ... # type: QComboBox.SizeAdjustPolicy
 
+    AdjustToContents = ...  # type: QComboBox.SizeAdjustPolicy
+    AdjustToContentsOnFirstShow = ...  # type: QComboBox.SizeAdjustPolicy
+    AdjustToMinimumContentsLength = ...  # type: QComboBox.SizeAdjustPolicy
+    AdjustToMinimumContentsLengthWithIcon = ...  # type: QComboBox.SizeAdjustPolicy
+
     class InsertPolicy(int):
         NoInsert = ... # type: QComboBox.InsertPolicy
         InsertAtTop = ... # type: QComboBox.InsertPolicy
@@ -1624,6 +1797,14 @@ class QComboBox(QWidget):
         InsertAfterCurrent = ... # type: QComboBox.InsertPolicy
         InsertBeforeCurrent = ... # type: QComboBox.InsertPolicy
         InsertAlphabetically = ... # type: QComboBox.InsertPolicy
+
+    NoInsert = ...  # type: QComboBox.InsertPolicy
+    InsertAtTop = ...  # type: QComboBox.InsertPolicy
+    InsertAtCurrent = ...  # type: QComboBox.InsertPolicy
+    InsertAtBottom = ...  # type: QComboBox.InsertPolicy
+    InsertAfterCurrent = ...  # type: QComboBox.InsertPolicy
+    InsertBeforeCurrent = ...  # type: QComboBox.InsertPolicy
+    InsertAlphabetically = ...  # type: QComboBox.InsertPolicy
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -1782,6 +1963,9 @@ class QStyle(QtCore.QObject):
         RSIP_OnMouseClickAndAlreadyFocused = ... # type: QStyle.RequestSoftwareInputPanel
         RSIP_OnMouseClick = ... # type: QStyle.RequestSoftwareInputPanel
 
+    RSIP_OnMouseClickAndAlreadyFocused = ...  # type: QStyle.RequestSoftwareInputPanel
+    RSIP_OnMouseClick = ...  # type: QStyle.RequestSoftwareInputPanel
+
     class StandardPixmap(int):
         SP_TitleBarMenuButton = ... # type: QStyle.StandardPixmap
         SP_TitleBarMinButton = ... # type: QStyle.StandardPixmap
@@ -1862,6 +2046,86 @@ class QStyle(QtCore.QObject):
         SP_DialogIgnoreButton = ... # type: QStyle.StandardPixmap
         SP_RestoreDefaultsButton = ... # type: QStyle.StandardPixmap
         SP_CustomBase = ... # type: QStyle.StandardPixmap
+
+    SP_TitleBarMenuButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarMinButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarMaxButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarCloseButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarNormalButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarShadeButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarUnshadeButton = ...  # type: QStyle.StandardPixmap
+    SP_TitleBarContextHelpButton = ...  # type: QStyle.StandardPixmap
+    SP_DockWidgetCloseButton = ...  # type: QStyle.StandardPixmap
+    SP_MessageBoxInformation = ...  # type: QStyle.StandardPixmap
+    SP_MessageBoxWarning = ...  # type: QStyle.StandardPixmap
+    SP_MessageBoxCritical = ...  # type: QStyle.StandardPixmap
+    SP_MessageBoxQuestion = ...  # type: QStyle.StandardPixmap
+    SP_DesktopIcon = ...  # type: QStyle.StandardPixmap
+    SP_TrashIcon = ...  # type: QStyle.StandardPixmap
+    SP_ComputerIcon = ...  # type: QStyle.StandardPixmap
+    SP_DriveFDIcon = ...  # type: QStyle.StandardPixmap
+    SP_DriveHDIcon = ...  # type: QStyle.StandardPixmap
+    SP_DriveCDIcon = ...  # type: QStyle.StandardPixmap
+    SP_DriveDVDIcon = ...  # type: QStyle.StandardPixmap
+    SP_DriveNetIcon = ...  # type: QStyle.StandardPixmap
+    SP_DirOpenIcon = ...  # type: QStyle.StandardPixmap
+    SP_DirClosedIcon = ...  # type: QStyle.StandardPixmap
+    SP_DirLinkIcon = ...  # type: QStyle.StandardPixmap
+    SP_FileIcon = ...  # type: QStyle.StandardPixmap
+    SP_FileLinkIcon = ...  # type: QStyle.StandardPixmap
+    SP_ToolBarHorizontalExtensionButton = ...  # type: QStyle.StandardPixmap
+    SP_ToolBarVerticalExtensionButton = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogStart = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogEnd = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogToParent = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogNewFolder = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogDetailedView = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogInfoView = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogContentsView = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogListView = ...  # type: QStyle.StandardPixmap
+    SP_FileDialogBack = ...  # type: QStyle.StandardPixmap
+    SP_DirIcon = ...  # type: QStyle.StandardPixmap
+    SP_DialogOkButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogCancelButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogHelpButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogOpenButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogSaveButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogCloseButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogApplyButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogResetButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogDiscardButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogYesButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogNoButton = ...  # type: QStyle.StandardPixmap
+    SP_ArrowUp = ...  # type: QStyle.StandardPixmap
+    SP_ArrowDown = ...  # type: QStyle.StandardPixmap
+    SP_ArrowLeft = ...  # type: QStyle.StandardPixmap
+    SP_ArrowRight = ...  # type: QStyle.StandardPixmap
+    SP_ArrowBack = ...  # type: QStyle.StandardPixmap
+    SP_ArrowForward = ...  # type: QStyle.StandardPixmap
+    SP_DirHomeIcon = ...  # type: QStyle.StandardPixmap
+    SP_CommandLink = ...  # type: QStyle.StandardPixmap
+    SP_VistaShield = ...  # type: QStyle.StandardPixmap
+    SP_BrowserReload = ...  # type: QStyle.StandardPixmap
+    SP_BrowserStop = ...  # type: QStyle.StandardPixmap
+    SP_MediaPlay = ...  # type: QStyle.StandardPixmap
+    SP_MediaStop = ...  # type: QStyle.StandardPixmap
+    SP_MediaPause = ...  # type: QStyle.StandardPixmap
+    SP_MediaSkipForward = ...  # type: QStyle.StandardPixmap
+    SP_MediaSkipBackward = ...  # type: QStyle.StandardPixmap
+    SP_MediaSeekForward = ...  # type: QStyle.StandardPixmap
+    SP_MediaSeekBackward = ...  # type: QStyle.StandardPixmap
+    SP_MediaVolume = ...  # type: QStyle.StandardPixmap
+    SP_MediaVolumeMuted = ...  # type: QStyle.StandardPixmap
+    SP_DirLinkOpenIcon = ...  # type: QStyle.StandardPixmap
+    SP_LineEditClearButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogYesToAllButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogNoToAllButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogSaveAllButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogAbortButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogRetryButton = ...  # type: QStyle.StandardPixmap
+    SP_DialogIgnoreButton = ...  # type: QStyle.StandardPixmap
+    SP_RestoreDefaultsButton = ...  # type: QStyle.StandardPixmap
+    SP_CustomBase = ...  # type: QStyle.StandardPixmap
 
     class StyleHint(int):
         SH_EtchDisabledText = ... # type: QStyle.StyleHint
@@ -1984,6 +2248,126 @@ class QStyle(QtCore.QObject):
         SH_SpinBox_StepModifier = ... # type: QStyle.StyleHint
         SH_CustomBase = ... # type: QStyle.StyleHint
 
+    SH_EtchDisabledText = ...  # type: QStyle.StyleHint
+    SH_DitherDisabledText = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_MiddleClickAbsolutePosition = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_ScrollWhenPointerLeavesControl = ...  # type: QStyle.StyleHint
+    SH_TabBar_SelectMouseType = ...  # type: QStyle.StyleHint
+    SH_TabBar_Alignment = ...  # type: QStyle.StyleHint
+    SH_Header_ArrowAlignment = ...  # type: QStyle.StyleHint
+    SH_Slider_SnapToValue = ...  # type: QStyle.StyleHint
+    SH_Slider_SloppyKeyEvents = ...  # type: QStyle.StyleHint
+    SH_ProgressDialog_CenterCancelButton = ...  # type: QStyle.StyleHint
+    SH_ProgressDialog_TextLabelAlignment = ...  # type: QStyle.StyleHint
+    SH_PrintDialog_RightAlignButtons = ...  # type: QStyle.StyleHint
+    SH_MainWindow_SpaceBelowMenuBar = ...  # type: QStyle.StyleHint
+    SH_FontDialog_SelectAssociatedText = ...  # type: QStyle.StyleHint
+    SH_Menu_AllowActiveAndDisabled = ...  # type: QStyle.StyleHint
+    SH_Menu_SpaceActivatesItem = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuPopupDelay = ...  # type: QStyle.StyleHint
+    SH_ScrollView_FrameOnlyAroundContents = ...  # type: QStyle.StyleHint
+    SH_MenuBar_AltKeyNavigation = ...  # type: QStyle.StyleHint
+    SH_ComboBox_ListMouseTracking = ...  # type: QStyle.StyleHint
+    SH_Menu_MouseTracking = ...  # type: QStyle.StyleHint
+    SH_MenuBar_MouseTracking = ...  # type: QStyle.StyleHint
+    SH_ItemView_ChangeHighlightOnFocus = ...  # type: QStyle.StyleHint
+    SH_Widget_ShareActivation = ...  # type: QStyle.StyleHint
+    SH_Workspace_FillSpaceOnMaximize = ...  # type: QStyle.StyleHint
+    SH_ComboBox_Popup = ...  # type: QStyle.StyleHint
+    SH_TitleBar_NoBorder = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_StopMouseOverSlider = ...  # type: QStyle.StyleHint
+    SH_BlinkCursorWhenTextSelected = ...  # type: QStyle.StyleHint
+    SH_RichText_FullWidthSelection = ...  # type: QStyle.StyleHint
+    SH_Menu_Scrollable = ...  # type: QStyle.StyleHint
+    SH_GroupBox_TextLabelVerticalAlignment = ...  # type: QStyle.StyleHint
+    SH_GroupBox_TextLabelColor = ...  # type: QStyle.StyleHint
+    SH_Menu_SloppySubMenus = ...  # type: QStyle.StyleHint
+    SH_Table_GridLineColor = ...  # type: QStyle.StyleHint
+    SH_LineEdit_PasswordCharacter = ...  # type: QStyle.StyleHint
+    SH_DialogButtons_DefaultButton = ...  # type: QStyle.StyleHint
+    SH_ToolBox_SelectedPageTitleBold = ...  # type: QStyle.StyleHint
+    SH_TabBar_PreferNoArrows = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_LeftClickAbsolutePosition = ...  # type: QStyle.StyleHint
+    SH_UnderlineShortcut = ...  # type: QStyle.StyleHint
+    SH_SpinBox_AnimateButton = ...  # type: QStyle.StyleHint
+    SH_SpinBox_KeyPressAutoRepeatRate = ...  # type: QStyle.StyleHint
+    SH_SpinBox_ClickAutoRepeatRate = ...  # type: QStyle.StyleHint
+    SH_Menu_FillScreenWithScroll = ...  # type: QStyle.StyleHint
+    SH_ToolTipLabel_Opacity = ...  # type: QStyle.StyleHint
+    SH_DrawMenuBarSeparator = ...  # type: QStyle.StyleHint
+    SH_TitleBar_ModifyNotification = ...  # type: QStyle.StyleHint
+    SH_Button_FocusPolicy = ...  # type: QStyle.StyleHint
+    SH_MessageBox_UseBorderForButtonSpacing = ...  # type: QStyle.StyleHint
+    SH_TitleBar_AutoRaise = ...  # type: QStyle.StyleHint
+    SH_ToolButton_PopupDelay = ...  # type: QStyle.StyleHint
+    SH_FocusFrame_Mask = ...  # type: QStyle.StyleHint
+    SH_RubberBand_Mask = ...  # type: QStyle.StyleHint
+    SH_WindowFrame_Mask = ...  # type: QStyle.StyleHint
+    SH_SpinControls_DisableOnBounds = ...  # type: QStyle.StyleHint
+    SH_Dial_BackgroundRole = ...  # type: QStyle.StyleHint
+    SH_ComboBox_LayoutDirection = ...  # type: QStyle.StyleHint
+    SH_ItemView_EllipsisLocation = ...  # type: QStyle.StyleHint
+    SH_ItemView_ShowDecorationSelected = ...  # type: QStyle.StyleHint
+    SH_ItemView_ActivateItemOnSingleClick = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_ContextMenu = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_RollBetweenButtons = ...  # type: QStyle.StyleHint
+    SH_Slider_StopMouseOverSlider = ...  # type: QStyle.StyleHint
+    SH_Slider_AbsoluteSetButtons = ...  # type: QStyle.StyleHint
+    SH_Slider_PageSetButtons = ...  # type: QStyle.StyleHint
+    SH_Menu_KeyboardSearch = ...  # type: QStyle.StyleHint
+    SH_TabBar_ElideMode = ...  # type: QStyle.StyleHint
+    SH_DialogButtonLayout = ...  # type: QStyle.StyleHint
+    SH_ComboBox_PopupFrameStyle = ...  # type: QStyle.StyleHint
+    SH_MessageBox_TextInteractionFlags = ...  # type: QStyle.StyleHint
+    SH_DialogButtonBox_ButtonsHaveIcons = ...  # type: QStyle.StyleHint
+    SH_SpellCheckUnderlineStyle = ...  # type: QStyle.StyleHint
+    SH_MessageBox_CenterButtons = ...  # type: QStyle.StyleHint
+    SH_Menu_SelectionWrap = ...  # type: QStyle.StyleHint
+    SH_ItemView_MovementWithoutUpdatingSelection = ...  # type: QStyle.StyleHint
+    SH_ToolTip_Mask = ...  # type: QStyle.StyleHint
+    SH_FocusFrame_AboveWidget = ...  # type: QStyle.StyleHint
+    SH_TextControl_FocusIndicatorTextCharFormat = ...  # type: QStyle.StyleHint
+    SH_WizardStyle = ...  # type: QStyle.StyleHint
+    SH_ItemView_ArrowKeysNavigateIntoChildren = ...  # type: QStyle.StyleHint
+    SH_Menu_Mask = ...  # type: QStyle.StyleHint
+    SH_Menu_FlashTriggeredItem = ...  # type: QStyle.StyleHint
+    SH_Menu_FadeOutOnHide = ...  # type: QStyle.StyleHint
+    SH_SpinBox_ClickAutoRepeatThreshold = ...  # type: QStyle.StyleHint
+    SH_ItemView_PaintAlternatingRowColorsForEmptyArea = ...  # type: QStyle.StyleHint
+    SH_FormLayoutWrapPolicy = ...  # type: QStyle.StyleHint
+    SH_TabWidget_DefaultTabPosition = ...  # type: QStyle.StyleHint
+    SH_ToolBar_Movable = ...  # type: QStyle.StyleHint
+    SH_FormLayoutFieldGrowthPolicy = ...  # type: QStyle.StyleHint
+    SH_FormLayoutFormAlignment = ...  # type: QStyle.StyleHint
+    SH_FormLayoutLabelAlignment = ...  # type: QStyle.StyleHint
+    SH_ItemView_DrawDelegateFrame = ...  # type: QStyle.StyleHint
+    SH_TabBar_CloseButtonPosition = ...  # type: QStyle.StyleHint
+    SH_DockWidget_ButtonsHaveFrame = ...  # type: QStyle.StyleHint
+    SH_ToolButtonStyle = ...  # type: QStyle.StyleHint
+    SH_RequestSoftwareInputPanel = ...  # type: QStyle.StyleHint
+    SH_ListViewExpand_SelectMouseType = ...  # type: QStyle.StyleHint
+    SH_ScrollBar_Transient = ...  # type: QStyle.StyleHint
+    SH_Menu_SupportsSections = ...  # type: QStyle.StyleHint
+    SH_ToolTip_WakeUpDelay = ...  # type: QStyle.StyleHint
+    SH_ToolTip_FallAsleepDelay = ...  # type: QStyle.StyleHint
+    SH_Widget_Animate = ...  # type: QStyle.StyleHint
+    SH_Splitter_OpaqueResize = ...  # type: QStyle.StyleHint
+    SH_LineEdit_PasswordMaskDelay = ...  # type: QStyle.StyleHint
+    SH_TabBar_ChangeCurrentDelay = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuUniDirection = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuUniDirectionFailCount = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuSloppySelectOtherActions = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuSloppyCloseTimeout = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuResetWhenReenteringParent = ...  # type: QStyle.StyleHint
+    SH_Menu_SubMenuDontStartSloppyOnLeave = ...  # type: QStyle.StyleHint
+    SH_ItemView_ScrollMode = ...  # type: QStyle.StyleHint
+    SH_TitleBar_ShowToolTipsOnButtons = ...  # type: QStyle.StyleHint
+    SH_Widget_Animation_Duration = ...  # type: QStyle.StyleHint
+    SH_ComboBox_AllowWheelScrolling = ...  # type: QStyle.StyleHint
+    SH_SpinBox_ButtonsInsideFrame = ...  # type: QStyle.StyleHint
+    SH_SpinBox_StepModifier = ...  # type: QStyle.StyleHint
+    SH_CustomBase = ...  # type: QStyle.StyleHint
+
     class ContentsType(int):
         CT_PushButton = ... # type: QStyle.ContentsType
         CT_CheckBox = ... # type: QStyle.ContentsType
@@ -2009,6 +2393,31 @@ class QStyle(QtCore.QObject):
         CT_MdiControls = ... # type: QStyle.ContentsType
         CT_ItemViewItem = ... # type: QStyle.ContentsType
         CT_CustomBase = ... # type: QStyle.ContentsType
+
+    CT_PushButton = ...  # type: QStyle.ContentsType
+    CT_CheckBox = ...  # type: QStyle.ContentsType
+    CT_RadioButton = ...  # type: QStyle.ContentsType
+    CT_ToolButton = ...  # type: QStyle.ContentsType
+    CT_ComboBox = ...  # type: QStyle.ContentsType
+    CT_Splitter = ...  # type: QStyle.ContentsType
+    CT_ProgressBar = ...  # type: QStyle.ContentsType
+    CT_MenuItem = ...  # type: QStyle.ContentsType
+    CT_MenuBarItem = ...  # type: QStyle.ContentsType
+    CT_MenuBar = ...  # type: QStyle.ContentsType
+    CT_Menu = ...  # type: QStyle.ContentsType
+    CT_TabBarTab = ...  # type: QStyle.ContentsType
+    CT_Slider = ...  # type: QStyle.ContentsType
+    CT_ScrollBar = ...  # type: QStyle.ContentsType
+    CT_LineEdit = ...  # type: QStyle.ContentsType
+    CT_SpinBox = ...  # type: QStyle.ContentsType
+    CT_SizeGrip = ...  # type: QStyle.ContentsType
+    CT_TabWidget = ...  # type: QStyle.ContentsType
+    CT_DialogButtons = ...  # type: QStyle.ContentsType
+    CT_HeaderSection = ...  # type: QStyle.ContentsType
+    CT_GroupBox = ...  # type: QStyle.ContentsType
+    CT_MdiControls = ...  # type: QStyle.ContentsType
+    CT_ItemViewItem = ...  # type: QStyle.ContentsType
+    CT_CustomBase = ...  # type: QStyle.ContentsType
 
     class PixelMetric(int):
         PM_ButtonMargin = ... # type: QStyle.PixelMetric
@@ -2111,6 +2520,106 @@ class QStyle(QtCore.QObject):
         PM_TitleBarButtonSize = ... # type: QStyle.PixelMetric
         PM_CustomBase = ... # type: QStyle.PixelMetric
 
+    PM_ButtonMargin = ...  # type: QStyle.PixelMetric
+    PM_ButtonDefaultIndicator = ...  # type: QStyle.PixelMetric
+    PM_MenuButtonIndicator = ...  # type: QStyle.PixelMetric
+    PM_ButtonShiftHorizontal = ...  # type: QStyle.PixelMetric
+    PM_ButtonShiftVertical = ...  # type: QStyle.PixelMetric
+    PM_DefaultFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_SpinBoxFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_ComboBoxFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_MaximumDragDistance = ...  # type: QStyle.PixelMetric
+    PM_ScrollBarExtent = ...  # type: QStyle.PixelMetric
+    PM_ScrollBarSliderMin = ...  # type: QStyle.PixelMetric
+    PM_SliderThickness = ...  # type: QStyle.PixelMetric
+    PM_SliderControlThickness = ...  # type: QStyle.PixelMetric
+    PM_SliderLength = ...  # type: QStyle.PixelMetric
+    PM_SliderTickmarkOffset = ...  # type: QStyle.PixelMetric
+    PM_SliderSpaceAvailable = ...  # type: QStyle.PixelMetric
+    PM_DockWidgetSeparatorExtent = ...  # type: QStyle.PixelMetric
+    PM_DockWidgetHandleExtent = ...  # type: QStyle.PixelMetric
+    PM_DockWidgetFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_TabBarTabOverlap = ...  # type: QStyle.PixelMetric
+    PM_TabBarTabHSpace = ...  # type: QStyle.PixelMetric
+    PM_TabBarTabVSpace = ...  # type: QStyle.PixelMetric
+    PM_TabBarBaseHeight = ...  # type: QStyle.PixelMetric
+    PM_TabBarBaseOverlap = ...  # type: QStyle.PixelMetric
+    PM_ProgressBarChunkWidth = ...  # type: QStyle.PixelMetric
+    PM_SplitterWidth = ...  # type: QStyle.PixelMetric
+    PM_TitleBarHeight = ...  # type: QStyle.PixelMetric
+    PM_MenuScrollerHeight = ...  # type: QStyle.PixelMetric
+    PM_MenuHMargin = ...  # type: QStyle.PixelMetric
+    PM_MenuVMargin = ...  # type: QStyle.PixelMetric
+    PM_MenuPanelWidth = ...  # type: QStyle.PixelMetric
+    PM_MenuTearoffHeight = ...  # type: QStyle.PixelMetric
+    PM_MenuDesktopFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_MenuBarPanelWidth = ...  # type: QStyle.PixelMetric
+    PM_MenuBarItemSpacing = ...  # type: QStyle.PixelMetric
+    PM_MenuBarVMargin = ...  # type: QStyle.PixelMetric
+    PM_MenuBarHMargin = ...  # type: QStyle.PixelMetric
+    PM_IndicatorWidth = ...  # type: QStyle.PixelMetric
+    PM_IndicatorHeight = ...  # type: QStyle.PixelMetric
+    PM_ExclusiveIndicatorWidth = ...  # type: QStyle.PixelMetric
+    PM_ExclusiveIndicatorHeight = ...  # type: QStyle.PixelMetric
+    PM_DialogButtonsSeparator = ...  # type: QStyle.PixelMetric
+    PM_DialogButtonsButtonWidth = ...  # type: QStyle.PixelMetric
+    PM_DialogButtonsButtonHeight = ...  # type: QStyle.PixelMetric
+    PM_MdiSubWindowFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_MDIFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_MdiSubWindowMinimizedWidth = ...  # type: QStyle.PixelMetric
+    PM_MDIMinimizedWidth = ...  # type: QStyle.PixelMetric
+    PM_HeaderMargin = ...  # type: QStyle.PixelMetric
+    PM_HeaderMarkSize = ...  # type: QStyle.PixelMetric
+    PM_HeaderGripMargin = ...  # type: QStyle.PixelMetric
+    PM_TabBarTabShiftHorizontal = ...  # type: QStyle.PixelMetric
+    PM_TabBarTabShiftVertical = ...  # type: QStyle.PixelMetric
+    PM_TabBarScrollButtonWidth = ...  # type: QStyle.PixelMetric
+    PM_ToolBarFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_ToolBarHandleExtent = ...  # type: QStyle.PixelMetric
+    PM_ToolBarItemSpacing = ...  # type: QStyle.PixelMetric
+    PM_ToolBarItemMargin = ...  # type: QStyle.PixelMetric
+    PM_ToolBarSeparatorExtent = ...  # type: QStyle.PixelMetric
+    PM_ToolBarExtensionExtent = ...  # type: QStyle.PixelMetric
+    PM_SpinBoxSliderHeight = ...  # type: QStyle.PixelMetric
+    PM_DefaultTopLevelMargin = ...  # type: QStyle.PixelMetric
+    PM_DefaultChildMargin = ...  # type: QStyle.PixelMetric
+    PM_DefaultLayoutSpacing = ...  # type: QStyle.PixelMetric
+    PM_ToolBarIconSize = ...  # type: QStyle.PixelMetric
+    PM_ListViewIconSize = ...  # type: QStyle.PixelMetric
+    PM_IconViewIconSize = ...  # type: QStyle.PixelMetric
+    PM_SmallIconSize = ...  # type: QStyle.PixelMetric
+    PM_LargeIconSize = ...  # type: QStyle.PixelMetric
+    PM_FocusFrameVMargin = ...  # type: QStyle.PixelMetric
+    PM_FocusFrameHMargin = ...  # type: QStyle.PixelMetric
+    PM_ToolTipLabelFrameWidth = ...  # type: QStyle.PixelMetric
+    PM_CheckBoxLabelSpacing = ...  # type: QStyle.PixelMetric
+    PM_TabBarIconSize = ...  # type: QStyle.PixelMetric
+    PM_SizeGripSize = ...  # type: QStyle.PixelMetric
+    PM_DockWidgetTitleMargin = ...  # type: QStyle.PixelMetric
+    PM_MessageBoxIconSize = ...  # type: QStyle.PixelMetric
+    PM_ButtonIconSize = ...  # type: QStyle.PixelMetric
+    PM_DockWidgetTitleBarButtonMargin = ...  # type: QStyle.PixelMetric
+    PM_RadioButtonLabelSpacing = ...  # type: QStyle.PixelMetric
+    PM_LayoutLeftMargin = ...  # type: QStyle.PixelMetric
+    PM_LayoutTopMargin = ...  # type: QStyle.PixelMetric
+    PM_LayoutRightMargin = ...  # type: QStyle.PixelMetric
+    PM_LayoutBottomMargin = ...  # type: QStyle.PixelMetric
+    PM_LayoutHorizontalSpacing = ...  # type: QStyle.PixelMetric
+    PM_LayoutVerticalSpacing = ...  # type: QStyle.PixelMetric
+    PM_TabBar_ScrollButtonOverlap = ...  # type: QStyle.PixelMetric
+    PM_TextCursorWidth = ...  # type: QStyle.PixelMetric
+    PM_TabCloseIndicatorWidth = ...  # type: QStyle.PixelMetric
+    PM_TabCloseIndicatorHeight = ...  # type: QStyle.PixelMetric
+    PM_ScrollView_ScrollBarSpacing = ...  # type: QStyle.PixelMetric
+    PM_SubMenuOverlap = ...  # type: QStyle.PixelMetric
+    PM_ScrollView_ScrollBarOverlap = ...  # type: QStyle.PixelMetric
+    PM_TreeViewIndentation = ...  # type: QStyle.PixelMetric
+    PM_HeaderDefaultSectionSizeHorizontal = ...  # type: QStyle.PixelMetric
+    PM_HeaderDefaultSectionSizeVertical = ...  # type: QStyle.PixelMetric
+    PM_TitleBarButtonIconSize = ...  # type: QStyle.PixelMetric
+    PM_TitleBarButtonSize = ...  # type: QStyle.PixelMetric
+    PM_CustomBase = ...  # type: QStyle.PixelMetric
+
     class SubControl(int):
         SC_None = ... # type: QStyle.SubControl
         SC_ScrollBarAddLine = ... # type: QStyle.SubControl
@@ -2156,6 +2665,50 @@ class QStyle(QtCore.QObject):
         SC_CustomBase = ... # type: QStyle.SubControl
         SC_All = ... # type: QStyle.SubControl
 
+    SC_None = ...  # type: QStyle.SubControl
+    SC_ScrollBarAddLine = ...  # type: QStyle.SubControl
+    SC_ScrollBarSubLine = ...  # type: QStyle.SubControl
+    SC_ScrollBarAddPage = ...  # type: QStyle.SubControl
+    SC_ScrollBarSubPage = ...  # type: QStyle.SubControl
+    SC_ScrollBarFirst = ...  # type: QStyle.SubControl
+    SC_ScrollBarLast = ...  # type: QStyle.SubControl
+    SC_ScrollBarSlider = ...  # type: QStyle.SubControl
+    SC_ScrollBarGroove = ...  # type: QStyle.SubControl
+    SC_SpinBoxUp = ...  # type: QStyle.SubControl
+    SC_SpinBoxDown = ...  # type: QStyle.SubControl
+    SC_SpinBoxFrame = ...  # type: QStyle.SubControl
+    SC_SpinBoxEditField = ...  # type: QStyle.SubControl
+    SC_ComboBoxFrame = ...  # type: QStyle.SubControl
+    SC_ComboBoxEditField = ...  # type: QStyle.SubControl
+    SC_ComboBoxArrow = ...  # type: QStyle.SubControl
+    SC_ComboBoxListBoxPopup = ...  # type: QStyle.SubControl
+    SC_SliderGroove = ...  # type: QStyle.SubControl
+    SC_SliderHandle = ...  # type: QStyle.SubControl
+    SC_SliderTickmarks = ...  # type: QStyle.SubControl
+    SC_ToolButton = ...  # type: QStyle.SubControl
+    SC_ToolButtonMenu = ...  # type: QStyle.SubControl
+    SC_TitleBarSysMenu = ...  # type: QStyle.SubControl
+    SC_TitleBarMinButton = ...  # type: QStyle.SubControl
+    SC_TitleBarMaxButton = ...  # type: QStyle.SubControl
+    SC_TitleBarCloseButton = ...  # type: QStyle.SubControl
+    SC_TitleBarNormalButton = ...  # type: QStyle.SubControl
+    SC_TitleBarShadeButton = ...  # type: QStyle.SubControl
+    SC_TitleBarUnshadeButton = ...  # type: QStyle.SubControl
+    SC_TitleBarContextHelpButton = ...  # type: QStyle.SubControl
+    SC_TitleBarLabel = ...  # type: QStyle.SubControl
+    SC_DialGroove = ...  # type: QStyle.SubControl
+    SC_DialHandle = ...  # type: QStyle.SubControl
+    SC_DialTickmarks = ...  # type: QStyle.SubControl
+    SC_GroupBoxCheckBox = ...  # type: QStyle.SubControl
+    SC_GroupBoxLabel = ...  # type: QStyle.SubControl
+    SC_GroupBoxContents = ...  # type: QStyle.SubControl
+    SC_GroupBoxFrame = ...  # type: QStyle.SubControl
+    SC_MdiMinButton = ...  # type: QStyle.SubControl
+    SC_MdiNormalButton = ...  # type: QStyle.SubControl
+    SC_MdiCloseButton = ...  # type: QStyle.SubControl
+    SC_CustomBase = ...  # type: QStyle.SubControl
+    SC_All = ...  # type: QStyle.SubControl
+
     class ComplexControl(int):
         CC_SpinBox = ... # type: QStyle.ComplexControl
         CC_ComboBox = ... # type: QStyle.ComplexControl
@@ -2167,6 +2720,17 @@ class QStyle(QtCore.QObject):
         CC_GroupBox = ... # type: QStyle.ComplexControl
         CC_MdiControls = ... # type: QStyle.ComplexControl
         CC_CustomBase = ... # type: QStyle.ComplexControl
+
+    CC_SpinBox = ...  # type: QStyle.ComplexControl
+    CC_ComboBox = ...  # type: QStyle.ComplexControl
+    CC_ScrollBar = ...  # type: QStyle.ComplexControl
+    CC_Slider = ...  # type: QStyle.ComplexControl
+    CC_ToolButton = ...  # type: QStyle.ComplexControl
+    CC_TitleBar = ...  # type: QStyle.ComplexControl
+    CC_Dial = ...  # type: QStyle.ComplexControl
+    CC_GroupBox = ...  # type: QStyle.ComplexControl
+    CC_MdiControls = ...  # type: QStyle.ComplexControl
+    CC_CustomBase = ...  # type: QStyle.ComplexControl
 
     class SubElement(int):
         SE_PushButtonContents = ... # type: QStyle.SubElement
@@ -2231,6 +2795,68 @@ class QStyle(QtCore.QObject):
         SE_PushButtonBevel = ... # type: QStyle.SubElement
         SE_CustomBase = ... # type: QStyle.SubElement
 
+    SE_PushButtonContents = ...  # type: QStyle.SubElement
+    SE_PushButtonFocusRect = ...  # type: QStyle.SubElement
+    SE_CheckBoxIndicator = ...  # type: QStyle.SubElement
+    SE_CheckBoxContents = ...  # type: QStyle.SubElement
+    SE_CheckBoxFocusRect = ...  # type: QStyle.SubElement
+    SE_CheckBoxClickRect = ...  # type: QStyle.SubElement
+    SE_RadioButtonIndicator = ...  # type: QStyle.SubElement
+    SE_RadioButtonContents = ...  # type: QStyle.SubElement
+    SE_RadioButtonFocusRect = ...  # type: QStyle.SubElement
+    SE_RadioButtonClickRect = ...  # type: QStyle.SubElement
+    SE_ComboBoxFocusRect = ...  # type: QStyle.SubElement
+    SE_SliderFocusRect = ...  # type: QStyle.SubElement
+    SE_ProgressBarGroove = ...  # type: QStyle.SubElement
+    SE_ProgressBarContents = ...  # type: QStyle.SubElement
+    SE_ProgressBarLabel = ...  # type: QStyle.SubElement
+    SE_ToolBoxTabContents = ...  # type: QStyle.SubElement
+    SE_HeaderLabel = ...  # type: QStyle.SubElement
+    SE_HeaderArrow = ...  # type: QStyle.SubElement
+    SE_TabWidgetTabBar = ...  # type: QStyle.SubElement
+    SE_TabWidgetTabPane = ...  # type: QStyle.SubElement
+    SE_TabWidgetTabContents = ...  # type: QStyle.SubElement
+    SE_TabWidgetLeftCorner = ...  # type: QStyle.SubElement
+    SE_TabWidgetRightCorner = ...  # type: QStyle.SubElement
+    SE_ViewItemCheckIndicator = ...  # type: QStyle.SubElement
+    SE_TabBarTearIndicator = ...  # type: QStyle.SubElement
+    SE_TreeViewDisclosureItem = ...  # type: QStyle.SubElement
+    SE_LineEditContents = ...  # type: QStyle.SubElement
+    SE_FrameContents = ...  # type: QStyle.SubElement
+    SE_DockWidgetCloseButton = ...  # type: QStyle.SubElement
+    SE_DockWidgetFloatButton = ...  # type: QStyle.SubElement
+    SE_DockWidgetTitleBarText = ...  # type: QStyle.SubElement
+    SE_DockWidgetIcon = ...  # type: QStyle.SubElement
+    SE_CheckBoxLayoutItem = ...  # type: QStyle.SubElement
+    SE_ComboBoxLayoutItem = ...  # type: QStyle.SubElement
+    SE_DateTimeEditLayoutItem = ...  # type: QStyle.SubElement
+    SE_DialogButtonBoxLayoutItem = ...  # type: QStyle.SubElement
+    SE_LabelLayoutItem = ...  # type: QStyle.SubElement
+    SE_ProgressBarLayoutItem = ...  # type: QStyle.SubElement
+    SE_PushButtonLayoutItem = ...  # type: QStyle.SubElement
+    SE_RadioButtonLayoutItem = ...  # type: QStyle.SubElement
+    SE_SliderLayoutItem = ...  # type: QStyle.SubElement
+    SE_SpinBoxLayoutItem = ...  # type: QStyle.SubElement
+    SE_ToolButtonLayoutItem = ...  # type: QStyle.SubElement
+    SE_FrameLayoutItem = ...  # type: QStyle.SubElement
+    SE_GroupBoxLayoutItem = ...  # type: QStyle.SubElement
+    SE_TabWidgetLayoutItem = ...  # type: QStyle.SubElement
+    SE_ItemViewItemCheckIndicator = ...  # type: QStyle.SubElement
+    SE_ItemViewItemDecoration = ...  # type: QStyle.SubElement
+    SE_ItemViewItemText = ...  # type: QStyle.SubElement
+    SE_ItemViewItemFocusRect = ...  # type: QStyle.SubElement
+    SE_TabBarTabLeftButton = ...  # type: QStyle.SubElement
+    SE_TabBarTabRightButton = ...  # type: QStyle.SubElement
+    SE_TabBarTabText = ...  # type: QStyle.SubElement
+    SE_ShapedFrameContents = ...  # type: QStyle.SubElement
+    SE_ToolBarHandle = ...  # type: QStyle.SubElement
+    SE_TabBarTearIndicatorLeft = ...  # type: QStyle.SubElement
+    SE_TabBarScrollLeftButton = ...  # type: QStyle.SubElement
+    SE_TabBarScrollRightButton = ...  # type: QStyle.SubElement
+    SE_TabBarTearIndicatorRight = ...  # type: QStyle.SubElement
+    SE_PushButtonBevel = ...  # type: QStyle.SubElement
+    SE_CustomBase = ...  # type: QStyle.SubElement
+
     class ControlElement(int):
         CE_PushButton = ... # type: QStyle.ControlElement
         CE_PushButtonBevel = ... # type: QStyle.ControlElement
@@ -2280,6 +2906,55 @@ class QStyle(QtCore.QObject):
         CE_ItemViewItem = ... # type: QStyle.ControlElement
         CE_ShapedFrame = ... # type: QStyle.ControlElement
         CE_CustomBase = ... # type: QStyle.ControlElement
+
+    CE_PushButton = ...  # type: QStyle.ControlElement
+    CE_PushButtonBevel = ...  # type: QStyle.ControlElement
+    CE_PushButtonLabel = ...  # type: QStyle.ControlElement
+    CE_CheckBox = ...  # type: QStyle.ControlElement
+    CE_CheckBoxLabel = ...  # type: QStyle.ControlElement
+    CE_RadioButton = ...  # type: QStyle.ControlElement
+    CE_RadioButtonLabel = ...  # type: QStyle.ControlElement
+    CE_TabBarTab = ...  # type: QStyle.ControlElement
+    CE_TabBarTabShape = ...  # type: QStyle.ControlElement
+    CE_TabBarTabLabel = ...  # type: QStyle.ControlElement
+    CE_ProgressBar = ...  # type: QStyle.ControlElement
+    CE_ProgressBarGroove = ...  # type: QStyle.ControlElement
+    CE_ProgressBarContents = ...  # type: QStyle.ControlElement
+    CE_ProgressBarLabel = ...  # type: QStyle.ControlElement
+    CE_MenuItem = ...  # type: QStyle.ControlElement
+    CE_MenuScroller = ...  # type: QStyle.ControlElement
+    CE_MenuVMargin = ...  # type: QStyle.ControlElement
+    CE_MenuHMargin = ...  # type: QStyle.ControlElement
+    CE_MenuTearoff = ...  # type: QStyle.ControlElement
+    CE_MenuEmptyArea = ...  # type: QStyle.ControlElement
+    CE_MenuBarItem = ...  # type: QStyle.ControlElement
+    CE_MenuBarEmptyArea = ...  # type: QStyle.ControlElement
+    CE_ToolButtonLabel = ...  # type: QStyle.ControlElement
+    CE_Header = ...  # type: QStyle.ControlElement
+    CE_HeaderSection = ...  # type: QStyle.ControlElement
+    CE_HeaderLabel = ...  # type: QStyle.ControlElement
+    CE_ToolBoxTab = ...  # type: QStyle.ControlElement
+    CE_SizeGrip = ...  # type: QStyle.ControlElement
+    CE_Splitter = ...  # type: QStyle.ControlElement
+    CE_RubberBand = ...  # type: QStyle.ControlElement
+    CE_DockWidgetTitle = ...  # type: QStyle.ControlElement
+    CE_ScrollBarAddLine = ...  # type: QStyle.ControlElement
+    CE_ScrollBarSubLine = ...  # type: QStyle.ControlElement
+    CE_ScrollBarAddPage = ...  # type: QStyle.ControlElement
+    CE_ScrollBarSubPage = ...  # type: QStyle.ControlElement
+    CE_ScrollBarSlider = ...  # type: QStyle.ControlElement
+    CE_ScrollBarFirst = ...  # type: QStyle.ControlElement
+    CE_ScrollBarLast = ...  # type: QStyle.ControlElement
+    CE_FocusFrame = ...  # type: QStyle.ControlElement
+    CE_ComboBoxLabel = ...  # type: QStyle.ControlElement
+    CE_ToolBar = ...  # type: QStyle.ControlElement
+    CE_ToolBoxTabShape = ...  # type: QStyle.ControlElement
+    CE_ToolBoxTabLabel = ...  # type: QStyle.ControlElement
+    CE_HeaderEmptyArea = ...  # type: QStyle.ControlElement
+    CE_ColumnViewGrip = ...  # type: QStyle.ControlElement
+    CE_ItemViewItem = ...  # type: QStyle.ControlElement
+    CE_ShapedFrame = ...  # type: QStyle.ControlElement
+    CE_CustomBase = ...  # type: QStyle.ControlElement
 
     class PrimitiveElement(int):
         PE_Frame = ... # type: QStyle.PrimitiveElement
@@ -2337,6 +3012,61 @@ class QStyle(QtCore.QObject):
         PE_IndicatorTabTearRight = ... # type: QStyle.PrimitiveElement
         PE_CustomBase = ... # type: QStyle.PrimitiveElement
 
+    PE_Frame = ...  # type: QStyle.PrimitiveElement
+    PE_FrameDefaultButton = ...  # type: QStyle.PrimitiveElement
+    PE_FrameDockWidget = ...  # type: QStyle.PrimitiveElement
+    PE_FrameFocusRect = ...  # type: QStyle.PrimitiveElement
+    PE_FrameGroupBox = ...  # type: QStyle.PrimitiveElement
+    PE_FrameLineEdit = ...  # type: QStyle.PrimitiveElement
+    PE_FrameMenu = ...  # type: QStyle.PrimitiveElement
+    PE_FrameStatusBar = ...  # type: QStyle.PrimitiveElement
+    PE_FrameTabWidget = ...  # type: QStyle.PrimitiveElement
+    PE_FrameWindow = ...  # type: QStyle.PrimitiveElement
+    PE_FrameButtonBevel = ...  # type: QStyle.PrimitiveElement
+    PE_FrameButtonTool = ...  # type: QStyle.PrimitiveElement
+    PE_FrameTabBarBase = ...  # type: QStyle.PrimitiveElement
+    PE_PanelButtonCommand = ...  # type: QStyle.PrimitiveElement
+    PE_PanelButtonBevel = ...  # type: QStyle.PrimitiveElement
+    PE_PanelButtonTool = ...  # type: QStyle.PrimitiveElement
+    PE_PanelMenuBar = ...  # type: QStyle.PrimitiveElement
+    PE_PanelToolBar = ...  # type: QStyle.PrimitiveElement
+    PE_PanelLineEdit = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorArrowDown = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorArrowLeft = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorArrowRight = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorArrowUp = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorBranch = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorButtonDropDown = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorViewItemCheck = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorCheckBox = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorDockWidgetResizeHandle = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorHeaderArrow = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorMenuCheckMark = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorProgressChunk = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorRadioButton = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorSpinDown = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorSpinMinus = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorSpinPlus = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorSpinUp = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorToolBarHandle = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorToolBarSeparator = ...  # type: QStyle.PrimitiveElement
+    PE_PanelTipLabel = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorTabTear = ...  # type: QStyle.PrimitiveElement
+    PE_PanelScrollAreaCorner = ...  # type: QStyle.PrimitiveElement
+    PE_Widget = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorColumnViewArrow = ...  # type: QStyle.PrimitiveElement
+    PE_FrameStatusBarItem = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorItemViewItemCheck = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorItemViewItemDrop = ...  # type: QStyle.PrimitiveElement
+    PE_PanelItemViewItem = ...  # type: QStyle.PrimitiveElement
+    PE_PanelItemViewRow = ...  # type: QStyle.PrimitiveElement
+    PE_PanelStatusBar = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorTabClose = ...  # type: QStyle.PrimitiveElement
+    PE_PanelMenu = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorTabTearLeft = ...  # type: QStyle.PrimitiveElement
+    PE_IndicatorTabTearRight = ...  # type: QStyle.PrimitiveElement
+    PE_CustomBase = ...  # type: QStyle.PrimitiveElement
+
     class StateFlag(int):
         State_None = ... # type: QStyle.StateFlag
         State_Enabled = ... # type: QStyle.StateFlag
@@ -2366,6 +3096,35 @@ class QStyle(QtCore.QObject):
         State_Window = ... # type: QStyle.StateFlag
         State_Small = ... # type: QStyle.StateFlag
         State_Mini = ... # type: QStyle.StateFlag
+
+    State_None = ...  # type: QStyle.StateFlag
+    State_Enabled = ...  # type: QStyle.StateFlag
+    State_Raised = ...  # type: QStyle.StateFlag
+    State_Sunken = ...  # type: QStyle.StateFlag
+    State_Off = ...  # type: QStyle.StateFlag
+    State_NoChange = ...  # type: QStyle.StateFlag
+    State_On = ...  # type: QStyle.StateFlag
+    State_DownArrow = ...  # type: QStyle.StateFlag
+    State_Horizontal = ...  # type: QStyle.StateFlag
+    State_HasFocus = ...  # type: QStyle.StateFlag
+    State_Top = ...  # type: QStyle.StateFlag
+    State_Bottom = ...  # type: QStyle.StateFlag
+    State_FocusAtBorder = ...  # type: QStyle.StateFlag
+    State_AutoRaise = ...  # type: QStyle.StateFlag
+    State_MouseOver = ...  # type: QStyle.StateFlag
+    State_UpArrow = ...  # type: QStyle.StateFlag
+    State_Selected = ...  # type: QStyle.StateFlag
+    State_Active = ...  # type: QStyle.StateFlag
+    State_Open = ...  # type: QStyle.StateFlag
+    State_Children = ...  # type: QStyle.StateFlag
+    State_Item = ...  # type: QStyle.StateFlag
+    State_Sibling = ...  # type: QStyle.StateFlag
+    State_Editing = ...  # type: QStyle.StateFlag
+    State_KeyboardFocusChange = ...  # type: QStyle.StateFlag
+    State_ReadOnly = ...  # type: QStyle.StateFlag
+    State_Window = ...  # type: QStyle.StateFlag
+    State_Small = ...  # type: QStyle.StateFlag
+    State_Mini = ...  # type: QStyle.StateFlag
 
     class State(sip.simplewrapper):
 
@@ -2479,10 +3238,18 @@ class QCompleter(QtCore.QObject):
         CaseSensitivelySortedModel = ... # type: QCompleter.ModelSorting
         CaseInsensitivelySortedModel = ... # type: QCompleter.ModelSorting
 
+    UnsortedModel = ...  # type: QCompleter.ModelSorting
+    CaseSensitivelySortedModel = ...  # type: QCompleter.ModelSorting
+    CaseInsensitivelySortedModel = ...  # type: QCompleter.ModelSorting
+
     class CompletionMode(int):
         PopupCompletion = ... # type: QCompleter.CompletionMode
         UnfilteredPopupCompletion = ... # type: QCompleter.CompletionMode
         InlineCompletion = ... # type: QCompleter.CompletionMode
+
+    PopupCompletion = ...  # type: QCompleter.CompletionMode
+    UnfilteredPopupCompletion = ...  # type: QCompleter.CompletionMode
+    InlineCompletion = ...  # type: QCompleter.CompletionMode
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -2536,6 +3303,9 @@ class QDataWidgetMapper(QtCore.QObject):
         AutoSubmit = ... # type: QDataWidgetMapper.SubmitPolicy
         ManualSubmit = ... # type: QDataWidgetMapper.SubmitPolicy
 
+    AutoSubmit = ...  # type: QDataWidgetMapper.SubmitPolicy
+    ManualSubmit = ...  # type: QDataWidgetMapper.SubmitPolicy
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     currentIndexChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -2583,6 +3353,18 @@ class QDateTimeEdit(QAbstractSpinBox):
         YearSection = ... # type: QDateTimeEdit.Section
         TimeSections_Mask = ... # type: QDateTimeEdit.Section
         DateSections_Mask = ... # type: QDateTimeEdit.Section
+
+    NoSection = ...  # type: QDateTimeEdit.Section
+    AmPmSection = ...  # type: QDateTimeEdit.Section
+    MSecSection = ...  # type: QDateTimeEdit.Section
+    SecondSection = ...  # type: QDateTimeEdit.Section
+    MinuteSection = ...  # type: QDateTimeEdit.Section
+    HourSection = ...  # type: QDateTimeEdit.Section
+    DaySection = ...  # type: QDateTimeEdit.Section
+    MonthSection = ...  # type: QDateTimeEdit.Section
+    YearSection = ...  # type: QDateTimeEdit.Section
+    TimeSections_Mask = ...  # type: QDateTimeEdit.Section
+    DateSections_Mask = ...  # type: QDateTimeEdit.Section
 
     class Sections(sip.simplewrapper):
 
@@ -2768,6 +3550,26 @@ class QDialogButtonBox(QWidget):
         Reset = ... # type: QDialogButtonBox.StandardButton
         RestoreDefaults = ... # type: QDialogButtonBox.StandardButton
 
+    NoButton = ...  # type: QDialogButtonBox.StandardButton
+    Ok = ...  # type: QDialogButtonBox.StandardButton
+    Save = ...  # type: QDialogButtonBox.StandardButton
+    SaveAll = ...  # type: QDialogButtonBox.StandardButton
+    Open = ...  # type: QDialogButtonBox.StandardButton
+    Yes = ...  # type: QDialogButtonBox.StandardButton
+    YesToAll = ...  # type: QDialogButtonBox.StandardButton
+    No = ...  # type: QDialogButtonBox.StandardButton
+    NoToAll = ...  # type: QDialogButtonBox.StandardButton
+    Abort = ...  # type: QDialogButtonBox.StandardButton
+    Retry = ...  # type: QDialogButtonBox.StandardButton
+    Ignore = ...  # type: QDialogButtonBox.StandardButton
+    Close = ...  # type: QDialogButtonBox.StandardButton
+    Cancel = ...  # type: QDialogButtonBox.StandardButton
+    Discard = ...  # type: QDialogButtonBox.StandardButton
+    Help = ...  # type: QDialogButtonBox.StandardButton
+    Apply = ...  # type: QDialogButtonBox.StandardButton
+    Reset = ...  # type: QDialogButtonBox.StandardButton
+    RestoreDefaults = ...  # type: QDialogButtonBox.StandardButton
+
     class ButtonRole(int):
         InvalidRole = ... # type: QDialogButtonBox.ButtonRole
         AcceptRole = ... # type: QDialogButtonBox.ButtonRole
@@ -2780,12 +3582,29 @@ class QDialogButtonBox(QWidget):
         ResetRole = ... # type: QDialogButtonBox.ButtonRole
         ApplyRole = ... # type: QDialogButtonBox.ButtonRole
 
+    InvalidRole = ...  # type: QDialogButtonBox.ButtonRole
+    AcceptRole = ...  # type: QDialogButtonBox.ButtonRole
+    RejectRole = ...  # type: QDialogButtonBox.ButtonRole
+    DestructiveRole = ...  # type: QDialogButtonBox.ButtonRole
+    ActionRole = ...  # type: QDialogButtonBox.ButtonRole
+    HelpRole = ...  # type: QDialogButtonBox.ButtonRole
+    YesRole = ...  # type: QDialogButtonBox.ButtonRole
+    NoRole = ...  # type: QDialogButtonBox.ButtonRole
+    ResetRole = ...  # type: QDialogButtonBox.ButtonRole
+    ApplyRole = ...  # type: QDialogButtonBox.ButtonRole
+
     class ButtonLayout(int):
         WinLayout = ... # type: QDialogButtonBox.ButtonLayout
         MacLayout = ... # type: QDialogButtonBox.ButtonLayout
         KdeLayout = ... # type: QDialogButtonBox.ButtonLayout
         GnomeLayout = ... # type: QDialogButtonBox.ButtonLayout
         AndroidLayout = ... # type: QDialogButtonBox.ButtonLayout
+
+    WinLayout = ...  # type: QDialogButtonBox.ButtonLayout
+    MacLayout = ...  # type: QDialogButtonBox.ButtonLayout
+    KdeLayout = ...  # type: QDialogButtonBox.ButtonLayout
+    GnomeLayout = ...  # type: QDialogButtonBox.ButtonLayout
+    AndroidLayout = ...  # type: QDialogButtonBox.ButtonLayout
 
     class StandardButtons(sip.simplewrapper):
 
@@ -2843,6 +3662,10 @@ class QDirModel(QtCore.QAbstractItemModel):
         FileIconRole = ... # type: QDirModel.Roles
         FilePathRole = ... # type: QDirModel.Roles
         FileNameRole = ... # type: QDirModel.Roles
+
+    FileIconRole = ...  # type: QDirModel.Roles
+    FilePathRole = ...  # type: QDirModel.Roles
+    FileNameRole = ...  # type: QDirModel.Roles
 
     @typing.overload
     def __init__(self, nameFilters: typing.Iterable[str], filters: typing.Union[QtCore.QDir.Filters, QtCore.QDir.Filter], sort: typing.Union[QtCore.QDir.SortFlags, QtCore.QDir.SortFlag], parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -2903,6 +3726,13 @@ class QDockWidget(QWidget):
         DockWidgetVerticalTitleBar = ... # type: QDockWidget.DockWidgetFeature
         AllDockWidgetFeatures = ... # type: QDockWidget.DockWidgetFeature
         NoDockWidgetFeatures = ... # type: QDockWidget.DockWidgetFeature
+
+    DockWidgetClosable = ...  # type: QDockWidget.DockWidgetFeature
+    DockWidgetMovable = ...  # type: QDockWidget.DockWidgetFeature
+    DockWidgetFloatable = ...  # type: QDockWidget.DockWidgetFeature
+    DockWidgetVerticalTitleBar = ...  # type: QDockWidget.DockWidgetFeature
+    AllDockWidgetFeatures = ...  # type: QDockWidget.DockWidgetFeature
+    NoDockWidgetFeatures = ...  # type: QDockWidget.DockWidgetFeature
 
     class DockWidgetFeatures(sip.simplewrapper):
 
@@ -2974,6 +3804,15 @@ class QFileDialog(QDialog):
         HideNameFilterDetails = ... # type: QFileDialog.Option
         DontUseCustomDirectoryIcons = ... # type: QFileDialog.Option
 
+    ShowDirsOnly = ...  # type: QFileDialog.Option
+    DontResolveSymlinks = ...  # type: QFileDialog.Option
+    DontConfirmOverwrite = ...  # type: QFileDialog.Option
+    DontUseSheet = ...  # type: QFileDialog.Option
+    DontUseNativeDialog = ...  # type: QFileDialog.Option
+    ReadOnly = ...  # type: QFileDialog.Option
+    HideNameFilterDetails = ...  # type: QFileDialog.Option
+    DontUseCustomDirectoryIcons = ...  # type: QFileDialog.Option
+
     class DialogLabel(int):
         LookIn = ... # type: QFileDialog.DialogLabel
         FileName = ... # type: QFileDialog.DialogLabel
@@ -2981,9 +3820,18 @@ class QFileDialog(QDialog):
         Accept = ... # type: QFileDialog.DialogLabel
         Reject = ... # type: QFileDialog.DialogLabel
 
+    LookIn = ...  # type: QFileDialog.DialogLabel
+    FileName = ...  # type: QFileDialog.DialogLabel
+    FileType = ...  # type: QFileDialog.DialogLabel
+    Accept = ...  # type: QFileDialog.DialogLabel
+    Reject = ...  # type: QFileDialog.DialogLabel
+
     class AcceptMode(int):
         AcceptOpen = ... # type: QFileDialog.AcceptMode
         AcceptSave = ... # type: QFileDialog.AcceptMode
+
+    AcceptOpen = ...  # type: QFileDialog.AcceptMode
+    AcceptSave = ...  # type: QFileDialog.AcceptMode
 
     class FileMode(int):
         AnyFile = ... # type: QFileDialog.FileMode
@@ -2992,9 +3840,18 @@ class QFileDialog(QDialog):
         ExistingFiles = ... # type: QFileDialog.FileMode
         DirectoryOnly = ... # type: QFileDialog.FileMode
 
+    AnyFile = ...  # type: QFileDialog.FileMode
+    ExistingFile = ...  # type: QFileDialog.FileMode
+    Directory = ...  # type: QFileDialog.FileMode
+    ExistingFiles = ...  # type: QFileDialog.FileMode
+    DirectoryOnly = ...  # type: QFileDialog.FileMode
+
     class ViewMode(int):
         Detail = ... # type: QFileDialog.ViewMode
         List = ... # type: QFileDialog.ViewMode
+
+    Detail = ...  # type: QFileDialog.ViewMode
+    List = ...  # type: QFileDialog.ViewMode
 
     class Options(sip.simplewrapper):
 
@@ -3108,6 +3965,8 @@ class QFileIconProvider(sip.simplewrapper):
     class Option(int):
         DontUseCustomDirectoryIcons = ... # type: QFileIconProvider.Option
 
+    DontUseCustomDirectoryIcons = ...  # type: QFileIconProvider.Option
+
     class IconType(int):
         Computer = ... # type: QFileIconProvider.IconType
         Desktop = ... # type: QFileIconProvider.IconType
@@ -3116,6 +3975,14 @@ class QFileIconProvider(sip.simplewrapper):
         Drive = ... # type: QFileIconProvider.IconType
         Folder = ... # type: QFileIconProvider.IconType
         File = ... # type: QFileIconProvider.IconType
+
+    Computer = ...  # type: QFileIconProvider.IconType
+    Desktop = ...  # type: QFileIconProvider.IconType
+    Trashcan = ...  # type: QFileIconProvider.IconType
+    Network = ...  # type: QFileIconProvider.IconType
+    Drive = ...  # type: QFileIconProvider.IconType
+    Folder = ...  # type: QFileIconProvider.IconType
+    File = ...  # type: QFileIconProvider.IconType
 
     class Options(sip.simplewrapper):
 
@@ -3150,11 +4017,20 @@ class QFileSystemModel(QtCore.QAbstractItemModel):
         DontResolveSymlinks = ... # type: QFileSystemModel.Option
         DontUseCustomDirectoryIcons = ... # type: QFileSystemModel.Option
 
+    DontWatchForChanges = ...  # type: QFileSystemModel.Option
+    DontResolveSymlinks = ...  # type: QFileSystemModel.Option
+    DontUseCustomDirectoryIcons = ...  # type: QFileSystemModel.Option
+
     class Roles(int):
         FileIconRole = ... # type: QFileSystemModel.Roles
         FilePathRole = ... # type: QFileSystemModel.Roles
         FileNameRole = ... # type: QFileSystemModel.Roles
         FilePermissions = ... # type: QFileSystemModel.Roles
+
+    FileIconRole = ...  # type: QFileSystemModel.Roles
+    FilePathRole = ...  # type: QFileSystemModel.Roles
+    FileNameRole = ...  # type: QFileSystemModel.Roles
+    FilePermissions = ...  # type: QFileSystemModel.Roles
 
     class Options(sip.simplewrapper):
 
@@ -3253,6 +4129,12 @@ class QFontComboBox(QComboBox):
         MonospacedFonts = ... # type: QFontComboBox.FontFilter
         ProportionalFonts = ... # type: QFontComboBox.FontFilter
 
+    AllFonts = ...  # type: QFontComboBox.FontFilter
+    ScalableFonts = ...  # type: QFontComboBox.FontFilter
+    NonScalableFonts = ...  # type: QFontComboBox.FontFilter
+    MonospacedFonts = ...  # type: QFontComboBox.FontFilter
+    ProportionalFonts = ...  # type: QFontComboBox.FontFilter
+
     class FontFilters(sip.simplewrapper):
 
         @typing.overload
@@ -3290,6 +4172,13 @@ class QFontDialog(QDialog):
         NonScalableFonts = ... # type: QFontDialog.FontDialogOption
         MonospacedFonts = ... # type: QFontDialog.FontDialogOption
         ProportionalFonts = ... # type: QFontDialog.FontDialogOption
+
+    NoButtons = ...  # type: QFontDialog.FontDialogOption
+    DontUseNativeDialog = ...  # type: QFontDialog.FontDialogOption
+    ScalableFonts = ...  # type: QFontDialog.FontDialogOption
+    NonScalableFonts = ...  # type: QFontDialog.FontDialogOption
+    MonospacedFonts = ...  # type: QFontDialog.FontDialogOption
+    ProportionalFonts = ...  # type: QFontDialog.FontDialogOption
 
     class FontDialogOptions(sip.simplewrapper):
 
@@ -3343,15 +4232,27 @@ class QFormLayout(QLayout):
         FieldRole = ... # type: QFormLayout.ItemRole
         SpanningRole = ... # type: QFormLayout.ItemRole
 
+    LabelRole = ...  # type: QFormLayout.ItemRole
+    FieldRole = ...  # type: QFormLayout.ItemRole
+    SpanningRole = ...  # type: QFormLayout.ItemRole
+
     class RowWrapPolicy(int):
         DontWrapRows = ... # type: QFormLayout.RowWrapPolicy
         WrapLongRows = ... # type: QFormLayout.RowWrapPolicy
         WrapAllRows = ... # type: QFormLayout.RowWrapPolicy
 
+    DontWrapRows = ...  # type: QFormLayout.RowWrapPolicy
+    WrapLongRows = ...  # type: QFormLayout.RowWrapPolicy
+    WrapAllRows = ...  # type: QFormLayout.RowWrapPolicy
+
     class FieldGrowthPolicy(int):
         FieldsStayAtSizeHint = ... # type: QFormLayout.FieldGrowthPolicy
         ExpandingFieldsGrow = ... # type: QFormLayout.FieldGrowthPolicy
         AllNonFixedFieldsGrow = ... # type: QFormLayout.FieldGrowthPolicy
+
+    FieldsStayAtSizeHint = ...  # type: QFormLayout.FieldGrowthPolicy
+    ExpandingFieldsGrow = ...  # type: QFormLayout.FieldGrowthPolicy
+    AllNonFixedFieldsGrow = ...  # type: QFormLayout.FieldGrowthPolicy
 
     class TakeRowResult(sip.simplewrapper):
 
@@ -3448,6 +4349,9 @@ class QGesture(QtCore.QObject):
         CancelNone = ... # type: QGesture.GestureCancelPolicy
         CancelAllInContext = ... # type: QGesture.GestureCancelPolicy
 
+    CancelNone = ...  # type: QGesture.GestureCancelPolicy
+    CancelAllInContext = ...  # type: QGesture.GestureCancelPolicy
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def gestureCancelPolicy(self) -> 'QGesture.GestureCancelPolicy': ...
@@ -3479,6 +4383,10 @@ class QPinchGesture(QGesture):
         ScaleFactorChanged = ... # type: QPinchGesture.ChangeFlag
         RotationAngleChanged = ... # type: QPinchGesture.ChangeFlag
         CenterPointChanged = ... # type: QPinchGesture.ChangeFlag
+
+    ScaleFactorChanged = ...  # type: QPinchGesture.ChangeFlag
+    RotationAngleChanged = ...  # type: QPinchGesture.ChangeFlag
+    CenterPointChanged = ...  # type: QPinchGesture.ChangeFlag
 
     class ChangeFlags(sip.simplewrapper):
 
@@ -3529,6 +4437,12 @@ class QSwipeGesture(QGesture):
         Right = ... # type: QSwipeGesture.SwipeDirection
         Up = ... # type: QSwipeGesture.SwipeDirection
         Down = ... # type: QSwipeGesture.SwipeDirection
+
+    NoDirection = ...  # type: QSwipeGesture.SwipeDirection
+    Left = ...  # type: QSwipeGesture.SwipeDirection
+    Right = ...  # type: QSwipeGesture.SwipeDirection
+    Up = ...  # type: QSwipeGesture.SwipeDirection
+    Down = ...  # type: QSwipeGesture.SwipeDirection
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -3606,6 +4520,13 @@ class QGestureRecognizer(sip.wrapper):
         FinishGesture = ... # type: QGestureRecognizer.ResultFlag
         CancelGesture = ... # type: QGestureRecognizer.ResultFlag
         ConsumeEventHint = ... # type: QGestureRecognizer.ResultFlag
+
+    Ignore = ...  # type: QGestureRecognizer.ResultFlag
+    MayBeGesture = ...  # type: QGestureRecognizer.ResultFlag
+    TriggerGesture = ...  # type: QGestureRecognizer.ResultFlag
+    FinishGesture = ...  # type: QGestureRecognizer.ResultFlag
+    CancelGesture = ...  # type: QGestureRecognizer.ResultFlag
+    ConsumeEventHint = ...  # type: QGestureRecognizer.ResultFlag
 
     class Result(sip.simplewrapper):
 
@@ -3743,11 +4664,20 @@ class QGraphicsEffect(QtCore.QObject):
         PadToTransparentBorder = ... # type: QGraphicsEffect.PixmapPadMode
         PadToEffectiveBoundingRect = ... # type: QGraphicsEffect.PixmapPadMode
 
+    NoPad = ...  # type: QGraphicsEffect.PixmapPadMode
+    PadToTransparentBorder = ...  # type: QGraphicsEffect.PixmapPadMode
+    PadToEffectiveBoundingRect = ...  # type: QGraphicsEffect.PixmapPadMode
+
     class ChangeFlag(int):
         SourceAttached = ... # type: QGraphicsEffect.ChangeFlag
         SourceDetached = ... # type: QGraphicsEffect.ChangeFlag
         SourceBoundingRectChanged = ... # type: QGraphicsEffect.ChangeFlag
         SourceInvalidated = ... # type: QGraphicsEffect.ChangeFlag
+
+    SourceAttached = ...  # type: QGraphicsEffect.ChangeFlag
+    SourceDetached = ...  # type: QGraphicsEffect.ChangeFlag
+    SourceBoundingRectChanged = ...  # type: QGraphicsEffect.ChangeFlag
+    SourceInvalidated = ...  # type: QGraphicsEffect.ChangeFlag
 
     class ChangeFlags(sip.simplewrapper):
 
@@ -3800,6 +4730,10 @@ class QGraphicsBlurEffect(QGraphicsEffect):
         PerformanceHint = ... # type: QGraphicsBlurEffect.BlurHint
         QualityHint = ... # type: QGraphicsBlurEffect.BlurHint
         AnimationHint = ... # type: QGraphicsBlurEffect.BlurHint
+
+    PerformanceHint = ...  # type: QGraphicsBlurEffect.BlurHint
+    QualityHint = ...  # type: QGraphicsBlurEffect.BlurHint
+    AnimationHint = ...  # type: QGraphicsBlurEffect.BlurHint
 
     class BlurHints(sip.simplewrapper):
 
@@ -3929,6 +4863,10 @@ class QGraphicsItem(sip.wrapper):
         PanelModal = ... # type: QGraphicsItem.PanelModality
         SceneModal = ... # type: QGraphicsItem.PanelModality
 
+    NonModal = ...  # type: QGraphicsItem.PanelModality
+    PanelModal = ...  # type: QGraphicsItem.PanelModality
+    SceneModal = ...  # type: QGraphicsItem.PanelModality
+
     class GraphicsItemFlag(int):
         ItemIsMovable = ... # type: QGraphicsItem.GraphicsItemFlag
         ItemIsSelectable = ... # type: QGraphicsItem.GraphicsItemFlag
@@ -3947,6 +4885,24 @@ class QGraphicsItem(sip.wrapper):
         ItemIsPanel = ... # type: QGraphicsItem.GraphicsItemFlag
         ItemSendsScenePositionChanges = ... # type: QGraphicsItem.GraphicsItemFlag
         ItemContainsChildrenInShape = ... # type: QGraphicsItem.GraphicsItemFlag
+
+    ItemIsMovable = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemIsSelectable = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemIsFocusable = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemClipsToShape = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemClipsChildrenToShape = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemIgnoresTransformations = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemIgnoresParentOpacity = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemDoesntPropagateOpacityToChildren = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemStacksBehindParent = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemUsesExtendedStyleOption = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemHasNoContents = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemSendsGeometryChanges = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemAcceptsInputMethod = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemNegativeZStacksBehindParent = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemIsPanel = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemSendsScenePositionChanges = ...  # type: QGraphicsItem.GraphicsItemFlag
+    ItemContainsChildrenInShape = ...  # type: QGraphicsItem.GraphicsItemFlag
 
     class GraphicsItemChange(int):
         ItemPositionChange = ... # type: QGraphicsItem.GraphicsItemChange
@@ -3984,10 +4940,49 @@ class QGraphicsItem(sip.wrapper):
         ItemTransformOriginPointChange = ... # type: QGraphicsItem.GraphicsItemChange
         ItemTransformOriginPointHasChanged = ... # type: QGraphicsItem.GraphicsItemChange
 
+    ItemPositionChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemMatrixChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemVisibleChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemEnabledChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemSelectedChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemParentChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemChildAddedChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemChildRemovedChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemTransformChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemPositionHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemTransformHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemSceneChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemVisibleHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemEnabledHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemSelectedHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemParentHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemSceneHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemCursorChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemCursorHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemToolTipChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemToolTipHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemFlagsChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemFlagsHaveChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemZValueChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemZValueHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemOpacityChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemOpacityHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemScenePositionHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemRotationChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemRotationHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemScaleChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemScaleHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemTransformOriginPointChange = ...  # type: QGraphicsItem.GraphicsItemChange
+    ItemTransformOriginPointHasChanged = ...  # type: QGraphicsItem.GraphicsItemChange
+
     class CacheMode(int):
         NoCache = ... # type: QGraphicsItem.CacheMode
         ItemCoordinateCache = ... # type: QGraphicsItem.CacheMode
         DeviceCoordinateCache = ... # type: QGraphicsItem.CacheMode
+
+    NoCache = ...  # type: QGraphicsItem.CacheMode
+    ItemCoordinateCache = ...  # type: QGraphicsItem.CacheMode
+    DeviceCoordinateCache = ...  # type: QGraphicsItem.CacheMode
 
     class GraphicsItemFlags(sip.simplewrapper):
 
@@ -4400,6 +5395,10 @@ class QGraphicsPixmapItem(QGraphicsItem):
         BoundingRectShape = ... # type: QGraphicsPixmapItem.ShapeMode
         HeuristicMaskShape = ... # type: QGraphicsPixmapItem.ShapeMode
 
+    MaskShape = ...  # type: QGraphicsPixmapItem.ShapeMode
+    BoundingRectShape = ...  # type: QGraphicsPixmapItem.ShapeMode
+    HeuristicMaskShape = ...  # type: QGraphicsPixmapItem.ShapeMode
+
     @typing.overload
     def __init__(self, parent: typing.Optional[QGraphicsItem] = ...) -> None: ...
     @typing.overload
@@ -4713,9 +5712,17 @@ class QGraphicsScene(QtCore.QObject):
         ForegroundLayer = ... # type: QGraphicsScene.SceneLayer
         AllLayers = ... # type: QGraphicsScene.SceneLayer
 
+    ItemLayer = ...  # type: QGraphicsScene.SceneLayer
+    BackgroundLayer = ...  # type: QGraphicsScene.SceneLayer
+    ForegroundLayer = ...  # type: QGraphicsScene.SceneLayer
+    AllLayers = ...  # type: QGraphicsScene.SceneLayer
+
     class ItemIndexMethod(int):
         BspTreeIndex = ... # type: QGraphicsScene.ItemIndexMethod
         NoIndex = ... # type: QGraphicsScene.ItemIndexMethod
+
+    BspTreeIndex = ...  # type: QGraphicsScene.ItemIndexMethod
+    NoIndex = ...  # type: QGraphicsScene.ItemIndexMethod
 
     class SceneLayers(sip.simplewrapper):
 
@@ -4908,6 +5915,10 @@ class QGraphicsSceneContextMenuEvent(QGraphicsSceneEvent):
         Keyboard = ... # type: QGraphicsSceneContextMenuEvent.Reason
         Other = ... # type: QGraphicsSceneContextMenuEvent.Reason
 
+    Mouse = ...  # type: QGraphicsSceneContextMenuEvent.Reason
+    Keyboard = ...  # type: QGraphicsSceneContextMenuEvent.Reason
+    Other = ...  # type: QGraphicsSceneContextMenuEvent.Reason
+
     def reason(self) -> 'QGraphicsSceneContextMenuEvent.Reason': ...
     def modifiers(self) -> QtCore.Qt.KeyboardModifiers: ...
     def screenPos(self) -> QtCore.QPoint: ...
@@ -5018,6 +6029,10 @@ class QGraphicsView(QAbstractScrollArea):
         DontSavePainterState = ... # type: QGraphicsView.OptimizationFlag
         DontAdjustForAntialiasing = ... # type: QGraphicsView.OptimizationFlag
 
+    DontClipPainter = ...  # type: QGraphicsView.OptimizationFlag
+    DontSavePainterState = ...  # type: QGraphicsView.OptimizationFlag
+    DontAdjustForAntialiasing = ...  # type: QGraphicsView.OptimizationFlag
+
     class ViewportUpdateMode(int):
         FullViewportUpdate = ... # type: QGraphicsView.ViewportUpdateMode
         MinimalViewportUpdate = ... # type: QGraphicsView.ViewportUpdateMode
@@ -5025,19 +6040,36 @@ class QGraphicsView(QAbstractScrollArea):
         BoundingRectViewportUpdate = ... # type: QGraphicsView.ViewportUpdateMode
         NoViewportUpdate = ... # type: QGraphicsView.ViewportUpdateMode
 
+    FullViewportUpdate = ...  # type: QGraphicsView.ViewportUpdateMode
+    MinimalViewportUpdate = ...  # type: QGraphicsView.ViewportUpdateMode
+    SmartViewportUpdate = ...  # type: QGraphicsView.ViewportUpdateMode
+    BoundingRectViewportUpdate = ...  # type: QGraphicsView.ViewportUpdateMode
+    NoViewportUpdate = ...  # type: QGraphicsView.ViewportUpdateMode
+
     class ViewportAnchor(int):
         NoAnchor = ... # type: QGraphicsView.ViewportAnchor
         AnchorViewCenter = ... # type: QGraphicsView.ViewportAnchor
         AnchorUnderMouse = ... # type: QGraphicsView.ViewportAnchor
+
+    NoAnchor = ...  # type: QGraphicsView.ViewportAnchor
+    AnchorViewCenter = ...  # type: QGraphicsView.ViewportAnchor
+    AnchorUnderMouse = ...  # type: QGraphicsView.ViewportAnchor
 
     class DragMode(int):
         NoDrag = ... # type: QGraphicsView.DragMode
         ScrollHandDrag = ... # type: QGraphicsView.DragMode
         RubberBandDrag = ... # type: QGraphicsView.DragMode
 
+    NoDrag = ...  # type: QGraphicsView.DragMode
+    ScrollHandDrag = ...  # type: QGraphicsView.DragMode
+    RubberBandDrag = ...  # type: QGraphicsView.DragMode
+
     class CacheModeFlag(int):
         CacheNone = ... # type: QGraphicsView.CacheModeFlag
         CacheBackground = ... # type: QGraphicsView.CacheModeFlag
+
+    CacheNone = ...  # type: QGraphicsView.CacheModeFlag
+    CacheBackground = ...  # type: QGraphicsView.CacheModeFlag
 
     class CacheMode(sip.simplewrapper):
 
@@ -5310,6 +6342,12 @@ class QHeaderView(QAbstractItemView):
         ResizeToContents = ... # type: QHeaderView.ResizeMode
         Custom = ... # type: QHeaderView.ResizeMode
 
+    Interactive = ...  # type: QHeaderView.ResizeMode
+    Fixed = ...  # type: QHeaderView.ResizeMode
+    Stretch = ...  # type: QHeaderView.ResizeMode
+    ResizeToContents = ...  # type: QHeaderView.ResizeMode
+    Custom = ...  # type: QHeaderView.ResizeMode
+
     def __init__(self, orientation: QtCore.Qt.Orientation, parent: typing.Optional[QWidget] = ...) -> None: ...
 
     def isFirstSectionMovable(self) -> bool: ...
@@ -5439,10 +6477,18 @@ class QInputDialog(QDialog):
         IntInput = ... # type: QInputDialog.InputMode
         DoubleInput = ... # type: QInputDialog.InputMode
 
+    TextInput = ...  # type: QInputDialog.InputMode
+    IntInput = ...  # type: QInputDialog.InputMode
+    DoubleInput = ...  # type: QInputDialog.InputMode
+
     class InputDialogOption(int):
         NoButtons = ... # type: QInputDialog.InputDialogOption
         UseListViewForComboBoxItems = ... # type: QInputDialog.InputDialogOption
         UsePlainTextEditForTextInput = ... # type: QInputDialog.InputDialogOption
+
+    NoButtons = ...  # type: QInputDialog.InputDialogOption
+    UseListViewForComboBoxItems = ...  # type: QInputDialog.InputDialogOption
+    UsePlainTextEditForTextInput = ...  # type: QInputDialog.InputDialogOption
 
     class InputDialogOptions(sip.simplewrapper):
 
@@ -5717,11 +6763,20 @@ class QLCDNumber(QFrame):
         Filled = ... # type: QLCDNumber.SegmentStyle
         Flat = ... # type: QLCDNumber.SegmentStyle
 
+    Outline = ...  # type: QLCDNumber.SegmentStyle
+    Filled = ...  # type: QLCDNumber.SegmentStyle
+    Flat = ...  # type: QLCDNumber.SegmentStyle
+
     class Mode(int):
         Hex = ... # type: QLCDNumber.Mode
         Dec = ... # type: QLCDNumber.Mode
         Oct = ... # type: QLCDNumber.Mode
         Bin = ... # type: QLCDNumber.Mode
+
+    Hex = ...  # type: QLCDNumber.Mode
+    Dec = ...  # type: QLCDNumber.Mode
+    Oct = ...  # type: QLCDNumber.Mode
+    Bin = ...  # type: QLCDNumber.Mode
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
@@ -5765,11 +6820,19 @@ class QLineEdit(QWidget):
         LeadingPosition = ... # type: QLineEdit.ActionPosition
         TrailingPosition = ... # type: QLineEdit.ActionPosition
 
+    LeadingPosition = ...  # type: QLineEdit.ActionPosition
+    TrailingPosition = ...  # type: QLineEdit.ActionPosition
+
     class EchoMode(int):
         Normal = ... # type: QLineEdit.EchoMode
         NoEcho = ... # type: QLineEdit.EchoMode
         Password = ... # type: QLineEdit.EchoMode
         PasswordEchoOnEdit = ... # type: QLineEdit.EchoMode
+
+    Normal = ...  # type: QLineEdit.EchoMode
+    NoEcho = ...  # type: QLineEdit.EchoMode
+    Password = ...  # type: QLineEdit.EchoMode
+    PasswordEchoOnEdit = ...  # type: QLineEdit.EchoMode
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
@@ -5886,22 +6949,38 @@ class QListView(QAbstractItemView):
         ListMode = ... # type: QListView.ViewMode
         IconMode = ... # type: QListView.ViewMode
 
+    ListMode = ...  # type: QListView.ViewMode
+    IconMode = ...  # type: QListView.ViewMode
+
     class LayoutMode(int):
         SinglePass = ... # type: QListView.LayoutMode
         Batched = ... # type: QListView.LayoutMode
+
+    SinglePass = ...  # type: QListView.LayoutMode
+    Batched = ...  # type: QListView.LayoutMode
 
     class ResizeMode(int):
         Fixed = ... # type: QListView.ResizeMode
         Adjust = ... # type: QListView.ResizeMode
 
+    Fixed = ...  # type: QListView.ResizeMode
+    Adjust = ...  # type: QListView.ResizeMode
+
     class Flow(int):
         LeftToRight = ... # type: QListView.Flow
         TopToBottom = ... # type: QListView.Flow
+
+    LeftToRight = ...  # type: QListView.Flow
+    TopToBottom = ...  # type: QListView.Flow
 
     class Movement(int):
         Static = ... # type: QListView.Movement
         Free = ... # type: QListView.Movement
         Snap = ... # type: QListView.Movement
+
+    Static = ...  # type: QListView.Movement
+    Free = ...  # type: QListView.Movement
+    Snap = ...  # type: QListView.Movement
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -5978,6 +7057,9 @@ class QListWidgetItem(sip.wrapper):
     class ItemType(int):
         Type = ... # type: QListWidgetItem.ItemType
         UserType = ... # type: QListWidgetItem.ItemType
+
+    Type = ...  # type: QListWidgetItem.ItemType
+    UserType = ...  # type: QListWidgetItem.ItemType
 
     @typing.overload
     def __init__(self, parent: typing.Optional['QListWidget'] = ..., type: int = ...) -> None: ...
@@ -6105,6 +7187,13 @@ class QMainWindow(QWidget):
         VerticalTabs = ... # type: QMainWindow.DockOption
         GroupedDragging = ... # type: QMainWindow.DockOption
 
+    AnimatedDocks = ...  # type: QMainWindow.DockOption
+    AllowNestedDocks = ...  # type: QMainWindow.DockOption
+    AllowTabbedDocks = ...  # type: QMainWindow.DockOption
+    ForceTabbedDocks = ...  # type: QMainWindow.DockOption
+    VerticalTabs = ...  # type: QMainWindow.DockOption
+    GroupedDragging = ...  # type: QMainWindow.DockOption
+
     class DockOptions(sip.simplewrapper):
 
         @typing.overload
@@ -6193,12 +7282,21 @@ class QMdiArea(QAbstractScrollArea):
         StackingOrder = ... # type: QMdiArea.WindowOrder
         ActivationHistoryOrder = ... # type: QMdiArea.WindowOrder
 
+    CreationOrder = ...  # type: QMdiArea.WindowOrder
+    StackingOrder = ...  # type: QMdiArea.WindowOrder
+    ActivationHistoryOrder = ...  # type: QMdiArea.WindowOrder
+
     class ViewMode(int):
         SubWindowView = ... # type: QMdiArea.ViewMode
         TabbedView = ... # type: QMdiArea.ViewMode
 
+    SubWindowView = ...  # type: QMdiArea.ViewMode
+    TabbedView = ...  # type: QMdiArea.ViewMode
+
     class AreaOption(int):
         DontMaximizeSubWindowOnActivation = ... # type: QMdiArea.AreaOption
+
+    DontMaximizeSubWindowOnActivation = ...  # type: QMdiArea.AreaOption
 
     class AreaOptions(sip.simplewrapper):
 
@@ -6267,6 +7365,9 @@ class QMdiSubWindow(QWidget):
     class SubWindowOption(int):
         RubberBandResize = ... # type: QMdiSubWindow.SubWindowOption
         RubberBandMove = ... # type: QMdiSubWindow.SubWindowOption
+
+    RubberBandResize = ...  # type: QMdiSubWindow.SubWindowOption
+    RubberBandMove = ...  # type: QMdiSubWindow.SubWindowOption
 
     class SubWindowOptions(sip.simplewrapper):
 
@@ -6689,6 +7790,9 @@ class QOpenGLWidget(QWidget):
         NoPartialUpdate = ... # type: QOpenGLWidget.UpdateBehavior
         PartialUpdate = ... # type: QOpenGLWidget.UpdateBehavior
 
+    NoPartialUpdate = ...  # type: QOpenGLWidget.UpdateBehavior
+    PartialUpdate = ...  # type: QOpenGLWidget.UpdateBehavior
+
     def __init__(self, parent: typing.Optional[QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...
 
     def setTextureFormat(self, texFormat: int) -> None: ...
@@ -6722,6 +7826,9 @@ class QPlainTextEdit(QAbstractScrollArea):
     class LineWrapMode(int):
         NoWrap = ... # type: QPlainTextEdit.LineWrapMode
         WidgetWidth = ... # type: QPlainTextEdit.LineWrapMode
+
+    NoWrap = ...  # type: QPlainTextEdit.LineWrapMode
+    WidgetWidth = ...  # type: QPlainTextEdit.LineWrapMode
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
@@ -6874,6 +7981,9 @@ class QProgressBar(QWidget):
         TopToBottom = ... # type: QProgressBar.Direction
         BottomToTop = ... # type: QProgressBar.Direction
 
+    TopToBottom = ...  # type: QProgressBar.Direction
+    BottomToTop = ...  # type: QProgressBar.Direction
+
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
     def paintEvent(self, a0: QtGui.QPaintEvent) -> None: ...
@@ -7008,6 +8118,9 @@ class QRubberBand(QWidget):
         Line = ... # type: QRubberBand.Shape
         Rectangle = ... # type: QRubberBand.Shape
 
+    Line = ...  # type: QRubberBand.Shape
+    Rectangle = ...  # type: QRubberBand.Shape
+
     def __init__(self, a0: 'QRubberBand.Shape', parent: typing.Optional[QWidget] = ...) -> None: ...
 
     def moveEvent(self, a0: QtGui.QMoveEvent) -> None: ...
@@ -7081,17 +8194,31 @@ class QScroller(QtCore.QObject):
         InputMove = ... # type: QScroller.Input
         InputRelease = ... # type: QScroller.Input
 
+    InputPress = ...  # type: QScroller.Input
+    InputMove = ...  # type: QScroller.Input
+    InputRelease = ...  # type: QScroller.Input
+
     class ScrollerGestureType(int):
         TouchGesture = ... # type: QScroller.ScrollerGestureType
         LeftMouseButtonGesture = ... # type: QScroller.ScrollerGestureType
         RightMouseButtonGesture = ... # type: QScroller.ScrollerGestureType
         MiddleMouseButtonGesture = ... # type: QScroller.ScrollerGestureType
 
+    TouchGesture = ...  # type: QScroller.ScrollerGestureType
+    LeftMouseButtonGesture = ...  # type: QScroller.ScrollerGestureType
+    RightMouseButtonGesture = ...  # type: QScroller.ScrollerGestureType
+    MiddleMouseButtonGesture = ...  # type: QScroller.ScrollerGestureType
+
     class State(int):
         Inactive = ... # type: QScroller.State
         Pressed = ... # type: QScroller.State
         Dragging = ... # type: QScroller.State
         Scrolling = ... # type: QScroller.State
+
+    Inactive = ...  # type: QScroller.State
+    Pressed = ...  # type: QScroller.State
+    Dragging = ...  # type: QScroller.State
+    Scrolling = ...  # type: QScroller.State
 
     scrollerPropertiesChanged: typing.ClassVar[QtCore.pyqtSignal]
     stateChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -7160,16 +8287,47 @@ class QScrollerProperties(sip.simplewrapper):
         FrameRate = ... # type: QScrollerProperties.ScrollMetric
         ScrollMetricCount = ... # type: QScrollerProperties.ScrollMetric
 
+    MousePressEventDelay = ...  # type: QScrollerProperties.ScrollMetric
+    DragStartDistance = ...  # type: QScrollerProperties.ScrollMetric
+    DragVelocitySmoothingFactor = ...  # type: QScrollerProperties.ScrollMetric
+    AxisLockThreshold = ...  # type: QScrollerProperties.ScrollMetric
+    ScrollingCurve = ...  # type: QScrollerProperties.ScrollMetric
+    DecelerationFactor = ...  # type: QScrollerProperties.ScrollMetric
+    MinimumVelocity = ...  # type: QScrollerProperties.ScrollMetric
+    MaximumVelocity = ...  # type: QScrollerProperties.ScrollMetric
+    MaximumClickThroughVelocity = ...  # type: QScrollerProperties.ScrollMetric
+    AcceleratingFlickMaximumTime = ...  # type: QScrollerProperties.ScrollMetric
+    AcceleratingFlickSpeedupFactor = ...  # type: QScrollerProperties.ScrollMetric
+    SnapPositionRatio = ...  # type: QScrollerProperties.ScrollMetric
+    SnapTime = ...  # type: QScrollerProperties.ScrollMetric
+    OvershootDragResistanceFactor = ...  # type: QScrollerProperties.ScrollMetric
+    OvershootDragDistanceFactor = ...  # type: QScrollerProperties.ScrollMetric
+    OvershootScrollDistanceFactor = ...  # type: QScrollerProperties.ScrollMetric
+    OvershootScrollTime = ...  # type: QScrollerProperties.ScrollMetric
+    HorizontalOvershootPolicy = ...  # type: QScrollerProperties.ScrollMetric
+    VerticalOvershootPolicy = ...  # type: QScrollerProperties.ScrollMetric
+    FrameRate = ...  # type: QScrollerProperties.ScrollMetric
+    ScrollMetricCount = ...  # type: QScrollerProperties.ScrollMetric
+
     class FrameRates(int):
         Standard = ... # type: QScrollerProperties.FrameRates
         Fps60 = ... # type: QScrollerProperties.FrameRates
         Fps30 = ... # type: QScrollerProperties.FrameRates
         Fps20 = ... # type: QScrollerProperties.FrameRates
 
+    Standard = ...  # type: QScrollerProperties.FrameRates
+    Fps60 = ...  # type: QScrollerProperties.FrameRates
+    Fps30 = ...  # type: QScrollerProperties.FrameRates
+    Fps20 = ...  # type: QScrollerProperties.FrameRates
+
     class OvershootPolicy(int):
         OvershootWhenScrollable = ... # type: QScrollerProperties.OvershootPolicy
         OvershootAlwaysOff = ... # type: QScrollerProperties.OvershootPolicy
         OvershootAlwaysOn = ... # type: QScrollerProperties.OvershootPolicy
+
+    OvershootWhenScrollable = ...  # type: QScrollerProperties.OvershootPolicy
+    OvershootAlwaysOff = ...  # type: QScrollerProperties.OvershootPolicy
+    OvershootAlwaysOn = ...  # type: QScrollerProperties.OvershootPolicy
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -7244,6 +8402,22 @@ class QSizePolicy(sip.simplewrapper):
         TabWidget = ... # type: QSizePolicy.ControlType
         ToolButton = ... # type: QSizePolicy.ControlType
 
+    DefaultType = ...  # type: QSizePolicy.ControlType
+    ButtonBox = ...  # type: QSizePolicy.ControlType
+    CheckBox = ...  # type: QSizePolicy.ControlType
+    ComboBox = ...  # type: QSizePolicy.ControlType
+    Frame = ...  # type: QSizePolicy.ControlType
+    GroupBox = ...  # type: QSizePolicy.ControlType
+    Label = ...  # type: QSizePolicy.ControlType
+    Line = ...  # type: QSizePolicy.ControlType
+    LineEdit = ...  # type: QSizePolicy.ControlType
+    PushButton = ...  # type: QSizePolicy.ControlType
+    RadioButton = ...  # type: QSizePolicy.ControlType
+    Slider = ...  # type: QSizePolicy.ControlType
+    SpinBox = ...  # type: QSizePolicy.ControlType
+    TabWidget = ...  # type: QSizePolicy.ControlType
+    ToolButton = ...  # type: QSizePolicy.ControlType
+
     class Policy(int):
         Fixed = ... # type: QSizePolicy.Policy
         Minimum = ... # type: QSizePolicy.Policy
@@ -7253,11 +8427,24 @@ class QSizePolicy(sip.simplewrapper):
         Expanding = ... # type: QSizePolicy.Policy
         Ignored = ... # type: QSizePolicy.Policy
 
+    Fixed = ...  # type: QSizePolicy.Policy
+    Minimum = ...  # type: QSizePolicy.Policy
+    Maximum = ...  # type: QSizePolicy.Policy
+    Preferred = ...  # type: QSizePolicy.Policy
+    MinimumExpanding = ...  # type: QSizePolicy.Policy
+    Expanding = ...  # type: QSizePolicy.Policy
+    Ignored = ...  # type: QSizePolicy.Policy
+
     class PolicyFlag(int):
         GrowFlag = ... # type: QSizePolicy.PolicyFlag
         ExpandFlag = ... # type: QSizePolicy.PolicyFlag
         ShrinkFlag = ... # type: QSizePolicy.PolicyFlag
         IgnoreFlag = ... # type: QSizePolicy.PolicyFlag
+
+    GrowFlag = ...  # type: QSizePolicy.PolicyFlag
+    ExpandFlag = ...  # type: QSizePolicy.PolicyFlag
+    ShrinkFlag = ...  # type: QSizePolicy.PolicyFlag
+    IgnoreFlag = ...  # type: QSizePolicy.PolicyFlag
 
     class ControlTypes(sip.simplewrapper):
 
@@ -7314,6 +8501,13 @@ class QSlider(QAbstractSlider):
         TicksBelow = ... # type: QSlider.TickPosition
         TicksRight = ... # type: QSlider.TickPosition
         TicksBothSides = ... # type: QSlider.TickPosition
+
+    NoTicks = ...  # type: QSlider.TickPosition
+    TicksAbove = ...  # type: QSlider.TickPosition
+    TicksLeft = ...  # type: QSlider.TickPosition
+    TicksBelow = ...  # type: QSlider.TickPosition
+    TicksRight = ...  # type: QSlider.TickPosition
+    TicksBothSides = ...  # type: QSlider.TickPosition
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
@@ -7487,6 +8681,9 @@ class QStackedLayout(QLayout):
         StackOne = ... # type: QStackedLayout.StackingMode
         StackAll = ... # type: QStackedLayout.StackingMode
 
+    StackOne = ...  # type: QStackedLayout.StackingMode
+    StackAll = ...  # type: QStackedLayout.StackingMode
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -7598,8 +8795,12 @@ class QStyleOption(sip.simplewrapper):
     class StyleOptionVersion(int):
         Version = ... # type: QStyleOption.StyleOptionVersion
 
+    Version = ...  # type: QStyleOption.StyleOptionVersion
+
     class StyleOptionType(int):
         Type = ... # type: QStyleOption.StyleOptionType
+
+    Type = ...  # type: QStyleOption.StyleOptionType
 
     class OptionType(int):
         SO_Default = ... # type: QStyleOption.OptionType
@@ -7629,6 +8830,33 @@ class QStyleOption(sip.simplewrapper):
         SO_SizeGrip = ... # type: QStyleOption.OptionType
         SO_CustomBase = ... # type: QStyleOption.OptionType
 
+    SO_Default = ...  # type: QStyleOption.OptionType
+    SO_FocusRect = ...  # type: QStyleOption.OptionType
+    SO_Button = ...  # type: QStyleOption.OptionType
+    SO_Tab = ...  # type: QStyleOption.OptionType
+    SO_MenuItem = ...  # type: QStyleOption.OptionType
+    SO_Frame = ...  # type: QStyleOption.OptionType
+    SO_ProgressBar = ...  # type: QStyleOption.OptionType
+    SO_ToolBox = ...  # type: QStyleOption.OptionType
+    SO_Header = ...  # type: QStyleOption.OptionType
+    SO_DockWidget = ...  # type: QStyleOption.OptionType
+    SO_ViewItem = ...  # type: QStyleOption.OptionType
+    SO_TabWidgetFrame = ...  # type: QStyleOption.OptionType
+    SO_TabBarBase = ...  # type: QStyleOption.OptionType
+    SO_RubberBand = ...  # type: QStyleOption.OptionType
+    SO_ToolBar = ...  # type: QStyleOption.OptionType
+    SO_Complex = ...  # type: QStyleOption.OptionType
+    SO_Slider = ...  # type: QStyleOption.OptionType
+    SO_SpinBox = ...  # type: QStyleOption.OptionType
+    SO_ToolButton = ...  # type: QStyleOption.OptionType
+    SO_ComboBox = ...  # type: QStyleOption.OptionType
+    SO_TitleBar = ...  # type: QStyleOption.OptionType
+    SO_GroupBox = ...  # type: QStyleOption.OptionType
+    SO_ComplexCustomBase = ...  # type: QStyleOption.OptionType
+    SO_GraphicsItem = ...  # type: QStyleOption.OptionType
+    SO_SizeGrip = ...  # type: QStyleOption.OptionType
+    SO_CustomBase = ...  # type: QStyleOption.OptionType
+
     direction = ... # type: QtCore.Qt.LayoutDirection
     fontMetrics = ... # type: QtGui.QFontMetrics
     palette = ... # type: QtGui.QPalette
@@ -7651,8 +8879,12 @@ class QStyleOptionFocusRect(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionFocusRect.StyleOptionVersion = ...
 
+    Version: QStyleOptionFocusRect.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionFocusRect.StyleOptionType = ...
+
+    Type: QStyleOptionFocusRect.StyleOptionType = ...  # type: ignore[assignment]
 
     backgroundColor = ... # type: typing.Union[QtGui.QColor, QtCore.Qt.GlobalColor, QtGui.QGradient]
 
@@ -7669,11 +8901,19 @@ class QStyleOptionFrame(QStyleOption):
         Flat = ... # type: QStyleOptionFrame.FrameFeature
         Rounded = ... # type: QStyleOptionFrame.FrameFeature
 
+    None_ = ...  # type: QStyleOptionFrame.FrameFeature
+    Flat = ...  # type: QStyleOptionFrame.FrameFeature
+    Rounded = ...  # type: QStyleOptionFrame.FrameFeature
+
     class StyleOptionVersion(int):
         Version: QStyleOptionFrame.StyleOptionVersion = ...
 
+    Version: QStyleOptionFrame.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionFrame.StyleOptionType = ...
+
+    Type: QStyleOptionFrame.StyleOptionType = ...  # type: ignore[assignment]
 
     class FrameFeatures(sip.simplewrapper):
 
@@ -7706,8 +8946,12 @@ class QStyleOptionTabWidgetFrame(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionTabWidgetFrame.StyleOptionVersion = ...
 
+    Version: QStyleOptionTabWidgetFrame.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionTabWidgetFrame.StyleOptionType = ...
+
+    Type: QStyleOptionTabWidgetFrame.StyleOptionType = ...  # type: ignore[assignment]
 
     leftCornerWidgetSize = ... # type: QtCore.QSize
     lineWidth = ... # type: int
@@ -7729,8 +8973,12 @@ class QStyleOptionTabBarBase(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionTabBarBase.StyleOptionVersion = ...
 
+    Version: QStyleOptionTabBarBase.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionTabBarBase.StyleOptionType = ...
+
+    Type: QStyleOptionTabBarBase.StyleOptionType = ...  # type: ignore[assignment]
 
     documentMode = ... # type: bool
     selectedTabRect = ... # type: QtCore.QRect
@@ -7750,11 +8998,20 @@ class QStyleOptionHeader(QStyleOption):
         SortUp = ... # type: QStyleOptionHeader.SortIndicator
         SortDown = ... # type: QStyleOptionHeader.SortIndicator
 
+    None_ = ...  # type: QStyleOptionHeader.SortIndicator
+    SortUp = ...  # type: QStyleOptionHeader.SortIndicator
+    SortDown = ...  # type: QStyleOptionHeader.SortIndicator
+
     class SelectedPosition(int):
         NotAdjacent = ... # type: QStyleOptionHeader.SelectedPosition
         NextIsSelected = ... # type: QStyleOptionHeader.SelectedPosition
         PreviousIsSelected = ... # type: QStyleOptionHeader.SelectedPosition
         NextAndPreviousAreSelected = ... # type: QStyleOptionHeader.SelectedPosition
+
+    NotAdjacent = ...  # type: QStyleOptionHeader.SelectedPosition
+    NextIsSelected = ...  # type: QStyleOptionHeader.SelectedPosition
+    PreviousIsSelected = ...  # type: QStyleOptionHeader.SelectedPosition
+    NextAndPreviousAreSelected = ...  # type: QStyleOptionHeader.SelectedPosition
 
     class SectionPosition(int):
         Beginning = ... # type: QStyleOptionHeader.SectionPosition
@@ -7762,11 +9019,20 @@ class QStyleOptionHeader(QStyleOption):
         End = ... # type: QStyleOptionHeader.SectionPosition
         OnlyOneSection = ... # type: QStyleOptionHeader.SectionPosition
 
+    Beginning = ...  # type: QStyleOptionHeader.SectionPosition
+    Middle = ...  # type: QStyleOptionHeader.SectionPosition
+    End = ...  # type: QStyleOptionHeader.SectionPosition
+    OnlyOneSection = ...  # type: QStyleOptionHeader.SectionPosition
+
     class StyleOptionVersion(int):
         Version: QStyleOptionHeader.StyleOptionVersion = ...
 
+    Version: QStyleOptionHeader.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionHeader.StyleOptionType = ...
+
+    Type: QStyleOptionHeader.StyleOptionType = ...  # type: ignore[assignment]
 
     icon = ... # type: QtGui.QIcon
     iconAlignment = ... # type: typing.Union[QtCore.Qt.Alignment, QtCore.Qt.AlignmentFlag]
@@ -7794,11 +9060,22 @@ class QStyleOptionButton(QStyleOption):
         AutoDefaultButton = ... # type: QStyleOptionButton.ButtonFeature
         CommandLinkButton = ... # type: QStyleOptionButton.ButtonFeature
 
+    None_ = ...  # type: QStyleOptionButton.ButtonFeature
+    Flat = ...  # type: QStyleOptionButton.ButtonFeature
+    HasMenu = ...  # type: QStyleOptionButton.ButtonFeature
+    DefaultButton = ...  # type: QStyleOptionButton.ButtonFeature
+    AutoDefaultButton = ...  # type: QStyleOptionButton.ButtonFeature
+    CommandLinkButton = ...  # type: QStyleOptionButton.ButtonFeature
+
     class StyleOptionVersion(int):
         Version: QStyleOptionButton.StyleOptionVersion = ...
 
+    Version: QStyleOptionButton.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionButton.StyleOptionType = ...
+
+    Type: QStyleOptionButton.StyleOptionType = ...  # type: ignore[assignment]
 
     class ButtonFeatures(sip.simplewrapper):
 
@@ -7832,15 +9109,26 @@ class QStyleOptionTab(QStyleOption):
         None_ = ... # type: QStyleOptionTab.TabFeature
         HasFrame = ... # type: QStyleOptionTab.TabFeature
 
+    None_ = ...  # type: QStyleOptionTab.TabFeature
+    HasFrame = ...  # type: QStyleOptionTab.TabFeature
+
     class CornerWidget(int):
         NoCornerWidgets = ... # type: QStyleOptionTab.CornerWidget
         LeftCornerWidget = ... # type: QStyleOptionTab.CornerWidget
         RightCornerWidget = ... # type: QStyleOptionTab.CornerWidget
 
+    NoCornerWidgets = ...  # type: QStyleOptionTab.CornerWidget
+    LeftCornerWidget = ...  # type: QStyleOptionTab.CornerWidget
+    RightCornerWidget = ...  # type: QStyleOptionTab.CornerWidget
+
     class SelectedPosition(int):
         NotAdjacent = ... # type: QStyleOptionTab.SelectedPosition
         NextIsSelected = ... # type: QStyleOptionTab.SelectedPosition
         PreviousIsSelected = ... # type: QStyleOptionTab.SelectedPosition
+
+    NotAdjacent = ...  # type: QStyleOptionTab.SelectedPosition
+    NextIsSelected = ...  # type: QStyleOptionTab.SelectedPosition
+    PreviousIsSelected = ...  # type: QStyleOptionTab.SelectedPosition
 
     class TabPosition(int):
         Beginning = ... # type: QStyleOptionTab.TabPosition
@@ -7848,11 +9136,20 @@ class QStyleOptionTab(QStyleOption):
         End = ... # type: QStyleOptionTab.TabPosition
         OnlyOneTab = ... # type: QStyleOptionTab.TabPosition
 
+    Beginning = ...  # type: QStyleOptionTab.TabPosition
+    Middle = ...  # type: QStyleOptionTab.TabPosition
+    End = ...  # type: QStyleOptionTab.TabPosition
+    OnlyOneTab = ...  # type: QStyleOptionTab.TabPosition
+
     class StyleOptionVersion(int):
         Version: QStyleOptionTab.StyleOptionVersion = ...
 
+    Version: QStyleOptionTab.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionTab.StyleOptionType = ...
+
+    Type: QStyleOptionTab.StyleOptionType = ...  # type: ignore[assignment]
 
     class CornerWidgets(sip.simplewrapper):
 
@@ -7908,6 +9205,8 @@ class QStyleOptionTabV4(QStyleOptionTab):
     class StyleOptionVersion(int):
         Version = ... # type: QStyleOptionTabV4.StyleOptionVersion
 
+    Version = ...  # type: QStyleOptionTabV4.StyleOptionVersion  # type: ignore[assignment]
+
     tabIndex = ... # type: int
 
     @typing.overload
@@ -7921,8 +9220,12 @@ class QStyleOptionProgressBar(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionProgressBar.StyleOptionVersion = ...
 
+    Version: QStyleOptionProgressBar.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionProgressBar.StyleOptionType = ...
+
+    Type: QStyleOptionProgressBar.StyleOptionType = ...  # type: ignore[assignment]
 
     bottomToTop = ... # type: bool
     invertedAppearance = ... # type: bool
@@ -7947,6 +9250,10 @@ class QStyleOptionMenuItem(QStyleOption):
         Exclusive = ... # type: QStyleOptionMenuItem.CheckType
         NonExclusive = ... # type: QStyleOptionMenuItem.CheckType
 
+    NotCheckable = ...  # type: QStyleOptionMenuItem.CheckType
+    Exclusive = ...  # type: QStyleOptionMenuItem.CheckType
+    NonExclusive = ...  # type: QStyleOptionMenuItem.CheckType
+
     class MenuItemType(int):
         Normal = ... # type: QStyleOptionMenuItem.MenuItemType
         DefaultItem = ... # type: QStyleOptionMenuItem.MenuItemType
@@ -7957,11 +9264,24 @@ class QStyleOptionMenuItem(QStyleOption):
         Margin = ... # type: QStyleOptionMenuItem.MenuItemType
         EmptyArea = ... # type: QStyleOptionMenuItem.MenuItemType
 
+    Normal = ...  # type: QStyleOptionMenuItem.MenuItemType
+    DefaultItem = ...  # type: QStyleOptionMenuItem.MenuItemType
+    Separator = ...  # type: QStyleOptionMenuItem.MenuItemType
+    SubMenu = ...  # type: QStyleOptionMenuItem.MenuItemType
+    Scroller = ...  # type: QStyleOptionMenuItem.MenuItemType
+    TearOff = ...  # type: QStyleOptionMenuItem.MenuItemType
+    Margin = ...  # type: QStyleOptionMenuItem.MenuItemType
+    EmptyArea = ...  # type: QStyleOptionMenuItem.MenuItemType
+
     class StyleOptionVersion(int):
         Version: QStyleOptionMenuItem.StyleOptionVersion = ...
 
+    Version: QStyleOptionMenuItem.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionMenuItem.StyleOptionType = ...
+
+    Type: QStyleOptionMenuItem.StyleOptionType = ...  # type: ignore[assignment]
 
     checkType = ... # type: 'QStyleOptionMenuItem.CheckType'
     checked = ... # type: bool
@@ -7985,8 +9305,12 @@ class QStyleOptionDockWidget(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionDockWidget.StyleOptionVersion = ...
 
+    Version: QStyleOptionDockWidget.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionDockWidget.StyleOptionType = ...
+
+    Type: QStyleOptionDockWidget.StyleOptionType = ...  # type: ignore[assignment]
 
     closable = ... # type: bool
     floatable = ... # type: bool
@@ -8009,6 +9333,12 @@ class QStyleOptionViewItem(QStyleOption):
         End = ... # type: QStyleOptionViewItem.ViewItemPosition
         OnlyOne = ... # type: QStyleOptionViewItem.ViewItemPosition
 
+    Invalid = ...  # type: QStyleOptionViewItem.ViewItemPosition
+    Beginning = ...  # type: QStyleOptionViewItem.ViewItemPosition
+    Middle = ...  # type: QStyleOptionViewItem.ViewItemPosition
+    End = ...  # type: QStyleOptionViewItem.ViewItemPosition
+    OnlyOne = ...  # type: QStyleOptionViewItem.ViewItemPosition
+
     class ViewItemFeature(int):
         None_ = ... # type: QStyleOptionViewItem.ViewItemFeature
         WrapText = ... # type: QStyleOptionViewItem.ViewItemFeature
@@ -8017,17 +9347,33 @@ class QStyleOptionViewItem(QStyleOption):
         HasDisplay = ... # type: QStyleOptionViewItem.ViewItemFeature
         HasDecoration = ... # type: QStyleOptionViewItem.ViewItemFeature
 
+    None_ = ...  # type: QStyleOptionViewItem.ViewItemFeature
+    WrapText = ...  # type: QStyleOptionViewItem.ViewItemFeature
+    Alternate = ...  # type: QStyleOptionViewItem.ViewItemFeature
+    HasCheckIndicator = ...  # type: QStyleOptionViewItem.ViewItemFeature
+    HasDisplay = ...  # type: QStyleOptionViewItem.ViewItemFeature
+    HasDecoration = ...  # type: QStyleOptionViewItem.ViewItemFeature
+
     class Position(int):
         Left = ... # type: QStyleOptionViewItem.Position
         Right = ... # type: QStyleOptionViewItem.Position
         Top = ... # type: QStyleOptionViewItem.Position
         Bottom = ... # type: QStyleOptionViewItem.Position
 
+    Left = ...  # type: QStyleOptionViewItem.Position
+    Right = ...  # type: QStyleOptionViewItem.Position
+    Top = ...  # type: QStyleOptionViewItem.Position
+    Bottom = ...  # type: QStyleOptionViewItem.Position
+
     class StyleOptionVersion(int):
         Version: QStyleOptionViewItem.StyleOptionVersion = ...
 
+    Version: QStyleOptionViewItem.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionViewItem.StyleOptionType = ...
+
+    Type: QStyleOptionViewItem.StyleOptionType = ...  # type: ignore[assignment]
 
     class ViewItemFeatures(sip.simplewrapper):
 
@@ -8074,17 +9420,30 @@ class QStyleOptionToolBox(QStyleOption):
         NextIsSelected = ... # type: QStyleOptionToolBox.SelectedPosition
         PreviousIsSelected = ... # type: QStyleOptionToolBox.SelectedPosition
 
+    NotAdjacent = ...  # type: QStyleOptionToolBox.SelectedPosition
+    NextIsSelected = ...  # type: QStyleOptionToolBox.SelectedPosition
+    PreviousIsSelected = ...  # type: QStyleOptionToolBox.SelectedPosition
+
     class TabPosition(int):
         Beginning = ... # type: QStyleOptionToolBox.TabPosition
         Middle = ... # type: QStyleOptionToolBox.TabPosition
         End = ... # type: QStyleOptionToolBox.TabPosition
         OnlyOneTab = ... # type: QStyleOptionToolBox.TabPosition
 
+    Beginning = ...  # type: QStyleOptionToolBox.TabPosition
+    Middle = ...  # type: QStyleOptionToolBox.TabPosition
+    End = ...  # type: QStyleOptionToolBox.TabPosition
+    OnlyOneTab = ...  # type: QStyleOptionToolBox.TabPosition
+
     class StyleOptionVersion(int):
         Version: QStyleOptionToolBox.StyleOptionVersion = ...
 
+    Version: QStyleOptionToolBox.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionToolBox.StyleOptionType = ...
+
+    Type: QStyleOptionToolBox.StyleOptionType = ...  # type: ignore[assignment]
 
     icon = ... # type: QtGui.QIcon
     position = ... # type: 'QStyleOptionToolBox.TabPosition'
@@ -8102,8 +9461,12 @@ class QStyleOptionRubberBand(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionRubberBand.StyleOptionVersion = ...
 
+    Version: QStyleOptionRubberBand.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionRubberBand.StyleOptionType = ...
+
+    Type: QStyleOptionRubberBand.StyleOptionType = ...  # type: ignore[assignment]
 
     opaque = ... # type: bool
     shape = ... # type: QRubberBand.Shape
@@ -8119,8 +9482,12 @@ class QStyleOptionComplex(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionComplex.StyleOptionVersion = ...
 
+    Version: QStyleOptionComplex.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionComplex.StyleOptionType = ...
+
+    Type: QStyleOptionComplex.StyleOptionType = ...  # type: ignore[assignment]
 
     activeSubControls = ... # type: typing.Union[QStyle.SubControls, QStyle.SubControl]
     subControls = ... # type: typing.Union[QStyle.SubControls, QStyle.SubControl]
@@ -8136,8 +9503,12 @@ class QStyleOptionSlider(QStyleOptionComplex):
     class StyleOptionVersion(int):
         Version: QStyleOptionSlider.StyleOptionVersion = ...
 
+    Version: QStyleOptionSlider.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionSlider.StyleOptionType = ...
+
+    Type: QStyleOptionSlider.StyleOptionType = ...  # type: ignore[assignment]
 
     dialWrapping = ... # type: bool
     maximum = ... # type: int
@@ -8163,8 +9534,12 @@ class QStyleOptionSpinBox(QStyleOptionComplex):
     class StyleOptionVersion(int):
         Version: QStyleOptionSpinBox.StyleOptionVersion = ...
 
+    Version: QStyleOptionSpinBox.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionSpinBox.StyleOptionType = ...
+
+    Type: QStyleOptionSpinBox.StyleOptionType = ...  # type: ignore[assignment]
 
     buttonSymbols = ... # type: QAbstractSpinBox.ButtonSymbols
     frame = ... # type: bool
@@ -8186,11 +9561,22 @@ class QStyleOptionToolButton(QStyleOptionComplex):
         MenuButtonPopup = ... # type: QStyleOptionToolButton.ToolButtonFeature
         HasMenu = ... # type: QStyleOptionToolButton.ToolButtonFeature
 
+    None_ = ...  # type: QStyleOptionToolButton.ToolButtonFeature
+    Arrow = ...  # type: QStyleOptionToolButton.ToolButtonFeature
+    Menu = ...  # type: QStyleOptionToolButton.ToolButtonFeature
+    PopupDelay = ...  # type: QStyleOptionToolButton.ToolButtonFeature
+    MenuButtonPopup = ...  # type: QStyleOptionToolButton.ToolButtonFeature
+    HasMenu = ...  # type: QStyleOptionToolButton.ToolButtonFeature
+
     class StyleOptionVersion(int):
         Version: QStyleOptionToolButton.StyleOptionVersion = ...
 
+    Version: QStyleOptionToolButton.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionToolButton.StyleOptionType = ...
+
+    Type: QStyleOptionToolButton.StyleOptionType = ...  # type: ignore[assignment]
 
     class ToolButtonFeatures(sip.simplewrapper):
 
@@ -8227,8 +9613,12 @@ class QStyleOptionComboBox(QStyleOptionComplex):
     class StyleOptionVersion(int):
         Version: QStyleOptionComboBox.StyleOptionVersion = ...
 
+    Version: QStyleOptionComboBox.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionComboBox.StyleOptionType = ...
+
+    Type: QStyleOptionComboBox.StyleOptionType = ...  # type: ignore[assignment]
 
     currentIcon = ... # type: QtGui.QIcon
     currentText = ... # type: str
@@ -8248,8 +9638,12 @@ class QStyleOptionTitleBar(QStyleOptionComplex):
     class StyleOptionVersion(int):
         Version: QStyleOptionTitleBar.StyleOptionVersion = ...
 
+    Version: QStyleOptionTitleBar.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionTitleBar.StyleOptionType = ...
+
+    Type: QStyleOptionTitleBar.StyleOptionType = ...  # type: ignore[assignment]
 
     icon = ... # type: QtGui.QIcon
     text = ... # type: str
@@ -8267,13 +9661,21 @@ class QStyleHintReturn(sip.simplewrapper):
     class StyleOptionVersion(int):
         Version = ... # type: QStyleHintReturn.StyleOptionVersion
 
+    Version = ...  # type: QStyleHintReturn.StyleOptionVersion
+
     class StyleOptionType(int):
         Type = ... # type: QStyleHintReturn.StyleOptionType
+
+    Type = ...  # type: QStyleHintReturn.StyleOptionType
 
     class HintReturnType(int):
         SH_Default = ... # type: QStyleHintReturn.HintReturnType
         SH_Mask = ... # type: QStyleHintReturn.HintReturnType
         SH_Variant = ... # type: QStyleHintReturn.HintReturnType
+
+    SH_Default = ...  # type: QStyleHintReturn.HintReturnType
+    SH_Mask = ...  # type: QStyleHintReturn.HintReturnType
+    SH_Variant = ...  # type: QStyleHintReturn.HintReturnType
 
     type = ... # type: int
     version = ... # type: int
@@ -8289,8 +9691,12 @@ class QStyleHintReturnMask(QStyleHintReturn):
     class StyleOptionVersion(int):
         Version: QStyleHintReturnMask.StyleOptionVersion = ...
 
+    Version: QStyleHintReturnMask.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleHintReturnMask.StyleOptionType = ...
+
+    Type: QStyleHintReturnMask.StyleOptionType = ...  # type: ignore[assignment]
 
     region = ... # type: QtGui.QRegion
 
@@ -8306,17 +9712,29 @@ class QStyleOptionToolBar(QStyleOption):
         None_ = ... # type: QStyleOptionToolBar.ToolBarFeature
         Movable = ... # type: QStyleOptionToolBar.ToolBarFeature
 
+    None_ = ...  # type: QStyleOptionToolBar.ToolBarFeature
+    Movable = ...  # type: QStyleOptionToolBar.ToolBarFeature
+
     class ToolBarPosition(int):
         Beginning = ... # type: QStyleOptionToolBar.ToolBarPosition
         Middle = ... # type: QStyleOptionToolBar.ToolBarPosition
         End = ... # type: QStyleOptionToolBar.ToolBarPosition
         OnlyOne = ... # type: QStyleOptionToolBar.ToolBarPosition
 
+    Beginning = ...  # type: QStyleOptionToolBar.ToolBarPosition
+    Middle = ...  # type: QStyleOptionToolBar.ToolBarPosition
+    End = ...  # type: QStyleOptionToolBar.ToolBarPosition
+    OnlyOne = ...  # type: QStyleOptionToolBar.ToolBarPosition
+
     class StyleOptionVersion(int):
         Version: QStyleOptionToolBar.StyleOptionVersion = ...
 
+    Version: QStyleOptionToolBar.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionToolBar.StyleOptionType = ...
+
+    Type: QStyleOptionToolBar.StyleOptionType = ...  # type: ignore[assignment]
 
     class ToolBarFeatures(sip.simplewrapper):
 
@@ -8351,8 +9769,12 @@ class QStyleOptionGroupBox(QStyleOptionComplex):
     class StyleOptionVersion(int):
         Version: QStyleOptionGroupBox.StyleOptionVersion = ...
 
+    Version: QStyleOptionGroupBox.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionGroupBox.StyleOptionType = ...
+
+    Type: QStyleOptionGroupBox.StyleOptionType = ...  # type: ignore[assignment]
 
     features = ... # type: typing.Union[QStyleOptionFrame.FrameFeatures, QStyleOptionFrame.FrameFeature]
     lineWidth = ... # type: int
@@ -8372,8 +9794,12 @@ class QStyleOptionSizeGrip(QStyleOptionComplex):
     class StyleOptionVersion(int):
         Version: QStyleOptionSizeGrip.StyleOptionVersion = ...
 
+    Version: QStyleOptionSizeGrip.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionSizeGrip.StyleOptionType = ...
+
+    Type: QStyleOptionSizeGrip.StyleOptionType = ...  # type: ignore[assignment]
 
     corner = ... # type: QtCore.Qt.Corner
 
@@ -8388,8 +9814,12 @@ class QStyleOptionGraphicsItem(QStyleOption):
     class StyleOptionVersion(int):
         Version: QStyleOptionGraphicsItem.StyleOptionVersion = ...
 
+    Version: QStyleOptionGraphicsItem.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleOptionGraphicsItem.StyleOptionType = ...
+
+    Type: QStyleOptionGraphicsItem.StyleOptionType = ...  # type: ignore[assignment]
 
     exposedRect = ... # type: QtCore.QRectF
 
@@ -8407,8 +9837,12 @@ class QStyleHintReturnVariant(QStyleHintReturn):
     class StyleOptionVersion(int):
         Version: QStyleHintReturnVariant.StyleOptionVersion = ...
 
+    Version: QStyleHintReturnVariant.StyleOptionVersion = ...  # type: ignore[assignment]
+
     class StyleOptionType(int):
         Type: QStyleHintReturnVariant.StyleOptionType = ...
+
+    Type: QStyleHintReturnVariant.StyleOptionType = ...  # type: ignore[assignment]
 
     variant = ... # type: typing.Any
 
@@ -8447,12 +9881,23 @@ class QSystemTrayIcon(QtCore.QObject):
         Warning = ... # type: QSystemTrayIcon.MessageIcon
         Critical = ... # type: QSystemTrayIcon.MessageIcon
 
+    NoIcon = ...  # type: QSystemTrayIcon.MessageIcon
+    Information = ...  # type: QSystemTrayIcon.MessageIcon
+    Warning = ...  # type: QSystemTrayIcon.MessageIcon
+    Critical = ...  # type: QSystemTrayIcon.MessageIcon
+
     class ActivationReason(int):
         Unknown = ... # type: QSystemTrayIcon.ActivationReason
         Context = ... # type: QSystemTrayIcon.ActivationReason
         DoubleClick = ... # type: QSystemTrayIcon.ActivationReason
         Trigger = ... # type: QSystemTrayIcon.ActivationReason
         MiddleClick = ... # type: QSystemTrayIcon.ActivationReason
+
+    Unknown = ...  # type: QSystemTrayIcon.ActivationReason
+    Context = ...  # type: QSystemTrayIcon.ActivationReason
+    DoubleClick = ...  # type: QSystemTrayIcon.ActivationReason
+    Trigger = ...  # type: QSystemTrayIcon.ActivationReason
+    MiddleClick = ...  # type: QSystemTrayIcon.ActivationReason
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -8490,9 +9935,16 @@ class QTabBar(QWidget):
         SelectRightTab = ... # type: QTabBar.SelectionBehavior
         SelectPreviousTab = ... # type: QTabBar.SelectionBehavior
 
+    SelectLeftTab = ...  # type: QTabBar.SelectionBehavior
+    SelectRightTab = ...  # type: QTabBar.SelectionBehavior
+    SelectPreviousTab = ...  # type: QTabBar.SelectionBehavior
+
     class ButtonPosition(int):
         LeftSide = ... # type: QTabBar.ButtonPosition
         RightSide = ... # type: QTabBar.ButtonPosition
+
+    LeftSide = ...  # type: QTabBar.ButtonPosition
+    RightSide = ...  # type: QTabBar.ButtonPosition
 
     class Shape(int):
         RoundedNorth = ... # type: QTabBar.Shape
@@ -8503,6 +9955,15 @@ class QTabBar(QWidget):
         TriangularSouth = ... # type: QTabBar.Shape
         TriangularWest = ... # type: QTabBar.Shape
         TriangularEast = ... # type: QTabBar.Shape
+
+    RoundedNorth = ...  # type: QTabBar.Shape
+    RoundedSouth = ...  # type: QTabBar.Shape
+    RoundedWest = ...  # type: QTabBar.Shape
+    RoundedEast = ...  # type: QTabBar.Shape
+    TriangularNorth = ...  # type: QTabBar.Shape
+    TriangularSouth = ...  # type: QTabBar.Shape
+    TriangularWest = ...  # type: QTabBar.Shape
+    TriangularEast = ...  # type: QTabBar.Shape
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
@@ -8694,6 +10155,9 @@ class QTableWidgetItem(sip.wrapper):
         Type = ... # type: QTableWidgetItem.ItemType
         UserType = ... # type: QTableWidgetItem.ItemType
 
+    Type = ...  # type: QTableWidgetItem.ItemType
+    UserType = ...  # type: QTableWidgetItem.ItemType
+
     @typing.overload
     def __init__(self, type: int = ...) -> None: ...
     @typing.overload
@@ -8843,11 +10307,19 @@ class QTabWidget(QWidget):
         Rounded = ... # type: QTabWidget.TabShape
         Triangular = ... # type: QTabWidget.TabShape
 
+    Rounded = ...  # type: QTabWidget.TabShape
+    Triangular = ...  # type: QTabWidget.TabShape
+
     class TabPosition(int):
         North = ... # type: QTabWidget.TabPosition
         South = ... # type: QTabWidget.TabPosition
         West = ... # type: QTabWidget.TabPosition
         East = ... # type: QTabWidget.TabPosition
+
+    North = ...  # type: QTabWidget.TabPosition
+    South = ...  # type: QTabWidget.TabPosition
+    West = ...  # type: QTabWidget.TabPosition
+    East = ...  # type: QTabWidget.TabPosition
 
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
     def setTabVisible(self, index: int, visible: bool) -> None: ...
@@ -8928,11 +10400,20 @@ class QTextEdit(QAbstractScrollArea):
         AutoBulletList = ... # type: QTextEdit.AutoFormattingFlag
         AutoAll = ... # type: QTextEdit.AutoFormattingFlag
 
+    AutoNone = ...  # type: QTextEdit.AutoFormattingFlag
+    AutoBulletList = ...  # type: QTextEdit.AutoFormattingFlag
+    AutoAll = ...  # type: QTextEdit.AutoFormattingFlag
+
     class LineWrapMode(int):
         NoWrap = ... # type: QTextEdit.LineWrapMode
         WidgetWidth = ... # type: QTextEdit.LineWrapMode
         FixedPixelWidth = ... # type: QTextEdit.LineWrapMode
         FixedColumnWidth = ... # type: QTextEdit.LineWrapMode
+
+    NoWrap = ...  # type: QTextEdit.LineWrapMode
+    WidgetWidth = ...  # type: QTextEdit.LineWrapMode
+    FixedPixelWidth = ...  # type: QTextEdit.LineWrapMode
+    FixedColumnWidth = ...  # type: QTextEdit.LineWrapMode
 
     class ExtraSelection(sip.simplewrapper):
 
@@ -9249,6 +10730,10 @@ class QToolButton(QAbstractButton):
         MenuButtonPopup = ... # type: QToolButton.ToolButtonPopupMode
         InstantPopup = ... # type: QToolButton.ToolButtonPopupMode
 
+    DelayedPopup = ...  # type: QToolButton.ToolButtonPopupMode
+    MenuButtonPopup = ...  # type: QToolButton.ToolButtonPopupMode
+    InstantPopup = ...  # type: QToolButton.ToolButtonPopupMode
+
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
 
     def hitButton(self, pos: QtCore.QPoint) -> bool: ...
@@ -9421,9 +10906,16 @@ class QTreeWidgetItem(sip.wrapper):
         DontShowIndicator = ... # type: QTreeWidgetItem.ChildIndicatorPolicy
         DontShowIndicatorWhenChildless = ... # type: QTreeWidgetItem.ChildIndicatorPolicy
 
+    ShowIndicator = ...  # type: QTreeWidgetItem.ChildIndicatorPolicy
+    DontShowIndicator = ...  # type: QTreeWidgetItem.ChildIndicatorPolicy
+    DontShowIndicatorWhenChildless = ...  # type: QTreeWidgetItem.ChildIndicatorPolicy
+
     class ItemType(int):
         Type = ... # type: QTreeWidgetItem.ItemType
         UserType = ... # type: QTreeWidgetItem.ItemType
+
+    Type = ...  # type: QTreeWidgetItem.ItemType
+    UserType = ...  # type: QTreeWidgetItem.ItemType
 
     @typing.overload
     def __init__(self, type: int = ...) -> None: ...
@@ -9598,6 +11090,27 @@ class QTreeWidgetItemIterator(sip.simplewrapper):
         Editable = ... # type: QTreeWidgetItemIterator.IteratorFlag
         NotEditable = ... # type: QTreeWidgetItemIterator.IteratorFlag
         UserFlag = ... # type: QTreeWidgetItemIterator.IteratorFlag
+
+    All = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Hidden = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    NotHidden = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Selected = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Unselected = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Selectable = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    NotSelectable = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    DragEnabled = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    DragDisabled = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    DropEnabled = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    DropDisabled = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    HasChildren = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    NoChildren = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Checked = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    NotChecked = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Enabled = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Disabled = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    Editable = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    NotEditable = ...  # type: QTreeWidgetItemIterator.IteratorFlag
+    UserFlag = ...  # type: QTreeWidgetItemIterator.IteratorFlag
 
     class IteratorFlags(sip.simplewrapper):
 
@@ -9782,17 +11295,45 @@ class QWizard(QDialog):
         HaveCustomButton3 = ... # type: QWizard.WizardOption
         NoCancelButtonOnLastPage = ... # type: QWizard.WizardOption
 
+    IndependentPages = ...  # type: QWizard.WizardOption
+    IgnoreSubTitles = ...  # type: QWizard.WizardOption
+    ExtendedWatermarkPixmap = ...  # type: QWizard.WizardOption
+    NoDefaultButton = ...  # type: QWizard.WizardOption
+    NoBackButtonOnStartPage = ...  # type: QWizard.WizardOption
+    NoBackButtonOnLastPage = ...  # type: QWizard.WizardOption
+    DisabledBackButtonOnLastPage = ...  # type: QWizard.WizardOption
+    HaveNextButtonOnLastPage = ...  # type: QWizard.WizardOption
+    HaveFinishButtonOnEarlyPages = ...  # type: QWizard.WizardOption
+    NoCancelButton = ...  # type: QWizard.WizardOption
+    CancelButtonOnLeft = ...  # type: QWizard.WizardOption
+    HaveHelpButton = ...  # type: QWizard.WizardOption
+    HelpButtonOnRight = ...  # type: QWizard.WizardOption
+    HaveCustomButton1 = ...  # type: QWizard.WizardOption
+    HaveCustomButton2 = ...  # type: QWizard.WizardOption
+    HaveCustomButton3 = ...  # type: QWizard.WizardOption
+    NoCancelButtonOnLastPage = ...  # type: QWizard.WizardOption
+
     class WizardStyle(int):
         ClassicStyle = ... # type: QWizard.WizardStyle
         ModernStyle = ... # type: QWizard.WizardStyle
         MacStyle = ... # type: QWizard.WizardStyle
         AeroStyle = ... # type: QWizard.WizardStyle
 
+    ClassicStyle = ...  # type: QWizard.WizardStyle
+    ModernStyle = ...  # type: QWizard.WizardStyle
+    MacStyle = ...  # type: QWizard.WizardStyle
+    AeroStyle = ...  # type: QWizard.WizardStyle
+
     class WizardPixmap(int):
         WatermarkPixmap = ... # type: QWizard.WizardPixmap
         LogoPixmap = ... # type: QWizard.WizardPixmap
         BannerPixmap = ... # type: QWizard.WizardPixmap
         BackgroundPixmap = ... # type: QWizard.WizardPixmap
+
+    WatermarkPixmap = ...  # type: QWizard.WizardPixmap
+    LogoPixmap = ...  # type: QWizard.WizardPixmap
+    BannerPixmap = ...  # type: QWizard.WizardPixmap
+    BackgroundPixmap = ...  # type: QWizard.WizardPixmap
 
     class WizardButton(int):
         BackButton = ... # type: QWizard.WizardButton
@@ -9805,6 +11346,17 @@ class QWizard(QDialog):
         CustomButton2 = ... # type: QWizard.WizardButton
         CustomButton3 = ... # type: QWizard.WizardButton
         Stretch = ... # type: QWizard.WizardButton
+
+    BackButton = ...  # type: QWizard.WizardButton
+    NextButton = ...  # type: QWizard.WizardButton
+    CommitButton = ...  # type: QWizard.WizardButton
+    FinishButton = ...  # type: QWizard.WizardButton
+    CancelButton = ...  # type: QWizard.WizardButton
+    HelpButton = ...  # type: QWizard.WizardButton
+    CustomButton1 = ...  # type: QWizard.WizardButton
+    CustomButton2 = ...  # type: QWizard.WizardButton
+    CustomButton3 = ...  # type: QWizard.WizardButton
+    Stretch = ...  # type: QWizard.WizardButton
 
     class WizardOptions(sip.simplewrapper):
 

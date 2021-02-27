@@ -55,6 +55,10 @@ class QXmlNodeModelIndex(sip.simplewrapper):
         Is = ... # type: QXmlNodeModelIndex.DocumentOrder
         Follows = ... # type: QXmlNodeModelIndex.DocumentOrder
 
+    Precedes = ...  # type: QXmlNodeModelIndex.DocumentOrder
+    Is = ...  # type: QXmlNodeModelIndex.DocumentOrder
+    Follows = ...  # type: QXmlNodeModelIndex.DocumentOrder
+
     class NodeKind(int):
         Attribute = ... # type: QXmlNodeModelIndex.NodeKind
         Comment = ... # type: QXmlNodeModelIndex.NodeKind
@@ -63,6 +67,14 @@ class QXmlNodeModelIndex(sip.simplewrapper):
         Namespace = ... # type: QXmlNodeModelIndex.NodeKind
         ProcessingInstruction = ... # type: QXmlNodeModelIndex.NodeKind
         Text = ... # type: QXmlNodeModelIndex.NodeKind
+
+    Attribute = ...  # type: QXmlNodeModelIndex.NodeKind
+    Comment = ...  # type: QXmlNodeModelIndex.NodeKind
+    Document = ...  # type: QXmlNodeModelIndex.NodeKind
+    Element = ...  # type: QXmlNodeModelIndex.NodeKind
+    Namespace = ...  # type: QXmlNodeModelIndex.NodeKind
+    ProcessingInstruction = ...  # type: QXmlNodeModelIndex.NodeKind
+    Text = ...  # type: QXmlNodeModelIndex.NodeKind
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -84,6 +96,11 @@ class QAbstractXmlNodeModel(sip.simplewrapper):
         FirstChild = ... # type: QAbstractXmlNodeModel.SimpleAxis
         PreviousSibling = ... # type: QAbstractXmlNodeModel.SimpleAxis
         NextSibling = ... # type: QAbstractXmlNodeModel.SimpleAxis
+
+    Parent = ...  # type: QAbstractXmlNodeModel.SimpleAxis
+    FirstChild = ...  # type: QAbstractXmlNodeModel.SimpleAxis
+    PreviousSibling = ...  # type: QAbstractXmlNodeModel.SimpleAxis
+    NextSibling = ...  # type: QAbstractXmlNodeModel.SimpleAxis
 
     def __init__(self) -> None: ...
 
@@ -250,6 +267,9 @@ class QXmlQuery(sip.simplewrapper):
     class QueryLanguage(int):
         XQuery10 = ... # type: QXmlQuery.QueryLanguage
         XSLT20 = ... # type: QXmlQuery.QueryLanguage
+
+    XQuery10 = ...  # type: QXmlQuery.QueryLanguage
+    XSLT20 = ...  # type: QXmlQuery.QueryLanguage
 
     @typing.overload
     def __init__(self) -> None: ...

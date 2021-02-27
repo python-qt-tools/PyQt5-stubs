@@ -38,6 +38,9 @@ class QInAppProduct(QtCore.QObject):
         Consumable = ... # type: QInAppProduct.ProductType
         Unlockable = ... # type: QInAppProduct.ProductType
 
+    Consumable = ...  # type: QInAppProduct.ProductType
+    Unlockable = ...  # type: QInAppProduct.ProductType
+
     def purchase(self) -> None: ...
     def description(self) -> str: ...
     def title(self) -> str: ...
@@ -66,11 +69,20 @@ class QInAppTransaction(QtCore.QObject):
         CanceledByUser = ... # type: QInAppTransaction.FailureReason
         ErrorOccurred = ... # type: QInAppTransaction.FailureReason
 
+    NoFailure = ...  # type: QInAppTransaction.FailureReason
+    CanceledByUser = ...  # type: QInAppTransaction.FailureReason
+    ErrorOccurred = ...  # type: QInAppTransaction.FailureReason
+
     class TransactionStatus(int):
         Unknown = ... # type: QInAppTransaction.TransactionStatus
         PurchaseApproved = ... # type: QInAppTransaction.TransactionStatus
         PurchaseFailed = ... # type: QInAppTransaction.TransactionStatus
         PurchaseRestored = ... # type: QInAppTransaction.TransactionStatus
+
+    Unknown = ...  # type: QInAppTransaction.TransactionStatus
+    PurchaseApproved = ...  # type: QInAppTransaction.TransactionStatus
+    PurchaseFailed = ...  # type: QInAppTransaction.TransactionStatus
+    PurchaseRestored = ...  # type: QInAppTransaction.TransactionStatus
 
     def status(self) -> 'QInAppTransaction.TransactionStatus': ...
     def platformProperty(self, propertyName: str) -> str: ...

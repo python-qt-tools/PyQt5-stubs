@@ -86,6 +86,11 @@ class QDesignerFormWindowInterface(QtWidgets.QWidget):
         TabOrderFeature = ... # type: QDesignerFormWindowInterface.FeatureFlag
         DefaultFeature = ... # type: QDesignerFormWindowInterface.FeatureFlag
 
+    EditFeature = ...  # type: QDesignerFormWindowInterface.FeatureFlag
+    GridFeature = ...  # type: QDesignerFormWindowInterface.FeatureFlag
+    TabOrderFeature = ...  # type: QDesignerFormWindowInterface.FeatureFlag
+    DefaultFeature = ...  # type: QDesignerFormWindowInterface.FeatureFlag
+
     class Feature(sip.simplewrapper):
 
         @typing.overload
@@ -176,6 +181,9 @@ class QDesignerFormWindowCursorInterface(sip.simplewrapper):
         MoveAnchor = ... # type: QDesignerFormWindowCursorInterface.MoveMode
         KeepAnchor = ... # type: QDesignerFormWindowCursorInterface.MoveMode
 
+    MoveAnchor = ...  # type: QDesignerFormWindowCursorInterface.MoveMode
+    KeepAnchor = ...  # type: QDesignerFormWindowCursorInterface.MoveMode
+
     class MoveOperation(int):
         NoMove = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
         Start = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
@@ -186,6 +194,16 @@ class QDesignerFormWindowCursorInterface(sip.simplewrapper):
         Right = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
         Up = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
         Down = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
+
+    NoMove = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Start = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    End = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Next = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Prev = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Left = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Right = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Up = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
+    Down = ...  # type: QDesignerFormWindowCursorInterface.MoveOperation
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -213,6 +231,8 @@ class QDesignerFormWindowManagerInterface(QtCore.QObject):
     class ActionGroup(int):
         StyledPreviewActionGroup = ... # type: QDesignerFormWindowManagerInterface.ActionGroup
 
+    StyledPreviewActionGroup = ...  # type: QDesignerFormWindowManagerInterface.ActionGroup
+
     class Action(int):
         CutAction = ... # type: QDesignerFormWindowManagerInterface.Action
         CopyAction = ... # type: QDesignerFormWindowManagerInterface.Action
@@ -234,6 +254,27 @@ class QDesignerFormWindowManagerInterface(QtCore.QObject):
         SimplifyLayoutAction = ... # type: QDesignerFormWindowManagerInterface.Action
         DefaultPreviewAction = ... # type: QDesignerFormWindowManagerInterface.Action
         FormWindowSettingsDialogAction = ... # type: QDesignerFormWindowManagerInterface.Action
+
+    CutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    CopyAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    PasteAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    DeleteAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    SelectAllAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    LowerAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    RaiseAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    UndoAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    RedoAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    HorizontalLayoutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    VerticalLayoutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    SplitHorizontalAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    SplitVerticalAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    GridLayoutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    FormLayoutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    BreakLayoutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    AdjustSizeAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    SimplifyLayoutAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    DefaultPreviewAction = ...  # type: QDesignerFormWindowManagerInterface.Action
+    FormWindowSettingsDialogAction = ...  # type: QDesignerFormWindowManagerInterface.Action
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 

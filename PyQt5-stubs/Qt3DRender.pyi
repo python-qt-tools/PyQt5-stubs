@@ -51,6 +51,10 @@ class QAbstractLight(Qt3DCore.QComponent):
         DirectionalLight = ... # type: QAbstractLight.Type
         SpotLight = ... # type: QAbstractLight.Type
 
+    PointLight = ...  # type: QAbstractLight.Type
+    DirectionalLight = ...  # type: QAbstractLight.Type
+    SpotLight = ...  # type: QAbstractLight.Type
+
     def intensityChanged(self, intensity: float) -> None: ...
     def colorChanged(self, color: typing.Union[QtGui.QColor, QtCore.Qt.GlobalColor]) -> None: ...
     def setIntensity(self, intensity: float) -> None: ...
@@ -67,9 +71,17 @@ class QAbstractRayCaster(Qt3DCore.QComponent):
         DiscardAnyMatchingLayers = ... # type: QAbstractRayCaster.FilterMode
         DiscardAllMatchingLayers = ... # type: QAbstractRayCaster.FilterMode
 
+    AcceptAnyMatchingLayers = ...  # type: QAbstractRayCaster.FilterMode
+    AcceptAllMatchingLayers = ...  # type: QAbstractRayCaster.FilterMode
+    DiscardAnyMatchingLayers = ...  # type: QAbstractRayCaster.FilterMode
+    DiscardAllMatchingLayers = ...  # type: QAbstractRayCaster.FilterMode
+
     class RunMode(int):
         Continuous = ... # type: QAbstractRayCaster.RunMode
         SingleShot = ... # type: QAbstractRayCaster.RunMode
+
+    Continuous = ...  # type: QAbstractRayCaster.RunMode
+    SingleShot = ...  # type: QAbstractRayCaster.RunMode
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -92,9 +104,15 @@ class QAbstractTexture(Qt3DCore.QNode):
         NoHandle = ... # type: QAbstractTexture.HandleType
         OpenGLTextureId = ... # type: QAbstractTexture.HandleType
 
+    NoHandle = ...  # type: QAbstractTexture.HandleType
+    OpenGLTextureId = ...  # type: QAbstractTexture.HandleType
+
     class ComparisonMode(int):
         CompareRefToTexture = ... # type: QAbstractTexture.ComparisonMode
         CompareNone = ... # type: QAbstractTexture.ComparisonMode
+
+    CompareRefToTexture = ...  # type: QAbstractTexture.ComparisonMode
+    CompareNone = ...  # type: QAbstractTexture.ComparisonMode
 
     class ComparisonFunction(int):
         CompareLessEqual = ... # type: QAbstractTexture.ComparisonFunction
@@ -102,9 +120,20 @@ class QAbstractTexture(Qt3DCore.QNode):
         CompareLess = ... # type: QAbstractTexture.ComparisonFunction
         CompareGreater = ... # type: QAbstractTexture.ComparisonFunction
         CompareEqual = ... # type: QAbstractTexture.ComparisonFunction
+        # https://bugreports.qt.io/browse/QTBUG-91431
         CommpareNotEqual = ... # type: QAbstractTexture.ComparisonFunction
         CompareAlways = ... # type: QAbstractTexture.ComparisonFunction
         CompareNever = ... # type: QAbstractTexture.ComparisonFunction
+
+    CompareLessEqual = ...  # type: QAbstractTexture.ComparisonFunction
+    CompareGreaterEqual = ...  # type: QAbstractTexture.ComparisonFunction
+    CompareLess = ...  # type: QAbstractTexture.ComparisonFunction
+    CompareGreater = ...  # type: QAbstractTexture.ComparisonFunction
+    CompareEqual = ...  # type: QAbstractTexture.ComparisonFunction
+    # https://bugreports.qt.io/browse/QTBUG-91431
+    CommpareNotEqual = ...  # type: QAbstractTexture.ComparisonFunction
+    CompareAlways = ...  # type: QAbstractTexture.ComparisonFunction
+    CompareNever = ...  # type: QAbstractTexture.ComparisonFunction
 
     class CubeMapFace(int):
         CubeMapPositiveX = ... # type: QAbstractTexture.CubeMapFace
@@ -115,6 +144,14 @@ class QAbstractTexture(Qt3DCore.QNode):
         CubeMapNegativeZ = ... # type: QAbstractTexture.CubeMapFace
         AllFaces = ... # type: QAbstractTexture.CubeMapFace
 
+    CubeMapPositiveX = ...  # type: QAbstractTexture.CubeMapFace
+    CubeMapNegativeX = ...  # type: QAbstractTexture.CubeMapFace
+    CubeMapPositiveY = ...  # type: QAbstractTexture.CubeMapFace
+    CubeMapNegativeY = ...  # type: QAbstractTexture.CubeMapFace
+    CubeMapPositiveZ = ...  # type: QAbstractTexture.CubeMapFace
+    CubeMapNegativeZ = ...  # type: QAbstractTexture.CubeMapFace
+    AllFaces = ...  # type: QAbstractTexture.CubeMapFace
+
     class Filter(int):
         Nearest = ... # type: QAbstractTexture.Filter
         Linear = ... # type: QAbstractTexture.Filter
@@ -122,6 +159,13 @@ class QAbstractTexture(Qt3DCore.QNode):
         NearestMipMapLinear = ... # type: QAbstractTexture.Filter
         LinearMipMapNearest = ... # type: QAbstractTexture.Filter
         LinearMipMapLinear = ... # type: QAbstractTexture.Filter
+
+    Nearest = ...  # type: QAbstractTexture.Filter
+    Linear = ...  # type: QAbstractTexture.Filter
+    NearestMipMapNearest = ...  # type: QAbstractTexture.Filter
+    NearestMipMapLinear = ...  # type: QAbstractTexture.Filter
+    LinearMipMapNearest = ...  # type: QAbstractTexture.Filter
+    LinearMipMapLinear = ...  # type: QAbstractTexture.Filter
 
     class TextureFormat(int):
         NoFormat = ... # type: QAbstractTexture.TextureFormat
@@ -224,6 +268,106 @@ class QAbstractTexture(Qt3DCore.QNode):
         LuminanceAlphaFormat = ... # type: QAbstractTexture.TextureFormat
         RGB10A2U = ... # type: QAbstractTexture.TextureFormat
 
+    NoFormat = ...  # type: QAbstractTexture.TextureFormat
+    Automatic = ...  # type: QAbstractTexture.TextureFormat
+    R8_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG8_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGB8_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGBA8_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    R16_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG16_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGB16_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGBA16_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    R8_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG8_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGB8_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGBA8_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    R16_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG16_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGB16_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGBA16_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    R8U = ...  # type: QAbstractTexture.TextureFormat
+    RG8U = ...  # type: QAbstractTexture.TextureFormat
+    RGB8U = ...  # type: QAbstractTexture.TextureFormat
+    RGBA8U = ...  # type: QAbstractTexture.TextureFormat
+    R16U = ...  # type: QAbstractTexture.TextureFormat
+    RG16U = ...  # type: QAbstractTexture.TextureFormat
+    RGB16U = ...  # type: QAbstractTexture.TextureFormat
+    RGBA16U = ...  # type: QAbstractTexture.TextureFormat
+    R32U = ...  # type: QAbstractTexture.TextureFormat
+    RG32U = ...  # type: QAbstractTexture.TextureFormat
+    RGB32U = ...  # type: QAbstractTexture.TextureFormat
+    RGBA32U = ...  # type: QAbstractTexture.TextureFormat
+    R8I = ...  # type: QAbstractTexture.TextureFormat
+    RG8I = ...  # type: QAbstractTexture.TextureFormat
+    RGB8I = ...  # type: QAbstractTexture.TextureFormat
+    RGBA8I = ...  # type: QAbstractTexture.TextureFormat
+    R16I = ...  # type: QAbstractTexture.TextureFormat
+    RG16I = ...  # type: QAbstractTexture.TextureFormat
+    RGB16I = ...  # type: QAbstractTexture.TextureFormat
+    RGBA16I = ...  # type: QAbstractTexture.TextureFormat
+    R32I = ...  # type: QAbstractTexture.TextureFormat
+    RG32I = ...  # type: QAbstractTexture.TextureFormat
+    RGB32I = ...  # type: QAbstractTexture.TextureFormat
+    RGBA32I = ...  # type: QAbstractTexture.TextureFormat
+    R16F = ...  # type: QAbstractTexture.TextureFormat
+    RG16F = ...  # type: QAbstractTexture.TextureFormat
+    RGB16F = ...  # type: QAbstractTexture.TextureFormat
+    RGBA16F = ...  # type: QAbstractTexture.TextureFormat
+    R32F = ...  # type: QAbstractTexture.TextureFormat
+    RG32F = ...  # type: QAbstractTexture.TextureFormat
+    RGB32F = ...  # type: QAbstractTexture.TextureFormat
+    RGBA32F = ...  # type: QAbstractTexture.TextureFormat
+    RGB9E5 = ...  # type: QAbstractTexture.TextureFormat
+    RG11B10F = ...  # type: QAbstractTexture.TextureFormat
+    RG3B2 = ...  # type: QAbstractTexture.TextureFormat
+    R5G6B5 = ...  # type: QAbstractTexture.TextureFormat
+    RGB5A1 = ...  # type: QAbstractTexture.TextureFormat
+    RGBA4 = ...  # type: QAbstractTexture.TextureFormat
+    RGB10A2 = ...  # type: QAbstractTexture.TextureFormat
+    D16 = ...  # type: QAbstractTexture.TextureFormat
+    D24 = ...  # type: QAbstractTexture.TextureFormat
+    D24S8 = ...  # type: QAbstractTexture.TextureFormat
+    D32 = ...  # type: QAbstractTexture.TextureFormat
+    D32F = ...  # type: QAbstractTexture.TextureFormat
+    D32FS8X24 = ...  # type: QAbstractTexture.TextureFormat
+    RGB_DXT1 = ...  # type: QAbstractTexture.TextureFormat
+    RGBA_DXT1 = ...  # type: QAbstractTexture.TextureFormat
+    RGBA_DXT3 = ...  # type: QAbstractTexture.TextureFormat
+    RGBA_DXT5 = ...  # type: QAbstractTexture.TextureFormat
+    R_ATI1N_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    R_ATI1N_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG_ATI2N_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG_ATI2N_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGB_BP_UNSIGNED_FLOAT = ...  # type: QAbstractTexture.TextureFormat
+    RGB_BP_SIGNED_FLOAT = ...  # type: QAbstractTexture.TextureFormat
+    RGB_BP_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    R11_EAC_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    R11_EAC_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG11_EAC_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    RG11_EAC_SNorm = ...  # type: QAbstractTexture.TextureFormat
+    RGB8_ETC2 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB8_ETC2 = ...  # type: QAbstractTexture.TextureFormat
+    RGB8_PunchThrough_Alpha1_ETC2 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB8_PunchThrough_Alpha1_ETC2 = ...  # type: QAbstractTexture.TextureFormat
+    RGBA8_ETC2_EAC = ...  # type: QAbstractTexture.TextureFormat
+    SRGB8_Alpha8_ETC2_EAC = ...  # type: QAbstractTexture.TextureFormat
+    RGB8_ETC1 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB8 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB8_Alpha8 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB_DXT1 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB_Alpha_DXT1 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB_Alpha_DXT3 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB_Alpha_DXT5 = ...  # type: QAbstractTexture.TextureFormat
+    SRGB_BP_UNorm = ...  # type: QAbstractTexture.TextureFormat
+    DepthFormat = ...  # type: QAbstractTexture.TextureFormat
+    AlphaFormat = ...  # type: QAbstractTexture.TextureFormat
+    RGBFormat = ...  # type: QAbstractTexture.TextureFormat
+    RGBAFormat = ...  # type: QAbstractTexture.TextureFormat
+    LuminanceFormat = ...  # type: QAbstractTexture.TextureFormat
+    LuminanceAlphaFormat = ...  # type: QAbstractTexture.TextureFormat
+    RGB10A2U = ...  # type: QAbstractTexture.TextureFormat
+
     class Target(int):
         TargetAutomatic = ... # type: QAbstractTexture.Target
         Target1D = ... # type: QAbstractTexture.Target
@@ -238,11 +382,29 @@ class QAbstractTexture(Qt3DCore.QNode):
         TargetRectangle = ... # type: QAbstractTexture.Target
         TargetBuffer = ... # type: QAbstractTexture.Target
 
+    TargetAutomatic = ...  # type: QAbstractTexture.Target
+    Target1D = ...  # type: QAbstractTexture.Target
+    Target1DArray = ...  # type: QAbstractTexture.Target
+    Target2D = ...  # type: QAbstractTexture.Target
+    Target2DArray = ...  # type: QAbstractTexture.Target
+    Target3D = ...  # type: QAbstractTexture.Target
+    TargetCubeMap = ...  # type: QAbstractTexture.Target
+    TargetCubeMapArray = ...  # type: QAbstractTexture.Target
+    Target2DMultisample = ...  # type: QAbstractTexture.Target
+    Target2DMultisampleArray = ...  # type: QAbstractTexture.Target
+    TargetRectangle = ...  # type: QAbstractTexture.Target
+    TargetBuffer = ...  # type: QAbstractTexture.Target
+
     class Status(int):
         None_ = ... # type: QAbstractTexture.Status
         Loading = ... # type: QAbstractTexture.Status
         Ready = ... # type: QAbstractTexture.Status
         Error = ... # type: QAbstractTexture.Status
+
+    None_ = ...  # type: QAbstractTexture.Status
+    Loading = ...  # type: QAbstractTexture.Status
+    Ready = ...  # type: QAbstractTexture.Status
+    Error = ...  # type: QAbstractTexture.Status
 
     @typing.overload
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
@@ -337,6 +499,15 @@ class QAlphaTest('QRenderState'):
         Greater = ... # type: QAlphaTest.AlphaFunction
         NotEqual = ... # type: QAlphaTest.AlphaFunction
 
+    Never = ...  # type: QAlphaTest.AlphaFunction
+    Always = ...  # type: QAlphaTest.AlphaFunction
+    Less = ...  # type: QAlphaTest.AlphaFunction
+    LessOrEqual = ...  # type: QAlphaTest.AlphaFunction
+    Equal = ...  # type: QAlphaTest.AlphaFunction
+    GreaterOrEqual = ...  # type: QAlphaTest.AlphaFunction
+    Greater = ...  # type: QAlphaTest.AlphaFunction
+    NotEqual = ...  # type: QAlphaTest.AlphaFunction
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def referenceValueChanged(self, referenceValue: float) -> None: ...
@@ -359,10 +530,24 @@ class QAttribute(Qt3DCore.QNode):
         Float = ... # type: QAttribute.VertexBaseType
         Double = ... # type: QAttribute.VertexBaseType
 
+    Byte = ...  # type: QAttribute.VertexBaseType
+    UnsignedByte = ...  # type: QAttribute.VertexBaseType
+    Short = ...  # type: QAttribute.VertexBaseType
+    UnsignedShort = ...  # type: QAttribute.VertexBaseType
+    Int = ...  # type: QAttribute.VertexBaseType
+    UnsignedInt = ...  # type: QAttribute.VertexBaseType
+    HalfFloat = ...  # type: QAttribute.VertexBaseType
+    Float = ...  # type: QAttribute.VertexBaseType
+    Double = ...  # type: QAttribute.VertexBaseType
+
     class AttributeType(int):
         VertexAttribute = ... # type: QAttribute.AttributeType
         IndexAttribute = ... # type: QAttribute.AttributeType
         DrawIndirectAttribute = ... # type: QAttribute.AttributeType
+
+    VertexAttribute = ...  # type: QAttribute.AttributeType
+    IndexAttribute = ...  # type: QAttribute.AttributeType
+    DrawIndirectAttribute = ...  # type: QAttribute.AttributeType
 
     @typing.overload
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
@@ -430,6 +615,12 @@ class QBlendEquation('QRenderState'):
         Min = ... # type: QBlendEquation.BlendFunction
         Max = ... # type: QBlendEquation.BlendFunction
 
+    Add = ...  # type: QBlendEquation.BlendFunction
+    Subtract = ...  # type: QBlendEquation.BlendFunction
+    ReverseSubtract = ...  # type: QBlendEquation.BlendFunction
+    Min = ...  # type: QBlendEquation.BlendFunction
+    Max = ...  # type: QBlendEquation.BlendFunction
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def blendFunctionChanged(self, blendFunction: 'QBlendEquation.BlendFunction') -> None: ...
@@ -459,6 +650,27 @@ class QBlendEquationArguments('QRenderState'):
         OneMinusSource1Alpha = ... # type: QBlendEquationArguments.Blending
         OneMinusSource1Color0 = ... # type: QBlendEquationArguments.Blending
         OneMinusSource1Color = ... # type: QBlendEquationArguments.Blending
+
+    Zero = ...  # type: QBlendEquationArguments.Blending
+    One = ...  # type: QBlendEquationArguments.Blending
+    SourceColor = ...  # type: QBlendEquationArguments.Blending
+    SourceAlpha = ...  # type: QBlendEquationArguments.Blending
+    Source1Alpha = ...  # type: QBlendEquationArguments.Blending
+    Source1Color = ...  # type: QBlendEquationArguments.Blending
+    DestinationColor = ...  # type: QBlendEquationArguments.Blending
+    DestinationAlpha = ...  # type: QBlendEquationArguments.Blending
+    SourceAlphaSaturate = ...  # type: QBlendEquationArguments.Blending
+    ConstantColor = ...  # type: QBlendEquationArguments.Blending
+    ConstantAlpha = ...  # type: QBlendEquationArguments.Blending
+    OneMinusSourceColor = ...  # type: QBlendEquationArguments.Blending
+    OneMinusSourceAlpha = ...  # type: QBlendEquationArguments.Blending
+    OneMinusDestinationAlpha = ...  # type: QBlendEquationArguments.Blending
+    OneMinusDestinationColor = ...  # type: QBlendEquationArguments.Blending
+    OneMinusConstantColor = ...  # type: QBlendEquationArguments.Blending
+    OneMinusConstantAlpha = ...  # type: QBlendEquationArguments.Blending
+    OneMinusSource1Alpha = ...  # type: QBlendEquationArguments.Blending
+    OneMinusSource1Color0 = ...  # type: QBlendEquationArguments.Blending
+    OneMinusSource1Color = ...  # type: QBlendEquationArguments.Blending
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -494,6 +706,9 @@ class QBlitFramebuffer('QFrameGraphNode'):
         Nearest = ... # type: QBlitFramebuffer.InterpolationMethod
         Linear = ... # type: QBlitFramebuffer.InterpolationMethod
 
+    Nearest = ...  # type: QBlitFramebuffer.InterpolationMethod
+    Linear = ...  # type: QBlitFramebuffer.InterpolationMethod
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def interpolationMethodChanged(self) -> None: ...
@@ -525,6 +740,10 @@ class QBuffer(Qt3DCore.QNode):
         Read = ... # type: QBuffer.AccessType
         ReadWrite = ... # type: QBuffer.AccessType
 
+    Write = ...  # type: QBuffer.AccessType
+    Read = ...  # type: QBuffer.AccessType
+    ReadWrite = ...  # type: QBuffer.AccessType
+
     class UsageType(int):
         StreamDraw = ... # type: QBuffer.UsageType
         StreamRead = ... # type: QBuffer.UsageType
@@ -536,6 +755,16 @@ class QBuffer(Qt3DCore.QNode):
         DynamicRead = ... # type: QBuffer.UsageType
         DynamicCopy = ... # type: QBuffer.UsageType
 
+    StreamDraw = ...  # type: QBuffer.UsageType
+    StreamRead = ...  # type: QBuffer.UsageType
+    StreamCopy = ...  # type: QBuffer.UsageType
+    StaticDraw = ...  # type: QBuffer.UsageType
+    StaticRead = ...  # type: QBuffer.UsageType
+    StaticCopy = ...  # type: QBuffer.UsageType
+    DynamicDraw = ...  # type: QBuffer.UsageType
+    DynamicRead = ...  # type: QBuffer.UsageType
+    DynamicCopy = ...  # type: QBuffer.UsageType
+
     class BufferType(int):
         VertexBuffer = ... # type: QBuffer.BufferType
         IndexBuffer = ... # type: QBuffer.BufferType
@@ -544,6 +773,14 @@ class QBuffer(Qt3DCore.QNode):
         UniformBuffer = ... # type: QBuffer.BufferType
         ShaderStorageBuffer = ... # type: QBuffer.BufferType
         DrawIndirectBuffer = ... # type: QBuffer.BufferType
+
+    VertexBuffer = ...  # type: QBuffer.BufferType
+    IndexBuffer = ...  # type: QBuffer.BufferType
+    PixelPackBuffer = ...  # type: QBuffer.BufferType
+    PixelUnpackBuffer = ...  # type: QBuffer.BufferType
+    UniformBuffer = ...  # type: QBuffer.BufferType
+    ShaderStorageBuffer = ...  # type: QBuffer.BufferType
+    DrawIndirectBuffer = ...  # type: QBuffer.BufferType
 
     @typing.overload
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
@@ -580,6 +817,9 @@ class QCamera(Qt3DCore.QEntity):
     class CameraTranslationOption(int):
         TranslateViewCenter = ... # type: QCamera.CameraTranslationOption
         DontTranslateViewCenter = ... # type: QCamera.CameraTranslationOption
+
+    TranslateViewCenter = ...  # type: QCamera.CameraTranslationOption
+    DontTranslateViewCenter = ...  # type: QCamera.CameraTranslationOption
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -663,6 +903,11 @@ class QCameraLens(Qt3DCore.QComponent):
         FrustumProjection = ... # type: QCameraLens.ProjectionType
         CustomProjection = ... # type: QCameraLens.ProjectionType
 
+    OrthographicProjection = ...  # type: QCameraLens.ProjectionType
+    PerspectiveProjection = ...  # type: QCameraLens.ProjectionType
+    FrustumProjection = ...  # type: QCameraLens.ProjectionType
+    CustomProjection = ...  # type: QCameraLens.ProjectionType
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def viewSphere(self, center: QtGui.QVector3D, radius: float) -> None: ...
@@ -725,6 +970,15 @@ class QClearBuffers('QFrameGraphNode'):
         ColorDepthStencilBuffer = ... # type: QClearBuffers.BufferType
         AllBuffers = ... # type: QClearBuffers.BufferType
 
+    None_ = ...  # type: QClearBuffers.BufferType
+    ColorBuffer = ...  # type: QClearBuffers.BufferType
+    DepthBuffer = ...  # type: QClearBuffers.BufferType
+    StencilBuffer = ...  # type: QClearBuffers.BufferType
+    DepthStencilBuffer = ...  # type: QClearBuffers.BufferType
+    ColorDepthBuffer = ...  # type: QClearBuffers.BufferType
+    ColorDepthStencilBuffer = ...  # type: QClearBuffers.BufferType
+    AllBuffers = ...  # type: QClearBuffers.BufferType
+
     class BufferTypeFlags(sip.simplewrapper):
 
         @typing.overload
@@ -778,6 +1032,9 @@ class QComputeCommand(Qt3DCore.QComponent):
         Continuous = ... # type: QComputeCommand.RunType
         Manual = ... # type: QComputeCommand.RunType
 
+    Continuous = ...  # type: QComputeCommand.RunType
+    Manual = ...  # type: QComputeCommand.RunType
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def runTypeChanged(self) -> None: ...
@@ -822,6 +1079,11 @@ class QCullFace('QRenderState'):
         Back = ... # type: QCullFace.CullingMode
         FrontAndBack = ... # type: QCullFace.CullingMode
 
+    NoCulling = ...  # type: QCullFace.CullingMode
+    Front = ...  # type: QCullFace.CullingMode
+    Back = ...  # type: QCullFace.CullingMode
+    FrontAndBack = ...  # type: QCullFace.CullingMode
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def modeChanged(self, mode: 'QCullFace.CullingMode') -> None: ...
@@ -850,6 +1112,15 @@ class QDepthTest('QRenderState'):
         GreaterOrEqual = ... # type: QDepthTest.DepthFunction
         Greater = ... # type: QDepthTest.DepthFunction
         NotEqual = ... # type: QDepthTest.DepthFunction
+
+    Never = ...  # type: QDepthTest.DepthFunction
+    Always = ...  # type: QDepthTest.DepthFunction
+    Less = ...  # type: QDepthTest.DepthFunction
+    LessOrEqual = ...  # type: QDepthTest.DepthFunction
+    Equal = ...  # type: QDepthTest.DepthFunction
+    GreaterOrEqual = ...  # type: QDepthTest.DepthFunction
+    Greater = ...  # type: QDepthTest.DepthFunction
+    NotEqual = ...  # type: QDepthTest.DepthFunction
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -922,6 +1193,9 @@ class QFrontFace('QRenderState'):
         ClockWise = ... # type: QFrontFace.WindingDirection
         CounterClockWise = ... # type: QFrontFace.WindingDirection
 
+    ClockWise = ...  # type: QFrontFace.WindingDirection
+    CounterClockWise = ...  # type: QFrontFace.WindingDirection
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def directionChanged(self, direction: 'QFrontFace.WindingDirection') -> None: ...
@@ -967,6 +1241,19 @@ class QGeometryRenderer(Qt3DCore.QComponent):
         LineStripAdjacency = ... # type: QGeometryRenderer.PrimitiveType
         TriangleStripAdjacency = ... # type: QGeometryRenderer.PrimitiveType
         Patches = ... # type: QGeometryRenderer.PrimitiveType
+
+    Points = ...  # type: QGeometryRenderer.PrimitiveType
+    Lines = ...  # type: QGeometryRenderer.PrimitiveType
+    LineLoop = ...  # type: QGeometryRenderer.PrimitiveType
+    LineStrip = ...  # type: QGeometryRenderer.PrimitiveType
+    Triangles = ...  # type: QGeometryRenderer.PrimitiveType
+    TriangleStrip = ...  # type: QGeometryRenderer.PrimitiveType
+    TriangleFan = ...  # type: QGeometryRenderer.PrimitiveType
+    LinesAdjacency = ...  # type: QGeometryRenderer.PrimitiveType
+    TrianglesAdjacency = ...  # type: QGeometryRenderer.PrimitiveType
+    LineStripAdjacency = ...  # type: QGeometryRenderer.PrimitiveType
+    TriangleStripAdjacency = ...  # type: QGeometryRenderer.PrimitiveType
+    Patches = ...  # type: QGeometryRenderer.PrimitiveType
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1014,12 +1301,22 @@ class QGraphicsApiFilter(QtCore.QObject):
         CoreProfile = ... # type: QGraphicsApiFilter.OpenGLProfile
         CompatibilityProfile = ... # type: QGraphicsApiFilter.OpenGLProfile
 
+    NoProfile = ...  # type: QGraphicsApiFilter.OpenGLProfile
+    CoreProfile = ...  # type: QGraphicsApiFilter.OpenGLProfile
+    CompatibilityProfile = ...  # type: QGraphicsApiFilter.OpenGLProfile
+
     class Api(int):
         OpenGLES = ... # type: QGraphicsApiFilter.Api
         OpenGL = ... # type: QGraphicsApiFilter.Api
         Vulkan = ... # type: QGraphicsApiFilter.Api
         DirectX = ... # type: QGraphicsApiFilter.Api
         RHI = ... # type: QGraphicsApiFilter.Api
+
+    OpenGLES = ...  # type: QGraphicsApiFilter.Api
+    OpenGL = ...  # type: QGraphicsApiFilter.Api
+    Vulkan = ...  # type: QGraphicsApiFilter.Api
+    DirectX = ...  # type: QGraphicsApiFilter.Api
+    RHI = ...  # type: QGraphicsApiFilter.Api
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1059,6 +1356,11 @@ class QLayerFilter('QFrameGraphNode'):
         DiscardAnyMatchingLayers = ... # type: QLayerFilter.FilterMode
         DiscardAllMatchingLayers = ... # type: QLayerFilter.FilterMode
 
+    AcceptAnyMatchingLayers = ...  # type: QLayerFilter.FilterMode
+    AcceptAllMatchingLayers = ...  # type: QLayerFilter.FilterMode
+    DiscardAnyMatchingLayers = ...  # type: QLayerFilter.FilterMode
+    DiscardAllMatchingLayers = ...  # type: QLayerFilter.FilterMode
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def filterModeChanged(self, filterMode: 'QLayerFilter.FilterMode') -> None: ...
@@ -1073,6 +1375,9 @@ class QLevelOfDetail(Qt3DCore.QComponent):
     class ThresholdType(int):
         DistanceToCameraThreshold = ... # type: QLevelOfDetail.ThresholdType
         ProjectedScreenPixelSizeThreshold = ... # type: QLevelOfDetail.ThresholdType
+
+    DistanceToCameraThreshold = ...  # type: QLevelOfDetail.ThresholdType
+    ProjectedScreenPixelSizeThreshold = ...  # type: QLevelOfDetail.ThresholdType
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1153,6 +1458,23 @@ class QMemoryBarrier('QFrameGraphNode'):
         QueryBuffer = ... # type: QMemoryBarrier.Operation
         All = ... # type: QMemoryBarrier.Operation
 
+    None_ = ...  # type: QMemoryBarrier.Operation
+    VertexAttributeArray = ...  # type: QMemoryBarrier.Operation
+    ElementArray = ...  # type: QMemoryBarrier.Operation
+    Uniform = ...  # type: QMemoryBarrier.Operation
+    TextureFetch = ...  # type: QMemoryBarrier.Operation
+    ShaderImageAccess = ...  # type: QMemoryBarrier.Operation
+    Command = ...  # type: QMemoryBarrier.Operation
+    PixelBuffer = ...  # type: QMemoryBarrier.Operation
+    TextureUpdate = ...  # type: QMemoryBarrier.Operation
+    BufferUpdate = ...  # type: QMemoryBarrier.Operation
+    FrameBuffer = ...  # type: QMemoryBarrier.Operation
+    TransformFeedback = ...  # type: QMemoryBarrier.Operation
+    AtomicCounter = ...  # type: QMemoryBarrier.Operation
+    ShaderStorage = ...  # type: QMemoryBarrier.Operation
+    QueryBuffer = ...  # type: QMemoryBarrier.Operation
+    All = ...  # type: QMemoryBarrier.Operation
+
     class Operations(sip.simplewrapper):
 
         @typing.overload
@@ -1181,6 +1503,11 @@ class QMesh('QGeometryRenderer'):
         Loading = ... # type: QMesh.Status
         Ready = ... # type: QMesh.Status
         Error = ... # type: QMesh.Status
+
+    None_ = ...  # type: QMesh.Status
+    Loading = ...  # type: QMesh.Status
+    Ready = ...  # type: QMesh.Status
+    Error = ...  # type: QMesh.Status
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1277,12 +1604,25 @@ class QPickEvent(QtCore.QObject):
         MetaModifier = ... # type: QPickEvent.Modifiers
         KeypadModifier = ... # type: QPickEvent.Modifiers
 
+    NoModifier = ...  # type: QPickEvent.Modifiers
+    ShiftModifier = ...  # type: QPickEvent.Modifiers
+    ControlModifier = ...  # type: QPickEvent.Modifiers
+    AltModifier = ...  # type: QPickEvent.Modifiers
+    MetaModifier = ...  # type: QPickEvent.Modifiers
+    KeypadModifier = ...  # type: QPickEvent.Modifiers
+
     class Buttons(int):
         LeftButton = ... # type: QPickEvent.Buttons
         RightButton = ... # type: QPickEvent.Buttons
         MiddleButton = ... # type: QPickEvent.Buttons
         BackButton = ... # type: QPickEvent.Buttons
         NoButton = ... # type: QPickEvent.Buttons
+
+    LeftButton = ...  # type: QPickEvent.Buttons
+    RightButton = ...  # type: QPickEvent.Buttons
+    MiddleButton = ...  # type: QPickEvent.Buttons
+    BackButton = ...  # type: QPickEvent.Buttons
+    NoButton = ...  # type: QPickEvent.Buttons
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1311,10 +1651,18 @@ class QPickingSettings(Qt3DCore.QNode):
         BackFace = ... # type: QPickingSettings.FaceOrientationPickingMode
         FrontAndBackFace = ... # type: QPickingSettings.FaceOrientationPickingMode
 
+    FrontFace = ...  # type: QPickingSettings.FaceOrientationPickingMode
+    BackFace = ...  # type: QPickingSettings.FaceOrientationPickingMode
+    FrontAndBackFace = ...  # type: QPickingSettings.FaceOrientationPickingMode
+
     class PickResultMode(int):
         NearestPick = ... # type: QPickingSettings.PickResultMode
         AllPicks = ... # type: QPickingSettings.PickResultMode
         NearestPriorityPick = ... # type: QPickingSettings.PickResultMode
+
+    NearestPick = ...  # type: QPickingSettings.PickResultMode
+    AllPicks = ...  # type: QPickingSettings.PickResultMode
+    NearestPriorityPick = ...  # type: QPickingSettings.PickResultMode
 
     class PickMethod(int):
         BoundingVolumePicking = ... # type: QPickingSettings.PickMethod
@@ -1322,6 +1670,12 @@ class QPickingSettings(Qt3DCore.QNode):
         LinePicking = ... # type: QPickingSettings.PickMethod
         PointPicking = ... # type: QPickingSettings.PickMethod
         PrimitivePicking = ... # type: QPickingSettings.PickMethod
+
+    BoundingVolumePicking = ...  # type: QPickingSettings.PickMethod
+    TrianglePicking = ...  # type: QPickingSettings.PickMethod
+    LinePicking = ...  # type: QPickingSettings.PickMethod
+    PointPicking = ...  # type: QPickingSettings.PickMethod
+    PrimitivePicking = ...  # type: QPickingSettings.PickMethod
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1393,6 +1747,9 @@ class QPointSize('QRenderState'):
         Fixed = ... # type: QPointSize.SizeMode
         Programmable = ... # type: QPointSize.SizeMode
 
+    Fixed = ... # type: QPointSize.SizeMode
+    Programmable = ... # type: QPointSize.SizeMode
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def valueChanged(self, value: float) -> None: ...
@@ -1431,10 +1788,18 @@ class QRasterMode('QRenderState'):
         Back = ... # type: QRasterMode.FaceMode
         FrontAndBack = ... # type: QRasterMode.FaceMode
 
+    Front = ...  # type: QRasterMode.FaceMode
+    Back = ...  # type: QRasterMode.FaceMode
+    FrontAndBack = ...  # type: QRasterMode.FaceMode
+
     class RasterMode(int):
         Points = ... # type: QRasterMode.RasterMode
         Lines = ... # type: QRasterMode.RasterMode
         Fill = ... # type: QRasterMode.RasterMode
+
+    Points = ...  # type: QRasterMode.RasterMode
+    Lines = ...  # type: QRasterMode.RasterMode
+    Fill = ...  # type: QRasterMode.RasterMode
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1471,6 +1836,11 @@ class QRayCasterHit(sip.simplewrapper):
         PointHit = ... # type: QRayCasterHit.HitType
         EntityHit = ... # type: QRayCasterHit.HitType
 
+    TriangleHit = ...  # type: QRayCasterHit.HitType
+    LineHit = ...  # type: QRayCasterHit.HitType
+    PointHit = ...  # type: QRayCasterHit.HitType
+    EntityHit = ...  # type: QRayCasterHit.HitType
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -1497,6 +1867,9 @@ class QRenderAspect(Qt3DCore.QAbstractAspect):
         Synchronous = ... # type: QRenderAspect.RenderType
         Threaded = ... # type: QRenderAspect.RenderType
 
+    Synchronous = ...  # type: QRenderAspect.RenderType
+    Threaded = ...  # type: QRenderAspect.RenderType
+
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -1509,12 +1882,22 @@ class QRenderCapabilities(QtCore.QObject):
         CoreProfile = ... # type: QRenderCapabilities.Profile
         CompatibilityProfile = ... # type: QRenderCapabilities.Profile
 
+    NoProfile = ...  # type: QRenderCapabilities.Profile
+    CoreProfile = ...  # type: QRenderCapabilities.Profile
+    CompatibilityProfile = ...  # type: QRenderCapabilities.Profile
+
     class API(int):
         OpenGL = ... # type: QRenderCapabilities.API
         OpenGLES = ... # type: QRenderCapabilities.API
         Vulkan = ... # type: QRenderCapabilities.API
         DirectX = ... # type: QRenderCapabilities.API
         RHI = ... # type: QRenderCapabilities.API
+
+    OpenGL = ...  # type: QRenderCapabilities.API
+    OpenGLES = ...  # type: QRenderCapabilities.API
+    Vulkan = ...  # type: QRenderCapabilities.API
+    DirectX = ...  # type: QRenderCapabilities.API
+    RHI = ...  # type: QRenderCapabilities.API
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1606,6 +1989,9 @@ class QRenderSettings(Qt3DCore.QComponent):
         OnDemand = ... # type: QRenderSettings.RenderPolicy
         Always = ... # type: QRenderSettings.RenderPolicy
 
+    OnDemand = ...  # type: QRenderSettings.RenderPolicy
+    Always = ...  # type: QRenderSettings.RenderPolicy
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def renderPolicyChanged(self, renderPolicy: 'QRenderSettings.RenderPolicy') -> None: ...
@@ -1670,6 +2056,26 @@ class QRenderTargetOutput(Qt3DCore.QNode):
         Stencil = ... # type: QRenderTargetOutput.AttachmentPoint
         DepthStencil = ... # type: QRenderTargetOutput.AttachmentPoint
 
+    Color0 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color1 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color2 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color3 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color4 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color5 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color6 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color7 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color8 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color9 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color10 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color11 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color12 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color13 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color14 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Color15 = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Depth = ...  # type: QRenderTargetOutput.AttachmentPoint
+    Stencil = ...  # type: QRenderTargetOutput.AttachmentPoint
+    DepthStencil = ...  # type: QRenderTargetOutput.AttachmentPoint
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def faceChanged(self, face: 'QAbstractTexture.CubeMapFace') -> None: ...
@@ -1707,11 +2113,23 @@ class QSceneLoader(Qt3DCore.QComponent):
         LightComponent = ... # type: QSceneLoader.ComponentType
         CameraLensComponent = ... # type: QSceneLoader.ComponentType
 
+    UnknownComponent = ...  # type: QSceneLoader.ComponentType
+    GeometryRendererComponent = ...  # type: QSceneLoader.ComponentType
+    TransformComponent = ...  # type: QSceneLoader.ComponentType
+    MaterialComponent = ...  # type: QSceneLoader.ComponentType
+    LightComponent = ...  # type: QSceneLoader.ComponentType
+    CameraLensComponent = ...  # type: QSceneLoader.ComponentType
+
     class Status(int):
         None_ = ... # type: QSceneLoader.Status
         Loading = ... # type: QSceneLoader.Status
         Ready = ... # type: QSceneLoader.Status
         Error = ... # type: QSceneLoader.Status
+
+    None_ = ...  # type: QSceneLoader.Status
+    Loading = ...  # type: QSceneLoader.Status
+    Ready = ...  # type: QSceneLoader.Status
+    Error = ...  # type: QSceneLoader.Status
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1763,6 +2181,9 @@ class QSetFence('QFrameGraphNode'):
     class HandleType(int):
         NoHandle = ... # type: QSetFence.HandleType
         OpenGLFenceId = ... # type: QSetFence.HandleType
+
+    NoHandle = ...  # type: QSetFence.HandleType
+    OpenGLFenceId = ...  # type: QSetFence.HandleType
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1828,10 +2249,56 @@ class QShaderImage(Qt3DCore.QNode):
         RGB10A2 = ... # type: QShaderImage.ImageFormat
         RGB10A2U = ... # type: QShaderImage.ImageFormat
 
+    NoFormat = ...  # type: QShaderImage.ImageFormat
+    Automatic = ...  # type: QShaderImage.ImageFormat
+    R8_UNorm = ...  # type: QShaderImage.ImageFormat
+    RG8_UNorm = ...  # type: QShaderImage.ImageFormat
+    RGBA8_UNorm = ...  # type: QShaderImage.ImageFormat
+    R16_UNorm = ...  # type: QShaderImage.ImageFormat
+    RG16_UNorm = ...  # type: QShaderImage.ImageFormat
+    RGBA16_UNorm = ...  # type: QShaderImage.ImageFormat
+    R8_SNorm = ...  # type: QShaderImage.ImageFormat
+    RG8_SNorm = ...  # type: QShaderImage.ImageFormat
+    RGBA8_SNorm = ...  # type: QShaderImage.ImageFormat
+    R16_SNorm = ...  # type: QShaderImage.ImageFormat
+    RG16_SNorm = ...  # type: QShaderImage.ImageFormat
+    RGBA16_SNorm = ...  # type: QShaderImage.ImageFormat
+    R8U = ...  # type: QShaderImage.ImageFormat
+    RG8U = ...  # type: QShaderImage.ImageFormat
+    RGBA8U = ...  # type: QShaderImage.ImageFormat
+    R16U = ...  # type: QShaderImage.ImageFormat
+    RG16U = ...  # type: QShaderImage.ImageFormat
+    RGBA16U = ...  # type: QShaderImage.ImageFormat
+    R32U = ...  # type: QShaderImage.ImageFormat
+    RG32U = ...  # type: QShaderImage.ImageFormat
+    RGBA32U = ...  # type: QShaderImage.ImageFormat
+    R8I = ...  # type: QShaderImage.ImageFormat
+    RG8I = ...  # type: QShaderImage.ImageFormat
+    RGBA8I = ...  # type: QShaderImage.ImageFormat
+    R16I = ...  # type: QShaderImage.ImageFormat
+    RG16I = ...  # type: QShaderImage.ImageFormat
+    RGBA16I = ...  # type: QShaderImage.ImageFormat
+    R32I = ...  # type: QShaderImage.ImageFormat
+    RG32I = ...  # type: QShaderImage.ImageFormat
+    RGBA32I = ...  # type: QShaderImage.ImageFormat
+    R16F = ...  # type: QShaderImage.ImageFormat
+    RG16F = ...  # type: QShaderImage.ImageFormat
+    RGBA16F = ...  # type: QShaderImage.ImageFormat
+    R32F = ...  # type: QShaderImage.ImageFormat
+    RG32F = ...  # type: QShaderImage.ImageFormat
+    RGBA32F = ...  # type: QShaderImage.ImageFormat
+    RG11B10F = ...  # type: QShaderImage.ImageFormat
+    RGB10A2 = ...  # type: QShaderImage.ImageFormat
+    RGB10A2U = ...  # type: QShaderImage.ImageFormat
+
     class Access(int):
         ReadOnly = ... # type: QShaderImage.Access
         WriteOnly = ... # type: QShaderImage.Access
         ReadWrite = ... # type: QShaderImage.Access
+
+    ReadOnly = ...  # type: QShaderImage.Access
+    WriteOnly = ...  # type: QShaderImage.Access
+    ReadWrite = ...  # type: QShaderImage.Access
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1860,10 +2327,17 @@ class QShaderProgram(Qt3DCore.QNode):
         GLSL = ... # type: QShaderProgram.Format
         SPIRV = ... # type: QShaderProgram.Format
 
+    GLSL = ...  # type: QShaderProgram.Format
+    SPIRV = ...  # type: QShaderProgram.Format
+
     class Status(int):
         NotReady = ... # type: QShaderProgram.Status
         Ready = ... # type: QShaderProgram.Status
         Error = ... # type: QShaderProgram.Status
+
+    NotReady = ...  # type: QShaderProgram.Status
+    Ready = ...  # type: QShaderProgram.Status
+    Error = ...  # type: QShaderProgram.Status
 
     class ShaderType(int):
         Vertex = ... # type: QShaderProgram.ShaderType
@@ -1872,6 +2346,13 @@ class QShaderProgram(Qt3DCore.QNode):
         TessellationEvaluation = ... # type: QShaderProgram.ShaderType
         Geometry = ... # type: QShaderProgram.ShaderType
         Compute = ... # type: QShaderProgram.ShaderType
+
+    Vertex = ...  # type: QShaderProgram.ShaderType
+    Fragment = ...  # type: QShaderProgram.ShaderType
+    TessellationControl = ...  # type: QShaderProgram.ShaderType
+    TessellationEvaluation = ...  # type: QShaderProgram.ShaderType
+    Geometry = ...  # type: QShaderProgram.ShaderType
+    Compute = ...  # type: QShaderProgram.ShaderType
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1958,6 +2439,13 @@ class QSortPolicy('QFrameGraphNode'):
         Texture = ... # type: QSortPolicy.SortType
         Uniform = ... # type: QSortPolicy.SortType
 
+    StateChangeCost = ...  # type: QSortPolicy.SortType
+    BackToFront = ...  # type: QSortPolicy.SortType
+    Material = ...  # type: QSortPolicy.SortType
+    FrontToBack = ...  # type: QSortPolicy.SortType
+    Texture = ...  # type: QSortPolicy.SortType
+    Uniform = ...  # type: QSortPolicy.SortType
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     @typing.overload
@@ -2021,10 +2509,23 @@ class QStencilOperationArguments(QtCore.QObject):
         DecrementWrap = ... # type: QStencilOperationArguments.Operation
         Invert = ... # type: QStencilOperationArguments.Operation
 
+    Zero = ...  # type: QStencilOperationArguments.Operation
+    Keep = ...  # type: QStencilOperationArguments.Operation
+    Replace = ...  # type: QStencilOperationArguments.Operation
+    Increment = ...  # type: QStencilOperationArguments.Operation
+    Decrement = ...  # type: QStencilOperationArguments.Operation
+    IncrementWrap = ...  # type: QStencilOperationArguments.Operation
+    DecrementWrap = ...  # type: QStencilOperationArguments.Operation
+    Invert = ...  # type: QStencilOperationArguments.Operation
+
     class FaceMode(int):
         Front = ... # type: QStencilOperationArguments.FaceMode
         Back = ... # type: QStencilOperationArguments.FaceMode
         FrontAndBack = ... # type: QStencilOperationArguments.FaceMode
+
+    Front = ...  # type: QStencilOperationArguments.FaceMode
+    Back = ...  # type: QStencilOperationArguments.FaceMode
+    FrontAndBack = ...  # type: QStencilOperationArguments.FaceMode
 
     def faceModeChanged(self, faceMode: 'QStencilOperationArguments.FaceMode') -> None: ...
     def allTestsPassOperationChanged(self, stencilDepthPass: 'QStencilOperationArguments.Operation') -> None: ...
@@ -2057,10 +2558,23 @@ class QStencilTestArguments(QtCore.QObject):
         Greater = ... # type: QStencilTestArguments.StencilFunction
         NotEqual = ... # type: QStencilTestArguments.StencilFunction
 
+    Never = ...  # type: QStencilTestArguments.StencilFunction
+    Always = ...  # type: QStencilTestArguments.StencilFunction
+    Less = ...  # type: QStencilTestArguments.StencilFunction
+    LessOrEqual = ...  # type: QStencilTestArguments.StencilFunction
+    Equal = ...  # type: QStencilTestArguments.StencilFunction
+    GreaterOrEqual = ...  # type: QStencilTestArguments.StencilFunction
+    Greater = ...  # type: QStencilTestArguments.StencilFunction
+    NotEqual = ...  # type: QStencilTestArguments.StencilFunction
+
     class StencilFaceMode(int):
         Front = ... # type: QStencilTestArguments.StencilFaceMode
         Back = ... # type: QStencilTestArguments.StencilFaceMode
         FrontAndBack = ... # type: QStencilTestArguments.StencilFaceMode
+
+    Front = ...  # type: QStencilTestArguments.StencilFaceMode
+    Back = ...  # type: QStencilTestArguments.StencilFaceMode
+    FrontAndBack = ...  # type: QStencilTestArguments.StencilFaceMode
 
     def faceModeChanged(self, faceMode: 'QStencilTestArguments.StencilFaceMode') -> None: ...
     def referenceValueChanged(self, referenceValue: int) -> None: ...
@@ -2079,6 +2593,9 @@ class QSubtreeEnabler('QFrameGraphNode'):
     class Enablement(int):
         Persistent = ... # type: QSubtreeEnabler.Enablement
         SingleShot = ... # type: QSubtreeEnabler.Enablement
+
+    Persistent = ...  # type: QSubtreeEnabler.Enablement
+    SingleShot = ...  # type: QSubtreeEnabler.Enablement
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -2251,6 +2768,11 @@ class QTextureImage('QAbstractTextureImage'):
         Ready = ... # type: QTextureImage.Status
         Error = ... # type: QTextureImage.Status
 
+    None_ = ...  # type: QTextureImage.Status
+    Loading = ...  # type: QTextureImage.Status
+    Ready = ...  # type: QTextureImage.Status
+    Error = ...  # type: QTextureImage.Status
+
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
     def mirroredChanged(self, mirrored: bool) -> None: ...
@@ -2309,6 +2831,11 @@ class QTextureWrapMode(QtCore.QObject):
         ClampToEdge = ... # type: QTextureWrapMode.WrapMode
         ClampToBorder = ... # type: QTextureWrapMode.WrapMode
 
+    Repeat = ...  # type: QTextureWrapMode.WrapMode
+    MirroredRepeat = ...  # type: QTextureWrapMode.WrapMode
+    ClampToEdge = ...  # type: QTextureWrapMode.WrapMode
+    ClampToBorder = ...  # type: QTextureWrapMode.WrapMode
+
     @typing.overload
     def __init__(self, wrapMode: 'QTextureWrapMode.WrapMode' = ..., parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -2340,6 +2867,9 @@ class QWaitFence('QFrameGraphNode'):
     class HandleType(int):
         NoHandle = ... # type: QWaitFence.HandleType
         OpenGLFenceId = ... # type: QWaitFence.HandleType
+
+    NoHandle = ...  # type: QWaitFence.HandleType
+    OpenGLFenceId = ...  # type: QWaitFence.HandleType
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 

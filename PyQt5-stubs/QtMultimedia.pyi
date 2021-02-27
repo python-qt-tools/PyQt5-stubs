@@ -49,6 +49,11 @@ class QAbstractVideoBuffer(sip.simplewrapper):
         WriteOnly = ... # type: QAbstractVideoBuffer.MapMode
         ReadWrite = ... # type: QAbstractVideoBuffer.MapMode
 
+    NotMapped = ...  # type: QAbstractVideoBuffer.MapMode
+    ReadOnly = ...  # type: QAbstractVideoBuffer.MapMode
+    WriteOnly = ...  # type: QAbstractVideoBuffer.MapMode
+    ReadWrite = ...  # type: QAbstractVideoBuffer.MapMode
+
     class HandleType(int):
         NoHandle = ... # type: QAbstractVideoBuffer.HandleType
         GLTextureHandle = ... # type: QAbstractVideoBuffer.HandleType
@@ -57,6 +62,14 @@ class QAbstractVideoBuffer(sip.simplewrapper):
         QPixmapHandle = ... # type: QAbstractVideoBuffer.HandleType
         EGLImageHandle = ... # type: QAbstractVideoBuffer.HandleType
         UserHandle = ... # type: QAbstractVideoBuffer.HandleType
+
+    NoHandle = ...  # type: QAbstractVideoBuffer.HandleType
+    GLTextureHandle = ...  # type: QAbstractVideoBuffer.HandleType
+    XvShmImageHandle = ...  # type: QAbstractVideoBuffer.HandleType
+    CoreImageHandle = ...  # type: QAbstractVideoBuffer.HandleType
+    QPixmapHandle = ...  # type: QAbstractVideoBuffer.HandleType
+    EGLImageHandle = ...  # type: QAbstractVideoBuffer.HandleType
+    UserHandle = ...  # type: QAbstractVideoBuffer.HandleType
 
     def __init__(self, type: 'QAbstractVideoBuffer.HandleType') -> None: ...
 
@@ -72,6 +85,8 @@ class QVideoFilterRunnable(sip.simplewrapper):
 
     class RunFlag(int):
         LastInChain = ... # type: QVideoFilterRunnable.RunFlag
+
+    LastInChain = ...  # type: QVideoFilterRunnable.RunFlag
 
     class RunFlags(sip.simplewrapper):
 
@@ -114,6 +129,12 @@ class QAbstractVideoSurface(QtCore.QObject):
         StoppedError = ... # type: QAbstractVideoSurface.Error
         ResourceError = ... # type: QAbstractVideoSurface.Error
 
+    NoError = ...  # type: QAbstractVideoSurface.Error
+    UnsupportedFormatError = ...  # type: QAbstractVideoSurface.Error
+    IncorrectFormatError = ...  # type: QAbstractVideoSurface.Error
+    StoppedError = ...  # type: QAbstractVideoSurface.Error
+    ResourceError = ...  # type: QAbstractVideoSurface.Error
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def nativeResolutionChanged(self, a0: QtCore.QSize) -> None: ...
@@ -142,6 +163,11 @@ class QAudio(sip.simplewrapper):
         LogarithmicVolumeScale = ... # type: QAudio.VolumeScale
         DecibelVolumeScale = ... # type: QAudio.VolumeScale
 
+    LinearVolumeScale = ...  # type: QAudio.VolumeScale
+    CubicVolumeScale = ...  # type: QAudio.VolumeScale
+    LogarithmicVolumeScale = ...  # type: QAudio.VolumeScale
+    DecibelVolumeScale = ...  # type: QAudio.VolumeScale
+
     class Role(int):
         UnknownRole = ... # type: QAudio.Role
         MusicRole = ... # type: QAudio.Role
@@ -155,9 +181,24 @@ class QAudio(sip.simplewrapper):
         GameRole = ... # type: QAudio.Role
         CustomRole = ... # type: QAudio.Role
 
+    UnknownRole = ...  # type: QAudio.Role
+    MusicRole = ...  # type: QAudio.Role
+    VideoRole = ...  # type: QAudio.Role
+    VoiceCommunicationRole = ...  # type: QAudio.Role
+    AlarmRole = ...  # type: QAudio.Role
+    NotificationRole = ...  # type: QAudio.Role
+    RingtoneRole = ...  # type: QAudio.Role
+    AccessibilityRole = ...  # type: QAudio.Role
+    SonificationRole = ...  # type: QAudio.Role
+    GameRole = ...  # type: QAudio.Role
+    CustomRole = ...  # type: QAudio.Role
+
     class Mode(int):
         AudioInput = ... # type: QAudio.Mode
         AudioOutput = ... # type: QAudio.Mode
+
+    AudioInput = ...  # type: QAudio.Mode
+    AudioOutput = ...  # type: QAudio.Mode
 
     class State(int):
         ActiveState = ... # type: QAudio.State
@@ -166,12 +207,24 @@ class QAudio(sip.simplewrapper):
         IdleState = ... # type: QAudio.State
         InterruptedState = ... # type: QAudio.State
 
+    ActiveState = ...  # type: QAudio.State
+    SuspendedState = ...  # type: QAudio.State
+    StoppedState = ...  # type: QAudio.State
+    IdleState = ...  # type: QAudio.State
+    InterruptedState = ...  # type: QAudio.State
+
     class Error(int):
         NoError = ... # type: QAudio.Error
         OpenError = ... # type: QAudio.Error
         IOError = ... # type: QAudio.Error
         UnderrunError = ... # type: QAudio.Error
         FatalError = ... # type: QAudio.Error
+
+    NoError = ...  # type: QAudio.Error
+    OpenError = ...  # type: QAudio.Error
+    IOError = ...  # type: QAudio.Error
+    UnderrunError = ...  # type: QAudio.Error
+    FatalError = ...  # type: QAudio.Error
 
     def convertVolume(self, volume: float, from_: 'QAudio.VolumeScale', to: 'QAudio.VolumeScale') -> float: ...
 
@@ -235,9 +288,18 @@ class QAudioDecoder(QMediaObject):
         AccessDeniedError = ... # type: QAudioDecoder.Error
         ServiceMissingError = ... # type: QAudioDecoder.Error
 
+    NoError = ...  # type: QAudioDecoder.Error
+    ResourceError = ...  # type: QAudioDecoder.Error
+    FormatError = ...  # type: QAudioDecoder.Error
+    AccessDeniedError = ...  # type: QAudioDecoder.Error
+    ServiceMissingError = ...  # type: QAudioDecoder.Error
+
     class State(int):
         StoppedState = ... # type: QAudioDecoder.State
         DecodingState = ... # type: QAudioDecoder.State
+
+    StoppedState = ...  # type: QAudioDecoder.State
+    DecodingState = ...  # type: QAudioDecoder.State
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -350,11 +412,19 @@ class QAudioFormat(sip.simplewrapper):
         BigEndian = ... # type: QAudioFormat.Endian
         LittleEndian = ... # type: QAudioFormat.Endian
 
+    BigEndian = ...  # type: QAudioFormat.Endian
+    LittleEndian = ...  # type: QAudioFormat.Endian
+
     class SampleType(int):
         Unknown = ... # type: QAudioFormat.SampleType
         SignedInt = ... # type: QAudioFormat.SampleType
         UnSignedInt = ... # type: QAudioFormat.SampleType
         Float = ... # type: QAudioFormat.SampleType
+
+    Unknown = ...  # type: QAudioFormat.SampleType
+    SignedInt = ...  # type: QAudioFormat.SampleType
+    UnSignedInt = ...  # type: QAudioFormat.SampleType
+    Float = ...  # type: QAudioFormat.SampleType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -507,6 +577,11 @@ class QMediaRecorder(QtCore.QObject, QMediaBindableInterface):
         FormatError = ... # type: QMediaRecorder.Error
         OutOfSpaceError = ... # type: QMediaRecorder.Error
 
+    NoError = ...  # type: QMediaRecorder.Error
+    ResourceError = ...  # type: QMediaRecorder.Error
+    FormatError = ...  # type: QMediaRecorder.Error
+    OutOfSpaceError = ...  # type: QMediaRecorder.Error
+
     class Status(int):
         UnavailableStatus = ... # type: QMediaRecorder.Status
         UnloadedStatus = ... # type: QMediaRecorder.Status
@@ -517,10 +592,23 @@ class QMediaRecorder(QtCore.QObject, QMediaBindableInterface):
         PausedStatus = ... # type: QMediaRecorder.Status
         FinalizingStatus = ... # type: QMediaRecorder.Status
 
+    UnavailableStatus = ...  # type: QMediaRecorder.Status
+    UnloadedStatus = ...  # type: QMediaRecorder.Status
+    LoadingStatus = ...  # type: QMediaRecorder.Status
+    LoadedStatus = ...  # type: QMediaRecorder.Status
+    StartingStatus = ...  # type: QMediaRecorder.Status
+    RecordingStatus = ...  # type: QMediaRecorder.Status
+    PausedStatus = ...  # type: QMediaRecorder.Status
+    FinalizingStatus = ...  # type: QMediaRecorder.Status
+
     class State(int):
         StoppedState = ... # type: QMediaRecorder.State
         RecordingState = ... # type: QMediaRecorder.State
         PausedState = ... # type: QMediaRecorder.State
+
+    StoppedState = ...  # type: QMediaRecorder.State
+    RecordingState = ...  # type: QMediaRecorder.State
+    PausedState = ...  # type: QMediaRecorder.State
 
     def __init__(self, mediaObject: QMediaObject, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -615,11 +703,20 @@ class QCamera(QMediaObject):
         BackFace = ... # type: QCamera.Position
         FrontFace = ... # type: QCamera.Position
 
+    UnspecifiedPosition = ...  # type: QCamera.Position
+    BackFace = ...  # type: QCamera.Position
+    FrontFace = ...  # type: QCamera.Position
+
     class LockType(int):
         NoLock = ... # type: QCamera.LockType
         LockExposure = ... # type: QCamera.LockType
         LockWhiteBalance = ... # type: QCamera.LockType
         LockFocus = ... # type: QCamera.LockType
+
+    NoLock = ...  # type: QCamera.LockType
+    LockExposure = ...  # type: QCamera.LockType
+    LockWhiteBalance = ...  # type: QCamera.LockType
+    LockFocus = ...  # type: QCamera.LockType
 
     class LockChangeReason(int):
         UserRequest = ... # type: QCamera.LockChangeReason
@@ -628,10 +725,20 @@ class QCamera(QMediaObject):
         LockLost = ... # type: QCamera.LockChangeReason
         LockTemporaryLost = ... # type: QCamera.LockChangeReason
 
+    UserRequest = ...  # type: QCamera.LockChangeReason
+    LockAcquired = ...  # type: QCamera.LockChangeReason
+    LockFailed = ...  # type: QCamera.LockChangeReason
+    LockLost = ...  # type: QCamera.LockChangeReason
+    LockTemporaryLost = ...  # type: QCamera.LockChangeReason
+
     class LockStatus(int):
         Unlocked = ... # type: QCamera.LockStatus
         Searching = ... # type: QCamera.LockStatus
         Locked = ... # type: QCamera.LockStatus
+
+    Unlocked = ...  # type: QCamera.LockStatus
+    Searching = ...  # type: QCamera.LockStatus
+    Locked = ...  # type: QCamera.LockStatus
 
     class Error(int):
         NoError = ... # type: QCamera.Error
@@ -640,15 +747,29 @@ class QCamera(QMediaObject):
         ServiceMissingError = ... # type: QCamera.Error
         NotSupportedFeatureError = ... # type: QCamera.Error
 
+    NoError = ...  # type: QCamera.Error
+    CameraError = ...  # type: QCamera.Error
+    InvalidRequestError = ...  # type: QCamera.Error
+    ServiceMissingError = ...  # type: QCamera.Error
+    NotSupportedFeatureError = ...  # type: QCamera.Error
+
     class CaptureMode(int):
         CaptureViewfinder = ... # type: QCamera.CaptureMode
         CaptureStillImage = ... # type: QCamera.CaptureMode
         CaptureVideo = ... # type: QCamera.CaptureMode
 
+    CaptureViewfinder = ...  # type: QCamera.CaptureMode
+    CaptureStillImage = ...  # type: QCamera.CaptureMode
+    CaptureVideo = ...  # type: QCamera.CaptureMode
+
     class State(int):
         UnloadedState = ... # type: QCamera.State
         LoadedState = ... # type: QCamera.State
         ActiveState = ... # type: QCamera.State
+
+    UnloadedState = ...  # type: QCamera.State
+    LoadedState = ...  # type: QCamera.State
+    ActiveState = ...  # type: QCamera.State
 
     class Status(int):
         UnavailableStatus = ... # type: QCamera.Status
@@ -660,6 +781,16 @@ class QCamera(QMediaObject):
         StartingStatus = ... # type: QCamera.Status
         StoppingStatus = ... # type: QCamera.Status
         ActiveStatus = ... # type: QCamera.Status
+
+    UnavailableStatus = ...  # type: QCamera.Status
+    UnloadedStatus = ...  # type: QCamera.Status
+    LoadingStatus = ...  # type: QCamera.Status
+    UnloadingStatus = ...  # type: QCamera.Status
+    LoadedStatus = ...  # type: QCamera.Status
+    StandbyStatus = ...  # type: QCamera.Status
+    StartingStatus = ...  # type: QCamera.Status
+    StoppingStatus = ...  # type: QCamera.Status
+    ActiveStatus = ...  # type: QCamera.Status
 
     class CaptureModes(sip.simplewrapper):
 
@@ -801,6 +932,12 @@ class QCameraControl(QMediaControl):
         Viewfinder = ... # type: QCameraControl.PropertyChangeType
         ViewfinderSettings = ... # type: QCameraControl.PropertyChangeType
 
+    CaptureMode = ...  # type: QCameraControl.PropertyChangeType
+    ImageEncodingSettings = ...  # type: QCameraControl.PropertyChangeType
+    VideoEncodingSettings = ...  # type: QCameraControl.PropertyChangeType
+    Viewfinder = ...  # type: QCameraControl.PropertyChangeType
+    ViewfinderSettings = ...  # type: QCameraControl.PropertyChangeType
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def captureModeChanged(self, mode: typing.Union[QCamera.CaptureModes, QCamera.CaptureMode]) -> None: ...
@@ -822,6 +959,10 @@ class QCameraExposure(QtCore.QObject):
         MeteringMatrix = ... # type: QCameraExposure.MeteringMode
         MeteringAverage = ... # type: QCameraExposure.MeteringMode
         MeteringSpot = ... # type: QCameraExposure.MeteringMode
+
+    MeteringMatrix = ...  # type: QCameraExposure.MeteringMode
+    MeteringAverage = ...  # type: QCameraExposure.MeteringMode
+    MeteringSpot = ...  # type: QCameraExposure.MeteringMode
 
     class ExposureMode(int):
         ExposureAuto = ... # type: QCameraExposure.ExposureMode
@@ -847,6 +988,29 @@ class QCameraExposure(QtCore.QObject):
         ExposureBarcode = ... # type: QCameraExposure.ExposureMode
         ExposureModeVendor = ... # type: QCameraExposure.ExposureMode
 
+    ExposureAuto = ...  # type: QCameraExposure.ExposureMode
+    ExposureManual = ...  # type: QCameraExposure.ExposureMode
+    ExposurePortrait = ...  # type: QCameraExposure.ExposureMode
+    ExposureNight = ...  # type: QCameraExposure.ExposureMode
+    ExposureBacklight = ...  # type: QCameraExposure.ExposureMode
+    ExposureSpotlight = ...  # type: QCameraExposure.ExposureMode
+    ExposureSports = ...  # type: QCameraExposure.ExposureMode
+    ExposureSnow = ...  # type: QCameraExposure.ExposureMode
+    ExposureBeach = ...  # type: QCameraExposure.ExposureMode
+    ExposureLargeAperture = ...  # type: QCameraExposure.ExposureMode
+    ExposureSmallAperture = ...  # type: QCameraExposure.ExposureMode
+    ExposureAction = ...  # type: QCameraExposure.ExposureMode
+    ExposureLandscape = ...  # type: QCameraExposure.ExposureMode
+    ExposureNightPortrait = ...  # type: QCameraExposure.ExposureMode
+    ExposureTheatre = ...  # type: QCameraExposure.ExposureMode
+    ExposureSunset = ...  # type: QCameraExposure.ExposureMode
+    ExposureSteadyPhoto = ...  # type: QCameraExposure.ExposureMode
+    ExposureFireworks = ...  # type: QCameraExposure.ExposureMode
+    ExposureParty = ...  # type: QCameraExposure.ExposureMode
+    ExposureCandlelight = ...  # type: QCameraExposure.ExposureMode
+    ExposureBarcode = ...  # type: QCameraExposure.ExposureMode
+    ExposureModeVendor = ...  # type: QCameraExposure.ExposureMode
+
     class FlashMode(int):
         FlashAuto = ... # type: QCameraExposure.FlashMode
         FlashOff = ... # type: QCameraExposure.FlashMode
@@ -858,6 +1022,17 @@ class QCameraExposure(QtCore.QObject):
         FlashSlowSyncFrontCurtain = ... # type: QCameraExposure.FlashMode
         FlashSlowSyncRearCurtain = ... # type: QCameraExposure.FlashMode
         FlashManual = ... # type: QCameraExposure.FlashMode
+
+    FlashAuto = ...  # type: QCameraExposure.FlashMode
+    FlashOff = ...  # type: QCameraExposure.FlashMode
+    FlashOn = ...  # type: QCameraExposure.FlashMode
+    FlashRedEyeReduction = ...  # type: QCameraExposure.FlashMode
+    FlashFill = ...  # type: QCameraExposure.FlashMode
+    FlashTorch = ...  # type: QCameraExposure.FlashMode
+    FlashVideoLight = ...  # type: QCameraExposure.FlashMode
+    FlashSlowSyncFrontCurtain = ...  # type: QCameraExposure.FlashMode
+    FlashSlowSyncRearCurtain = ...  # type: QCameraExposure.FlashMode
+    FlashManual = ...  # type: QCameraExposure.FlashMode
 
     class FlashModes(sip.simplewrapper):
 
@@ -928,6 +1103,18 @@ class QCameraExposureControl(QMediaControl):
         MeteringMode = ... # type: QCameraExposureControl.ExposureParameter
         ExtendedExposureParameter = ... # type: QCameraExposureControl.ExposureParameter
 
+    ISO = ...  # type: QCameraExposureControl.ExposureParameter
+    Aperture = ...  # type: QCameraExposureControl.ExposureParameter
+    ShutterSpeed = ...  # type: QCameraExposureControl.ExposureParameter
+    ExposureCompensation = ...  # type: QCameraExposureControl.ExposureParameter
+    FlashPower = ...  # type: QCameraExposureControl.ExposureParameter
+    FlashCompensation = ...  # type: QCameraExposureControl.ExposureParameter
+    TorchPower = ...  # type: QCameraExposureControl.ExposureParameter
+    SpotMeteringPoint = ...  # type: QCameraExposureControl.ExposureParameter
+    ExposureMode = ...  # type: QCameraExposureControl.ExposureParameter
+    MeteringMode = ...  # type: QCameraExposureControl.ExposureParameter
+    ExtendedExposureParameter = ...  # type: QCameraExposureControl.ExposureParameter
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def parameterRangeChanged(self, parameter: int) -> None: ...
@@ -954,6 +1141,18 @@ class QCameraFeedbackControl(QMediaControl):
         AutoFocusInProgress = ... # type: QCameraFeedbackControl.EventType
         AutoFocusLocked = ... # type: QCameraFeedbackControl.EventType
         AutoFocusFailed = ... # type: QCameraFeedbackControl.EventType
+
+    ViewfinderStarted = ...  # type: QCameraFeedbackControl.EventType
+    ViewfinderStopped = ...  # type: QCameraFeedbackControl.EventType
+    ImageCaptured = ...  # type: QCameraFeedbackControl.EventType
+    ImageSaved = ...  # type: QCameraFeedbackControl.EventType
+    ImageError = ...  # type: QCameraFeedbackControl.EventType
+    RecordingStarted = ...  # type: QCameraFeedbackControl.EventType
+    RecordingInProgress = ...  # type: QCameraFeedbackControl.EventType
+    RecordingStopped = ...  # type: QCameraFeedbackControl.EventType
+    AutoFocusInProgress = ...  # type: QCameraFeedbackControl.EventType
+    AutoFocusLocked = ...  # type: QCameraFeedbackControl.EventType
+    AutoFocusFailed = ...  # type: QCameraFeedbackControl.EventType
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -983,6 +1182,11 @@ class QCameraFocusZone(sip.simplewrapper):
         Selected = ... # type: QCameraFocusZone.FocusZoneStatus
         Focused = ... # type: QCameraFocusZone.FocusZoneStatus
 
+    Invalid = ...  # type: QCameraFocusZone.FocusZoneStatus
+    Unused = ...  # type: QCameraFocusZone.FocusZoneStatus
+    Selected = ...  # type: QCameraFocusZone.FocusZoneStatus
+    Focused = ...  # type: QCameraFocusZone.FocusZoneStatus
+
     def __init__(self, other: 'QCameraFocusZone') -> None: ...
 
     def status(self) -> 'QCameraFocusZone.FocusZoneStatus': ...
@@ -998,6 +1202,11 @@ class QCameraFocus(QtCore.QObject):
         FocusPointFaceDetection = ... # type: QCameraFocus.FocusPointMode
         FocusPointCustom = ... # type: QCameraFocus.FocusPointMode
 
+    FocusPointAuto = ...  # type: QCameraFocus.FocusPointMode
+    FocusPointCenter = ...  # type: QCameraFocus.FocusPointMode
+    FocusPointFaceDetection = ...  # type: QCameraFocus.FocusPointMode
+    FocusPointCustom = ...  # type: QCameraFocus.FocusPointMode
+
     class FocusMode(int):
         ManualFocus = ... # type: QCameraFocus.FocusMode
         HyperfocalFocus = ... # type: QCameraFocus.FocusMode
@@ -1005,6 +1214,13 @@ class QCameraFocus(QtCore.QObject):
         AutoFocus = ... # type: QCameraFocus.FocusMode
         ContinuousFocus = ... # type: QCameraFocus.FocusMode
         MacroFocus = ... # type: QCameraFocus.FocusMode
+
+    ManualFocus = ...  # type: QCameraFocus.FocusMode
+    HyperfocalFocus = ...  # type: QCameraFocus.FocusMode
+    InfinityFocus = ...  # type: QCameraFocus.FocusMode
+    AutoFocus = ...  # type: QCameraFocus.FocusMode
+    ContinuousFocus = ...  # type: QCameraFocus.FocusMode
+    MacroFocus = ...  # type: QCameraFocus.FocusMode
 
     class FocusModes(sip.simplewrapper):
 
@@ -1068,8 +1284,13 @@ class QCameraImageCapture(QtCore.QObject, QMediaBindableInterface):
         CaptureToFile = ... # type: QCameraImageCapture.CaptureDestination
         CaptureToBuffer = ... # type: QCameraImageCapture.CaptureDestination
 
+    CaptureToFile = ...  # type: QCameraImageCapture.CaptureDestination
+    CaptureToBuffer = ...  # type: QCameraImageCapture.CaptureDestination
+
     class DriveMode(int):
         SingleImageCapture = ... # type: QCameraImageCapture.DriveMode
+
+    SingleImageCapture = ...  # type: QCameraImageCapture.DriveMode
 
     class Error(int):
         NoError = ... # type: QCameraImageCapture.Error
@@ -1078,6 +1299,13 @@ class QCameraImageCapture(QtCore.QObject, QMediaBindableInterface):
         OutOfSpaceError = ... # type: QCameraImageCapture.Error
         NotSupportedFeatureError = ... # type: QCameraImageCapture.Error
         FormatError = ... # type: QCameraImageCapture.Error
+
+    NoError = ...  # type: QCameraImageCapture.Error
+    NotReadyError = ...  # type: QCameraImageCapture.Error
+    ResourceError = ...  # type: QCameraImageCapture.Error
+    OutOfSpaceError = ...  # type: QCameraImageCapture.Error
+    NotSupportedFeatureError = ...  # type: QCameraImageCapture.Error
+    FormatError = ...  # type: QCameraImageCapture.Error
 
     class CaptureDestinations(sip.simplewrapper):
 
@@ -1161,6 +1389,17 @@ class QCameraImageProcessing(QtCore.QObject):
         ColorFilterAqua = ... # type: QCameraImageProcessing.ColorFilter
         ColorFilterVendor = ... # type: QCameraImageProcessing.ColorFilter
 
+    ColorFilterNone = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterGrayscale = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterNegative = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterSolarize = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterSepia = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterPosterize = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterWhiteboard = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterBlackboard = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterAqua = ...  # type: QCameraImageProcessing.ColorFilter
+    ColorFilterVendor = ...  # type: QCameraImageProcessing.ColorFilter
+
     class WhiteBalanceMode(int):
         WhiteBalanceAuto = ... # type: QCameraImageProcessing.WhiteBalanceMode
         WhiteBalanceManual = ... # type: QCameraImageProcessing.WhiteBalanceMode
@@ -1172,6 +1411,17 @@ class QCameraImageProcessing(QtCore.QObject):
         WhiteBalanceFlash = ... # type: QCameraImageProcessing.WhiteBalanceMode
         WhiteBalanceSunset = ... # type: QCameraImageProcessing.WhiteBalanceMode
         WhiteBalanceVendor = ... # type: QCameraImageProcessing.WhiteBalanceMode
+
+    WhiteBalanceAuto = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceManual = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceSunlight = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceCloudy = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceShade = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceTungsten = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceFluorescent = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceFlash = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceSunset = ...  # type: QCameraImageProcessing.WhiteBalanceMode
+    WhiteBalanceVendor = ...  # type: QCameraImageProcessing.WhiteBalanceMode
 
     def setBrightness(self, value: float) -> None: ...
     def brightness(self) -> float: ...
@@ -1211,6 +1461,21 @@ class QCameraImageProcessingControl(QMediaControl):
         DenoisingAdjustment = ... # type: QCameraImageProcessingControl.ProcessingParameter
         ColorFilter = ... # type: QCameraImageProcessingControl.ProcessingParameter
         ExtendedParameter = ... # type: QCameraImageProcessingControl.ProcessingParameter
+
+    WhiteBalancePreset = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    ColorTemperature = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    Contrast = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    Saturation = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    Brightness = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    Sharpening = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    Denoising = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    ContrastAdjustment = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    SaturationAdjustment = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    BrightnessAdjustment = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    SharpeningAdjustment = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    DenoisingAdjustment = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    ColorFilter = ...  # type: QCameraImageProcessingControl.ProcessingParameter
+    ExtendedParameter = ...  # type: QCameraImageProcessingControl.ProcessingParameter
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1295,6 +1560,13 @@ class QCameraViewfinderSettingsControl(QMediaControl):
         MaximumFrameRate = ... # type: QCameraViewfinderSettingsControl.ViewfinderParameter
         PixelFormat = ... # type: QCameraViewfinderSettingsControl.ViewfinderParameter
         UserParameter = ... # type: QCameraViewfinderSettingsControl.ViewfinderParameter
+
+    Resolution = ...  # type: QCameraViewfinderSettingsControl.ViewfinderParameter
+    PixelAspectRatio = ...  # type: QCameraViewfinderSettingsControl.ViewfinderParameter
+    MinimumFrameRate = ...  # type: QCameraViewfinderSettingsControl.ViewfinderParameter
+    MaximumFrameRate = ...  # type: QCameraViewfinderSettingsControl.ViewfinderParameter
+    PixelFormat = ...  # type: QCameraViewfinderSettingsControl.ViewfinderParameter
+    UserParameter = ...  # type: QCameraViewfinderSettingsControl.ViewfinderParameter
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1610,10 +1882,21 @@ class QMediaPlayer(QMediaObject):
         AccessDeniedError = ... # type: QMediaPlayer.Error
         ServiceMissingError = ... # type: QMediaPlayer.Error
 
+    NoError = ...  # type: QMediaPlayer.Error
+    ResourceError = ...  # type: QMediaPlayer.Error
+    FormatError = ...  # type: QMediaPlayer.Error
+    NetworkError = ...  # type: QMediaPlayer.Error
+    AccessDeniedError = ...  # type: QMediaPlayer.Error
+    ServiceMissingError = ...  # type: QMediaPlayer.Error
+
     class Flag(int):
         LowLatency = ... # type: QMediaPlayer.Flag
         StreamPlayback = ... # type: QMediaPlayer.Flag
         VideoSurface = ... # type: QMediaPlayer.Flag
+
+    LowLatency = ...  # type: QMediaPlayer.Flag
+    StreamPlayback = ...  # type: QMediaPlayer.Flag
+    VideoSurface = ...  # type: QMediaPlayer.Flag
 
     class MediaStatus(int):
         UnknownMediaStatus = ... # type: QMediaPlayer.MediaStatus
@@ -1626,10 +1909,24 @@ class QMediaPlayer(QMediaObject):
         EndOfMedia = ... # type: QMediaPlayer.MediaStatus
         InvalidMedia = ... # type: QMediaPlayer.MediaStatus
 
+    UnknownMediaStatus = ...  # type: QMediaPlayer.MediaStatus
+    NoMedia = ...  # type: QMediaPlayer.MediaStatus
+    LoadingMedia = ...  # type: QMediaPlayer.MediaStatus
+    LoadedMedia = ...  # type: QMediaPlayer.MediaStatus
+    StalledMedia = ...  # type: QMediaPlayer.MediaStatus
+    BufferingMedia = ...  # type: QMediaPlayer.MediaStatus
+    BufferedMedia = ...  # type: QMediaPlayer.MediaStatus
+    EndOfMedia = ...  # type: QMediaPlayer.MediaStatus
+    InvalidMedia = ...  # type: QMediaPlayer.MediaStatus
+
     class State(int):
         StoppedState = ... # type: QMediaPlayer.State
         PlayingState = ... # type: QMediaPlayer.State
         PausedState = ... # type: QMediaPlayer.State
+
+    StoppedState = ...  # type: QMediaPlayer.State
+    PlayingState = ...  # type: QMediaPlayer.State
+    PausedState = ...  # type: QMediaPlayer.State
 
     class Flags(sip.simplewrapper):
 
@@ -1769,12 +2066,24 @@ class QMediaPlaylist(QtCore.QObject, QMediaBindableInterface):
         NetworkError = ... # type: QMediaPlaylist.Error
         AccessDeniedError = ... # type: QMediaPlaylist.Error
 
+    NoError = ...  # type: QMediaPlaylist.Error
+    FormatError = ...  # type: QMediaPlaylist.Error
+    FormatNotSupportedError = ...  # type: QMediaPlaylist.Error
+    NetworkError = ...  # type: QMediaPlaylist.Error
+    AccessDeniedError = ...  # type: QMediaPlaylist.Error
+
     class PlaybackMode(int):
         CurrentItemOnce = ... # type: QMediaPlaylist.PlaybackMode
         CurrentItemInLoop = ... # type: QMediaPlaylist.PlaybackMode
         Sequential = ... # type: QMediaPlaylist.PlaybackMode
         Loop = ... # type: QMediaPlaylist.PlaybackMode
         Random = ... # type: QMediaPlaylist.PlaybackMode
+
+    CurrentItemOnce = ...  # type: QMediaPlaylist.PlaybackMode
+    CurrentItemInLoop = ...  # type: QMediaPlaylist.PlaybackMode
+    Sequential = ...  # type: QMediaPlaylist.PlaybackMode
+    Loop = ...  # type: QMediaPlaylist.PlaybackMode
+    Random = ...  # type: QMediaPlaylist.PlaybackMode
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1911,6 +2220,12 @@ class QMediaStreamsControl(QMediaControl):
         SubPictureStream = ... # type: QMediaStreamsControl.StreamType
         DataStream = ... # type: QMediaStreamsControl.StreamType
 
+    UnknownStream = ...  # type: QMediaStreamsControl.StreamType
+    VideoStream = ...  # type: QMediaStreamsControl.StreamType
+    AudioStream = ...  # type: QMediaStreamsControl.StreamType
+    SubPictureStream = ...  # type: QMediaStreamsControl.StreamType
+    DataStream = ...  # type: QMediaStreamsControl.StreamType
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def activeStreamsChanged(self) -> None: ...
@@ -2016,11 +2331,21 @@ class QMultimedia(sip.simplewrapper):
         Busy = ... # type: QMultimedia.AvailabilityStatus
         ResourceError = ... # type: QMultimedia.AvailabilityStatus
 
+    Available = ...  # type: QMultimedia.AvailabilityStatus
+    ServiceMissing = ...  # type: QMultimedia.AvailabilityStatus
+    Busy = ...  # type: QMultimedia.AvailabilityStatus
+    ResourceError = ...  # type: QMultimedia.AvailabilityStatus
+
     class EncodingMode(int):
         ConstantQualityEncoding = ... # type: QMultimedia.EncodingMode
         ConstantBitRateEncoding = ... # type: QMultimedia.EncodingMode
         AverageBitRateEncoding = ... # type: QMultimedia.EncodingMode
         TwoPassEncoding = ... # type: QMultimedia.EncodingMode
+
+    ConstantQualityEncoding = ...  # type: QMultimedia.EncodingMode
+    ConstantBitRateEncoding = ...  # type: QMultimedia.EncodingMode
+    AverageBitRateEncoding = ...  # type: QMultimedia.EncodingMode
+    TwoPassEncoding = ...  # type: QMultimedia.EncodingMode
 
     class EncodingQuality(int):
         VeryLowQuality = ... # type: QMultimedia.EncodingQuality
@@ -2029,11 +2354,22 @@ class QMultimedia(sip.simplewrapper):
         HighQuality = ... # type: QMultimedia.EncodingQuality
         VeryHighQuality = ... # type: QMultimedia.EncodingQuality
 
+    VeryLowQuality = ...  # type: QMultimedia.EncodingQuality
+    LowQuality = ...  # type: QMultimedia.EncodingQuality
+    NormalQuality = ...  # type: QMultimedia.EncodingQuality
+    HighQuality = ...  # type: QMultimedia.EncodingQuality
+    VeryHighQuality = ...  # type: QMultimedia.EncodingQuality
+
     class SupportEstimate(int):
         NotSupported = ... # type: QMultimedia.SupportEstimate
         MaybeSupported = ... # type: QMultimedia.SupportEstimate
         ProbablySupported = ... # type: QMultimedia.SupportEstimate
         PreferredService = ... # type: QMultimedia.SupportEstimate
+
+    NotSupported = ... # type: QMultimedia.SupportEstimate
+    MaybeSupported = ... # type: QMultimedia.SupportEstimate
+    ProbablySupported = ... # type: QMultimedia.SupportEstimate
+    PreferredService = ... # type: QMultimedia.SupportEstimate
 
 
 class QRadioData(QtCore.QObject, QMediaBindableInterface):
@@ -2088,11 +2424,65 @@ class QRadioData(QtCore.QObject, QMediaBindableInterface):
         Public = ... # type: QRadioData.ProgramType
         College = ... # type: QRadioData.ProgramType
 
+    Undefined = ...  # type: QRadioData.ProgramType
+    News = ...  # type: QRadioData.ProgramType
+    CurrentAffairs = ...  # type: QRadioData.ProgramType
+    Information = ...  # type: QRadioData.ProgramType
+    Sport = ...  # type: QRadioData.ProgramType
+    Education = ...  # type: QRadioData.ProgramType
+    Drama = ...  # type: QRadioData.ProgramType
+    Culture = ...  # type: QRadioData.ProgramType
+    Science = ...  # type: QRadioData.ProgramType
+    Varied = ...  # type: QRadioData.ProgramType
+    PopMusic = ...  # type: QRadioData.ProgramType
+    RockMusic = ...  # type: QRadioData.ProgramType
+    EasyListening = ...  # type: QRadioData.ProgramType
+    LightClassical = ...  # type: QRadioData.ProgramType
+    SeriousClassical = ...  # type: QRadioData.ProgramType
+    OtherMusic = ...  # type: QRadioData.ProgramType
+    Weather = ...  # type: QRadioData.ProgramType
+    Finance = ...  # type: QRadioData.ProgramType
+    ChildrensProgrammes = ...  # type: QRadioData.ProgramType
+    SocialAffairs = ...  # type: QRadioData.ProgramType
+    Religion = ...  # type: QRadioData.ProgramType
+    PhoneIn = ...  # type: QRadioData.ProgramType
+    Travel = ...  # type: QRadioData.ProgramType
+    Leisure = ...  # type: QRadioData.ProgramType
+    JazzMusic = ...  # type: QRadioData.ProgramType
+    CountryMusic = ...  # type: QRadioData.ProgramType
+    NationalMusic = ...  # type: QRadioData.ProgramType
+    OldiesMusic = ...  # type: QRadioData.ProgramType
+    FolkMusic = ...  # type: QRadioData.ProgramType
+    Documentary = ...  # type: QRadioData.ProgramType
+    AlarmTest = ...  # type: QRadioData.ProgramType
+    Alarm = ...  # type: QRadioData.ProgramType
+    Talk = ...  # type: QRadioData.ProgramType
+    ClassicRock = ...  # type: QRadioData.ProgramType
+    AdultHits = ...  # type: QRadioData.ProgramType
+    SoftRock = ...  # type: QRadioData.ProgramType
+    Top40 = ...  # type: QRadioData.ProgramType
+    Soft = ...  # type: QRadioData.ProgramType
+    Nostalgia = ...  # type: QRadioData.ProgramType
+    Classical = ...  # type: QRadioData.ProgramType
+    RhythmAndBlues = ...  # type: QRadioData.ProgramType
+    SoftRhythmAndBlues = ...  # type: QRadioData.ProgramType
+    Language = ...  # type: QRadioData.ProgramType
+    ReligiousMusic = ...  # type: QRadioData.ProgramType
+    ReligiousTalk = ...  # type: QRadioData.ProgramType
+    Personality = ...  # type: QRadioData.ProgramType
+    Public = ...  # type: QRadioData.ProgramType
+    College = ...  # type: QRadioData.ProgramType
+
     class Error(int):
         NoError = ... # type: QRadioData.Error
         ResourceError = ... # type: QRadioData.Error
         OpenError = ... # type: QRadioData.Error
         OutOfRangeError = ... # type: QRadioData.Error
+
+    NoError = ...  # type: QRadioData.Error
+    ResourceError = ...  # type: QRadioData.Error
+    OpenError = ...  # type: QRadioData.Error
+    OutOfRangeError = ...  # type: QRadioData.Error
 
     def __init__(self, mediaObject: QMediaObject, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -2149,16 +2539,28 @@ class QRadioTuner(QMediaObject):
         SearchFast = ... # type: QRadioTuner.SearchMode
         SearchGetStationId = ... # type: QRadioTuner.SearchMode
 
+    SearchFast = ...  # type: QRadioTuner.SearchMode
+    SearchGetStationId = ...  # type: QRadioTuner.SearchMode
+
     class StereoMode(int):
         ForceStereo = ... # type: QRadioTuner.StereoMode
         ForceMono = ... # type: QRadioTuner.StereoMode
         Auto = ... # type: QRadioTuner.StereoMode
+
+    ForceStereo = ...  # type: QRadioTuner.StereoMode
+    ForceMono = ...  # type: QRadioTuner.StereoMode
+    Auto = ...  # type: QRadioTuner.StereoMode
 
     class Error(int):
         NoError = ... # type: QRadioTuner.Error
         ResourceError = ... # type: QRadioTuner.Error
         OpenError = ... # type: QRadioTuner.Error
         OutOfRangeError = ... # type: QRadioTuner.Error
+
+    NoError = ...  # type: QRadioTuner.Error
+    ResourceError = ...  # type: QRadioTuner.Error
+    OpenError = ...  # type: QRadioTuner.Error
+    OutOfRangeError = ...  # type: QRadioTuner.Error
 
     class Band(int):
         AM = ... # type: QRadioTuner.Band
@@ -2167,9 +2569,18 @@ class QRadioTuner(QMediaObject):
         LW = ... # type: QRadioTuner.Band
         FM2 = ... # type: QRadioTuner.Band
 
+    AM = ...  # type: QRadioTuner.Band
+    FM = ...  # type: QRadioTuner.Band
+    SW = ...  # type: QRadioTuner.Band
+    LW = ...  # type: QRadioTuner.Band
+    FM2 = ...  # type: QRadioTuner.Band
+
     class State(int):
         ActiveState = ... # type: QRadioTuner.State
         StoppedState = ... # type: QRadioTuner.State
+
+    ActiveState = ...  # type: QRadioTuner.State
+    StoppedState = ...  # type: QRadioTuner.State
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -2266,6 +2677,8 @@ class QSound(QtCore.QObject):
     class Loop(int):
         Infinite = ... # type: QSound.Loop
 
+    Infinite = ...  # type: QSound.Loop
+
     def __init__(self, filename: str, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def stop(self) -> None: ...
@@ -2289,8 +2702,15 @@ class QSoundEffect(QtCore.QObject):
         Ready = ... # type: QSoundEffect.Status
         Error = ... # type: QSoundEffect.Status
 
+    Null = ...  # type: QSoundEffect.Status
+    Loading = ...  # type: QSoundEffect.Status
+    Ready = ...  # type: QSoundEffect.Status
+    Error = ...  # type: QSoundEffect.Status
+
     class Loop(int):
         Infinite = ... # type: QSoundEffect.Loop
+
+    Infinite = ...  # type: QSoundEffect.Loop
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -2395,11 +2815,53 @@ class QVideoFrame(sip.simplewrapper):
         Format_YUV422P = ... # type: QVideoFrame.PixelFormat
         Format_User = ... # type: QVideoFrame.PixelFormat
 
+    Format_Invalid = ...  # type: QVideoFrame.PixelFormat
+    Format_ARGB32 = ...  # type: QVideoFrame.PixelFormat
+    Format_ARGB32_Premultiplied = ...  # type: QVideoFrame.PixelFormat
+    Format_RGB32 = ...  # type: QVideoFrame.PixelFormat
+    Format_RGB24 = ...  # type: QVideoFrame.PixelFormat
+    Format_RGB565 = ...  # type: QVideoFrame.PixelFormat
+    Format_RGB555 = ...  # type: QVideoFrame.PixelFormat
+    Format_ARGB8565_Premultiplied = ...  # type: QVideoFrame.PixelFormat
+    Format_BGRA32 = ...  # type: QVideoFrame.PixelFormat
+    Format_BGRA32_Premultiplied = ...  # type: QVideoFrame.PixelFormat
+    Format_BGR32 = ...  # type: QVideoFrame.PixelFormat
+    Format_BGR24 = ...  # type: QVideoFrame.PixelFormat
+    Format_BGR565 = ...  # type: QVideoFrame.PixelFormat
+    Format_BGR555 = ...  # type: QVideoFrame.PixelFormat
+    Format_BGRA5658_Premultiplied = ...  # type: QVideoFrame.PixelFormat
+    Format_AYUV444 = ...  # type: QVideoFrame.PixelFormat
+    Format_AYUV444_Premultiplied = ...  # type: QVideoFrame.PixelFormat
+    Format_YUV444 = ...  # type: QVideoFrame.PixelFormat
+    Format_YUV420P = ...  # type: QVideoFrame.PixelFormat
+    Format_YV12 = ...  # type: QVideoFrame.PixelFormat
+    Format_UYVY = ...  # type: QVideoFrame.PixelFormat
+    Format_YUYV = ...  # type: QVideoFrame.PixelFormat
+    Format_NV12 = ...  # type: QVideoFrame.PixelFormat
+    Format_NV21 = ...  # type: QVideoFrame.PixelFormat
+    Format_IMC1 = ...  # type: QVideoFrame.PixelFormat
+    Format_IMC2 = ...  # type: QVideoFrame.PixelFormat
+    Format_IMC3 = ...  # type: QVideoFrame.PixelFormat
+    Format_IMC4 = ...  # type: QVideoFrame.PixelFormat
+    Format_Y8 = ...  # type: QVideoFrame.PixelFormat
+    Format_Y16 = ...  # type: QVideoFrame.PixelFormat
+    Format_Jpeg = ...  # type: QVideoFrame.PixelFormat
+    Format_CameraRaw = ...  # type: QVideoFrame.PixelFormat
+    Format_AdobeDng = ...  # type: QVideoFrame.PixelFormat
+    Format_ABGR32 = ...  # type: QVideoFrame.PixelFormat
+    Format_YUV422P = ...  # type: QVideoFrame.PixelFormat
+    Format_User = ...  # type: QVideoFrame.PixelFormat
+
     class FieldType(int):
         ProgressiveFrame = ... # type: QVideoFrame.FieldType
         TopField = ... # type: QVideoFrame.FieldType
         BottomField = ... # type: QVideoFrame.FieldType
         InterlacedFrame = ... # type: QVideoFrame.FieldType
+
+    ProgressiveFrame = ...  # type: QVideoFrame.FieldType
+    TopField = ...  # type: QVideoFrame.FieldType
+    BottomField = ...  # type: QVideoFrame.FieldType
+    InterlacedFrame = ...  # type: QVideoFrame.FieldType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2483,9 +2945,19 @@ class QVideoSurfaceFormat(sip.simplewrapper):
         YCbCr_xvYCC709 = ... # type: QVideoSurfaceFormat.YCbCrColorSpace
         YCbCr_JPEG = ... # type: QVideoSurfaceFormat.YCbCrColorSpace
 
+    YCbCr_Undefined = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
+    YCbCr_BT601 = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
+    YCbCr_BT709 = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
+    YCbCr_xvYCC601 = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
+    YCbCr_xvYCC709 = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
+    YCbCr_JPEG = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
+
     class Direction(int):
         TopToBottom = ... # type: QVideoSurfaceFormat.Direction
         BottomToTop = ... # type: QVideoSurfaceFormat.Direction
+
+    TopToBottom = ...  # type: QVideoSurfaceFormat.Direction
+    BottomToTop = ...  # type: QVideoSurfaceFormat.Direction
 
     @typing.overload
     def __init__(self) -> None: ...

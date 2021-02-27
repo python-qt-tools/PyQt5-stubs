@@ -12,12 +12,6 @@ PyQt5.QtGui.QTextBlockFormat.MarkerType.__new__
 PyQt5.QtNetwork.QOcspCertificateStatus.__new__
 PyQt5.QtNetwork.QOcspRevocationReason.__new__
 PyQt5.QtNetwork.QSslCertificate.PatternSyntax.__new__
-PyQt5.QtNetworkAuth.QAbstractOAuth.ContentType.__new__
-PyQt5.QtNetworkAuth.QAbstractOAuth.Error.__new__
-PyQt5.QtNetworkAuth.QAbstractOAuth.Stage.__new__
-PyQt5.QtNetworkAuth.QAbstractOAuth.Status.__new__
-PyQt5.QtNetworkAuth.QOAuth1.SignatureMethod.__new__
-PyQt5.QtNetworkAuth.QOAuth1Signature.HttpRequestMethod.__new__
 PyQt5.QtNfc.QNearFieldManager.AdapterState.__new__
 PyQt5.QtTest.QAbstractItemModelTester.FailureReportingMode.__new__
 PyQt5.QtWebEngineCore.QWebEngineUrlScheme.Syntax.__new__

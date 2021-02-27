@@ -50,6 +50,13 @@ class QAbstractAxis(QtCore.QObject):
         AxisTypeDateTime = ... # type: QAbstractAxis.AxisType
         AxisTypeLogValue = ... # type: QAbstractAxis.AxisType
 
+    AxisTypeNoAxis = ...  # type: QAbstractAxis.AxisType
+    AxisTypeValue = ...  # type: QAbstractAxis.AxisType
+    AxisTypeBarCategory = ...  # type: QAbstractAxis.AxisType
+    AxisTypeCategory = ...  # type: QAbstractAxis.AxisType
+    AxisTypeDateTime = ...  # type: QAbstractAxis.AxisType
+    AxisTypeLogValue = ...  # type: QAbstractAxis.AxisType
+
     class AxisTypes(sip.simplewrapper):
 
         @typing.overload
@@ -169,6 +176,20 @@ class QAbstractSeries(QtCore.QObject):
         SeriesTypeBoxPlot = ... # type: QAbstractSeries.SeriesType
         SeriesTypeCandlestick = ... # type: QAbstractSeries.SeriesType
 
+    SeriesTypeLine = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeArea = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeBar = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeStackedBar = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypePercentBar = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypePie = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeScatter = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeSpline = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeHorizontalBar = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeHorizontalStackedBar = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeHorizontalPercentBar = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeBoxPlot = ...  # type: QAbstractSeries.SeriesType
+    SeriesTypeCandlestick = ...  # type: QAbstractSeries.SeriesType
+
     def useOpenGLChanged(self) -> None: ...
     def useOpenGL(self) -> bool: ...
     def setUseOpenGL(self, enable: bool = ...) -> None: ...
@@ -196,6 +217,11 @@ class QAbstractBarSeries('QAbstractSeries'):
         LabelsInsideEnd = ... # type: QAbstractBarSeries.LabelsPosition
         LabelsInsideBase = ... # type: QAbstractBarSeries.LabelsPosition
         LabelsOutsideEnd = ... # type: QAbstractBarSeries.LabelsPosition
+
+    LabelsCenter = ...  # type: QAbstractBarSeries.LabelsPosition
+    LabelsInsideEnd = ...  # type: QAbstractBarSeries.LabelsPosition
+    LabelsInsideBase = ...  # type: QAbstractBarSeries.LabelsPosition
+    LabelsOutsideEnd = ...  # type: QAbstractBarSeries.LabelsPosition
 
     def labelsPrecisionChanged(self, precision: int) -> None: ...
     def labelsPrecision(self) -> int: ...
@@ -243,6 +269,13 @@ class QLegendMarker(QtCore.QObject):
         LegendMarkerTypeXY = ... # type: QLegendMarker.LegendMarkerType
         LegendMarkerTypeBoxPlot = ... # type: QLegendMarker.LegendMarkerType
         LegendMarkerTypeCandlestick = ... # type: QLegendMarker.LegendMarkerType
+
+    LegendMarkerTypeArea = ...  # type: QLegendMarker.LegendMarkerType
+    LegendMarkerTypeBar = ...  # type: QLegendMarker.LegendMarkerType
+    LegendMarkerTypePie = ...  # type: QLegendMarker.LegendMarkerType
+    LegendMarkerTypeXY = ...  # type: QLegendMarker.LegendMarkerType
+    LegendMarkerTypeBoxPlot = ...  # type: QLegendMarker.LegendMarkerType
+    LegendMarkerTypeCandlestick = ...  # type: QLegendMarker.LegendMarkerType
 
     def shapeChanged(self) -> None: ...
     def setShape(self, shape: 'QLegend.MarkerShape') -> None: ...
@@ -468,6 +501,12 @@ class QBoxSet(QtCore.QObject):
         UpperQuartile = ... # type: QBoxSet.ValuePositions
         UpperExtreme = ... # type: QBoxSet.ValuePositions
 
+    LowerExtreme = ...  # type: QBoxSet.ValuePositions
+    LowerQuartile = ...  # type: QBoxSet.ValuePositions
+    Median = ...  # type: QBoxSet.ValuePositions
+    UpperQuartile = ...  # type: QBoxSet.ValuePositions
+    UpperExtreme = ...  # type: QBoxSet.ValuePositions
+
     @typing.overload
     def __init__(self, label: str = ..., parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -631,6 +670,9 @@ class QValueAxis('QAbstractAxis'):
         TicksDynamic = ... # type: QValueAxis.TickType
         TicksFixed = ... # type: QValueAxis.TickType
 
+    TicksDynamic = ...  # type: QValueAxis.TickType
+    TicksFixed = ...  # type: QValueAxis.TickType
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def tickTypeChanged(self, type: 'QValueAxis.TickType') -> None: ...
@@ -668,6 +710,9 @@ class QCategoryAxis('QValueAxis'):
         AxisLabelsPositionCenter = ... # type: QCategoryAxis.AxisLabelsPosition
         AxisLabelsPositionOnValue = ... # type: QCategoryAxis.AxisLabelsPosition
 
+    AxisLabelsPositionCenter = ...  # type: QCategoryAxis.AxisLabelsPosition
+    AxisLabelsPositionOnValue = ...  # type: QCategoryAxis.AxisLabelsPosition
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def labelsPositionChanged(self, position: 'QCategoryAxis.AxisLabelsPosition') -> None: ...
@@ -692,11 +737,20 @@ class QChart(QtWidgets.QGraphicsWidget):
         ChartTypeCartesian = ... # type: QChart.ChartType
         ChartTypePolar = ... # type: QChart.ChartType
 
+    ChartTypeUndefined = ...  # type: QChart.ChartType
+    ChartTypeCartesian = ...  # type: QChart.ChartType
+    ChartTypePolar = ...  # type: QChart.ChartType
+
     class AnimationOption(int):
         NoAnimation = ... # type: QChart.AnimationOption
         GridAxisAnimations = ... # type: QChart.AnimationOption
         SeriesAnimations = ... # type: QChart.AnimationOption
         AllAnimations = ... # type: QChart.AnimationOption
+
+    NoAnimation = ...  # type: QChart.AnimationOption
+    GridAxisAnimations = ...  # type: QChart.AnimationOption
+    SeriesAnimations = ...  # type: QChart.AnimationOption
+    AllAnimations = ...  # type: QChart.AnimationOption
 
     class ChartTheme(int):
         ChartThemeLight = ... # type: QChart.ChartTheme
@@ -707,6 +761,15 @@ class QChart(QtWidgets.QGraphicsWidget):
         ChartThemeHighContrast = ... # type: QChart.ChartTheme
         ChartThemeBlueIcy = ... # type: QChart.ChartTheme
         ChartThemeQt = ... # type: QChart.ChartTheme
+
+    ChartThemeLight = ...  # type: QChart.ChartTheme
+    ChartThemeBlueCerulean = ...  # type: QChart.ChartTheme
+    ChartThemeDark = ...  # type: QChart.ChartTheme
+    ChartThemeBrownSand = ...  # type: QChart.ChartTheme
+    ChartThemeBlueNcs = ...  # type: QChart.ChartTheme
+    ChartThemeHighContrast = ...  # type: QChart.ChartTheme
+    ChartThemeBlueIcy = ...  # type: QChart.ChartTheme
+    ChartThemeQt = ...  # type: QChart.ChartTheme
 
     class AnimationOptions(sip.simplewrapper):
 
@@ -797,6 +860,11 @@ class QChartView(QtWidgets.QGraphicsView):
         VerticalRubberBand = ... # type: QChartView.RubberBand
         HorizontalRubberBand = ... # type: QChartView.RubberBand
         RectangleRubberBand = ... # type: QChartView.RubberBand
+
+    NoRubberBand = ...  # type: QChartView.RubberBand
+    VerticalRubberBand = ...  # type: QChartView.RubberBand
+    HorizontalRubberBand = ...  # type: QChartView.RubberBand
+    RectangleRubberBand = ...  # type: QChartView.RubberBand
 
     class RubberBands(sip.simplewrapper):
 
@@ -992,6 +1060,11 @@ class QLegend(QtWidgets.QGraphicsWidget):
         MarkerShapeRectangle = ... # type: QLegend.MarkerShape
         MarkerShapeCircle = ... # type: QLegend.MarkerShape
         MarkerShapeFromSeries = ... # type: QLegend.MarkerShape
+
+    MarkerShapeDefault = ...  # type: QLegend.MarkerShape
+    MarkerShapeRectangle = ...  # type: QLegend.MarkerShape
+    MarkerShapeCircle = ...  # type: QLegend.MarkerShape
+    MarkerShapeFromSeries = ...  # type: QLegend.MarkerShape
 
     def markerShapeChanged(self, shape: 'QLegend.MarkerShape') -> None: ...
     def setMarkerShape(self, shape: 'QLegend.MarkerShape') -> None: ...
@@ -1197,6 +1270,11 @@ class QPieSlice(QtCore.QObject):
         LabelInsideTangential = ... # type: QPieSlice.LabelPosition
         LabelInsideNormal = ... # type: QPieSlice.LabelPosition
 
+    LabelOutside = ...  # type: QPieSlice.LabelPosition
+    LabelInsideHorizontal = ...  # type: QPieSlice.LabelPosition
+    LabelInsideTangential = ...  # type: QPieSlice.LabelPosition
+    LabelInsideNormal = ...  # type: QPieSlice.LabelPosition
+
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -1262,6 +1340,9 @@ class QPolarChart('QChart'):
         PolarOrientationRadial = ... # type: QPolarChart.PolarOrientation
         PolarOrientationAngular = ... # type: QPolarChart.PolarOrientation
 
+    PolarOrientationRadial = ...  # type: QPolarChart.PolarOrientation
+    PolarOrientationAngular = ...  # type: QPolarChart.PolarOrientation
+
     class PolarOrientations(sip.simplewrapper):
 
         @typing.overload
@@ -1289,6 +1370,9 @@ class QScatterSeries('QXYSeries'):
     class MarkerShape(int):
         MarkerShapeCircle = ... # type: QScatterSeries.MarkerShape
         MarkerShapeRectangle = ... # type: QScatterSeries.MarkerShape
+
+    MarkerShapeCircle = ...  # type: QScatterSeries.MarkerShape
+    MarkerShapeRectangle = ...  # type: QScatterSeries.MarkerShape
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 

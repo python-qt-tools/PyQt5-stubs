@@ -89,11 +89,19 @@ class QGeoAreaMonitorSource(QtCore.QObject):
         PersistentAreaMonitorFeature = ... # type: QGeoAreaMonitorSource.AreaMonitorFeature
         AnyAreaMonitorFeature = ... # type: QGeoAreaMonitorSource.AreaMonitorFeature
 
+    PersistentAreaMonitorFeature = ...  # type: QGeoAreaMonitorSource.AreaMonitorFeature
+    AnyAreaMonitorFeature = ...  # type: QGeoAreaMonitorSource.AreaMonitorFeature
+
     class Error(int):
         AccessError = ... # type: QGeoAreaMonitorSource.Error
         InsufficientPositionInfo = ... # type: QGeoAreaMonitorSource.Error
         UnknownSourceError = ... # type: QGeoAreaMonitorSource.Error
         NoError = ... # type: QGeoAreaMonitorSource.Error
+
+    AccessError = ...  # type: QGeoAreaMonitorSource.Error
+    InsufficientPositionInfo = ...  # type: QGeoAreaMonitorSource.Error
+    UnknownSourceError = ...  # type: QGeoAreaMonitorSource.Error
+    NoError = ...  # type: QGeoAreaMonitorSource.Error
 
     class AreaMonitorFeatures(sip.wrapper):
 
@@ -147,6 +155,12 @@ class QGeoShape(sip.wrapper):
         PathType = ... # type: QGeoShape.ShapeType
         PolygonType = ... # type: QGeoShape.ShapeType
 
+    UnknownType = ...  # type: QGeoShape.ShapeType
+    RectangleType = ...  # type: QGeoShape.ShapeType
+    CircleType = ...  # type: QGeoShape.ShapeType
+    PathType = ...  # type: QGeoShape.ShapeType
+    PolygonType = ...  # type: QGeoShape.ShapeType
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -193,10 +207,21 @@ class QGeoCoordinate(sip.wrapper):
         DegreesMinutesSeconds = ... # type: QGeoCoordinate.CoordinateFormat
         DegreesMinutesSecondsWithHemisphere = ... # type: QGeoCoordinate.CoordinateFormat
 
+    Degrees = ...  # type: QGeoCoordinate.CoordinateFormat
+    DegreesWithHemisphere = ...  # type: QGeoCoordinate.CoordinateFormat
+    DegreesMinutes = ...  # type: QGeoCoordinate.CoordinateFormat
+    DegreesMinutesWithHemisphere = ...  # type: QGeoCoordinate.CoordinateFormat
+    DegreesMinutesSeconds = ...  # type: QGeoCoordinate.CoordinateFormat
+    DegreesMinutesSecondsWithHemisphere = ...  # type: QGeoCoordinate.CoordinateFormat
+
     class CoordinateType(int):
         InvalidCoordinate = ... # type: QGeoCoordinate.CoordinateType
         Coordinate2D = ... # type: QGeoCoordinate.CoordinateType
         Coordinate3D = ... # type: QGeoCoordinate.CoordinateType
+
+    InvalidCoordinate = ...  # type: QGeoCoordinate.CoordinateType
+    Coordinate2D = ...  # type: QGeoCoordinate.CoordinateType
+    Coordinate3D = ...  # type: QGeoCoordinate.CoordinateType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -321,6 +346,13 @@ class QGeoPositionInfo(sip.wrapper):
         HorizontalAccuracy = ... # type: QGeoPositionInfo.Attribute
         VerticalAccuracy = ... # type: QGeoPositionInfo.Attribute
 
+    Direction = ...  # type: QGeoPositionInfo.Attribute
+    GroundSpeed = ...  # type: QGeoPositionInfo.Attribute
+    VerticalSpeed = ...  # type: QGeoPositionInfo.Attribute
+    MagneticVariation = ...  # type: QGeoPositionInfo.Attribute
+    HorizontalAccuracy = ...  # type: QGeoPositionInfo.Attribute
+    VerticalAccuracy = ...  # type: QGeoPositionInfo.Attribute
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -347,11 +379,21 @@ class QGeoPositionInfoSource(QtCore.QObject):
         NonSatellitePositioningMethods = ... # type: QGeoPositionInfoSource.PositioningMethod
         AllPositioningMethods = ... # type: QGeoPositionInfoSource.PositioningMethod
 
+    NoPositioningMethods = ...  # type: QGeoPositionInfoSource.PositioningMethod
+    SatellitePositioningMethods = ...  # type: QGeoPositionInfoSource.PositioningMethod
+    NonSatellitePositioningMethods = ...  # type: QGeoPositionInfoSource.PositioningMethod
+    AllPositioningMethods = ...  # type: QGeoPositionInfoSource.PositioningMethod
+
     class Error(int):
         AccessError = ... # type: QGeoPositionInfoSource.Error
         ClosedError = ... # type: QGeoPositionInfoSource.Error
         UnknownSourceError = ... # type: QGeoPositionInfoSource.Error
         NoError = ... # type: QGeoPositionInfoSource.Error
+
+    AccessError = ...  # type: QGeoPositionInfoSource.Error
+    ClosedError = ...  # type: QGeoPositionInfoSource.Error
+    UnknownSourceError = ...  # type: QGeoPositionInfoSource.Error
+    NoError = ...  # type: QGeoPositionInfoSource.Error
 
     class PositioningMethods(sip.wrapper):
 
@@ -449,9 +491,16 @@ class QGeoSatelliteInfo(sip.wrapper):
         GPS = ... # type: QGeoSatelliteInfo.SatelliteSystem
         GLONASS = ... # type: QGeoSatelliteInfo.SatelliteSystem
 
+    Undefined = ...  # type: QGeoSatelliteInfo.SatelliteSystem
+    GPS = ...  # type: QGeoSatelliteInfo.SatelliteSystem
+    GLONASS = ...  # type: QGeoSatelliteInfo.SatelliteSystem
+
     class Attribute(int):
         Elevation = ... # type: QGeoSatelliteInfo.Attribute
         Azimuth = ... # type: QGeoSatelliteInfo.Attribute
+
+    Elevation = ...  # type: QGeoSatelliteInfo.Attribute
+    Azimuth = ...  # type: QGeoSatelliteInfo.Attribute
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -477,6 +526,11 @@ class QGeoSatelliteInfoSource(QtCore.QObject):
         ClosedError = ... # type: QGeoSatelliteInfoSource.Error
         NoError = ... # type: QGeoSatelliteInfoSource.Error
         UnknownSourceError = ... # type: QGeoSatelliteInfoSource.Error
+
+    AccessError = ...  # type: QGeoSatelliteInfoSource.Error
+    ClosedError = ...  # type: QGeoSatelliteInfoSource.Error
+    NoError = ...  # type: QGeoSatelliteInfoSource.Error
+    UnknownSourceError = ...  # type: QGeoSatelliteInfoSource.Error
 
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
@@ -515,6 +569,9 @@ class QNmeaPositionInfoSource(QGeoPositionInfoSource):
     class UpdateMode(int):
         RealTimeMode = ... # type: QNmeaPositionInfoSource.UpdateMode
         SimulationMode = ... # type: QNmeaPositionInfoSource.UpdateMode
+
+    RealTimeMode = ...  # type: QNmeaPositionInfoSource.UpdateMode
+    SimulationMode = ...  # type: QNmeaPositionInfoSource.UpdateMode
 
     def __init__(self, updateMode: 'QNmeaPositionInfoSource.UpdateMode', parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 

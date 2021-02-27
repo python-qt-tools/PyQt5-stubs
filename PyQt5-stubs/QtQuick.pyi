@@ -53,6 +53,16 @@ class QQuickItem(QtCore.QObject, QtQml.QQmlParserStatus):
         Bottom = ... # type: QQuickItem.TransformOrigin
         BottomRight = ... # type: QQuickItem.TransformOrigin
 
+    TopLeft = ...  # type: QQuickItem.TransformOrigin
+    Top = ...  # type: QQuickItem.TransformOrigin
+    TopRight = ...  # type: QQuickItem.TransformOrigin
+    Left = ...  # type: QQuickItem.TransformOrigin
+    Center = ...  # type: QQuickItem.TransformOrigin
+    Right = ...  # type: QQuickItem.TransformOrigin
+    BottomLeft = ...  # type: QQuickItem.TransformOrigin
+    Bottom = ...  # type: QQuickItem.TransformOrigin
+    BottomRight = ...  # type: QQuickItem.TransformOrigin
+
     class ItemChange(int):
         ItemChildAddedChange = ... # type: QQuickItem.ItemChange
         ItemChildRemovedChange = ... # type: QQuickItem.ItemChange
@@ -66,12 +76,30 @@ class QQuickItem(QtCore.QObject, QtQml.QQmlParserStatus):
         ItemDevicePixelRatioHasChanged = ... # type: QQuickItem.ItemChange
         ItemEnabledHasChanged = ... # type: QQuickItem.ItemChange
 
+    ItemChildAddedChange = ...  # type: QQuickItem.ItemChange
+    ItemChildRemovedChange = ...  # type: QQuickItem.ItemChange
+    ItemSceneChange = ...  # type: QQuickItem.ItemChange
+    ItemVisibleHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemParentHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemOpacityHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemActiveFocusHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemRotationHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemAntialiasingHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemDevicePixelRatioHasChanged = ...  # type: QQuickItem.ItemChange
+    ItemEnabledHasChanged = ...  # type: QQuickItem.ItemChange
+
     class Flag(int):
         ItemClipsChildrenToShape = ... # type: QQuickItem.Flag
         ItemAcceptsInputMethod = ... # type: QQuickItem.Flag
         ItemIsFocusScope = ... # type: QQuickItem.Flag
         ItemHasContents = ... # type: QQuickItem.Flag
         ItemAcceptsDrops = ... # type: QQuickItem.Flag
+
+    ItemClipsChildrenToShape = ...  # type: QQuickItem.Flag
+    ItemAcceptsInputMethod = ...  # type: QQuickItem.Flag
+    ItemIsFocusScope = ...  # type: QQuickItem.Flag
+    ItemHasContents = ...  # type: QQuickItem.Flag
+    ItemAcceptsDrops = ...  # type: QQuickItem.Flag
 
     class Flags(sip.simplewrapper):
 
@@ -348,10 +376,16 @@ class QQuickPaintedItem(QQuickItem):
     class PerformanceHint(int):
         FastFBOResizing = ... # type: QQuickPaintedItem.PerformanceHint
 
+    FastFBOResizing = ...  # type: QQuickPaintedItem.PerformanceHint
+
     class RenderTarget(int):
         Image = ... # type: QQuickPaintedItem.RenderTarget
         FramebufferObject = ... # type: QQuickPaintedItem.RenderTarget
         InvertedYFramebufferObject = ... # type: QQuickPaintedItem.RenderTarget
+
+    Image = ...  # type: QQuickPaintedItem.RenderTarget
+    FramebufferObject = ...  # type: QQuickPaintedItem.RenderTarget
+    InvertedYFramebufferObject = ...  # type: QQuickPaintedItem.RenderTarget
 
     class PerformanceHints(sip.simplewrapper):
 
@@ -435,9 +469,14 @@ class QQuickWindow(QtGui.QWindow):
     class NativeObjectType(int):
         NativeObjectTexture = ... # type: QQuickWindow.NativeObjectType
 
+    NativeObjectTexture = ...  # type: QQuickWindow.NativeObjectType
+
     class TextRenderType(int):
         QtTextRendering = ... # type: QQuickWindow.TextRenderType
         NativeTextRendering = ... # type: QQuickWindow.TextRenderType
+
+    QtTextRendering = ...  # type: QQuickWindow.TextRenderType
+    NativeTextRendering = ...  # type: QQuickWindow.TextRenderType
 
     class RenderStage(int):
         BeforeSynchronizingStage = ... # type: QQuickWindow.RenderStage
@@ -447,8 +486,17 @@ class QQuickWindow(QtGui.QWindow):
         AfterSwapStage = ... # type: QQuickWindow.RenderStage
         NoStage = ... # type: QQuickWindow.RenderStage
 
+    BeforeSynchronizingStage = ...  # type: QQuickWindow.RenderStage
+    AfterSynchronizingStage = ...  # type: QQuickWindow.RenderStage
+    BeforeRenderingStage = ...  # type: QQuickWindow.RenderStage
+    AfterRenderingStage = ...  # type: QQuickWindow.RenderStage
+    AfterSwapStage = ...  # type: QQuickWindow.RenderStage
+    NoStage = ...  # type: QQuickWindow.RenderStage
+
     class SceneGraphError(int):
         ContextNotAvailable = ... # type: QQuickWindow.SceneGraphError
+
+    ContextNotAvailable = ...  # type: QQuickWindow.SceneGraphError
 
     class CreateTextureOption(int):
         TextureHasAlphaChannel = ... # type: QQuickWindow.CreateTextureOption
@@ -456,6 +504,12 @@ class QQuickWindow(QtGui.QWindow):
         TextureOwnsGLTexture = ... # type: QQuickWindow.CreateTextureOption
         TextureCanUseAtlas = ... # type: QQuickWindow.CreateTextureOption
         TextureIsOpaque = ... # type: QQuickWindow.CreateTextureOption
+
+    TextureHasAlphaChannel = ...  # type: QQuickWindow.CreateTextureOption
+    TextureHasMipmaps = ...  # type: QQuickWindow.CreateTextureOption
+    TextureOwnsGLTexture = ...  # type: QQuickWindow.CreateTextureOption
+    TextureCanUseAtlas = ...  # type: QQuickWindow.CreateTextureOption
+    TextureIsOpaque = ...  # type: QQuickWindow.CreateTextureOption
 
     class CreateTextureOptions(sip.simplewrapper):
 
@@ -571,9 +625,17 @@ class QQuickView(QQuickWindow):
         Loading = ... # type: QQuickView.Status
         Error = ... # type: QQuickView.Status
 
+    Null = ...  # type: QQuickView.Status
+    Ready = ...  # type: QQuickView.Status
+    Loading = ...  # type: QQuickView.Status
+    Error = ...  # type: QQuickView.Status
+
     class ResizeMode(int):
         SizeViewToRootObject = ... # type: QQuickView.ResizeMode
         SizeRootObjectToView = ... # type: QQuickView.ResizeMode
+
+    SizeViewToRootObject = ...  # type: QQuickView.ResizeMode
+    SizeRootObjectToView = ...  # type: QQuickView.ResizeMode
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtGui.QWindow] = ...) -> None: ...
@@ -611,10 +673,16 @@ class QSGAbstractRenderer(QtCore.QObject):
     class MatrixTransformFlag(int):
         MatrixTransformFlipY = ... # type: QSGAbstractRenderer.MatrixTransformFlag
 
+    MatrixTransformFlipY = ...  # type: QSGAbstractRenderer.MatrixTransformFlag
+
     class ClearModeBit(int):
         ClearColorBuffer = ... # type: QSGAbstractRenderer.ClearModeBit
         ClearDepthBuffer = ... # type: QSGAbstractRenderer.ClearModeBit
         ClearStencilBuffer = ... # type: QSGAbstractRenderer.ClearModeBit
+
+    ClearColorBuffer = ...  # type: QSGAbstractRenderer.ClearModeBit
+    ClearDepthBuffer = ...  # type: QSGAbstractRenderer.ClearModeBit
+    ClearStencilBuffer = ...  # type: QSGAbstractRenderer.ClearModeBit
 
     class ClearMode(sip.simplewrapper):
 
@@ -678,6 +746,11 @@ class QSGEngine(QtCore.QObject):
         TextureCanUseAtlas = ... # type: QSGEngine.CreateTextureOption
         TextureIsOpaque = ... # type: QSGEngine.CreateTextureOption
 
+    TextureHasAlphaChannel = ...  # type: QSGEngine.CreateTextureOption
+    TextureOwnsGLTexture = ...  # type: QSGEngine.CreateTextureOption
+    TextureCanUseAtlas = ...  # type: QSGEngine.CreateTextureOption
+    TextureIsOpaque = ...  # type: QSGEngine.CreateTextureOption
+
     class CreateTextureOptions(sip.simplewrapper):
 
         @typing.overload
@@ -715,6 +788,14 @@ class QSGMaterial(sip.wrapper):
         CustomCompileStep = ... # type: QSGMaterial.Flag
         SupportsRhiShader = ... # type: QSGMaterial.Flag
         RhiShaderWanted = ... # type: QSGMaterial.Flag
+
+    Blending = ...  # type: QSGMaterial.Flag
+    RequiresDeterminant = ...  # type: QSGMaterial.Flag
+    RequiresFullMatrixExceptTranslate = ...  # type: QSGMaterial.Flag
+    RequiresFullMatrix = ...  # type: QSGMaterial.Flag
+    CustomCompileStep = ...  # type: QSGMaterial.Flag
+    SupportsRhiShader = ...  # type: QSGMaterial.Flag
+    RhiShaderWanted = ...  # type: QSGMaterial.Flag
 
     class Flags(sip.simplewrapper):
 
@@ -766,6 +847,18 @@ class QSGGeometry(sip.wrapper):
         Bytes4Type = ... # type: QSGGeometry.Type
         DoubleType = ... # type: QSGGeometry.Type
 
+    ByteType = ...  # type: QSGGeometry.Type
+    UnsignedByteType = ...  # type: QSGGeometry.Type
+    ShortType = ...  # type: QSGGeometry.Type
+    UnsignedShortType = ...  # type: QSGGeometry.Type
+    IntType = ...  # type: QSGGeometry.Type
+    UnsignedIntType = ...  # type: QSGGeometry.Type
+    FloatType = ...  # type: QSGGeometry.Type
+    Bytes2Type = ...  # type: QSGGeometry.Type
+    Bytes3Type = ...  # type: QSGGeometry.Type
+    Bytes4Type = ...  # type: QSGGeometry.Type
+    DoubleType = ...  # type: QSGGeometry.Type
+
     class DrawingMode(int):
         DrawPoints = ... # type: QSGGeometry.DrawingMode
         DrawLines = ... # type: QSGGeometry.DrawingMode
@@ -775,6 +868,14 @@ class QSGGeometry(sip.wrapper):
         DrawTriangleStrip = ... # type: QSGGeometry.DrawingMode
         DrawTriangleFan = ... # type: QSGGeometry.DrawingMode
 
+    DrawPoints = ...  # type: QSGGeometry.DrawingMode
+    DrawLines = ...  # type: QSGGeometry.DrawingMode
+    DrawLineLoop = ...  # type: QSGGeometry.DrawingMode
+    DrawLineStrip = ...  # type: QSGGeometry.DrawingMode
+    DrawTriangles = ...  # type: QSGGeometry.DrawingMode
+    DrawTriangleStrip = ...  # type: QSGGeometry.DrawingMode
+    DrawTriangleFan = ...  # type: QSGGeometry.DrawingMode
+
     class AttributeType(int):
         UnknownAttribute = ... # type: QSGGeometry.AttributeType
         PositionAttribute = ... # type: QSGGeometry.AttributeType
@@ -783,11 +884,23 @@ class QSGGeometry(sip.wrapper):
         TexCoord1Attribute = ... # type: QSGGeometry.AttributeType
         TexCoord2Attribute = ... # type: QSGGeometry.AttributeType
 
+    UnknownAttribute = ...  # type: QSGGeometry.AttributeType
+    PositionAttribute = ...  # type: QSGGeometry.AttributeType
+    ColorAttribute = ...  # type: QSGGeometry.AttributeType
+    TexCoordAttribute = ...  # type: QSGGeometry.AttributeType
+    TexCoord1Attribute = ...  # type: QSGGeometry.AttributeType
+    TexCoord2Attribute = ...  # type: QSGGeometry.AttributeType
+
     class DataPattern(int):
         AlwaysUploadPattern = ... # type: QSGGeometry.DataPattern
         StreamPattern = ... # type: QSGGeometry.DataPattern
         DynamicPattern = ... # type: QSGGeometry.DataPattern
         StaticPattern = ... # type: QSGGeometry.DataPattern
+
+    AlwaysUploadPattern = ...  # type: QSGGeometry.DataPattern
+    StreamPattern = ...  # type: QSGGeometry.DataPattern
+    DynamicPattern = ...  # type: QSGGeometry.DataPattern
+    StaticPattern = ...  # type: QSGGeometry.DataPattern
 
     GL_POINTS = ... # type: int
     GL_LINES = ... # type: int
@@ -921,6 +1034,13 @@ class QSGNode(sip.wrapper):
         DirtyMaterial = ... # type: QSGNode.DirtyStateBit
         DirtyOpacity = ... # type: QSGNode.DirtyStateBit
 
+    DirtyMatrix = ...  # type: QSGNode.DirtyStateBit
+    DirtyNodeAdded = ...  # type: QSGNode.DirtyStateBit
+    DirtyNodeRemoved = ...  # type: QSGNode.DirtyStateBit
+    DirtyGeometry = ...  # type: QSGNode.DirtyStateBit
+    DirtyMaterial = ...  # type: QSGNode.DirtyStateBit
+    DirtyOpacity = ...  # type: QSGNode.DirtyStateBit
+
     class Flag(int):
         OwnedByParent = ... # type: QSGNode.Flag
         UsePreprocess = ... # type: QSGNode.Flag
@@ -928,12 +1048,24 @@ class QSGNode(sip.wrapper):
         OwnsMaterial = ... # type: QSGNode.Flag
         OwnsOpaqueMaterial = ... # type: QSGNode.Flag
 
+    OwnedByParent = ...  # type: QSGNode.Flag
+    UsePreprocess = ...  # type: QSGNode.Flag
+    OwnsGeometry = ...  # type: QSGNode.Flag
+    OwnsMaterial = ...  # type: QSGNode.Flag
+    OwnsOpaqueMaterial = ...  # type: QSGNode.Flag
+
     class NodeType(int):
         BasicNodeType = ... # type: QSGNode.NodeType
         GeometryNodeType = ... # type: QSGNode.NodeType
         TransformNodeType = ... # type: QSGNode.NodeType
         ClipNodeType = ... # type: QSGNode.NodeType
         OpacityNodeType = ... # type: QSGNode.NodeType
+
+    BasicNodeType = ...  # type: QSGNode.NodeType
+    GeometryNodeType = ...  # type: QSGNode.NodeType
+    TransformNodeType = ...  # type: QSGNode.NodeType
+    ClipNodeType = ...  # type: QSGNode.NodeType
+    OpacityNodeType = ...  # type: QSGNode.NodeType
 
     class Flags(sip.simplewrapper):
 
@@ -1013,6 +1145,10 @@ class QSGImageNode(QSGGeometryNode):
         MirrorHorizontally = ... # type: QSGImageNode.TextureCoordinatesTransformFlag
         MirrorVertically = ... # type: QSGImageNode.TextureCoordinatesTransformFlag
 
+    NoTransform = ...  # type: QSGImageNode.TextureCoordinatesTransformFlag
+    MirrorHorizontally = ...  # type: QSGImageNode.TextureCoordinatesTransformFlag
+    MirrorVertically = ...  # type: QSGImageNode.TextureCoordinatesTransformFlag
+
     class TextureCoordinatesTransformMode(sip.simplewrapper):
 
         @typing.overload
@@ -1061,6 +1197,11 @@ class QSGMaterialShader(sip.wrapper):
             DirtyOpacity = ... # type: QSGMaterialShader.RenderState.DirtyState
             DirtyCachedMaterialData = ... # type: QSGMaterialShader.RenderState.DirtyState
             DirtyAll = ... # type: QSGMaterialShader.RenderState.DirtyState
+
+        DirtyMatrix = ...  # type: QSGMaterialShader.RenderState.DirtyState
+        DirtyOpacity = ...  # type: QSGMaterialShader.RenderState.DirtyState
+        DirtyCachedMaterialData = ...  # type: QSGMaterialShader.RenderState.DirtyState
+        DirtyAll = ...  # type: QSGMaterialShader.RenderState.DirtyState
 
         class DirtyStates(sip.simplewrapper):
 
@@ -1124,6 +1265,8 @@ class QSGMaterialRhiShader(QSGMaterialShader):
     class Flag(int):
         UpdatesGraphicsPipelineState = ... # type: QSGMaterialRhiShader.Flag
 
+    UpdatesGraphicsPipelineState = ...  # type: QSGMaterialRhiShader.Flag
+
     class RenderState(sip.simplewrapper):
 
         @typing.overload
@@ -1151,11 +1294,20 @@ class QSGMaterialRhiShader(QSGMaterialShader):
             CullFront = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.CullMode
             CullBack = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.CullMode
 
+        CullNone = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.CullMode
+        CullFront = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.CullMode
+        CullBack = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.CullMode
+
         class ColorMaskComponent(int):
             R = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
             G = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
             B = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
             A = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
+
+        R = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
+        G = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
+        B = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
+        A = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.ColorMaskComponent
 
         class BlendFactor(int):
             Zero = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
@@ -1177,6 +1329,26 @@ class QSGMaterialRhiShader(QSGMaterialShader):
             OneMinusSrc1Color = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
             Src1Alpha = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
             OneMinusSrc1Alpha = ... # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+
+        Zero = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        One = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        SrcColor = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusSrcColor = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        DstColor = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusDstColor = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        SrcAlpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusSrcAlpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        DstAlpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusDstAlpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        ConstantColor = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusConstantColor = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        ConstantAlpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusConstantAlpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        SrcAlphaSaturate = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        Src1Color = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusSrc1Color = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        Src1Alpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
+        OneMinusSrc1Alpha = ...  # type: QSGMaterialRhiShader.GraphicsPipelineState.BlendFactor
 
         class ColorMask(sip.simplewrapper):
 
@@ -1266,15 +1438,27 @@ class QSGRendererInterface(sip.simplewrapper):
         ShaderSourceFile = ... # type: QSGRendererInterface.ShaderSourceType
         ShaderByteCode = ... # type: QSGRendererInterface.ShaderSourceType
 
+    ShaderSourceString = ...  # type: QSGRendererInterface.ShaderSourceType
+    ShaderSourceFile = ...  # type: QSGRendererInterface.ShaderSourceType
+    ShaderByteCode = ...  # type: QSGRendererInterface.ShaderSourceType
+
     class ShaderCompilationType(int):
         RuntimeCompilation = ... # type: QSGRendererInterface.ShaderCompilationType
         OfflineCompilation = ... # type: QSGRendererInterface.ShaderCompilationType
+
+    RuntimeCompilation = ...  # type: QSGRendererInterface.ShaderCompilationType
+    OfflineCompilation = ...  # type: QSGRendererInterface.ShaderCompilationType
 
     class ShaderType(int):
         UnknownShadingLanguage = ... # type: QSGRendererInterface.ShaderType
         GLSL = ... # type: QSGRendererInterface.ShaderType
         HLSL = ... # type: QSGRendererInterface.ShaderType
         RhiShader = ... # type: QSGRendererInterface.ShaderType
+
+    UnknownShadingLanguage = ...  # type: QSGRendererInterface.ShaderType
+    GLSL = ...  # type: QSGRendererInterface.ShaderType
+    HLSL = ...  # type: QSGRendererInterface.ShaderType
+    RhiShader = ...  # type: QSGRendererInterface.ShaderType
 
     class Resource(int):
         DeviceResource = ... # type: QSGRendererInterface.Resource
@@ -1289,6 +1473,18 @@ class QSGRendererInterface(sip.simplewrapper):
         VulkanInstanceResource = ... # type: QSGRendererInterface.Resource
         RenderPassResource = ... # type: QSGRendererInterface.Resource
 
+    DeviceResource = ...  # type: QSGRendererInterface.Resource
+    CommandQueueResource = ...  # type: QSGRendererInterface.Resource
+    CommandListResource = ...  # type: QSGRendererInterface.Resource
+    PainterResource = ...  # type: QSGRendererInterface.Resource
+    RhiResource = ...  # type: QSGRendererInterface.Resource
+    PhysicalDeviceResource = ...  # type: QSGRendererInterface.Resource
+    OpenGLContextResource = ...  # type: QSGRendererInterface.Resource
+    DeviceContextResource = ...  # type: QSGRendererInterface.Resource
+    CommandEncoderResource = ...  # type: QSGRendererInterface.Resource
+    VulkanInstanceResource = ...  # type: QSGRendererInterface.Resource
+    RenderPassResource = ...  # type: QSGRendererInterface.Resource
+
     class GraphicsApi(int):
         Unknown = ... # type: QSGRendererInterface.GraphicsApi
         Software = ... # type: QSGRendererInterface.GraphicsApi
@@ -1300,6 +1496,17 @@ class QSGRendererInterface(sip.simplewrapper):
         VulkanRhi = ... # type: QSGRendererInterface.GraphicsApi
         MetalRhi = ... # type: QSGRendererInterface.GraphicsApi
         NullRhi = ... # type: QSGRendererInterface.GraphicsApi
+
+    Unknown = ...  # type: QSGRendererInterface.GraphicsApi
+    Software = ...  # type: QSGRendererInterface.GraphicsApi
+    OpenGL = ...  # type: QSGRendererInterface.GraphicsApi
+    Direct3D12 = ...  # type: QSGRendererInterface.GraphicsApi
+    OpenVG = ...  # type: QSGRendererInterface.GraphicsApi
+    OpenGLRhi = ...  # type: QSGRendererInterface.GraphicsApi
+    Direct3D11Rhi = ...  # type: QSGRendererInterface.GraphicsApi
+    VulkanRhi = ...  # type: QSGRendererInterface.GraphicsApi
+    MetalRhi = ...  # type: QSGRendererInterface.GraphicsApi
+    NullRhi = ...  # type: QSGRendererInterface.GraphicsApi
 
     class ShaderCompilationTypes(sip.simplewrapper):
 
@@ -1350,6 +1557,10 @@ class QSGRenderNode(QSGNode):
         DepthAwareRendering = ... # type: QSGRenderNode.RenderingFlag
         OpaqueRendering = ... # type: QSGRenderNode.RenderingFlag
 
+    BoundedRectRendering = ...  # type: QSGRenderNode.RenderingFlag
+    DepthAwareRendering = ...  # type: QSGRenderNode.RenderingFlag
+    OpaqueRendering = ...  # type: QSGRenderNode.RenderingFlag
+
     class StateFlag(int):
         DepthState = ... # type: QSGRenderNode.StateFlag
         StencilState = ... # type: QSGRenderNode.StateFlag
@@ -1359,6 +1570,15 @@ class QSGRenderNode(QSGNode):
         CullState = ... # type: QSGRenderNode.StateFlag
         ViewportState = ... # type: QSGRenderNode.StateFlag
         RenderTargetState = ... # type: QSGRenderNode.StateFlag
+
+    DepthState = ...  # type: QSGRenderNode.StateFlag
+    StencilState = ...  # type: QSGRenderNode.StateFlag
+    ScissorState = ...  # type: QSGRenderNode.StateFlag
+    ColorState = ...  # type: QSGRenderNode.StateFlag
+    BlendState = ...  # type: QSGRenderNode.StateFlag
+    CullState = ...  # type: QSGRenderNode.StateFlag
+    ViewportState = ...  # type: QSGRenderNode.StateFlag
+    RenderTargetState = ...  # type: QSGRenderNode.StateFlag
 
     class StateFlags(sip.simplewrapper):
 
@@ -1435,6 +1655,10 @@ class QSGSimpleTextureNode(QSGGeometryNode):
         MirrorHorizontally = ... # type: QSGSimpleTextureNode.TextureCoordinatesTransformFlag
         MirrorVertically = ... # type: QSGSimpleTextureNode.TextureCoordinatesTransformFlag
 
+    NoTransform = ...  # type: QSGSimpleTextureNode.TextureCoordinatesTransformFlag
+    MirrorHorizontally = ...  # type: QSGSimpleTextureNode.TextureCoordinatesTransformFlag
+    MirrorVertically = ...  # type: QSGSimpleTextureNode.TextureCoordinatesTransformFlag
+
     class TextureCoordinatesTransformMode(sip.simplewrapper):
 
         @typing.overload
@@ -1481,15 +1705,29 @@ class QSGTexture(QtCore.QObject):
         Anisotropy8x = ... # type: QSGTexture.AnisotropyLevel
         Anisotropy16x = ... # type: QSGTexture.AnisotropyLevel
 
+    AnisotropyNone = ...  # type: QSGTexture.AnisotropyLevel
+    Anisotropy2x = ...  # type: QSGTexture.AnisotropyLevel
+    Anisotropy4x = ...  # type: QSGTexture.AnisotropyLevel
+    Anisotropy8x = ...  # type: QSGTexture.AnisotropyLevel
+    Anisotropy16x = ...  # type: QSGTexture.AnisotropyLevel
+
     class Filtering(int):
         None_ = ... # type: QSGTexture.Filtering
         Nearest = ... # type: QSGTexture.Filtering
         Linear = ... # type: QSGTexture.Filtering
 
+    None_ = ...  # type: QSGTexture.Filtering
+    Nearest = ...  # type: QSGTexture.Filtering
+    Linear = ...  # type: QSGTexture.Filtering
+
     class WrapMode(int):
         Repeat = ... # type: QSGTexture.WrapMode
         ClampToEdge = ... # type: QSGTexture.WrapMode
         MirroredRepeat = ... # type: QSGTexture.WrapMode
+
+    Repeat = ...  # type: QSGTexture.WrapMode
+    ClampToEdge = ...  # type: QSGTexture.WrapMode
+    MirroredRepeat = ...  # type: QSGTexture.WrapMode
 
     class NativeTexture(sip.simplewrapper):
 

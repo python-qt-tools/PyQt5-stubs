@@ -48,6 +48,10 @@ class QAbstractItemModelTester(QtCore.QObject):
         Warning = ... # type: QAbstractItemModelTester.FailureReportingMode
         Fatal = ... # type: QAbstractItemModelTester.FailureReportingMode
 
+    QtTest = ...  # type: QAbstractItemModelTester.FailureReportingMode
+    Warning = ...  # type: QAbstractItemModelTester.FailureReportingMode
+    Fatal = ...  # type: QAbstractItemModelTester.FailureReportingMode
+
     @typing.overload
     def __init__(self, model: QtCore.QAbstractItemModel, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -80,6 +84,11 @@ class QTest(sip.simplewrapper):
         Release = ... # type: QTest.KeyAction
         Click = ... # type: QTest.KeyAction
         Shortcut = ... # type: QTest.KeyAction
+
+    Press = ...  # type: QTest.KeyAction
+    Release = ...  # type: QTest.KeyAction
+    Click = ...  # type: QTest.KeyAction
+    Shortcut = ...  # type: QTest.KeyAction
 
     class QTouchEventSequence(sip.simplewrapper):
 

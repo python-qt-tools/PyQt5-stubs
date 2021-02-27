@@ -148,6 +148,20 @@ class QWebSocketProtocol(sip.simplewrapper):
         CloseCodeBadOperation = ... # type: QWebSocketProtocol.CloseCode
         CloseCodeTlsHandshakeFailed = ... # type: QWebSocketProtocol.CloseCode
 
+    CloseCodeNormal = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeGoingAway = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeProtocolError = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeDatatypeNotSupported = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeReserved1004 = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeMissingStatusCode = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeAbnormalDisconnection = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeWrongDatatype = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodePolicyViolated = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeTooMuchData = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeMissingExtension = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeBadOperation = ...  # type: QWebSocketProtocol.CloseCode
+    CloseCodeTlsHandshakeFailed = ...  # type: QWebSocketProtocol.CloseCode
+
     class Version(int):
         VersionUnknown = ... # type: QWebSocketProtocol.Version
         Version0 = ... # type: QWebSocketProtocol.Version
@@ -159,12 +173,25 @@ class QWebSocketProtocol(sip.simplewrapper):
         Version13 = ... # type: QWebSocketProtocol.Version
         VersionLatest = ... # type: QWebSocketProtocol.Version
 
+    VersionUnknown = ... # type: QWebSocketProtocol.Version
+    Version0 = ... # type: QWebSocketProtocol.Version
+    Version4 = ... # type: QWebSocketProtocol.Version
+    Version5 = ... # type: QWebSocketProtocol.Version
+    Version6 = ... # type: QWebSocketProtocol.Version
+    Version7 = ... # type: QWebSocketProtocol.Version
+    Version8 = ... # type: QWebSocketProtocol.Version
+    Version13 = ... # type: QWebSocketProtocol.Version
+    VersionLatest = ... # type: QWebSocketProtocol.Version
+
 
 class QWebSocketServer(QtCore.QObject):
 
     class SslMode(int):
         SecureMode = ... # type: QWebSocketServer.SslMode
         NonSecureMode = ... # type: QWebSocketServer.SslMode
+
+    SecureMode = ...  # type: QWebSocketServer.SslMode
+    NonSecureMode = ...  # type: QWebSocketServer.SslMode
 
     def __init__(self, serverName: str, secureMode: 'QWebSocketServer.SslMode', parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 

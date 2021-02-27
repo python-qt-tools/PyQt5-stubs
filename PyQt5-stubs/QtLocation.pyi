@@ -44,6 +44,14 @@ class QGeoCodeReply(QtCore.QObject):
         CombinationError = ... # type: QGeoCodeReply.Error
         UnknownError = ... # type: QGeoCodeReply.Error
 
+    NoError = ...  # type: QGeoCodeReply.Error
+    EngineNotSetError = ...  # type: QGeoCodeReply.Error
+    CommunicationError = ...  # type: QGeoCodeReply.Error
+    ParseError = ...  # type: QGeoCodeReply.Error
+    UnsupportedOptionError = ...  # type: QGeoCodeReply.Error
+    CombinationError = ...  # type: QGeoCodeReply.Error
+    UnknownError = ...  # type: QGeoCodeReply.Error
+
     @typing.overload
     def __init__(self, error: 'QGeoCodeReply.Error', errorString: str, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -119,6 +127,19 @@ class QGeoManeuver(sip.simplewrapper):
         DirectionLightLeft = ... # type: QGeoManeuver.InstructionDirection
         DirectionBearLeft = ... # type: QGeoManeuver.InstructionDirection
 
+    NoDirection = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionForward = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionBearRight = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionLightRight = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionRight = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionHardRight = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionUTurnRight = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionUTurnLeft = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionHardLeft = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionLeft = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionLightLeft = ...  # type: QGeoManeuver.InstructionDirection
+    DirectionBearLeft = ...  # type: QGeoManeuver.InstructionDirection
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -193,6 +214,13 @@ class QGeoRouteReply(QtCore.QObject):
         UnsupportedOptionError = ... # type: QGeoRouteReply.Error
         UnknownError = ... # type: QGeoRouteReply.Error
 
+    NoError = ...  # type: QGeoRouteReply.Error
+    EngineNotSetError = ...  # type: QGeoRouteReply.Error
+    CommunicationError = ...  # type: QGeoRouteReply.Error
+    ParseError = ...  # type: QGeoRouteReply.Error
+    UnsupportedOptionError = ...  # type: QGeoRouteReply.Error
+    UnknownError = ...  # type: QGeoRouteReply.Error
+
     @typing.overload
     def __init__(self, error: 'QGeoRouteReply.Error', errorString: str, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -221,9 +249,15 @@ class QGeoRouteRequest(sip.simplewrapper):
         NoManeuvers = ... # type: QGeoRouteRequest.ManeuverDetail
         BasicManeuvers = ... # type: QGeoRouteRequest.ManeuverDetail
 
+    NoManeuvers = ...  # type: QGeoRouteRequest.ManeuverDetail
+    BasicManeuvers = ...  # type: QGeoRouteRequest.ManeuverDetail
+
     class SegmentDetail(int):
         NoSegmentData = ... # type: QGeoRouteRequest.SegmentDetail
         BasicSegmentData = ... # type: QGeoRouteRequest.SegmentDetail
+
+    NoSegmentData = ...  # type: QGeoRouteRequest.SegmentDetail
+    BasicSegmentData = ...  # type: QGeoRouteRequest.SegmentDetail
 
     class RouteOptimization(int):
         ShortestRoute = ... # type: QGeoRouteRequest.RouteOptimization
@@ -231,12 +265,23 @@ class QGeoRouteRequest(sip.simplewrapper):
         MostEconomicRoute = ... # type: QGeoRouteRequest.RouteOptimization
         MostScenicRoute = ... # type: QGeoRouteRequest.RouteOptimization
 
+    ShortestRoute = ...  # type: QGeoRouteRequest.RouteOptimization
+    FastestRoute = ...  # type: QGeoRouteRequest.RouteOptimization
+    MostEconomicRoute = ...  # type: QGeoRouteRequest.RouteOptimization
+    MostScenicRoute = ...  # type: QGeoRouteRequest.RouteOptimization
+
     class FeatureWeight(int):
         NeutralFeatureWeight = ... # type: QGeoRouteRequest.FeatureWeight
         PreferFeatureWeight = ... # type: QGeoRouteRequest.FeatureWeight
         RequireFeatureWeight = ... # type: QGeoRouteRequest.FeatureWeight
         AvoidFeatureWeight = ... # type: QGeoRouteRequest.FeatureWeight
         DisallowFeatureWeight = ... # type: QGeoRouteRequest.FeatureWeight
+
+    NeutralFeatureWeight = ...  # type: QGeoRouteRequest.FeatureWeight
+    PreferFeatureWeight = ...  # type: QGeoRouteRequest.FeatureWeight
+    RequireFeatureWeight = ...  # type: QGeoRouteRequest.FeatureWeight
+    AvoidFeatureWeight = ...  # type: QGeoRouteRequest.FeatureWeight
+    DisallowFeatureWeight = ...  # type: QGeoRouteRequest.FeatureWeight
 
     class FeatureType(int):
         NoFeature = ... # type: QGeoRouteRequest.FeatureType
@@ -250,12 +295,29 @@ class QGeoRouteRequest(sip.simplewrapper):
         MotorPoolLaneFeature = ... # type: QGeoRouteRequest.FeatureType
         TrafficFeature = ... # type: QGeoRouteRequest.FeatureType
 
+    NoFeature = ...  # type: QGeoRouteRequest.FeatureType
+    TollFeature = ...  # type: QGeoRouteRequest.FeatureType
+    HighwayFeature = ...  # type: QGeoRouteRequest.FeatureType
+    PublicTransitFeature = ...  # type: QGeoRouteRequest.FeatureType
+    FerryFeature = ...  # type: QGeoRouteRequest.FeatureType
+    TunnelFeature = ...  # type: QGeoRouteRequest.FeatureType
+    DirtRoadFeature = ...  # type: QGeoRouteRequest.FeatureType
+    ParksFeature = ...  # type: QGeoRouteRequest.FeatureType
+    MotorPoolLaneFeature = ...  # type: QGeoRouteRequest.FeatureType
+    TrafficFeature = ...  # type: QGeoRouteRequest.FeatureType
+
     class TravelMode(int):
         CarTravel = ... # type: QGeoRouteRequest.TravelMode
         PedestrianTravel = ... # type: QGeoRouteRequest.TravelMode
         BicycleTravel = ... # type: QGeoRouteRequest.TravelMode
         PublicTransitTravel = ... # type: QGeoRouteRequest.TravelMode
         TruckTravel = ... # type: QGeoRouteRequest.TravelMode
+
+    CarTravel = ...  # type: QGeoRouteRequest.TravelMode
+    PedestrianTravel = ...  # type: QGeoRouteRequest.TravelMode
+    BicycleTravel = ...  # type: QGeoRouteRequest.TravelMode
+    PublicTransitTravel = ...  # type: QGeoRouteRequest.TravelMode
+    TruckTravel = ...  # type: QGeoRouteRequest.TravelMode
 
     class TravelModes(sip.simplewrapper):
 
@@ -459,6 +521,11 @@ class QGeoServiceProvider(QtCore.QObject):
         OfflineNavigationFeature = ... # type: QGeoServiceProvider.NavigationFeature
         AnyNavigationFeatures = ... # type: QGeoServiceProvider.NavigationFeature
 
+    NoNavigationFeatures = ...  # type: QGeoServiceProvider.NavigationFeature
+    OnlineNavigationFeature = ...  # type: QGeoServiceProvider.NavigationFeature
+    OfflineNavigationFeature = ...  # type: QGeoServiceProvider.NavigationFeature
+    AnyNavigationFeatures = ...  # type: QGeoServiceProvider.NavigationFeature
+
     class PlacesFeature(int):
         NoPlacesFeatures = ... # type: QGeoServiceProvider.PlacesFeature
         OnlinePlacesFeature = ... # type: QGeoServiceProvider.PlacesFeature
@@ -474,12 +541,32 @@ class QGeoServiceProvider(QtCore.QObject):
         PlaceMatchingFeature = ... # type: QGeoServiceProvider.PlacesFeature
         AnyPlacesFeatures = ... # type: QGeoServiceProvider.PlacesFeature
 
+    NoPlacesFeatures = ...  # type: QGeoServiceProvider.PlacesFeature
+    OnlinePlacesFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    OfflinePlacesFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    SavePlaceFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    RemovePlaceFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    SaveCategoryFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    RemoveCategoryFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    PlaceRecommendationsFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    SearchSuggestionsFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    LocalizedPlacesFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    NotificationsFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    PlaceMatchingFeature = ...  # type: QGeoServiceProvider.PlacesFeature
+    AnyPlacesFeatures = ...  # type: QGeoServiceProvider.PlacesFeature
+
     class MappingFeature(int):
         NoMappingFeatures = ... # type: QGeoServiceProvider.MappingFeature
         OnlineMappingFeature = ... # type: QGeoServiceProvider.MappingFeature
         OfflineMappingFeature = ... # type: QGeoServiceProvider.MappingFeature
         LocalizedMappingFeature = ... # type: QGeoServiceProvider.MappingFeature
         AnyMappingFeatures = ... # type: QGeoServiceProvider.MappingFeature
+
+    NoMappingFeatures = ...  # type: QGeoServiceProvider.MappingFeature
+    OnlineMappingFeature = ...  # type: QGeoServiceProvider.MappingFeature
+    OfflineMappingFeature = ...  # type: QGeoServiceProvider.MappingFeature
+    LocalizedMappingFeature = ...  # type: QGeoServiceProvider.MappingFeature
+    AnyMappingFeatures = ...  # type: QGeoServiceProvider.MappingFeature
 
     class GeocodingFeature(int):
         NoGeocodingFeatures = ... # type: QGeoServiceProvider.GeocodingFeature
@@ -488,6 +575,13 @@ class QGeoServiceProvider(QtCore.QObject):
         ReverseGeocodingFeature = ... # type: QGeoServiceProvider.GeocodingFeature
         LocalizedGeocodingFeature = ... # type: QGeoServiceProvider.GeocodingFeature
         AnyGeocodingFeatures = ... # type: QGeoServiceProvider.GeocodingFeature
+
+    NoGeocodingFeatures = ...  # type: QGeoServiceProvider.GeocodingFeature
+    OnlineGeocodingFeature = ...  # type: QGeoServiceProvider.GeocodingFeature
+    OfflineGeocodingFeature = ...  # type: QGeoServiceProvider.GeocodingFeature
+    ReverseGeocodingFeature = ...  # type: QGeoServiceProvider.GeocodingFeature
+    LocalizedGeocodingFeature = ...  # type: QGeoServiceProvider.GeocodingFeature
+    AnyGeocodingFeatures = ...  # type: QGeoServiceProvider.GeocodingFeature
 
     class RoutingFeature(int):
         NoRoutingFeatures = ... # type: QGeoServiceProvider.RoutingFeature
@@ -499,6 +593,15 @@ class QGeoServiceProvider(QtCore.QObject):
         ExcludeAreasRoutingFeature = ... # type: QGeoServiceProvider.RoutingFeature
         AnyRoutingFeatures = ... # type: QGeoServiceProvider.RoutingFeature
 
+    NoRoutingFeatures = ...  # type: QGeoServiceProvider.RoutingFeature
+    OnlineRoutingFeature = ...  # type: QGeoServiceProvider.RoutingFeature
+    OfflineRoutingFeature = ...  # type: QGeoServiceProvider.RoutingFeature
+    LocalizedRoutingFeature = ...  # type: QGeoServiceProvider.RoutingFeature
+    RouteUpdatesFeature = ...  # type: QGeoServiceProvider.RoutingFeature
+    AlternativeRoutesFeature = ...  # type: QGeoServiceProvider.RoutingFeature
+    ExcludeAreasRoutingFeature = ...  # type: QGeoServiceProvider.RoutingFeature
+    AnyRoutingFeatures = ...  # type: QGeoServiceProvider.RoutingFeature
+
     class Error(int):
         NoError = ... # type: QGeoServiceProvider.Error
         NotSupportedError = ... # type: QGeoServiceProvider.Error
@@ -506,6 +609,13 @@ class QGeoServiceProvider(QtCore.QObject):
         MissingRequiredParameterError = ... # type: QGeoServiceProvider.Error
         ConnectionError = ... # type: QGeoServiceProvider.Error
         LoaderError = ... # type: QGeoServiceProvider.Error
+
+    NoError = ...  # type: QGeoServiceProvider.Error
+    NotSupportedError = ...  # type: QGeoServiceProvider.Error
+    UnknownParameterError = ...  # type: QGeoServiceProvider.Error
+    MissingRequiredParameterError = ...  # type: QGeoServiceProvider.Error
+    ConnectionError = ...  # type: QGeoServiceProvider.Error
+    LoaderError = ...  # type: QGeoServiceProvider.Error
 
     class RoutingFeatures(sip.simplewrapper):
 
@@ -619,6 +729,11 @@ class QLocation(sip.simplewrapper):
         DeviceVisibility = ... # type: QLocation.Visibility
         PrivateVisibility = ... # type: QLocation.Visibility
         PublicVisibility = ... # type: QLocation.Visibility
+
+    UnspecifiedVisibility = ...  # type: QLocation.Visibility
+    DeviceVisibility = ...  # type: QLocation.Visibility
+    PrivateVisibility = ...  # type: QLocation.Visibility
+    PublicVisibility = ...  # type: QLocation.Visibility
 
     class VisibilityScope(sip.simplewrapper):
 
@@ -749,6 +864,12 @@ class QPlaceContent(sip.simplewrapper):
         EditorialType = ... # type: QPlaceContent.Type
         CustomType = ... # type: QPlaceContent.Type
 
+    NoType = ...  # type: QPlaceContent.Type
+    ImageType = ...  # type: QPlaceContent.Type
+    ReviewType = ...  # type: QPlaceContent.Type
+    EditorialType = ...  # type: QPlaceContent.Type
+    CustomType = ...  # type: QPlaceContent.Type
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -774,6 +895,14 @@ class QPlaceReply(QtCore.QObject):
         IdReply = ... # type: QPlaceReply.Type
         MatchReply = ... # type: QPlaceReply.Type
 
+    Reply = ...  # type: QPlaceReply.Type
+    DetailsReply = ...  # type: QPlaceReply.Type
+    SearchReply = ...  # type: QPlaceReply.Type
+    SearchSuggestionReply = ...  # type: QPlaceReply.Type
+    ContentReply = ...  # type: QPlaceReply.Type
+    IdReply = ...  # type: QPlaceReply.Type
+    MatchReply = ...  # type: QPlaceReply.Type
+
     class Error(int):
         NoError = ... # type: QPlaceReply.Error
         PlaceDoesNotExistError = ... # type: QPlaceReply.Error
@@ -785,6 +914,17 @@ class QPlaceReply(QtCore.QObject):
         BadArgumentError = ... # type: QPlaceReply.Error
         CancelError = ... # type: QPlaceReply.Error
         UnknownError = ... # type: QPlaceReply.Error
+
+    NoError = ...  # type: QPlaceReply.Error
+    PlaceDoesNotExistError = ...  # type: QPlaceReply.Error
+    CategoryDoesNotExistError = ...  # type: QPlaceReply.Error
+    CommunicationError = ...  # type: QPlaceReply.Error
+    ParseError = ...  # type: QPlaceReply.Error
+    PermissionsError = ...  # type: QPlaceReply.Error
+    UnsupportedError = ...  # type: QPlaceReply.Error
+    BadArgumentError = ...  # type: QPlaceReply.Error
+    CancelError = ...  # type: QPlaceReply.Error
+    UnknownError = ...  # type: QPlaceReply.Error
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -888,6 +1028,11 @@ class QPlaceIdReply(QPlaceReply):
         SaveCategory = ... # type: QPlaceIdReply.OperationType
         RemovePlace = ... # type: QPlaceIdReply.OperationType
         RemoveCategory = ... # type: QPlaceIdReply.OperationType
+
+    SavePlace = ...  # type: QPlaceIdReply.OperationType
+    SaveCategory = ...  # type: QPlaceIdReply.OperationType
+    RemovePlace = ...  # type: QPlaceIdReply.OperationType
+    RemoveCategory = ...  # type: QPlaceIdReply.OperationType
 
     def __init__(self, operationType: 'QPlaceIdReply.OperationType', parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1018,6 +1163,10 @@ class QPlaceSearchResult(sip.simplewrapper):
         PlaceResult = ... # type: QPlaceSearchResult.SearchResultType
         ProposedSearchResult = ... # type: QPlaceSearchResult.SearchResultType
 
+    UnknownSearchResult = ...  # type: QPlaceSearchResult.SearchResultType
+    PlaceResult = ...  # type: QPlaceSearchResult.SearchResultType
+    ProposedSearchResult = ...  # type: QPlaceSearchResult.SearchResultType
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -1120,6 +1269,10 @@ class QPlaceSearchRequest(sip.simplewrapper):
         UnspecifiedHint = ... # type: QPlaceSearchRequest.RelevanceHint
         DistanceHint = ... # type: QPlaceSearchRequest.RelevanceHint
         LexicalPlaceNameHint = ... # type: QPlaceSearchRequest.RelevanceHint
+
+    UnspecifiedHint = ...  # type: QPlaceSearchRequest.RelevanceHint
+    DistanceHint = ...  # type: QPlaceSearchRequest.RelevanceHint
+    LexicalPlaceNameHint = ...  # type: QPlaceSearchRequest.RelevanceHint
 
     @typing.overload
     def __init__(self) -> None: ...

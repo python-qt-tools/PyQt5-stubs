@@ -40,6 +40,10 @@ class QDomImplementation(sip.simplewrapper):
         DropInvalidChars = ... # type: QDomImplementation.InvalidDataPolicy
         ReturnNullNode = ... # type: QDomImplementation.InvalidDataPolicy
 
+    AcceptInvalidChars = ...  # type: QDomImplementation.InvalidDataPolicy
+    DropInvalidChars = ...  # type: QDomImplementation.InvalidDataPolicy
+    ReturnNullNode = ...  # type: QDomImplementation.InvalidDataPolicy
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -61,6 +65,9 @@ class QDomNode(sip.simplewrapper):
         EncodingFromDocument = ... # type: QDomNode.EncodingPolicy
         EncodingFromTextStream = ... # type: QDomNode.EncodingPolicy
 
+    EncodingFromDocument = ...  # type: QDomNode.EncodingPolicy
+    EncodingFromTextStream = ...  # type: QDomNode.EncodingPolicy
+
     class NodeType(int):
         ElementNode = ... # type: QDomNode.NodeType
         AttributeNode = ... # type: QDomNode.NodeType
@@ -76,6 +83,21 @@ class QDomNode(sip.simplewrapper):
         NotationNode = ... # type: QDomNode.NodeType
         BaseNode = ... # type: QDomNode.NodeType
         CharacterDataNode = ... # type: QDomNode.NodeType
+
+    ElementNode = ...  # type: QDomNode.NodeType
+    AttributeNode = ...  # type: QDomNode.NodeType
+    TextNode = ...  # type: QDomNode.NodeType
+    CDATASectionNode = ...  # type: QDomNode.NodeType
+    EntityReferenceNode = ...  # type: QDomNode.NodeType
+    EntityNode = ...  # type: QDomNode.NodeType
+    ProcessingInstructionNode = ...  # type: QDomNode.NodeType
+    CommentNode = ...  # type: QDomNode.NodeType
+    DocumentNode = ...  # type: QDomNode.NodeType
+    DocumentTypeNode = ...  # type: QDomNode.NodeType
+    DocumentFragmentNode = ...  # type: QDomNode.NodeType
+    NotationNode = ...  # type: QDomNode.NodeType
+    BaseNode = ...  # type: QDomNode.NodeType
+    CharacterDataNode = ...  # type: QDomNode.NodeType
 
     @typing.overload
     def __init__(self) -> None: ...

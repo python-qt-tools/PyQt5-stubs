@@ -46,10 +46,18 @@ class QQuickWebEngineProfile(QtCore.QObject):
         AllowPersistentCookies = ... # type: QQuickWebEngineProfile.PersistentCookiesPolicy
         ForcePersistentCookies = ... # type: QQuickWebEngineProfile.PersistentCookiesPolicy
 
+    NoPersistentCookies = ...  # type: QQuickWebEngineProfile.PersistentCookiesPolicy
+    AllowPersistentCookies = ...  # type: QQuickWebEngineProfile.PersistentCookiesPolicy
+    ForcePersistentCookies = ...  # type: QQuickWebEngineProfile.PersistentCookiesPolicy
+
     class HttpCacheType(int):
         MemoryHttpCache = ... # type: QQuickWebEngineProfile.HttpCacheType
         DiskHttpCache = ... # type: QQuickWebEngineProfile.HttpCacheType
         NoCache = ... # type: QQuickWebEngineProfile.HttpCacheType
+
+    MemoryHttpCache = ...  # type: QQuickWebEngineProfile.HttpCacheType
+    DiskHttpCache = ...  # type: QQuickWebEngineProfile.HttpCacheType
+    NoCache = ...  # type: QQuickWebEngineProfile.HttpCacheType
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -114,10 +122,18 @@ class QQuickWebEngineScript(QtCore.QObject):
         ApplicationWorld = ... # type: QQuickWebEngineScript.ScriptWorldId
         UserWorld = ... # type: QQuickWebEngineScript.ScriptWorldId
 
+    MainWorld = ...  # type: QQuickWebEngineScript.ScriptWorldId
+    ApplicationWorld = ...  # type: QQuickWebEngineScript.ScriptWorldId
+    UserWorld = ...  # type: QQuickWebEngineScript.ScriptWorldId
+
     class InjectionPoint(int):
         Deferred = ... # type: QQuickWebEngineScript.InjectionPoint
         DocumentReady = ... # type: QQuickWebEngineScript.InjectionPoint
         DocumentCreation = ... # type: QQuickWebEngineScript.InjectionPoint
+
+    Deferred = ...  # type: QQuickWebEngineScript.InjectionPoint
+    DocumentReady = ...  # type: QQuickWebEngineScript.InjectionPoint
+    DocumentCreation = ...  # type: QQuickWebEngineScript.InjectionPoint
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 

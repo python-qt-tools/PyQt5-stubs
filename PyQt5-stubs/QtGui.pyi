@@ -143,6 +143,19 @@ class QPaintDevice(sip.simplewrapper):
         PdmDevicePixelRatio = ... # type: QPaintDevice.PaintDeviceMetric
         PdmDevicePixelRatioScaled = ... # type: QPaintDevice.PaintDeviceMetric
 
+    PdmWidth = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmHeight = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmWidthMM = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmHeightMM = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmNumColors = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmDepth = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmDpiX = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmDpiY = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmPhysicalDpiX = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmPhysicalDpiY = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmDevicePixelRatio = ...  # type: QPaintDevice.PaintDeviceMetric
+    PdmDevicePixelRatioScaled = ...  # type: QPaintDevice.PaintDeviceMetric
+
     def __init__(self) -> None: ...
 
     @staticmethod
@@ -271,6 +284,9 @@ class QColor(sip.simplewrapper):
         HexRgb = ... # type: QColor.NameFormat
         HexArgb = ... # type: QColor.NameFormat
 
+    HexRgb = ...  # type: QColor.NameFormat
+    HexArgb = ...  # type: QColor.NameFormat
+
     class Spec(int):
         Invalid = ... # type: QColor.Spec
         Rgb = ... # type: QColor.Spec
@@ -278,6 +294,13 @@ class QColor(sip.simplewrapper):
         Cmyk = ... # type: QColor.Spec
         Hsl = ... # type: QColor.Spec
         ExtendedRgb = ... # type: QColor.Spec
+
+    Invalid = ...  # type: QColor.Spec
+    Rgb = ...  # type: QColor.Spec
+    Hsv = ...  # type: QColor.Spec
+    Cmyk = ...  # type: QColor.Spec
+    Hsl = ...  # type: QColor.Spec
+    ExtendedRgb = ...  # type: QColor.Spec
 
     @typing.overload
     def __init__(self, color: QtCore.Qt.GlobalColor) -> None: ...
@@ -793,10 +816,184 @@ class QGradient(sip.simplewrapper):
         PerfectBlue = ... # type: QGradient.Preset
         NumPresets = ... # type: QGradient.Preset
 
+    WarmFlame = ...  # type: QGradient.Preset
+    NightFade = ...  # type: QGradient.Preset
+    SpringWarmth = ...  # type: QGradient.Preset
+    JuicyPeach = ...  # type: QGradient.Preset
+    YoungPassion = ...  # type: QGradient.Preset
+    LadyLips = ...  # type: QGradient.Preset
+    SunnyMorning = ...  # type: QGradient.Preset
+    RainyAshville = ...  # type: QGradient.Preset
+    FrozenDreams = ...  # type: QGradient.Preset
+    WinterNeva = ...  # type: QGradient.Preset
+    DustyGrass = ...  # type: QGradient.Preset
+    TemptingAzure = ...  # type: QGradient.Preset
+    HeavyRain = ...  # type: QGradient.Preset
+    AmyCrisp = ...  # type: QGradient.Preset
+    MeanFruit = ...  # type: QGradient.Preset
+    DeepBlue = ...  # type: QGradient.Preset
+    RipeMalinka = ...  # type: QGradient.Preset
+    CloudyKnoxville = ...  # type: QGradient.Preset
+    MalibuBeach = ...  # type: QGradient.Preset
+    NewLife = ...  # type: QGradient.Preset
+    TrueSunset = ...  # type: QGradient.Preset
+    MorpheusDen = ...  # type: QGradient.Preset
+    RareWind = ...  # type: QGradient.Preset
+    NearMoon = ...  # type: QGradient.Preset
+    WildApple = ...  # type: QGradient.Preset
+    SaintPetersburg = ...  # type: QGradient.Preset
+    PlumPlate = ...  # type: QGradient.Preset
+    EverlastingSky = ...  # type: QGradient.Preset
+    HappyFisher = ...  # type: QGradient.Preset
+    Blessing = ...  # type: QGradient.Preset
+    SharpeyeEagle = ...  # type: QGradient.Preset
+    LadogaBottom = ...  # type: QGradient.Preset
+    LemonGate = ...  # type: QGradient.Preset
+    ItmeoBranding = ...  # type: QGradient.Preset
+    ZeusMiracle = ...  # type: QGradient.Preset
+    OldHat = ...  # type: QGradient.Preset
+    StarWine = ...  # type: QGradient.Preset
+    HappyAcid = ...  # type: QGradient.Preset
+    AwesomePine = ...  # type: QGradient.Preset
+    NewYork = ...  # type: QGradient.Preset
+    ShyRainbow = ...  # type: QGradient.Preset
+    MixedHopes = ...  # type: QGradient.Preset
+    FlyHigh = ...  # type: QGradient.Preset
+    StrongBliss = ...  # type: QGradient.Preset
+    FreshMilk = ...  # type: QGradient.Preset
+    SnowAgain = ...  # type: QGradient.Preset
+    FebruaryInk = ...  # type: QGradient.Preset
+    KindSteel = ...  # type: QGradient.Preset
+    SoftGrass = ...  # type: QGradient.Preset
+    GrownEarly = ...  # type: QGradient.Preset
+    SharpBlues = ...  # type: QGradient.Preset
+    ShadyWater = ...  # type: QGradient.Preset
+    DirtyBeauty = ...  # type: QGradient.Preset
+    GreatWhale = ...  # type: QGradient.Preset
+    TeenNotebook = ...  # type: QGradient.Preset
+    PoliteRumors = ...  # type: QGradient.Preset
+    SweetPeriod = ...  # type: QGradient.Preset
+    WideMatrix = ...  # type: QGradient.Preset
+    SoftCherish = ...  # type: QGradient.Preset
+    RedSalvation = ...  # type: QGradient.Preset
+    BurningSpring = ...  # type: QGradient.Preset
+    NightParty = ...  # type: QGradient.Preset
+    SkyGlider = ...  # type: QGradient.Preset
+    HeavenPeach = ...  # type: QGradient.Preset
+    PurpleDivision = ...  # type: QGradient.Preset
+    AquaSplash = ...  # type: QGradient.Preset
+    SpikyNaga = ...  # type: QGradient.Preset
+    LoveKiss = ...  # type: QGradient.Preset
+    CleanMirror = ...  # type: QGradient.Preset
+    PremiumDark = ...  # type: QGradient.Preset
+    ColdEvening = ...  # type: QGradient.Preset
+    CochitiLake = ...  # type: QGradient.Preset
+    SummerGames = ...  # type: QGradient.Preset
+    PassionateBed = ...  # type: QGradient.Preset
+    MountainRock = ...  # type: QGradient.Preset
+    DesertHump = ...  # type: QGradient.Preset
+    JungleDay = ...  # type: QGradient.Preset
+    PhoenixStart = ...  # type: QGradient.Preset
+    OctoberSilence = ...  # type: QGradient.Preset
+    FarawayRiver = ...  # type: QGradient.Preset
+    AlchemistLab = ...  # type: QGradient.Preset
+    OverSun = ...  # type: QGradient.Preset
+    PremiumWhite = ...  # type: QGradient.Preset
+    MarsParty = ...  # type: QGradient.Preset
+    EternalConstance = ...  # type: QGradient.Preset
+    JapanBlush = ...  # type: QGradient.Preset
+    SmilingRain = ...  # type: QGradient.Preset
+    CloudyApple = ...  # type: QGradient.Preset
+    BigMango = ...  # type: QGradient.Preset
+    HealthyWater = ...  # type: QGradient.Preset
+    AmourAmour = ...  # type: QGradient.Preset
+    RiskyConcrete = ...  # type: QGradient.Preset
+    StrongStick = ...  # type: QGradient.Preset
+    ViciousStance = ...  # type: QGradient.Preset
+    PaloAlto = ...  # type: QGradient.Preset
+    HappyMemories = ...  # type: QGradient.Preset
+    MidnightBloom = ...  # type: QGradient.Preset
+    Crystalline = ...  # type: QGradient.Preset
+    PartyBliss = ...  # type: QGradient.Preset
+    ConfidentCloud = ...  # type: QGradient.Preset
+    LeCocktail = ...  # type: QGradient.Preset
+    RiverCity = ...  # type: QGradient.Preset
+    FrozenBerry = ...  # type: QGradient.Preset
+    ChildCare = ...  # type: QGradient.Preset
+    FlyingLemon = ...  # type: QGradient.Preset
+    NewRetrowave = ...  # type: QGradient.Preset
+    HiddenJaguar = ...  # type: QGradient.Preset
+    AboveTheSky = ...  # type: QGradient.Preset
+    Nega = ...  # type: QGradient.Preset
+    DenseWater = ...  # type: QGradient.Preset
+    Seashore = ...  # type: QGradient.Preset
+    MarbleWall = ...  # type: QGradient.Preset
+    CheerfulCaramel = ...  # type: QGradient.Preset
+    NightSky = ...  # type: QGradient.Preset
+    MagicLake = ...  # type: QGradient.Preset
+    YoungGrass = ...  # type: QGradient.Preset
+    ColorfulPeach = ...  # type: QGradient.Preset
+    GentleCare = ...  # type: QGradient.Preset
+    PlumBath = ...  # type: QGradient.Preset
+    HappyUnicorn = ...  # type: QGradient.Preset
+    AfricanField = ...  # type: QGradient.Preset
+    SolidStone = ...  # type: QGradient.Preset
+    OrangeJuice = ...  # type: QGradient.Preset
+    GlassWater = ...  # type: QGradient.Preset
+    NorthMiracle = ...  # type: QGradient.Preset
+    FruitBlend = ...  # type: QGradient.Preset
+    MillenniumPine = ...  # type: QGradient.Preset
+    HighFlight = ...  # type: QGradient.Preset
+    MoleHall = ...  # type: QGradient.Preset
+    SpaceShift = ...  # type: QGradient.Preset
+    ForestInei = ...  # type: QGradient.Preset
+    RoyalGarden = ...  # type: QGradient.Preset
+    RichMetal = ...  # type: QGradient.Preset
+    JuicyCake = ...  # type: QGradient.Preset
+    SmartIndigo = ...  # type: QGradient.Preset
+    SandStrike = ...  # type: QGradient.Preset
+    NorseBeauty = ...  # type: QGradient.Preset
+    AquaGuidance = ...  # type: QGradient.Preset
+    SunVeggie = ...  # type: QGradient.Preset
+    SeaLord = ...  # type: QGradient.Preset
+    BlackSea = ...  # type: QGradient.Preset
+    GrassShampoo = ...  # type: QGradient.Preset
+    LandingAircraft = ...  # type: QGradient.Preset
+    WitchDance = ...  # type: QGradient.Preset
+    SleeplessNight = ...  # type: QGradient.Preset
+    AngelCare = ...  # type: QGradient.Preset
+    CrystalRiver = ...  # type: QGradient.Preset
+    SoftLipstick = ...  # type: QGradient.Preset
+    SaltMountain = ...  # type: QGradient.Preset
+    PerfectWhite = ...  # type: QGradient.Preset
+    FreshOasis = ...  # type: QGradient.Preset
+    StrictNovember = ...  # type: QGradient.Preset
+    MorningSalad = ...  # type: QGradient.Preset
+    DeepRelief = ...  # type: QGradient.Preset
+    SeaStrike = ...  # type: QGradient.Preset
+    NightCall = ...  # type: QGradient.Preset
+    SupremeSky = ...  # type: QGradient.Preset
+    LightBlue = ...  # type: QGradient.Preset
+    MindCrawl = ...  # type: QGradient.Preset
+    LilyMeadow = ...  # type: QGradient.Preset
+    SugarLollipop = ...  # type: QGradient.Preset
+    SweetDessert = ...  # type: QGradient.Preset
+    MagicRay = ...  # type: QGradient.Preset
+    TeenParty = ...  # type: QGradient.Preset
+    FrozenHeat = ...  # type: QGradient.Preset
+    GagarinView = ...  # type: QGradient.Preset
+    FabledSunset = ...  # type: QGradient.Preset
+    PerfectBlue = ...  # type: QGradient.Preset
+    NumPresets = ...  # type: QGradient.Preset
+
     class Spread(int):
         PadSpread = ... # type: QGradient.Spread
         ReflectSpread = ... # type: QGradient.Spread
         RepeatSpread = ... # type: QGradient.Spread
+
+    PadSpread = ...  # type: QGradient.Spread
+    ReflectSpread = ...  # type: QGradient.Spread
+    RepeatSpread = ...  # type: QGradient.Spread
 
     class Type(int):
         LinearGradient = ... # type: QGradient.Type
@@ -804,11 +1001,21 @@ class QGradient(sip.simplewrapper):
         ConicalGradient = ... # type: QGradient.Type
         NoGradient = ... # type: QGradient.Type
 
+    LinearGradient = ...  # type: QGradient.Type
+    RadialGradient = ...  # type: QGradient.Type
+    ConicalGradient = ...  # type: QGradient.Type
+    NoGradient = ...  # type: QGradient.Type
+
     class CoordinateMode(int):
         LogicalMode = ... # type: QGradient.CoordinateMode
         StretchToDeviceMode = ... # type: QGradient.CoordinateMode
         ObjectBoundingMode = ... # type: QGradient.CoordinateMode
         ObjectMode = ... # type: QGradient.CoordinateMode
+
+    LogicalMode = ...  # type: QGradient.CoordinateMode
+    StretchToDeviceMode = ...  # type: QGradient.CoordinateMode
+    ObjectBoundingMode = ...  # type: QGradient.CoordinateMode
+    ObjectMode = ...  # type: QGradient.CoordinateMode
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -914,6 +1121,10 @@ class QClipboard(QtCore.QObject):
         Selection = ... # type: QClipboard.Mode
         FindBuffer = ... # type: QClipboard.Mode
 
+    Clipboard = ...  # type: QClipboard.Mode
+    Selection = ...  # type: QClipboard.Mode
+    FindBuffer = ...  # type: QClipboard.Mode
+
     selectionChanged: typing.ClassVar[QtCore.pyqtSignal]
     findBufferChanged: typing.ClassVar[QtCore.pyqtSignal]
     dataChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -959,6 +1170,12 @@ class QColorSpace(sip.simplewrapper):
         AdobeRgb = ... # type: QColorSpace.NamedColorSpace
         DisplayP3 = ... # type: QColorSpace.NamedColorSpace
         ProPhotoRgb = ... # type: QColorSpace.NamedColorSpace
+
+    SRgb = ...  # type: QColorSpace.NamedColorSpace
+    SRgbLinear = ...  # type: QColorSpace.NamedColorSpace
+    AdobeRgb = ...  # type: QColorSpace.NamedColorSpace
+    DisplayP3 = ...  # type: QColorSpace.NamedColorSpace
+    ProPhotoRgb = ...  # type: QColorSpace.NamedColorSpace
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1184,6 +1401,11 @@ class QTabletEvent(QInputEvent):
         Cursor = ... # type: QTabletEvent.PointerType
         Eraser = ... # type: QTabletEvent.PointerType
 
+    UnknownPointer = ...  # type: QTabletEvent.PointerType
+    Pen = ...  # type: QTabletEvent.PointerType
+    Cursor = ...  # type: QTabletEvent.PointerType
+    Eraser = ...  # type: QTabletEvent.PointerType
+
     class TabletDevice(int):
         NoDevice = ... # type: QTabletEvent.TabletDevice
         Puck = ... # type: QTabletEvent.TabletDevice
@@ -1192,6 +1414,14 @@ class QTabletEvent(QInputEvent):
         FourDMouse = ... # type: QTabletEvent.TabletDevice
         XFreeEraser = ... # type: QTabletEvent.TabletDevice
         RotationStylus = ... # type: QTabletEvent.TabletDevice
+
+    NoDevice = ...  # type: QTabletEvent.TabletDevice
+    Puck = ...  # type: QTabletEvent.TabletDevice
+    Stylus = ...  # type: QTabletEvent.TabletDevice
+    Airbrush = ...  # type: QTabletEvent.TabletDevice
+    FourDMouse = ...  # type: QTabletEvent.TabletDevice
+    XFreeEraser = ...  # type: QTabletEvent.TabletDevice
+    RotationStylus = ...  # type: QTabletEvent.TabletDevice
 
     @typing.overload
     def __init__(self, t: QtCore.QEvent.Type, pos: typing.Union[QtCore.QPointF, QtCore.QPoint], globalPos: typing.Union[QtCore.QPointF, QtCore.QPoint], device: int, pointerType: int, pressure: float, xTilt: int, yTilt: int, tangentialPressure: float, rotation: float, z: int, keyState: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier], uniqueID: int, button: QtCore.Qt.MouseButton, buttons: typing.Union[QtCore.Qt.MouseButtons, QtCore.Qt.MouseButton]) -> None: ...
@@ -1331,6 +1561,10 @@ class QContextMenuEvent(QInputEvent):
         Keyboard = ... # type: QContextMenuEvent.Reason
         Other = ... # type: QContextMenuEvent.Reason
 
+    Mouse = ...  # type: QContextMenuEvent.Reason
+    Keyboard = ...  # type: QContextMenuEvent.Reason
+    Other = ...  # type: QContextMenuEvent.Reason
+
     @typing.overload
     def __init__(self, reason: 'QContextMenuEvent.Reason', pos: QtCore.QPoint, globalPos: QtCore.QPoint, modifiers: typing.Union[QtCore.Qt.KeyboardModifiers, QtCore.Qt.KeyboardModifier]) -> None: ...
     @typing.overload
@@ -1357,6 +1591,12 @@ class QInputMethodEvent(QtCore.QEvent):
         Language = ... # type: QInputMethodEvent.AttributeType
         Ruby = ... # type: QInputMethodEvent.AttributeType
         Selection = ... # type: QInputMethodEvent.AttributeType
+
+    TextFormat = ...  # type: QInputMethodEvent.AttributeType
+    Cursor = ...  # type: QInputMethodEvent.AttributeType
+    Language = ...  # type: QInputMethodEvent.AttributeType
+    Ruby = ...  # type: QInputMethodEvent.AttributeType
+    Selection = ...  # type: QInputMethodEvent.AttributeType
 
     class Attribute(sip.simplewrapper):
 
@@ -1531,6 +1771,9 @@ class QTouchEvent(QInputEvent):
             Pen = ... # type: QTouchEvent.TouchPoint.InfoFlag
             Token = ... # type: QTouchEvent.TouchPoint.InfoFlag
 
+        Pen = ...  # type: QTouchEvent.TouchPoint.InfoFlag
+        Token = ...  # type: QTouchEvent.TouchPoint.InfoFlag
+
         class InfoFlags(sip.simplewrapper):
 
             @typing.overload
@@ -1617,6 +1860,10 @@ class QScrollEvent(QtCore.QEvent):
         ScrollUpdated = ... # type: QScrollEvent.ScrollState
         ScrollFinished = ... # type: QScrollEvent.ScrollState
 
+    ScrollStarted = ...  # type: QScrollEvent.ScrollState
+    ScrollUpdated = ...  # type: QScrollEvent.ScrollState
+    ScrollFinished = ...  # type: QScrollEvent.ScrollState
+
     @typing.overload
     def __init__(self, contentPos: typing.Union[QtCore.QPointF, QtCore.QPoint], overshoot: typing.Union[QtCore.QPointF, QtCore.QPoint], scrollState: 'QScrollEvent.ScrollState') -> None: ...
     @typing.overload
@@ -1670,6 +1917,9 @@ class QPlatformSurfaceEvent(QtCore.QEvent):
         SurfaceCreated = ... # type: QPlatformSurfaceEvent.SurfaceEventType
         SurfaceAboutToBeDestroyed = ... # type: QPlatformSurfaceEvent.SurfaceEventType
 
+    SurfaceCreated = ...  # type: QPlatformSurfaceEvent.SurfaceEventType
+    SurfaceAboutToBeDestroyed = ...  # type: QPlatformSurfaceEvent.SurfaceEventType
+
     @typing.overload
     def __init__(self, surfaceEventType: 'QPlatformSurfaceEvent.SurfaceEventType') -> None: ...
     @typing.overload
@@ -1700,9 +1950,17 @@ class QFont(sip.simplewrapper):
         PreferVerticalHinting = ... # type: QFont.HintingPreference
         PreferFullHinting = ... # type: QFont.HintingPreference
 
+    PreferDefaultHinting = ...  # type: QFont.HintingPreference
+    PreferNoHinting = ...  # type: QFont.HintingPreference
+    PreferVerticalHinting = ...  # type: QFont.HintingPreference
+    PreferFullHinting = ...  # type: QFont.HintingPreference
+
     class SpacingType(int):
         PercentageSpacing = ... # type: QFont.SpacingType
         AbsoluteSpacing = ... # type: QFont.SpacingType
+
+    PercentageSpacing = ...  # type: QFont.SpacingType
+    AbsoluteSpacing = ...  # type: QFont.SpacingType
 
     class Capitalization(int):
         MixedCase = ... # type: QFont.Capitalization
@@ -1710,6 +1968,12 @@ class QFont(sip.simplewrapper):
         AllLowercase = ... # type: QFont.Capitalization
         SmallCaps = ... # type: QFont.Capitalization
         Capitalize = ... # type: QFont.Capitalization
+
+    MixedCase = ...  # type: QFont.Capitalization
+    AllUppercase = ...  # type: QFont.Capitalization
+    AllLowercase = ...  # type: QFont.Capitalization
+    SmallCaps = ...  # type: QFont.Capitalization
+    Capitalize = ...  # type: QFont.Capitalization
 
     class Stretch(int):
         AnyStretch = ... # type: QFont.Stretch
@@ -1723,10 +1987,25 @@ class QFont(sip.simplewrapper):
         ExtraExpanded = ... # type: QFont.Stretch
         UltraExpanded = ... # type: QFont.Stretch
 
+    AnyStretch = ...  # type: QFont.Stretch
+    UltraCondensed = ...  # type: QFont.Stretch
+    ExtraCondensed = ...  # type: QFont.Stretch
+    Condensed = ...  # type: QFont.Stretch
+    SemiCondensed = ...  # type: QFont.Stretch
+    Unstretched = ...  # type: QFont.Stretch
+    SemiExpanded = ...  # type: QFont.Stretch
+    Expanded = ...  # type: QFont.Stretch
+    ExtraExpanded = ...  # type: QFont.Stretch
+    UltraExpanded = ...  # type: QFont.Stretch
+
     class Style(int):
         StyleNormal = ... # type: QFont.Style
         StyleItalic = ... # type: QFont.Style
         StyleOblique = ... # type: QFont.Style
+
+    StyleNormal = ...  # type: QFont.Style
+    StyleItalic = ...  # type: QFont.Style
+    StyleOblique = ...  # type: QFont.Style
 
     class Weight(int):
         Thin = ... # type: QFont.Weight
@@ -1738,6 +2017,16 @@ class QFont(sip.simplewrapper):
         Bold = ... # type: QFont.Weight
         ExtraBold = ... # type: QFont.Weight
         Black = ... # type: QFont.Weight
+
+    Thin = ...  # type: QFont.Weight
+    ExtraLight = ...  # type: QFont.Weight
+    Light = ...  # type: QFont.Weight
+    Normal = ...  # type: QFont.Weight
+    Medium = ...  # type: QFont.Weight
+    DemiBold = ...  # type: QFont.Weight
+    Bold = ...  # type: QFont.Weight
+    ExtraBold = ...  # type: QFont.Weight
+    Black = ...  # type: QFont.Weight
 
     class StyleStrategy(int):
         PreferDefault = ... # type: QFont.StyleStrategy
@@ -1755,6 +2044,21 @@ class QFont(sip.simplewrapper):
         ForceIntegerMetrics = ... # type: QFont.StyleStrategy
         PreferNoShaping = ... # type: QFont.StyleStrategy
 
+    PreferDefault = ...  # type: QFont.StyleStrategy
+    PreferBitmap = ...  # type: QFont.StyleStrategy
+    PreferDevice = ...  # type: QFont.StyleStrategy
+    PreferOutline = ...  # type: QFont.StyleStrategy
+    ForceOutline = ...  # type: QFont.StyleStrategy
+    PreferMatch = ...  # type: QFont.StyleStrategy
+    PreferQuality = ...  # type: QFont.StyleStrategy
+    PreferAntialias = ...  # type: QFont.StyleStrategy
+    NoAntialias = ...  # type: QFont.StyleStrategy
+    NoSubpixelAntialias = ...  # type: QFont.StyleStrategy
+    OpenGLCompatible = ...  # type: QFont.StyleStrategy
+    NoFontMerging = ...  # type: QFont.StyleStrategy
+    ForceIntegerMetrics = ...  # type: QFont.StyleStrategy
+    PreferNoShaping = ...  # type: QFont.StyleStrategy
+
     class StyleHint(int):
         Helvetica = ... # type: QFont.StyleHint
         SansSerif = ... # type: QFont.StyleHint
@@ -1769,6 +2073,20 @@ class QFont(sip.simplewrapper):
         Cursive = ... # type: QFont.StyleHint
         Monospace = ... # type: QFont.StyleHint
         Fantasy = ... # type: QFont.StyleHint
+
+    Helvetica = ...  # type: QFont.StyleHint
+    SansSerif = ...  # type: QFont.StyleHint
+    Times = ...  # type: QFont.StyleHint
+    Serif = ...  # type: QFont.StyleHint
+    Courier = ...  # type: QFont.StyleHint
+    TypeWriter = ...  # type: QFont.StyleHint
+    OldEnglish = ...  # type: QFont.StyleHint
+    Decorative = ...  # type: QFont.StyleHint
+    System = ...  # type: QFont.StyleHint
+    AnyStyle = ...  # type: QFont.StyleHint
+    Cursive = ...  # type: QFont.StyleHint
+    Monospace = ...  # type: QFont.StyleHint
+    Fantasy = ...  # type: QFont.StyleHint
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1869,6 +2187,11 @@ class QFontDatabase(sip.simplewrapper):
         TitleFont = ... # type: QFontDatabase.SystemFont
         SmallestReadableFont = ... # type: QFontDatabase.SystemFont
 
+    GeneralFont = ...  # type: QFontDatabase.SystemFont
+    FixedFont = ...  # type: QFontDatabase.SystemFont
+    TitleFont = ...  # type: QFontDatabase.SystemFont
+    SmallestReadableFont = ...  # type: QFontDatabase.SystemFont
+
     class WritingSystem(int):
         Any = ... # type: QFontDatabase.WritingSystem
         Latin = ... # type: QFontDatabase.WritingSystem
@@ -1905,6 +2228,42 @@ class QFontDatabase(sip.simplewrapper):
         Ogham = ... # type: QFontDatabase.WritingSystem
         Runic = ... # type: QFontDatabase.WritingSystem
         Nko = ... # type: QFontDatabase.WritingSystem
+
+    Any = ...  # type: QFontDatabase.WritingSystem
+    Latin = ...  # type: QFontDatabase.WritingSystem
+    Greek = ...  # type: QFontDatabase.WritingSystem
+    Cyrillic = ...  # type: QFontDatabase.WritingSystem
+    Armenian = ...  # type: QFontDatabase.WritingSystem
+    Hebrew = ...  # type: QFontDatabase.WritingSystem
+    Arabic = ...  # type: QFontDatabase.WritingSystem
+    Syriac = ...  # type: QFontDatabase.WritingSystem
+    Thaana = ...  # type: QFontDatabase.WritingSystem
+    Devanagari = ...  # type: QFontDatabase.WritingSystem
+    Bengali = ...  # type: QFontDatabase.WritingSystem
+    Gurmukhi = ...  # type: QFontDatabase.WritingSystem
+    Gujarati = ...  # type: QFontDatabase.WritingSystem
+    Oriya = ...  # type: QFontDatabase.WritingSystem
+    Tamil = ...  # type: QFontDatabase.WritingSystem
+    Telugu = ...  # type: QFontDatabase.WritingSystem
+    Kannada = ...  # type: QFontDatabase.WritingSystem
+    Malayalam = ...  # type: QFontDatabase.WritingSystem
+    Sinhala = ...  # type: QFontDatabase.WritingSystem
+    Thai = ...  # type: QFontDatabase.WritingSystem
+    Lao = ...  # type: QFontDatabase.WritingSystem
+    Tibetan = ...  # type: QFontDatabase.WritingSystem
+    Myanmar = ...  # type: QFontDatabase.WritingSystem
+    Georgian = ...  # type: QFontDatabase.WritingSystem
+    Khmer = ...  # type: QFontDatabase.WritingSystem
+    SimplifiedChinese = ...  # type: QFontDatabase.WritingSystem
+    TraditionalChinese = ...  # type: QFontDatabase.WritingSystem
+    Japanese = ...  # type: QFontDatabase.WritingSystem
+    Korean = ...  # type: QFontDatabase.WritingSystem
+    Vietnamese = ...  # type: QFontDatabase.WritingSystem
+    Other = ...  # type: QFontDatabase.WritingSystem
+    Symbol = ...  # type: QFontDatabase.WritingSystem
+    Ogham = ...  # type: QFontDatabase.WritingSystem
+    Runic = ...  # type: QFontDatabase.WritingSystem
+    Nko = ...  # type: QFontDatabase.WritingSystem
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2236,6 +2595,12 @@ class QGlyphRun(sip.simplewrapper):
         RightToLeft = ... # type: QGlyphRun.GlyphRunFlag
         SplitLigature = ... # type: QGlyphRun.GlyphRunFlag
 
+    Overline = ...  # type: QGlyphRun.GlyphRunFlag
+    Underline = ...  # type: QGlyphRun.GlyphRunFlag
+    StrikeOut = ...  # type: QGlyphRun.GlyphRunFlag
+    RightToLeft = ...  # type: QGlyphRun.GlyphRunFlag
+    SplitLigature = ...  # type: QGlyphRun.GlyphRunFlag
+
     class GlyphRunFlags(sip.simplewrapper):
 
         @typing.overload
@@ -2405,11 +2770,19 @@ class QIcon(sip.wrapper):
         On = ... # type: QIcon.State
         Off = ... # type: QIcon.State
 
+    On = ...  # type: QIcon.State
+    Off = ...  # type: QIcon.State
+
     class Mode(int):
         Normal = ... # type: QIcon.Mode
         Disabled = ... # type: QIcon.Mode
         Active = ... # type: QIcon.Mode
         Selected = ... # type: QIcon.Mode
+
+    Normal = ...  # type: QIcon.Mode
+    Disabled = ...  # type: QIcon.Mode
+    Active = ...  # type: QIcon.Mode
+    Selected = ...  # type: QIcon.Mode
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2483,6 +2856,11 @@ class QIconEngine(sip.wrapper):
         IconNameHook = ... # type: QIconEngine.IconEngineHook
         IsNullHook = ... # type: QIconEngine.IconEngineHook
         ScaledPixmapHook = ... # type: QIconEngine.IconEngineHook
+
+    AvailableSizesHook = ...  # type: QIconEngine.IconEngineHook
+    IconNameHook = ...  # type: QIconEngine.IconEngineHook
+    IsNullHook = ...  # type: QIconEngine.IconEngineHook
+    ScaledPixmapHook = ...  # type: QIconEngine.IconEngineHook
 
     class AvailableSizesArgument(sip.simplewrapper):
 
@@ -2562,9 +2940,43 @@ class QImage(QPaintDevice):
         Format_Grayscale16 = ... # type: QImage.Format
         Format_BGR888 = ... # type: QImage.Format
 
+    Format_Invalid = ...  # type: QImage.Format
+    Format_Mono = ...  # type: QImage.Format
+    Format_MonoLSB = ...  # type: QImage.Format
+    Format_Indexed8 = ...  # type: QImage.Format
+    Format_RGB32 = ...  # type: QImage.Format
+    Format_ARGB32 = ...  # type: QImage.Format
+    Format_ARGB32_Premultiplied = ...  # type: QImage.Format
+    Format_RGB16 = ...  # type: QImage.Format
+    Format_ARGB8565_Premultiplied = ...  # type: QImage.Format
+    Format_RGB666 = ...  # type: QImage.Format
+    Format_ARGB6666_Premultiplied = ...  # type: QImage.Format
+    Format_RGB555 = ...  # type: QImage.Format
+    Format_ARGB8555_Premultiplied = ...  # type: QImage.Format
+    Format_RGB888 = ...  # type: QImage.Format
+    Format_RGB444 = ...  # type: QImage.Format
+    Format_ARGB4444_Premultiplied = ...  # type: QImage.Format
+    Format_RGBX8888 = ...  # type: QImage.Format
+    Format_RGBA8888 = ...  # type: QImage.Format
+    Format_RGBA8888_Premultiplied = ...  # type: QImage.Format
+    Format_BGR30 = ...  # type: QImage.Format
+    Format_A2BGR30_Premultiplied = ...  # type: QImage.Format
+    Format_RGB30 = ...  # type: QImage.Format
+    Format_A2RGB30_Premultiplied = ...  # type: QImage.Format
+    Format_Alpha8 = ...  # type: QImage.Format
+    Format_Grayscale8 = ...  # type: QImage.Format
+    Format_RGBX64 = ...  # type: QImage.Format
+    Format_RGBA64 = ...  # type: QImage.Format
+    Format_RGBA64_Premultiplied = ...  # type: QImage.Format
+    Format_Grayscale16 = ...  # type: QImage.Format
+    Format_BGR888 = ...  # type: QImage.Format
+
     class InvertMode(int):
         InvertRgb = ... # type: QImage.InvertMode
         InvertRgba = ... # type: QImage.InvertMode
+
+    InvertRgb = ...  # type: QImage.InvertMode
+    InvertRgba = ...  # type: QImage.InvertMode
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2730,6 +3142,15 @@ class QImageIOHandler(sip.simplewrapper):
         TransformationFlipAndRotate90 = ... # type: QImageIOHandler.Transformation
         TransformationRotate270 = ... # type: QImageIOHandler.Transformation
 
+    TransformationNone = ...  # type: QImageIOHandler.Transformation
+    TransformationMirror = ...  # type: QImageIOHandler.Transformation
+    TransformationFlip = ...  # type: QImageIOHandler.Transformation
+    TransformationRotate180 = ...  # type: QImageIOHandler.Transformation
+    TransformationRotate90 = ...  # type: QImageIOHandler.Transformation
+    TransformationMirrorAndRotate90 = ...  # type: QImageIOHandler.Transformation
+    TransformationFlipAndRotate90 = ...  # type: QImageIOHandler.Transformation
+    TransformationRotate270 = ...  # type: QImageIOHandler.Transformation
+
     class ImageOption(int):
         Size = ... # type: QImageIOHandler.ImageOption
         ClipRect = ... # type: QImageIOHandler.ImageOption
@@ -2750,6 +3171,26 @@ class QImageIOHandler(sip.simplewrapper):
         ProgressiveScanWrite = ... # type: QImageIOHandler.ImageOption
         ImageTransformation = ... # type: QImageIOHandler.ImageOption
         TransformedByDefault = ... # type: QImageIOHandler.ImageOption
+
+    Size = ...  # type: QImageIOHandler.ImageOption
+    ClipRect = ...  # type: QImageIOHandler.ImageOption
+    Description = ...  # type: QImageIOHandler.ImageOption
+    ScaledClipRect = ...  # type: QImageIOHandler.ImageOption
+    ScaledSize = ...  # type: QImageIOHandler.ImageOption
+    CompressionRatio = ...  # type: QImageIOHandler.ImageOption
+    Gamma = ...  # type: QImageIOHandler.ImageOption
+    Quality = ...  # type: QImageIOHandler.ImageOption
+    Name = ...  # type: QImageIOHandler.ImageOption
+    SubType = ...  # type: QImageIOHandler.ImageOption
+    IncrementalReading = ...  # type: QImageIOHandler.ImageOption
+    Endianness = ...  # type: QImageIOHandler.ImageOption
+    Animation = ...  # type: QImageIOHandler.ImageOption
+    BackgroundColor = ...  # type: QImageIOHandler.ImageOption
+    SupportedSubTypes = ...  # type: QImageIOHandler.ImageOption
+    OptimizedWrite = ...  # type: QImageIOHandler.ImageOption
+    ProgressiveScanWrite = ...  # type: QImageIOHandler.ImageOption
+    ImageTransformation = ...  # type: QImageIOHandler.ImageOption
+    TransformedByDefault = ...  # type: QImageIOHandler.ImageOption
 
     class Transformations(sip.simplewrapper):
 
@@ -2795,6 +3236,12 @@ class QImageReader(sip.simplewrapper):
         DeviceError = ... # type: QImageReader.ImageReaderError
         UnsupportedFormatError = ... # type: QImageReader.ImageReaderError
         InvalidDataError = ... # type: QImageReader.ImageReaderError
+
+    UnknownError = ...  # type: QImageReader.ImageReaderError
+    FileNotFoundError = ...  # type: QImageReader.ImageReaderError
+    DeviceError = ...  # type: QImageReader.ImageReaderError
+    UnsupportedFormatError = ...  # type: QImageReader.ImageReaderError
+    InvalidDataError = ...  # type: QImageReader.ImageReaderError
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2873,6 +3320,11 @@ class QImageWriter(sip.simplewrapper):
         UnsupportedFormatError = ... # type: QImageWriter.ImageWriterError
         InvalidImageError = ... # type: QImageWriter.ImageWriterError
 
+    UnknownError = ...  # type: QImageWriter.ImageWriterError
+    DeviceError = ...  # type: QImageWriter.ImageWriterError
+    UnsupportedFormatError = ...  # type: QImageWriter.ImageWriterError
+    InvalidImageError = ...  # type: QImageWriter.ImageWriterError
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -2920,6 +3372,9 @@ class QInputMethod(QtCore.QObject):
     class Action(int):
         Click = ... # type: QInputMethod.Action
         ContextMenu = ... # type: QInputMethod.Action
+
+    Click = ...  # type: QInputMethod.Action
+    ContextMenu = ...  # type: QInputMethod.Action
 
     def inputItemClipRectangleChanged(self) -> None: ...
     def anchorRectangleChanged(self) -> None: ...
@@ -3027,14 +3482,93 @@ class QKeySequence(sip.simplewrapper):
         Backspace = ... # type: QKeySequence.StandardKey
         Cancel = ... # type: QKeySequence.StandardKey
 
+    UnknownKey = ...  # type: QKeySequence.StandardKey
+    HelpContents = ...  # type: QKeySequence.StandardKey
+    WhatsThis = ...  # type: QKeySequence.StandardKey
+    Open = ...  # type: QKeySequence.StandardKey
+    Close = ...  # type: QKeySequence.StandardKey
+    Save = ...  # type: QKeySequence.StandardKey
+    New = ...  # type: QKeySequence.StandardKey
+    Delete = ...  # type: QKeySequence.StandardKey
+    Cut = ...  # type: QKeySequence.StandardKey
+    Copy = ...  # type: QKeySequence.StandardKey
+    Paste = ...  # type: QKeySequence.StandardKey
+    Undo = ...  # type: QKeySequence.StandardKey
+    Redo = ...  # type: QKeySequence.StandardKey
+    Back = ...  # type: QKeySequence.StandardKey
+    Forward = ...  # type: QKeySequence.StandardKey
+    Refresh = ...  # type: QKeySequence.StandardKey
+    ZoomIn = ...  # type: QKeySequence.StandardKey
+    ZoomOut = ...  # type: QKeySequence.StandardKey
+    Print = ...  # type: QKeySequence.StandardKey
+    AddTab = ...  # type: QKeySequence.StandardKey
+    NextChild = ...  # type: QKeySequence.StandardKey
+    PreviousChild = ...  # type: QKeySequence.StandardKey
+    Find = ...  # type: QKeySequence.StandardKey
+    FindNext = ...  # type: QKeySequence.StandardKey
+    FindPrevious = ...  # type: QKeySequence.StandardKey
+    Replace = ...  # type: QKeySequence.StandardKey
+    SelectAll = ...  # type: QKeySequence.StandardKey
+    Bold = ...  # type: QKeySequence.StandardKey
+    Italic = ...  # type: QKeySequence.StandardKey
+    Underline = ...  # type: QKeySequence.StandardKey
+    MoveToNextChar = ...  # type: QKeySequence.StandardKey
+    MoveToPreviousChar = ...  # type: QKeySequence.StandardKey
+    MoveToNextWord = ...  # type: QKeySequence.StandardKey
+    MoveToPreviousWord = ...  # type: QKeySequence.StandardKey
+    MoveToNextLine = ...  # type: QKeySequence.StandardKey
+    MoveToPreviousLine = ...  # type: QKeySequence.StandardKey
+    MoveToNextPage = ...  # type: QKeySequence.StandardKey
+    MoveToPreviousPage = ...  # type: QKeySequence.StandardKey
+    MoveToStartOfLine = ...  # type: QKeySequence.StandardKey
+    MoveToEndOfLine = ...  # type: QKeySequence.StandardKey
+    MoveToStartOfBlock = ...  # type: QKeySequence.StandardKey
+    MoveToEndOfBlock = ...  # type: QKeySequence.StandardKey
+    MoveToStartOfDocument = ...  # type: QKeySequence.StandardKey
+    MoveToEndOfDocument = ...  # type: QKeySequence.StandardKey
+    SelectNextChar = ...  # type: QKeySequence.StandardKey
+    SelectPreviousChar = ...  # type: QKeySequence.StandardKey
+    SelectNextWord = ...  # type: QKeySequence.StandardKey
+    SelectPreviousWord = ...  # type: QKeySequence.StandardKey
+    SelectNextLine = ...  # type: QKeySequence.StandardKey
+    SelectPreviousLine = ...  # type: QKeySequence.StandardKey
+    SelectNextPage = ...  # type: QKeySequence.StandardKey
+    SelectPreviousPage = ...  # type: QKeySequence.StandardKey
+    SelectStartOfLine = ...  # type: QKeySequence.StandardKey
+    SelectEndOfLine = ...  # type: QKeySequence.StandardKey
+    SelectStartOfBlock = ...  # type: QKeySequence.StandardKey
+    SelectEndOfBlock = ...  # type: QKeySequence.StandardKey
+    SelectStartOfDocument = ...  # type: QKeySequence.StandardKey
+    SelectEndOfDocument = ...  # type: QKeySequence.StandardKey
+    DeleteStartOfWord = ...  # type: QKeySequence.StandardKey
+    DeleteEndOfWord = ...  # type: QKeySequence.StandardKey
+    DeleteEndOfLine = ...  # type: QKeySequence.StandardKey
+    InsertParagraphSeparator = ...  # type: QKeySequence.StandardKey
+    InsertLineSeparator = ...  # type: QKeySequence.StandardKey
+    SaveAs = ...  # type: QKeySequence.StandardKey
+    Preferences = ...  # type: QKeySequence.StandardKey
+    Quit = ...  # type: QKeySequence.StandardKey
+    FullScreen = ...  # type: QKeySequence.StandardKey
+    Deselect = ...  # type: QKeySequence.StandardKey
+    DeleteCompleteLine = ...  # type: QKeySequence.StandardKey
+    Backspace = ...  # type: QKeySequence.StandardKey
+    Cancel = ...  # type: QKeySequence.StandardKey
+
     class SequenceMatch(int):
         NoMatch = ... # type: QKeySequence.SequenceMatch
         PartialMatch = ... # type: QKeySequence.SequenceMatch
         ExactMatch = ... # type: QKeySequence.SequenceMatch
 
+    NoMatch = ...  # type: QKeySequence.SequenceMatch
+    PartialMatch = ...  # type: QKeySequence.SequenceMatch
+    ExactMatch = ...  # type: QKeySequence.SequenceMatch
+
     class SequenceFormat(int):
         NativeText = ... # type: QKeySequence.SequenceFormat
         PortableText = ... # type: QKeySequence.SequenceFormat
+
+    NativeText = ...  # type: QKeySequence.SequenceFormat
+    PortableText = ...  # type: QKeySequence.SequenceFormat
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -3158,10 +3692,17 @@ class QMovie(QtCore.QObject):
         CacheNone = ... # type: QMovie.CacheMode
         CacheAll = ... # type: QMovie.CacheMode
 
+    CacheNone = ...  # type: QMovie.CacheMode
+    CacheAll = ...  # type: QMovie.CacheMode
+
     class MovieState(int):
         NotRunning = ... # type: QMovie.MovieState
         Paused = ... # type: QMovie.MovieState
         Running = ... # type: QMovie.MovieState
+
+    NotRunning = ...  # type: QMovie.MovieState
+    Paused = ...  # type: QMovie.MovieState
+    Running = ...  # type: QMovie.MovieState
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -3221,9 +3762,19 @@ class QSurface(sip.simplewrapper):
         VulkanSurface = ... # type: QSurface.SurfaceType
         MetalSurface = ... # type: QSurface.SurfaceType
 
+    RasterSurface = ...  # type: QSurface.SurfaceType
+    OpenGLSurface = ...  # type: QSurface.SurfaceType
+    RasterGLSurface = ...  # type: QSurface.SurfaceType
+    OpenVGSurface = ...  # type: QSurface.SurfaceType
+    VulkanSurface = ...  # type: QSurface.SurfaceType
+    MetalSurface = ...  # type: QSurface.SurfaceType
+
     class SurfaceClass(int):
         Window = ... # type: QSurface.SurfaceClass
         Offscreen = ... # type: QSurface.SurfaceClass
+
+    Window = ...  # type: QSurface.SurfaceClass
+    Offscreen = ...  # type: QSurface.SurfaceClass
 
     @typing.overload
     def __init__(self, type: 'QSurface.SurfaceClass') -> None: ...
@@ -3269,10 +3820,21 @@ class QOpenGLBuffer(sip.simplewrapper):
         RangeFlushExplicit = ... # type: QOpenGLBuffer.RangeAccessFlag
         RangeUnsynchronized = ... # type: QOpenGLBuffer.RangeAccessFlag
 
+    RangeRead = ...  # type: QOpenGLBuffer.RangeAccessFlag
+    RangeWrite = ...  # type: QOpenGLBuffer.RangeAccessFlag
+    RangeInvalidate = ...  # type: QOpenGLBuffer.RangeAccessFlag
+    RangeInvalidateBuffer = ...  # type: QOpenGLBuffer.RangeAccessFlag
+    RangeFlushExplicit = ...  # type: QOpenGLBuffer.RangeAccessFlag
+    RangeUnsynchronized = ...  # type: QOpenGLBuffer.RangeAccessFlag
+
     class Access(int):
         ReadOnly = ... # type: QOpenGLBuffer.Access
         WriteOnly = ... # type: QOpenGLBuffer.Access
         ReadWrite = ... # type: QOpenGLBuffer.Access
+
+    ReadOnly = ...  # type: QOpenGLBuffer.Access
+    WriteOnly = ...  # type: QOpenGLBuffer.Access
+    ReadWrite = ...  # type: QOpenGLBuffer.Access
 
     class UsagePattern(int):
         StreamDraw = ... # type: QOpenGLBuffer.UsagePattern
@@ -3285,11 +3847,26 @@ class QOpenGLBuffer(sip.simplewrapper):
         DynamicRead = ... # type: QOpenGLBuffer.UsagePattern
         DynamicCopy = ... # type: QOpenGLBuffer.UsagePattern
 
+    StreamDraw = ...  # type: QOpenGLBuffer.UsagePattern
+    StreamRead = ...  # type: QOpenGLBuffer.UsagePattern
+    StreamCopy = ...  # type: QOpenGLBuffer.UsagePattern
+    StaticDraw = ...  # type: QOpenGLBuffer.UsagePattern
+    StaticRead = ...  # type: QOpenGLBuffer.UsagePattern
+    StaticCopy = ...  # type: QOpenGLBuffer.UsagePattern
+    DynamicDraw = ...  # type: QOpenGLBuffer.UsagePattern
+    DynamicRead = ...  # type: QOpenGLBuffer.UsagePattern
+    DynamicCopy = ...  # type: QOpenGLBuffer.UsagePattern
+
     class Type(int):
         VertexBuffer = ... # type: QOpenGLBuffer.Type
         IndexBuffer = ... # type: QOpenGLBuffer.Type
         PixelPackBuffer = ... # type: QOpenGLBuffer.Type
         PixelUnpackBuffer = ... # type: QOpenGLBuffer.Type
+
+    VertexBuffer = ...  # type: QOpenGLBuffer.Type
+    IndexBuffer = ...  # type: QOpenGLBuffer.Type
+    PixelPackBuffer = ...  # type: QOpenGLBuffer.Type
+    PixelUnpackBuffer = ...  # type: QOpenGLBuffer.Type
 
     class RangeAccessFlags(sip.simplewrapper):
 
@@ -3351,6 +3928,9 @@ class QOpenGLContext(QtCore.QObject):
     class OpenGLModuleType(int):
         LibGL = ... # type: QOpenGLContext.OpenGLModuleType
         LibGLES = ... # type: QOpenGLContext.OpenGLModuleType
+
+    LibGL = ...  # type: QOpenGLContext.OpenGLModuleType
+    LibGLES = ...  # type: QOpenGLContext.OpenGLModuleType
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -3418,6 +3998,13 @@ class QOpenGLDebugMessage(sip.simplewrapper):
         NotificationSeverity = ... # type: QOpenGLDebugMessage.Severity
         AnySeverity = ... # type: QOpenGLDebugMessage.Severity
 
+    InvalidSeverity = ...  # type: QOpenGLDebugMessage.Severity
+    HighSeverity = ...  # type: QOpenGLDebugMessage.Severity
+    MediumSeverity = ...  # type: QOpenGLDebugMessage.Severity
+    LowSeverity = ...  # type: QOpenGLDebugMessage.Severity
+    NotificationSeverity = ...  # type: QOpenGLDebugMessage.Severity
+    AnySeverity = ...  # type: QOpenGLDebugMessage.Severity
+
     class Type(int):
         InvalidType = ... # type: QOpenGLDebugMessage.Type
         ErrorType = ... # type: QOpenGLDebugMessage.Type
@@ -3431,6 +4018,18 @@ class QOpenGLDebugMessage(sip.simplewrapper):
         GroupPopType = ... # type: QOpenGLDebugMessage.Type
         AnyType = ... # type: QOpenGLDebugMessage.Type
 
+    InvalidType = ...  # type: QOpenGLDebugMessage.Type
+    ErrorType = ...  # type: QOpenGLDebugMessage.Type
+    DeprecatedBehaviorType = ...  # type: QOpenGLDebugMessage.Type
+    UndefinedBehaviorType = ...  # type: QOpenGLDebugMessage.Type
+    PortabilityType = ...  # type: QOpenGLDebugMessage.Type
+    PerformanceType = ...  # type: QOpenGLDebugMessage.Type
+    OtherType = ...  # type: QOpenGLDebugMessage.Type
+    MarkerType = ...  # type: QOpenGLDebugMessage.Type
+    GroupPushType = ...  # type: QOpenGLDebugMessage.Type
+    GroupPopType = ...  # type: QOpenGLDebugMessage.Type
+    AnyType = ...  # type: QOpenGLDebugMessage.Type
+
     class Source(int):
         InvalidSource = ... # type: QOpenGLDebugMessage.Source
         APISource = ... # type: QOpenGLDebugMessage.Source
@@ -3440,6 +4039,15 @@ class QOpenGLDebugMessage(sip.simplewrapper):
         ApplicationSource = ... # type: QOpenGLDebugMessage.Source
         OtherSource = ... # type: QOpenGLDebugMessage.Source
         AnySource = ... # type: QOpenGLDebugMessage.Source
+
+    InvalidSource = ...  # type: QOpenGLDebugMessage.Source
+    APISource = ...  # type: QOpenGLDebugMessage.Source
+    WindowSystemSource = ...  # type: QOpenGLDebugMessage.Source
+    ShaderCompilerSource = ...  # type: QOpenGLDebugMessage.Source
+    ThirdPartySource = ...  # type: QOpenGLDebugMessage.Source
+    ApplicationSource = ...  # type: QOpenGLDebugMessage.Source
+    OtherSource = ...  # type: QOpenGLDebugMessage.Source
+    AnySource = ...  # type: QOpenGLDebugMessage.Source
 
     class Sources(sip.simplewrapper):
 
@@ -3509,6 +4117,9 @@ class QOpenGLDebugLogger(QtCore.QObject):
         AsynchronousLogging = ... # type: QOpenGLDebugLogger.LoggingMode
         SynchronousLogging = ... # type: QOpenGLDebugLogger.LoggingMode
 
+    AsynchronousLogging = ...  # type: QOpenGLDebugLogger.LoggingMode
+    SynchronousLogging = ...  # type: QOpenGLDebugLogger.LoggingMode
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def messageLogged(self, debugMessage: QOpenGLDebugMessage) -> None: ...
@@ -3539,10 +4150,18 @@ class QOpenGLFramebufferObject(sip.simplewrapper):
         RestoreFramebufferBindingToDefault = ... # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
         RestoreFrameBufferBinding = ... # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
 
+    DontRestoreFramebufferBinding = ...  # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
+    RestoreFramebufferBindingToDefault = ...  # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
+    RestoreFrameBufferBinding = ...  # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
+
     class Attachment(int):
         NoAttachment = ... # type: QOpenGLFramebufferObject.Attachment
         CombinedDepthStencil = ... # type: QOpenGLFramebufferObject.Attachment
         Depth = ... # type: QOpenGLFramebufferObject.Attachment
+
+    NoAttachment = ...  # type: QOpenGLFramebufferObject.Attachment
+    CombinedDepthStencil = ...  # type: QOpenGLFramebufferObject.Attachment
+    Depth = ...  # type: QOpenGLFramebufferObject.Attachment
 
     @typing.overload
     def __init__(self, size: QtCore.QSize, target: int = ...) -> None: ...
@@ -3683,6 +4302,13 @@ class QOpenGLShader(QtCore.QObject):
         TessellationControl = ... # type: QOpenGLShader.ShaderTypeBit
         TessellationEvaluation = ... # type: QOpenGLShader.ShaderTypeBit
         Compute = ... # type: QOpenGLShader.ShaderTypeBit
+
+    Vertex = ...  # type: QOpenGLShader.ShaderTypeBit
+    Fragment = ...  # type: QOpenGLShader.ShaderTypeBit
+    Geometry = ...  # type: QOpenGLShader.ShaderTypeBit
+    TessellationControl = ...  # type: QOpenGLShader.ShaderTypeBit
+    TessellationEvaluation = ...  # type: QOpenGLShader.ShaderTypeBit
+    Compute = ...  # type: QOpenGLShader.ShaderTypeBit
 
     class ShaderType(sip.simplewrapper):
 
@@ -3913,6 +4539,9 @@ class QOpenGLTexture(sip.simplewrapper):
         CompareRefToTexture = ... # type: QOpenGLTexture.ComparisonMode
         CompareNone = ... # type: QOpenGLTexture.ComparisonMode
 
+    CompareRefToTexture = ...  # type: QOpenGLTexture.ComparisonMode
+    CompareNone = ...  # type: QOpenGLTexture.ComparisonMode
+
     class ComparisonFunction(int):
         CompareLessEqual = ... # type: QOpenGLTexture.ComparisonFunction
         CompareGreaterEqual = ... # type: QOpenGLTexture.ComparisonFunction
@@ -3923,16 +4552,34 @@ class QOpenGLTexture(sip.simplewrapper):
         CompareAlways = ... # type: QOpenGLTexture.ComparisonFunction
         CompareNever = ... # type: QOpenGLTexture.ComparisonFunction
 
+    CompareLessEqual = ...  # type: QOpenGLTexture.ComparisonFunction
+    CompareGreaterEqual = ...  # type: QOpenGLTexture.ComparisonFunction
+    CompareLess = ...  # type: QOpenGLTexture.ComparisonFunction
+    CompareGreater = ...  # type: QOpenGLTexture.ComparisonFunction
+    CompareEqual = ...  # type: QOpenGLTexture.ComparisonFunction
+    CommpareNotEqual = ...  # type: QOpenGLTexture.ComparisonFunction
+    CompareAlways = ...  # type: QOpenGLTexture.ComparisonFunction
+    CompareNever = ...  # type: QOpenGLTexture.ComparisonFunction
+
     class CoordinateDirection(int):
         DirectionS = ... # type: QOpenGLTexture.CoordinateDirection
         DirectionT = ... # type: QOpenGLTexture.CoordinateDirection
         DirectionR = ... # type: QOpenGLTexture.CoordinateDirection
+
+    DirectionS = ...  # type: QOpenGLTexture.CoordinateDirection
+    DirectionT = ...  # type: QOpenGLTexture.CoordinateDirection
+    DirectionR = ...  # type: QOpenGLTexture.CoordinateDirection
 
     class WrapMode(int):
         Repeat = ... # type: QOpenGLTexture.WrapMode
         MirroredRepeat = ... # type: QOpenGLTexture.WrapMode
         ClampToEdge = ... # type: QOpenGLTexture.WrapMode
         ClampToBorder = ... # type: QOpenGLTexture.WrapMode
+
+    Repeat = ...  # type: QOpenGLTexture.WrapMode
+    MirroredRepeat = ...  # type: QOpenGLTexture.WrapMode
+    ClampToEdge = ...  # type: QOpenGLTexture.WrapMode
+    ClampToBorder = ...  # type: QOpenGLTexture.WrapMode
 
     class Filter(int):
         Nearest = ... # type: QOpenGLTexture.Filter
@@ -3942,9 +4589,19 @@ class QOpenGLTexture(sip.simplewrapper):
         LinearMipMapNearest = ... # type: QOpenGLTexture.Filter
         LinearMipMapLinear = ... # type: QOpenGLTexture.Filter
 
+    Nearest = ...  # type: QOpenGLTexture.Filter
+    Linear = ...  # type: QOpenGLTexture.Filter
+    NearestMipMapNearest = ...  # type: QOpenGLTexture.Filter
+    NearestMipMapLinear = ...  # type: QOpenGLTexture.Filter
+    LinearMipMapNearest = ...  # type: QOpenGLTexture.Filter
+    LinearMipMapLinear = ...  # type: QOpenGLTexture.Filter
+
     class DepthStencilMode(int):
         DepthMode = ... # type: QOpenGLTexture.DepthStencilMode
         StencilMode = ... # type: QOpenGLTexture.DepthStencilMode
+
+    DepthMode = ...  # type: QOpenGLTexture.DepthStencilMode
+    StencilMode = ...  # type: QOpenGLTexture.DepthStencilMode
 
     class SwizzleValue(int):
         RedValue = ... # type: QOpenGLTexture.SwizzleValue
@@ -3954,11 +4611,23 @@ class QOpenGLTexture(sip.simplewrapper):
         ZeroValue = ... # type: QOpenGLTexture.SwizzleValue
         OneValue = ... # type: QOpenGLTexture.SwizzleValue
 
+    RedValue = ...  # type: QOpenGLTexture.SwizzleValue
+    GreenValue = ...  # type: QOpenGLTexture.SwizzleValue
+    BlueValue = ...  # type: QOpenGLTexture.SwizzleValue
+    AlphaValue = ...  # type: QOpenGLTexture.SwizzleValue
+    ZeroValue = ...  # type: QOpenGLTexture.SwizzleValue
+    OneValue = ...  # type: QOpenGLTexture.SwizzleValue
+
     class SwizzleComponent(int):
         SwizzleRed = ... # type: QOpenGLTexture.SwizzleComponent
         SwizzleGreen = ... # type: QOpenGLTexture.SwizzleComponent
         SwizzleBlue = ... # type: QOpenGLTexture.SwizzleComponent
         SwizzleAlpha = ... # type: QOpenGLTexture.SwizzleComponent
+
+    SwizzleRed = ...  # type: QOpenGLTexture.SwizzleComponent
+    SwizzleGreen = ...  # type: QOpenGLTexture.SwizzleComponent
+    SwizzleBlue = ...  # type: QOpenGLTexture.SwizzleComponent
+    SwizzleAlpha = ...  # type: QOpenGLTexture.SwizzleComponent
 
     class Feature(int):
         ImmutableStorage = ... # type: QOpenGLTexture.Feature
@@ -3977,6 +4646,23 @@ class QOpenGLTexture(sip.simplewrapper):
         Texture1D = ... # type: QOpenGLTexture.Feature
         TextureComparisonOperators = ... # type: QOpenGLTexture.Feature
         TextureMipMapLevel = ... # type: QOpenGLTexture.Feature
+
+    ImmutableStorage = ...  # type: QOpenGLTexture.Feature
+    ImmutableMultisampleStorage = ...  # type: QOpenGLTexture.Feature
+    TextureRectangle = ...  # type: QOpenGLTexture.Feature
+    TextureArrays = ...  # type: QOpenGLTexture.Feature
+    Texture3D = ...  # type: QOpenGLTexture.Feature
+    TextureMultisample = ...  # type: QOpenGLTexture.Feature
+    TextureBuffer = ...  # type: QOpenGLTexture.Feature
+    TextureCubeMapArrays = ...  # type: QOpenGLTexture.Feature
+    Swizzle = ...  # type: QOpenGLTexture.Feature
+    StencilTexturing = ...  # type: QOpenGLTexture.Feature
+    AnisotropicFiltering = ...  # type: QOpenGLTexture.Feature
+    NPOTTextures = ...  # type: QOpenGLTexture.Feature
+    NPOTTextureRepeat = ...  # type: QOpenGLTexture.Feature
+    Texture1D = ...  # type: QOpenGLTexture.Feature
+    TextureComparisonOperators = ...  # type: QOpenGLTexture.Feature
+    TextureMipMapLevel = ...  # type: QOpenGLTexture.Feature
 
     class PixelType(int):
         NoPixelType = ... # type: QOpenGLTexture.PixelType
@@ -4006,6 +4692,33 @@ class QOpenGLTexture(sip.simplewrapper):
         UInt32_D24S8 = ... # type: QOpenGLTexture.PixelType
         Float32_D32_UInt32_S8_X24 = ... # type: QOpenGLTexture.PixelType
 
+    NoPixelType = ...  # type: QOpenGLTexture.PixelType
+    Int8 = ...  # type: QOpenGLTexture.PixelType
+    UInt8 = ...  # type: QOpenGLTexture.PixelType
+    Int16 = ...  # type: QOpenGLTexture.PixelType
+    UInt16 = ...  # type: QOpenGLTexture.PixelType
+    Int32 = ...  # type: QOpenGLTexture.PixelType
+    UInt32 = ...  # type: QOpenGLTexture.PixelType
+    Float16 = ...  # type: QOpenGLTexture.PixelType
+    Float16OES = ...  # type: QOpenGLTexture.PixelType
+    Float32 = ...  # type: QOpenGLTexture.PixelType
+    UInt32_RGB9_E5 = ...  # type: QOpenGLTexture.PixelType
+    UInt32_RG11B10F = ...  # type: QOpenGLTexture.PixelType
+    UInt8_RG3B2 = ...  # type: QOpenGLTexture.PixelType
+    UInt8_RG3B2_Rev = ...  # type: QOpenGLTexture.PixelType
+    UInt16_RGB5A1 = ...  # type: QOpenGLTexture.PixelType
+    UInt16_RGB5A1_Rev = ...  # type: QOpenGLTexture.PixelType
+    UInt16_R5G6B5 = ...  # type: QOpenGLTexture.PixelType
+    UInt16_R5G6B5_Rev = ...  # type: QOpenGLTexture.PixelType
+    UInt16_RGBA4 = ...  # type: QOpenGLTexture.PixelType
+    UInt16_RGBA4_Rev = ...  # type: QOpenGLTexture.PixelType
+    UInt32_RGB10A2 = ...  # type: QOpenGLTexture.PixelType
+    UInt32_RGB10A2_Rev = ...  # type: QOpenGLTexture.PixelType
+    UInt32_RGBA8 = ...  # type: QOpenGLTexture.PixelType
+    UInt32_RGBA8_Rev = ...  # type: QOpenGLTexture.PixelType
+    UInt32_D24S8 = ...  # type: QOpenGLTexture.PixelType
+    Float32_D32_UInt32_S8_X24 = ...  # type: QOpenGLTexture.PixelType
+
     class PixelFormat(int):
         NoSourceFormat = ... # type: QOpenGLTexture.PixelFormat
         Red = ... # type: QOpenGLTexture.PixelFormat
@@ -4027,6 +4740,26 @@ class QOpenGLTexture(sip.simplewrapper):
         LuminanceAlpha = ... # type: QOpenGLTexture.PixelFormat
         Stencil = ... # type: QOpenGLTexture.PixelFormat
 
+    NoSourceFormat = ...  # type: QOpenGLTexture.PixelFormat
+    Red = ...  # type: QOpenGLTexture.PixelFormat
+    RG = ...  # type: QOpenGLTexture.PixelFormat
+    RGB = ...  # type: QOpenGLTexture.PixelFormat
+    BGR = ...  # type: QOpenGLTexture.PixelFormat
+    RGBA = ...  # type: QOpenGLTexture.PixelFormat
+    BGRA = ...  # type: QOpenGLTexture.PixelFormat
+    Red_Integer = ...  # type: QOpenGLTexture.PixelFormat
+    RG_Integer = ...  # type: QOpenGLTexture.PixelFormat
+    RGB_Integer = ...  # type: QOpenGLTexture.PixelFormat
+    BGR_Integer = ...  # type: QOpenGLTexture.PixelFormat
+    RGBA_Integer = ...  # type: QOpenGLTexture.PixelFormat
+    BGRA_Integer = ...  # type: QOpenGLTexture.PixelFormat
+    Depth = ...  # type: QOpenGLTexture.PixelFormat
+    DepthStencil = ...  # type: QOpenGLTexture.PixelFormat
+    Alpha = ...  # type: QOpenGLTexture.PixelFormat
+    Luminance = ...  # type: QOpenGLTexture.PixelFormat
+    LuminanceAlpha = ...  # type: QOpenGLTexture.PixelFormat
+    Stencil = ...  # type: QOpenGLTexture.PixelFormat
+
     class CubeMapFace(int):
         CubeMapPositiveX = ... # type: QOpenGLTexture.CubeMapFace
         CubeMapNegativeX = ... # type: QOpenGLTexture.CubeMapFace
@@ -4034,6 +4767,13 @@ class QOpenGLTexture(sip.simplewrapper):
         CubeMapNegativeY = ... # type: QOpenGLTexture.CubeMapFace
         CubeMapPositiveZ = ... # type: QOpenGLTexture.CubeMapFace
         CubeMapNegativeZ = ... # type: QOpenGLTexture.CubeMapFace
+
+    CubeMapPositiveX = ...  # type: QOpenGLTexture.CubeMapFace
+    CubeMapNegativeX = ...  # type: QOpenGLTexture.CubeMapFace
+    CubeMapPositiveY = ...  # type: QOpenGLTexture.CubeMapFace
+    CubeMapNegativeY = ...  # type: QOpenGLTexture.CubeMapFace
+    CubeMapPositiveZ = ...  # type: QOpenGLTexture.CubeMapFace
+    CubeMapNegativeZ = ...  # type: QOpenGLTexture.CubeMapFace
 
     class TextureFormat(int):
         NoFormat = ... # type: QOpenGLTexture.TextureFormat
@@ -4163,13 +4903,146 @@ class QOpenGLTexture(sip.simplewrapper):
         SRGB8_Alpha8_ASTC_12x10 = ... # type: QOpenGLTexture.TextureFormat
         SRGB8_Alpha8_ASTC_12x12 = ... # type: QOpenGLTexture.TextureFormat
 
+    NoFormat = ...  # type: QOpenGLTexture.TextureFormat
+    R8_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG8_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA8_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    R16_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG16_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGB16_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA16_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    R8_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG8_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA8_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    R16_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG16_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGB16_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA16_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    R8U = ...  # type: QOpenGLTexture.TextureFormat
+    RG8U = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8U = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA8U = ...  # type: QOpenGLTexture.TextureFormat
+    R16U = ...  # type: QOpenGLTexture.TextureFormat
+    RG16U = ...  # type: QOpenGLTexture.TextureFormat
+    RGB16U = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA16U = ...  # type: QOpenGLTexture.TextureFormat
+    R32U = ...  # type: QOpenGLTexture.TextureFormat
+    RG32U = ...  # type: QOpenGLTexture.TextureFormat
+    RGB32U = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA32U = ...  # type: QOpenGLTexture.TextureFormat
+    R8I = ...  # type: QOpenGLTexture.TextureFormat
+    RG8I = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8I = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA8I = ...  # type: QOpenGLTexture.TextureFormat
+    R16I = ...  # type: QOpenGLTexture.TextureFormat
+    RG16I = ...  # type: QOpenGLTexture.TextureFormat
+    RGB16I = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA16I = ...  # type: QOpenGLTexture.TextureFormat
+    R32I = ...  # type: QOpenGLTexture.TextureFormat
+    RG32I = ...  # type: QOpenGLTexture.TextureFormat
+    RGB32I = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA32I = ...  # type: QOpenGLTexture.TextureFormat
+    R16F = ...  # type: QOpenGLTexture.TextureFormat
+    RG16F = ...  # type: QOpenGLTexture.TextureFormat
+    RGB16F = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA16F = ...  # type: QOpenGLTexture.TextureFormat
+    R32F = ...  # type: QOpenGLTexture.TextureFormat
+    RG32F = ...  # type: QOpenGLTexture.TextureFormat
+    RGB32F = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA32F = ...  # type: QOpenGLTexture.TextureFormat
+    RGB9E5 = ...  # type: QOpenGLTexture.TextureFormat
+    RG11B10F = ...  # type: QOpenGLTexture.TextureFormat
+    RG3B2 = ...  # type: QOpenGLTexture.TextureFormat
+    R5G6B5 = ...  # type: QOpenGLTexture.TextureFormat
+    RGB5A1 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA4 = ...  # type: QOpenGLTexture.TextureFormat
+    RGB10A2 = ...  # type: QOpenGLTexture.TextureFormat
+    D16 = ...  # type: QOpenGLTexture.TextureFormat
+    D24 = ...  # type: QOpenGLTexture.TextureFormat
+    D24S8 = ...  # type: QOpenGLTexture.TextureFormat
+    D32 = ...  # type: QOpenGLTexture.TextureFormat
+    D32F = ...  # type: QOpenGLTexture.TextureFormat
+    D32FS8X24 = ...  # type: QOpenGLTexture.TextureFormat
+    RGB_DXT1 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_DXT1 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_DXT3 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_DXT5 = ...  # type: QOpenGLTexture.TextureFormat
+    R_ATI1N_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    R_ATI1N_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG_ATI2N_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG_ATI2N_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGB_BP_UNSIGNED_FLOAT = ...  # type: QOpenGLTexture.TextureFormat
+    RGB_BP_SIGNED_FLOAT = ...  # type: QOpenGLTexture.TextureFormat
+    RGB_BP_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB_DXT1 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB_Alpha_DXT1 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB_Alpha_DXT3 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB_Alpha_DXT5 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB_BP_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    DepthFormat = ...  # type: QOpenGLTexture.TextureFormat
+    AlphaFormat = ...  # type: QOpenGLTexture.TextureFormat
+    RGBFormat = ...  # type: QOpenGLTexture.TextureFormat
+    RGBAFormat = ...  # type: QOpenGLTexture.TextureFormat
+    LuminanceFormat = ...  # type: QOpenGLTexture.TextureFormat
+    LuminanceAlphaFormat = ...  # type: QOpenGLTexture.TextureFormat
+    S8 = ...  # type: QOpenGLTexture.TextureFormat
+    R11_EAC_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    R11_EAC_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG11_EAC_UNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RG11_EAC_SNorm = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8_ETC2 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_ETC2 = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8_PunchThrough_Alpha1_ETC2 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_PunchThrough_Alpha1_ETC2 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA8_ETC2_EAC = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ETC2_EAC = ...  # type: QOpenGLTexture.TextureFormat
+    RGB8_ETC1 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_4x4 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_5x4 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_5x5 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_6x5 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_6x6 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_8x5 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_8x6 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_8x8 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_10x5 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_10x6 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_10x8 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_10x10 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_12x10 = ...  # type: QOpenGLTexture.TextureFormat
+    RGBA_ASTC_12x12 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_4x4 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_5x4 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_5x5 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_6x5 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_6x6 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_8x5 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_8x6 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_8x8 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_10x5 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_10x6 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_10x8 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_10x10 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_12x10 = ...  # type: QOpenGLTexture.TextureFormat
+    SRGB8_Alpha8_ASTC_12x12 = ...  # type: QOpenGLTexture.TextureFormat
+
     class TextureUnitReset(int):
         ResetTextureUnit = ... # type: QOpenGLTexture.TextureUnitReset
         DontResetTextureUnit = ... # type: QOpenGLTexture.TextureUnitReset
 
+    ResetTextureUnit = ...  # type: QOpenGLTexture.TextureUnitReset
+    DontResetTextureUnit = ...  # type: QOpenGLTexture.TextureUnitReset
+
     class MipMapGeneration(int):
         GenerateMipMaps = ... # type: QOpenGLTexture.MipMapGeneration
         DontGenerateMipMaps = ... # type: QOpenGLTexture.MipMapGeneration
+
+    GenerateMipMaps = ...  # type: QOpenGLTexture.MipMapGeneration
+    DontGenerateMipMaps = ...  # type: QOpenGLTexture.MipMapGeneration
 
     class BindingTarget(int):
         BindingTarget1D = ... # type: QOpenGLTexture.BindingTarget
@@ -4184,6 +5057,18 @@ class QOpenGLTexture(sip.simplewrapper):
         BindingTargetRectangle = ... # type: QOpenGLTexture.BindingTarget
         BindingTargetBuffer = ... # type: QOpenGLTexture.BindingTarget
 
+    BindingTarget1D = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTarget1DArray = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTarget2D = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTarget2DArray = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTarget3D = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTargetCubeMap = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTargetCubeMapArray = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTarget2DMultisample = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTarget2DMultisampleArray = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTargetRectangle = ...  # type: QOpenGLTexture.BindingTarget
+    BindingTargetBuffer = ...  # type: QOpenGLTexture.BindingTarget
+
     class Target(int):
         Target1D = ... # type: QOpenGLTexture.Target
         Target1DArray = ... # type: QOpenGLTexture.Target
@@ -4196,6 +5081,18 @@ class QOpenGLTexture(sip.simplewrapper):
         Target2DMultisampleArray = ... # type: QOpenGLTexture.Target
         TargetRectangle = ... # type: QOpenGLTexture.Target
         TargetBuffer = ... # type: QOpenGLTexture.Target
+
+    Target1D = ...  # type: QOpenGLTexture.Target
+    Target1DArray = ...  # type: QOpenGLTexture.Target
+    Target2D = ...  # type: QOpenGLTexture.Target
+    Target2DArray = ...  # type: QOpenGLTexture.Target
+    Target3D = ...  # type: QOpenGLTexture.Target
+    TargetCubeMap = ...  # type: QOpenGLTexture.Target
+    TargetCubeMapArray = ...  # type: QOpenGLTexture.Target
+    Target2DMultisample = ...  # type: QOpenGLTexture.Target
+    Target2DMultisampleArray = ...  # type: QOpenGLTexture.Target
+    TargetRectangle = ...  # type: QOpenGLTexture.Target
+    TargetBuffer = ...  # type: QOpenGLTexture.Target
 
     class Features(sip.simplewrapper):
 
@@ -4351,6 +5248,9 @@ class QOpenGLTextureBlitter(sip.simplewrapper):
         OriginBottomLeft = ... # type: QOpenGLTextureBlitter.Origin
         OriginTopLeft = ... # type: QOpenGLTextureBlitter.Origin
 
+    OriginBottomLeft = ...  # type: QOpenGLTextureBlitter.Origin
+    OriginTopLeft = ...  # type: QOpenGLTextureBlitter.Origin
+
     def __init__(self) -> None: ...
 
     @staticmethod
@@ -4438,9 +5338,19 @@ class QWindow(QtCore.QObject, QSurface):
         Maximized = ... # type: QWindow.Visibility
         FullScreen = ... # type: QWindow.Visibility
 
+    Hidden = ...  # type: QWindow.Visibility
+    AutomaticVisibility = ...  # type: QWindow.Visibility
+    Windowed = ...  # type: QWindow.Visibility
+    Minimized = ...  # type: QWindow.Visibility
+    Maximized = ...  # type: QWindow.Visibility
+    FullScreen = ...  # type: QWindow.Visibility
+
     class AncestorMode(int):
         ExcludeTransients = ... # type: QWindow.AncestorMode
         IncludeTransients = ... # type: QWindow.AncestorMode
+
+    ExcludeTransients = ...  # type: QWindow.AncestorMode
+    IncludeTransients = ...  # type: QWindow.AncestorMode
 
     @typing.overload
     def __init__(self, screen: typing.Optional['QScreen'] = ...) -> None: ...
@@ -4621,6 +5531,10 @@ class QOpenGLWindow(QPaintDeviceWindow):
         PartialUpdateBlit = ... # type: QOpenGLWindow.UpdateBehavior
         PartialUpdateBlend = ... # type: QOpenGLWindow.UpdateBehavior
 
+    NoPartialUpdate = ...  # type: QOpenGLWindow.UpdateBehavior
+    PartialUpdateBlit = ...  # type: QOpenGLWindow.UpdateBehavior
+    PartialUpdateBlend = ...  # type: QOpenGLWindow.UpdateBehavior
+
     @typing.overload
     def __init__(self, updateBehavior: 'QOpenGLWindow.UpdateBehavior' = ..., parent: typing.Optional[QWindow] = ...) -> None: ...
     @typing.overload
@@ -4651,6 +5565,10 @@ class QPagedPaintDevice(QPaintDevice):
         PdfVersion_1_4 = ... # type: QPagedPaintDevice.PdfVersion
         PdfVersion_A1b = ... # type: QPagedPaintDevice.PdfVersion
         PdfVersion_1_6 = ... # type: QPagedPaintDevice.PdfVersion
+
+    PdfVersion_1_4 = ...  # type: QPagedPaintDevice.PdfVersion
+    PdfVersion_A1b = ...  # type: QPagedPaintDevice.PdfVersion
+    PdfVersion_1_6 = ...  # type: QPagedPaintDevice.PdfVersion
 
     class PageSize(int):
         A4 = ... # type: QPagedPaintDevice.PageSize
@@ -4780,6 +5698,133 @@ class QPagedPaintDevice(QPaintDevice):
         Envelope10 = ... # type: QPagedPaintDevice.PageSize
         LastPageSize = ... # type: QPagedPaintDevice.PageSize
 
+    A4 = ...  # type: QPagedPaintDevice.PageSize
+    B5 = ...  # type: QPagedPaintDevice.PageSize
+    Letter = ...  # type: QPagedPaintDevice.PageSize
+    Legal = ...  # type: QPagedPaintDevice.PageSize
+    Executive = ...  # type: QPagedPaintDevice.PageSize
+    A0 = ...  # type: QPagedPaintDevice.PageSize
+    A1 = ...  # type: QPagedPaintDevice.PageSize
+    A2 = ...  # type: QPagedPaintDevice.PageSize
+    A3 = ...  # type: QPagedPaintDevice.PageSize
+    A5 = ...  # type: QPagedPaintDevice.PageSize
+    A6 = ...  # type: QPagedPaintDevice.PageSize
+    A7 = ...  # type: QPagedPaintDevice.PageSize
+    A8 = ...  # type: QPagedPaintDevice.PageSize
+    A9 = ...  # type: QPagedPaintDevice.PageSize
+    B0 = ...  # type: QPagedPaintDevice.PageSize
+    B1 = ...  # type: QPagedPaintDevice.PageSize
+    B10 = ...  # type: QPagedPaintDevice.PageSize
+    B2 = ...  # type: QPagedPaintDevice.PageSize
+    B3 = ...  # type: QPagedPaintDevice.PageSize
+    B4 = ...  # type: QPagedPaintDevice.PageSize
+    B6 = ...  # type: QPagedPaintDevice.PageSize
+    B7 = ...  # type: QPagedPaintDevice.PageSize
+    B8 = ...  # type: QPagedPaintDevice.PageSize
+    B9 = ...  # type: QPagedPaintDevice.PageSize
+    C5E = ...  # type: QPagedPaintDevice.PageSize
+    Comm10E = ...  # type: QPagedPaintDevice.PageSize
+    DLE = ...  # type: QPagedPaintDevice.PageSize
+    Folio = ...  # type: QPagedPaintDevice.PageSize
+    Ledger = ...  # type: QPagedPaintDevice.PageSize
+    Tabloid = ...  # type: QPagedPaintDevice.PageSize
+    Custom = ...  # type: QPagedPaintDevice.PageSize
+    A10 = ...  # type: QPagedPaintDevice.PageSize
+    A3Extra = ...  # type: QPagedPaintDevice.PageSize
+    A4Extra = ...  # type: QPagedPaintDevice.PageSize
+    A4Plus = ...  # type: QPagedPaintDevice.PageSize
+    A4Small = ...  # type: QPagedPaintDevice.PageSize
+    A5Extra = ...  # type: QPagedPaintDevice.PageSize
+    B5Extra = ...  # type: QPagedPaintDevice.PageSize
+    JisB0 = ...  # type: QPagedPaintDevice.PageSize
+    JisB1 = ...  # type: QPagedPaintDevice.PageSize
+    JisB2 = ...  # type: QPagedPaintDevice.PageSize
+    JisB3 = ...  # type: QPagedPaintDevice.PageSize
+    JisB4 = ...  # type: QPagedPaintDevice.PageSize
+    JisB5 = ...  # type: QPagedPaintDevice.PageSize
+    JisB6 = ...  # type: QPagedPaintDevice.PageSize
+    JisB7 = ...  # type: QPagedPaintDevice.PageSize
+    JisB8 = ...  # type: QPagedPaintDevice.PageSize
+    JisB9 = ...  # type: QPagedPaintDevice.PageSize
+    JisB10 = ...  # type: QPagedPaintDevice.PageSize
+    AnsiC = ...  # type: QPagedPaintDevice.PageSize
+    AnsiD = ...  # type: QPagedPaintDevice.PageSize
+    AnsiE = ...  # type: QPagedPaintDevice.PageSize
+    LegalExtra = ...  # type: QPagedPaintDevice.PageSize
+    LetterExtra = ...  # type: QPagedPaintDevice.PageSize
+    LetterPlus = ...  # type: QPagedPaintDevice.PageSize
+    LetterSmall = ...  # type: QPagedPaintDevice.PageSize
+    TabloidExtra = ...  # type: QPagedPaintDevice.PageSize
+    ArchA = ...  # type: QPagedPaintDevice.PageSize
+    ArchB = ...  # type: QPagedPaintDevice.PageSize
+    ArchC = ...  # type: QPagedPaintDevice.PageSize
+    ArchD = ...  # type: QPagedPaintDevice.PageSize
+    ArchE = ...  # type: QPagedPaintDevice.PageSize
+    Imperial7x9 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial8x10 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial9x11 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial9x12 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial10x11 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial10x13 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial10x14 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial12x11 = ...  # type: QPagedPaintDevice.PageSize
+    Imperial15x11 = ...  # type: QPagedPaintDevice.PageSize
+    ExecutiveStandard = ...  # type: QPagedPaintDevice.PageSize
+    Note = ...  # type: QPagedPaintDevice.PageSize
+    Quarto = ...  # type: QPagedPaintDevice.PageSize
+    Statement = ...  # type: QPagedPaintDevice.PageSize
+    SuperA = ...  # type: QPagedPaintDevice.PageSize
+    SuperB = ...  # type: QPagedPaintDevice.PageSize
+    Postcard = ...  # type: QPagedPaintDevice.PageSize
+    DoublePostcard = ...  # type: QPagedPaintDevice.PageSize
+    Prc16K = ...  # type: QPagedPaintDevice.PageSize
+    Prc32K = ...  # type: QPagedPaintDevice.PageSize
+    Prc32KBig = ...  # type: QPagedPaintDevice.PageSize
+    FanFoldUS = ...  # type: QPagedPaintDevice.PageSize
+    FanFoldGerman = ...  # type: QPagedPaintDevice.PageSize
+    FanFoldGermanLegal = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeB4 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeB5 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeB6 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC0 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC1 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC2 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC3 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC4 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC6 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC65 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC7 = ...  # type: QPagedPaintDevice.PageSize
+    Envelope9 = ...  # type: QPagedPaintDevice.PageSize
+    Envelope11 = ...  # type: QPagedPaintDevice.PageSize
+    Envelope12 = ...  # type: QPagedPaintDevice.PageSize
+    Envelope14 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeMonarch = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePersonal = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeChou3 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeChou4 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeInvite = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeItalian = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeKaku2 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeKaku3 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc1 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc2 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc3 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc4 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc5 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc6 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc7 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc8 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc9 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopePrc10 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeYou4 = ...  # type: QPagedPaintDevice.PageSize
+    NPaperSize = ...  # type: QPagedPaintDevice.PageSize
+    AnsiA = ...  # type: QPagedPaintDevice.PageSize
+    AnsiB = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeC5 = ...  # type: QPagedPaintDevice.PageSize
+    EnvelopeDL = ...  # type: QPagedPaintDevice.PageSize
+    Envelope10 = ...  # type: QPagedPaintDevice.PageSize
+    LastPageSize = ...  # type: QPagedPaintDevice.PageSize
+
     class Margins(sip.simplewrapper):
 
         bottom = ... # type: float
@@ -4819,9 +5864,15 @@ class QPageLayout(sip.simplewrapper):
         StandardMode = ... # type: QPageLayout.Mode
         FullPageMode = ... # type: QPageLayout.Mode
 
+    StandardMode = ...  # type: QPageLayout.Mode
+    FullPageMode = ...  # type: QPageLayout.Mode
+
     class Orientation(int):
         Portrait = ... # type: QPageLayout.Orientation
         Landscape = ... # type: QPageLayout.Orientation
+
+    Portrait = ...  # type: QPageLayout.Orientation
+    Landscape = ...  # type: QPageLayout.Orientation
 
     class Unit(int):
         Millimeter = ... # type: QPageLayout.Unit
@@ -4830,6 +5881,13 @@ class QPageLayout(sip.simplewrapper):
         Pica = ... # type: QPageLayout.Unit
         Didot = ... # type: QPageLayout.Unit
         Cicero = ... # type: QPageLayout.Unit
+
+    Millimeter = ...  # type: QPageLayout.Unit
+    Point = ...  # type: QPageLayout.Unit
+    Inch = ...  # type: QPageLayout.Unit
+    Pica = ...  # type: QPageLayout.Unit
+    Didot = ...  # type: QPageLayout.Unit
+    Cicero = ...  # type: QPageLayout.Unit
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -4884,6 +5942,10 @@ class QPageSize(sip.simplewrapper):
         FuzzyOrientationMatch = ... # type: QPageSize.SizeMatchPolicy
         ExactMatch = ... # type: QPageSize.SizeMatchPolicy
 
+    FuzzyMatch = ...  # type: QPageSize.SizeMatchPolicy
+    FuzzyOrientationMatch = ...  # type: QPageSize.SizeMatchPolicy
+    ExactMatch = ...  # type: QPageSize.SizeMatchPolicy
+
     class Unit(int):
         Millimeter = ... # type: QPageSize.Unit
         Point = ... # type: QPageSize.Unit
@@ -4891,6 +5953,13 @@ class QPageSize(sip.simplewrapper):
         Pica = ... # type: QPageSize.Unit
         Didot = ... # type: QPageSize.Unit
         Cicero = ... # type: QPageSize.Unit
+
+    Millimeter = ...  # type: QPageSize.Unit
+    Point = ...  # type: QPageSize.Unit
+    Inch = ...  # type: QPageSize.Unit
+    Pica = ...  # type: QPageSize.Unit
+    Didot = ...  # type: QPageSize.Unit
+    Cicero = ...  # type: QPageSize.Unit
 
     class PageSizeId(int):
         A4 = ... # type: QPageSize.PageSizeId
@@ -5021,6 +6090,134 @@ class QPageSize(sip.simplewrapper):
         Envelope10 = ... # type: QPageSize.PageSizeId
         LastPageSize = ... # type: QPageSize.PageSizeId
 
+    A4 = ...  # type: QPageSize.PageSizeId
+    B5 = ...  # type: QPageSize.PageSizeId
+    Letter = ...  # type: QPageSize.PageSizeId
+    Legal = ...  # type: QPageSize.PageSizeId
+    Executive = ...  # type: QPageSize.PageSizeId
+    A0 = ...  # type: QPageSize.PageSizeId
+    A1 = ...  # type: QPageSize.PageSizeId
+    A2 = ...  # type: QPageSize.PageSizeId
+    A3 = ...  # type: QPageSize.PageSizeId
+    A5 = ...  # type: QPageSize.PageSizeId
+    A6 = ...  # type: QPageSize.PageSizeId
+    A7 = ...  # type: QPageSize.PageSizeId
+    A8 = ...  # type: QPageSize.PageSizeId
+    A9 = ...  # type: QPageSize.PageSizeId
+    B0 = ...  # type: QPageSize.PageSizeId
+    B1 = ...  # type: QPageSize.PageSizeId
+    B10 = ...  # type: QPageSize.PageSizeId
+    B2 = ...  # type: QPageSize.PageSizeId
+    B3 = ...  # type: QPageSize.PageSizeId
+    B4 = ...  # type: QPageSize.PageSizeId
+    B6 = ...  # type: QPageSize.PageSizeId
+    B7 = ...  # type: QPageSize.PageSizeId
+    B8 = ...  # type: QPageSize.PageSizeId
+    B9 = ...  # type: QPageSize.PageSizeId
+    C5E = ...  # type: QPageSize.PageSizeId
+    Comm10E = ...  # type: QPageSize.PageSizeId
+    DLE = ...  # type: QPageSize.PageSizeId
+    Folio = ...  # type: QPageSize.PageSizeId
+    Ledger = ...  # type: QPageSize.PageSizeId
+    Tabloid = ...  # type: QPageSize.PageSizeId
+    Custom = ...  # type: QPageSize.PageSizeId
+    A10 = ...  # type: QPageSize.PageSizeId
+    A3Extra = ...  # type: QPageSize.PageSizeId
+    A4Extra = ...  # type: QPageSize.PageSizeId
+    A4Plus = ...  # type: QPageSize.PageSizeId
+    A4Small = ...  # type: QPageSize.PageSizeId
+    A5Extra = ...  # type: QPageSize.PageSizeId
+    B5Extra = ...  # type: QPageSize.PageSizeId
+    JisB0 = ...  # type: QPageSize.PageSizeId
+    JisB1 = ...  # type: QPageSize.PageSizeId
+    JisB2 = ...  # type: QPageSize.PageSizeId
+    JisB3 = ...  # type: QPageSize.PageSizeId
+    JisB4 = ...  # type: QPageSize.PageSizeId
+    JisB5 = ...  # type: QPageSize.PageSizeId
+    JisB6 = ...  # type: QPageSize.PageSizeId
+    JisB7 = ...  # type: QPageSize.PageSizeId
+    JisB8 = ...  # type: QPageSize.PageSizeId
+    JisB9 = ...  # type: QPageSize.PageSizeId
+    JisB10 = ...  # type: QPageSize.PageSizeId
+    AnsiC = ...  # type: QPageSize.PageSizeId
+    AnsiD = ...  # type: QPageSize.PageSizeId
+    AnsiE = ...  # type: QPageSize.PageSizeId
+    LegalExtra = ...  # type: QPageSize.PageSizeId
+    LetterExtra = ...  # type: QPageSize.PageSizeId
+    LetterPlus = ...  # type: QPageSize.PageSizeId
+    LetterSmall = ...  # type: QPageSize.PageSizeId
+    TabloidExtra = ...  # type: QPageSize.PageSizeId
+    ArchA = ...  # type: QPageSize.PageSizeId
+    ArchB = ...  # type: QPageSize.PageSizeId
+    ArchC = ...  # type: QPageSize.PageSizeId
+    ArchD = ...  # type: QPageSize.PageSizeId
+    ArchE = ...  # type: QPageSize.PageSizeId
+    Imperial7x9 = ...  # type: QPageSize.PageSizeId
+    Imperial8x10 = ...  # type: QPageSize.PageSizeId
+    Imperial9x11 = ...  # type: QPageSize.PageSizeId
+    Imperial9x12 = ...  # type: QPageSize.PageSizeId
+    Imperial10x11 = ...  # type: QPageSize.PageSizeId
+    Imperial10x13 = ...  # type: QPageSize.PageSizeId
+    Imperial10x14 = ...  # type: QPageSize.PageSizeId
+    Imperial12x11 = ...  # type: QPageSize.PageSizeId
+    Imperial15x11 = ...  # type: QPageSize.PageSizeId
+    ExecutiveStandard = ...  # type: QPageSize.PageSizeId
+    Note = ...  # type: QPageSize.PageSizeId
+    Quarto = ...  # type: QPageSize.PageSizeId
+    Statement = ...  # type: QPageSize.PageSizeId
+    SuperA = ...  # type: QPageSize.PageSizeId
+    SuperB = ...  # type: QPageSize.PageSizeId
+    Postcard = ...  # type: QPageSize.PageSizeId
+    DoublePostcard = ...  # type: QPageSize.PageSizeId
+    Prc16K = ...  # type: QPageSize.PageSizeId
+    Prc32K = ...  # type: QPageSize.PageSizeId
+    Prc32KBig = ...  # type: QPageSize.PageSizeId
+    FanFoldUS = ...  # type: QPageSize.PageSizeId
+    FanFoldGerman = ...  # type: QPageSize.PageSizeId
+    FanFoldGermanLegal = ...  # type: QPageSize.PageSizeId
+    EnvelopeB4 = ...  # type: QPageSize.PageSizeId
+    EnvelopeB5 = ...  # type: QPageSize.PageSizeId
+    EnvelopeB6 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC0 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC1 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC2 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC3 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC4 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC6 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC65 = ...  # type: QPageSize.PageSizeId
+    EnvelopeC7 = ...  # type: QPageSize.PageSizeId
+    Envelope9 = ...  # type: QPageSize.PageSizeId
+    Envelope11 = ...  # type: QPageSize.PageSizeId
+    Envelope12 = ...  # type: QPageSize.PageSizeId
+    Envelope14 = ...  # type: QPageSize.PageSizeId
+    EnvelopeMonarch = ...  # type: QPageSize.PageSizeId
+    EnvelopePersonal = ...  # type: QPageSize.PageSizeId
+    EnvelopeChou3 = ...  # type: QPageSize.PageSizeId
+    EnvelopeChou4 = ...  # type: QPageSize.PageSizeId
+    EnvelopeInvite = ...  # type: QPageSize.PageSizeId
+    EnvelopeItalian = ...  # type: QPageSize.PageSizeId
+    EnvelopeKaku2 = ...  # type: QPageSize.PageSizeId
+    EnvelopeKaku3 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc1 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc2 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc3 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc4 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc5 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc6 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc7 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc8 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc9 = ...  # type: QPageSize.PageSizeId
+    EnvelopePrc10 = ...  # type: QPageSize.PageSizeId
+    EnvelopeYou4 = ...  # type: QPageSize.PageSizeId
+    NPageSize = ...  # type: QPageSize.PageSizeId
+    NPaperSize = ...  # type: QPageSize.PageSizeId
+    AnsiA = ...  # type: QPageSize.PageSizeId
+    AnsiB = ...  # type: QPageSize.PageSizeId
+    EnvelopeC5 = ...  # type: QPageSize.PageSizeId
+    EnvelopeDL = ...  # type: QPageSize.PageSizeId
+    Envelope10 = ...  # type: QPageSize.PageSizeId
+    LastPageSize = ...  # type: QPageSize.PageSizeId
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -5096,6 +6293,8 @@ class QPainter(sip.simplewrapper):
     class PixmapFragmentHint(int):
         OpaqueHint = ... # type: QPainter.PixmapFragmentHint
 
+    OpaqueHint = ...  # type: QPainter.PixmapFragmentHint
+
     class CompositionMode(int):
         CompositionMode_SourceOver = ... # type: QPainter.CompositionMode
         CompositionMode_DestinationOver = ... # type: QPainter.CompositionMode
@@ -5136,6 +6335,45 @@ class QPainter(sip.simplewrapper):
         RasterOp_SetDestination = ... # type: QPainter.CompositionMode
         RasterOp_NotDestination = ... # type: QPainter.CompositionMode
 
+    CompositionMode_SourceOver = ...  # type: QPainter.CompositionMode
+    CompositionMode_DestinationOver = ...  # type: QPainter.CompositionMode
+    CompositionMode_Clear = ...  # type: QPainter.CompositionMode
+    CompositionMode_Source = ...  # type: QPainter.CompositionMode
+    CompositionMode_Destination = ...  # type: QPainter.CompositionMode
+    CompositionMode_SourceIn = ...  # type: QPainter.CompositionMode
+    CompositionMode_DestinationIn = ...  # type: QPainter.CompositionMode
+    CompositionMode_SourceOut = ...  # type: QPainter.CompositionMode
+    CompositionMode_DestinationOut = ...  # type: QPainter.CompositionMode
+    CompositionMode_SourceAtop = ...  # type: QPainter.CompositionMode
+    CompositionMode_DestinationAtop = ...  # type: QPainter.CompositionMode
+    CompositionMode_Xor = ...  # type: QPainter.CompositionMode
+    CompositionMode_Plus = ...  # type: QPainter.CompositionMode
+    CompositionMode_Multiply = ...  # type: QPainter.CompositionMode
+    CompositionMode_Screen = ...  # type: QPainter.CompositionMode
+    CompositionMode_Overlay = ...  # type: QPainter.CompositionMode
+    CompositionMode_Darken = ...  # type: QPainter.CompositionMode
+    CompositionMode_Lighten = ...  # type: QPainter.CompositionMode
+    CompositionMode_ColorDodge = ...  # type: QPainter.CompositionMode
+    CompositionMode_ColorBurn = ...  # type: QPainter.CompositionMode
+    CompositionMode_HardLight = ...  # type: QPainter.CompositionMode
+    CompositionMode_SoftLight = ...  # type: QPainter.CompositionMode
+    CompositionMode_Difference = ...  # type: QPainter.CompositionMode
+    CompositionMode_Exclusion = ...  # type: QPainter.CompositionMode
+    RasterOp_SourceOrDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_SourceAndDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_SourceXorDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_NotSourceAndNotDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_NotSourceOrNotDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_NotSourceXorDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_NotSource = ...  # type: QPainter.CompositionMode
+    RasterOp_NotSourceAndDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_SourceAndNotDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_NotSourceOrDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_SourceOrNotDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_ClearDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_SetDestination = ...  # type: QPainter.CompositionMode
+    RasterOp_NotDestination = ...  # type: QPainter.CompositionMode
+
     class RenderHint(int):
         Antialiasing = ... # type: QPainter.RenderHint
         TextAntialiasing = ... # type: QPainter.RenderHint
@@ -5144,6 +6382,14 @@ class QPainter(sip.simplewrapper):
         NonCosmeticDefaultPen = ... # type: QPainter.RenderHint
         Qt4CompatiblePainting = ... # type: QPainter.RenderHint
         LosslessImageRendering = ... # type: QPainter.RenderHint
+
+    Antialiasing = ...  # type: QPainter.RenderHint
+    TextAntialiasing = ...  # type: QPainter.RenderHint
+    SmoothPixmapTransform = ...  # type: QPainter.RenderHint
+    HighQualityAntialiasing = ...  # type: QPainter.RenderHint
+    NonCosmeticDefaultPen = ...  # type: QPainter.RenderHint
+    Qt4CompatiblePainting = ...  # type: QPainter.RenderHint
+    LosslessImageRendering = ...  # type: QPainter.RenderHint
 
     class RenderHints(sip.simplewrapper):
 
@@ -5535,6 +6781,11 @@ class QTextItem(sip.simplewrapper):
         Underline = ... # type: QTextItem.RenderFlag
         StrikeOut = ... # type: QTextItem.RenderFlag
 
+    RightToLeft = ...  # type: QTextItem.RenderFlag
+    Overline = ...  # type: QTextItem.RenderFlag
+    Underline = ...  # type: QTextItem.RenderFlag
+    StrikeOut = ...  # type: QTextItem.RenderFlag
+
     class RenderFlags(sip.simplewrapper):
 
         @typing.overload
@@ -5587,11 +6838,37 @@ class QPaintEngine(sip.simplewrapper):
         User = ... # type: QPaintEngine.Type
         MaxUser = ... # type: QPaintEngine.Type
 
+    X11 = ...  # type: QPaintEngine.Type
+    Windows = ...  # type: QPaintEngine.Type
+    QuickDraw = ...  # type: QPaintEngine.Type
+    CoreGraphics = ...  # type: QPaintEngine.Type
+    MacPrinter = ...  # type: QPaintEngine.Type
+    QWindowSystem = ...  # type: QPaintEngine.Type
+    PostScript = ...  # type: QPaintEngine.Type
+    OpenGL = ...  # type: QPaintEngine.Type
+    Picture = ...  # type: QPaintEngine.Type
+    SVG = ...  # type: QPaintEngine.Type
+    Raster = ...  # type: QPaintEngine.Type
+    Direct3D = ...  # type: QPaintEngine.Type
+    Pdf = ...  # type: QPaintEngine.Type
+    OpenVG = ...  # type: QPaintEngine.Type
+    OpenGL2 = ...  # type: QPaintEngine.Type
+    PaintBuffer = ...  # type: QPaintEngine.Type
+    Blitter = ...  # type: QPaintEngine.Type
+    Direct2D = ...  # type: QPaintEngine.Type
+    User = ...  # type: QPaintEngine.Type
+    MaxUser = ...  # type: QPaintEngine.Type
+
     class PolygonDrawMode(int):
         OddEvenMode = ... # type: QPaintEngine.PolygonDrawMode
         WindingMode = ... # type: QPaintEngine.PolygonDrawMode
         ConvexMode = ... # type: QPaintEngine.PolygonDrawMode
         PolylineMode = ... # type: QPaintEngine.PolygonDrawMode
+
+    OddEvenMode = ...  # type: QPaintEngine.PolygonDrawMode
+    WindingMode = ...  # type: QPaintEngine.PolygonDrawMode
+    ConvexMode = ...  # type: QPaintEngine.PolygonDrawMode
+    PolylineMode = ...  # type: QPaintEngine.PolygonDrawMode
 
     class DirtyFlag(int):
         DirtyPen = ... # type: QPaintEngine.DirtyFlag
@@ -5608,6 +6885,21 @@ class QPaintEngine(sip.simplewrapper):
         DirtyClipEnabled = ... # type: QPaintEngine.DirtyFlag
         DirtyOpacity = ... # type: QPaintEngine.DirtyFlag
         AllDirty = ... # type: QPaintEngine.DirtyFlag
+
+    DirtyPen = ...  # type: QPaintEngine.DirtyFlag
+    DirtyBrush = ...  # type: QPaintEngine.DirtyFlag
+    DirtyBrushOrigin = ...  # type: QPaintEngine.DirtyFlag
+    DirtyFont = ...  # type: QPaintEngine.DirtyFlag
+    DirtyBackground = ...  # type: QPaintEngine.DirtyFlag
+    DirtyBackgroundMode = ...  # type: QPaintEngine.DirtyFlag
+    DirtyTransform = ...  # type: QPaintEngine.DirtyFlag
+    DirtyClipRegion = ...  # type: QPaintEngine.DirtyFlag
+    DirtyClipPath = ...  # type: QPaintEngine.DirtyFlag
+    DirtyHints = ...  # type: QPaintEngine.DirtyFlag
+    DirtyCompositionMode = ...  # type: QPaintEngine.DirtyFlag
+    DirtyClipEnabled = ...  # type: QPaintEngine.DirtyFlag
+    DirtyOpacity = ...  # type: QPaintEngine.DirtyFlag
+    AllDirty = ...  # type: QPaintEngine.DirtyFlag
 
     class PaintEngineFeature(int):
         PrimitiveTransform = ... # type: QPaintEngine.PaintEngineFeature
@@ -5630,6 +6922,27 @@ class QPaintEngine(sip.simplewrapper):
         ObjectBoundingModeGradients = ... # type: QPaintEngine.PaintEngineFeature
         RasterOpModes = ... # type: QPaintEngine.PaintEngineFeature
         AllFeatures = ... # type: QPaintEngine.PaintEngineFeature
+
+    PrimitiveTransform = ...  # type: QPaintEngine.PaintEngineFeature
+    PatternTransform = ...  # type: QPaintEngine.PaintEngineFeature
+    PixmapTransform = ...  # type: QPaintEngine.PaintEngineFeature
+    PatternBrush = ...  # type: QPaintEngine.PaintEngineFeature
+    LinearGradientFill = ...  # type: QPaintEngine.PaintEngineFeature
+    RadialGradientFill = ...  # type: QPaintEngine.PaintEngineFeature
+    ConicalGradientFill = ...  # type: QPaintEngine.PaintEngineFeature
+    AlphaBlend = ...  # type: QPaintEngine.PaintEngineFeature
+    PorterDuff = ...  # type: QPaintEngine.PaintEngineFeature
+    PainterPaths = ...  # type: QPaintEngine.PaintEngineFeature
+    Antialiasing = ...  # type: QPaintEngine.PaintEngineFeature
+    BrushStroke = ...  # type: QPaintEngine.PaintEngineFeature
+    ConstantOpacity = ...  # type: QPaintEngine.PaintEngineFeature
+    MaskedBrush = ...  # type: QPaintEngine.PaintEngineFeature
+    PaintOutsidePaintEvent = ...  # type: QPaintEngine.PaintEngineFeature
+    PerspectiveTransform = ...  # type: QPaintEngine.PaintEngineFeature
+    BlendModes = ...  # type: QPaintEngine.PaintEngineFeature
+    ObjectBoundingModeGradients = ...  # type: QPaintEngine.PaintEngineFeature
+    RasterOpModes = ...  # type: QPaintEngine.PaintEngineFeature
+    AllFeatures = ...  # type: QPaintEngine.PaintEngineFeature
 
     class PaintEngineFeatures(sip.simplewrapper):
 
@@ -5734,6 +7047,11 @@ class QPainterPath(sip.simplewrapper):
         LineToElement = ... # type: QPainterPath.ElementType
         CurveToElement = ... # type: QPainterPath.ElementType
         CurveToDataElement = ... # type: QPainterPath.ElementType
+
+    MoveToElement = ...  # type: QPainterPath.ElementType
+    LineToElement = ...  # type: QPainterPath.ElementType
+    CurveToElement = ...  # type: QPainterPath.ElementType
+    CurveToDataElement = ...  # type: QPainterPath.ElementType
 
     class Element(sip.simplewrapper):
 
@@ -5914,6 +7232,31 @@ class QPalette(sip.simplewrapper):
         NoRole = ... # type: QPalette.ColorRole
         NColorRoles = ... # type: QPalette.ColorRole
 
+    WindowText = ...  # type: QPalette.ColorRole
+    Foreground = ...  # type: QPalette.ColorRole
+    Button = ...  # type: QPalette.ColorRole
+    Light = ...  # type: QPalette.ColorRole
+    Midlight = ...  # type: QPalette.ColorRole
+    Dark = ...  # type: QPalette.ColorRole
+    Mid = ...  # type: QPalette.ColorRole
+    Text = ...  # type: QPalette.ColorRole
+    BrightText = ...  # type: QPalette.ColorRole
+    ButtonText = ...  # type: QPalette.ColorRole
+    Base = ...  # type: QPalette.ColorRole
+    Window = ...  # type: QPalette.ColorRole
+    Background = ...  # type: QPalette.ColorRole
+    Shadow = ...  # type: QPalette.ColorRole
+    Highlight = ...  # type: QPalette.ColorRole
+    HighlightedText = ...  # type: QPalette.ColorRole
+    Link = ...  # type: QPalette.ColorRole
+    LinkVisited = ...  # type: QPalette.ColorRole
+    AlternateBase = ...  # type: QPalette.ColorRole
+    ToolTipBase = ...  # type: QPalette.ColorRole
+    ToolTipText = ...  # type: QPalette.ColorRole
+    PlaceholderText = ...  # type: QPalette.ColorRole
+    NoRole = ...  # type: QPalette.ColorRole
+    NColorRoles = ...  # type: QPalette.ColorRole
+
     class ColorGroup(int):
         Active = ... # type: QPalette.ColorGroup
         Disabled = ... # type: QPalette.ColorGroup
@@ -5922,6 +7265,14 @@ class QPalette(sip.simplewrapper):
         Current = ... # type: QPalette.ColorGroup
         All = ... # type: QPalette.ColorGroup
         Normal = ... # type: QPalette.ColorGroup
+
+    Active = ...  # type: QPalette.ColorGroup
+    Disabled = ...  # type: QPalette.ColorGroup
+    Inactive = ...  # type: QPalette.ColorGroup
+    NColorGroups = ...  # type: QPalette.ColorGroup
+    Current = ...  # type: QPalette.ColorGroup
+    All = ...  # type: QPalette.ColorGroup
+    Normal = ...  # type: QPalette.ColorGroup
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6135,6 +7486,10 @@ class QPixelFormat(sip.simplewrapper):
         BigEndian = ... # type: QPixelFormat.ByteOrder
         CurrentSystemEndian = ... # type: QPixelFormat.ByteOrder
 
+    LittleEndian = ...  # type: QPixelFormat.ByteOrder
+    BigEndian = ...  # type: QPixelFormat.ByteOrder
+    CurrentSystemEndian = ...  # type: QPixelFormat.ByteOrder
+
     class YUVLayout(int):
         YUV444 = ... # type: QPixelFormat.YUVLayout
         YUV422 = ... # type: QPixelFormat.YUVLayout
@@ -6153,23 +7508,54 @@ class QPixelFormat(sip.simplewrapper):
         Y8 = ... # type: QPixelFormat.YUVLayout
         Y16 = ... # type: QPixelFormat.YUVLayout
 
+    YUV444 = ...  # type: QPixelFormat.YUVLayout
+    YUV422 = ...  # type: QPixelFormat.YUVLayout
+    YUV411 = ...  # type: QPixelFormat.YUVLayout
+    YUV420P = ...  # type: QPixelFormat.YUVLayout
+    YUV420SP = ...  # type: QPixelFormat.YUVLayout
+    YV12 = ...  # type: QPixelFormat.YUVLayout
+    UYVY = ...  # type: QPixelFormat.YUVLayout
+    YUYV = ...  # type: QPixelFormat.YUVLayout
+    NV12 = ...  # type: QPixelFormat.YUVLayout
+    NV21 = ...  # type: QPixelFormat.YUVLayout
+    IMC1 = ...  # type: QPixelFormat.YUVLayout
+    IMC2 = ...  # type: QPixelFormat.YUVLayout
+    IMC3 = ...  # type: QPixelFormat.YUVLayout
+    IMC4 = ...  # type: QPixelFormat.YUVLayout
+    Y8 = ...  # type: QPixelFormat.YUVLayout
+    Y16 = ...  # type: QPixelFormat.YUVLayout
+
     class TypeInterpretation(int):
         UnsignedInteger = ... # type: QPixelFormat.TypeInterpretation
         UnsignedShort = ... # type: QPixelFormat.TypeInterpretation
         UnsignedByte = ... # type: QPixelFormat.TypeInterpretation
         FloatingPoint = ... # type: QPixelFormat.TypeInterpretation
 
+    UnsignedInteger = ...  # type: QPixelFormat.TypeInterpretation
+    UnsignedShort = ...  # type: QPixelFormat.TypeInterpretation
+    UnsignedByte = ...  # type: QPixelFormat.TypeInterpretation
+    FloatingPoint = ...  # type: QPixelFormat.TypeInterpretation
+
     class AlphaPremultiplied(int):
         NotPremultiplied = ... # type: QPixelFormat.AlphaPremultiplied
         Premultiplied = ... # type: QPixelFormat.AlphaPremultiplied
+
+    NotPremultiplied = ...  # type: QPixelFormat.AlphaPremultiplied
+    Premultiplied = ...  # type: QPixelFormat.AlphaPremultiplied
 
     class AlphaPosition(int):
         AtBeginning = ... # type: QPixelFormat.AlphaPosition
         AtEnd = ... # type: QPixelFormat.AlphaPosition
 
+    AtBeginning = ...  # type: QPixelFormat.AlphaPosition
+    AtEnd = ...  # type: QPixelFormat.AlphaPosition
+
     class AlphaUsage(int):
         UsesAlpha = ... # type: QPixelFormat.AlphaUsage
         IgnoresAlpha = ... # type: QPixelFormat.AlphaUsage
+
+    UsesAlpha = ...  # type: QPixelFormat.AlphaUsage
+    IgnoresAlpha = ...  # type: QPixelFormat.AlphaUsage
 
     class ColorModel(int):
         RGB = ... # type: QPixelFormat.ColorModel
@@ -6181,6 +7567,16 @@ class QPixelFormat(sip.simplewrapper):
         HSV = ... # type: QPixelFormat.ColorModel
         YUV = ... # type: QPixelFormat.ColorModel
         Alpha = ... # type: QPixelFormat.ColorModel
+
+    RGB = ...  # type: QPixelFormat.ColorModel
+    BGR = ...  # type: QPixelFormat.ColorModel
+    Indexed = ...  # type: QPixelFormat.ColorModel
+    Grayscale = ...  # type: QPixelFormat.ColorModel
+    CMYK = ...  # type: QPixelFormat.ColorModel
+    HSL = ...  # type: QPixelFormat.ColorModel
+    HSV = ...  # type: QPixelFormat.ColorModel
+    YUV = ...  # type: QPixelFormat.ColorModel
+    Alpha = ...  # type: QPixelFormat.ColorModel
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6509,9 +7905,16 @@ class QRawFont(sip.simplewrapper):
         KernedAdvances = ... # type: QRawFont.LayoutFlag
         UseDesignMetrics = ... # type: QRawFont.LayoutFlag
 
+    SeparateAdvances = ...  # type: QRawFont.LayoutFlag
+    KernedAdvances = ...  # type: QRawFont.LayoutFlag
+    UseDesignMetrics = ...  # type: QRawFont.LayoutFlag
+
     class AntialiasingType(int):
         PixelAntialiasing = ... # type: QRawFont.AntialiasingType
         SubPixelAntialiasing = ... # type: QRawFont.AntialiasingType
+
+    PixelAntialiasing = ...  # type: QRawFont.AntialiasingType
+    SubPixelAntialiasing = ...  # type: QRawFont.AntialiasingType
 
     class LayoutFlags(sip.simplewrapper):
 
@@ -6582,6 +7985,9 @@ class QRegion(sip.simplewrapper):
     class RegionType(int):
         Rectangle = ... # type: QRegion.RegionType
         Ellipse = ... # type: QRegion.RegionType
+
+    Rectangle = ...  # type: QRegion.RegionType
+    Ellipse = ...  # type: QRegion.RegionType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6732,6 +8138,11 @@ class QSessionManager(QtCore.QObject):
         RestartImmediately = ... # type: QSessionManager.RestartHint
         RestartNever = ... # type: QSessionManager.RestartHint
 
+    RestartIfRunning = ...  # type: QSessionManager.RestartHint
+    RestartAnyway = ...  # type: QSessionManager.RestartHint
+    RestartImmediately = ...  # type: QSessionManager.RestartHint
+    RestartNever = ...  # type: QSessionManager.RestartHint
+
     def requestPhase2(self) -> None: ...
     def isPhase2(self) -> bool: ...
     @typing.overload
@@ -6836,6 +8247,9 @@ class QStandardItem(sip.wrapper):
     class ItemType(int):
         Type = ... # type: QStandardItem.ItemType
         UserType = ... # type: QStandardItem.ItemType
+
+    Type = ...  # type: QStandardItem.ItemType
+    UserType = ...  # type: QStandardItem.ItemType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6949,6 +8363,9 @@ class QStaticText(sip.simplewrapper):
         ModerateCaching = ... # type: QStaticText.PerformanceHint
         AggressiveCaching = ... # type: QStaticText.PerformanceHint
 
+    ModerateCaching = ...  # type: QStaticText.PerformanceHint
+    AggressiveCaching = ...  # type: QStaticText.PerformanceHint
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -7017,10 +8434,17 @@ class QSurfaceFormat(sip.simplewrapper):
         DefaultColorSpace = ... # type: QSurfaceFormat.ColorSpace
         sRGBColorSpace = ... # type: QSurfaceFormat.ColorSpace
 
+    DefaultColorSpace = ...  # type: QSurfaceFormat.ColorSpace
+    sRGBColorSpace = ...  # type: QSurfaceFormat.ColorSpace
+
     class OpenGLContextProfile(int):
         NoProfile = ... # type: QSurfaceFormat.OpenGLContextProfile
         CoreProfile = ... # type: QSurfaceFormat.OpenGLContextProfile
         CompatibilityProfile = ... # type: QSurfaceFormat.OpenGLContextProfile
+
+    NoProfile = ...  # type: QSurfaceFormat.OpenGLContextProfile
+    CoreProfile = ...  # type: QSurfaceFormat.OpenGLContextProfile
+    CompatibilityProfile = ...  # type: QSurfaceFormat.OpenGLContextProfile
 
     class RenderableType(int):
         DefaultRenderableType = ... # type: QSurfaceFormat.RenderableType
@@ -7028,17 +8452,32 @@ class QSurfaceFormat(sip.simplewrapper):
         OpenGLES = ... # type: QSurfaceFormat.RenderableType
         OpenVG = ... # type: QSurfaceFormat.RenderableType
 
+    DefaultRenderableType = ...  # type: QSurfaceFormat.RenderableType
+    OpenGL = ...  # type: QSurfaceFormat.RenderableType
+    OpenGLES = ...  # type: QSurfaceFormat.RenderableType
+    OpenVG = ...  # type: QSurfaceFormat.RenderableType
+
     class SwapBehavior(int):
         DefaultSwapBehavior = ... # type: QSurfaceFormat.SwapBehavior
         SingleBuffer = ... # type: QSurfaceFormat.SwapBehavior
         DoubleBuffer = ... # type: QSurfaceFormat.SwapBehavior
         TripleBuffer = ... # type: QSurfaceFormat.SwapBehavior
 
+    DefaultSwapBehavior = ...  # type: QSurfaceFormat.SwapBehavior
+    SingleBuffer = ...  # type: QSurfaceFormat.SwapBehavior
+    DoubleBuffer = ...  # type: QSurfaceFormat.SwapBehavior
+    TripleBuffer = ...  # type: QSurfaceFormat.SwapBehavior
+
     class FormatOption(int):
         StereoBuffers = ... # type: QSurfaceFormat.FormatOption
         DebugContext = ... # type: QSurfaceFormat.FormatOption
         DeprecatedFunctions = ... # type: QSurfaceFormat.FormatOption
         ResetNotification = ... # type: QSurfaceFormat.FormatOption
+
+    StereoBuffers = ...  # type: QSurfaceFormat.FormatOption
+    DebugContext = ...  # type: QSurfaceFormat.FormatOption
+    DeprecatedFunctions = ...  # type: QSurfaceFormat.FormatOption
+    ResetNotification = ...  # type: QSurfaceFormat.FormatOption
 
     class FormatOptions(sip.simplewrapper):
 
@@ -7146,6 +8585,11 @@ class QTextCursor(sip.simplewrapper):
         BlockUnderCursor = ... # type: QTextCursor.SelectionType
         Document = ... # type: QTextCursor.SelectionType
 
+    WordUnderCursor = ...  # type: QTextCursor.SelectionType
+    LineUnderCursor = ...  # type: QTextCursor.SelectionType
+    BlockUnderCursor = ...  # type: QTextCursor.SelectionType
+    Document = ...  # type: QTextCursor.SelectionType
+
     class MoveOperation(int):
         NoMove = ... # type: QTextCursor.MoveOperation
         Start = ... # type: QTextCursor.MoveOperation
@@ -7173,9 +8617,38 @@ class QTextCursor(sip.simplewrapper):
         NextRow = ... # type: QTextCursor.MoveOperation
         PreviousRow = ... # type: QTextCursor.MoveOperation
 
+    NoMove = ...  # type: QTextCursor.MoveOperation
+    Start = ...  # type: QTextCursor.MoveOperation
+    Up = ...  # type: QTextCursor.MoveOperation
+    StartOfLine = ...  # type: QTextCursor.MoveOperation
+    StartOfBlock = ...  # type: QTextCursor.MoveOperation
+    StartOfWord = ...  # type: QTextCursor.MoveOperation
+    PreviousBlock = ...  # type: QTextCursor.MoveOperation
+    PreviousCharacter = ...  # type: QTextCursor.MoveOperation
+    PreviousWord = ...  # type: QTextCursor.MoveOperation
+    Left = ...  # type: QTextCursor.MoveOperation
+    WordLeft = ...  # type: QTextCursor.MoveOperation
+    End = ...  # type: QTextCursor.MoveOperation
+    Down = ...  # type: QTextCursor.MoveOperation
+    EndOfLine = ...  # type: QTextCursor.MoveOperation
+    EndOfWord = ...  # type: QTextCursor.MoveOperation
+    EndOfBlock = ...  # type: QTextCursor.MoveOperation
+    NextBlock = ...  # type: QTextCursor.MoveOperation
+    NextCharacter = ...  # type: QTextCursor.MoveOperation
+    NextWord = ...  # type: QTextCursor.MoveOperation
+    Right = ...  # type: QTextCursor.MoveOperation
+    WordRight = ...  # type: QTextCursor.MoveOperation
+    NextCell = ...  # type: QTextCursor.MoveOperation
+    PreviousCell = ...  # type: QTextCursor.MoveOperation
+    NextRow = ...  # type: QTextCursor.MoveOperation
+    PreviousRow = ...  # type: QTextCursor.MoveOperation
+
     class MoveMode(int):
         MoveAnchor = ... # type: QTextCursor.MoveMode
         KeepAnchor = ... # type: QTextCursor.MoveMode
+
+    MoveAnchor = ...  # type: QTextCursor.MoveMode
+    KeepAnchor = ...  # type: QTextCursor.MoveMode
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -7279,10 +8752,18 @@ class QTextDocument(QtCore.QObject):
         MarkdownDialectCommonMark = ... # type: QTextDocument.MarkdownFeature
         MarkdownDialectGitHub = ... # type: QTextDocument.MarkdownFeature
 
+    MarkdownNoHTML = ...  # type: QTextDocument.MarkdownFeature
+    MarkdownDialectCommonMark = ...  # type: QTextDocument.MarkdownFeature
+    MarkdownDialectGitHub = ...  # type: QTextDocument.MarkdownFeature
+
     class Stacks(int):
         UndoStack = ... # type: QTextDocument.Stacks
         RedoStack = ... # type: QTextDocument.Stacks
         UndoAndRedoStacks = ... # type: QTextDocument.Stacks
+
+    UndoStack = ...  # type: QTextDocument.Stacks
+    RedoStack = ...  # type: QTextDocument.Stacks
+    UndoAndRedoStacks = ...  # type: QTextDocument.Stacks
 
     class ResourceType(int):
         UnknownResource = ... # type: QTextDocument.ResourceType
@@ -7292,14 +8773,28 @@ class QTextDocument(QtCore.QObject):
         MarkdownResource = ... # type: QTextDocument.ResourceType
         UserResource = ... # type: QTextDocument.ResourceType
 
+    UnknownResource = ...  # type: QTextDocument.ResourceType
+    HtmlResource = ...  # type: QTextDocument.ResourceType
+    ImageResource = ...  # type: QTextDocument.ResourceType
+    StyleSheetResource = ...  # type: QTextDocument.ResourceType
+    MarkdownResource = ...  # type: QTextDocument.ResourceType
+    UserResource = ...  # type: QTextDocument.ResourceType
+
     class FindFlag(int):
         FindBackward = ... # type: QTextDocument.FindFlag
         FindCaseSensitively = ... # type: QTextDocument.FindFlag
         FindWholeWords = ... # type: QTextDocument.FindFlag
 
+    FindBackward = ...  # type: QTextDocument.FindFlag
+    FindCaseSensitively = ...  # type: QTextDocument.FindFlag
+    FindWholeWords = ...  # type: QTextDocument.FindFlag
+
     class MetaInformation(int):
         DocumentTitle = ... # type: QTextDocument.MetaInformation
         DocumentUrl = ... # type: QTextDocument.MetaInformation
+
+    DocumentTitle = ...  # type: QTextDocument.MetaInformation
+    DocumentUrl = ...  # type: QTextDocument.MetaInformation
 
     class FindFlags(sip.simplewrapper):
 
@@ -7497,6 +8992,10 @@ class QTextLength(sip.simplewrapper):
         FixedLength = ... # type: QTextLength.Type
         PercentageLength = ... # type: QTextLength.Type
 
+    VariableLength = ...  # type: QTextLength.Type
+    FixedLength = ...  # type: QTextLength.Type
+    PercentageLength = ...  # type: QTextLength.Type
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -7620,10 +9119,120 @@ class QTextFormat(sip.simplewrapper):
         ImageAltText = ... # type: QTextFormat.Property
         UserProperty = ... # type: QTextFormat.Property
 
+    ObjectIndex = ...  # type: QTextFormat.Property
+    CssFloat = ...  # type: QTextFormat.Property
+    LayoutDirection = ...  # type: QTextFormat.Property
+    OutlinePen = ...  # type: QTextFormat.Property
+    BackgroundBrush = ...  # type: QTextFormat.Property
+    ForegroundBrush = ...  # type: QTextFormat.Property
+    BlockAlignment = ...  # type: QTextFormat.Property
+    BlockTopMargin = ...  # type: QTextFormat.Property
+    BlockBottomMargin = ...  # type: QTextFormat.Property
+    BlockLeftMargin = ...  # type: QTextFormat.Property
+    BlockRightMargin = ...  # type: QTextFormat.Property
+    TextIndent = ...  # type: QTextFormat.Property
+    BlockIndent = ...  # type: QTextFormat.Property
+    BlockNonBreakableLines = ...  # type: QTextFormat.Property
+    BlockTrailingHorizontalRulerWidth = ...  # type: QTextFormat.Property
+    FontFamily = ...  # type: QTextFormat.Property
+    FontPointSize = ...  # type: QTextFormat.Property
+    FontSizeAdjustment = ...  # type: QTextFormat.Property
+    FontSizeIncrement = ...  # type: QTextFormat.Property
+    FontWeight = ...  # type: QTextFormat.Property
+    FontItalic = ...  # type: QTextFormat.Property
+    FontUnderline = ...  # type: QTextFormat.Property
+    FontOverline = ...  # type: QTextFormat.Property
+    FontStrikeOut = ...  # type: QTextFormat.Property
+    FontFixedPitch = ...  # type: QTextFormat.Property
+    FontPixelSize = ...  # type: QTextFormat.Property
+    TextUnderlineColor = ...  # type: QTextFormat.Property
+    TextVerticalAlignment = ...  # type: QTextFormat.Property
+    TextOutline = ...  # type: QTextFormat.Property
+    IsAnchor = ...  # type: QTextFormat.Property
+    AnchorHref = ...  # type: QTextFormat.Property
+    AnchorName = ...  # type: QTextFormat.Property
+    ObjectType = ...  # type: QTextFormat.Property
+    ListStyle = ...  # type: QTextFormat.Property
+    ListIndent = ...  # type: QTextFormat.Property
+    FrameBorder = ...  # type: QTextFormat.Property
+    FrameMargin = ...  # type: QTextFormat.Property
+    FramePadding = ...  # type: QTextFormat.Property
+    FrameWidth = ...  # type: QTextFormat.Property
+    FrameHeight = ...  # type: QTextFormat.Property
+    TableColumns = ...  # type: QTextFormat.Property
+    TableColumnWidthConstraints = ...  # type: QTextFormat.Property
+    TableCellSpacing = ...  # type: QTextFormat.Property
+    TableCellPadding = ...  # type: QTextFormat.Property
+    TableCellRowSpan = ...  # type: QTextFormat.Property
+    TableCellColumnSpan = ...  # type: QTextFormat.Property
+    ImageName = ...  # type: QTextFormat.Property
+    ImageWidth = ...  # type: QTextFormat.Property
+    ImageHeight = ...  # type: QTextFormat.Property
+    TextUnderlineStyle = ...  # type: QTextFormat.Property
+    TableHeaderRowCount = ...  # type: QTextFormat.Property
+    FullWidthSelection = ...  # type: QTextFormat.Property
+    PageBreakPolicy = ...  # type: QTextFormat.Property
+    TextToolTip = ...  # type: QTextFormat.Property
+    FrameTopMargin = ...  # type: QTextFormat.Property
+    FrameBottomMargin = ...  # type: QTextFormat.Property
+    FrameLeftMargin = ...  # type: QTextFormat.Property
+    FrameRightMargin = ...  # type: QTextFormat.Property
+    FrameBorderBrush = ...  # type: QTextFormat.Property
+    FrameBorderStyle = ...  # type: QTextFormat.Property
+    BackgroundImageUrl = ...  # type: QTextFormat.Property
+    TabPositions = ...  # type: QTextFormat.Property
+    FirstFontProperty = ...  # type: QTextFormat.Property
+    FontCapitalization = ...  # type: QTextFormat.Property
+    FontLetterSpacing = ...  # type: QTextFormat.Property
+    FontWordSpacing = ...  # type: QTextFormat.Property
+    LastFontProperty = ...  # type: QTextFormat.Property
+    TableCellTopPadding = ...  # type: QTextFormat.Property
+    TableCellBottomPadding = ...  # type: QTextFormat.Property
+    TableCellLeftPadding = ...  # type: QTextFormat.Property
+    TableCellRightPadding = ...  # type: QTextFormat.Property
+    FontStyleHint = ...  # type: QTextFormat.Property
+    FontStyleStrategy = ...  # type: QTextFormat.Property
+    FontKerning = ...  # type: QTextFormat.Property
+    LineHeight = ...  # type: QTextFormat.Property
+    LineHeightType = ...  # type: QTextFormat.Property
+    FontHintingPreference = ...  # type: QTextFormat.Property
+    ListNumberPrefix = ...  # type: QTextFormat.Property
+    ListNumberSuffix = ...  # type: QTextFormat.Property
+    FontStretch = ...  # type: QTextFormat.Property
+    FontLetterSpacingType = ...  # type: QTextFormat.Property
+    HeadingLevel = ...  # type: QTextFormat.Property
+    ImageQuality = ...  # type: QTextFormat.Property
+    FontFamilies = ...  # type: QTextFormat.Property
+    FontStyleName = ...  # type: QTextFormat.Property
+    BlockQuoteLevel = ...  # type: QTextFormat.Property
+    BlockCodeLanguage = ...  # type: QTextFormat.Property
+    BlockCodeFence = ...  # type: QTextFormat.Property
+    BlockMarker = ...  # type: QTextFormat.Property
+    TableBorderCollapse = ...  # type: QTextFormat.Property
+    TableCellTopBorder = ...  # type: QTextFormat.Property
+    TableCellBottomBorder = ...  # type: QTextFormat.Property
+    TableCellLeftBorder = ...  # type: QTextFormat.Property
+    TableCellRightBorder = ...  # type: QTextFormat.Property
+    TableCellTopBorderStyle = ...  # type: QTextFormat.Property
+    TableCellBottomBorderStyle = ...  # type: QTextFormat.Property
+    TableCellLeftBorderStyle = ...  # type: QTextFormat.Property
+    TableCellRightBorderStyle = ...  # type: QTextFormat.Property
+    TableCellTopBorderBrush = ...  # type: QTextFormat.Property
+    TableCellBottomBorderBrush = ...  # type: QTextFormat.Property
+    TableCellLeftBorderBrush = ...  # type: QTextFormat.Property
+    TableCellRightBorderBrush = ...  # type: QTextFormat.Property
+    ImageTitle = ...  # type: QTextFormat.Property
+    ImageAltText = ...  # type: QTextFormat.Property
+    UserProperty = ...  # type: QTextFormat.Property
+
     class PageBreakFlag(int):
         PageBreak_Auto = ... # type: QTextFormat.PageBreakFlag
         PageBreak_AlwaysBefore = ... # type: QTextFormat.PageBreakFlag
         PageBreak_AlwaysAfter = ... # type: QTextFormat.PageBreakFlag
+
+    PageBreak_Auto = ...  # type: QTextFormat.PageBreakFlag
+    PageBreak_AlwaysBefore = ...  # type: QTextFormat.PageBreakFlag
+    PageBreak_AlwaysAfter = ...  # type: QTextFormat.PageBreakFlag
 
     class ObjectTypes(int):
         NoObject = ... # type: QTextFormat.ObjectTypes
@@ -7631,6 +9240,12 @@ class QTextFormat(sip.simplewrapper):
         TableObject = ... # type: QTextFormat.ObjectTypes
         TableCellObject = ... # type: QTextFormat.ObjectTypes
         UserObject = ... # type: QTextFormat.ObjectTypes
+
+    NoObject = ...  # type: QTextFormat.ObjectTypes
+    ImageObject = ...  # type: QTextFormat.ObjectTypes
+    TableObject = ...  # type: QTextFormat.ObjectTypes
+    TableCellObject = ...  # type: QTextFormat.ObjectTypes
+    UserObject = ...  # type: QTextFormat.ObjectTypes
 
     class FormatType(int):
         InvalidFormat = ... # type: QTextFormat.FormatType
@@ -7640,6 +9255,14 @@ class QTextFormat(sip.simplewrapper):
         TableFormat = ... # type: QTextFormat.FormatType
         FrameFormat = ... # type: QTextFormat.FormatType
         UserFormat = ... # type: QTextFormat.FormatType
+
+    InvalidFormat = ...  # type: QTextFormat.FormatType
+    BlockFormat = ...  # type: QTextFormat.FormatType
+    CharFormat = ...  # type: QTextFormat.FormatType
+    ListFormat = ...  # type: QTextFormat.FormatType
+    TableFormat = ...  # type: QTextFormat.FormatType
+    FrameFormat = ...  # type: QTextFormat.FormatType
+    UserFormat = ...  # type: QTextFormat.FormatType
 
     class PageBreakFlags(sip.simplewrapper):
 
@@ -7722,6 +9345,9 @@ class QTextCharFormat(QTextFormat):
         FontPropertiesSpecifiedOnly = ... # type: QTextCharFormat.FontPropertiesInheritanceBehavior
         FontPropertiesAll = ... # type: QTextCharFormat.FontPropertiesInheritanceBehavior
 
+    FontPropertiesSpecifiedOnly = ...  # type: QTextCharFormat.FontPropertiesInheritanceBehavior
+    FontPropertiesAll = ...  # type: QTextCharFormat.FontPropertiesInheritanceBehavior
+
     class UnderlineStyle(int):
         NoUnderline = ... # type: QTextCharFormat.UnderlineStyle
         SingleUnderline = ... # type: QTextCharFormat.UnderlineStyle
@@ -7732,6 +9358,15 @@ class QTextCharFormat(QTextFormat):
         WaveUnderline = ... # type: QTextCharFormat.UnderlineStyle
         SpellCheckUnderline = ... # type: QTextCharFormat.UnderlineStyle
 
+    NoUnderline = ...  # type: QTextCharFormat.UnderlineStyle
+    SingleUnderline = ...  # type: QTextCharFormat.UnderlineStyle
+    DashUnderline = ...  # type: QTextCharFormat.UnderlineStyle
+    DotLine = ...  # type: QTextCharFormat.UnderlineStyle
+    DashDotLine = ...  # type: QTextCharFormat.UnderlineStyle
+    DashDotDotLine = ...  # type: QTextCharFormat.UnderlineStyle
+    WaveUnderline = ...  # type: QTextCharFormat.UnderlineStyle
+    SpellCheckUnderline = ...  # type: QTextCharFormat.UnderlineStyle
+
     class VerticalAlignment(int):
         AlignNormal = ... # type: QTextCharFormat.VerticalAlignment
         AlignSuperScript = ... # type: QTextCharFormat.VerticalAlignment
@@ -7740,6 +9375,14 @@ class QTextCharFormat(QTextFormat):
         AlignTop = ... # type: QTextCharFormat.VerticalAlignment
         AlignBottom = ... # type: QTextCharFormat.VerticalAlignment
         AlignBaseline = ... # type: QTextCharFormat.VerticalAlignment
+
+    AlignNormal = ...  # type: QTextCharFormat.VerticalAlignment
+    AlignSuperScript = ...  # type: QTextCharFormat.VerticalAlignment
+    AlignSubScript = ...  # type: QTextCharFormat.VerticalAlignment
+    AlignMiddle = ...  # type: QTextCharFormat.VerticalAlignment
+    AlignTop = ...  # type: QTextCharFormat.VerticalAlignment
+    AlignBottom = ...  # type: QTextCharFormat.VerticalAlignment
+    AlignBaseline = ...  # type: QTextCharFormat.VerticalAlignment
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -7819,12 +9462,22 @@ class QTextBlockFormat(QTextFormat):
         Unchecked = ... # type: QTextBlockFormat.MarkerType
         Checked = ... # type: QTextBlockFormat.MarkerType
 
+    NoMarker = ...  # type: QTextBlockFormat.MarkerType
+    Unchecked = ...  # type: QTextBlockFormat.MarkerType
+    Checked = ...  # type: QTextBlockFormat.MarkerType
+
     class LineHeightTypes(int):
         SingleHeight = ... # type: QTextBlockFormat.LineHeightTypes
         ProportionalHeight = ... # type: QTextBlockFormat.LineHeightTypes
         FixedHeight = ... # type: QTextBlockFormat.LineHeightTypes
         MinimumHeight = ... # type: QTextBlockFormat.LineHeightTypes
         LineDistanceHeight = ... # type: QTextBlockFormat.LineHeightTypes
+
+    SingleHeight = ...  # type: QTextBlockFormat.LineHeightTypes
+    ProportionalHeight = ...  # type: QTextBlockFormat.LineHeightTypes
+    FixedHeight = ...  # type: QTextBlockFormat.LineHeightTypes
+    MinimumHeight = ...  # type: QTextBlockFormat.LineHeightTypes
+    LineDistanceHeight = ...  # type: QTextBlockFormat.LineHeightTypes
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -7876,6 +9529,15 @@ class QTextListFormat(QTextFormat):
         ListLowerRoman = ... # type: QTextListFormat.Style
         ListUpperRoman = ... # type: QTextListFormat.Style
 
+    ListDisc = ...  # type: QTextListFormat.Style
+    ListCircle = ...  # type: QTextListFormat.Style
+    ListSquare = ...  # type: QTextListFormat.Style
+    ListDecimal = ...  # type: QTextListFormat.Style
+    ListLowerAlpha = ...  # type: QTextListFormat.Style
+    ListUpperAlpha = ...  # type: QTextListFormat.Style
+    ListLowerRoman = ...  # type: QTextListFormat.Style
+    ListUpperRoman = ...  # type: QTextListFormat.Style
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -7925,10 +9587,26 @@ class QTextFrameFormat(QTextFormat):
         BorderStyle_Inset = ... # type: QTextFrameFormat.BorderStyle
         BorderStyle_Outset = ... # type: QTextFrameFormat.BorderStyle
 
+    BorderStyle_None = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Dotted = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Dashed = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Solid = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Double = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_DotDash = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_DotDotDash = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Groove = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Ridge = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Inset = ...  # type: QTextFrameFormat.BorderStyle
+    BorderStyle_Outset = ...  # type: QTextFrameFormat.BorderStyle
+
     class Position(int):
         InFlow = ... # type: QTextFrameFormat.Position
         FloatLeft = ... # type: QTextFrameFormat.Position
         FloatRight = ... # type: QTextFrameFormat.Position
+
+    InFlow = ...  # type: QTextFrameFormat.Position
+    FloatLeft = ...  # type: QTextFrameFormat.Position
+    FloatRight = ...  # type: QTextFrameFormat.Position
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8069,6 +9747,9 @@ class QTextLayout(sip.simplewrapper):
         SkipCharacters = ... # type: QTextLayout.CursorMode
         SkipWords = ... # type: QTextLayout.CursorMode
 
+    SkipCharacters = ...  # type: QTextLayout.CursorMode
+    SkipWords = ...  # type: QTextLayout.CursorMode
+
     class FormatRange(sip.simplewrapper):
 
         format = ... # type: QTextCharFormat
@@ -8139,9 +9820,15 @@ class QTextLine(sip.simplewrapper):
         CursorBetweenCharacters = ... # type: QTextLine.CursorPosition
         CursorOnCharacter = ... # type: QTextLine.CursorPosition
 
+    CursorBetweenCharacters = ...  # type: QTextLine.CursorPosition
+    CursorOnCharacter = ...  # type: QTextLine.CursorPosition
+
     class Edge(int):
         Leading = ... # type: QTextLine.Edge
         Trailing = ... # type: QTextLine.Edge
+
+    Leading = ...  # type: QTextLine.Edge
+    Trailing = ...  # type: QTextLine.Edge
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8326,6 +10013,11 @@ class QTextOption(sip.simplewrapper):
         CenterTab = ... # type: QTextOption.TabType
         DelimiterTab = ... # type: QTextOption.TabType
 
+    LeftTab = ...  # type: QTextOption.TabType
+    RightTab = ...  # type: QTextOption.TabType
+    CenterTab = ...  # type: QTextOption.TabType
+    DelimiterTab = ...  # type: QTextOption.TabType
+
     class Flag(int):
         IncludeTrailingSpaces = ... # type: QTextOption.Flag
         ShowTabsAndSpaces = ... # type: QTextOption.Flag
@@ -8334,12 +10026,25 @@ class QTextOption(sip.simplewrapper):
         SuppressColors = ... # type: QTextOption.Flag
         ShowDocumentTerminator = ... # type: QTextOption.Flag
 
+    IncludeTrailingSpaces = ...  # type: QTextOption.Flag
+    ShowTabsAndSpaces = ...  # type: QTextOption.Flag
+    ShowLineAndParagraphSeparators = ...  # type: QTextOption.Flag
+    AddSpaceForLineAndParagraphSeparators = ...  # type: QTextOption.Flag
+    SuppressColors = ...  # type: QTextOption.Flag
+    ShowDocumentTerminator = ...  # type: QTextOption.Flag
+
     class WrapMode(int):
         NoWrap = ... # type: QTextOption.WrapMode
         WordWrap = ... # type: QTextOption.WrapMode
         ManualWrap = ... # type: QTextOption.WrapMode
         WrapAnywhere = ... # type: QTextOption.WrapMode
         WrapAtWordBoundaryOrAnywhere = ... # type: QTextOption.WrapMode
+
+    NoWrap = ...  # type: QTextOption.WrapMode
+    WordWrap = ...  # type: QTextOption.WrapMode
+    ManualWrap = ...  # type: QTextOption.WrapMode
+    WrapAnywhere = ...  # type: QTextOption.WrapMode
+    WrapAtWordBoundaryOrAnywhere = ...  # type: QTextOption.WrapMode
 
     class Flags(sip.simplewrapper):
 
@@ -8456,9 +10161,20 @@ class QTouchDevice(sip.simplewrapper):
         NormalizedPosition = ... # type: QTouchDevice.CapabilityFlag
         MouseEmulation = ... # type: QTouchDevice.CapabilityFlag
 
+    Position = ...  # type: QTouchDevice.CapabilityFlag
+    Area = ...  # type: QTouchDevice.CapabilityFlag
+    Pressure = ...  # type: QTouchDevice.CapabilityFlag
+    Velocity = ...  # type: QTouchDevice.CapabilityFlag
+    RawPositions = ...  # type: QTouchDevice.CapabilityFlag
+    NormalizedPosition = ...  # type: QTouchDevice.CapabilityFlag
+    MouseEmulation = ...  # type: QTouchDevice.CapabilityFlag
+
     class DeviceType(int):
         TouchScreen = ... # type: QTouchDevice.DeviceType
         TouchPad = ... # type: QTouchDevice.DeviceType
+
+    TouchScreen = ...  # type: QTouchDevice.DeviceType
+    TouchPad = ...  # type: QTouchDevice.DeviceType
 
     class Capabilities(sip.simplewrapper):
 
@@ -8501,6 +10217,13 @@ class QTransform(sip.simplewrapper):
         TxRotate = ... # type: QTransform.TransformationType
         TxShear = ... # type: QTransform.TransformationType
         TxProject = ... # type: QTransform.TransformationType
+
+    TxNone = ...  # type: QTransform.TransformationType
+    TxTranslate = ...  # type: QTransform.TransformationType
+    TxScale = ...  # type: QTransform.TransformationType
+    TxRotate = ...  # type: QTransform.TransformationType
+    TxShear = ...  # type: QTransform.TransformationType
+    TxProject = ...  # type: QTransform.TransformationType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8585,6 +10308,10 @@ class QValidator(QtCore.QObject):
         Intermediate = ... # type: QValidator.State
         Acceptable = ... # type: QValidator.State
 
+    Invalid = ...  # type: QValidator.State
+    Intermediate = ...  # type: QValidator.State
+    Acceptable = ...  # type: QValidator.State
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def changed(self) -> None: ...
@@ -8615,6 +10342,9 @@ class QDoubleValidator(QValidator):
     class Notation(int):
         StandardNotation = ... # type: QDoubleValidator.Notation
         ScientificNotation = ... # type: QDoubleValidator.Notation
+
+    StandardNotation = ...  # type: QDoubleValidator.Notation
+    ScientificNotation = ...  # type: QDoubleValidator.Notation
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...

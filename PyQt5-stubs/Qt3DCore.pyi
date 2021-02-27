@@ -68,6 +68,9 @@ class QAspectEngine(QtCore.QObject):
         Manual = ... # type: QAspectEngine.RunMode
         Automatic = ... # type: QAspectEngine.RunMode
 
+    Manual = ...  # type: QAspectEngine.RunMode
+    Automatic = ...  # type: QAspectEngine.RunMode
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def processFrame(self) -> None: ...
@@ -92,6 +95,10 @@ class QNode(QtCore.QObject):
         TrackFinalValues = ... # type: QNode.PropertyTrackingMode
         DontTrackValues = ... # type: QNode.PropertyTrackingMode
         TrackAllValues = ... # type: QNode.PropertyTrackingMode
+
+    TrackFinalValues = ...  # type: QNode.PropertyTrackingMode
+    DontTrackValues = ...  # type: QNode.PropertyTrackingMode
+    TrackAllValues = ...  # type: QNode.PropertyTrackingMode
 
     def __init__(self, parent: typing.Optional['QNode'] = ...) -> None: ...
 
@@ -160,6 +167,9 @@ class QBackendNode(sip.simplewrapper):
         ReadOnly = ... # type: QBackendNode.Mode
         ReadWrite = ... # type: QBackendNode.Mode
 
+    ReadOnly = ...  # type: QBackendNode.Mode
+    ReadWrite = ...  # type: QBackendNode.Mode
+
     def __init__(self, mode: 'QBackendNode.Mode' = ...) -> None: ...
 
     def sendReply(self, command: 'QNodeCommand') -> None: ...
@@ -177,6 +187,10 @@ class QSceneChange(sip.simplewrapper):
         BackendNodes = ... # type: QSceneChange.DeliveryFlag
         Nodes = ... # type: QSceneChange.DeliveryFlag
         DeliverToAll = ... # type: QSceneChange.DeliveryFlag
+
+    BackendNodes = ...  # type: QSceneChange.DeliveryFlag
+    Nodes = ...  # type: QSceneChange.DeliveryFlag
+    DeliverToAll = ...  # type: QSceneChange.DeliveryFlag
 
     class DeliveryFlags(sip.simplewrapper):
 
@@ -422,6 +436,10 @@ class QSkeletonLoader('QAbstractSkeleton'):
         NotReady = ... # type: QSkeletonLoader.Status
         Ready = ... # type: QSkeletonLoader.Status
         Error = ... # type: QSkeletonLoader.Status
+
+    NotReady = ...  # type: QSkeletonLoader.Status
+    Ready = ...  # type: QSkeletonLoader.Status
+    Error = ...  # type: QSkeletonLoader.Status
 
     @typing.overload
     def __init__(self, parent: typing.Optional['QNode'] = ...) -> None: ...

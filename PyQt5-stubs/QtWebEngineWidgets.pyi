@@ -64,6 +64,23 @@ class QWebEngineCertificateError(sip.simplewrapper):
         CertificateTransparencyRequired = ... # type: QWebEngineCertificateError.Error
         CertificateKnownInterceptionBlocked = ... # type: QWebEngineCertificateError.Error
 
+    SslPinnedKeyNotInCertificateChain = ...  # type: QWebEngineCertificateError.Error
+    CertificateCommonNameInvalid = ...  # type: QWebEngineCertificateError.Error
+    CertificateDateInvalid = ...  # type: QWebEngineCertificateError.Error
+    CertificateAuthorityInvalid = ...  # type: QWebEngineCertificateError.Error
+    CertificateContainsErrors = ...  # type: QWebEngineCertificateError.Error
+    CertificateNoRevocationMechanism = ...  # type: QWebEngineCertificateError.Error
+    CertificateUnableToCheckRevocation = ...  # type: QWebEngineCertificateError.Error
+    CertificateRevoked = ...  # type: QWebEngineCertificateError.Error
+    CertificateInvalid = ...  # type: QWebEngineCertificateError.Error
+    CertificateWeakSignatureAlgorithm = ...  # type: QWebEngineCertificateError.Error
+    CertificateNonUniqueName = ...  # type: QWebEngineCertificateError.Error
+    CertificateWeakKey = ...  # type: QWebEngineCertificateError.Error
+    CertificateNameConstraintViolation = ...  # type: QWebEngineCertificateError.Error
+    CertificateValidityTooLong = ...  # type: QWebEngineCertificateError.Error
+    CertificateTransparencyRequired = ...  # type: QWebEngineCertificateError.Error
+    CertificateKnownInterceptionBlocked = ...  # type: QWebEngineCertificateError.Error
+
     def __init__(self, other: 'QWebEngineCertificateError') -> None: ...
 
     def certificateChain(self) -> typing.List[QtNetwork.QSslCertificate]: ...
@@ -101,6 +118,16 @@ class QWebEngineContextMenuData(sip.simplewrapper):
         CanTranslate = ... # type: QWebEngineContextMenuData.EditFlag
         CanEditRichly = ... # type: QWebEngineContextMenuData.EditFlag
 
+    CanUndo = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanRedo = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanCut = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanCopy = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanPaste = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanDelete = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanSelectAll = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanTranslate = ...  # type: QWebEngineContextMenuData.EditFlag
+    CanEditRichly = ...  # type: QWebEngineContextMenuData.EditFlag
+
     class MediaFlag(int):
         MediaInError = ... # type: QWebEngineContextMenuData.MediaFlag
         MediaPaused = ... # type: QWebEngineContextMenuData.MediaFlag
@@ -113,6 +140,17 @@ class QWebEngineContextMenuData(sip.simplewrapper):
         MediaCanPrint = ... # type: QWebEngineContextMenuData.MediaFlag
         MediaCanRotate = ... # type: QWebEngineContextMenuData.MediaFlag
 
+    MediaInError = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaPaused = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaMuted = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaLoop = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaCanSave = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaHasAudio = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaCanToggleControls = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaControls = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaCanPrint = ...  # type: QWebEngineContextMenuData.MediaFlag
+    MediaCanRotate = ...  # type: QWebEngineContextMenuData.MediaFlag
+
     class MediaType(int):
         MediaTypeNone = ... # type: QWebEngineContextMenuData.MediaType
         MediaTypeImage = ... # type: QWebEngineContextMenuData.MediaType
@@ -121,6 +159,14 @@ class QWebEngineContextMenuData(sip.simplewrapper):
         MediaTypeCanvas = ... # type: QWebEngineContextMenuData.MediaType
         MediaTypeFile = ... # type: QWebEngineContextMenuData.MediaType
         MediaTypePlugin = ... # type: QWebEngineContextMenuData.MediaType
+
+    MediaTypeNone = ...  # type: QWebEngineContextMenuData.MediaType
+    MediaTypeImage = ...  # type: QWebEngineContextMenuData.MediaType
+    MediaTypeVideo = ...  # type: QWebEngineContextMenuData.MediaType
+    MediaTypeAudio = ...  # type: QWebEngineContextMenuData.MediaType
+    MediaTypeCanvas = ...  # type: QWebEngineContextMenuData.MediaType
+    MediaTypeFile = ...  # type: QWebEngineContextMenuData.MediaType
+    MediaTypePlugin = ...  # type: QWebEngineContextMenuData.MediaType
 
     class MediaFlags(sip.simplewrapper):
 
@@ -199,11 +245,41 @@ class QWebEngineDownloadItem(QtCore.QObject):
         ServerUnreachable = ... # type: QWebEngineDownloadItem.DownloadInterruptReason
         UserCanceled = ... # type: QWebEngineDownloadItem.DownloadInterruptReason
 
+    NoReason = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileFailed = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileAccessDenied = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileNoSpace = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileNameTooLong = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileTooLarge = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileVirusInfected = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileTransientError = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileBlocked = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileSecurityCheckFailed = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileTooShort = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    FileHashMismatch = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    NetworkFailed = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    NetworkTimeout = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    NetworkDisconnected = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    NetworkServerDown = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    NetworkInvalidRequest = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    ServerFailed = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    ServerBadContent = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    ServerUnauthorized = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    ServerCertProblem = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    ServerForbidden = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    ServerUnreachable = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+    UserCanceled = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
+
     class DownloadType(int):
         Attachment = ... # type: QWebEngineDownloadItem.DownloadType
         DownloadAttribute = ... # type: QWebEngineDownloadItem.DownloadType
         UserRequested = ... # type: QWebEngineDownloadItem.DownloadType
         SavePage = ... # type: QWebEngineDownloadItem.DownloadType
+
+    Attachment = ...  # type: QWebEngineDownloadItem.DownloadType
+    DownloadAttribute = ...  # type: QWebEngineDownloadItem.DownloadType
+    UserRequested = ...  # type: QWebEngineDownloadItem.DownloadType
+    SavePage = ...  # type: QWebEngineDownloadItem.DownloadType
 
     class SavePageFormat(int):
         UnknownSaveFormat = ... # type: QWebEngineDownloadItem.SavePageFormat
@@ -211,12 +287,23 @@ class QWebEngineDownloadItem(QtCore.QObject):
         CompleteHtmlSaveFormat = ... # type: QWebEngineDownloadItem.SavePageFormat
         MimeHtmlSaveFormat = ... # type: QWebEngineDownloadItem.SavePageFormat
 
+    UnknownSaveFormat = ...  # type: QWebEngineDownloadItem.SavePageFormat
+    SingleHtmlSaveFormat = ...  # type: QWebEngineDownloadItem.SavePageFormat
+    CompleteHtmlSaveFormat = ...  # type: QWebEngineDownloadItem.SavePageFormat
+    MimeHtmlSaveFormat = ...  # type: QWebEngineDownloadItem.SavePageFormat
+
     class DownloadState(int):
         DownloadRequested = ... # type: QWebEngineDownloadItem.DownloadState
         DownloadInProgress = ... # type: QWebEngineDownloadItem.DownloadState
         DownloadCompleted = ... # type: QWebEngineDownloadItem.DownloadState
         DownloadCancelled = ... # type: QWebEngineDownloadItem.DownloadState
         DownloadInterrupted = ... # type: QWebEngineDownloadItem.DownloadState
+
+    DownloadRequested = ...  # type: QWebEngineDownloadItem.DownloadState
+    DownloadInProgress = ...  # type: QWebEngineDownloadItem.DownloadState
+    DownloadCompleted = ...  # type: QWebEngineDownloadItem.DownloadState
+    DownloadCancelled = ...  # type: QWebEngineDownloadItem.DownloadState
+    DownloadInterrupted = ...  # type: QWebEngineDownloadItem.DownloadState
 
     def setDownloadFileName(self, fileName: str) -> None: ...
     def downloadFileName(self) -> str: ...
@@ -298,11 +385,20 @@ class QWebEnginePage(QtCore.QObject):
         Frozen = ... # type: QWebEnginePage.LifecycleState
         Discarded = ... # type: QWebEnginePage.LifecycleState
 
+    Active = ...  # type: QWebEnginePage.LifecycleState
+    Frozen = ...  # type: QWebEnginePage.LifecycleState
+    Discarded = ...  # type: QWebEnginePage.LifecycleState
+
     class RenderProcessTerminationStatus(int):
         NormalTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
         AbnormalTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
         CrashedTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
         KilledTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
+
+    NormalTerminationStatus = ...  # type: QWebEnginePage.RenderProcessTerminationStatus
+    AbnormalTerminationStatus = ...  # type: QWebEnginePage.RenderProcessTerminationStatus
+    CrashedTerminationStatus = ...  # type: QWebEnginePage.RenderProcessTerminationStatus
+    KilledTerminationStatus = ...  # type: QWebEnginePage.RenderProcessTerminationStatus
 
     class NavigationType(int):
         NavigationTypeLinkClicked = ... # type: QWebEnginePage.NavigationType
@@ -313,14 +409,29 @@ class QWebEnginePage(QtCore.QObject):
         NavigationTypeRedirect = ... # type: QWebEnginePage.NavigationType
         NavigationTypeOther = ... # type: QWebEnginePage.NavigationType
 
+    NavigationTypeLinkClicked = ...  # type: QWebEnginePage.NavigationType
+    NavigationTypeTyped = ...  # type: QWebEnginePage.NavigationType
+    NavigationTypeFormSubmitted = ...  # type: QWebEnginePage.NavigationType
+    NavigationTypeBackForward = ...  # type: QWebEnginePage.NavigationType
+    NavigationTypeReload = ...  # type: QWebEnginePage.NavigationType
+    NavigationTypeRedirect = ...  # type: QWebEnginePage.NavigationType
+    NavigationTypeOther = ...  # type: QWebEnginePage.NavigationType
+
     class JavaScriptConsoleMessageLevel(int):
         InfoMessageLevel = ... # type: QWebEnginePage.JavaScriptConsoleMessageLevel
         WarningMessageLevel = ... # type: QWebEnginePage.JavaScriptConsoleMessageLevel
         ErrorMessageLevel = ... # type: QWebEnginePage.JavaScriptConsoleMessageLevel
 
+    InfoMessageLevel = ...  # type: QWebEnginePage.JavaScriptConsoleMessageLevel
+    WarningMessageLevel = ...  # type: QWebEnginePage.JavaScriptConsoleMessageLevel
+    ErrorMessageLevel = ...  # type: QWebEnginePage.JavaScriptConsoleMessageLevel
+
     class FileSelectionMode(int):
         FileSelectOpen = ... # type: QWebEnginePage.FileSelectionMode
         FileSelectOpenMultiple = ... # type: QWebEnginePage.FileSelectionMode
+
+    FileSelectOpen = ...  # type: QWebEnginePage.FileSelectionMode
+    FileSelectOpenMultiple = ...  # type: QWebEnginePage.FileSelectionMode
 
     class Feature(int):
         Notifications = ... # type: QWebEnginePage.Feature
@@ -332,10 +443,23 @@ class QWebEnginePage(QtCore.QObject):
         DesktopVideoCapture = ... # type: QWebEnginePage.Feature
         DesktopAudioVideoCapture = ... # type: QWebEnginePage.Feature
 
+    Notifications = ...  # type: QWebEnginePage.Feature
+    Geolocation = ...  # type: QWebEnginePage.Feature
+    MediaAudioCapture = ...  # type: QWebEnginePage.Feature
+    MediaVideoCapture = ...  # type: QWebEnginePage.Feature
+    MediaAudioVideoCapture = ...  # type: QWebEnginePage.Feature
+    MouseLock = ...  # type: QWebEnginePage.Feature
+    DesktopVideoCapture = ...  # type: QWebEnginePage.Feature
+    DesktopAudioVideoCapture = ...  # type: QWebEnginePage.Feature
+
     class PermissionPolicy(int):
         PermissionUnknown = ... # type: QWebEnginePage.PermissionPolicy
         PermissionGrantedByUser = ... # type: QWebEnginePage.PermissionPolicy
         PermissionDeniedByUser = ... # type: QWebEnginePage.PermissionPolicy
+
+    PermissionUnknown = ...  # type: QWebEnginePage.PermissionPolicy
+    PermissionGrantedByUser = ...  # type: QWebEnginePage.PermissionPolicy
+    PermissionDeniedByUser = ...  # type: QWebEnginePage.PermissionPolicy
 
     class WebWindowType(int):
         WebBrowserWindow = ... # type: QWebEnginePage.WebWindowType
@@ -343,9 +467,17 @@ class QWebEnginePage(QtCore.QObject):
         WebDialog = ... # type: QWebEnginePage.WebWindowType
         WebBrowserBackgroundTab = ... # type: QWebEnginePage.WebWindowType
 
+    WebBrowserWindow = ...  # type: QWebEnginePage.WebWindowType
+    WebBrowserTab = ...  # type: QWebEnginePage.WebWindowType
+    WebDialog = ...  # type: QWebEnginePage.WebWindowType
+    WebBrowserBackgroundTab = ...  # type: QWebEnginePage.WebWindowType
+
     class FindFlag(int):
         FindBackward = ... # type: QWebEnginePage.FindFlag
         FindCaseSensitively = ... # type: QWebEnginePage.FindFlag
+
+    FindBackward = ...  # type: QWebEnginePage.FindFlag
+    FindCaseSensitively = ...  # type: QWebEnginePage.FindFlag
 
     class WebAction(int):
         NoWebAction = ... # type: QWebEnginePage.WebAction
@@ -394,6 +526,53 @@ class QWebEnginePage(QtCore.QObject):
         Outdent = ... # type: QWebEnginePage.WebAction
         InsertOrderedList = ... # type: QWebEnginePage.WebAction
         InsertUnorderedList = ... # type: QWebEnginePage.WebAction
+
+    NoWebAction = ...  # type: QWebEnginePage.WebAction
+    Back = ...  # type: QWebEnginePage.WebAction
+    Forward = ...  # type: QWebEnginePage.WebAction
+    Stop = ...  # type: QWebEnginePage.WebAction
+    Reload = ...  # type: QWebEnginePage.WebAction
+    Cut = ...  # type: QWebEnginePage.WebAction
+    Copy = ...  # type: QWebEnginePage.WebAction
+    Paste = ...  # type: QWebEnginePage.WebAction
+    Undo = ...  # type: QWebEnginePage.WebAction
+    Redo = ...  # type: QWebEnginePage.WebAction
+    SelectAll = ...  # type: QWebEnginePage.WebAction
+    ReloadAndBypassCache = ...  # type: QWebEnginePage.WebAction
+    PasteAndMatchStyle = ...  # type: QWebEnginePage.WebAction
+    OpenLinkInThisWindow = ...  # type: QWebEnginePage.WebAction
+    OpenLinkInNewWindow = ...  # type: QWebEnginePage.WebAction
+    OpenLinkInNewTab = ...  # type: QWebEnginePage.WebAction
+    CopyLinkToClipboard = ...  # type: QWebEnginePage.WebAction
+    DownloadLinkToDisk = ...  # type: QWebEnginePage.WebAction
+    CopyImageToClipboard = ...  # type: QWebEnginePage.WebAction
+    CopyImageUrlToClipboard = ...  # type: QWebEnginePage.WebAction
+    DownloadImageToDisk = ...  # type: QWebEnginePage.WebAction
+    CopyMediaUrlToClipboard = ...  # type: QWebEnginePage.WebAction
+    ToggleMediaControls = ...  # type: QWebEnginePage.WebAction
+    ToggleMediaLoop = ...  # type: QWebEnginePage.WebAction
+    ToggleMediaPlayPause = ...  # type: QWebEnginePage.WebAction
+    ToggleMediaMute = ...  # type: QWebEnginePage.WebAction
+    DownloadMediaToDisk = ...  # type: QWebEnginePage.WebAction
+    InspectElement = ...  # type: QWebEnginePage.WebAction
+    ExitFullScreen = ...  # type: QWebEnginePage.WebAction
+    RequestClose = ...  # type: QWebEnginePage.WebAction
+    Unselect = ...  # type: QWebEnginePage.WebAction
+    SavePage = ...  # type: QWebEnginePage.WebAction
+    OpenLinkInNewBackgroundTab = ...  # type: QWebEnginePage.WebAction
+    ViewSource = ...  # type: QWebEnginePage.WebAction
+    ToggleBold = ...  # type: QWebEnginePage.WebAction
+    ToggleItalic = ...  # type: QWebEnginePage.WebAction
+    ToggleUnderline = ...  # type: QWebEnginePage.WebAction
+    ToggleStrikethrough = ...  # type: QWebEnginePage.WebAction
+    AlignLeft = ...  # type: QWebEnginePage.WebAction
+    AlignCenter = ...  # type: QWebEnginePage.WebAction
+    AlignRight = ...  # type: QWebEnginePage.WebAction
+    AlignJustified = ...  # type: QWebEnginePage.WebAction
+    Indent = ...  # type: QWebEnginePage.WebAction
+    Outdent = ...  # type: QWebEnginePage.WebAction
+    InsertOrderedList = ...  # type: QWebEnginePage.WebAction
+    InsertUnorderedList = ...  # type: QWebEnginePage.WebAction
 
     class FindFlags(sip.simplewrapper):
 
@@ -533,10 +712,18 @@ class QWebEngineProfile(QtCore.QObject):
         AllowPersistentCookies = ... # type: QWebEngineProfile.PersistentCookiesPolicy
         ForcePersistentCookies = ... # type: QWebEngineProfile.PersistentCookiesPolicy
 
+    NoPersistentCookies = ...  # type: QWebEngineProfile.PersistentCookiesPolicy
+    AllowPersistentCookies = ...  # type: QWebEngineProfile.PersistentCookiesPolicy
+    ForcePersistentCookies = ...  # type: QWebEngineProfile.PersistentCookiesPolicy
+
     class HttpCacheType(int):
         MemoryHttpCache = ... # type: QWebEngineProfile.HttpCacheType
         DiskHttpCache = ... # type: QWebEngineProfile.HttpCacheType
         NoCache = ... # type: QWebEngineProfile.HttpCacheType
+
+    MemoryHttpCache = ...  # type: QWebEngineProfile.HttpCacheType
+    DiskHttpCache = ...  # type: QWebEngineProfile.HttpCacheType
+    NoCache = ...  # type: QWebEngineProfile.HttpCacheType
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -595,10 +782,18 @@ class QWebEngineScript(sip.simplewrapper):
         ApplicationWorld = ... # type: QWebEngineScript.ScriptWorldId
         UserWorld = ... # type: QWebEngineScript.ScriptWorldId
 
+    MainWorld = ...  # type: QWebEngineScript.ScriptWorldId
+    ApplicationWorld = ...  # type: QWebEngineScript.ScriptWorldId
+    UserWorld = ...  # type: QWebEngineScript.ScriptWorldId
+
     class InjectionPoint(int):
         Deferred = ... # type: QWebEngineScript.InjectionPoint
         DocumentReady = ... # type: QWebEngineScript.InjectionPoint
         DocumentCreation = ... # type: QWebEngineScript.InjectionPoint
+
+    Deferred = ...  # type: QWebEngineScript.InjectionPoint
+    DocumentReady = ...  # type: QWebEngineScript.InjectionPoint
+    DocumentCreation = ...  # type: QWebEngineScript.InjectionPoint
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -643,11 +838,20 @@ class QWebEngineSettings(sip.simplewrapper):
         AllowUnknownUrlSchemesFromUserInteraction = ... # type: QWebEngineSettings.UnknownUrlSchemePolicy
         AllowAllUnknownUrlSchemes = ... # type: QWebEngineSettings.UnknownUrlSchemePolicy
 
+    DisallowUnknownUrlSchemes = ...  # type: QWebEngineSettings.UnknownUrlSchemePolicy
+    AllowUnknownUrlSchemesFromUserInteraction = ...  # type: QWebEngineSettings.UnknownUrlSchemePolicy
+    AllowAllUnknownUrlSchemes = ...  # type: QWebEngineSettings.UnknownUrlSchemePolicy
+
     class FontSize(int):
         MinimumFontSize = ... # type: QWebEngineSettings.FontSize
         MinimumLogicalFontSize = ... # type: QWebEngineSettings.FontSize
         DefaultFontSize = ... # type: QWebEngineSettings.FontSize
         DefaultFixedFontSize = ... # type: QWebEngineSettings.FontSize
+
+    MinimumFontSize = ...  # type: QWebEngineSettings.FontSize
+    MinimumLogicalFontSize = ...  # type: QWebEngineSettings.FontSize
+    DefaultFontSize = ...  # type: QWebEngineSettings.FontSize
+    DefaultFixedFontSize = ...  # type: QWebEngineSettings.FontSize
 
     class WebAttribute(int):
         AutoLoadImages = ... # type: QWebEngineSettings.WebAttribute
@@ -682,6 +886,38 @@ class QWebEngineSettings(sip.simplewrapper):
         DnsPrefetchEnabled = ... # type: QWebEngineSettings.WebAttribute
         PdfViewerEnabled = ... # type: QWebEngineSettings.WebAttribute
 
+    AutoLoadImages = ...  # type: QWebEngineSettings.WebAttribute
+    JavascriptEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    JavascriptCanOpenWindows = ...  # type: QWebEngineSettings.WebAttribute
+    JavascriptCanAccessClipboard = ...  # type: QWebEngineSettings.WebAttribute
+    LinksIncludedInFocusChain = ...  # type: QWebEngineSettings.WebAttribute
+    LocalStorageEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    LocalContentCanAccessRemoteUrls = ...  # type: QWebEngineSettings.WebAttribute
+    XSSAuditingEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    SpatialNavigationEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    LocalContentCanAccessFileUrls = ...  # type: QWebEngineSettings.WebAttribute
+    HyperlinkAuditingEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    ScrollAnimatorEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    ErrorPageEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    PluginsEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    FullScreenSupportEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    ScreenCaptureEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    WebGLEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    Accelerated2dCanvasEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    AutoLoadIconsForPage = ...  # type: QWebEngineSettings.WebAttribute
+    TouchIconsEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    FocusOnNavigationEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    PrintElementBackgrounds = ...  # type: QWebEngineSettings.WebAttribute
+    AllowRunningInsecureContent = ...  # type: QWebEngineSettings.WebAttribute
+    AllowGeolocationOnInsecureOrigins = ...  # type: QWebEngineSettings.WebAttribute
+    AllowWindowActivationFromJavaScript = ...  # type: QWebEngineSettings.WebAttribute
+    ShowScrollBars = ...  # type: QWebEngineSettings.WebAttribute
+    PlaybackRequiresUserGesture = ...  # type: QWebEngineSettings.WebAttribute
+    WebRTCPublicInterfacesOnly = ...  # type: QWebEngineSettings.WebAttribute
+    JavascriptCanPaste = ...  # type: QWebEngineSettings.WebAttribute
+    DnsPrefetchEnabled = ...  # type: QWebEngineSettings.WebAttribute
+    PdfViewerEnabled = ...  # type: QWebEngineSettings.WebAttribute
+
     class FontFamily(int):
         StandardFont = ... # type: QWebEngineSettings.FontFamily
         FixedFont = ... # type: QWebEngineSettings.FontFamily
@@ -690,6 +926,14 @@ class QWebEngineSettings(sip.simplewrapper):
         CursiveFont = ... # type: QWebEngineSettings.FontFamily
         FantasyFont = ... # type: QWebEngineSettings.FontFamily
         PictographFont = ... # type: QWebEngineSettings.FontFamily
+
+    StandardFont = ...  # type: QWebEngineSettings.FontFamily
+    FixedFont = ...  # type: QWebEngineSettings.FontFamily
+    SerifFont = ...  # type: QWebEngineSettings.FontFamily
+    SansSerifFont = ...  # type: QWebEngineSettings.FontFamily
+    CursiveFont = ...  # type: QWebEngineSettings.FontFamily
+    FantasyFont = ...  # type: QWebEngineSettings.FontFamily
+    PictographFont = ...  # type: QWebEngineSettings.FontFamily
 
     def resetUnknownUrlSchemePolicy(self) -> None: ...
     def setUnknownUrlSchemePolicy(self, policy: 'QWebEngineSettings.UnknownUrlSchemePolicy') -> None: ...

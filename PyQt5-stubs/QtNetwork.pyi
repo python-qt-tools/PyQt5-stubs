@@ -94,11 +94,19 @@ class QAbstractSocket(QtCore.QIODevice):
         PauseNever = ... # type: QAbstractSocket.PauseMode
         PauseOnSslErrors = ... # type: QAbstractSocket.PauseMode
 
+    PauseNever = ...  # type: QAbstractSocket.PauseMode
+    PauseOnSslErrors = ...  # type: QAbstractSocket.PauseMode
+
     class BindFlag(int):
         DefaultForPlatform = ... # type: QAbstractSocket.BindFlag
         ShareAddress = ... # type: QAbstractSocket.BindFlag
         DontShareAddress = ... # type: QAbstractSocket.BindFlag
         ReuseAddressHint = ... # type: QAbstractSocket.BindFlag
+
+    DefaultForPlatform = ...  # type: QAbstractSocket.BindFlag
+    ShareAddress = ...  # type: QAbstractSocket.BindFlag
+    DontShareAddress = ...  # type: QAbstractSocket.BindFlag
+    ReuseAddressHint = ...  # type: QAbstractSocket.BindFlag
 
     class SocketOption(int):
         LowDelayOption = ... # type: QAbstractSocket.SocketOption
@@ -110,6 +118,15 @@ class QAbstractSocket(QtCore.QIODevice):
         ReceiveBufferSizeSocketOption = ... # type: QAbstractSocket.SocketOption
         PathMtuSocketOption = ... # type: QAbstractSocket.SocketOption
 
+    LowDelayOption = ...  # type: QAbstractSocket.SocketOption
+    KeepAliveOption = ...  # type: QAbstractSocket.SocketOption
+    MulticastTtlOption = ...  # type: QAbstractSocket.SocketOption
+    MulticastLoopbackOption = ...  # type: QAbstractSocket.SocketOption
+    TypeOfServiceOption = ...  # type: QAbstractSocket.SocketOption
+    SendBufferSizeSocketOption = ...  # type: QAbstractSocket.SocketOption
+    ReceiveBufferSizeSocketOption = ...  # type: QAbstractSocket.SocketOption
+    PathMtuSocketOption = ...  # type: QAbstractSocket.SocketOption
+
     class SocketState(int):
         UnconnectedState = ... # type: QAbstractSocket.SocketState
         HostLookupState = ... # type: QAbstractSocket.SocketState
@@ -118,6 +135,14 @@ class QAbstractSocket(QtCore.QIODevice):
         BoundState = ... # type: QAbstractSocket.SocketState
         ListeningState = ... # type: QAbstractSocket.SocketState
         ClosingState = ... # type: QAbstractSocket.SocketState
+
+    UnconnectedState = ...  # type: QAbstractSocket.SocketState
+    HostLookupState = ...  # type: QAbstractSocket.SocketState
+    ConnectingState = ...  # type: QAbstractSocket.SocketState
+    ConnectedState = ...  # type: QAbstractSocket.SocketState
+    BoundState = ...  # type: QAbstractSocket.SocketState
+    ListeningState = ...  # type: QAbstractSocket.SocketState
+    ClosingState = ...  # type: QAbstractSocket.SocketState
 
     class SocketError(int):
         ConnectionRefusedError = ... # type: QAbstractSocket.SocketError
@@ -145,17 +170,52 @@ class QAbstractSocket(QtCore.QIODevice):
         TemporaryError = ... # type: QAbstractSocket.SocketError
         UnknownSocketError = ... # type: QAbstractSocket.SocketError
 
+    ConnectionRefusedError = ...  # type: QAbstractSocket.SocketError
+    RemoteHostClosedError = ...  # type: QAbstractSocket.SocketError
+    HostNotFoundError = ...  # type: QAbstractSocket.SocketError
+    SocketAccessError = ...  # type: QAbstractSocket.SocketError
+    SocketResourceError = ...  # type: QAbstractSocket.SocketError
+    SocketTimeoutError = ...  # type: QAbstractSocket.SocketError
+    DatagramTooLargeError = ...  # type: QAbstractSocket.SocketError
+    NetworkError = ...  # type: QAbstractSocket.SocketError
+    AddressInUseError = ...  # type: QAbstractSocket.SocketError
+    SocketAddressNotAvailableError = ...  # type: QAbstractSocket.SocketError
+    UnsupportedSocketOperationError = ...  # type: QAbstractSocket.SocketError
+    UnfinishedSocketOperationError = ...  # type: QAbstractSocket.SocketError
+    ProxyAuthenticationRequiredError = ...  # type: QAbstractSocket.SocketError
+    SslHandshakeFailedError = ...  # type: QAbstractSocket.SocketError
+    ProxyConnectionRefusedError = ...  # type: QAbstractSocket.SocketError
+    ProxyConnectionClosedError = ...  # type: QAbstractSocket.SocketError
+    ProxyConnectionTimeoutError = ...  # type: QAbstractSocket.SocketError
+    ProxyNotFoundError = ...  # type: QAbstractSocket.SocketError
+    ProxyProtocolError = ...  # type: QAbstractSocket.SocketError
+    OperationError = ...  # type: QAbstractSocket.SocketError
+    SslInternalError = ...  # type: QAbstractSocket.SocketError
+    SslInvalidUserDataError = ...  # type: QAbstractSocket.SocketError
+    TemporaryError = ...  # type: QAbstractSocket.SocketError
+    UnknownSocketError = ...  # type: QAbstractSocket.SocketError
+
     class NetworkLayerProtocol(int):
         IPv4Protocol = ... # type: QAbstractSocket.NetworkLayerProtocol
         IPv6Protocol = ... # type: QAbstractSocket.NetworkLayerProtocol
         AnyIPProtocol = ... # type: QAbstractSocket.NetworkLayerProtocol
         UnknownNetworkLayerProtocol = ... # type: QAbstractSocket.NetworkLayerProtocol
 
+    IPv4Protocol = ...  # type: QAbstractSocket.NetworkLayerProtocol
+    IPv6Protocol = ...  # type: QAbstractSocket.NetworkLayerProtocol
+    AnyIPProtocol = ...  # type: QAbstractSocket.NetworkLayerProtocol
+    UnknownNetworkLayerProtocol = ...  # type: QAbstractSocket.NetworkLayerProtocol
+
     class SocketType(int):
         TcpSocket = ... # type: QAbstractSocket.SocketType
         UdpSocket = ... # type: QAbstractSocket.SocketType
         SctpSocket = ... # type: QAbstractSocket.SocketType
         UnknownSocketType = ... # type: QAbstractSocket.SocketType
+
+    TcpSocket = ...  # type: QAbstractSocket.SocketType
+    UdpSocket = ...  # type: QAbstractSocket.SocketType
+    SctpSocket = ...  # type: QAbstractSocket.SocketType
+    UnknownSocketType = ...  # type: QAbstractSocket.SocketType
 
     class BindMode(sip.simplewrapper):
 
@@ -353,6 +413,16 @@ class QDnsLookup(QtCore.QObject):
         SRV = ... # type: QDnsLookup.Type
         TXT = ... # type: QDnsLookup.Type
 
+    A = ...  # type: QDnsLookup.Type
+    AAAA = ...  # type: QDnsLookup.Type
+    ANY = ...  # type: QDnsLookup.Type
+    CNAME = ...  # type: QDnsLookup.Type
+    MX = ...  # type: QDnsLookup.Type
+    NS = ...  # type: QDnsLookup.Type
+    PTR = ...  # type: QDnsLookup.Type
+    SRV = ...  # type: QDnsLookup.Type
+    TXT = ...  # type: QDnsLookup.Type
+
     class Error(int):
         NoError = ... # type: QDnsLookup.Error
         ResolverError = ... # type: QDnsLookup.Error
@@ -362,6 +432,15 @@ class QDnsLookup(QtCore.QObject):
         ServerFailureError = ... # type: QDnsLookup.Error
         ServerRefusedError = ... # type: QDnsLookup.Error
         NotFoundError = ... # type: QDnsLookup.Error
+
+    NoError = ...  # type: QDnsLookup.Error
+    ResolverError = ...  # type: QDnsLookup.Error
+    OperationCancelledError = ...  # type: QDnsLookup.Error
+    InvalidRequestError = ...  # type: QDnsLookup.Error
+    InvalidReplyError = ...  # type: QDnsLookup.Error
+    ServerFailureError = ...  # type: QDnsLookup.Error
+    ServerRefusedError = ...  # type: QDnsLookup.Error
+    NotFoundError = ...  # type: QDnsLookup.Error
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -404,6 +483,13 @@ class QHostAddress(sip.simplewrapper):
         TolerantConversion = ... # type: QHostAddress.ConversionModeFlag
         StrictConversion = ... # type: QHostAddress.ConversionModeFlag
 
+    ConvertV4MappedToIPv4 = ...  # type: QHostAddress.ConversionModeFlag
+    ConvertV4CompatToIPv4 = ...  # type: QHostAddress.ConversionModeFlag
+    ConvertUnspecifiedAddress = ...  # type: QHostAddress.ConversionModeFlag
+    ConvertLocalHost = ...  # type: QHostAddress.ConversionModeFlag
+    TolerantConversion = ...  # type: QHostAddress.ConversionModeFlag
+    StrictConversion = ...  # type: QHostAddress.ConversionModeFlag
+
     class SpecialAddress(int):
         Null = ... # type: QHostAddress.SpecialAddress
         Broadcast = ... # type: QHostAddress.SpecialAddress
@@ -412,6 +498,14 @@ class QHostAddress(sip.simplewrapper):
         AnyIPv4 = ... # type: QHostAddress.SpecialAddress
         AnyIPv6 = ... # type: QHostAddress.SpecialAddress
         Any = ... # type: QHostAddress.SpecialAddress
+
+    Null = ...  # type: QHostAddress.SpecialAddress
+    Broadcast = ...  # type: QHostAddress.SpecialAddress
+    LocalHost = ...  # type: QHostAddress.SpecialAddress
+    LocalHostIPv6 = ...  # type: QHostAddress.SpecialAddress
+    AnyIPv4 = ...  # type: QHostAddress.SpecialAddress
+    AnyIPv6 = ...  # type: QHostAddress.SpecialAddress
+    Any = ...  # type: QHostAddress.SpecialAddress
 
     class ConversionMode(sip.simplewrapper):
 
@@ -482,6 +576,10 @@ class QHostInfo(sip.simplewrapper):
         HostNotFound = ... # type: QHostInfo.HostInfoError
         UnknownError = ... # type: QHostInfo.HostInfoError
 
+    NoError = ...  # type: QHostInfo.HostInfoError
+    HostNotFound = ...  # type: QHostInfo.HostInfoError
+    UnknownError = ...  # type: QHostInfo.HostInfoError
+
     @typing.overload
     def __init__(self, id: int = ...) -> None: ...
     @typing.overload
@@ -514,6 +612,8 @@ class QHstsPolicy(sip.simplewrapper):
 
     class PolicyFlag(int):
         IncludeSubDomains = ... # type: QHstsPolicy.PolicyFlag
+
+    IncludeSubDomains = ...  # type: QHstsPolicy.PolicyFlag
 
     class PolicyFlags(sip.simplewrapper):
 
@@ -589,6 +689,11 @@ class QHttpMultiPart(QtCore.QObject):
         FormDataType = ... # type: QHttpMultiPart.ContentType
         AlternativeType = ... # type: QHttpMultiPart.ContentType
 
+    MixedType = ...  # type: QHttpMultiPart.ContentType
+    RelatedType = ...  # type: QHttpMultiPart.ContentType
+    FormDataType = ...  # type: QHttpMultiPart.ContentType
+    AlternativeType = ...  # type: QHttpMultiPart.ContentType
+
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
     @typing.overload
@@ -607,6 +712,11 @@ class QLocalServer(QtCore.QObject):
         GroupAccessOption = ... # type: QLocalServer.SocketOption
         OtherAccessOption = ... # type: QLocalServer.SocketOption
         WorldAccessOption = ... # type: QLocalServer.SocketOption
+
+    UserAccessOption = ...  # type: QLocalServer.SocketOption
+    GroupAccessOption = ...  # type: QLocalServer.SocketOption
+    OtherAccessOption = ...  # type: QLocalServer.SocketOption
+    WorldAccessOption = ...  # type: QLocalServer.SocketOption
 
     class SocketOptions(sip.simplewrapper):
 
@@ -657,6 +767,11 @@ class QLocalSocket(QtCore.QIODevice):
         ConnectedState = ... # type: QLocalSocket.LocalSocketState
         ClosingState = ... # type: QLocalSocket.LocalSocketState
 
+    UnconnectedState = ...  # type: QLocalSocket.LocalSocketState
+    ConnectingState = ...  # type: QLocalSocket.LocalSocketState
+    ConnectedState = ...  # type: QLocalSocket.LocalSocketState
+    ClosingState = ...  # type: QLocalSocket.LocalSocketState
+
     class LocalSocketError(int):
         ConnectionRefusedError = ... # type: QLocalSocket.LocalSocketError
         PeerClosedError = ... # type: QLocalSocket.LocalSocketError
@@ -669,6 +784,18 @@ class QLocalSocket(QtCore.QIODevice):
         UnsupportedSocketOperationError = ... # type: QLocalSocket.LocalSocketError
         OperationError = ... # type: QLocalSocket.LocalSocketError
         UnknownSocketError = ... # type: QLocalSocket.LocalSocketError
+
+    ConnectionRefusedError = ...  # type: QLocalSocket.LocalSocketError
+    PeerClosedError = ...  # type: QLocalSocket.LocalSocketError
+    ServerNotFoundError = ...  # type: QLocalSocket.LocalSocketError
+    SocketAccessError = ...  # type: QLocalSocket.LocalSocketError
+    SocketResourceError = ...  # type: QLocalSocket.LocalSocketError
+    SocketTimeoutError = ...  # type: QLocalSocket.LocalSocketError
+    DatagramTooLargeError = ...  # type: QLocalSocket.LocalSocketError
+    ConnectionError = ...  # type: QLocalSocket.LocalSocketError
+    UnsupportedSocketOperationError = ...  # type: QLocalSocket.LocalSocketError
+    OperationError = ...  # type: QLocalSocket.LocalSocketError
+    UnknownSocketError = ...  # type: QLocalSocket.LocalSocketError
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -717,6 +844,10 @@ class QNetworkAccessManager(QtCore.QObject):
         NotAccessible = ... # type: QNetworkAccessManager.NetworkAccessibility
         Accessible = ... # type: QNetworkAccessManager.NetworkAccessibility
 
+    UnknownAccessibility = ...  # type: QNetworkAccessManager.NetworkAccessibility
+    NotAccessible = ...  # type: QNetworkAccessManager.NetworkAccessibility
+    Accessible = ...  # type: QNetworkAccessManager.NetworkAccessibility
+
     class Operation(int):
         HeadOperation = ... # type: QNetworkAccessManager.Operation
         GetOperation = ... # type: QNetworkAccessManager.Operation
@@ -724,6 +855,13 @@ class QNetworkAccessManager(QtCore.QObject):
         PostOperation = ... # type: QNetworkAccessManager.Operation
         DeleteOperation = ... # type: QNetworkAccessManager.Operation
         CustomOperation = ... # type: QNetworkAccessManager.Operation
+
+    HeadOperation = ...  # type: QNetworkAccessManager.Operation
+    GetOperation = ...  # type: QNetworkAccessManager.Operation
+    PutOperation = ...  # type: QNetworkAccessManager.Operation
+    PostOperation = ...  # type: QNetworkAccessManager.Operation
+    DeleteOperation = ...  # type: QNetworkAccessManager.Operation
+    CustomOperation = ...  # type: QNetworkAccessManager.Operation
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -803,6 +941,14 @@ class QNetworkConfigurationManager(QtCore.QObject):
         DataStatistics = ... # type: QNetworkConfigurationManager.Capability
         NetworkSessionRequired = ... # type: QNetworkConfigurationManager.Capability
 
+    CanStartAndStopInterfaces = ...  # type: QNetworkConfigurationManager.Capability
+    DirectConnectionRouting = ...  # type: QNetworkConfigurationManager.Capability
+    SystemSessionSupport = ...  # type: QNetworkConfigurationManager.Capability
+    ApplicationLevelRoaming = ...  # type: QNetworkConfigurationManager.Capability
+    ForcedRoaming = ...  # type: QNetworkConfigurationManager.Capability
+    DataStatistics = ...  # type: QNetworkConfigurationManager.Capability
+    NetworkSessionRequired = ...  # type: QNetworkConfigurationManager.Capability
+
     class Capabilities(sip.simplewrapper):
 
         @typing.overload
@@ -850,11 +996,30 @@ class QNetworkConfiguration(sip.simplewrapper):
         Bearer3G = ... # type: QNetworkConfiguration.BearerType
         Bearer4G = ... # type: QNetworkConfiguration.BearerType
 
+    BearerUnknown = ...  # type: QNetworkConfiguration.BearerType
+    BearerEthernet = ...  # type: QNetworkConfiguration.BearerType
+    BearerWLAN = ...  # type: QNetworkConfiguration.BearerType
+    Bearer2G = ...  # type: QNetworkConfiguration.BearerType
+    BearerCDMA2000 = ...  # type: QNetworkConfiguration.BearerType
+    BearerWCDMA = ...  # type: QNetworkConfiguration.BearerType
+    BearerHSPA = ...  # type: QNetworkConfiguration.BearerType
+    BearerBluetooth = ...  # type: QNetworkConfiguration.BearerType
+    BearerWiMAX = ...  # type: QNetworkConfiguration.BearerType
+    BearerEVDO = ...  # type: QNetworkConfiguration.BearerType
+    BearerLTE = ...  # type: QNetworkConfiguration.BearerType
+    Bearer3G = ...  # type: QNetworkConfiguration.BearerType
+    Bearer4G = ...  # type: QNetworkConfiguration.BearerType
+
     class StateFlag(int):
         Undefined = ... # type: QNetworkConfiguration.StateFlag
         Defined = ... # type: QNetworkConfiguration.StateFlag
         Discovered = ... # type: QNetworkConfiguration.StateFlag
         Active = ... # type: QNetworkConfiguration.StateFlag
+
+    Undefined = ...  # type: QNetworkConfiguration.StateFlag
+    Defined = ...  # type: QNetworkConfiguration.StateFlag
+    Discovered = ...  # type: QNetworkConfiguration.StateFlag
+    Active = ...  # type: QNetworkConfiguration.StateFlag
 
     class Purpose(int):
         UnknownPurpose = ... # type: QNetworkConfiguration.Purpose
@@ -862,11 +1027,21 @@ class QNetworkConfiguration(sip.simplewrapper):
         PrivatePurpose = ... # type: QNetworkConfiguration.Purpose
         ServiceSpecificPurpose = ... # type: QNetworkConfiguration.Purpose
 
+    UnknownPurpose = ...  # type: QNetworkConfiguration.Purpose
+    PublicPurpose = ...  # type: QNetworkConfiguration.Purpose
+    PrivatePurpose = ...  # type: QNetworkConfiguration.Purpose
+    ServiceSpecificPurpose = ...  # type: QNetworkConfiguration.Purpose
+
     class Type(int):
         InternetAccessPoint = ... # type: QNetworkConfiguration.Type
         ServiceNetwork = ... # type: QNetworkConfiguration.Type
         UserChoice = ... # type: QNetworkConfiguration.Type
         Invalid = ... # type: QNetworkConfiguration.Type
+
+    InternetAccessPoint = ...  # type: QNetworkConfiguration.Type
+    ServiceNetwork = ...  # type: QNetworkConfiguration.Type
+    UserChoice = ...  # type: QNetworkConfiguration.Type
+    Invalid = ...  # type: QNetworkConfiguration.Type
 
     class StateFlags(sip.simplewrapper):
 
@@ -909,6 +1084,9 @@ class QNetworkCookie(sip.simplewrapper):
     class RawForm(int):
         NameAndValueOnly = ... # type: QNetworkCookie.RawForm
         Full = ... # type: QNetworkCookie.RawForm
+
+    NameAndValueOnly = ...  # type: QNetworkCookie.RawForm
+    Full = ...  # type: QNetworkCookie.RawForm
 
     @typing.overload
     def __init__(self, name: typing.Union[QtCore.QByteArray, bytes, bytearray] = ..., value: typing.Union[QtCore.QByteArray, bytes, bytearray] = ...) -> None: ...
@@ -1007,6 +1185,10 @@ class QNetworkAddressEntry(sip.simplewrapper):
         DnsIneligible = ... # type: QNetworkAddressEntry.DnsEligibilityStatus
         DnsEligible = ... # type: QNetworkAddressEntry.DnsEligibilityStatus
 
+    DnsEligibilityUnknown = ...  # type: QNetworkAddressEntry.DnsEligibilityStatus
+    DnsIneligible = ...  # type: QNetworkAddressEntry.DnsEligibilityStatus
+    DnsEligible = ...  # type: QNetworkAddressEntry.DnsEligibilityStatus
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -1051,6 +1233,22 @@ class QNetworkInterface(sip.simplewrapper):
         Ieee80216 = ... # type: QNetworkInterface.InterfaceType
         Ieee1394 = ... # type: QNetworkInterface.InterfaceType
 
+    Unknown = ...  # type: QNetworkInterface.InterfaceType
+    Loopback = ...  # type: QNetworkInterface.InterfaceType
+    Virtual = ...  # type: QNetworkInterface.InterfaceType
+    Ethernet = ...  # type: QNetworkInterface.InterfaceType
+    Slip = ...  # type: QNetworkInterface.InterfaceType
+    CanBus = ...  # type: QNetworkInterface.InterfaceType
+    Ppp = ...  # type: QNetworkInterface.InterfaceType
+    Fddi = ...  # type: QNetworkInterface.InterfaceType
+    Wifi = ...  # type: QNetworkInterface.InterfaceType
+    Ieee80211 = ...  # type: QNetworkInterface.InterfaceType
+    Phonet = ...  # type: QNetworkInterface.InterfaceType
+    Ieee802154 = ...  # type: QNetworkInterface.InterfaceType
+    SixLoWPAN = ...  # type: QNetworkInterface.InterfaceType
+    Ieee80216 = ...  # type: QNetworkInterface.InterfaceType
+    Ieee1394 = ...  # type: QNetworkInterface.InterfaceType
+
     class InterfaceFlag(int):
         IsUp = ... # type: QNetworkInterface.InterfaceFlag
         IsRunning = ... # type: QNetworkInterface.InterfaceFlag
@@ -1058,6 +1256,13 @@ class QNetworkInterface(sip.simplewrapper):
         IsLoopBack = ... # type: QNetworkInterface.InterfaceFlag
         IsPointToPoint = ... # type: QNetworkInterface.InterfaceFlag
         CanMulticast = ... # type: QNetworkInterface.InterfaceFlag
+
+    IsUp = ...  # type: QNetworkInterface.InterfaceFlag
+    IsRunning = ...  # type: QNetworkInterface.InterfaceFlag
+    CanBroadcast = ...  # type: QNetworkInterface.InterfaceFlag
+    IsLoopBack = ...  # type: QNetworkInterface.InterfaceFlag
+    IsPointToPoint = ...  # type: QNetworkInterface.InterfaceFlag
+    CanMulticast = ...  # type: QNetworkInterface.InterfaceFlag
 
     class InterfaceFlags(sip.simplewrapper):
 
@@ -1114,6 +1319,14 @@ class QNetworkProxy(sip.simplewrapper):
         SctpTunnelingCapability = ... # type: QNetworkProxy.Capability
         SctpListeningCapability = ... # type: QNetworkProxy.Capability
 
+    TunnelingCapability = ...  # type: QNetworkProxy.Capability
+    ListeningCapability = ...  # type: QNetworkProxy.Capability
+    UdpTunnelingCapability = ...  # type: QNetworkProxy.Capability
+    CachingCapability = ...  # type: QNetworkProxy.Capability
+    HostNameLookupCapability = ...  # type: QNetworkProxy.Capability
+    SctpTunnelingCapability = ...  # type: QNetworkProxy.Capability
+    SctpListeningCapability = ...  # type: QNetworkProxy.Capability
+
     class ProxyType(int):
         DefaultProxy = ... # type: QNetworkProxy.ProxyType
         Socks5Proxy = ... # type: QNetworkProxy.ProxyType
@@ -1121,6 +1334,13 @@ class QNetworkProxy(sip.simplewrapper):
         HttpProxy = ... # type: QNetworkProxy.ProxyType
         HttpCachingProxy = ... # type: QNetworkProxy.ProxyType
         FtpCachingProxy = ... # type: QNetworkProxy.ProxyType
+
+    DefaultProxy = ...  # type: QNetworkProxy.ProxyType
+    Socks5Proxy = ...  # type: QNetworkProxy.ProxyType
+    NoProxy = ...  # type: QNetworkProxy.ProxyType
+    HttpProxy = ...  # type: QNetworkProxy.ProxyType
+    HttpCachingProxy = ...  # type: QNetworkProxy.ProxyType
+    FtpCachingProxy = ...  # type: QNetworkProxy.ProxyType
 
     class Capabilities(sip.simplewrapper):
 
@@ -1180,6 +1400,13 @@ class QNetworkProxyQuery(sip.simplewrapper):
         UrlRequest = ... # type: QNetworkProxyQuery.QueryType
         SctpSocket = ... # type: QNetworkProxyQuery.QueryType
         SctpServer = ... # type: QNetworkProxyQuery.QueryType
+
+    TcpSocket = ...  # type: QNetworkProxyQuery.QueryType
+    UdpSocket = ...  # type: QNetworkProxyQuery.QueryType
+    TcpServer = ...  # type: QNetworkProxyQuery.QueryType
+    UrlRequest = ...  # type: QNetworkProxyQuery.QueryType
+    SctpSocket = ...  # type: QNetworkProxyQuery.QueryType
+    SctpServer = ...  # type: QNetworkProxyQuery.QueryType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1273,6 +1500,41 @@ class QNetworkReply(QtCore.QIODevice):
         TooManyRedirectsError = ... # type: QNetworkReply.NetworkError
         InsecureRedirectError = ... # type: QNetworkReply.NetworkError
 
+    NoError = ...  # type: QNetworkReply.NetworkError
+    ConnectionRefusedError = ...  # type: QNetworkReply.NetworkError
+    RemoteHostClosedError = ...  # type: QNetworkReply.NetworkError
+    HostNotFoundError = ...  # type: QNetworkReply.NetworkError
+    TimeoutError = ...  # type: QNetworkReply.NetworkError
+    OperationCanceledError = ...  # type: QNetworkReply.NetworkError
+    SslHandshakeFailedError = ...  # type: QNetworkReply.NetworkError
+    UnknownNetworkError = ...  # type: QNetworkReply.NetworkError
+    ProxyConnectionRefusedError = ...  # type: QNetworkReply.NetworkError
+    ProxyConnectionClosedError = ...  # type: QNetworkReply.NetworkError
+    ProxyNotFoundError = ...  # type: QNetworkReply.NetworkError
+    ProxyTimeoutError = ...  # type: QNetworkReply.NetworkError
+    ProxyAuthenticationRequiredError = ...  # type: QNetworkReply.NetworkError
+    UnknownProxyError = ...  # type: QNetworkReply.NetworkError
+    ContentAccessDenied = ...  # type: QNetworkReply.NetworkError
+    ContentOperationNotPermittedError = ...  # type: QNetworkReply.NetworkError
+    ContentNotFoundError = ...  # type: QNetworkReply.NetworkError
+    AuthenticationRequiredError = ...  # type: QNetworkReply.NetworkError
+    UnknownContentError = ...  # type: QNetworkReply.NetworkError
+    ProtocolUnknownError = ...  # type: QNetworkReply.NetworkError
+    ProtocolInvalidOperationError = ...  # type: QNetworkReply.NetworkError
+    ProtocolFailure = ...  # type: QNetworkReply.NetworkError
+    ContentReSendError = ...  # type: QNetworkReply.NetworkError
+    TemporaryNetworkFailureError = ...  # type: QNetworkReply.NetworkError
+    NetworkSessionFailedError = ...  # type: QNetworkReply.NetworkError
+    BackgroundRequestNotAllowedError = ...  # type: QNetworkReply.NetworkError
+    ContentConflictError = ...  # type: QNetworkReply.NetworkError
+    ContentGoneError = ...  # type: QNetworkReply.NetworkError
+    InternalServerError = ...  # type: QNetworkReply.NetworkError
+    OperationNotImplementedError = ...  # type: QNetworkReply.NetworkError
+    ServiceUnavailableError = ...  # type: QNetworkReply.NetworkError
+    UnknownServerError = ...  # type: QNetworkReply.NetworkError
+    TooManyRedirectsError = ...  # type: QNetworkReply.NetworkError
+    InsecureRedirectError = ...  # type: QNetworkReply.NetworkError
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def ignoreSslErrorsImplementation(self, a0: typing.Iterable['QSslError']) -> None: ...
@@ -1331,26 +1593,45 @@ class QNetworkRequest(sip.simplewrapper):
     class TransferTimeoutConstant(int):
         DefaultTransferTimeoutConstant = ... # type: QNetworkRequest.TransferTimeoutConstant
 
+    DefaultTransferTimeoutConstant = ...  # type: QNetworkRequest.TransferTimeoutConstant
+
     class RedirectPolicy(int):
         ManualRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
         NoLessSafeRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
         SameOriginRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
         UserVerifiedRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
 
+    ManualRedirectPolicy = ...  # type: QNetworkRequest.RedirectPolicy
+    NoLessSafeRedirectPolicy = ...  # type: QNetworkRequest.RedirectPolicy
+    SameOriginRedirectPolicy = ...  # type: QNetworkRequest.RedirectPolicy
+    UserVerifiedRedirectPolicy = ...  # type: QNetworkRequest.RedirectPolicy
+
     class Priority(int):
         HighPriority = ... # type: QNetworkRequest.Priority
         NormalPriority = ... # type: QNetworkRequest.Priority
         LowPriority = ... # type: QNetworkRequest.Priority
 
+    HighPriority = ...  # type: QNetworkRequest.Priority
+    NormalPriority = ...  # type: QNetworkRequest.Priority
+    LowPriority = ...  # type: QNetworkRequest.Priority
+
     class LoadControl(int):
         Automatic = ... # type: QNetworkRequest.LoadControl
         Manual = ... # type: QNetworkRequest.LoadControl
+
+    Automatic = ...  # type: QNetworkRequest.LoadControl
+    Manual = ...  # type: QNetworkRequest.LoadControl
 
     class CacheLoadControl(int):
         AlwaysNetwork = ... # type: QNetworkRequest.CacheLoadControl
         PreferNetwork = ... # type: QNetworkRequest.CacheLoadControl
         PreferCache = ... # type: QNetworkRequest.CacheLoadControl
         AlwaysCache = ... # type: QNetworkRequest.CacheLoadControl
+
+    AlwaysNetwork = ...  # type: QNetworkRequest.CacheLoadControl
+    PreferNetwork = ...  # type: QNetworkRequest.CacheLoadControl
+    PreferCache = ...  # type: QNetworkRequest.CacheLoadControl
+    AlwaysCache = ...  # type: QNetworkRequest.CacheLoadControl
 
     class Attribute(int):
         HttpStatusCodeAttribute = ... # type: QNetworkRequest.Attribute
@@ -1383,6 +1664,36 @@ class QNetworkRequest(sip.simplewrapper):
         User = ... # type: QNetworkRequest.Attribute
         UserMax = ... # type: QNetworkRequest.Attribute
 
+    HttpStatusCodeAttribute = ...  # type: QNetworkRequest.Attribute
+    HttpReasonPhraseAttribute = ...  # type: QNetworkRequest.Attribute
+    RedirectionTargetAttribute = ...  # type: QNetworkRequest.Attribute
+    ConnectionEncryptedAttribute = ...  # type: QNetworkRequest.Attribute
+    CacheLoadControlAttribute = ...  # type: QNetworkRequest.Attribute
+    CacheSaveControlAttribute = ...  # type: QNetworkRequest.Attribute
+    SourceIsFromCacheAttribute = ...  # type: QNetworkRequest.Attribute
+    DoNotBufferUploadDataAttribute = ...  # type: QNetworkRequest.Attribute
+    HttpPipeliningAllowedAttribute = ...  # type: QNetworkRequest.Attribute
+    HttpPipeliningWasUsedAttribute = ...  # type: QNetworkRequest.Attribute
+    CustomVerbAttribute = ...  # type: QNetworkRequest.Attribute
+    CookieLoadControlAttribute = ...  # type: QNetworkRequest.Attribute
+    AuthenticationReuseAttribute = ...  # type: QNetworkRequest.Attribute
+    CookieSaveControlAttribute = ...  # type: QNetworkRequest.Attribute
+    BackgroundRequestAttribute = ...  # type: QNetworkRequest.Attribute
+    SpdyAllowedAttribute = ...  # type: QNetworkRequest.Attribute
+    SpdyWasUsedAttribute = ...  # type: QNetworkRequest.Attribute
+    EmitAllUploadProgressSignalsAttribute = ...  # type: QNetworkRequest.Attribute
+    FollowRedirectsAttribute = ...  # type: QNetworkRequest.Attribute
+    HTTP2AllowedAttribute = ...  # type: QNetworkRequest.Attribute
+    Http2AllowedAttribute = ...  # type: QNetworkRequest.Attribute
+    HTTP2WasUsedAttribute = ...  # type: QNetworkRequest.Attribute
+    Http2WasUsedAttribute = ...  # type: QNetworkRequest.Attribute
+    OriginalContentLengthAttribute = ...  # type: QNetworkRequest.Attribute
+    RedirectPolicyAttribute = ...  # type: QNetworkRequest.Attribute
+    Http2DirectAttribute = ...  # type: QNetworkRequest.Attribute
+    AutoDeleteReplyOnFinishAttribute = ...  # type: QNetworkRequest.Attribute
+    User = ...  # type: QNetworkRequest.Attribute
+    UserMax = ...  # type: QNetworkRequest.Attribute
+
     class KnownHeaders(int):
         ContentTypeHeader = ... # type: QNetworkRequest.KnownHeaders
         ContentLengthHeader = ... # type: QNetworkRequest.KnownHeaders
@@ -1397,6 +1708,20 @@ class QNetworkRequest(sip.simplewrapper):
         ETagHeader = ... # type: QNetworkRequest.KnownHeaders
         IfMatchHeader = ... # type: QNetworkRequest.KnownHeaders
         IfNoneMatchHeader = ... # type: QNetworkRequest.KnownHeaders
+
+    ContentTypeHeader = ...  # type: QNetworkRequest.KnownHeaders
+    ContentLengthHeader = ...  # type: QNetworkRequest.KnownHeaders
+    LocationHeader = ...  # type: QNetworkRequest.KnownHeaders
+    LastModifiedHeader = ...  # type: QNetworkRequest.KnownHeaders
+    CookieHeader = ...  # type: QNetworkRequest.KnownHeaders
+    SetCookieHeader = ...  # type: QNetworkRequest.KnownHeaders
+    ContentDispositionHeader = ...  # type: QNetworkRequest.KnownHeaders
+    UserAgentHeader = ...  # type: QNetworkRequest.KnownHeaders
+    ServerHeader = ...  # type: QNetworkRequest.KnownHeaders
+    IfModifiedSinceHeader = ...  # type: QNetworkRequest.KnownHeaders
+    ETagHeader = ...  # type: QNetworkRequest.KnownHeaders
+    IfMatchHeader = ...  # type: QNetworkRequest.KnownHeaders
+    IfNoneMatchHeader = ...  # type: QNetworkRequest.KnownHeaders
 
     @typing.overload
     def __init__(self, url: QtCore.QUrl = ...) -> None: ...
@@ -1436,12 +1761,21 @@ class QNetworkSession(QtCore.QObject):
         NoPolicy = ... # type: QNetworkSession.UsagePolicy
         NoBackgroundTrafficPolicy = ... # type: QNetworkSession.UsagePolicy
 
+    NoPolicy = ...  # type: QNetworkSession.UsagePolicy
+    NoBackgroundTrafficPolicy = ...  # type: QNetworkSession.UsagePolicy
+
     class SessionError(int):
         UnknownSessionError = ... # type: QNetworkSession.SessionError
         SessionAbortedError = ... # type: QNetworkSession.SessionError
         RoamingError = ... # type: QNetworkSession.SessionError
         OperationNotSupportedError = ... # type: QNetworkSession.SessionError
         InvalidConfigurationError = ... # type: QNetworkSession.SessionError
+
+    UnknownSessionError = ...  # type: QNetworkSession.SessionError
+    SessionAbortedError = ...  # type: QNetworkSession.SessionError
+    RoamingError = ...  # type: QNetworkSession.SessionError
+    OperationNotSupportedError = ...  # type: QNetworkSession.SessionError
+    InvalidConfigurationError = ...  # type: QNetworkSession.SessionError
 
     class State(int):
         Invalid = ... # type: QNetworkSession.State
@@ -1451,6 +1785,14 @@ class QNetworkSession(QtCore.QObject):
         Closing = ... # type: QNetworkSession.State
         Disconnected = ... # type: QNetworkSession.State
         Roaming = ... # type: QNetworkSession.State
+
+    Invalid = ...  # type: QNetworkSession.State
+    NotAvailable = ...  # type: QNetworkSession.State
+    Connecting = ...  # type: QNetworkSession.State
+    Connected = ...  # type: QNetworkSession.State
+    Closing = ...  # type: QNetworkSession.State
+    Disconnected = ...  # type: QNetworkSession.State
+    Roaming = ...  # type: QNetworkSession.State
 
     class UsagePolicies(sip.simplewrapper):
 
@@ -1535,6 +1877,15 @@ class QSsl(sip.simplewrapper):
         SslOptionDisableSessionPersistence = ... # type: QSsl.SslOption
         SslOptionDisableServerCipherPreference = ... # type: QSsl.SslOption
 
+    SslOptionDisableEmptyFragments = ...  # type: QSsl.SslOption
+    SslOptionDisableSessionTickets = ...  # type: QSsl.SslOption
+    SslOptionDisableCompression = ...  # type: QSsl.SslOption
+    SslOptionDisableServerNameIndication = ...  # type: QSsl.SslOption
+    SslOptionDisableLegacyRenegotiation = ...  # type: QSsl.SslOption
+    SslOptionDisableSessionSharing = ...  # type: QSsl.SslOption
+    SslOptionDisableSessionPersistence = ...  # type: QSsl.SslOption
+    SslOptionDisableServerCipherPreference = ...  # type: QSsl.SslOption
+
     class SslProtocol(int):
         UnknownProtocol = ... # type: QSsl.SslProtocol
         SslV3 = ... # type: QSsl.SslProtocol
@@ -1555,10 +1906,33 @@ class QSsl(sip.simplewrapper):
         TlsV1_3 = ... # type: QSsl.SslProtocol
         TlsV1_3OrLater = ... # type: QSsl.SslProtocol
 
+    UnknownProtocol = ...  # type: QSsl.SslProtocol
+    SslV3 = ...  # type: QSsl.SslProtocol
+    SslV2 = ...  # type: QSsl.SslProtocol
+    TlsV1_0 = ...  # type: QSsl.SslProtocol
+    TlsV1_0OrLater = ...  # type: QSsl.SslProtocol
+    TlsV1_1 = ...  # type: QSsl.SslProtocol
+    TlsV1_1OrLater = ...  # type: QSsl.SslProtocol
+    TlsV1_2 = ...  # type: QSsl.SslProtocol
+    TlsV1_2OrLater = ...  # type: QSsl.SslProtocol
+    AnyProtocol = ...  # type: QSsl.SslProtocol
+    TlsV1SslV3 = ...  # type: QSsl.SslProtocol
+    SecureProtocols = ...  # type: QSsl.SslProtocol
+    DtlsV1_0 = ...  # type: QSsl.SslProtocol
+    DtlsV1_0OrLater = ...  # type: QSsl.SslProtocol
+    DtlsV1_2 = ...  # type: QSsl.SslProtocol
+    DtlsV1_2OrLater = ...  # type: QSsl.SslProtocol
+    TlsV1_3 = ...  # type: QSsl.SslProtocol
+    TlsV1_3OrLater = ...  # type: QSsl.SslProtocol
+
     class AlternativeNameEntryType(int):
         EmailEntry = ... # type: QSsl.AlternativeNameEntryType
         DnsEntry = ... # type: QSsl.AlternativeNameEntryType
         IpAddressEntry = ... # type: QSsl.AlternativeNameEntryType
+
+    EmailEntry = ...  # type: QSsl.AlternativeNameEntryType
+    DnsEntry = ...  # type: QSsl.AlternativeNameEntryType
+    IpAddressEntry = ...  # type: QSsl.AlternativeNameEntryType
 
     class KeyAlgorithm(int):
         Opaque = ... # type: QSsl.KeyAlgorithm
@@ -1567,13 +1941,25 @@ class QSsl(sip.simplewrapper):
         Ec = ... # type: QSsl.KeyAlgorithm
         Dh = ... # type: QSsl.KeyAlgorithm
 
+    Opaque = ...  # type: QSsl.KeyAlgorithm
+    Rsa = ...  # type: QSsl.KeyAlgorithm
+    Dsa = ...  # type: QSsl.KeyAlgorithm
+    Ec = ...  # type: QSsl.KeyAlgorithm
+    Dh = ...  # type: QSsl.KeyAlgorithm
+
     class EncodingFormat(int):
         Pem = ... # type: QSsl.EncodingFormat
         Der = ... # type: QSsl.EncodingFormat
 
+    Pem = ...  # type: QSsl.EncodingFormat
+    Der = ...  # type: QSsl.EncodingFormat
+
     class KeyType(int):
         PrivateKey = ... # type: QSsl.KeyType
         PublicKey = ... # type: QSsl.KeyType
+
+    PrivateKey = ...  # type: QSsl.KeyType
+    PublicKey = ...  # type: QSsl.KeyType
 
     class SslOptions(sip.simplewrapper):
 
@@ -1598,6 +1984,10 @@ class QSslCertificate(sip.simplewrapper):
         Wildcard = ... # type: QSslCertificate.PatternSyntax
         FixedString = ... # type: QSslCertificate.PatternSyntax
 
+    RegularExpression = ...  # type: QSslCertificate.PatternSyntax
+    Wildcard = ...  # type: QSslCertificate.PatternSyntax
+    FixedString = ...  # type: QSslCertificate.PatternSyntax
+
     class SubjectInfo(int):
         Organization = ... # type: QSslCertificate.SubjectInfo
         CommonName = ... # type: QSslCertificate.SubjectInfo
@@ -1608,6 +1998,16 @@ class QSslCertificate(sip.simplewrapper):
         DistinguishedNameQualifier = ... # type: QSslCertificate.SubjectInfo
         SerialNumber = ... # type: QSslCertificate.SubjectInfo
         EmailAddress = ... # type: QSslCertificate.SubjectInfo
+
+    Organization = ...  # type: QSslCertificate.SubjectInfo
+    CommonName = ...  # type: QSslCertificate.SubjectInfo
+    LocalityName = ...  # type: QSslCertificate.SubjectInfo
+    OrganizationalUnitName = ...  # type: QSslCertificate.SubjectInfo
+    CountryName = ...  # type: QSslCertificate.SubjectInfo
+    StateOrProvinceName = ...  # type: QSslCertificate.SubjectInfo
+    DistinguishedNameQualifier = ...  # type: QSslCertificate.SubjectInfo
+    SerialNumber = ...  # type: QSslCertificate.SubjectInfo
+    EmailAddress = ...  # type: QSslCertificate.SubjectInfo
 
     @typing.overload
     def __init__(self, device: QtCore.QIODevice, format: QSsl.EncodingFormat = ...) -> None: ...
@@ -1703,6 +2103,10 @@ class QSslConfiguration(sip.simplewrapper):
         NextProtocolNegotiationNegotiated = ... # type: QSslConfiguration.NextProtocolNegotiationStatus
         NextProtocolNegotiationUnsupported = ... # type: QSslConfiguration.NextProtocolNegotiationStatus
 
+    NextProtocolNegotiationNone = ...  # type: QSslConfiguration.NextProtocolNegotiationStatus
+    NextProtocolNegotiationNegotiated = ...  # type: QSslConfiguration.NextProtocolNegotiationStatus
+    NextProtocolNegotiationUnsupported = ...  # type: QSslConfiguration.NextProtocolNegotiationStatus
+
     NextProtocolHttp1_1 = ... # type: bytes
     NextProtocolSpdy3_0 = ... # type: bytes
 
@@ -1777,6 +2181,10 @@ class QSslDiffieHellmanParameters(sip.simplewrapper):
         NoError = ... # type: QSslDiffieHellmanParameters.Error
         InvalidInputDataError = ... # type: QSslDiffieHellmanParameters.Error
         UnsafeParametersError = ... # type: QSslDiffieHellmanParameters.Error
+
+    NoError = ...  # type: QSslDiffieHellmanParameters.Error
+    InvalidInputDataError = ...  # type: QSslDiffieHellmanParameters.Error
+    UnsafeParametersError = ...  # type: QSslDiffieHellmanParameters.Error
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1859,6 +2267,45 @@ class QSslError(sip.simplewrapper):
         OcspResponseExpired = ... # type: QSslError.SslError
         OcspStatusUnknown = ... # type: QSslError.SslError
 
+    UnspecifiedError = ...  # type: QSslError.SslError
+    NoError = ...  # type: QSslError.SslError
+    UnableToGetIssuerCertificate = ...  # type: QSslError.SslError
+    UnableToDecryptCertificateSignature = ...  # type: QSslError.SslError
+    UnableToDecodeIssuerPublicKey = ...  # type: QSslError.SslError
+    CertificateSignatureFailed = ...  # type: QSslError.SslError
+    CertificateNotYetValid = ...  # type: QSslError.SslError
+    CertificateExpired = ...  # type: QSslError.SslError
+    InvalidNotBeforeField = ...  # type: QSslError.SslError
+    InvalidNotAfterField = ...  # type: QSslError.SslError
+    SelfSignedCertificate = ...  # type: QSslError.SslError
+    SelfSignedCertificateInChain = ...  # type: QSslError.SslError
+    UnableToGetLocalIssuerCertificate = ...  # type: QSslError.SslError
+    UnableToVerifyFirstCertificate = ...  # type: QSslError.SslError
+    CertificateRevoked = ...  # type: QSslError.SslError
+    InvalidCaCertificate = ...  # type: QSslError.SslError
+    PathLengthExceeded = ...  # type: QSslError.SslError
+    InvalidPurpose = ...  # type: QSslError.SslError
+    CertificateUntrusted = ...  # type: QSslError.SslError
+    CertificateRejected = ...  # type: QSslError.SslError
+    SubjectIssuerMismatch = ...  # type: QSslError.SslError
+    AuthorityIssuerSerialNumberMismatch = ...  # type: QSslError.SslError
+    NoPeerCertificate = ...  # type: QSslError.SslError
+    HostNameMismatch = ...  # type: QSslError.SslError
+    NoSslSupport = ...  # type: QSslError.SslError
+    CertificateBlacklisted = ...  # type: QSslError.SslError
+    CertificateStatusUnknown = ...  # type: QSslError.SslError
+    OcspNoResponseFound = ...  # type: QSslError.SslError
+    OcspMalformedRequest = ...  # type: QSslError.SslError
+    OcspMalformedResponse = ...  # type: QSslError.SslError
+    OcspInternalError = ...  # type: QSslError.SslError
+    OcspTryLater = ...  # type: QSslError.SslError
+    OcspSigRequred = ...  # type: QSslError.SslError
+    OcspUnauthorized = ...  # type: QSslError.SslError
+    OcspResponseCannotBeTrusted = ...  # type: QSslError.SslError
+    OcspResponseCertIdUnknown = ...  # type: QSslError.SslError
+    OcspResponseExpired = ...  # type: QSslError.SslError
+    OcspStatusUnknown = ...  # type: QSslError.SslError
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -1929,10 +2376,19 @@ class QSslSocket(QTcpSocket):
         VerifyPeer = ... # type: QSslSocket.PeerVerifyMode
         AutoVerifyPeer = ... # type: QSslSocket.PeerVerifyMode
 
+    VerifyNone = ...  # type: QSslSocket.PeerVerifyMode
+    QueryPeer = ...  # type: QSslSocket.PeerVerifyMode
+    VerifyPeer = ...  # type: QSslSocket.PeerVerifyMode
+    AutoVerifyPeer = ...  # type: QSslSocket.PeerVerifyMode
+
     class SslMode(int):
         UnencryptedMode = ... # type: QSslSocket.SslMode
         SslClientMode = ... # type: QSslSocket.SslMode
         SslServerMode = ... # type: QSslSocket.SslMode
+
+    UnencryptedMode = ...  # type: QSslSocket.SslMode
+    SslClientMode = ...  # type: QSslSocket.SslMode
+    SslServerMode = ...  # type: QSslSocket.SslMode
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 

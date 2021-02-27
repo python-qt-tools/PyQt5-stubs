@@ -77,6 +77,10 @@ class QSensor(QtCore.QObject):
         AutomaticOrientation = ... # type: QSensor.AxesOrientationMode
         UserOrientation = ... # type: QSensor.AxesOrientationMode
 
+    FixedOrientation = ...  # type: QSensor.AxesOrientationMode
+    AutomaticOrientation = ...  # type: QSensor.AxesOrientationMode
+    UserOrientation = ...  # type: QSensor.AxesOrientationMode
+
     class Feature(int):
         Buffering = ... # type: QSensor.Feature
         AlwaysOn = ... # type: QSensor.Feature
@@ -86,6 +90,15 @@ class QSensor(QtCore.QObject):
         SkipDuplicates = ... # type: QSensor.Feature
         AxesOrientation = ... # type: QSensor.Feature
         PressureSensorTemperature = ... # type: QSensor.Feature
+
+    Buffering = ...  # type: QSensor.Feature
+    AlwaysOn = ...  # type: QSensor.Feature
+    GeoValues = ...  # type: QSensor.Feature
+    FieldOfView = ...  # type: QSensor.Feature
+    AccelerationMode = ...  # type: QSensor.Feature
+    SkipDuplicates = ...  # type: QSensor.Feature
+    AxesOrientation = ...  # type: QSensor.Feature
+    PressureSensorTemperature = ...  # type: QSensor.Feature
 
     def __init__(self, type: typing.Union[QtCore.QByteArray, bytes, bytearray], parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -157,6 +170,10 @@ class QAccelerometer(QSensor):
         Gravity = ... # type: QAccelerometer.AccelerationMode
         User = ... # type: QAccelerometer.AccelerationMode
 
+    Combined = ...  # type: QAccelerometer.AccelerationMode
+    Gravity = ...  # type: QAccelerometer.AccelerationMode
+    User = ...  # type: QAccelerometer.AccelerationMode
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def accelerationModeChanged(self, accelerationMode: 'QAccelerometer.AccelerationMode') -> None: ...
@@ -197,6 +214,13 @@ class QAmbientLightReading(QSensorReading):
         Light = ... # type: QAmbientLightReading.LightLevel
         Bright = ... # type: QAmbientLightReading.LightLevel
         Sunny = ... # type: QAmbientLightReading.LightLevel
+
+    Undefined = ...  # type: QAmbientLightReading.LightLevel
+    Dark = ...  # type: QAmbientLightReading.LightLevel
+    Twilight = ...  # type: QAmbientLightReading.LightLevel
+    Light = ...  # type: QAmbientLightReading.LightLevel
+    Bright = ...  # type: QAmbientLightReading.LightLevel
+    Sunny = ...  # type: QAmbientLightReading.LightLevel
 
     def setLightLevel(self, lightLevel: 'QAmbientLightReading.LightLevel') -> None: ...
     def lightLevel(self) -> 'QAmbientLightReading.LightLevel': ...
@@ -484,6 +508,14 @@ class QOrientationReading(QSensorReading):
         FaceUp = ... # type: QOrientationReading.Orientation
         FaceDown = ... # type: QOrientationReading.Orientation
 
+    Undefined = ...  # type: QOrientationReading.Orientation
+    TopUp = ...  # type: QOrientationReading.Orientation
+    TopDown = ...  # type: QOrientationReading.Orientation
+    LeftUp = ...  # type: QOrientationReading.Orientation
+    RightUp = ...  # type: QOrientationReading.Orientation
+    FaceUp = ...  # type: QOrientationReading.Orientation
+    FaceDown = ...  # type: QOrientationReading.Orientation
+
     def setOrientation(self, orientation: 'QOrientationReading.Orientation') -> None: ...
     def orientation(self) -> 'QOrientationReading.Orientation': ...
 
@@ -581,6 +613,20 @@ class QTapReading(QSensorReading):
         X_Both = ... # type: QTapReading.TapDirection
         Y_Both = ... # type: QTapReading.TapDirection
         Z_Both = ... # type: QTapReading.TapDirection
+
+    Undefined = ...  # type: QTapReading.TapDirection
+    X = ...  # type: QTapReading.TapDirection
+    Y = ...  # type: QTapReading.TapDirection
+    Z = ...  # type: QTapReading.TapDirection
+    X_Pos = ...  # type: QTapReading.TapDirection
+    Y_Pos = ...  # type: QTapReading.TapDirection
+    Z_Pos = ...  # type: QTapReading.TapDirection
+    X_Neg = ...  # type: QTapReading.TapDirection
+    Y_Neg = ...  # type: QTapReading.TapDirection
+    Z_Neg = ...  # type: QTapReading.TapDirection
+    X_Both = ...  # type: QTapReading.TapDirection
+    Y_Both = ...  # type: QTapReading.TapDirection
+    Z_Both = ...  # type: QTapReading.TapDirection
 
     def setDoubleTap(self, doubleTap: bool) -> None: ...
     def isDoubleTap(self) -> bool: ...

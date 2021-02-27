@@ -136,14 +136,31 @@ class QSqlDriver(QtCore.QObject):
         Interbase = ... # type: QSqlDriver.DbmsType
         DB2 = ... # type: QSqlDriver.DbmsType
 
+    UnknownDbms = ...  # type: QSqlDriver.DbmsType
+    MSSqlServer = ...  # type: QSqlDriver.DbmsType
+    MySqlServer = ...  # type: QSqlDriver.DbmsType
+    PostgreSQL = ...  # type: QSqlDriver.DbmsType
+    Oracle = ...  # type: QSqlDriver.DbmsType
+    Sybase = ...  # type: QSqlDriver.DbmsType
+    SQLite = ...  # type: QSqlDriver.DbmsType
+    Interbase = ...  # type: QSqlDriver.DbmsType
+    DB2 = ...  # type: QSqlDriver.DbmsType
+
     class NotificationSource(int):
         UnknownSource = ... # type: QSqlDriver.NotificationSource
         SelfSource = ... # type: QSqlDriver.NotificationSource
         OtherSource = ... # type: QSqlDriver.NotificationSource
 
+    UnknownSource = ...  # type: QSqlDriver.NotificationSource
+    SelfSource = ...  # type: QSqlDriver.NotificationSource
+    OtherSource = ...  # type: QSqlDriver.NotificationSource
+
     class IdentifierType(int):
         FieldName = ... # type: QSqlDriver.IdentifierType
         TableName = ... # type: QSqlDriver.IdentifierType
+
+    FieldName = ...  # type: QSqlDriver.IdentifierType
+    TableName = ...  # type: QSqlDriver.IdentifierType
 
     class StatementType(int):
         WhereStatement = ... # type: QSqlDriver.StatementType
@@ -151,6 +168,12 @@ class QSqlDriver(QtCore.QObject):
         UpdateStatement = ... # type: QSqlDriver.StatementType
         InsertStatement = ... # type: QSqlDriver.StatementType
         DeleteStatement = ... # type: QSqlDriver.StatementType
+
+    WhereStatement = ...  # type: QSqlDriver.StatementType
+    SelectStatement = ...  # type: QSqlDriver.StatementType
+    UpdateStatement = ...  # type: QSqlDriver.StatementType
+    InsertStatement = ...  # type: QSqlDriver.StatementType
+    DeleteStatement = ...  # type: QSqlDriver.StatementType
 
     class DriverFeature(int):
         Transactions = ... # type: QSqlDriver.DriverFeature
@@ -167,6 +190,21 @@ class QSqlDriver(QtCore.QObject):
         EventNotifications = ... # type: QSqlDriver.DriverFeature
         FinishQuery = ... # type: QSqlDriver.DriverFeature
         MultipleResultSets = ... # type: QSqlDriver.DriverFeature
+
+    Transactions = ...  # type: QSqlDriver.DriverFeature
+    QuerySize = ...  # type: QSqlDriver.DriverFeature
+    BLOB = ...  # type: QSqlDriver.DriverFeature
+    Unicode = ...  # type: QSqlDriver.DriverFeature
+    PreparedQueries = ...  # type: QSqlDriver.DriverFeature
+    NamedPlaceholders = ...  # type: QSqlDriver.DriverFeature
+    PositionalPlaceholders = ...  # type: QSqlDriver.DriverFeature
+    LastInsertId = ...  # type: QSqlDriver.DriverFeature
+    BatchOperations = ...  # type: QSqlDriver.DriverFeature
+    SimpleLocking = ...  # type: QSqlDriver.DriverFeature
+    LowPrecisionNumbers = ...  # type: QSqlDriver.DriverFeature
+    EventNotifications = ...  # type: QSqlDriver.DriverFeature
+    FinishQuery = ...  # type: QSqlDriver.DriverFeature
+    MultipleResultSets = ...  # type: QSqlDriver.DriverFeature
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -213,6 +251,12 @@ class QSqlError(sip.simplewrapper):
         TransactionError = ... # type: QSqlError.ErrorType
         UnknownError = ... # type: QSqlError.ErrorType
 
+    NoError = ...  # type: QSqlError.ErrorType
+    ConnectionError = ...  # type: QSqlError.ErrorType
+    StatementError = ...  # type: QSqlError.ErrorType
+    TransactionError = ...  # type: QSqlError.ErrorType
+    UnknownError = ...  # type: QSqlError.ErrorType
+
     @typing.overload
     def __init__(self, driverText: str = ..., databaseText: str = ..., type: 'QSqlError.ErrorType' = ..., errorCode: str = ...) -> None: ...
     @typing.overload
@@ -240,6 +284,10 @@ class QSqlField(sip.simplewrapper):
         Unknown = ... # type: QSqlField.RequiredStatus
         Optional = ... # type: QSqlField.RequiredStatus
         Required = ... # type: QSqlField.RequiredStatus
+
+    Unknown = ...  # type: QSqlField.RequiredStatus
+    Optional = ...  # type: QSqlField.RequiredStatus
+    Required = ...  # type: QSqlField.RequiredStatus
 
     @typing.overload
     def __init__(self, fieldName: str = ..., type: QtCore.QVariant.Type = ...) -> None: ...
@@ -352,6 +400,9 @@ class QSqlQuery(sip.simplewrapper):
     class BatchExecutionMode(int):
         ValuesAsRows = ... # type: QSqlQuery.BatchExecutionMode
         ValuesAsColumns = ... # type: QSqlQuery.BatchExecutionMode
+
+    ValuesAsRows = ...  # type: QSqlQuery.BatchExecutionMode
+    ValuesAsColumns = ...  # type: QSqlQuery.BatchExecutionMode
 
     @typing.overload
     def __init__(self, r: 'QSqlResult') -> None: ...
@@ -489,6 +540,10 @@ class QSqlTableModel(QSqlQueryModel):
         OnRowChange = ... # type: QSqlTableModel.EditStrategy
         OnManualSubmit = ... # type: QSqlTableModel.EditStrategy
 
+    OnFieldChange = ...  # type: QSqlTableModel.EditStrategy
+    OnRowChange = ...  # type: QSqlTableModel.EditStrategy
+    OnManualSubmit = ...  # type: QSqlTableModel.EditStrategy
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ..., db: QSqlDatabase = ...) -> None: ...
 
     def primaryValues(self, row: int) -> QSqlRecord: ...
@@ -549,6 +604,9 @@ class QSqlRelationalTableModel(QSqlTableModel):
         InnerJoin = ... # type: QSqlRelationalTableModel.JoinMode
         LeftJoin = ... # type: QSqlRelationalTableModel.JoinMode
 
+    InnerJoin = ...  # type: QSqlRelationalTableModel.JoinMode
+    LeftJoin = ...  # type: QSqlRelationalTableModel.JoinMode
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ..., db: QSqlDatabase = ...) -> None: ...
 
     def setJoinMode(self, joinMode: 'QSqlRelationalTableModel.JoinMode') -> None: ...
@@ -573,6 +631,9 @@ class QSqlResult(sip.wrapper):
     class BindingSyntax(int):
         PositionalBinding = ... # type: QSqlResult.BindingSyntax
         NamedBinding = ... # type: QSqlResult.BindingSyntax
+
+    PositionalBinding = ...  # type: QSqlResult.BindingSyntax
+    NamedBinding = ...  # type: QSqlResult.BindingSyntax
 
     def __init__(self, db: QSqlDriver) -> None: ...
 
@@ -637,11 +698,21 @@ class QSql(sip.simplewrapper):
         LowPrecisionDouble = ... # type: QSql.NumericalPrecisionPolicy
         HighPrecision = ... # type: QSql.NumericalPrecisionPolicy
 
+    LowPrecisionInt32 = ...  # type: QSql.NumericalPrecisionPolicy
+    LowPrecisionInt64 = ...  # type: QSql.NumericalPrecisionPolicy
+    LowPrecisionDouble = ...  # type: QSql.NumericalPrecisionPolicy
+    HighPrecision = ...  # type: QSql.NumericalPrecisionPolicy
+
     class TableType(int):
         Tables = ... # type: QSql.TableType
         SystemTables = ... # type: QSql.TableType
         Views = ... # type: QSql.TableType
         AllTables = ... # type: QSql.TableType
+
+    Tables = ...  # type: QSql.TableType
+    SystemTables = ...  # type: QSql.TableType
+    Views = ...  # type: QSql.TableType
+    AllTables = ...  # type: QSql.TableType
 
     class ParamTypeFlag(int):
         In = ... # type: QSql.ParamTypeFlag
@@ -649,9 +720,17 @@ class QSql(sip.simplewrapper):
         InOut = ... # type: QSql.ParamTypeFlag
         Binary = ... # type: QSql.ParamTypeFlag
 
+    In = ...  # type: QSql.ParamTypeFlag
+    Out = ...  # type: QSql.ParamTypeFlag
+    InOut = ...  # type: QSql.ParamTypeFlag
+    Binary = ...  # type: QSql.ParamTypeFlag
+
     class Location(int):
         BeforeFirstRow = ... # type: QSql.Location
         AfterLastRow = ... # type: QSql.Location
+
+    BeforeFirstRow = ...  # type: QSql.Location
+    AfterLastRow = ...  # type: QSql.Location
 
     class ParamType(sip.simplewrapper):
 

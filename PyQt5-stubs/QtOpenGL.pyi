@@ -67,6 +67,29 @@ class QGL(sip.simplewrapper):
         DeprecatedFunctions = ... # type: QGL.FormatOption
         NoDeprecatedFunctions = ... # type: QGL.FormatOption
 
+    DoubleBuffer = ...  # type: QGL.FormatOption
+    DepthBuffer = ...  # type: QGL.FormatOption
+    Rgba = ...  # type: QGL.FormatOption
+    AlphaChannel = ...  # type: QGL.FormatOption
+    AccumBuffer = ...  # type: QGL.FormatOption
+    StencilBuffer = ...  # type: QGL.FormatOption
+    StereoBuffers = ...  # type: QGL.FormatOption
+    DirectRendering = ...  # type: QGL.FormatOption
+    HasOverlay = ...  # type: QGL.FormatOption
+    SampleBuffers = ...  # type: QGL.FormatOption
+    SingleBuffer = ...  # type: QGL.FormatOption
+    NoDepthBuffer = ...  # type: QGL.FormatOption
+    ColorIndex = ...  # type: QGL.FormatOption
+    NoAlphaChannel = ...  # type: QGL.FormatOption
+    NoAccumBuffer = ...  # type: QGL.FormatOption
+    NoStencilBuffer = ...  # type: QGL.FormatOption
+    NoStereoBuffers = ...  # type: QGL.FormatOption
+    IndirectRendering = ...  # type: QGL.FormatOption
+    NoOverlay = ...  # type: QGL.FormatOption
+    NoSampleBuffers = ...  # type: QGL.FormatOption
+    DeprecatedFunctions = ...  # type: QGL.FormatOption
+    NoDeprecatedFunctions = ...  # type: QGL.FormatOption
+
     class FormatOptions(sip.simplewrapper):
 
         @typing.overload
@@ -90,6 +113,10 @@ class QGLFormat(sip.simplewrapper):
         CoreProfile = ... # type: QGLFormat.OpenGLContextProfile
         CompatibilityProfile = ... # type: QGLFormat.OpenGLContextProfile
 
+    NoProfile = ...  # type: QGLFormat.OpenGLContextProfile
+    CoreProfile = ...  # type: QGLFormat.OpenGLContextProfile
+    CompatibilityProfile = ...  # type: QGLFormat.OpenGLContextProfile
+
     class OpenGLVersionFlag(int):
         OpenGL_Version_None = ... # type: QGLFormat.OpenGLVersionFlag
         OpenGL_Version_1_1 = ... # type: QGLFormat.OpenGLVersionFlag
@@ -112,6 +139,28 @@ class QGLFormat(sip.simplewrapper):
         OpenGL_ES_Common_Version_1_1 = ... # type: QGLFormat.OpenGLVersionFlag
         OpenGL_ES_CommonLite_Version_1_1 = ... # type: QGLFormat.OpenGLVersionFlag
         OpenGL_ES_Version_2_0 = ... # type: QGLFormat.OpenGLVersionFlag
+
+    OpenGL_Version_None = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_1_1 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_1_2 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_1_3 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_1_4 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_1_5 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_2_0 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_2_1 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_3_0 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_3_1 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_3_2 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_3_3 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_4_0 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_4_1 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_4_2 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_Version_4_3 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_ES_Common_Version_1_0 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_ES_CommonLite_Version_1_0 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_ES_Common_Version_1_1 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_ES_CommonLite_Version_1_1 = ...  # type: QGLFormat.OpenGLVersionFlag
+    OpenGL_ES_Version_2_0 = ...  # type: QGLFormat.OpenGLVersionFlag
 
     class OpenGLVersionFlags(sip.simplewrapper):
 
@@ -207,6 +256,13 @@ class QGLContext(sip.wrapper):
         PremultipliedAlphaBindOption = ... # type: QGLContext.BindOption
         LinearFilteringBindOption = ... # type: QGLContext.BindOption
         DefaultBindOption = ... # type: QGLContext.BindOption
+
+    NoBindOption = ...  # type: QGLContext.BindOption
+    InvertedYBindOption = ...  # type: QGLContext.BindOption
+    MipmapBindOption = ...  # type: QGLContext.BindOption
+    PremultipliedAlphaBindOption = ...  # type: QGLContext.BindOption
+    LinearFilteringBindOption = ...  # type: QGLContext.BindOption
+    DefaultBindOption = ...  # type: QGLContext.BindOption
 
     class BindOptions(sip.simplewrapper):
 

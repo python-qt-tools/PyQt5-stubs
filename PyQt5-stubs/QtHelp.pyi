@@ -242,6 +242,13 @@ class QHelpSearchQuery(sip.simplewrapper):
         ALL = ... # type: QHelpSearchQuery.FieldName
         ATLEAST = ... # type: QHelpSearchQuery.FieldName
 
+    DEFAULT = ...  # type: QHelpSearchQuery.FieldName
+    FUZZY = ...  # type: QHelpSearchQuery.FieldName
+    WITHOUT = ...  # type: QHelpSearchQuery.FieldName
+    PHRASE = ...  # type: QHelpSearchQuery.FieldName
+    ALL = ...  # type: QHelpSearchQuery.FieldName
+    ATLEAST = ...  # type: QHelpSearchQuery.FieldName
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload

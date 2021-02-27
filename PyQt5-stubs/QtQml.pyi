@@ -41,6 +41,11 @@ class QJSEngine(QtCore.QObject):
         GarbageCollectionExtension = ... # type: QJSEngine.Extension
         AllExtensions = ... # type: QJSEngine.Extension
 
+    TranslationExtension = ...  # type: QJSEngine.Extension
+    ConsoleExtension = ...  # type: QJSEngine.Extension
+    GarbageCollectionExtension = ...  # type: QJSEngine.Extension
+    AllExtensions = ...  # type: QJSEngine.Extension
+
     class Extensions(sip.simplewrapper):
 
         @typing.overload
@@ -94,9 +99,20 @@ class QJSValue(sip.simplewrapper):
         TypeError = ... # type: QJSValue.ErrorType
         URIError = ... # type: QJSValue.ErrorType
 
+    GenericError = ...  # type: QJSValue.ErrorType
+    EvalError = ...  # type: QJSValue.ErrorType
+    RangeError = ...  # type: QJSValue.ErrorType
+    ReferenceError = ...  # type: QJSValue.ErrorType
+    SyntaxError = ...  # type: QJSValue.ErrorType
+    TypeError = ...  # type: QJSValue.ErrorType
+    URIError = ...  # type: QJSValue.ErrorType
+
     class SpecialValue(int):
         NullValue = ... # type: QJSValue.SpecialValue
         UndefinedValue = ... # type: QJSValue.SpecialValue
+
+    NullValue = ...  # type: QJSValue.SpecialValue
+    UndefinedValue = ...  # type: QJSValue.SpecialValue
 
     @typing.overload
     def __init__(self, value: 'QJSValue.SpecialValue' = ...) -> None: ...
@@ -163,6 +179,11 @@ class QQmlAbstractUrlInterceptor(sip.simplewrapper):
         QmldirFile = ... # type: QQmlAbstractUrlInterceptor.DataType
         UrlString = ... # type: QQmlAbstractUrlInterceptor.DataType
 
+    QmlFile = ...  # type: QQmlAbstractUrlInterceptor.DataType
+    JavaScriptFile = ...  # type: QQmlAbstractUrlInterceptor.DataType
+    QmldirFile = ...  # type: QQmlAbstractUrlInterceptor.DataType
+    UrlString = ...  # type: QQmlAbstractUrlInterceptor.DataType
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -176,6 +197,9 @@ class QQmlEngine(QJSEngine):
     class ObjectOwnership(int):
         CppOwnership = ... # type: QQmlEngine.ObjectOwnership
         JavaScriptOwnership = ... # type: QQmlEngine.ObjectOwnership
+
+    CppOwnership = ...  # type: QQmlEngine.ObjectOwnership
+    JavaScriptOwnership = ...  # type: QQmlEngine.ObjectOwnership
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -248,9 +272,17 @@ class QQmlComponent(QtCore.QObject):
         Loading = ... # type: QQmlComponent.Status
         Error = ... # type: QQmlComponent.Status
 
+    Null = ...  # type: QQmlComponent.Status
+    Ready = ...  # type: QQmlComponent.Status
+    Loading = ...  # type: QQmlComponent.Status
+    Error = ...  # type: QQmlComponent.Status
+
     class CompilationMode(int):
         PreferSynchronous = ... # type: QQmlComponent.CompilationMode
         Asynchronous = ... # type: QQmlComponent.CompilationMode
+
+    PreferSynchronous = ...  # type: QQmlComponent.CompilationMode
+    Asynchronous = ...  # type: QQmlComponent.CompilationMode
 
     @typing.overload
     def __init__(self, a0: QQmlEngine, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -331,11 +363,18 @@ class QQmlImageProviderBase(sip.wrapper):
     class Flag(int):
         ForceAsynchronousImageLoading = ... # type: QQmlImageProviderBase.Flag
 
+    ForceAsynchronousImageLoading = ...  # type: QQmlImageProviderBase.Flag
+
     class ImageType(int):
         Image = ... # type: QQmlImageProviderBase.ImageType
         Pixmap = ... # type: QQmlImageProviderBase.ImageType
         Texture = ... # type: QQmlImageProviderBase.ImageType
         ImageResponse = ... # type: QQmlImageProviderBase.ImageType
+
+    Image = ...  # type: QQmlImageProviderBase.ImageType
+    Pixmap = ...  # type: QQmlImageProviderBase.ImageType
+    Texture = ...  # type: QQmlImageProviderBase.ImageType
+    ImageResponse = ...  # type: QQmlImageProviderBase.ImageType
 
     class Flags(sip.simplewrapper):
 
@@ -443,10 +482,19 @@ class QQmlIncubator(sip.simplewrapper):
         Loading = ... # type: QQmlIncubator.Status
         Error = ... # type: QQmlIncubator.Status
 
+    Null = ...  # type: QQmlIncubator.Status
+    Ready = ...  # type: QQmlIncubator.Status
+    Loading = ...  # type: QQmlIncubator.Status
+    Error = ...  # type: QQmlIncubator.Status
+
     class IncubationMode(int):
         Asynchronous = ... # type: QQmlIncubator.IncubationMode
         AsynchronousIfNested = ... # type: QQmlIncubator.IncubationMode
         Synchronous = ... # type: QQmlIncubator.IncubationMode
+
+    Asynchronous = ...  # type: QQmlIncubator.IncubationMode
+    AsynchronousIfNested = ...  # type: QQmlIncubator.IncubationMode
+    Synchronous = ...  # type: QQmlIncubator.IncubationMode
 
     def __init__(self, mode: 'QQmlIncubator.IncubationMode' = ...) -> None: ...
 
@@ -531,11 +579,20 @@ class QQmlProperty(sip.simplewrapper):
         Property = ... # type: QQmlProperty.Type
         SignalProperty = ... # type: QQmlProperty.Type
 
+    Invalid = ...  # type: QQmlProperty.Type
+    Property = ...  # type: QQmlProperty.Type
+    SignalProperty = ...  # type: QQmlProperty.Type
+
     class PropertyTypeCategory(int):
         InvalidCategory = ... # type: QQmlProperty.PropertyTypeCategory
         List = ... # type: QQmlProperty.PropertyTypeCategory
         Object = ... # type: QQmlProperty.PropertyTypeCategory
         Normal = ... # type: QQmlProperty.PropertyTypeCategory
+
+    InvalidCategory = ...  # type: QQmlProperty.PropertyTypeCategory
+    List = ...  # type: QQmlProperty.PropertyTypeCategory
+    Object = ...  # type: QQmlProperty.PropertyTypeCategory
+    Normal = ...  # type: QQmlProperty.PropertyTypeCategory
 
     @typing.overload
     def __init__(self) -> None: ...

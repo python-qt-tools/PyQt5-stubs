@@ -52,11 +52,24 @@ class QAbstractPrintDialog(QtWidgets.QDialog):
         PrintShowPageSize = ... # type: QAbstractPrintDialog.PrintDialogOption
         PrintCurrentPage = ... # type: QAbstractPrintDialog.PrintDialogOption
 
+    None_ = ...  # type: QAbstractPrintDialog.PrintDialogOption
+    PrintToFile = ...  # type: QAbstractPrintDialog.PrintDialogOption
+    PrintSelection = ...  # type: QAbstractPrintDialog.PrintDialogOption
+    PrintPageRange = ...  # type: QAbstractPrintDialog.PrintDialogOption
+    PrintCollateCopies = ...  # type: QAbstractPrintDialog.PrintDialogOption
+    PrintShowPageSize = ...  # type: QAbstractPrintDialog.PrintDialogOption
+    PrintCurrentPage = ...  # type: QAbstractPrintDialog.PrintDialogOption
+
     class PrintRange(int):
         AllPages = ... # type: QAbstractPrintDialog.PrintRange
         Selection = ... # type: QAbstractPrintDialog.PrintRange
         PageRange = ... # type: QAbstractPrintDialog.PrintRange
         CurrentPage = ... # type: QAbstractPrintDialog.PrintRange
+
+    AllPages = ...  # type: QAbstractPrintDialog.PrintRange
+    Selection = ...  # type: QAbstractPrintDialog.PrintRange
+    PageRange = ...  # type: QAbstractPrintDialog.PrintRange
+    CurrentPage = ...  # type: QAbstractPrintDialog.PrintRange
 
     class PrintDialogOptions(sip.simplewrapper):
 
@@ -171,6 +184,39 @@ class QPrintEngine(sip.simplewrapper):
         PPK_QPageLayout = ... # type: QPrintEngine.PrintEnginePropertyKey
         PPK_CustomBase = ... # type: QPrintEngine.PrintEnginePropertyKey
 
+    PPK_CollateCopies = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_ColorMode = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_Creator = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_DocumentName = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_FullPage = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_NumberOfCopies = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_Orientation = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_OutputFileName = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PageOrder = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PageRect = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PageSize = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PaperRect = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PaperSource = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PrinterName = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PrinterProgram = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_Resolution = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_SelectionOption = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_SupportedResolutions = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_WindowsPageSize = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_FontEmbedding = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_Duplex = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PaperSources = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_CustomPaperSize = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PageMargins = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PaperSize = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_CopyCount = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_SupportsMultipleCopies = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_PaperName = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_QPageSize = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_QPageMargins = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_QPageLayout = ...  # type: QPrintEngine.PrintEnginePropertyKey
+    PPK_CustomBase = ...  # type: QPrintEngine.PrintEnginePropertyKey
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -192,6 +238,11 @@ class QPrinter(QtGui.QPagedPaintDevice):
         DuplexLongSide = ... # type: QPrinter.DuplexMode
         DuplexShortSide = ... # type: QPrinter.DuplexMode
 
+    DuplexNone = ...  # type: QPrinter.DuplexMode
+    DuplexAuto = ...  # type: QPrinter.DuplexMode
+    DuplexLongSide = ...  # type: QPrinter.DuplexMode
+    DuplexShortSide = ...  # type: QPrinter.DuplexMode
+
     class Unit(int):
         Millimeter = ... # type: QPrinter.Unit
         Point = ... # type: QPrinter.Unit
@@ -201,21 +252,42 @@ class QPrinter(QtGui.QPagedPaintDevice):
         Cicero = ... # type: QPrinter.Unit
         DevicePixel = ... # type: QPrinter.Unit
 
+    Millimeter = ...  # type: QPrinter.Unit
+    Point = ...  # type: QPrinter.Unit
+    Inch = ...  # type: QPrinter.Unit
+    Pica = ...  # type: QPrinter.Unit
+    Didot = ...  # type: QPrinter.Unit
+    Cicero = ...  # type: QPrinter.Unit
+    DevicePixel = ...  # type: QPrinter.Unit
+
     class PrintRange(int):
         AllPages = ... # type: QPrinter.PrintRange
         Selection = ... # type: QPrinter.PrintRange
         PageRange = ... # type: QPrinter.PrintRange
         CurrentPage = ... # type: QPrinter.PrintRange
 
+    AllPages = ...  # type: QPrinter.PrintRange
+    Selection = ...  # type: QPrinter.PrintRange
+    PageRange = ...  # type: QPrinter.PrintRange
+    CurrentPage = ...  # type: QPrinter.PrintRange
+
     class OutputFormat(int):
         NativeFormat = ... # type: QPrinter.OutputFormat
         PdfFormat = ... # type: QPrinter.OutputFormat
+
+    NativeFormat = ...  # type: QPrinter.OutputFormat
+    PdfFormat = ...  # type: QPrinter.OutputFormat
 
     class PrinterState(int):
         Idle = ... # type: QPrinter.PrinterState
         Active = ... # type: QPrinter.PrinterState
         Aborted = ... # type: QPrinter.PrinterState
         Error = ... # type: QPrinter.PrinterState
+
+    Idle = ...  # type: QPrinter.PrinterState
+    Active = ...  # type: QPrinter.PrinterState
+    Aborted = ...  # type: QPrinter.PrinterState
+    Error = ...  # type: QPrinter.PrinterState
 
     class PaperSource(int):
         OnlyOne = ... # type: QPrinter.PaperSource
@@ -236,22 +308,53 @@ class QPrinter(QtGui.QPagedPaintDevice):
         CustomSource = ... # type: QPrinter.PaperSource
         LastPaperSource = ... # type: QPrinter.PaperSource
 
+    OnlyOne = ...  # type: QPrinter.PaperSource
+    Lower = ...  # type: QPrinter.PaperSource
+    Middle = ...  # type: QPrinter.PaperSource
+    Manual = ...  # type: QPrinter.PaperSource
+    Envelope = ...  # type: QPrinter.PaperSource
+    EnvelopeManual = ...  # type: QPrinter.PaperSource
+    Auto = ...  # type: QPrinter.PaperSource
+    Tractor = ...  # type: QPrinter.PaperSource
+    SmallFormat = ...  # type: QPrinter.PaperSource
+    LargeFormat = ...  # type: QPrinter.PaperSource
+    LargeCapacity = ...  # type: QPrinter.PaperSource
+    Cassette = ...  # type: QPrinter.PaperSource
+    FormSource = ...  # type: QPrinter.PaperSource
+    MaxPageSource = ...  # type: QPrinter.PaperSource
+    Upper = ...  # type: QPrinter.PaperSource
+    CustomSource = ...  # type: QPrinter.PaperSource
+    LastPaperSource = ...  # type: QPrinter.PaperSource
+
     class ColorMode(int):
         GrayScale = ... # type: QPrinter.ColorMode
         Color = ... # type: QPrinter.ColorMode
+
+    GrayScale = ...  # type: QPrinter.ColorMode
+    Color = ...  # type: QPrinter.ColorMode
 
     class PageOrder(int):
         FirstPageFirst = ... # type: QPrinter.PageOrder
         LastPageFirst = ... # type: QPrinter.PageOrder
 
+    FirstPageFirst = ...  # type: QPrinter.PageOrder
+    LastPageFirst = ...  # type: QPrinter.PageOrder
+
     class Orientation(int):
         Portrait = ... # type: QPrinter.Orientation
         Landscape = ... # type: QPrinter.Orientation
+
+    Portrait = ...  # type: QPrinter.Orientation
+    Landscape = ...  # type: QPrinter.Orientation
 
     class PrinterMode(int):
         ScreenResolution = ... # type: QPrinter.PrinterMode
         PrinterResolution = ... # type: QPrinter.PrinterMode
         HighResolution = ... # type: QPrinter.PrinterMode
+
+    ScreenResolution = ...  # type: QPrinter.PrinterMode
+    PrinterResolution = ...  # type: QPrinter.PrinterMode
+    HighResolution = ...  # type: QPrinter.PrinterMode
 
     @typing.overload
     def __init__(self, mode: 'QPrinter.PrinterMode' = ...) -> None: ...
@@ -401,10 +504,18 @@ class QPrintPreviewWidget(QtWidgets.QWidget):
         FitToWidth = ... # type: QPrintPreviewWidget.ZoomMode
         FitInView = ... # type: QPrintPreviewWidget.ZoomMode
 
+    CustomZoom = ...  # type: QPrintPreviewWidget.ZoomMode
+    FitToWidth = ...  # type: QPrintPreviewWidget.ZoomMode
+    FitInView = ...  # type: QPrintPreviewWidget.ZoomMode
+
     class ViewMode(int):
         SinglePageView = ... # type: QPrintPreviewWidget.ViewMode
         FacingPagesView = ... # type: QPrintPreviewWidget.ViewMode
         AllPagesView = ... # type: QPrintPreviewWidget.ViewMode
+
+    SinglePageView = ...  # type: QPrintPreviewWidget.ViewMode
+    FacingPagesView = ...  # type: QPrintPreviewWidget.ViewMode
+    AllPagesView = ...  # type: QPrintPreviewWidget.ViewMode
 
     @typing.overload
     def __init__(self, printer: QPrinter, parent: typing.Optional[QtWidgets.QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...

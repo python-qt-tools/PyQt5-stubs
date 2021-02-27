@@ -93,6 +93,13 @@ class QNdefRecord(sip.simplewrapper):
         ExternalRtd = ... # type: QNdefRecord.TypeNameFormat
         Unknown = ... # type: QNdefRecord.TypeNameFormat
 
+    Empty = ...  # type: QNdefRecord.TypeNameFormat
+    NfcRtd = ...  # type: QNdefRecord.TypeNameFormat
+    Mime = ...  # type: QNdefRecord.TypeNameFormat
+    Uri = ...  # type: QNdefRecord.TypeNameFormat
+    ExternalRtd = ...  # type: QNdefRecord.TypeNameFormat
+    Unknown = ...  # type: QNdefRecord.TypeNameFormat
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -130,6 +137,11 @@ class QNdefNfcSmartPosterRecord(QNdefRecord):
         DoAction = ... # type: QNdefNfcSmartPosterRecord.Action
         SaveAction = ... # type: QNdefNfcSmartPosterRecord.Action
         EditAction = ... # type: QNdefNfcSmartPosterRecord.Action
+
+    UnspecifiedAction = ...  # type: QNdefNfcSmartPosterRecord.Action
+    DoAction = ...  # type: QNdefNfcSmartPosterRecord.Action
+    SaveAction = ...  # type: QNdefNfcSmartPosterRecord.Action
+    EditAction = ...  # type: QNdefNfcSmartPosterRecord.Action
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -190,6 +202,9 @@ class QNdefNfcTextRecord(QNdefRecord):
         Utf8 = ... # type: QNdefNfcTextRecord.Encoding
         Utf16 = ... # type: QNdefNfcTextRecord.Encoding
 
+    Utf8 = ...  # type: QNdefNfcTextRecord.Encoding
+    Utf16 = ...  # type: QNdefNfcTextRecord.Encoding
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -226,11 +241,21 @@ class QNearFieldManager(QtCore.QObject):
         Online = ... # type: QNearFieldManager.AdapterState
         TurningOff = ... # type: QNearFieldManager.AdapterState
 
+    Offline = ...  # type: QNearFieldManager.AdapterState
+    TurningOn = ...  # type: QNearFieldManager.AdapterState
+    Online = ...  # type: QNearFieldManager.AdapterState
+    TurningOff = ...  # type: QNearFieldManager.AdapterState
+
     class TargetAccessMode(int):
         NoTargetAccess = ... # type: QNearFieldManager.TargetAccessMode
         NdefReadTargetAccess = ... # type: QNearFieldManager.TargetAccessMode
         NdefWriteTargetAccess = ... # type: QNearFieldManager.TargetAccessMode
         TagTypeSpecificTargetAccess = ... # type: QNearFieldManager.TargetAccessMode
+
+    NoTargetAccess = ...  # type: QNearFieldManager.TargetAccessMode
+    NdefReadTargetAccess = ...  # type: QNearFieldManager.TargetAccessMode
+    NdefWriteTargetAccess = ...  # type: QNearFieldManager.TargetAccessMode
+    TagTypeSpecificTargetAccess = ...  # type: QNearFieldManager.TargetAccessMode
 
     class TargetAccessModes(sip.simplewrapper):
 
@@ -274,6 +299,10 @@ class QNearFieldShareManager(QtCore.QObject):
         NdefShare = ... # type: QNearFieldShareManager.ShareMode
         FileShare = ... # type: QNearFieldShareManager.ShareMode
 
+    NoShare = ...  # type: QNearFieldShareManager.ShareMode
+    NdefShare = ...  # type: QNearFieldShareManager.ShareMode
+    FileShare = ...  # type: QNearFieldShareManager.ShareMode
+
     class ShareError(int):
         NoError = ... # type: QNearFieldShareManager.ShareError
         UnknownError = ... # type: QNearFieldShareManager.ShareError
@@ -284,6 +313,16 @@ class QNearFieldShareManager(QtCore.QObject):
         UnsupportedShareModeError = ... # type: QNearFieldShareManager.ShareError
         ShareAlreadyInProgressError = ... # type: QNearFieldShareManager.ShareError
         SharePermissionDeniedError = ... # type: QNearFieldShareManager.ShareError
+
+    NoError = ...  # type: QNearFieldShareManager.ShareError
+    UnknownError = ...  # type: QNearFieldShareManager.ShareError
+    InvalidShareContentError = ...  # type: QNearFieldShareManager.ShareError
+    ShareCanceledError = ...  # type: QNearFieldShareManager.ShareError
+    ShareInterruptedError = ...  # type: QNearFieldShareManager.ShareError
+    ShareRejectedError = ...  # type: QNearFieldShareManager.ShareError
+    UnsupportedShareModeError = ...  # type: QNearFieldShareManager.ShareError
+    ShareAlreadyInProgressError = ...  # type: QNearFieldShareManager.ShareError
+    SharePermissionDeniedError = ...  # type: QNearFieldShareManager.ShareError
 
     class ShareModes(sip.simplewrapper):
 
@@ -340,11 +379,27 @@ class QNearFieldTarget(QtCore.QObject):
         NdefWriteError = ... # type: QNearFieldTarget.Error
         CommandError = ... # type: QNearFieldTarget.Error
 
+    NoError = ...  # type: QNearFieldTarget.Error
+    UnknownError = ...  # type: QNearFieldTarget.Error
+    UnsupportedError = ...  # type: QNearFieldTarget.Error
+    TargetOutOfRangeError = ...  # type: QNearFieldTarget.Error
+    NoResponseError = ...  # type: QNearFieldTarget.Error
+    ChecksumMismatchError = ...  # type: QNearFieldTarget.Error
+    InvalidParametersError = ...  # type: QNearFieldTarget.Error
+    NdefReadError = ...  # type: QNearFieldTarget.Error
+    NdefWriteError = ...  # type: QNearFieldTarget.Error
+    CommandError = ...  # type: QNearFieldTarget.Error
+
     class AccessMethod(int):
         UnknownAccess = ... # type: QNearFieldTarget.AccessMethod
         NdefAccess = ... # type: QNearFieldTarget.AccessMethod
         TagTypeSpecificAccess = ... # type: QNearFieldTarget.AccessMethod
         LlcpAccess = ... # type: QNearFieldTarget.AccessMethod
+
+    UnknownAccess = ...  # type: QNearFieldTarget.AccessMethod
+    NdefAccess = ...  # type: QNearFieldTarget.AccessMethod
+    TagTypeSpecificAccess = ...  # type: QNearFieldTarget.AccessMethod
+    LlcpAccess = ...  # type: QNearFieldTarget.AccessMethod
 
     class Type(int):
         ProprietaryTag = ... # type: QNearFieldTarget.Type
@@ -353,6 +408,13 @@ class QNearFieldTarget(QtCore.QObject):
         NfcTagType3 = ... # type: QNearFieldTarget.Type
         NfcTagType4 = ... # type: QNearFieldTarget.Type
         MifareTag = ... # type: QNearFieldTarget.Type
+
+    ProprietaryTag = ...  # type: QNearFieldTarget.Type
+    NfcTagType1 = ...  # type: QNearFieldTarget.Type
+    NfcTagType2 = ...  # type: QNearFieldTarget.Type
+    NfcTagType3 = ...  # type: QNearFieldTarget.Type
+    NfcTagType4 = ...  # type: QNearFieldTarget.Type
+    MifareTag = ...  # type: QNearFieldTarget.Type
 
     class AccessMethods(sip.simplewrapper):
 
@@ -416,6 +478,13 @@ class QQmlNdefRecord(QtCore.QObject):
         Uri = ... # type: QQmlNdefRecord.TypeNameFormat
         ExternalRtd = ... # type: QQmlNdefRecord.TypeNameFormat
         Unknown = ... # type: QQmlNdefRecord.TypeNameFormat
+
+    Empty = ...  # type: QQmlNdefRecord.TypeNameFormat
+    NfcRtd = ...  # type: QQmlNdefRecord.TypeNameFormat
+    Mime = ...  # type: QQmlNdefRecord.TypeNameFormat
+    Uri = ...  # type: QQmlNdefRecord.TypeNameFormat
+    ExternalRtd = ...  # type: QQmlNdefRecord.TypeNameFormat
+    Unknown = ...  # type: QQmlNdefRecord.TypeNameFormat
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...

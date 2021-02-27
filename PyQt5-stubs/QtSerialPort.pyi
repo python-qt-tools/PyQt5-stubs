@@ -50,12 +50,33 @@ class QSerialPort(QtCore.QIODevice):
         NotOpenError = ... # type: QSerialPort.SerialPortError
         UnknownError = ... # type: QSerialPort.SerialPortError
 
+    NoError = ...  # type: QSerialPort.SerialPortError
+    DeviceNotFoundError = ...  # type: QSerialPort.SerialPortError
+    PermissionError = ...  # type: QSerialPort.SerialPortError
+    OpenError = ...  # type: QSerialPort.SerialPortError
+    ParityError = ...  # type: QSerialPort.SerialPortError
+    FramingError = ...  # type: QSerialPort.SerialPortError
+    BreakConditionError = ...  # type: QSerialPort.SerialPortError
+    WriteError = ...  # type: QSerialPort.SerialPortError
+    ReadError = ...  # type: QSerialPort.SerialPortError
+    ResourceError = ...  # type: QSerialPort.SerialPortError
+    UnsupportedOperationError = ...  # type: QSerialPort.SerialPortError
+    TimeoutError = ...  # type: QSerialPort.SerialPortError
+    NotOpenError = ...  # type: QSerialPort.SerialPortError
+    UnknownError = ...  # type: QSerialPort.SerialPortError
+
     class DataErrorPolicy(int):
         SkipPolicy = ... # type: QSerialPort.DataErrorPolicy
         PassZeroPolicy = ... # type: QSerialPort.DataErrorPolicy
         IgnorePolicy = ... # type: QSerialPort.DataErrorPolicy
         StopReceivingPolicy = ... # type: QSerialPort.DataErrorPolicy
         UnknownPolicy = ... # type: QSerialPort.DataErrorPolicy
+
+    SkipPolicy = ...  # type: QSerialPort.DataErrorPolicy
+    PassZeroPolicy = ...  # type: QSerialPort.DataErrorPolicy
+    IgnorePolicy = ...  # type: QSerialPort.DataErrorPolicy
+    StopReceivingPolicy = ...  # type: QSerialPort.DataErrorPolicy
+    UnknownPolicy = ...  # type: QSerialPort.DataErrorPolicy
 
     class PinoutSignal(int):
         NoSignal = ... # type: QSerialPort.PinoutSignal
@@ -70,17 +91,39 @@ class QSerialPort(QtCore.QIODevice):
         SecondaryTransmittedDataSignal = ... # type: QSerialPort.PinoutSignal
         SecondaryReceivedDataSignal = ... # type: QSerialPort.PinoutSignal
 
+    NoSignal = ...  # type: QSerialPort.PinoutSignal
+    TransmittedDataSignal = ...  # type: QSerialPort.PinoutSignal
+    ReceivedDataSignal = ...  # type: QSerialPort.PinoutSignal
+    DataTerminalReadySignal = ...  # type: QSerialPort.PinoutSignal
+    DataCarrierDetectSignal = ...  # type: QSerialPort.PinoutSignal
+    DataSetReadySignal = ...  # type: QSerialPort.PinoutSignal
+    RingIndicatorSignal = ...  # type: QSerialPort.PinoutSignal
+    RequestToSendSignal = ...  # type: QSerialPort.PinoutSignal
+    ClearToSendSignal = ...  # type: QSerialPort.PinoutSignal
+    SecondaryTransmittedDataSignal = ...  # type: QSerialPort.PinoutSignal
+    SecondaryReceivedDataSignal = ...  # type: QSerialPort.PinoutSignal
+
     class FlowControl(int):
         NoFlowControl = ... # type: QSerialPort.FlowControl
         HardwareControl = ... # type: QSerialPort.FlowControl
         SoftwareControl = ... # type: QSerialPort.FlowControl
         UnknownFlowControl = ... # type: QSerialPort.FlowControl
 
+    NoFlowControl = ...  # type: QSerialPort.FlowControl
+    HardwareControl = ...  # type: QSerialPort.FlowControl
+    SoftwareControl = ...  # type: QSerialPort.FlowControl
+    UnknownFlowControl = ...  # type: QSerialPort.FlowControl
+
     class StopBits(int):
         OneStop = ... # type: QSerialPort.StopBits
         OneAndHalfStop = ... # type: QSerialPort.StopBits
         TwoStop = ... # type: QSerialPort.StopBits
         UnknownStopBits = ... # type: QSerialPort.StopBits
+
+    OneStop = ...  # type: QSerialPort.StopBits
+    OneAndHalfStop = ...  # type: QSerialPort.StopBits
+    TwoStop = ...  # type: QSerialPort.StopBits
+    UnknownStopBits = ...  # type: QSerialPort.StopBits
 
     class Parity(int):
         NoParity = ... # type: QSerialPort.Parity
@@ -90,12 +133,25 @@ class QSerialPort(QtCore.QIODevice):
         MarkParity = ... # type: QSerialPort.Parity
         UnknownParity = ... # type: QSerialPort.Parity
 
+    NoParity = ...  # type: QSerialPort.Parity
+    EvenParity = ...  # type: QSerialPort.Parity
+    OddParity = ...  # type: QSerialPort.Parity
+    SpaceParity = ...  # type: QSerialPort.Parity
+    MarkParity = ...  # type: QSerialPort.Parity
+    UnknownParity = ...  # type: QSerialPort.Parity
+
     class DataBits(int):
         Data5 = ... # type: QSerialPort.DataBits
         Data6 = ... # type: QSerialPort.DataBits
         Data7 = ... # type: QSerialPort.DataBits
         Data8 = ... # type: QSerialPort.DataBits
         UnknownDataBits = ... # type: QSerialPort.DataBits
+
+    Data5 = ...  # type: QSerialPort.DataBits
+    Data6 = ...  # type: QSerialPort.DataBits
+    Data7 = ...  # type: QSerialPort.DataBits
+    Data8 = ...  # type: QSerialPort.DataBits
+    UnknownDataBits = ...  # type: QSerialPort.DataBits
 
     class BaudRate(int):
         Baud1200 = ... # type: QSerialPort.BaudRate
@@ -108,10 +164,24 @@ class QSerialPort(QtCore.QIODevice):
         Baud115200 = ... # type: QSerialPort.BaudRate
         UnknownBaud = ... # type: QSerialPort.BaudRate
 
+    Baud1200 = ...  # type: QSerialPort.BaudRate
+    Baud2400 = ...  # type: QSerialPort.BaudRate
+    Baud4800 = ...  # type: QSerialPort.BaudRate
+    Baud9600 = ...  # type: QSerialPort.BaudRate
+    Baud19200 = ...  # type: QSerialPort.BaudRate
+    Baud38400 = ...  # type: QSerialPort.BaudRate
+    Baud57600 = ...  # type: QSerialPort.BaudRate
+    Baud115200 = ...  # type: QSerialPort.BaudRate
+    UnknownBaud = ...  # type: QSerialPort.BaudRate
+
     class Direction(int):
         Input = ... # type: QSerialPort.Direction
         Output = ... # type: QSerialPort.Direction
         AllDirections = ... # type: QSerialPort.Direction
+
+    Input = ...  # type: QSerialPort.Direction
+    Output = ...  # type: QSerialPort.Direction
+    AllDirections = ...  # type: QSerialPort.Direction
 
     class Directions(sip.simplewrapper):
 

@@ -119,9 +119,18 @@ class Qt(sip.simplewrapper):
         RoundPreferFloor = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
         PassThrough = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
 
+    Round = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
+    Ceil = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
+    Floor = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
+    RoundPreferFloor = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
+    PassThrough = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
+
     class ChecksumType(int):
         ChecksumIso3309 = ... # type: Qt.ChecksumType
         ChecksumItuV41 = ... # type: Qt.ChecksumType
+
+    ChecksumIso3309 = ...  # type: Qt.ChecksumType
+    ChecksumItuV41 = ...  # type: Qt.ChecksumType
 
     class EnterKeyType(int):
         EnterKeyDefault = ... # type: Qt.EnterKeyType
@@ -133,9 +142,21 @@ class Qt(sip.simplewrapper):
         EnterKeyNext = ... # type: Qt.EnterKeyType
         EnterKeyPrevious = ... # type: Qt.EnterKeyType
 
+    EnterKeyDefault = ...  # type: Qt.EnterKeyType
+    EnterKeyReturn = ...  # type: Qt.EnterKeyType
+    EnterKeyDone = ...  # type: Qt.EnterKeyType
+    EnterKeyGo = ...  # type: Qt.EnterKeyType
+    EnterKeySend = ...  # type: Qt.EnterKeyType
+    EnterKeySearch = ...  # type: Qt.EnterKeyType
+    EnterKeyNext = ...  # type: Qt.EnterKeyType
+    EnterKeyPrevious = ...  # type: Qt.EnterKeyType
+
     class ItemSelectionOperation(int):
         ReplaceSelection = ... # type: Qt.ItemSelectionOperation
         AddToSelection = ... # type: Qt.ItemSelectionOperation
+
+    ReplaceSelection = ...  # type: Qt.ItemSelectionOperation
+    AddToSelection = ...  # type: Qt.ItemSelectionOperation
 
     class TabFocusBehavior(int):
         NoTabFocus = ... # type: Qt.TabFocusBehavior
@@ -143,8 +164,15 @@ class Qt(sip.simplewrapper):
         TabFocusListControls = ... # type: Qt.TabFocusBehavior
         TabFocusAllControls = ... # type: Qt.TabFocusBehavior
 
+    NoTabFocus = ...  # type: Qt.TabFocusBehavior
+    TabFocusTextControls = ...  # type: Qt.TabFocusBehavior
+    TabFocusListControls = ...  # type: Qt.TabFocusBehavior
+    TabFocusAllControls = ...  # type: Qt.TabFocusBehavior
+
     class MouseEventFlag(int):
         MouseEventCreatedDoubleClick = ... # type: Qt.MouseEventFlag
+
+    MouseEventCreatedDoubleClick = ...  # type: Qt.MouseEventFlag
 
     class MouseEventSource(int):
         MouseEventNotSynthesized = ... # type: Qt.MouseEventSource
@@ -152,12 +180,23 @@ class Qt(sip.simplewrapper):
         MouseEventSynthesizedByQt = ... # type: Qt.MouseEventSource
         MouseEventSynthesizedByApplication = ... # type: Qt.MouseEventSource
 
+    MouseEventNotSynthesized = ...  # type: Qt.MouseEventSource
+    MouseEventSynthesizedBySystem = ...  # type: Qt.MouseEventSource
+    MouseEventSynthesizedByQt = ...  # type: Qt.MouseEventSource
+    MouseEventSynthesizedByApplication = ...  # type: Qt.MouseEventSource
+
     class ScrollPhase(int):
         ScrollBegin = ... # type: Qt.ScrollPhase
         ScrollUpdate = ... # type: Qt.ScrollPhase
         ScrollEnd = ... # type: Qt.ScrollPhase
         NoScrollPhase = ... # type: Qt.ScrollPhase
         ScrollMomentum = ... # type: Qt.ScrollPhase
+
+    ScrollBegin = ...  # type: Qt.ScrollPhase
+    ScrollUpdate = ...  # type: Qt.ScrollPhase
+    ScrollEnd = ...  # type: Qt.ScrollPhase
+    NoScrollPhase = ...  # type: Qt.ScrollPhase
+    ScrollMomentum = ...  # type: Qt.ScrollPhase
 
     class NativeGestureType(int):
         BeginNativeGesture = ... # type: Qt.NativeGestureType
@@ -168,11 +207,24 @@ class Qt(sip.simplewrapper):
         RotateNativeGesture = ... # type: Qt.NativeGestureType
         SwipeNativeGesture = ... # type: Qt.NativeGestureType
 
+    BeginNativeGesture = ...  # type: Qt.NativeGestureType
+    EndNativeGesture = ...  # type: Qt.NativeGestureType
+    PanNativeGesture = ...  # type: Qt.NativeGestureType
+    ZoomNativeGesture = ...  # type: Qt.NativeGestureType
+    SmartZoomNativeGesture = ...  # type: Qt.NativeGestureType
+    RotateNativeGesture = ...  # type: Qt.NativeGestureType
+    SwipeNativeGesture = ...  # type: Qt.NativeGestureType
+
     class Edge(int):
         TopEdge = ... # type: Qt.Edge
         LeftEdge = ... # type: Qt.Edge
         RightEdge = ... # type: Qt.Edge
         BottomEdge = ... # type: Qt.Edge
+
+    TopEdge = ...  # type: Qt.Edge
+    LeftEdge = ...  # type: Qt.Edge
+    RightEdge = ...  # type: Qt.Edge
+    BottomEdge = ...  # type: Qt.Edge
 
     class ApplicationState(int):
         ApplicationSuspended = ... # type: Qt.ApplicationState
@@ -180,9 +232,17 @@ class Qt(sip.simplewrapper):
         ApplicationInactive = ... # type: Qt.ApplicationState
         ApplicationActive = ... # type: Qt.ApplicationState
 
+    ApplicationSuspended = ...  # type: Qt.ApplicationState
+    ApplicationHidden = ...  # type: Qt.ApplicationState
+    ApplicationInactive = ...  # type: Qt.ApplicationState
+    ApplicationActive = ...  # type: Qt.ApplicationState
+
     class HitTestAccuracy(int):
         ExactHit = ... # type: Qt.HitTestAccuracy
         FuzzyHit = ... # type: Qt.HitTestAccuracy
+
+    ExactHit = ...  # type: Qt.HitTestAccuracy
+    FuzzyHit = ...  # type: Qt.HitTestAccuracy
 
     class WhiteSpaceMode(int):
         WhiteSpaceNormal = ... # type: Qt.WhiteSpaceMode
@@ -190,9 +250,17 @@ class Qt(sip.simplewrapper):
         WhiteSpaceNoWrap = ... # type: Qt.WhiteSpaceMode
         WhiteSpaceModeUndefined = ... # type: Qt.WhiteSpaceMode
 
+    WhiteSpaceNormal = ...  # type: Qt.WhiteSpaceMode
+    WhiteSpacePre = ...  # type: Qt.WhiteSpaceMode
+    WhiteSpaceNoWrap = ...  # type: Qt.WhiteSpaceMode
+    WhiteSpaceModeUndefined = ...  # type: Qt.WhiteSpaceMode
+
     class FindChildOption(int):
         FindDirectChildrenOnly = ... # type: Qt.FindChildOption
         FindChildrenRecursively = ... # type: Qt.FindChildOption
+
+    FindDirectChildrenOnly = ...  # type: Qt.FindChildOption
+    FindChildrenRecursively = ...  # type: Qt.FindChildOption
 
     class ScreenOrientation(int):
         PrimaryOrientation = ... # type: Qt.ScreenOrientation
@@ -201,9 +269,18 @@ class Qt(sip.simplewrapper):
         InvertedPortraitOrientation = ... # type: Qt.ScreenOrientation
         InvertedLandscapeOrientation = ... # type: Qt.ScreenOrientation
 
+    PrimaryOrientation = ...  # type: Qt.ScreenOrientation
+    PortraitOrientation = ...  # type: Qt.ScreenOrientation
+    LandscapeOrientation = ...  # type: Qt.ScreenOrientation
+    InvertedPortraitOrientation = ...  # type: Qt.ScreenOrientation
+    InvertedLandscapeOrientation = ...  # type: Qt.ScreenOrientation
+
     class CursorMoveStyle(int):
         LogicalMoveStyle = ... # type: Qt.CursorMoveStyle
         VisualMoveStyle = ... # type: Qt.CursorMoveStyle
+
+    LogicalMoveStyle = ...  # type: Qt.CursorMoveStyle
+    VisualMoveStyle = ...  # type: Qt.CursorMoveStyle
 
     class NavigationMode(int):
         NavigationModeNone = ... # type: Qt.NavigationMode
@@ -212,10 +289,20 @@ class Qt(sip.simplewrapper):
         NavigationModeCursorAuto = ... # type: Qt.NavigationMode
         NavigationModeCursorForceVisible = ... # type: Qt.NavigationMode
 
+    NavigationModeNone = ...  # type: Qt.NavigationMode
+    NavigationModeKeypadTabOrder = ...  # type: Qt.NavigationMode
+    NavigationModeKeypadDirectional = ...  # type: Qt.NavigationMode
+    NavigationModeCursorAuto = ...  # type: Qt.NavigationMode
+    NavigationModeCursorForceVisible = ...  # type: Qt.NavigationMode
+
     class GestureFlag(int):
         DontStartGestureOnChildren = ... # type: Qt.GestureFlag
         ReceivePartialGestures = ... # type: Qt.GestureFlag
         IgnoredGesturesPropagateToParent = ... # type: Qt.GestureFlag
+
+    DontStartGestureOnChildren = ...  # type: Qt.GestureFlag
+    ReceivePartialGestures = ...  # type: Qt.GestureFlag
+    IgnoredGesturesPropagateToParent = ...  # type: Qt.GestureFlag
 
     class GestureType(int):
         TapGesture = ... # type: Qt.GestureType
@@ -225,11 +312,23 @@ class Qt(sip.simplewrapper):
         SwipeGesture = ... # type: Qt.GestureType
         CustomGesture = ... # type: Qt.GestureType
 
+    TapGesture = ...  # type: Qt.GestureType
+    TapAndHoldGesture = ...  # type: Qt.GestureType
+    PanGesture = ...  # type: Qt.GestureType
+    PinchGesture = ...  # type: Qt.GestureType
+    SwipeGesture = ...  # type: Qt.GestureType
+    CustomGesture = ...  # type: Qt.GestureType
+
     class GestureState(int):
         GestureStarted = ... # type: Qt.GestureState
         GestureUpdated = ... # type: Qt.GestureState
         GestureFinished = ... # type: Qt.GestureState
         GestureCanceled = ... # type: Qt.GestureState
+
+    GestureStarted = ...  # type: Qt.GestureState
+    GestureUpdated = ...  # type: Qt.GestureState
+    GestureFinished = ...  # type: Qt.GestureState
+    GestureCanceled = ...  # type: Qt.GestureState
 
     class TouchPointState(int):
         TouchPointPressed = ... # type: Qt.TouchPointState
@@ -237,9 +336,17 @@ class Qt(sip.simplewrapper):
         TouchPointStationary = ... # type: Qt.TouchPointState
         TouchPointReleased = ... # type: Qt.TouchPointState
 
+    TouchPointPressed = ...  # type: Qt.TouchPointState
+    TouchPointMoved = ...  # type: Qt.TouchPointState
+    TouchPointStationary = ...  # type: Qt.TouchPointState
+    TouchPointReleased = ...  # type: Qt.TouchPointState
+
     class CoordinateSystem(int):
         DeviceCoordinates = ... # type: Qt.CoordinateSystem
         LogicalCoordinates = ... # type: Qt.CoordinateSystem
+
+    DeviceCoordinates = ...  # type: Qt.CoordinateSystem
+    LogicalCoordinates = ...  # type: Qt.CoordinateSystem
 
     class AnchorPoint(int):
         AnchorLeft = ... # type: Qt.AnchorPoint
@@ -248,6 +355,13 @@ class Qt(sip.simplewrapper):
         AnchorTop = ... # type: Qt.AnchorPoint
         AnchorVerticalCenter = ... # type: Qt.AnchorPoint
         AnchorBottom = ... # type: Qt.AnchorPoint
+
+    AnchorLeft = ...  # type: Qt.AnchorPoint
+    AnchorHorizontalCenter = ...  # type: Qt.AnchorPoint
+    AnchorRight = ...  # type: Qt.AnchorPoint
+    AnchorTop = ...  # type: Qt.AnchorPoint
+    AnchorVerticalCenter = ...  # type: Qt.AnchorPoint
+    AnchorBottom = ...  # type: Qt.AnchorPoint
 
     class InputMethodHint(int):
         ImhNone = ... # type: Qt.InputMethodHint
@@ -274,10 +388,38 @@ class Qt(sip.simplewrapper):
         ImhNoEditMenu = ... # type: Qt.InputMethodHint
         ImhNoTextHandles = ... # type: Qt.InputMethodHint
 
+    ImhNone = ...  # type: Qt.InputMethodHint
+    ImhHiddenText = ...  # type: Qt.InputMethodHint
+    ImhNoAutoUppercase = ...  # type: Qt.InputMethodHint
+    ImhPreferNumbers = ...  # type: Qt.InputMethodHint
+    ImhPreferUppercase = ...  # type: Qt.InputMethodHint
+    ImhPreferLowercase = ...  # type: Qt.InputMethodHint
+    ImhNoPredictiveText = ...  # type: Qt.InputMethodHint
+    ImhDigitsOnly = ...  # type: Qt.InputMethodHint
+    ImhFormattedNumbersOnly = ...  # type: Qt.InputMethodHint
+    ImhUppercaseOnly = ...  # type: Qt.InputMethodHint
+    ImhLowercaseOnly = ...  # type: Qt.InputMethodHint
+    ImhDialableCharactersOnly = ...  # type: Qt.InputMethodHint
+    ImhEmailCharactersOnly = ...  # type: Qt.InputMethodHint
+    ImhUrlCharactersOnly = ...  # type: Qt.InputMethodHint
+    ImhExclusiveInputMask = ...  # type: Qt.InputMethodHint
+    ImhSensitiveData = ...  # type: Qt.InputMethodHint
+    ImhDate = ...  # type: Qt.InputMethodHint
+    ImhTime = ...  # type: Qt.InputMethodHint
+    ImhPreferLatin = ...  # type: Qt.InputMethodHint
+    ImhLatinOnly = ...  # type: Qt.InputMethodHint
+    ImhMultiLine = ...  # type: Qt.InputMethodHint
+    ImhNoEditMenu = ...  # type: Qt.InputMethodHint
+    ImhNoTextHandles = ...  # type: Qt.InputMethodHint
+
     class TileRule(int):
         StretchTile = ... # type: Qt.TileRule
         RepeatTile = ... # type: Qt.TileRule
         RoundTile = ... # type: Qt.TileRule
+
+    StretchTile = ...  # type: Qt.TileRule
+    RepeatTile = ...  # type: Qt.TileRule
+    RoundTile = ...  # type: Qt.TileRule
 
     class WindowFrameSection(int):
         NoSection = ... # type: Qt.WindowFrameSection
@@ -291,29 +433,59 @@ class Qt(sip.simplewrapper):
         BottomLeftSection = ... # type: Qt.WindowFrameSection
         TitleBarArea = ... # type: Qt.WindowFrameSection
 
+    NoSection = ...  # type: Qt.WindowFrameSection
+    LeftSection = ...  # type: Qt.WindowFrameSection
+    TopLeftSection = ...  # type: Qt.WindowFrameSection
+    TopSection = ...  # type: Qt.WindowFrameSection
+    TopRightSection = ...  # type: Qt.WindowFrameSection
+    RightSection = ...  # type: Qt.WindowFrameSection
+    BottomRightSection = ...  # type: Qt.WindowFrameSection
+    BottomSection = ...  # type: Qt.WindowFrameSection
+    BottomLeftSection = ...  # type: Qt.WindowFrameSection
+    TitleBarArea = ...  # type: Qt.WindowFrameSection
+
     class SizeHint(int):
         MinimumSize = ... # type: Qt.SizeHint
         PreferredSize = ... # type: Qt.SizeHint
         MaximumSize = ... # type: Qt.SizeHint
         MinimumDescent = ... # type: Qt.SizeHint
 
+    MinimumSize = ...  # type: Qt.SizeHint
+    PreferredSize = ...  # type: Qt.SizeHint
+    MaximumSize = ...  # type: Qt.SizeHint
+    MinimumDescent = ...  # type: Qt.SizeHint
+
     class SizeMode(int):
         AbsoluteSize = ... # type: Qt.SizeMode
         RelativeSize = ... # type: Qt.SizeMode
+
+    AbsoluteSize = ...  # type: Qt.SizeMode
+    RelativeSize = ...  # type: Qt.SizeMode
 
     class EventPriority(int):
         HighEventPriority = ... # type: Qt.EventPriority
         NormalEventPriority = ... # type: Qt.EventPriority
         LowEventPriority = ... # type: Qt.EventPriority
 
+    HighEventPriority = ...  # type: Qt.EventPriority
+    NormalEventPriority = ...  # type: Qt.EventPriority
+    LowEventPriority = ...  # type: Qt.EventPriority
+
     class Axis(int):
         XAxis = ... # type: Qt.Axis
         YAxis = ... # type: Qt.Axis
         ZAxis = ... # type: Qt.Axis
 
+    XAxis = ...  # type: Qt.Axis
+    YAxis = ...  # type: Qt.Axis
+    ZAxis = ...  # type: Qt.Axis
+
     class MaskMode(int):
         MaskInColor = ... # type: Qt.MaskMode
         MaskOutColor = ... # type: Qt.MaskMode
+
+    MaskInColor = ...  # type: Qt.MaskMode
+    MaskOutColor = ...  # type: Qt.MaskMode
 
     class TextInteractionFlag(int):
         NoTextInteraction = ... # type: Qt.TextInteractionFlag
@@ -325,11 +497,25 @@ class Qt(sip.simplewrapper):
         TextEditorInteraction = ... # type: Qt.TextInteractionFlag
         TextBrowserInteraction = ... # type: Qt.TextInteractionFlag
 
+    NoTextInteraction = ...  # type: Qt.TextInteractionFlag
+    TextSelectableByMouse = ...  # type: Qt.TextInteractionFlag
+    TextSelectableByKeyboard = ...  # type: Qt.TextInteractionFlag
+    LinksAccessibleByMouse = ...  # type: Qt.TextInteractionFlag
+    LinksAccessibleByKeyboard = ...  # type: Qt.TextInteractionFlag
+    TextEditable = ...  # type: Qt.TextInteractionFlag
+    TextEditorInteraction = ...  # type: Qt.TextInteractionFlag
+    TextBrowserInteraction = ...  # type: Qt.TextInteractionFlag
+
     class ItemSelectionMode(int):
         ContainsItemShape = ... # type: Qt.ItemSelectionMode
         IntersectsItemShape = ... # type: Qt.ItemSelectionMode
         ContainsItemBoundingRect = ... # type: Qt.ItemSelectionMode
         IntersectsItemBoundingRect = ... # type: Qt.ItemSelectionMode
+
+    ContainsItemShape = ...  # type: Qt.ItemSelectionMode
+    IntersectsItemShape = ...  # type: Qt.ItemSelectionMode
+    ContainsItemBoundingRect = ...  # type: Qt.ItemSelectionMode
+    IntersectsItemBoundingRect = ...  # type: Qt.ItemSelectionMode
 
     class ApplicationAttribute(int):
         AA_ImmediateWidgetCreation = ... # type: Qt.ApplicationAttribute
@@ -366,10 +552,48 @@ class Qt(sip.simplewrapper):
         AA_DisableSessionManager = ... # type: Qt.ApplicationAttribute
         AA_DisableNativeVirtualKeyboard = ... # type: Qt.ApplicationAttribute
 
+    AA_ImmediateWidgetCreation = ...  # type: Qt.ApplicationAttribute
+    AA_MSWindowsUseDirect3DByDefault = ...  # type: Qt.ApplicationAttribute
+    AA_DontShowIconsInMenus = ...  # type: Qt.ApplicationAttribute
+    AA_NativeWindows = ...  # type: Qt.ApplicationAttribute
+    AA_DontCreateNativeWidgetSiblings = ...  # type: Qt.ApplicationAttribute
+    AA_MacPluginApplication = ...  # type: Qt.ApplicationAttribute
+    AA_DontUseNativeMenuBar = ...  # type: Qt.ApplicationAttribute
+    AA_MacDontSwapCtrlAndMeta = ...  # type: Qt.ApplicationAttribute
+    AA_X11InitThreads = ...  # type: Qt.ApplicationAttribute
+    AA_Use96Dpi = ...  # type: Qt.ApplicationAttribute
+    AA_SynthesizeTouchForUnhandledMouseEvents = ...  # type: Qt.ApplicationAttribute
+    AA_SynthesizeMouseForUnhandledTouchEvents = ...  # type: Qt.ApplicationAttribute
+    AA_UseHighDpiPixmaps = ...  # type: Qt.ApplicationAttribute
+    AA_ForceRasterWidgets = ...  # type: Qt.ApplicationAttribute
+    AA_UseDesktopOpenGL = ...  # type: Qt.ApplicationAttribute
+    AA_UseOpenGLES = ...  # type: Qt.ApplicationAttribute
+    AA_UseSoftwareOpenGL = ...  # type: Qt.ApplicationAttribute
+    AA_ShareOpenGLContexts = ...  # type: Qt.ApplicationAttribute
+    AA_SetPalette = ...  # type: Qt.ApplicationAttribute
+    AA_EnableHighDpiScaling = ...  # type: Qt.ApplicationAttribute
+    AA_DisableHighDpiScaling = ...  # type: Qt.ApplicationAttribute
+    AA_PluginApplication = ...  # type: Qt.ApplicationAttribute
+    AA_UseStyleSheetPropagationInWidgetStyles = ...  # type: Qt.ApplicationAttribute
+    AA_DontUseNativeDialogs = ...  # type: Qt.ApplicationAttribute
+    AA_SynthesizeMouseForUnhandledTabletEvents = ...  # type: Qt.ApplicationAttribute
+    AA_CompressHighFrequencyEvents = ...  # type: Qt.ApplicationAttribute
+    AA_DontCheckOpenGLContextThreadAffinity = ...  # type: Qt.ApplicationAttribute
+    AA_DisableShaderDiskCache = ...  # type: Qt.ApplicationAttribute
+    AA_DontShowShortcutsInContextMenus = ...  # type: Qt.ApplicationAttribute
+    AA_CompressTabletEvents = ...  # type: Qt.ApplicationAttribute
+    AA_DisableWindowContextHelpButton = ...  # type: Qt.ApplicationAttribute
+    AA_DisableSessionManager = ...  # type: Qt.ApplicationAttribute
+    AA_DisableNativeVirtualKeyboard = ...  # type: Qt.ApplicationAttribute
+
     class WindowModality(int):
         NonModal = ... # type: Qt.WindowModality
         WindowModal = ... # type: Qt.WindowModality
         ApplicationModal = ... # type: Qt.WindowModality
+
+    NonModal = ...  # type: Qt.WindowModality
+    WindowModal = ...  # type: Qt.WindowModality
+    ApplicationModal = ...  # type: Qt.WindowModality
 
     class MatchFlag(int):
         MatchExactly = ... # type: Qt.MatchFlag
@@ -384,6 +608,18 @@ class Qt(sip.simplewrapper):
         MatchRecursive = ... # type: Qt.MatchFlag
         MatchRegularExpression = ... # type: Qt.MatchFlag
 
+    MatchExactly = ...  # type: Qt.MatchFlag
+    MatchFixedString = ...  # type: Qt.MatchFlag
+    MatchContains = ...  # type: Qt.MatchFlag
+    MatchStartsWith = ...  # type: Qt.MatchFlag
+    MatchEndsWith = ...  # type: Qt.MatchFlag
+    MatchRegExp = ...  # type: Qt.MatchFlag
+    MatchWildcard = ...  # type: Qt.MatchFlag
+    MatchCaseSensitive = ...  # type: Qt.MatchFlag
+    MatchWrap = ...  # type: Qt.MatchFlag
+    MatchRecursive = ...  # type: Qt.MatchFlag
+    MatchRegularExpression = ...  # type: Qt.MatchFlag
+
     class ItemFlag(int):
         NoItemFlags = ... # type: Qt.ItemFlag
         ItemIsSelectable = ... # type: Qt.ItemFlag
@@ -396,6 +632,18 @@ class Qt(sip.simplewrapper):
         ItemNeverHasChildren = ... # type: Qt.ItemFlag
         ItemIsUserTristate = ... # type: Qt.ItemFlag
         ItemIsAutoTristate = ... # type: Qt.ItemFlag
+
+    NoItemFlags = ...  # type: Qt.ItemFlag
+    ItemIsSelectable = ...  # type: Qt.ItemFlag
+    ItemIsEditable = ...  # type: Qt.ItemFlag
+    ItemIsDragEnabled = ...  # type: Qt.ItemFlag
+    ItemIsDropEnabled = ...  # type: Qt.ItemFlag
+    ItemIsUserCheckable = ...  # type: Qt.ItemFlag
+    ItemIsEnabled = ...  # type: Qt.ItemFlag
+    ItemIsTristate = ...  # type: Qt.ItemFlag
+    ItemNeverHasChildren = ...  # type: Qt.ItemFlag
+    ItemIsUserTristate = ...  # type: Qt.ItemFlag
+    ItemIsAutoTristate = ...  # type: Qt.ItemFlag
 
     class ItemDataRole(int):
         DisplayRole = ... # type: Qt.ItemDataRole
@@ -417,10 +665,33 @@ class Qt(sip.simplewrapper):
         InitialSortOrderRole = ... # type: Qt.ItemDataRole
         UserRole = ... # type: Qt.ItemDataRole
 
+    DisplayRole = ...  # type: Qt.ItemDataRole
+    DecorationRole = ...  # type: Qt.ItemDataRole
+    EditRole = ...  # type: Qt.ItemDataRole
+    ToolTipRole = ...  # type: Qt.ItemDataRole
+    StatusTipRole = ...  # type: Qt.ItemDataRole
+    WhatsThisRole = ...  # type: Qt.ItemDataRole
+    FontRole = ...  # type: Qt.ItemDataRole
+    TextAlignmentRole = ...  # type: Qt.ItemDataRole
+    BackgroundRole = ...  # type: Qt.ItemDataRole
+    BackgroundColorRole = ...  # type: Qt.ItemDataRole
+    ForegroundRole = ...  # type: Qt.ItemDataRole
+    TextColorRole = ...  # type: Qt.ItemDataRole
+    CheckStateRole = ...  # type: Qt.ItemDataRole
+    AccessibleTextRole = ...  # type: Qt.ItemDataRole
+    AccessibleDescriptionRole = ...  # type: Qt.ItemDataRole
+    SizeHintRole = ...  # type: Qt.ItemDataRole
+    InitialSortOrderRole = ...  # type: Qt.ItemDataRole
+    UserRole = ...  # type: Qt.ItemDataRole
+
     class CheckState(int):
         Unchecked = ... # type: Qt.CheckState
         PartiallyChecked = ... # type: Qt.CheckState
         Checked = ... # type: Qt.CheckState
+
+    Unchecked = ...  # type: Qt.CheckState
+    PartiallyChecked = ...  # type: Qt.CheckState
+    Checked = ...  # type: Qt.CheckState
 
     class DropAction(int):
         CopyAction = ... # type: Qt.DropAction
@@ -430,10 +701,21 @@ class Qt(sip.simplewrapper):
         TargetMoveAction = ... # type: Qt.DropAction
         IgnoreAction = ... # type: Qt.DropAction
 
+    CopyAction = ...  # type: Qt.DropAction
+    MoveAction = ...  # type: Qt.DropAction
+    LinkAction = ...  # type: Qt.DropAction
+    ActionMask = ...  # type: Qt.DropAction
+    TargetMoveAction = ...  # type: Qt.DropAction
+    IgnoreAction = ...  # type: Qt.DropAction
+
     class LayoutDirection(int):
         LeftToRight = ... # type: Qt.LayoutDirection
         RightToLeft = ... # type: Qt.LayoutDirection
         LayoutDirectionAuto = ... # type: Qt.LayoutDirection
+
+    LeftToRight = ...  # type: Qt.LayoutDirection
+    RightToLeft = ...  # type: Qt.LayoutDirection
+    LayoutDirectionAuto = ...  # type: Qt.LayoutDirection
 
     class ToolButtonStyle(int):
         ToolButtonIconOnly = ... # type: Qt.ToolButtonStyle
@@ -441,6 +723,12 @@ class Qt(sip.simplewrapper):
         ToolButtonTextBesideIcon = ... # type: Qt.ToolButtonStyle
         ToolButtonTextUnderIcon = ... # type: Qt.ToolButtonStyle
         ToolButtonFollowStyle = ... # type: Qt.ToolButtonStyle
+
+    ToolButtonIconOnly = ...  # type: Qt.ToolButtonStyle
+    ToolButtonTextOnly = ...  # type: Qt.ToolButtonStyle
+    ToolButtonTextBesideIcon = ...  # type: Qt.ToolButtonStyle
+    ToolButtonTextUnderIcon = ...  # type: Qt.ToolButtonStyle
+    ToolButtonFollowStyle = ...  # type: Qt.ToolButtonStyle
 
     class InputMethodQuery(int):
         ImMicroFocus = ... # type: Qt.InputMethodQuery
@@ -464,12 +752,39 @@ class Qt(sip.simplewrapper):
         ImAnchorRectangle = ... # type: Qt.InputMethodQuery
         ImInputItemClipRectangle = ... # type: Qt.InputMethodQuery
 
+    ImMicroFocus = ...  # type: Qt.InputMethodQuery
+    ImFont = ...  # type: Qt.InputMethodQuery
+    ImCursorPosition = ...  # type: Qt.InputMethodQuery
+    ImSurroundingText = ...  # type: Qt.InputMethodQuery
+    ImCurrentSelection = ...  # type: Qt.InputMethodQuery
+    ImMaximumTextLength = ...  # type: Qt.InputMethodQuery
+    ImAnchorPosition = ...  # type: Qt.InputMethodQuery
+    ImEnabled = ...  # type: Qt.InputMethodQuery
+    ImCursorRectangle = ...  # type: Qt.InputMethodQuery
+    ImHints = ...  # type: Qt.InputMethodQuery
+    ImPreferredLanguage = ...  # type: Qt.InputMethodQuery
+    ImPlatformData = ...  # type: Qt.InputMethodQuery
+    ImQueryInput = ...  # type: Qt.InputMethodQuery
+    ImQueryAll = ...  # type: Qt.InputMethodQuery
+    ImAbsolutePosition = ...  # type: Qt.InputMethodQuery
+    ImTextBeforeCursor = ...  # type: Qt.InputMethodQuery
+    ImTextAfterCursor = ...  # type: Qt.InputMethodQuery
+    ImEnterKeyType = ...  # type: Qt.InputMethodQuery
+    ImAnchorRectangle = ...  # type: Qt.InputMethodQuery
+    ImInputItemClipRectangle = ...  # type: Qt.InputMethodQuery
+
     class ContextMenuPolicy(int):
         NoContextMenu = ... # type: Qt.ContextMenuPolicy
         PreventContextMenu = ... # type: Qt.ContextMenuPolicy
         DefaultContextMenu = ... # type: Qt.ContextMenuPolicy
         ActionsContextMenu = ... # type: Qt.ContextMenuPolicy
         CustomContextMenu = ... # type: Qt.ContextMenuPolicy
+
+    NoContextMenu = ...  # type: Qt.ContextMenuPolicy
+    PreventContextMenu = ...  # type: Qt.ContextMenuPolicy
+    DefaultContextMenu = ...  # type: Qt.ContextMenuPolicy
+    ActionsContextMenu = ...  # type: Qt.ContextMenuPolicy
+    CustomContextMenu = ...  # type: Qt.ContextMenuPolicy
 
     class FocusReason(int):
         MouseFocusReason = ... # type: Qt.FocusReason
@@ -482,24 +797,49 @@ class Qt(sip.simplewrapper):
         OtherFocusReason = ... # type: Qt.FocusReason
         NoFocusReason = ... # type: Qt.FocusReason
 
+    MouseFocusReason = ...  # type: Qt.FocusReason
+    TabFocusReason = ...  # type: Qt.FocusReason
+    BacktabFocusReason = ...  # type: Qt.FocusReason
+    ActiveWindowFocusReason = ...  # type: Qt.FocusReason
+    PopupFocusReason = ...  # type: Qt.FocusReason
+    ShortcutFocusReason = ...  # type: Qt.FocusReason
+    MenuBarFocusReason = ...  # type: Qt.FocusReason
+    OtherFocusReason = ...  # type: Qt.FocusReason
+    NoFocusReason = ...  # type: Qt.FocusReason
+
     class TransformationMode(int):
         FastTransformation = ... # type: Qt.TransformationMode
         SmoothTransformation = ... # type: Qt.TransformationMode
+
+    FastTransformation = ...  # type: Qt.TransformationMode
+    SmoothTransformation = ...  # type: Qt.TransformationMode
 
     class ClipOperation(int):
         NoClip = ... # type: Qt.ClipOperation
         ReplaceClip = ... # type: Qt.ClipOperation
         IntersectClip = ... # type: Qt.ClipOperation
 
+    NoClip = ...  # type: Qt.ClipOperation
+    ReplaceClip = ...  # type: Qt.ClipOperation
+    IntersectClip = ...  # type: Qt.ClipOperation
+
     class FillRule(int):
         OddEvenFill = ... # type: Qt.FillRule
         WindingFill = ... # type: Qt.FillRule
+
+    OddEvenFill = ...  # type: Qt.FillRule
+    WindingFill = ...  # type: Qt.FillRule
 
     class ShortcutContext(int):
         WidgetShortcut = ... # type: Qt.ShortcutContext
         WindowShortcut = ... # type: Qt.ShortcutContext
         ApplicationShortcut = ... # type: Qt.ShortcutContext
         WidgetWithChildrenShortcut = ... # type: Qt.ShortcutContext
+
+    WidgetShortcut = ...  # type: Qt.ShortcutContext
+    WindowShortcut = ...  # type: Qt.ShortcutContext
+    ApplicationShortcut = ...  # type: Qt.ShortcutContext
+    WidgetWithChildrenShortcut = ...  # type: Qt.ShortcutContext
 
     class ConnectionType(int):
         AutoConnection = ... # type: Qt.ConnectionType
@@ -508,20 +848,38 @@ class Qt(sip.simplewrapper):
         BlockingQueuedConnection = ... # type: Qt.ConnectionType
         UniqueConnection = ... # type: Qt.ConnectionType
 
+    AutoConnection = ...  # type: Qt.ConnectionType
+    DirectConnection = ...  # type: Qt.ConnectionType
+    QueuedConnection = ...  # type: Qt.ConnectionType
+    BlockingQueuedConnection = ...  # type: Qt.ConnectionType
+    UniqueConnection = ...  # type: Qt.ConnectionType
+
     class Corner(int):
         TopLeftCorner = ... # type: Qt.Corner
         TopRightCorner = ... # type: Qt.Corner
         BottomLeftCorner = ... # type: Qt.Corner
         BottomRightCorner = ... # type: Qt.Corner
 
+    TopLeftCorner = ...  # type: Qt.Corner
+    TopRightCorner = ...  # type: Qt.Corner
+    BottomLeftCorner = ...  # type: Qt.Corner
+    BottomRightCorner = ...  # type: Qt.Corner
+
     class CaseSensitivity(int):
         CaseInsensitive = ... # type: Qt.CaseSensitivity
         CaseSensitive = ... # type: Qt.CaseSensitivity
+
+    CaseInsensitive = ...  # type: Qt.CaseSensitivity
+    CaseSensitive = ...  # type: Qt.CaseSensitivity
 
     class ScrollBarPolicy(int):
         ScrollBarAsNeeded = ... # type: Qt.ScrollBarPolicy
         ScrollBarAlwaysOff = ... # type: Qt.ScrollBarPolicy
         ScrollBarAlwaysOn = ... # type: Qt.ScrollBarPolicy
+
+    ScrollBarAsNeeded = ...  # type: Qt.ScrollBarPolicy
+    ScrollBarAlwaysOff = ...  # type: Qt.ScrollBarPolicy
+    ScrollBarAlwaysOn = ...  # type: Qt.ScrollBarPolicy
 
     class DayOfWeek(int):
         Monday = ... # type: Qt.DayOfWeek
@@ -532,11 +890,24 @@ class Qt(sip.simplewrapper):
         Saturday = ... # type: Qt.DayOfWeek
         Sunday = ... # type: Qt.DayOfWeek
 
+    Monday = ...  # type: Qt.DayOfWeek
+    Tuesday = ...  # type: Qt.DayOfWeek
+    Wednesday = ...  # type: Qt.DayOfWeek
+    Thursday = ...  # type: Qt.DayOfWeek
+    Friday = ...  # type: Qt.DayOfWeek
+    Saturday = ...  # type: Qt.DayOfWeek
+    Sunday = ...  # type: Qt.DayOfWeek
+
     class TimeSpec(int):
         LocalTime = ... # type: Qt.TimeSpec
         UTC = ... # type: Qt.TimeSpec
         OffsetFromUTC = ... # type: Qt.TimeSpec
         TimeZone = ... # type: Qt.TimeSpec
+
+    LocalTime = ...  # type: Qt.TimeSpec
+    UTC = ...  # type: Qt.TimeSpec
+    OffsetFromUTC = ...  # type: Qt.TimeSpec
+    TimeZone = ...  # type: Qt.TimeSpec
 
     class DateFormat(int):
         TextDate = ... # type: Qt.DateFormat
@@ -551,6 +922,18 @@ class Qt(sip.simplewrapper):
         DefaultLocaleLongDate = ... # type: Qt.DateFormat
         RFC2822Date = ... # type: Qt.DateFormat
 
+    TextDate = ...  # type: Qt.DateFormat
+    ISODate = ...  # type: Qt.DateFormat
+    ISODateWithMs = ...  # type: Qt.DateFormat
+    LocalDate = ...  # type: Qt.DateFormat
+    SystemLocaleDate = ...  # type: Qt.DateFormat
+    LocaleDate = ...  # type: Qt.DateFormat
+    SystemLocaleShortDate = ...  # type: Qt.DateFormat
+    SystemLocaleLongDate = ...  # type: Qt.DateFormat
+    DefaultLocaleShortDate = ...  # type: Qt.DateFormat
+    DefaultLocaleLongDate = ...  # type: Qt.DateFormat
+    RFC2822Date = ...  # type: Qt.DateFormat
+
     class ToolBarArea(int):
         LeftToolBarArea = ... # type: Qt.ToolBarArea
         RightToolBarArea = ... # type: Qt.ToolBarArea
@@ -560,10 +943,22 @@ class Qt(sip.simplewrapper):
         AllToolBarAreas = ... # type: Qt.ToolBarArea
         NoToolBarArea = ... # type: Qt.ToolBarArea
 
+    LeftToolBarArea = ...  # type: Qt.ToolBarArea
+    RightToolBarArea = ...  # type: Qt.ToolBarArea
+    TopToolBarArea = ...  # type: Qt.ToolBarArea
+    BottomToolBarArea = ...  # type: Qt.ToolBarArea
+    ToolBarArea_Mask = ...  # type: Qt.ToolBarArea
+    AllToolBarAreas = ...  # type: Qt.ToolBarArea
+    NoToolBarArea = ...  # type: Qt.ToolBarArea
+
     class TimerType(int):
         PreciseTimer = ... # type: Qt.TimerType
         CoarseTimer = ... # type: Qt.TimerType
         VeryCoarseTimer = ... # type: Qt.TimerType
+
+    PreciseTimer = ...  # type: Qt.TimerType
+    CoarseTimer = ...  # type: Qt.TimerType
+    VeryCoarseTimer = ...  # type: Qt.TimerType
 
     class DockWidgetArea(int):
         LeftDockWidgetArea = ... # type: Qt.DockWidgetArea
@@ -574,16 +969,33 @@ class Qt(sip.simplewrapper):
         AllDockWidgetAreas = ... # type: Qt.DockWidgetArea
         NoDockWidgetArea = ... # type: Qt.DockWidgetArea
 
+    LeftDockWidgetArea = ...  # type: Qt.DockWidgetArea
+    RightDockWidgetArea = ...  # type: Qt.DockWidgetArea
+    TopDockWidgetArea = ...  # type: Qt.DockWidgetArea
+    BottomDockWidgetArea = ...  # type: Qt.DockWidgetArea
+    DockWidgetArea_Mask = ...  # type: Qt.DockWidgetArea
+    AllDockWidgetAreas = ...  # type: Qt.DockWidgetArea
+    NoDockWidgetArea = ...  # type: Qt.DockWidgetArea
+
     class AspectRatioMode(int):
         IgnoreAspectRatio = ... # type: Qt.AspectRatioMode
         KeepAspectRatio = ... # type: Qt.AspectRatioMode
         KeepAspectRatioByExpanding = ... # type: Qt.AspectRatioMode
+
+    IgnoreAspectRatio = ...  # type: Qt.AspectRatioMode
+    KeepAspectRatio = ...  # type: Qt.AspectRatioMode
+    KeepAspectRatioByExpanding = ...  # type: Qt.AspectRatioMode
 
     class TextFormat(int):
         PlainText = ... # type: Qt.TextFormat
         RichText = ... # type: Qt.TextFormat
         AutoText = ... # type: Qt.TextFormat
         MarkdownText = ... # type: Qt.TextFormat
+
+    PlainText = ...  # type: Qt.TextFormat
+    RichText = ...  # type: Qt.TextFormat
+    AutoText = ...  # type: Qt.TextFormat
+    MarkdownText = ...  # type: Qt.TextFormat
 
     class CursorShape(int):
         ArrowCursor = ... # type: Qt.CursorShape
@@ -612,6 +1024,32 @@ class Qt(sip.simplewrapper):
         DragMoveCursor = ... # type: Qt.CursorShape
         DragLinkCursor = ... # type: Qt.CursorShape
 
+    ArrowCursor = ...  # type: Qt.CursorShape
+    UpArrowCursor = ...  # type: Qt.CursorShape
+    CrossCursor = ...  # type: Qt.CursorShape
+    WaitCursor = ...  # type: Qt.CursorShape
+    IBeamCursor = ...  # type: Qt.CursorShape
+    SizeVerCursor = ...  # type: Qt.CursorShape
+    SizeHorCursor = ...  # type: Qt.CursorShape
+    SizeBDiagCursor = ...  # type: Qt.CursorShape
+    SizeFDiagCursor = ...  # type: Qt.CursorShape
+    SizeAllCursor = ...  # type: Qt.CursorShape
+    BlankCursor = ...  # type: Qt.CursorShape
+    SplitVCursor = ...  # type: Qt.CursorShape
+    SplitHCursor = ...  # type: Qt.CursorShape
+    PointingHandCursor = ...  # type: Qt.CursorShape
+    ForbiddenCursor = ...  # type: Qt.CursorShape
+    OpenHandCursor = ...  # type: Qt.CursorShape
+    ClosedHandCursor = ...  # type: Qt.CursorShape
+    WhatsThisCursor = ...  # type: Qt.CursorShape
+    BusyCursor = ...  # type: Qt.CursorShape
+    LastCursor = ...  # type: Qt.CursorShape
+    BitmapCursor = ...  # type: Qt.CursorShape
+    CustomCursor = ...  # type: Qt.CursorShape
+    DragCopyCursor = ...  # type: Qt.CursorShape
+    DragMoveCursor = ...  # type: Qt.CursorShape
+    DragLinkCursor = ...  # type: Qt.CursorShape
+
     class UIEffect(int):
         UI_General = ... # type: Qt.UIEffect
         UI_AnimateMenu = ... # type: Qt.UIEffect
@@ -620,6 +1058,14 @@ class Qt(sip.simplewrapper):
         UI_AnimateTooltip = ... # type: Qt.UIEffect
         UI_FadeTooltip = ... # type: Qt.UIEffect
         UI_AnimateToolBox = ... # type: Qt.UIEffect
+
+    UI_General = ...  # type: Qt.UIEffect
+    UI_AnimateMenu = ...  # type: Qt.UIEffect
+    UI_FadeMenu = ...  # type: Qt.UIEffect
+    UI_AnimateCombo = ...  # type: Qt.UIEffect
+    UI_AnimateTooltip = ...  # type: Qt.UIEffect
+    UI_FadeTooltip = ...  # type: Qt.UIEffect
+    UI_AnimateToolBox = ...  # type: Qt.UIEffect
 
     class BrushStyle(int):
         NoBrush = ... # type: Qt.BrushStyle
@@ -642,6 +1088,26 @@ class Qt(sip.simplewrapper):
         ConicalGradientPattern = ... # type: Qt.BrushStyle
         TexturePattern = ... # type: Qt.BrushStyle
 
+    NoBrush = ...  # type: Qt.BrushStyle
+    SolidPattern = ...  # type: Qt.BrushStyle
+    Dense1Pattern = ...  # type: Qt.BrushStyle
+    Dense2Pattern = ...  # type: Qt.BrushStyle
+    Dense3Pattern = ...  # type: Qt.BrushStyle
+    Dense4Pattern = ...  # type: Qt.BrushStyle
+    Dense5Pattern = ...  # type: Qt.BrushStyle
+    Dense6Pattern = ...  # type: Qt.BrushStyle
+    Dense7Pattern = ...  # type: Qt.BrushStyle
+    HorPattern = ...  # type: Qt.BrushStyle
+    VerPattern = ...  # type: Qt.BrushStyle
+    CrossPattern = ...  # type: Qt.BrushStyle
+    BDiagPattern = ...  # type: Qt.BrushStyle
+    FDiagPattern = ...  # type: Qt.BrushStyle
+    DiagCrossPattern = ...  # type: Qt.BrushStyle
+    LinearGradientPattern = ...  # type: Qt.BrushStyle
+    RadialGradientPattern = ...  # type: Qt.BrushStyle
+    ConicalGradientPattern = ...  # type: Qt.BrushStyle
+    TexturePattern = ...  # type: Qt.BrushStyle
+
     class PenJoinStyle(int):
         MiterJoin = ... # type: Qt.PenJoinStyle
         BevelJoin = ... # type: Qt.PenJoinStyle
@@ -649,11 +1115,22 @@ class Qt(sip.simplewrapper):
         MPenJoinStyle = ... # type: Qt.PenJoinStyle
         SvgMiterJoin = ... # type: Qt.PenJoinStyle
 
+    MiterJoin = ...  # type: Qt.PenJoinStyle
+    BevelJoin = ...  # type: Qt.PenJoinStyle
+    RoundJoin = ...  # type: Qt.PenJoinStyle
+    MPenJoinStyle = ...  # type: Qt.PenJoinStyle
+    SvgMiterJoin = ...  # type: Qt.PenJoinStyle
+
     class PenCapStyle(int):
         FlatCap = ... # type: Qt.PenCapStyle
         SquareCap = ... # type: Qt.PenCapStyle
         RoundCap = ... # type: Qt.PenCapStyle
         MPenCapStyle = ... # type: Qt.PenCapStyle
+
+    FlatCap = ...  # type: Qt.PenCapStyle
+    SquareCap = ...  # type: Qt.PenCapStyle
+    RoundCap = ...  # type: Qt.PenCapStyle
+    MPenCapStyle = ...  # type: Qt.PenCapStyle
 
     class PenStyle(int):
         NoPen = ... # type: Qt.PenStyle
@@ -665,12 +1142,27 @@ class Qt(sip.simplewrapper):
         CustomDashLine = ... # type: Qt.PenStyle
         MPenStyle = ... # type: Qt.PenStyle
 
+    NoPen = ...  # type: Qt.PenStyle
+    SolidLine = ...  # type: Qt.PenStyle
+    DashLine = ...  # type: Qt.PenStyle
+    DotLine = ...  # type: Qt.PenStyle
+    DashDotLine = ...  # type: Qt.PenStyle
+    DashDotDotLine = ...  # type: Qt.PenStyle
+    CustomDashLine = ...  # type: Qt.PenStyle
+    MPenStyle = ...  # type: Qt.PenStyle
+
     class ArrowType(int):
         NoArrow = ... # type: Qt.ArrowType
         UpArrow = ... # type: Qt.ArrowType
         DownArrow = ... # type: Qt.ArrowType
         LeftArrow = ... # type: Qt.ArrowType
         RightArrow = ... # type: Qt.ArrowType
+
+    NoArrow = ...  # type: Qt.ArrowType
+    UpArrow = ...  # type: Qt.ArrowType
+    DownArrow = ...  # type: Qt.ArrowType
+    LeftArrow = ...  # type: Qt.ArrowType
+    RightArrow = ...  # type: Qt.ArrowType
 
     class Key(int):
         Key_Escape = ... # type: Qt.Key
@@ -1143,9 +1635,482 @@ class Qt(sip.simplewrapper):
         Key_Dead_Belowverticalline = ... # type: Qt.Key
         Key_Dead_Longsolidusoverlay = ... # type: Qt.Key
 
+    Key_Escape = ...  # type: Qt.Key
+    Key_Tab = ...  # type: Qt.Key
+    Key_Backtab = ...  # type: Qt.Key
+    Key_Backspace = ...  # type: Qt.Key
+    Key_Return = ...  # type: Qt.Key
+    Key_Enter = ...  # type: Qt.Key
+    Key_Insert = ...  # type: Qt.Key
+    Key_Delete = ...  # type: Qt.Key
+    Key_Pause = ...  # type: Qt.Key
+    Key_Print = ...  # type: Qt.Key
+    Key_SysReq = ...  # type: Qt.Key
+    Key_Clear = ...  # type: Qt.Key
+    Key_Home = ...  # type: Qt.Key
+    Key_End = ...  # type: Qt.Key
+    Key_Left = ...  # type: Qt.Key
+    Key_Up = ...  # type: Qt.Key
+    Key_Right = ...  # type: Qt.Key
+    Key_Down = ...  # type: Qt.Key
+    Key_PageUp = ...  # type: Qt.Key
+    Key_PageDown = ...  # type: Qt.Key
+    Key_Shift = ...  # type: Qt.Key
+    Key_Control = ...  # type: Qt.Key
+    Key_Meta = ...  # type: Qt.Key
+    Key_Alt = ...  # type: Qt.Key
+    Key_CapsLock = ...  # type: Qt.Key
+    Key_NumLock = ...  # type: Qt.Key
+    Key_ScrollLock = ...  # type: Qt.Key
+    Key_F1 = ...  # type: Qt.Key
+    Key_F2 = ...  # type: Qt.Key
+    Key_F3 = ...  # type: Qt.Key
+    Key_F4 = ...  # type: Qt.Key
+    Key_F5 = ...  # type: Qt.Key
+    Key_F6 = ...  # type: Qt.Key
+    Key_F7 = ...  # type: Qt.Key
+    Key_F8 = ...  # type: Qt.Key
+    Key_F9 = ...  # type: Qt.Key
+    Key_F10 = ...  # type: Qt.Key
+    Key_F11 = ...  # type: Qt.Key
+    Key_F12 = ...  # type: Qt.Key
+    Key_F13 = ...  # type: Qt.Key
+    Key_F14 = ...  # type: Qt.Key
+    Key_F15 = ...  # type: Qt.Key
+    Key_F16 = ...  # type: Qt.Key
+    Key_F17 = ...  # type: Qt.Key
+    Key_F18 = ...  # type: Qt.Key
+    Key_F19 = ...  # type: Qt.Key
+    Key_F20 = ...  # type: Qt.Key
+    Key_F21 = ...  # type: Qt.Key
+    Key_F22 = ...  # type: Qt.Key
+    Key_F23 = ...  # type: Qt.Key
+    Key_F24 = ...  # type: Qt.Key
+    Key_F25 = ...  # type: Qt.Key
+    Key_F26 = ...  # type: Qt.Key
+    Key_F27 = ...  # type: Qt.Key
+    Key_F28 = ...  # type: Qt.Key
+    Key_F29 = ...  # type: Qt.Key
+    Key_F30 = ...  # type: Qt.Key
+    Key_F31 = ...  # type: Qt.Key
+    Key_F32 = ...  # type: Qt.Key
+    Key_F33 = ...  # type: Qt.Key
+    Key_F34 = ...  # type: Qt.Key
+    Key_F35 = ...  # type: Qt.Key
+    Key_Super_L = ...  # type: Qt.Key
+    Key_Super_R = ...  # type: Qt.Key
+    Key_Menu = ...  # type: Qt.Key
+    Key_Hyper_L = ...  # type: Qt.Key
+    Key_Hyper_R = ...  # type: Qt.Key
+    Key_Help = ...  # type: Qt.Key
+    Key_Direction_L = ...  # type: Qt.Key
+    Key_Direction_R = ...  # type: Qt.Key
+    Key_Space = ...  # type: Qt.Key
+    Key_Any = ...  # type: Qt.Key
+    Key_Exclam = ...  # type: Qt.Key
+    Key_QuoteDbl = ...  # type: Qt.Key
+    Key_NumberSign = ...  # type: Qt.Key
+    Key_Dollar = ...  # type: Qt.Key
+    Key_Percent = ...  # type: Qt.Key
+    Key_Ampersand = ...  # type: Qt.Key
+    Key_Apostrophe = ...  # type: Qt.Key
+    Key_ParenLeft = ...  # type: Qt.Key
+    Key_ParenRight = ...  # type: Qt.Key
+    Key_Asterisk = ...  # type: Qt.Key
+    Key_Plus = ...  # type: Qt.Key
+    Key_Comma = ...  # type: Qt.Key
+    Key_Minus = ...  # type: Qt.Key
+    Key_Period = ...  # type: Qt.Key
+    Key_Slash = ...  # type: Qt.Key
+    Key_0 = ...  # type: Qt.Key
+    Key_1 = ...  # type: Qt.Key
+    Key_2 = ...  # type: Qt.Key
+    Key_3 = ...  # type: Qt.Key
+    Key_4 = ...  # type: Qt.Key
+    Key_5 = ...  # type: Qt.Key
+    Key_6 = ...  # type: Qt.Key
+    Key_7 = ...  # type: Qt.Key
+    Key_8 = ...  # type: Qt.Key
+    Key_9 = ...  # type: Qt.Key
+    Key_Colon = ...  # type: Qt.Key
+    Key_Semicolon = ...  # type: Qt.Key
+    Key_Less = ...  # type: Qt.Key
+    Key_Equal = ...  # type: Qt.Key
+    Key_Greater = ...  # type: Qt.Key
+    Key_Question = ...  # type: Qt.Key
+    Key_At = ...  # type: Qt.Key
+    Key_A = ...  # type: Qt.Key
+    Key_B = ...  # type: Qt.Key
+    Key_C = ...  # type: Qt.Key
+    Key_D = ...  # type: Qt.Key
+    Key_E = ...  # type: Qt.Key
+    Key_F = ...  # type: Qt.Key
+    Key_G = ...  # type: Qt.Key
+    Key_H = ...  # type: Qt.Key
+    Key_I = ...  # type: Qt.Key
+    Key_J = ...  # type: Qt.Key
+    Key_K = ...  # type: Qt.Key
+    Key_L = ...  # type: Qt.Key
+    Key_M = ...  # type: Qt.Key
+    Key_N = ...  # type: Qt.Key
+    Key_O = ...  # type: Qt.Key
+    Key_P = ...  # type: Qt.Key
+    Key_Q = ...  # type: Qt.Key
+    Key_R = ...  # type: Qt.Key
+    Key_S = ...  # type: Qt.Key
+    Key_T = ...  # type: Qt.Key
+    Key_U = ...  # type: Qt.Key
+    Key_V = ...  # type: Qt.Key
+    Key_W = ...  # type: Qt.Key
+    Key_X = ...  # type: Qt.Key
+    Key_Y = ...  # type: Qt.Key
+    Key_Z = ...  # type: Qt.Key
+    Key_BracketLeft = ...  # type: Qt.Key
+    Key_Backslash = ...  # type: Qt.Key
+    Key_BracketRight = ...  # type: Qt.Key
+    Key_AsciiCircum = ...  # type: Qt.Key
+    Key_Underscore = ...  # type: Qt.Key
+    Key_QuoteLeft = ...  # type: Qt.Key
+    Key_BraceLeft = ...  # type: Qt.Key
+    Key_Bar = ...  # type: Qt.Key
+    Key_BraceRight = ...  # type: Qt.Key
+    Key_AsciiTilde = ...  # type: Qt.Key
+    Key_nobreakspace = ...  # type: Qt.Key
+    Key_exclamdown = ...  # type: Qt.Key
+    Key_cent = ...  # type: Qt.Key
+    Key_sterling = ...  # type: Qt.Key
+    Key_currency = ...  # type: Qt.Key
+    Key_yen = ...  # type: Qt.Key
+    Key_brokenbar = ...  # type: Qt.Key
+    Key_section = ...  # type: Qt.Key
+    Key_diaeresis = ...  # type: Qt.Key
+    Key_copyright = ...  # type: Qt.Key
+    Key_ordfeminine = ...  # type: Qt.Key
+    Key_guillemotleft = ...  # type: Qt.Key
+    Key_notsign = ...  # type: Qt.Key
+    Key_hyphen = ...  # type: Qt.Key
+    Key_registered = ...  # type: Qt.Key
+    Key_macron = ...  # type: Qt.Key
+    Key_degree = ...  # type: Qt.Key
+    Key_plusminus = ...  # type: Qt.Key
+    Key_twosuperior = ...  # type: Qt.Key
+    Key_threesuperior = ...  # type: Qt.Key
+    Key_acute = ...  # type: Qt.Key
+    Key_mu = ...  # type: Qt.Key
+    Key_paragraph = ...  # type: Qt.Key
+    Key_periodcentered = ...  # type: Qt.Key
+    Key_cedilla = ...  # type: Qt.Key
+    Key_onesuperior = ...  # type: Qt.Key
+    Key_masculine = ...  # type: Qt.Key
+    Key_guillemotright = ...  # type: Qt.Key
+    Key_onequarter = ...  # type: Qt.Key
+    Key_onehalf = ...  # type: Qt.Key
+    Key_threequarters = ...  # type: Qt.Key
+    Key_questiondown = ...  # type: Qt.Key
+    Key_Agrave = ...  # type: Qt.Key
+    Key_Aacute = ...  # type: Qt.Key
+    Key_Acircumflex = ...  # type: Qt.Key
+    Key_Atilde = ...  # type: Qt.Key
+    Key_Adiaeresis = ...  # type: Qt.Key
+    Key_Aring = ...  # type: Qt.Key
+    Key_AE = ...  # type: Qt.Key
+    Key_Ccedilla = ...  # type: Qt.Key
+    Key_Egrave = ...  # type: Qt.Key
+    Key_Eacute = ...  # type: Qt.Key
+    Key_Ecircumflex = ...  # type: Qt.Key
+    Key_Ediaeresis = ...  # type: Qt.Key
+    Key_Igrave = ...  # type: Qt.Key
+    Key_Iacute = ...  # type: Qt.Key
+    Key_Icircumflex = ...  # type: Qt.Key
+    Key_Idiaeresis = ...  # type: Qt.Key
+    Key_ETH = ...  # type: Qt.Key
+    Key_Ntilde = ...  # type: Qt.Key
+    Key_Ograve = ...  # type: Qt.Key
+    Key_Oacute = ...  # type: Qt.Key
+    Key_Ocircumflex = ...  # type: Qt.Key
+    Key_Otilde = ...  # type: Qt.Key
+    Key_Odiaeresis = ...  # type: Qt.Key
+    Key_multiply = ...  # type: Qt.Key
+    Key_Ooblique = ...  # type: Qt.Key
+    Key_Ugrave = ...  # type: Qt.Key
+    Key_Uacute = ...  # type: Qt.Key
+    Key_Ucircumflex = ...  # type: Qt.Key
+    Key_Udiaeresis = ...  # type: Qt.Key
+    Key_Yacute = ...  # type: Qt.Key
+    Key_THORN = ...  # type: Qt.Key
+    Key_ssharp = ...  # type: Qt.Key
+    Key_division = ...  # type: Qt.Key
+    Key_ydiaeresis = ...  # type: Qt.Key
+    Key_AltGr = ...  # type: Qt.Key
+    Key_Multi_key = ...  # type: Qt.Key
+    Key_Codeinput = ...  # type: Qt.Key
+    Key_SingleCandidate = ...  # type: Qt.Key
+    Key_MultipleCandidate = ...  # type: Qt.Key
+    Key_PreviousCandidate = ...  # type: Qt.Key
+    Key_Mode_switch = ...  # type: Qt.Key
+    Key_Kanji = ...  # type: Qt.Key
+    Key_Muhenkan = ...  # type: Qt.Key
+    Key_Henkan = ...  # type: Qt.Key
+    Key_Romaji = ...  # type: Qt.Key
+    Key_Hiragana = ...  # type: Qt.Key
+    Key_Katakana = ...  # type: Qt.Key
+    Key_Hiragana_Katakana = ...  # type: Qt.Key
+    Key_Zenkaku = ...  # type: Qt.Key
+    Key_Hankaku = ...  # type: Qt.Key
+    Key_Zenkaku_Hankaku = ...  # type: Qt.Key
+    Key_Touroku = ...  # type: Qt.Key
+    Key_Massyo = ...  # type: Qt.Key
+    Key_Kana_Lock = ...  # type: Qt.Key
+    Key_Kana_Shift = ...  # type: Qt.Key
+    Key_Eisu_Shift = ...  # type: Qt.Key
+    Key_Eisu_toggle = ...  # type: Qt.Key
+    Key_Hangul = ...  # type: Qt.Key
+    Key_Hangul_Start = ...  # type: Qt.Key
+    Key_Hangul_End = ...  # type: Qt.Key
+    Key_Hangul_Hanja = ...  # type: Qt.Key
+    Key_Hangul_Jamo = ...  # type: Qt.Key
+    Key_Hangul_Romaja = ...  # type: Qt.Key
+    Key_Hangul_Jeonja = ...  # type: Qt.Key
+    Key_Hangul_Banja = ...  # type: Qt.Key
+    Key_Hangul_PreHanja = ...  # type: Qt.Key
+    Key_Hangul_PostHanja = ...  # type: Qt.Key
+    Key_Hangul_Special = ...  # type: Qt.Key
+    Key_Dead_Grave = ...  # type: Qt.Key
+    Key_Dead_Acute = ...  # type: Qt.Key
+    Key_Dead_Circumflex = ...  # type: Qt.Key
+    Key_Dead_Tilde = ...  # type: Qt.Key
+    Key_Dead_Macron = ...  # type: Qt.Key
+    Key_Dead_Breve = ...  # type: Qt.Key
+    Key_Dead_Abovedot = ...  # type: Qt.Key
+    Key_Dead_Diaeresis = ...  # type: Qt.Key
+    Key_Dead_Abovering = ...  # type: Qt.Key
+    Key_Dead_Doubleacute = ...  # type: Qt.Key
+    Key_Dead_Caron = ...  # type: Qt.Key
+    Key_Dead_Cedilla = ...  # type: Qt.Key
+    Key_Dead_Ogonek = ...  # type: Qt.Key
+    Key_Dead_Iota = ...  # type: Qt.Key
+    Key_Dead_Voiced_Sound = ...  # type: Qt.Key
+    Key_Dead_Semivoiced_Sound = ...  # type: Qt.Key
+    Key_Dead_Belowdot = ...  # type: Qt.Key
+    Key_Dead_Hook = ...  # type: Qt.Key
+    Key_Dead_Horn = ...  # type: Qt.Key
+    Key_Back = ...  # type: Qt.Key
+    Key_Forward = ...  # type: Qt.Key
+    Key_Stop = ...  # type: Qt.Key
+    Key_Refresh = ...  # type: Qt.Key
+    Key_VolumeDown = ...  # type: Qt.Key
+    Key_VolumeMute = ...  # type: Qt.Key
+    Key_VolumeUp = ...  # type: Qt.Key
+    Key_BassBoost = ...  # type: Qt.Key
+    Key_BassUp = ...  # type: Qt.Key
+    Key_BassDown = ...  # type: Qt.Key
+    Key_TrebleUp = ...  # type: Qt.Key
+    Key_TrebleDown = ...  # type: Qt.Key
+    Key_MediaPlay = ...  # type: Qt.Key
+    Key_MediaStop = ...  # type: Qt.Key
+    Key_MediaPrevious = ...  # type: Qt.Key
+    Key_MediaNext = ...  # type: Qt.Key
+    Key_MediaRecord = ...  # type: Qt.Key
+    Key_HomePage = ...  # type: Qt.Key
+    Key_Favorites = ...  # type: Qt.Key
+    Key_Search = ...  # type: Qt.Key
+    Key_Standby = ...  # type: Qt.Key
+    Key_OpenUrl = ...  # type: Qt.Key
+    Key_LaunchMail = ...  # type: Qt.Key
+    Key_LaunchMedia = ...  # type: Qt.Key
+    Key_Launch0 = ...  # type: Qt.Key
+    Key_Launch1 = ...  # type: Qt.Key
+    Key_Launch2 = ...  # type: Qt.Key
+    Key_Launch3 = ...  # type: Qt.Key
+    Key_Launch4 = ...  # type: Qt.Key
+    Key_Launch5 = ...  # type: Qt.Key
+    Key_Launch6 = ...  # type: Qt.Key
+    Key_Launch7 = ...  # type: Qt.Key
+    Key_Launch8 = ...  # type: Qt.Key
+    Key_Launch9 = ...  # type: Qt.Key
+    Key_LaunchA = ...  # type: Qt.Key
+    Key_LaunchB = ...  # type: Qt.Key
+    Key_LaunchC = ...  # type: Qt.Key
+    Key_LaunchD = ...  # type: Qt.Key
+    Key_LaunchE = ...  # type: Qt.Key
+    Key_LaunchF = ...  # type: Qt.Key
+    Key_MediaLast = ...  # type: Qt.Key
+    Key_Select = ...  # type: Qt.Key
+    Key_Yes = ...  # type: Qt.Key
+    Key_No = ...  # type: Qt.Key
+    Key_Context1 = ...  # type: Qt.Key
+    Key_Context2 = ...  # type: Qt.Key
+    Key_Context3 = ...  # type: Qt.Key
+    Key_Context4 = ...  # type: Qt.Key
+    Key_Call = ...  # type: Qt.Key
+    Key_Hangup = ...  # type: Qt.Key
+    Key_Flip = ...  # type: Qt.Key
+    Key_unknown = ...  # type: Qt.Key
+    Key_Execute = ...  # type: Qt.Key
+    Key_Printer = ...  # type: Qt.Key
+    Key_Play = ...  # type: Qt.Key
+    Key_Sleep = ...  # type: Qt.Key
+    Key_Zoom = ...  # type: Qt.Key
+    Key_Cancel = ...  # type: Qt.Key
+    Key_MonBrightnessUp = ...  # type: Qt.Key
+    Key_MonBrightnessDown = ...  # type: Qt.Key
+    Key_KeyboardLightOnOff = ...  # type: Qt.Key
+    Key_KeyboardBrightnessUp = ...  # type: Qt.Key
+    Key_KeyboardBrightnessDown = ...  # type: Qt.Key
+    Key_PowerOff = ...  # type: Qt.Key
+    Key_WakeUp = ...  # type: Qt.Key
+    Key_Eject = ...  # type: Qt.Key
+    Key_ScreenSaver = ...  # type: Qt.Key
+    Key_WWW = ...  # type: Qt.Key
+    Key_Memo = ...  # type: Qt.Key
+    Key_LightBulb = ...  # type: Qt.Key
+    Key_Shop = ...  # type: Qt.Key
+    Key_History = ...  # type: Qt.Key
+    Key_AddFavorite = ...  # type: Qt.Key
+    Key_HotLinks = ...  # type: Qt.Key
+    Key_BrightnessAdjust = ...  # type: Qt.Key
+    Key_Finance = ...  # type: Qt.Key
+    Key_Community = ...  # type: Qt.Key
+    Key_AudioRewind = ...  # type: Qt.Key
+    Key_BackForward = ...  # type: Qt.Key
+    Key_ApplicationLeft = ...  # type: Qt.Key
+    Key_ApplicationRight = ...  # type: Qt.Key
+    Key_Book = ...  # type: Qt.Key
+    Key_CD = ...  # type: Qt.Key
+    Key_Calculator = ...  # type: Qt.Key
+    Key_ToDoList = ...  # type: Qt.Key
+    Key_ClearGrab = ...  # type: Qt.Key
+    Key_Close = ...  # type: Qt.Key
+    Key_Copy = ...  # type: Qt.Key
+    Key_Cut = ...  # type: Qt.Key
+    Key_Display = ...  # type: Qt.Key
+    Key_DOS = ...  # type: Qt.Key
+    Key_Documents = ...  # type: Qt.Key
+    Key_Excel = ...  # type: Qt.Key
+    Key_Explorer = ...  # type: Qt.Key
+    Key_Game = ...  # type: Qt.Key
+    Key_Go = ...  # type: Qt.Key
+    Key_iTouch = ...  # type: Qt.Key
+    Key_LogOff = ...  # type: Qt.Key
+    Key_Market = ...  # type: Qt.Key
+    Key_Meeting = ...  # type: Qt.Key
+    Key_MenuKB = ...  # type: Qt.Key
+    Key_MenuPB = ...  # type: Qt.Key
+    Key_MySites = ...  # type: Qt.Key
+    Key_News = ...  # type: Qt.Key
+    Key_OfficeHome = ...  # type: Qt.Key
+    Key_Option = ...  # type: Qt.Key
+    Key_Paste = ...  # type: Qt.Key
+    Key_Phone = ...  # type: Qt.Key
+    Key_Calendar = ...  # type: Qt.Key
+    Key_Reply = ...  # type: Qt.Key
+    Key_Reload = ...  # type: Qt.Key
+    Key_RotateWindows = ...  # type: Qt.Key
+    Key_RotationPB = ...  # type: Qt.Key
+    Key_RotationKB = ...  # type: Qt.Key
+    Key_Save = ...  # type: Qt.Key
+    Key_Send = ...  # type: Qt.Key
+    Key_Spell = ...  # type: Qt.Key
+    Key_SplitScreen = ...  # type: Qt.Key
+    Key_Support = ...  # type: Qt.Key
+    Key_TaskPane = ...  # type: Qt.Key
+    Key_Terminal = ...  # type: Qt.Key
+    Key_Tools = ...  # type: Qt.Key
+    Key_Travel = ...  # type: Qt.Key
+    Key_Video = ...  # type: Qt.Key
+    Key_Word = ...  # type: Qt.Key
+    Key_Xfer = ...  # type: Qt.Key
+    Key_ZoomIn = ...  # type: Qt.Key
+    Key_ZoomOut = ...  # type: Qt.Key
+    Key_Away = ...  # type: Qt.Key
+    Key_Messenger = ...  # type: Qt.Key
+    Key_WebCam = ...  # type: Qt.Key
+    Key_MailForward = ...  # type: Qt.Key
+    Key_Pictures = ...  # type: Qt.Key
+    Key_Music = ...  # type: Qt.Key
+    Key_Battery = ...  # type: Qt.Key
+    Key_Bluetooth = ...  # type: Qt.Key
+    Key_WLAN = ...  # type: Qt.Key
+    Key_UWB = ...  # type: Qt.Key
+    Key_AudioForward = ...  # type: Qt.Key
+    Key_AudioRepeat = ...  # type: Qt.Key
+    Key_AudioRandomPlay = ...  # type: Qt.Key
+    Key_Subtitle = ...  # type: Qt.Key
+    Key_AudioCycleTrack = ...  # type: Qt.Key
+    Key_Time = ...  # type: Qt.Key
+    Key_Hibernate = ...  # type: Qt.Key
+    Key_View = ...  # type: Qt.Key
+    Key_TopMenu = ...  # type: Qt.Key
+    Key_PowerDown = ...  # type: Qt.Key
+    Key_Suspend = ...  # type: Qt.Key
+    Key_ContrastAdjust = ...  # type: Qt.Key
+    Key_MediaPause = ...  # type: Qt.Key
+    Key_MediaTogglePlayPause = ...  # type: Qt.Key
+    Key_LaunchG = ...  # type: Qt.Key
+    Key_LaunchH = ...  # type: Qt.Key
+    Key_ToggleCallHangup = ...  # type: Qt.Key
+    Key_VoiceDial = ...  # type: Qt.Key
+    Key_LastNumberRedial = ...  # type: Qt.Key
+    Key_Camera = ...  # type: Qt.Key
+    Key_CameraFocus = ...  # type: Qt.Key
+    Key_TouchpadToggle = ...  # type: Qt.Key
+    Key_TouchpadOn = ...  # type: Qt.Key
+    Key_TouchpadOff = ...  # type: Qt.Key
+    Key_MicMute = ...  # type: Qt.Key
+    Key_Red = ...  # type: Qt.Key
+    Key_Green = ...  # type: Qt.Key
+    Key_Yellow = ...  # type: Qt.Key
+    Key_Blue = ...  # type: Qt.Key
+    Key_ChannelUp = ...  # type: Qt.Key
+    Key_ChannelDown = ...  # type: Qt.Key
+    Key_Guide = ...  # type: Qt.Key
+    Key_Info = ...  # type: Qt.Key
+    Key_Settings = ...  # type: Qt.Key
+    Key_Exit = ...  # type: Qt.Key
+    Key_MicVolumeUp = ...  # type: Qt.Key
+    Key_MicVolumeDown = ...  # type: Qt.Key
+    Key_New = ...  # type: Qt.Key
+    Key_Open = ...  # type: Qt.Key
+    Key_Find = ...  # type: Qt.Key
+    Key_Undo = ...  # type: Qt.Key
+    Key_Redo = ...  # type: Qt.Key
+    Key_Dead_Stroke = ...  # type: Qt.Key
+    Key_Dead_Abovecomma = ...  # type: Qt.Key
+    Key_Dead_Abovereversedcomma = ...  # type: Qt.Key
+    Key_Dead_Doublegrave = ...  # type: Qt.Key
+    Key_Dead_Belowring = ...  # type: Qt.Key
+    Key_Dead_Belowmacron = ...  # type: Qt.Key
+    Key_Dead_Belowcircumflex = ...  # type: Qt.Key
+    Key_Dead_Belowtilde = ...  # type: Qt.Key
+    Key_Dead_Belowbreve = ...  # type: Qt.Key
+    Key_Dead_Belowdiaeresis = ...  # type: Qt.Key
+    Key_Dead_Invertedbreve = ...  # type: Qt.Key
+    Key_Dead_Belowcomma = ...  # type: Qt.Key
+    Key_Dead_Currency = ...  # type: Qt.Key
+    Key_Dead_a = ...  # type: Qt.Key
+    Key_Dead_A = ...  # type: Qt.Key
+    Key_Dead_e = ...  # type: Qt.Key
+    Key_Dead_E = ...  # type: Qt.Key
+    Key_Dead_i = ...  # type: Qt.Key
+    Key_Dead_I = ...  # type: Qt.Key
+    Key_Dead_o = ...  # type: Qt.Key
+    Key_Dead_O = ...  # type: Qt.Key
+    Key_Dead_u = ...  # type: Qt.Key
+    Key_Dead_U = ...  # type: Qt.Key
+    Key_Dead_Small_Schwa = ...  # type: Qt.Key
+    Key_Dead_Capital_Schwa = ...  # type: Qt.Key
+    Key_Dead_Greek = ...  # type: Qt.Key
+    Key_Dead_Lowline = ...  # type: Qt.Key
+    Key_Dead_Aboveverticalline = ...  # type: Qt.Key
+    Key_Dead_Belowverticalline = ...  # type: Qt.Key
+    Key_Dead_Longsolidusoverlay = ...  # type: Qt.Key
+
     class BGMode(int):
         TransparentMode = ... # type: Qt.BGMode
         OpaqueMode = ... # type: Qt.BGMode
+
+    TransparentMode = ...  # type: Qt.BGMode
+    OpaqueMode = ...  # type: Qt.BGMode
 
     class ImageConversionFlag(int):
         AutoColor = ... # type: Qt.ImageConversionFlag
@@ -1162,6 +2127,21 @@ class Qt(sip.simplewrapper):
         AvoidDither = ... # type: Qt.ImageConversionFlag
         NoOpaqueDetection = ... # type: Qt.ImageConversionFlag
         NoFormatConversion = ... # type: Qt.ImageConversionFlag
+
+    AutoColor = ...  # type: Qt.ImageConversionFlag
+    ColorOnly = ...  # type: Qt.ImageConversionFlag
+    MonoOnly = ...  # type: Qt.ImageConversionFlag
+    ThresholdAlphaDither = ...  # type: Qt.ImageConversionFlag
+    OrderedAlphaDither = ...  # type: Qt.ImageConversionFlag
+    DiffuseAlphaDither = ...  # type: Qt.ImageConversionFlag
+    DiffuseDither = ...  # type: Qt.ImageConversionFlag
+    OrderedDither = ...  # type: Qt.ImageConversionFlag
+    ThresholdDither = ...  # type: Qt.ImageConversionFlag
+    AutoDither = ...  # type: Qt.ImageConversionFlag
+    PreferDither = ...  # type: Qt.ImageConversionFlag
+    AvoidDither = ...  # type: Qt.ImageConversionFlag
+    NoOpaqueDetection = ...  # type: Qt.ImageConversionFlag
+    NoFormatConversion = ...  # type: Qt.ImageConversionFlag
 
     class WidgetAttribute(int):
         WA_Disabled = ... # type: Qt.WidgetAttribute
@@ -1269,12 +2249,123 @@ class Qt(sip.simplewrapper):
         WA_ContentsMarginsRespectsSafeArea = ... # type: Qt.WidgetAttribute
         WA_StyleSheetTarget = ... # type: Qt.WidgetAttribute
 
+    WA_Disabled = ...  # type: Qt.WidgetAttribute
+    WA_UnderMouse = ...  # type: Qt.WidgetAttribute
+    WA_MouseTracking = ...  # type: Qt.WidgetAttribute
+    WA_OpaquePaintEvent = ...  # type: Qt.WidgetAttribute
+    WA_StaticContents = ...  # type: Qt.WidgetAttribute
+    WA_LaidOut = ...  # type: Qt.WidgetAttribute
+    WA_PaintOnScreen = ...  # type: Qt.WidgetAttribute
+    WA_NoSystemBackground = ...  # type: Qt.WidgetAttribute
+    WA_UpdatesDisabled = ...  # type: Qt.WidgetAttribute
+    WA_Mapped = ...  # type: Qt.WidgetAttribute
+    WA_MacNoClickThrough = ...  # type: Qt.WidgetAttribute
+    WA_InputMethodEnabled = ...  # type: Qt.WidgetAttribute
+    WA_WState_Visible = ...  # type: Qt.WidgetAttribute
+    WA_WState_Hidden = ...  # type: Qt.WidgetAttribute
+    WA_ForceDisabled = ...  # type: Qt.WidgetAttribute
+    WA_KeyCompression = ...  # type: Qt.WidgetAttribute
+    WA_PendingMoveEvent = ...  # type: Qt.WidgetAttribute
+    WA_PendingResizeEvent = ...  # type: Qt.WidgetAttribute
+    WA_SetPalette = ...  # type: Qt.WidgetAttribute
+    WA_SetFont = ...  # type: Qt.WidgetAttribute
+    WA_SetCursor = ...  # type: Qt.WidgetAttribute
+    WA_NoChildEventsFromChildren = ...  # type: Qt.WidgetAttribute
+    WA_WindowModified = ...  # type: Qt.WidgetAttribute
+    WA_Resized = ...  # type: Qt.WidgetAttribute
+    WA_Moved = ...  # type: Qt.WidgetAttribute
+    WA_PendingUpdate = ...  # type: Qt.WidgetAttribute
+    WA_InvalidSize = ...  # type: Qt.WidgetAttribute
+    WA_MacMetalStyle = ...  # type: Qt.WidgetAttribute
+    WA_CustomWhatsThis = ...  # type: Qt.WidgetAttribute
+    WA_LayoutOnEntireRect = ...  # type: Qt.WidgetAttribute
+    WA_OutsideWSRange = ...  # type: Qt.WidgetAttribute
+    WA_GrabbedShortcut = ...  # type: Qt.WidgetAttribute
+    WA_TransparentForMouseEvents = ...  # type: Qt.WidgetAttribute
+    WA_PaintUnclipped = ...  # type: Qt.WidgetAttribute
+    WA_SetWindowIcon = ...  # type: Qt.WidgetAttribute
+    WA_NoMouseReplay = ...  # type: Qt.WidgetAttribute
+    WA_DeleteOnClose = ...  # type: Qt.WidgetAttribute
+    WA_RightToLeft = ...  # type: Qt.WidgetAttribute
+    WA_SetLayoutDirection = ...  # type: Qt.WidgetAttribute
+    WA_NoChildEventsForParent = ...  # type: Qt.WidgetAttribute
+    WA_ForceUpdatesDisabled = ...  # type: Qt.WidgetAttribute
+    WA_WState_Created = ...  # type: Qt.WidgetAttribute
+    WA_WState_CompressKeys = ...  # type: Qt.WidgetAttribute
+    WA_WState_InPaintEvent = ...  # type: Qt.WidgetAttribute
+    WA_WState_Reparented = ...  # type: Qt.WidgetAttribute
+    WA_WState_ConfigPending = ...  # type: Qt.WidgetAttribute
+    WA_WState_Polished = ...  # type: Qt.WidgetAttribute
+    WA_WState_OwnSizePolicy = ...  # type: Qt.WidgetAttribute
+    WA_WState_ExplicitShowHide = ...  # type: Qt.WidgetAttribute
+    WA_MouseNoMask = ...  # type: Qt.WidgetAttribute
+    WA_GroupLeader = ...  # type: Qt.WidgetAttribute
+    WA_NoMousePropagation = ...  # type: Qt.WidgetAttribute
+    WA_Hover = ...  # type: Qt.WidgetAttribute
+    WA_InputMethodTransparent = ...  # type: Qt.WidgetAttribute
+    WA_QuitOnClose = ...  # type: Qt.WidgetAttribute
+    WA_KeyboardFocusChange = ...  # type: Qt.WidgetAttribute
+    WA_AcceptDrops = ...  # type: Qt.WidgetAttribute
+    WA_WindowPropagation = ...  # type: Qt.WidgetAttribute
+    WA_NoX11EventCompression = ...  # type: Qt.WidgetAttribute
+    WA_TintedBackground = ...  # type: Qt.WidgetAttribute
+    WA_X11OpenGLOverlay = ...  # type: Qt.WidgetAttribute
+    WA_AttributeCount = ...  # type: Qt.WidgetAttribute
+    WA_AlwaysShowToolTips = ...  # type: Qt.WidgetAttribute
+    WA_MacOpaqueSizeGrip = ...  # type: Qt.WidgetAttribute
+    WA_SetStyle = ...  # type: Qt.WidgetAttribute
+    WA_MacBrushedMetal = ...  # type: Qt.WidgetAttribute
+    WA_SetLocale = ...  # type: Qt.WidgetAttribute
+    WA_MacShowFocusRect = ...  # type: Qt.WidgetAttribute
+    WA_MacNormalSize = ...  # type: Qt.WidgetAttribute
+    WA_MacSmallSize = ...  # type: Qt.WidgetAttribute
+    WA_MacMiniSize = ...  # type: Qt.WidgetAttribute
+    WA_LayoutUsesWidgetRect = ...  # type: Qt.WidgetAttribute
+    WA_StyledBackground = ...  # type: Qt.WidgetAttribute
+    WA_MSWindowsUseDirect3D = ...  # type: Qt.WidgetAttribute
+    WA_MacAlwaysShowToolWindow = ...  # type: Qt.WidgetAttribute
+    WA_StyleSheet = ...  # type: Qt.WidgetAttribute
+    WA_ShowWithoutActivating = ...  # type: Qt.WidgetAttribute
+    WA_NativeWindow = ...  # type: Qt.WidgetAttribute
+    WA_DontCreateNativeAncestors = ...  # type: Qt.WidgetAttribute
+    WA_MacVariableSize = ...  # type: Qt.WidgetAttribute
+    WA_DontShowOnScreen = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeDesktop = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeDock = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeToolBar = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeMenu = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeUtility = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeSplash = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeDialog = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeDropDownMenu = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypePopupMenu = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeToolTip = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeNotification = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeCombo = ...  # type: Qt.WidgetAttribute
+    WA_X11NetWmWindowTypeDND = ...  # type: Qt.WidgetAttribute
+    WA_MacFrameworkScaled = ...  # type: Qt.WidgetAttribute
+    WA_TranslucentBackground = ...  # type: Qt.WidgetAttribute
+    WA_AcceptTouchEvents = ...  # type: Qt.WidgetAttribute
+    WA_TouchPadAcceptSingleTouchEvents = ...  # type: Qt.WidgetAttribute
+    WA_X11DoNotAcceptFocus = ...  # type: Qt.WidgetAttribute
+    WA_MacNoShadow = ...  # type: Qt.WidgetAttribute
+    WA_AlwaysStackOnTop = ...  # type: Qt.WidgetAttribute
+    WA_TabletTracking = ...  # type: Qt.WidgetAttribute
+    WA_ContentsMarginsRespectsSafeArea = ...  # type: Qt.WidgetAttribute
+    WA_StyleSheetTarget = ...  # type: Qt.WidgetAttribute
+
     class WindowState(int):
         WindowNoState = ... # type: Qt.WindowState
         WindowMinimized = ... # type: Qt.WindowState
         WindowMaximized = ... # type: Qt.WindowState
         WindowFullScreen = ... # type: Qt.WindowState
         WindowActive = ... # type: Qt.WindowState
+
+    WindowNoState = ...  # type: Qt.WindowState
+    WindowMinimized = ...  # type: Qt.WindowState
+    WindowMaximized = ...  # type: Qt.WindowState
+    WindowFullScreen = ...  # type: Qt.WindowState
+    WindowActive = ...  # type: Qt.WindowState
 
     class WindowType(int):
         Widget = ... # type: Qt.WindowType
@@ -1316,11 +2407,55 @@ class Qt(sip.simplewrapper):
         CoverWindow = ... # type: Qt.WindowType
         MaximizeUsingFullscreenGeometryHint = ... # type: Qt.WindowType
 
+    Widget = ...  # type: Qt.WindowType
+    Window = ...  # type: Qt.WindowType
+    Dialog = ...  # type: Qt.WindowType
+    Sheet = ...  # type: Qt.WindowType
+    Drawer = ...  # type: Qt.WindowType
+    Popup = ...  # type: Qt.WindowType
+    Tool = ...  # type: Qt.WindowType
+    ToolTip = ...  # type: Qt.WindowType
+    SplashScreen = ...  # type: Qt.WindowType
+    Desktop = ...  # type: Qt.WindowType
+    SubWindow = ...  # type: Qt.WindowType
+    WindowType_Mask = ...  # type: Qt.WindowType
+    MSWindowsFixedSizeDialogHint = ...  # type: Qt.WindowType
+    MSWindowsOwnDC = ...  # type: Qt.WindowType
+    X11BypassWindowManagerHint = ...  # type: Qt.WindowType
+    FramelessWindowHint = ...  # type: Qt.WindowType
+    CustomizeWindowHint = ...  # type: Qt.WindowType
+    WindowTitleHint = ...  # type: Qt.WindowType
+    WindowSystemMenuHint = ...  # type: Qt.WindowType
+    WindowMinimizeButtonHint = ...  # type: Qt.WindowType
+    WindowMaximizeButtonHint = ...  # type: Qt.WindowType
+    WindowMinMaxButtonsHint = ...  # type: Qt.WindowType
+    WindowContextHelpButtonHint = ...  # type: Qt.WindowType
+    WindowShadeButtonHint = ...  # type: Qt.WindowType
+    WindowStaysOnTopHint = ...  # type: Qt.WindowType
+    WindowStaysOnBottomHint = ...  # type: Qt.WindowType
+    WindowCloseButtonHint = ...  # type: Qt.WindowType
+    MacWindowToolBarButtonHint = ...  # type: Qt.WindowType
+    BypassGraphicsProxyWidget = ...  # type: Qt.WindowType
+    WindowTransparentForInput = ...  # type: Qt.WindowType
+    WindowOverridesSystemGestures = ...  # type: Qt.WindowType
+    WindowDoesNotAcceptFocus = ...  # type: Qt.WindowType
+    NoDropShadowWindowHint = ...  # type: Qt.WindowType
+    WindowFullscreenButtonHint = ...  # type: Qt.WindowType
+    ForeignWindow = ...  # type: Qt.WindowType
+    BypassWindowManagerHint = ...  # type: Qt.WindowType
+    CoverWindow = ...  # type: Qt.WindowType
+    MaximizeUsingFullscreenGeometryHint = ...  # type: Qt.WindowType
+
     class TextElideMode(int):
         ElideLeft = ... # type: Qt.TextElideMode
         ElideRight = ... # type: Qt.TextElideMode
         ElideMiddle = ... # type: Qt.TextElideMode
         ElideNone = ... # type: Qt.TextElideMode
+
+    ElideLeft = ...  # type: Qt.TextElideMode
+    ElideRight = ...  # type: Qt.TextElideMode
+    ElideMiddle = ...  # type: Qt.TextElideMode
+    ElideNone = ...  # type: Qt.TextElideMode
 
     class TextFlag(int):
         TextSingleLine = ... # type: Qt.TextFlag
@@ -1333,6 +2468,17 @@ class Qt(sip.simplewrapper):
         TextIncludeTrailingSpaces = ... # type: Qt.TextFlag
         TextHideMnemonic = ... # type: Qt.TextFlag
         TextJustificationForced = ... # type: Qt.TextFlag
+
+    TextSingleLine = ...  # type: Qt.TextFlag
+    TextDontClip = ...  # type: Qt.TextFlag
+    TextExpandTabs = ...  # type: Qt.TextFlag
+    TextShowMnemonic = ...  # type: Qt.TextFlag
+    TextWordWrap = ...  # type: Qt.TextFlag
+    TextWrapAnywhere = ...  # type: Qt.TextFlag
+    TextDontPrint = ...  # type: Qt.TextFlag
+    TextIncludeTrailingSpaces = ...  # type: Qt.TextFlag
+    TextHideMnemonic = ...  # type: Qt.TextFlag
+    TextJustificationForced = ...  # type: Qt.TextFlag
 
     class AlignmentFlag(int):
         AlignLeft = ... # type: Qt.AlignmentFlag
@@ -1350,9 +2496,27 @@ class Qt(sip.simplewrapper):
         AlignCenter = ... # type: Qt.AlignmentFlag
         AlignBaseline = ... # type: Qt.AlignmentFlag
 
+    AlignLeft = ...  # type: Qt.AlignmentFlag
+    AlignLeading = ...  # type: Qt.AlignmentFlag
+    AlignRight = ...  # type: Qt.AlignmentFlag
+    AlignTrailing = ...  # type: Qt.AlignmentFlag
+    AlignHCenter = ...  # type: Qt.AlignmentFlag
+    AlignJustify = ...  # type: Qt.AlignmentFlag
+    AlignAbsolute = ...  # type: Qt.AlignmentFlag
+    AlignHorizontal_Mask = ...  # type: Qt.AlignmentFlag
+    AlignTop = ...  # type: Qt.AlignmentFlag
+    AlignBottom = ...  # type: Qt.AlignmentFlag
+    AlignVCenter = ...  # type: Qt.AlignmentFlag
+    AlignVertical_Mask = ...  # type: Qt.AlignmentFlag
+    AlignCenter = ...  # type: Qt.AlignmentFlag
+    AlignBaseline = ...  # type: Qt.AlignmentFlag
+
     class SortOrder(int):
         AscendingOrder = ... # type: Qt.SortOrder
         DescendingOrder = ... # type: Qt.SortOrder
+
+    AscendingOrder = ...  # type: Qt.SortOrder
+    DescendingOrder = ...  # type: Qt.SortOrder
 
     class FocusPolicy(int):
         NoFocus = ... # type: Qt.FocusPolicy
@@ -1361,9 +2525,18 @@ class Qt(sip.simplewrapper):
         StrongFocus = ... # type: Qt.FocusPolicy
         WheelFocus = ... # type: Qt.FocusPolicy
 
+    NoFocus = ...  # type: Qt.FocusPolicy
+    TabFocus = ...  # type: Qt.FocusPolicy
+    ClickFocus = ...  # type: Qt.FocusPolicy
+    StrongFocus = ...  # type: Qt.FocusPolicy
+    WheelFocus = ...  # type: Qt.FocusPolicy
+
     class Orientation(int):
         Horizontal = ... # type: Qt.Orientation
         Vertical = ... # type: Qt.Orientation
+
+    Horizontal = ...  # type: Qt.Orientation
+    Vertical = ...  # type: Qt.Orientation
 
     class MouseButton(int):
         NoButton = ... # type: Qt.MouseButton
@@ -1402,6 +2575,42 @@ class Qt(sip.simplewrapper):
         ExtraButton23 = ... # type: Qt.MouseButton
         ExtraButton24 = ... # type: Qt.MouseButton
 
+    NoButton = ...  # type: Qt.MouseButton
+    AllButtons = ...  # type: Qt.MouseButton
+    LeftButton = ...  # type: Qt.MouseButton
+    RightButton = ...  # type: Qt.MouseButton
+    MidButton = ...  # type: Qt.MouseButton
+    MiddleButton = ...  # type: Qt.MouseButton
+    XButton1 = ...  # type: Qt.MouseButton
+    XButton2 = ...  # type: Qt.MouseButton
+    BackButton = ...  # type: Qt.MouseButton
+    ExtraButton1 = ...  # type: Qt.MouseButton
+    ForwardButton = ...  # type: Qt.MouseButton
+    ExtraButton2 = ...  # type: Qt.MouseButton
+    TaskButton = ...  # type: Qt.MouseButton
+    ExtraButton3 = ...  # type: Qt.MouseButton
+    ExtraButton4 = ...  # type: Qt.MouseButton
+    ExtraButton5 = ...  # type: Qt.MouseButton
+    ExtraButton6 = ...  # type: Qt.MouseButton
+    ExtraButton7 = ...  # type: Qt.MouseButton
+    ExtraButton8 = ...  # type: Qt.MouseButton
+    ExtraButton9 = ...  # type: Qt.MouseButton
+    ExtraButton10 = ...  # type: Qt.MouseButton
+    ExtraButton11 = ...  # type: Qt.MouseButton
+    ExtraButton12 = ...  # type: Qt.MouseButton
+    ExtraButton13 = ...  # type: Qt.MouseButton
+    ExtraButton14 = ...  # type: Qt.MouseButton
+    ExtraButton15 = ...  # type: Qt.MouseButton
+    ExtraButton16 = ...  # type: Qt.MouseButton
+    ExtraButton17 = ...  # type: Qt.MouseButton
+    ExtraButton18 = ...  # type: Qt.MouseButton
+    ExtraButton19 = ...  # type: Qt.MouseButton
+    ExtraButton20 = ...  # type: Qt.MouseButton
+    ExtraButton21 = ...  # type: Qt.MouseButton
+    ExtraButton22 = ...  # type: Qt.MouseButton
+    ExtraButton23 = ...  # type: Qt.MouseButton
+    ExtraButton24 = ...  # type: Qt.MouseButton
+
     class Modifier(int):
         META = ... # type: Qt.Modifier
         SHIFT = ... # type: Qt.Modifier
@@ -1409,6 +2618,13 @@ class Qt(sip.simplewrapper):
         ALT = ... # type: Qt.Modifier
         MODIFIER_MASK = ... # type: Qt.Modifier
         UNICODE_ACCEL = ... # type: Qt.Modifier
+
+    META = ...  # type: Qt.Modifier
+    SHIFT = ...  # type: Qt.Modifier
+    CTRL = ...  # type: Qt.Modifier
+    ALT = ...  # type: Qt.Modifier
+    MODIFIER_MASK = ...  # type: Qt.Modifier
+    UNICODE_ACCEL = ...  # type: Qt.Modifier
 
     class KeyboardModifier(int):
         NoModifier = ... # type: Qt.KeyboardModifier
@@ -1419,6 +2635,15 @@ class Qt(sip.simplewrapper):
         KeypadModifier = ... # type: Qt.KeyboardModifier
         GroupSwitchModifier = ... # type: Qt.KeyboardModifier
         KeyboardModifierMask = ... # type: Qt.KeyboardModifier
+
+    NoModifier = ...  # type: Qt.KeyboardModifier
+    ShiftModifier = ...  # type: Qt.KeyboardModifier
+    ControlModifier = ...  # type: Qt.KeyboardModifier
+    AltModifier = ...  # type: Qt.KeyboardModifier
+    MetaModifier = ...  # type: Qt.KeyboardModifier
+    KeypadModifier = ...  # type: Qt.KeyboardModifier
+    GroupSwitchModifier = ...  # type: Qt.KeyboardModifier
+    KeyboardModifierMask = ...  # type: Qt.KeyboardModifier
 
     class GlobalColor(int):
         color0 = ... # type: Qt.GlobalColor
@@ -1441,6 +2666,27 @@ class Qt(sip.simplewrapper):
         darkMagenta = ... # type: Qt.GlobalColor
         darkYellow = ... # type: Qt.GlobalColor
         transparent = ... # type: Qt.GlobalColor
+
+    color0 = ...  # type: Qt.GlobalColor
+    color1 = ...  # type: Qt.GlobalColor
+    black = ...  # type: Qt.GlobalColor
+    white = ...  # type: Qt.GlobalColor
+    darkGray = ...  # type: Qt.GlobalColor
+    gray = ...  # type: Qt.GlobalColor
+    lightGray = ...  # type: Qt.GlobalColor
+    red = ...  # type: Qt.GlobalColor
+    green = ...  # type: Qt.GlobalColor
+    blue = ...  # type: Qt.GlobalColor
+    cyan = ...  # type: Qt.GlobalColor
+    magenta = ...  # type: Qt.GlobalColor
+    yellow = ...  # type: Qt.GlobalColor
+    darkRed = ...  # type: Qt.GlobalColor
+    darkGreen = ...  # type: Qt.GlobalColor
+    darkBlue = ...  # type: Qt.GlobalColor
+    darkCyan = ...  # type: Qt.GlobalColor
+    darkMagenta = ...  # type: Qt.GlobalColor
+    darkYellow = ...  # type: Qt.GlobalColor
+    transparent = ...  # type: Qt.GlobalColor
 
     class KeyboardModifiers(sip.simplewrapper):
 
@@ -1850,14 +3096,24 @@ class QAbstractAnimation(QObject):
         KeepWhenStopped = ... # type: QAbstractAnimation.DeletionPolicy
         DeleteWhenStopped = ... # type: QAbstractAnimation.DeletionPolicy
 
+    KeepWhenStopped = ...  # type: QAbstractAnimation.DeletionPolicy
+    DeleteWhenStopped = ...  # type: QAbstractAnimation.DeletionPolicy
+
     class State(int):
         Stopped = ... # type: QAbstractAnimation.State
         Paused = ... # type: QAbstractAnimation.State
         Running = ... # type: QAbstractAnimation.State
 
+    Stopped = ...  # type: QAbstractAnimation.State
+    Paused = ...  # type: QAbstractAnimation.State
+    Running = ...  # type: QAbstractAnimation.State
+
     class Direction(int):
         Forward = ... # type: QAbstractAnimation.Direction
         Backward = ... # type: QAbstractAnimation.Direction
+
+    Forward = ...  # type: QAbstractAnimation.Direction
+    Backward = ...  # type: QAbstractAnimation.Direction
 
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
 
@@ -1984,10 +3240,19 @@ class QAbstractItemModel(QObject):
         DoNotUseParent = ... # type: QAbstractItemModel.CheckIndexOption
         ParentIsInvalid = ... # type: QAbstractItemModel.CheckIndexOption
 
+    NoOption = ...  # type: QAbstractItemModel.CheckIndexOption
+    IndexIsValid = ...  # type: QAbstractItemModel.CheckIndexOption
+    DoNotUseParent = ...  # type: QAbstractItemModel.CheckIndexOption
+    ParentIsInvalid = ...  # type: QAbstractItemModel.CheckIndexOption
+
     class LayoutChangeHint(int):
         NoLayoutChangeHint = ... # type: QAbstractItemModel.LayoutChangeHint
         VerticalSortHint = ... # type: QAbstractItemModel.LayoutChangeHint
         HorizontalSortHint = ... # type: QAbstractItemModel.LayoutChangeHint
+
+    NoLayoutChangeHint = ...  # type: QAbstractItemModel.LayoutChangeHint
+    VerticalSortHint = ...  # type: QAbstractItemModel.LayoutChangeHint
+    HorizontalSortHint = ...  # type: QAbstractItemModel.LayoutChangeHint
 
     class CheckIndexOptions(sip.simplewrapper):
 
@@ -2178,6 +3443,9 @@ class QAbstractTransition(QObject):
         ExternalTransition = ... # type: QAbstractTransition.TransitionType
         InternalTransition = ... # type: QAbstractTransition.TransitionType
 
+    ExternalTransition = ...  # type: QAbstractTransition.TransitionType
+    InternalTransition = ...  # type: QAbstractTransition.TransitionType
+
     def __init__(self, sourceState: typing.Optional['QState'] = ...) -> None: ...
 
     def setTransitionType(self, type: 'QAbstractTransition.TransitionType') -> None: ...
@@ -2289,6 +3557,17 @@ class QIODevice(QObject):
         ExistingOnly = ... # type: QIODevice.OpenModeFlag
 
         def __or__(self, other: typing.Union['QIODevice.OpenModeFlag', 'QIODevice.OpenMode']) -> 'QIODevice.OpenModeFlag': ... #type: ignore[override]
+
+    NotOpen = ...  # type: QIODevice.OpenModeFlag
+    ReadOnly = ...  # type: QIODevice.OpenModeFlag
+    WriteOnly = ...  # type: QIODevice.OpenModeFlag
+    ReadWrite = ...  # type: QIODevice.OpenModeFlag
+    Append = ...  # type: QIODevice.OpenModeFlag
+    Truncate = ...  # type: QIODevice.OpenModeFlag
+    Text = ...  # type: QIODevice.OpenModeFlag
+    Unbuffered = ...  # type: QIODevice.OpenModeFlag
+    NewOnly = ...  # type: QIODevice.OpenModeFlag
+    ExistingOnly = ...  # type: QIODevice.OpenModeFlag
 
     class OpenMode(sip.simplewrapper):
 
@@ -2403,6 +3682,11 @@ class QByteArray(sip.simplewrapper):
         IllegalCharacter = ... # type: QByteArray.Base64DecodingStatus
         IllegalPadding = ... # type: QByteArray.Base64DecodingStatus
 
+    Ok = ...  # type: QByteArray.Base64DecodingStatus
+    IllegalInputLength = ...  # type: QByteArray.Base64DecodingStatus
+    IllegalCharacter = ...  # type: QByteArray.Base64DecodingStatus
+    IllegalPadding = ...  # type: QByteArray.Base64DecodingStatus
+
     class Base64Option(int):
         Base64Encoding = ... # type: QByteArray.Base64Option
         Base64UrlEncoding = ... # type: QByteArray.Base64Option
@@ -2410,6 +3694,13 @@ class QByteArray(sip.simplewrapper):
         OmitTrailingEquals = ... # type: QByteArray.Base64Option
         IgnoreBase64DecodingErrors = ... # type: QByteArray.Base64Option
         AbortOnBase64DecodingErrors = ... # type: QByteArray.Base64Option
+
+    Base64Encoding = ...  # type: QByteArray.Base64Option
+    Base64UrlEncoding = ...  # type: QByteArray.Base64Option
+    KeepTrailingEquals = ...  # type: QByteArray.Base64Option
+    OmitTrailingEquals = ...  # type: QByteArray.Base64Option
+    IgnoreBase64DecodingErrors = ...  # type: QByteArray.Base64Option
+    AbortOnBase64DecodingErrors = ...  # type: QByteArray.Base64Option
 
     class Base64Options(sip.simplewrapper):
 
@@ -2594,6 +3885,12 @@ class QCalendar(sip.simplewrapper):
         Jalali = ... # type: QCalendar.System
         IslamicCivil = ... # type: QCalendar.System
 
+    Gregorian = ...  # type: QCalendar.System
+    Julian = ...  # type: QCalendar.System
+    Milankovic = ...  # type: QCalendar.System
+    Jalali = ...  # type: QCalendar.System
+    IslamicCivil = ...  # type: QCalendar.System
+
     Unspecified = ... # type: int
 
     class YearMonthDay(sip.simplewrapper):
@@ -2669,6 +3966,22 @@ class QCborError(sip.simplewrapper):
         UnsupportedType = ... # type: QCborError.Code
         NoError = ... # type: QCborError.Code
 
+    UnknownError = ...  # type: QCborError.Code
+    AdvancePastEnd = ...  # type: QCborError.Code
+    InputOutputError = ...  # type: QCborError.Code
+    GarbageAtEnd = ...  # type: QCborError.Code
+    EndOfFile = ...  # type: QCborError.Code
+    UnexpectedBreak = ...  # type: QCborError.Code
+    UnknownType = ...  # type: QCborError.Code
+    IllegalType = ...  # type: QCborError.Code
+    IllegalNumber = ...  # type: QCborError.Code
+    IllegalSimpleType = ...  # type: QCborError.Code
+    InvalidUtf8String = ...  # type: QCborError.Code
+    DataTooLarge = ...  # type: QCborError.Code
+    NestingTooDeep = ...  # type: QCborError.Code
+    UnsupportedType = ...  # type: QCborError.Code
+    NoError = ...  # type: QCborError.Code
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -2722,6 +4035,10 @@ class QCborStreamReader(sip.simplewrapper):
         Ok = ... # type: QCborStreamReader.StringResultCode
         Error = ... # type: QCborStreamReader.StringResultCode
 
+    EndOfString = ...  # type: QCborStreamReader.StringResultCode
+    Ok = ...  # type: QCborStreamReader.StringResultCode
+    Error = ...  # type: QCborStreamReader.StringResultCode
+
     class Type(int):
         UnsignedInteger = ... # type: QCborStreamReader.Type
         NegativeInteger = ... # type: QCborStreamReader.Type
@@ -2738,6 +4055,22 @@ class QCborStreamReader(sip.simplewrapper):
         Float = ... # type: QCborStreamReader.Type
         Double = ... # type: QCborStreamReader.Type
         Invalid = ... # type: QCborStreamReader.Type
+
+    UnsignedInteger = ...  # type: QCborStreamReader.Type
+    NegativeInteger = ...  # type: QCborStreamReader.Type
+    ByteString = ...  # type: QCborStreamReader.Type
+    ByteArray = ...  # type: QCborStreamReader.Type
+    TextString = ...  # type: QCborStreamReader.Type
+    String = ...  # type: QCborStreamReader.Type
+    Array = ...  # type: QCborStreamReader.Type
+    Map = ...  # type: QCborStreamReader.Type
+    Tag = ...  # type: QCborStreamReader.Type
+    SimpleType = ...  # type: QCborStreamReader.Type
+    HalfFloat = ...  # type: QCborStreamReader.Type
+    Float16 = ...  # type: QCborStreamReader.Type
+    Float = ...  # type: QCborStreamReader.Type
+    Double = ...  # type: QCborStreamReader.Type
+    Invalid = ...  # type: QCborStreamReader.Type
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2830,6 +4163,9 @@ class QCommandLineOption(sip.simplewrapper):
         HiddenFromHelp = ... # type: QCommandLineOption.Flag
         ShortOptionStyle = ... # type: QCommandLineOption.Flag
 
+    HiddenFromHelp = ...  # type: QCommandLineOption.Flag
+    ShortOptionStyle = ...  # type: QCommandLineOption.Flag
+
     class Flags(sip.simplewrapper):
 
         @typing.overload
@@ -2877,9 +4213,15 @@ class QCommandLineParser(sip.simplewrapper):
         ParseAsOptions = ... # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
         ParseAsPositionalArguments = ... # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
 
+    ParseAsOptions = ...  # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
+    ParseAsPositionalArguments = ...  # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
+
     class SingleDashWordOptionMode(int):
         ParseAsCompactedShortOptions = ... # type: QCommandLineParser.SingleDashWordOptionMode
         ParseAsLongOptions = ... # type: QCommandLineParser.SingleDashWordOptionMode
+
+    ParseAsCompactedShortOptions = ...  # type: QCommandLineParser.SingleDashWordOptionMode
+    ParseAsLongOptions = ...  # type: QCommandLineParser.SingleDashWordOptionMode
 
     def __init__(self) -> None: ...
 
@@ -3200,6 +4542,155 @@ class QEvent(sip.wrapper):
         User = ... # type: QEvent.Type
         MaxUser = ... # type: QEvent.Type
 
+    None_ = ...  # type: QEvent.Type
+    Timer = ...  # type: QEvent.Type
+    MouseButtonPress = ...  # type: QEvent.Type
+    MouseButtonRelease = ...  # type: QEvent.Type
+    MouseButtonDblClick = ...  # type: QEvent.Type
+    MouseMove = ...  # type: QEvent.Type
+    KeyPress = ...  # type: QEvent.Type
+    KeyRelease = ...  # type: QEvent.Type
+    FocusIn = ...  # type: QEvent.Type
+    FocusOut = ...  # type: QEvent.Type
+    Enter = ...  # type: QEvent.Type
+    Leave = ...  # type: QEvent.Type
+    Paint = ...  # type: QEvent.Type
+    Move = ...  # type: QEvent.Type
+    Resize = ...  # type: QEvent.Type
+    Show = ...  # type: QEvent.Type
+    Hide = ...  # type: QEvent.Type
+    Close = ...  # type: QEvent.Type
+    ParentChange = ...  # type: QEvent.Type
+    ParentAboutToChange = ...  # type: QEvent.Type
+    ThreadChange = ...  # type: QEvent.Type
+    WindowActivate = ...  # type: QEvent.Type
+    WindowDeactivate = ...  # type: QEvent.Type
+    ShowToParent = ...  # type: QEvent.Type
+    HideToParent = ...  # type: QEvent.Type
+    Wheel = ...  # type: QEvent.Type
+    WindowTitleChange = ...  # type: QEvent.Type
+    WindowIconChange = ...  # type: QEvent.Type
+    ApplicationWindowIconChange = ...  # type: QEvent.Type
+    ApplicationFontChange = ...  # type: QEvent.Type
+    ApplicationLayoutDirectionChange = ...  # type: QEvent.Type
+    ApplicationPaletteChange = ...  # type: QEvent.Type
+    PaletteChange = ...  # type: QEvent.Type
+    Clipboard = ...  # type: QEvent.Type
+    MetaCall = ...  # type: QEvent.Type
+    SockAct = ...  # type: QEvent.Type
+    WinEventAct = ...  # type: QEvent.Type
+    DeferredDelete = ...  # type: QEvent.Type
+    DragEnter = ...  # type: QEvent.Type
+    DragMove = ...  # type: QEvent.Type
+    DragLeave = ...  # type: QEvent.Type
+    Drop = ...  # type: QEvent.Type
+    ChildAdded = ...  # type: QEvent.Type
+    ChildPolished = ...  # type: QEvent.Type
+    ChildRemoved = ...  # type: QEvent.Type
+    PolishRequest = ...  # type: QEvent.Type
+    Polish = ...  # type: QEvent.Type
+    LayoutRequest = ...  # type: QEvent.Type
+    UpdateRequest = ...  # type: QEvent.Type
+    UpdateLater = ...  # type: QEvent.Type
+    ContextMenu = ...  # type: QEvent.Type
+    InputMethod = ...  # type: QEvent.Type
+    TabletMove = ...  # type: QEvent.Type
+    LocaleChange = ...  # type: QEvent.Type
+    LanguageChange = ...  # type: QEvent.Type
+    LayoutDirectionChange = ...  # type: QEvent.Type
+    TabletPress = ...  # type: QEvent.Type
+    TabletRelease = ...  # type: QEvent.Type
+    OkRequest = ...  # type: QEvent.Type
+    IconDrag = ...  # type: QEvent.Type
+    FontChange = ...  # type: QEvent.Type
+    EnabledChange = ...  # type: QEvent.Type
+    ActivationChange = ...  # type: QEvent.Type
+    StyleChange = ...  # type: QEvent.Type
+    IconTextChange = ...  # type: QEvent.Type
+    ModifiedChange = ...  # type: QEvent.Type
+    MouseTrackingChange = ...  # type: QEvent.Type
+    WindowBlocked = ...  # type: QEvent.Type
+    WindowUnblocked = ...  # type: QEvent.Type
+    WindowStateChange = ...  # type: QEvent.Type
+    ToolTip = ...  # type: QEvent.Type
+    WhatsThis = ...  # type: QEvent.Type
+    StatusTip = ...  # type: QEvent.Type
+    ActionChanged = ...  # type: QEvent.Type
+    ActionAdded = ...  # type: QEvent.Type
+    ActionRemoved = ...  # type: QEvent.Type
+    FileOpen = ...  # type: QEvent.Type
+    Shortcut = ...  # type: QEvent.Type
+    ShortcutOverride = ...  # type: QEvent.Type
+    WhatsThisClicked = ...  # type: QEvent.Type
+    ToolBarChange = ...  # type: QEvent.Type
+    ApplicationActivate = ...  # type: QEvent.Type
+    ApplicationActivated = ...  # type: QEvent.Type
+    ApplicationDeactivate = ...  # type: QEvent.Type
+    ApplicationDeactivated = ...  # type: QEvent.Type
+    QueryWhatsThis = ...  # type: QEvent.Type
+    EnterWhatsThisMode = ...  # type: QEvent.Type
+    LeaveWhatsThisMode = ...  # type: QEvent.Type
+    ZOrderChange = ...  # type: QEvent.Type
+    HoverEnter = ...  # type: QEvent.Type
+    HoverLeave = ...  # type: QEvent.Type
+    HoverMove = ...  # type: QEvent.Type
+    GraphicsSceneMouseMove = ...  # type: QEvent.Type
+    GraphicsSceneMousePress = ...  # type: QEvent.Type
+    GraphicsSceneMouseRelease = ...  # type: QEvent.Type
+    GraphicsSceneMouseDoubleClick = ...  # type: QEvent.Type
+    GraphicsSceneContextMenu = ...  # type: QEvent.Type
+    GraphicsSceneHoverEnter = ...  # type: QEvent.Type
+    GraphicsSceneHoverMove = ...  # type: QEvent.Type
+    GraphicsSceneHoverLeave = ...  # type: QEvent.Type
+    GraphicsSceneHelp = ...  # type: QEvent.Type
+    GraphicsSceneDragEnter = ...  # type: QEvent.Type
+    GraphicsSceneDragMove = ...  # type: QEvent.Type
+    GraphicsSceneDragLeave = ...  # type: QEvent.Type
+    GraphicsSceneDrop = ...  # type: QEvent.Type
+    GraphicsSceneWheel = ...  # type: QEvent.Type
+    GraphicsSceneResize = ...  # type: QEvent.Type
+    GraphicsSceneMove = ...  # type: QEvent.Type
+    KeyboardLayoutChange = ...  # type: QEvent.Type
+    DynamicPropertyChange = ...  # type: QEvent.Type
+    TabletEnterProximity = ...  # type: QEvent.Type
+    TabletLeaveProximity = ...  # type: QEvent.Type
+    NonClientAreaMouseMove = ...  # type: QEvent.Type
+    NonClientAreaMouseButtonPress = ...  # type: QEvent.Type
+    NonClientAreaMouseButtonRelease = ...  # type: QEvent.Type
+    NonClientAreaMouseButtonDblClick = ...  # type: QEvent.Type
+    MacSizeChange = ...  # type: QEvent.Type
+    ContentsRectChange = ...  # type: QEvent.Type
+    CursorChange = ...  # type: QEvent.Type
+    ToolTipChange = ...  # type: QEvent.Type
+    GrabMouse = ...  # type: QEvent.Type
+    UngrabMouse = ...  # type: QEvent.Type
+    GrabKeyboard = ...  # type: QEvent.Type
+    UngrabKeyboard = ...  # type: QEvent.Type
+    StateMachineSignal = ...  # type: QEvent.Type
+    StateMachineWrapped = ...  # type: QEvent.Type
+    TouchBegin = ...  # type: QEvent.Type
+    TouchUpdate = ...  # type: QEvent.Type
+    TouchEnd = ...  # type: QEvent.Type
+    RequestSoftwareInputPanel = ...  # type: QEvent.Type
+    CloseSoftwareInputPanel = ...  # type: QEvent.Type
+    WinIdChange = ...  # type: QEvent.Type
+    Gesture = ...  # type: QEvent.Type
+    GestureOverride = ...  # type: QEvent.Type
+    FocusAboutToChange = ...  # type: QEvent.Type
+    ScrollPrepare = ...  # type: QEvent.Type
+    Scroll = ...  # type: QEvent.Type
+    Expose = ...  # type: QEvent.Type
+    InputMethodQuery = ...  # type: QEvent.Type
+    OrientationChange = ...  # type: QEvent.Type
+    TouchCancel = ...  # type: QEvent.Type
+    PlatformPanel = ...  # type: QEvent.Type
+    ApplicationStateChange = ...  # type: QEvent.Type
+    ReadOnlyChange = ...  # type: QEvent.Type
+    PlatformSurface = ...  # type: QEvent.Type
+    TabletTrackingChange = ...  # type: QEvent.Type
+    User = ...  # type: QEvent.Type
+    MaxUser = ...  # type: QEvent.Type
+
     @typing.overload
     def __init__(self, type: 'QEvent.Type') -> None: ...
     @typing.overload
@@ -3267,6 +4758,22 @@ class QCryptographicHash(sip.simplewrapper):
         Keccak_384 = ... # type: QCryptographicHash.Algorithm
         Keccak_512 = ... # type: QCryptographicHash.Algorithm
 
+    Md4 = ...  # type: QCryptographicHash.Algorithm
+    Md5 = ...  # type: QCryptographicHash.Algorithm
+    Sha1 = ...  # type: QCryptographicHash.Algorithm
+    Sha224 = ...  # type: QCryptographicHash.Algorithm
+    Sha256 = ...  # type: QCryptographicHash.Algorithm
+    Sha384 = ...  # type: QCryptographicHash.Algorithm
+    Sha512 = ...  # type: QCryptographicHash.Algorithm
+    Sha3_224 = ...  # type: QCryptographicHash.Algorithm
+    Sha3_256 = ...  # type: QCryptographicHash.Algorithm
+    Sha3_384 = ...  # type: QCryptographicHash.Algorithm
+    Sha3_512 = ...  # type: QCryptographicHash.Algorithm
+    Keccak_224 = ...  # type: QCryptographicHash.Algorithm
+    Keccak_256 = ...  # type: QCryptographicHash.Algorithm
+    Keccak_384 = ...  # type: QCryptographicHash.Algorithm
+    Keccak_512 = ...  # type: QCryptographicHash.Algorithm
+
     def __init__(self, method: 'QCryptographicHash.Algorithm') -> None: ...
 
     @staticmethod
@@ -3289,15 +4796,26 @@ class QDataStream(sip.simplewrapper):
         SinglePrecision = ... # type: QDataStream.FloatingPointPrecision
         DoublePrecision = ... # type: QDataStream.FloatingPointPrecision
 
+    SinglePrecision = ...  # type: QDataStream.FloatingPointPrecision
+    DoublePrecision = ...  # type: QDataStream.FloatingPointPrecision
+
     class Status(int):
         Ok = ... # type: QDataStream.Status
         ReadPastEnd = ... # type: QDataStream.Status
         ReadCorruptData = ... # type: QDataStream.Status
         WriteFailed = ... # type: QDataStream.Status
 
+    Ok = ...  # type: QDataStream.Status
+    ReadPastEnd = ...  # type: QDataStream.Status
+    ReadCorruptData = ...  # type: QDataStream.Status
+    WriteFailed = ...  # type: QDataStream.Status
+
     class ByteOrder(int):
         BigEndian = ... # type: QDataStream.ByteOrder
         LittleEndian = ... # type: QDataStream.ByteOrder
+
+    BigEndian = ...  # type: QDataStream.ByteOrder
+    LittleEndian = ...  # type: QDataStream.ByteOrder
 
     class Version(int):
         Qt_1_0 = ... # type: QDataStream.Version
@@ -3332,6 +4850,39 @@ class QDataStream(sip.simplewrapper):
         Qt_5_13 = ... # type: QDataStream.Version
         Qt_5_14 = ... # type: QDataStream.Version
         Qt_5_15 = ... # type: QDataStream.Version
+
+    Qt_1_0 = ...  # type: QDataStream.Version
+    Qt_2_0 = ...  # type: QDataStream.Version
+    Qt_2_1 = ...  # type: QDataStream.Version
+    Qt_3_0 = ...  # type: QDataStream.Version
+    Qt_3_1 = ...  # type: QDataStream.Version
+    Qt_3_3 = ...  # type: QDataStream.Version
+    Qt_4_0 = ...  # type: QDataStream.Version
+    Qt_4_1 = ...  # type: QDataStream.Version
+    Qt_4_2 = ...  # type: QDataStream.Version
+    Qt_4_3 = ...  # type: QDataStream.Version
+    Qt_4_4 = ...  # type: QDataStream.Version
+    Qt_4_5 = ...  # type: QDataStream.Version
+    Qt_4_6 = ...  # type: QDataStream.Version
+    Qt_4_7 = ...  # type: QDataStream.Version
+    Qt_4_8 = ...  # type: QDataStream.Version
+    Qt_4_9 = ...  # type: QDataStream.Version
+    Qt_5_0 = ...  # type: QDataStream.Version
+    Qt_5_1 = ...  # type: QDataStream.Version
+    Qt_5_2 = ...  # type: QDataStream.Version
+    Qt_5_3 = ...  # type: QDataStream.Version
+    Qt_5_4 = ...  # type: QDataStream.Version
+    Qt_5_5 = ...  # type: QDataStream.Version
+    Qt_5_6 = ...  # type: QDataStream.Version
+    Qt_5_7 = ...  # type: QDataStream.Version
+    Qt_5_8 = ...  # type: QDataStream.Version
+    Qt_5_9 = ...  # type: QDataStream.Version
+    Qt_5_10 = ...  # type: QDataStream.Version
+    Qt_5_11 = ...  # type: QDataStream.Version
+    Qt_5_12 = ...  # type: QDataStream.Version
+    Qt_5_13 = ...  # type: QDataStream.Version
+    Qt_5_14 = ...  # type: QDataStream.Version
+    Qt_5_15 = ...  # type: QDataStream.Version
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -3408,6 +4959,9 @@ class QDate(sip.simplewrapper):
     class MonthNameType(int):
         DateFormat = ... # type: QDate.MonthNameType
         StandaloneFormat = ... # type: QDate.MonthNameType
+
+    DateFormat = ...  # type: QDate.MonthNameType
+    StandaloneFormat = ...  # type: QDate.MonthNameType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -3568,6 +5122,9 @@ class QDateTime(sip.simplewrapper):
         First = ... # type: QDateTime.YearRange
         Last = ... # type: QDateTime.YearRange
 
+    First = ...  # type: QDateTime.YearRange
+    Last = ...  # type: QDateTime.YearRange
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -3675,6 +5232,8 @@ class QDeadlineTimer(sip.simplewrapper):
     class ForeverConstant(int):
         Forever = ... # type: QDeadlineTimer.ForeverConstant
 
+    Forever = ...  # type: QDeadlineTimer.ForeverConstant
+
     @typing.overload
     def __init__(self, type: Qt.TimerType = ...) -> None: ...
     @typing.overload
@@ -3719,6 +5278,19 @@ class QDir(sip.simplewrapper):
         Type = ... # type: QDir.SortFlag
         NoSort = ... # type: QDir.SortFlag
 
+    Name = ...  # type: QDir.SortFlag
+    Time = ...  # type: QDir.SortFlag
+    Size = ...  # type: QDir.SortFlag
+    Unsorted = ...  # type: QDir.SortFlag
+    SortByMask = ...  # type: QDir.SortFlag
+    DirsFirst = ...  # type: QDir.SortFlag
+    Reversed = ...  # type: QDir.SortFlag
+    IgnoreCase = ...  # type: QDir.SortFlag
+    DirsLast = ...  # type: QDir.SortFlag
+    LocaleAware = ...  # type: QDir.SortFlag
+    Type = ...  # type: QDir.SortFlag
+    NoSort = ...  # type: QDir.SortFlag
+
     class Filter(int):
         Dirs = ... # type: QDir.Filter
         Files = ... # type: QDir.Filter
@@ -3740,6 +5312,27 @@ class QDir(sip.simplewrapper):
         NoFilter = ... # type: QDir.Filter
         NoDot = ... # type: QDir.Filter
         NoDotDot = ... # type: QDir.Filter
+
+    Dirs = ...  # type: QDir.Filter
+    Files = ...  # type: QDir.Filter
+    Drives = ...  # type: QDir.Filter
+    NoSymLinks = ...  # type: QDir.Filter
+    AllEntries = ...  # type: QDir.Filter
+    TypeMask = ...  # type: QDir.Filter
+    Readable = ...  # type: QDir.Filter
+    Writable = ...  # type: QDir.Filter
+    Executable = ...  # type: QDir.Filter
+    PermissionMask = ...  # type: QDir.Filter
+    Modified = ...  # type: QDir.Filter
+    Hidden = ...  # type: QDir.Filter
+    System = ...  # type: QDir.Filter
+    AccessMask = ...  # type: QDir.Filter
+    AllDirs = ...  # type: QDir.Filter
+    CaseSensitive = ...  # type: QDir.Filter
+    NoDotAndDotDot = ...  # type: QDir.Filter
+    NoFilter = ...  # type: QDir.Filter
+    NoDot = ...  # type: QDir.Filter
+    NoDotDot = ...  # type: QDir.Filter
 
     class Filters(sip.simplewrapper):
 
@@ -3885,6 +5478,10 @@ class QDirIterator(sip.simplewrapper):
         FollowSymlinks = ... # type: QDirIterator.IteratorFlag
         Subdirectories = ... # type: QDirIterator.IteratorFlag
 
+    NoIteratorFlags = ...  # type: QDirIterator.IteratorFlag
+    FollowSymlinks = ...  # type: QDirIterator.IteratorFlag
+    Subdirectories = ...  # type: QDirIterator.IteratorFlag
+
     class IteratorFlags(sip.simplewrapper):
 
         @typing.overload
@@ -3969,6 +5566,55 @@ class QEasingCurve(sip.simplewrapper):
         TCBSpline = ... # type: QEasingCurve.Type
         Custom = ... # type: QEasingCurve.Type
 
+    Linear = ...  # type: QEasingCurve.Type
+    InQuad = ...  # type: QEasingCurve.Type
+    OutQuad = ...  # type: QEasingCurve.Type
+    InOutQuad = ...  # type: QEasingCurve.Type
+    OutInQuad = ...  # type: QEasingCurve.Type
+    InCubic = ...  # type: QEasingCurve.Type
+    OutCubic = ...  # type: QEasingCurve.Type
+    InOutCubic = ...  # type: QEasingCurve.Type
+    OutInCubic = ...  # type: QEasingCurve.Type
+    InQuart = ...  # type: QEasingCurve.Type
+    OutQuart = ...  # type: QEasingCurve.Type
+    InOutQuart = ...  # type: QEasingCurve.Type
+    OutInQuart = ...  # type: QEasingCurve.Type
+    InQuint = ...  # type: QEasingCurve.Type
+    OutQuint = ...  # type: QEasingCurve.Type
+    InOutQuint = ...  # type: QEasingCurve.Type
+    OutInQuint = ...  # type: QEasingCurve.Type
+    InSine = ...  # type: QEasingCurve.Type
+    OutSine = ...  # type: QEasingCurve.Type
+    InOutSine = ...  # type: QEasingCurve.Type
+    OutInSine = ...  # type: QEasingCurve.Type
+    InExpo = ...  # type: QEasingCurve.Type
+    OutExpo = ...  # type: QEasingCurve.Type
+    InOutExpo = ...  # type: QEasingCurve.Type
+    OutInExpo = ...  # type: QEasingCurve.Type
+    InCirc = ...  # type: QEasingCurve.Type
+    OutCirc = ...  # type: QEasingCurve.Type
+    InOutCirc = ...  # type: QEasingCurve.Type
+    OutInCirc = ...  # type: QEasingCurve.Type
+    InElastic = ...  # type: QEasingCurve.Type
+    OutElastic = ...  # type: QEasingCurve.Type
+    InOutElastic = ...  # type: QEasingCurve.Type
+    OutInElastic = ...  # type: QEasingCurve.Type
+    InBack = ...  # type: QEasingCurve.Type
+    OutBack = ...  # type: QEasingCurve.Type
+    InOutBack = ...  # type: QEasingCurve.Type
+    OutInBack = ...  # type: QEasingCurve.Type
+    InBounce = ...  # type: QEasingCurve.Type
+    OutBounce = ...  # type: QEasingCurve.Type
+    InOutBounce = ...  # type: QEasingCurve.Type
+    OutInBounce = ...  # type: QEasingCurve.Type
+    InCurve = ...  # type: QEasingCurve.Type
+    OutCurve = ...  # type: QEasingCurve.Type
+    SineCurve = ...  # type: QEasingCurve.Type
+    CosineCurve = ...  # type: QEasingCurve.Type
+    BezierSpline = ...  # type: QEasingCurve.Type
+    TCBSpline = ...  # type: QEasingCurve.Type
+    Custom = ...  # type: QEasingCurve.Type
+
     @typing.overload
     def __init__(self, type: 'QEasingCurve.Type' = ...) -> None: ...
     @typing.overload
@@ -4000,6 +5646,12 @@ class QElapsedTimer(sip.simplewrapper):
         MachAbsoluteTime = ... # type: QElapsedTimer.ClockType
         PerformanceCounter = ... # type: QElapsedTimer.ClockType
 
+    SystemTime = ...  # type: QElapsedTimer.ClockType
+    MonotonicClock = ...  # type: QElapsedTimer.ClockType
+    TickCounter = ...  # type: QElapsedTimer.ClockType
+    MachAbsoluteTime = ...  # type: QElapsedTimer.ClockType
+    PerformanceCounter = ...  # type: QElapsedTimer.ClockType
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -4029,6 +5681,12 @@ class QEventLoop(QObject):
         ExcludeSocketNotifiers = ... # type: QEventLoop.ProcessEventsFlag
         WaitForMoreEvents = ... # type: QEventLoop.ProcessEventsFlag
         X11ExcludeTimers = ... # type: QEventLoop.ProcessEventsFlag
+
+    AllEvents = ...  # type: QEventLoop.ProcessEventsFlag
+    ExcludeUserInputEvents = ...  # type: QEventLoop.ProcessEventsFlag
+    ExcludeSocketNotifiers = ...  # type: QEventLoop.ProcessEventsFlag
+    WaitForMoreEvents = ...  # type: QEventLoop.ProcessEventsFlag
+    X11ExcludeTimers = ...  # type: QEventLoop.ProcessEventsFlag
 
     class ProcessEventsFlags(sip.simplewrapper):
 
@@ -4094,13 +5752,24 @@ class QFileDevice(QIODevice):
         FileMetadataChangeTime = ... # type: QFileDevice.FileTime
         FileModificationTime = ... # type: QFileDevice.FileTime
 
+    FileAccessTime = ...  # type: QFileDevice.FileTime
+    FileBirthTime = ...  # type: QFileDevice.FileTime
+    FileMetadataChangeTime = ...  # type: QFileDevice.FileTime
+    FileModificationTime = ...  # type: QFileDevice.FileTime
+
     class MemoryMapFlags(int):
         NoOptions = ... # type: QFileDevice.MemoryMapFlags
         MapPrivateOption = ... # type: QFileDevice.MemoryMapFlags
 
+    NoOptions = ...  # type: QFileDevice.MemoryMapFlags
+    MapPrivateOption = ...  # type: QFileDevice.MemoryMapFlags
+
     class FileHandleFlag(int):
         AutoCloseHandle = ... # type: QFileDevice.FileHandleFlag
         DontCloseHandle = ... # type: QFileDevice.FileHandleFlag
+
+    AutoCloseHandle = ...  # type: QFileDevice.FileHandleFlag
+    DontCloseHandle = ...  # type: QFileDevice.FileHandleFlag
 
     class Permission(int):
         ReadOwner = ... # type: QFileDevice.Permission
@@ -4115,6 +5784,19 @@ class QFileDevice(QIODevice):
         ReadOther = ... # type: QFileDevice.Permission
         WriteOther = ... # type: QFileDevice.Permission
         ExeOther = ... # type: QFileDevice.Permission
+
+    ReadOwner = ...  # type: QFileDevice.Permission
+    WriteOwner = ...  # type: QFileDevice.Permission
+    ExeOwner = ...  # type: QFileDevice.Permission
+    ReadUser = ...  # type: QFileDevice.Permission
+    WriteUser = ...  # type: QFileDevice.Permission
+    ExeUser = ...  # type: QFileDevice.Permission
+    ReadGroup = ...  # type: QFileDevice.Permission
+    WriteGroup = ...  # type: QFileDevice.Permission
+    ExeGroup = ...  # type: QFileDevice.Permission
+    ReadOther = ...  # type: QFileDevice.Permission
+    WriteOther = ...  # type: QFileDevice.Permission
+    ExeOther = ...  # type: QFileDevice.Permission
 
     class FileError(int):
         NoError = ... # type: QFileDevice.FileError
@@ -4132,6 +5814,22 @@ class QFileDevice(QIODevice):
         ResizeError = ... # type: QFileDevice.FileError
         PermissionsError = ... # type: QFileDevice.FileError
         CopyError = ... # type: QFileDevice.FileError
+
+    NoError = ...  # type: QFileDevice.FileError
+    ReadError = ...  # type: QFileDevice.FileError
+    WriteError = ...  # type: QFileDevice.FileError
+    FatalError = ...  # type: QFileDevice.FileError
+    ResourceError = ...  # type: QFileDevice.FileError
+    OpenError = ...  # type: QFileDevice.FileError
+    AbortError = ...  # type: QFileDevice.FileError
+    TimeOutError = ...  # type: QFileDevice.FileError
+    UnspecifiedError = ...  # type: QFileDevice.FileError
+    RemoveError = ...  # type: QFileDevice.FileError
+    RenameError = ...  # type: QFileDevice.FileError
+    PositionError = ...  # type: QFileDevice.FileError
+    ResizeError = ...  # type: QFileDevice.FileError
+    PermissionsError = ...  # type: QFileDevice.FileError
+    CopyError = ...  # type: QFileDevice.FileError
 
     class Permissions(sip.simplewrapper):
 
@@ -4384,6 +6082,9 @@ class QHistoryState(QAbstractState):
         ShallowHistory = ... # type: QHistoryState.HistoryType
         DeepHistory = ... # type: QHistoryState.HistoryType
 
+    ShallowHistory = ...  # type: QHistoryState.HistoryType
+    DeepHistory = ...  # type: QHistoryState.HistoryType
+
     @typing.overload
     def __init__(self, parent: typing.Optional['QState'] = ...) -> None: ...
     @typing.overload
@@ -4476,6 +6177,18 @@ class QItemSelectionModel(QObject):
         SelectCurrent = ... # type: QItemSelectionModel.SelectionFlag
         ToggleCurrent = ... # type: QItemSelectionModel.SelectionFlag
         ClearAndSelect = ... # type: QItemSelectionModel.SelectionFlag
+
+    NoUpdate = ...  # type: QItemSelectionModel.SelectionFlag
+    Clear = ...  # type: QItemSelectionModel.SelectionFlag
+    Select = ...  # type: QItemSelectionModel.SelectionFlag
+    Deselect = ...  # type: QItemSelectionModel.SelectionFlag
+    Toggle = ...  # type: QItemSelectionModel.SelectionFlag
+    Current = ...  # type: QItemSelectionModel.SelectionFlag
+    Rows = ...  # type: QItemSelectionModel.SelectionFlag
+    Columns = ...  # type: QItemSelectionModel.SelectionFlag
+    SelectCurrent = ...  # type: QItemSelectionModel.SelectionFlag
+    ToggleCurrent = ...  # type: QItemSelectionModel.SelectionFlag
+    ClearAndSelect = ...  # type: QItemSelectionModel.SelectionFlag
 
     class SelectionFlags(sip.simplewrapper):
 
@@ -4598,6 +6311,22 @@ class QJsonParseError(sip.simplewrapper):
         DocumentTooLarge = ... # type: QJsonParseError.ParseError
         GarbageAtEnd = ... # type: QJsonParseError.ParseError
 
+    NoError = ...  # type: QJsonParseError.ParseError
+    UnterminatedObject = ...  # type: QJsonParseError.ParseError
+    MissingNameSeparator = ...  # type: QJsonParseError.ParseError
+    UnterminatedArray = ...  # type: QJsonParseError.ParseError
+    MissingValueSeparator = ...  # type: QJsonParseError.ParseError
+    IllegalValue = ...  # type: QJsonParseError.ParseError
+    TerminationByNumber = ...  # type: QJsonParseError.ParseError
+    IllegalNumber = ...  # type: QJsonParseError.ParseError
+    IllegalEscapeSequence = ...  # type: QJsonParseError.ParseError
+    IllegalUTF8String = ...  # type: QJsonParseError.ParseError
+    UnterminatedString = ...  # type: QJsonParseError.ParseError
+    MissingObject = ...  # type: QJsonParseError.ParseError
+    DeepNesting = ...  # type: QJsonParseError.ParseError
+    DocumentTooLarge = ...  # type: QJsonParseError.ParseError
+    GarbageAtEnd = ...  # type: QJsonParseError.ParseError
+
     error = ... # type: 'QJsonParseError.ParseError'
     offset = ... # type: int
 
@@ -4615,9 +6344,15 @@ class QJsonDocument(sip.simplewrapper):
         Indented = ... # type: QJsonDocument.JsonFormat
         Compact = ... # type: QJsonDocument.JsonFormat
 
+    Indented = ...  # type: QJsonDocument.JsonFormat
+    Compact = ...  # type: QJsonDocument.JsonFormat
+
     class DataValidation(int):
         Validate = ... # type: QJsonDocument.DataValidation
         BypassValidation = ... # type: QJsonDocument.DataValidation
+
+    Validate = ...  # type: QJsonDocument.DataValidation
+    BypassValidation = ...  # type: QJsonDocument.DataValidation
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -4669,6 +6404,14 @@ class QJsonValue(sip.simplewrapper):
         Object = ... # type: QJsonValue.Type
         Undefined = ... # type: QJsonValue.Type
 
+    Null = ...  # type: QJsonValue.Type
+    Bool = ...  # type: QJsonValue.Type
+    Double = ...  # type: QJsonValue.Type
+    String = ...  # type: QJsonValue.Type
+    Array = ...  # type: QJsonValue.Type
+    Object = ...  # type: QJsonValue.Type
+    Undefined = ...  # type: QJsonValue.Type
+
     @typing.overload
     def __init__(self, type: 'QJsonValue.Type' = ...) -> None: ...
     @typing.overload
@@ -4716,6 +6459,12 @@ class QLibrary(QObject):
         LoadArchiveMemberHint = ... # type: QLibrary.LoadHint
         PreventUnloadHint = ... # type: QLibrary.LoadHint
         DeepBindHint = ... # type: QLibrary.LoadHint
+
+    ResolveAllSymbolsHint = ...  # type: QLibrary.LoadHint
+    ExportExternalSymbolsHint = ...  # type: QLibrary.LoadHint
+    LoadArchiveMemberHint = ...  # type: QLibrary.LoadHint
+    PreventUnloadHint = ...  # type: QLibrary.LoadHint
+    DeepBindHint = ...  # type: QLibrary.LoadHint
 
     class LoadHints(sip.simplewrapper):
 
@@ -4787,6 +6536,22 @@ class QLibraryInfo(sip.simplewrapper):
         Qml2ImportsPath = ... # type: QLibraryInfo.LibraryLocation
         ArchDataPath = ... # type: QLibraryInfo.LibraryLocation
 
+    PrefixPath = ...  # type: QLibraryInfo.LibraryLocation
+    DocumentationPath = ...  # type: QLibraryInfo.LibraryLocation
+    HeadersPath = ...  # type: QLibraryInfo.LibraryLocation
+    LibrariesPath = ...  # type: QLibraryInfo.LibraryLocation
+    BinariesPath = ...  # type: QLibraryInfo.LibraryLocation
+    PluginsPath = ...  # type: QLibraryInfo.LibraryLocation
+    DataPath = ...  # type: QLibraryInfo.LibraryLocation
+    TranslationsPath = ...  # type: QLibraryInfo.LibraryLocation
+    SettingsPath = ...  # type: QLibraryInfo.LibraryLocation
+    ExamplesPath = ...  # type: QLibraryInfo.LibraryLocation
+    ImportsPath = ...  # type: QLibraryInfo.LibraryLocation
+    TestsPath = ...  # type: QLibraryInfo.LibraryLocation
+    LibraryExecutablesPath = ...  # type: QLibraryInfo.LibraryLocation
+    Qml2ImportsPath = ...  # type: QLibraryInfo.LibraryLocation
+    ArchDataPath = ...  # type: QLibraryInfo.LibraryLocation
+
     def __init__(self, a0: 'QLibraryInfo') -> None: ...
 
     @staticmethod
@@ -4847,6 +6612,10 @@ class QLineF(sip.simplewrapper):
         BoundedIntersection = ... # type: QLineF.IntersectType
         UnboundedIntersection = ... # type: QLineF.IntersectType
 
+    NoIntersection = ...  # type: QLineF.IntersectType
+    BoundedIntersection = ...  # type: QLineF.IntersectType
+    UnboundedIntersection = ...  # type: QLineF.IntersectType
+
     @typing.overload
     def __init__(self, line: QLine) -> None: ...
     @typing.overload
@@ -4904,17 +6673,30 @@ class QLocale(sip.simplewrapper):
         DataSizeTraditionalFormat = ... # type: QLocale.DataSizeFormat
         DataSizeSIFormat = ... # type: QLocale.DataSizeFormat
 
+    DataSizeIecFormat = ...  # type: QLocale.DataSizeFormat
+    DataSizeTraditionalFormat = ...  # type: QLocale.DataSizeFormat
+    DataSizeSIFormat = ...  # type: QLocale.DataSizeFormat
+
     class FloatingPointPrecisionOption(int):
         FloatingPointShortest = ... # type: QLocale.FloatingPointPrecisionOption
+
+    FloatingPointShortest = ...  # type: QLocale.FloatingPointPrecisionOption
 
     class QuotationStyle(int):
         StandardQuotation = ... # type: QLocale.QuotationStyle
         AlternateQuotation = ... # type: QLocale.QuotationStyle
 
+    StandardQuotation = ...  # type: QLocale.QuotationStyle
+    AlternateQuotation = ...  # type: QLocale.QuotationStyle
+
     class CurrencySymbolFormat(int):
         CurrencyIsoCode = ... # type: QLocale.CurrencySymbolFormat
         CurrencySymbol = ... # type: QLocale.CurrencySymbolFormat
         CurrencyDisplayName = ... # type: QLocale.CurrencySymbolFormat
+
+    CurrencyIsoCode = ...  # type: QLocale.CurrencySymbolFormat
+    CurrencySymbol = ...  # type: QLocale.CurrencySymbolFormat
+    CurrencyDisplayName = ...  # type: QLocale.CurrencySymbolFormat
 
     class Script(int):
         AnyScript = ... # type: QLocale.Script
@@ -5062,16 +6844,170 @@ class QLocale(sip.simplewrapper):
         HanWithBopomofoScript = ... # type: QLocale.Script
         JamoScript = ... # type: QLocale.Script
 
+    AnyScript = ...  # type: QLocale.Script
+    ArabicScript = ...  # type: QLocale.Script
+    CyrillicScript = ...  # type: QLocale.Script
+    DeseretScript = ...  # type: QLocale.Script
+    GurmukhiScript = ...  # type: QLocale.Script
+    SimplifiedHanScript = ...  # type: QLocale.Script
+    TraditionalHanScript = ...  # type: QLocale.Script
+    LatinScript = ...  # type: QLocale.Script
+    MongolianScript = ...  # type: QLocale.Script
+    TifinaghScript = ...  # type: QLocale.Script
+    SimplifiedChineseScript = ...  # type: QLocale.Script
+    TraditionalChineseScript = ...  # type: QLocale.Script
+    ArmenianScript = ...  # type: QLocale.Script
+    BengaliScript = ...  # type: QLocale.Script
+    CherokeeScript = ...  # type: QLocale.Script
+    DevanagariScript = ...  # type: QLocale.Script
+    EthiopicScript = ...  # type: QLocale.Script
+    GeorgianScript = ...  # type: QLocale.Script
+    GreekScript = ...  # type: QLocale.Script
+    GujaratiScript = ...  # type: QLocale.Script
+    HebrewScript = ...  # type: QLocale.Script
+    JapaneseScript = ...  # type: QLocale.Script
+    KhmerScript = ...  # type: QLocale.Script
+    KannadaScript = ...  # type: QLocale.Script
+    KoreanScript = ...  # type: QLocale.Script
+    LaoScript = ...  # type: QLocale.Script
+    MalayalamScript = ...  # type: QLocale.Script
+    MyanmarScript = ...  # type: QLocale.Script
+    OriyaScript = ...  # type: QLocale.Script
+    TamilScript = ...  # type: QLocale.Script
+    TeluguScript = ...  # type: QLocale.Script
+    ThaanaScript = ...  # type: QLocale.Script
+    ThaiScript = ...  # type: QLocale.Script
+    TibetanScript = ...  # type: QLocale.Script
+    SinhalaScript = ...  # type: QLocale.Script
+    SyriacScript = ...  # type: QLocale.Script
+    YiScript = ...  # type: QLocale.Script
+    VaiScript = ...  # type: QLocale.Script
+    AvestanScript = ...  # type: QLocale.Script
+    BalineseScript = ...  # type: QLocale.Script
+    BamumScript = ...  # type: QLocale.Script
+    BatakScript = ...  # type: QLocale.Script
+    BopomofoScript = ...  # type: QLocale.Script
+    BrahmiScript = ...  # type: QLocale.Script
+    BugineseScript = ...  # type: QLocale.Script
+    BuhidScript = ...  # type: QLocale.Script
+    CanadianAboriginalScript = ...  # type: QLocale.Script
+    CarianScript = ...  # type: QLocale.Script
+    ChakmaScript = ...  # type: QLocale.Script
+    ChamScript = ...  # type: QLocale.Script
+    CopticScript = ...  # type: QLocale.Script
+    CypriotScript = ...  # type: QLocale.Script
+    EgyptianHieroglyphsScript = ...  # type: QLocale.Script
+    FraserScript = ...  # type: QLocale.Script
+    GlagoliticScript = ...  # type: QLocale.Script
+    GothicScript = ...  # type: QLocale.Script
+    HanScript = ...  # type: QLocale.Script
+    HangulScript = ...  # type: QLocale.Script
+    HanunooScript = ...  # type: QLocale.Script
+    ImperialAramaicScript = ...  # type: QLocale.Script
+    InscriptionalPahlaviScript = ...  # type: QLocale.Script
+    InscriptionalParthianScript = ...  # type: QLocale.Script
+    JavaneseScript = ...  # type: QLocale.Script
+    KaithiScript = ...  # type: QLocale.Script
+    KatakanaScript = ...  # type: QLocale.Script
+    KayahLiScript = ...  # type: QLocale.Script
+    KharoshthiScript = ...  # type: QLocale.Script
+    LannaScript = ...  # type: QLocale.Script
+    LepchaScript = ...  # type: QLocale.Script
+    LimbuScript = ...  # type: QLocale.Script
+    LinearBScript = ...  # type: QLocale.Script
+    LycianScript = ...  # type: QLocale.Script
+    LydianScript = ...  # type: QLocale.Script
+    MandaeanScript = ...  # type: QLocale.Script
+    MeiteiMayekScript = ...  # type: QLocale.Script
+    MeroiticScript = ...  # type: QLocale.Script
+    MeroiticCursiveScript = ...  # type: QLocale.Script
+    NkoScript = ...  # type: QLocale.Script
+    NewTaiLueScript = ...  # type: QLocale.Script
+    OghamScript = ...  # type: QLocale.Script
+    OlChikiScript = ...  # type: QLocale.Script
+    OldItalicScript = ...  # type: QLocale.Script
+    OldPersianScript = ...  # type: QLocale.Script
+    OldSouthArabianScript = ...  # type: QLocale.Script
+    OrkhonScript = ...  # type: QLocale.Script
+    OsmanyaScript = ...  # type: QLocale.Script
+    PhagsPaScript = ...  # type: QLocale.Script
+    PhoenicianScript = ...  # type: QLocale.Script
+    PollardPhoneticScript = ...  # type: QLocale.Script
+    RejangScript = ...  # type: QLocale.Script
+    RunicScript = ...  # type: QLocale.Script
+    SamaritanScript = ...  # type: QLocale.Script
+    SaurashtraScript = ...  # type: QLocale.Script
+    SharadaScript = ...  # type: QLocale.Script
+    ShavianScript = ...  # type: QLocale.Script
+    SoraSompengScript = ...  # type: QLocale.Script
+    CuneiformScript = ...  # type: QLocale.Script
+    SundaneseScript = ...  # type: QLocale.Script
+    SylotiNagriScript = ...  # type: QLocale.Script
+    TagalogScript = ...  # type: QLocale.Script
+    TagbanwaScript = ...  # type: QLocale.Script
+    TaiLeScript = ...  # type: QLocale.Script
+    TaiVietScript = ...  # type: QLocale.Script
+    TakriScript = ...  # type: QLocale.Script
+    UgariticScript = ...  # type: QLocale.Script
+    BrailleScript = ...  # type: QLocale.Script
+    HiraganaScript = ...  # type: QLocale.Script
+    CaucasianAlbanianScript = ...  # type: QLocale.Script
+    BassaVahScript = ...  # type: QLocale.Script
+    DuployanScript = ...  # type: QLocale.Script
+    ElbasanScript = ...  # type: QLocale.Script
+    GranthaScript = ...  # type: QLocale.Script
+    PahawhHmongScript = ...  # type: QLocale.Script
+    KhojkiScript = ...  # type: QLocale.Script
+    LinearAScript = ...  # type: QLocale.Script
+    MahajaniScript = ...  # type: QLocale.Script
+    ManichaeanScript = ...  # type: QLocale.Script
+    MendeKikakuiScript = ...  # type: QLocale.Script
+    ModiScript = ...  # type: QLocale.Script
+    MroScript = ...  # type: QLocale.Script
+    OldNorthArabianScript = ...  # type: QLocale.Script
+    NabataeanScript = ...  # type: QLocale.Script
+    PalmyreneScript = ...  # type: QLocale.Script
+    PauCinHauScript = ...  # type: QLocale.Script
+    OldPermicScript = ...  # type: QLocale.Script
+    PsalterPahlaviScript = ...  # type: QLocale.Script
+    SiddhamScript = ...  # type: QLocale.Script
+    KhudawadiScript = ...  # type: QLocale.Script
+    TirhutaScript = ...  # type: QLocale.Script
+    VarangKshitiScript = ...  # type: QLocale.Script
+    AhomScript = ...  # type: QLocale.Script
+    AnatolianHieroglyphsScript = ...  # type: QLocale.Script
+    HatranScript = ...  # type: QLocale.Script
+    MultaniScript = ...  # type: QLocale.Script
+    OldHungarianScript = ...  # type: QLocale.Script
+    SignWritingScript = ...  # type: QLocale.Script
+    AdlamScript = ...  # type: QLocale.Script
+    BhaiksukiScript = ...  # type: QLocale.Script
+    MarchenScript = ...  # type: QLocale.Script
+    NewaScript = ...  # type: QLocale.Script
+    OsageScript = ...  # type: QLocale.Script
+    TangutScript = ...  # type: QLocale.Script
+    HanWithBopomofoScript = ...  # type: QLocale.Script
+    JamoScript = ...  # type: QLocale.Script
+
     class MeasurementSystem(int):
         MetricSystem = ... # type: QLocale.MeasurementSystem
         ImperialSystem = ... # type: QLocale.MeasurementSystem
         ImperialUSSystem = ... # type: QLocale.MeasurementSystem
         ImperialUKSystem = ... # type: QLocale.MeasurementSystem
 
+    MetricSystem = ...  # type: QLocale.MeasurementSystem
+    ImperialSystem = ...  # type: QLocale.MeasurementSystem
+    ImperialUSSystem = ...  # type: QLocale.MeasurementSystem
+    ImperialUKSystem = ...  # type: QLocale.MeasurementSystem
+
     class FormatType(int):
         LongFormat = ... # type: QLocale.FormatType
         ShortFormat = ... # type: QLocale.FormatType
         NarrowFormat = ... # type: QLocale.FormatType
+
+    LongFormat = ...  # type: QLocale.FormatType
+    ShortFormat = ...  # type: QLocale.FormatType
+    NarrowFormat = ...  # type: QLocale.FormatType
 
     class NumberOption(int):
         OmitGroupSeparator = ... # type: QLocale.NumberOption
@@ -5081,6 +7017,14 @@ class QLocale(sip.simplewrapper):
         RejectLeadingZeroInExponent = ... # type: QLocale.NumberOption
         IncludeTrailingZeroesAfterDot = ... # type: QLocale.NumberOption
         RejectTrailingZeroesAfterDot = ... # type: QLocale.NumberOption
+
+    OmitGroupSeparator = ...  # type: QLocale.NumberOption
+    RejectGroupSeparator = ...  # type: QLocale.NumberOption
+    DefaultNumberOptions = ...  # type: QLocale.NumberOption
+    OmitLeadingZeroInExponent = ...  # type: QLocale.NumberOption
+    RejectLeadingZeroInExponent = ...  # type: QLocale.NumberOption
+    IncludeTrailingZeroesAfterDot = ...  # type: QLocale.NumberOption
+    RejectTrailingZeroesAfterDot = ...  # type: QLocale.NumberOption
 
     class Country(int):
         AnyCountry = ... # type: QLocale.Country
@@ -5355,6 +7299,279 @@ class QLocale(sip.simplewrapper):
         LatinAmerica = ... # type: QLocale.Country
         World = ... # type: QLocale.Country
         Europe = ... # type: QLocale.Country
+
+    AnyCountry = ...  # type: QLocale.Country
+    Afghanistan = ...  # type: QLocale.Country
+    Albania = ...  # type: QLocale.Country
+    Algeria = ...  # type: QLocale.Country
+    AmericanSamoa = ...  # type: QLocale.Country
+    Andorra = ...  # type: QLocale.Country
+    Angola = ...  # type: QLocale.Country
+    Anguilla = ...  # type: QLocale.Country
+    Antarctica = ...  # type: QLocale.Country
+    AntiguaAndBarbuda = ...  # type: QLocale.Country
+    Argentina = ...  # type: QLocale.Country
+    Armenia = ...  # type: QLocale.Country
+    Aruba = ...  # type: QLocale.Country
+    Australia = ...  # type: QLocale.Country
+    Austria = ...  # type: QLocale.Country
+    Azerbaijan = ...  # type: QLocale.Country
+    Bahamas = ...  # type: QLocale.Country
+    Bahrain = ...  # type: QLocale.Country
+    Bangladesh = ...  # type: QLocale.Country
+    Barbados = ...  # type: QLocale.Country
+    Belarus = ...  # type: QLocale.Country
+    Belgium = ...  # type: QLocale.Country
+    Belize = ...  # type: QLocale.Country
+    Benin = ...  # type: QLocale.Country
+    Bermuda = ...  # type: QLocale.Country
+    Bhutan = ...  # type: QLocale.Country
+    Bolivia = ...  # type: QLocale.Country
+    BosniaAndHerzegowina = ...  # type: QLocale.Country
+    Botswana = ...  # type: QLocale.Country
+    BouvetIsland = ...  # type: QLocale.Country
+    Brazil = ...  # type: QLocale.Country
+    BritishIndianOceanTerritory = ...  # type: QLocale.Country
+    Bulgaria = ...  # type: QLocale.Country
+    BurkinaFaso = ...  # type: QLocale.Country
+    Burundi = ...  # type: QLocale.Country
+    Cambodia = ...  # type: QLocale.Country
+    Cameroon = ...  # type: QLocale.Country
+    Canada = ...  # type: QLocale.Country
+    CapeVerde = ...  # type: QLocale.Country
+    CaymanIslands = ...  # type: QLocale.Country
+    CentralAfricanRepublic = ...  # type: QLocale.Country
+    Chad = ...  # type: QLocale.Country
+    Chile = ...  # type: QLocale.Country
+    China = ...  # type: QLocale.Country
+    ChristmasIsland = ...  # type: QLocale.Country
+    CocosIslands = ...  # type: QLocale.Country
+    Colombia = ...  # type: QLocale.Country
+    Comoros = ...  # type: QLocale.Country
+    DemocraticRepublicOfCongo = ...  # type: QLocale.Country
+    PeoplesRepublicOfCongo = ...  # type: QLocale.Country
+    CookIslands = ...  # type: QLocale.Country
+    CostaRica = ...  # type: QLocale.Country
+    IvoryCoast = ...  # type: QLocale.Country
+    Croatia = ...  # type: QLocale.Country
+    Cuba = ...  # type: QLocale.Country
+    Cyprus = ...  # type: QLocale.Country
+    CzechRepublic = ...  # type: QLocale.Country
+    Denmark = ...  # type: QLocale.Country
+    Djibouti = ...  # type: QLocale.Country
+    Dominica = ...  # type: QLocale.Country
+    DominicanRepublic = ...  # type: QLocale.Country
+    EastTimor = ...  # type: QLocale.Country
+    Ecuador = ...  # type: QLocale.Country
+    Egypt = ...  # type: QLocale.Country
+    ElSalvador = ...  # type: QLocale.Country
+    EquatorialGuinea = ...  # type: QLocale.Country
+    Eritrea = ...  # type: QLocale.Country
+    Estonia = ...  # type: QLocale.Country
+    Ethiopia = ...  # type: QLocale.Country
+    FalklandIslands = ...  # type: QLocale.Country
+    FaroeIslands = ...  # type: QLocale.Country
+    Finland = ...  # type: QLocale.Country
+    France = ...  # type: QLocale.Country
+    FrenchGuiana = ...  # type: QLocale.Country
+    FrenchPolynesia = ...  # type: QLocale.Country
+    FrenchSouthernTerritories = ...  # type: QLocale.Country
+    Gabon = ...  # type: QLocale.Country
+    Gambia = ...  # type: QLocale.Country
+    Georgia = ...  # type: QLocale.Country
+    Germany = ...  # type: QLocale.Country
+    Ghana = ...  # type: QLocale.Country
+    Gibraltar = ...  # type: QLocale.Country
+    Greece = ...  # type: QLocale.Country
+    Greenland = ...  # type: QLocale.Country
+    Grenada = ...  # type: QLocale.Country
+    Guadeloupe = ...  # type: QLocale.Country
+    Guam = ...  # type: QLocale.Country
+    Guatemala = ...  # type: QLocale.Country
+    Guinea = ...  # type: QLocale.Country
+    GuineaBissau = ...  # type: QLocale.Country
+    Guyana = ...  # type: QLocale.Country
+    Haiti = ...  # type: QLocale.Country
+    HeardAndMcDonaldIslands = ...  # type: QLocale.Country
+    Honduras = ...  # type: QLocale.Country
+    HongKong = ...  # type: QLocale.Country
+    Hungary = ...  # type: QLocale.Country
+    Iceland = ...  # type: QLocale.Country
+    India = ...  # type: QLocale.Country
+    Indonesia = ...  # type: QLocale.Country
+    Iran = ...  # type: QLocale.Country
+    Iraq = ...  # type: QLocale.Country
+    Ireland = ...  # type: QLocale.Country
+    Israel = ...  # type: QLocale.Country
+    Italy = ...  # type: QLocale.Country
+    Jamaica = ...  # type: QLocale.Country
+    Japan = ...  # type: QLocale.Country
+    Jordan = ...  # type: QLocale.Country
+    Kazakhstan = ...  # type: QLocale.Country
+    Kenya = ...  # type: QLocale.Country
+    Kiribati = ...  # type: QLocale.Country
+    DemocraticRepublicOfKorea = ...  # type: QLocale.Country
+    RepublicOfKorea = ...  # type: QLocale.Country
+    Kuwait = ...  # type: QLocale.Country
+    Kyrgyzstan = ...  # type: QLocale.Country
+    Latvia = ...  # type: QLocale.Country
+    Lebanon = ...  # type: QLocale.Country
+    Lesotho = ...  # type: QLocale.Country
+    Liberia = ...  # type: QLocale.Country
+    Liechtenstein = ...  # type: QLocale.Country
+    Lithuania = ...  # type: QLocale.Country
+    Luxembourg = ...  # type: QLocale.Country
+    Macau = ...  # type: QLocale.Country
+    Macedonia = ...  # type: QLocale.Country
+    Madagascar = ...  # type: QLocale.Country
+    Malawi = ...  # type: QLocale.Country
+    Malaysia = ...  # type: QLocale.Country
+    Maldives = ...  # type: QLocale.Country
+    Mali = ...  # type: QLocale.Country
+    Malta = ...  # type: QLocale.Country
+    MarshallIslands = ...  # type: QLocale.Country
+    Martinique = ...  # type: QLocale.Country
+    Mauritania = ...  # type: QLocale.Country
+    Mauritius = ...  # type: QLocale.Country
+    Mayotte = ...  # type: QLocale.Country
+    Mexico = ...  # type: QLocale.Country
+    Micronesia = ...  # type: QLocale.Country
+    Moldova = ...  # type: QLocale.Country
+    Monaco = ...  # type: QLocale.Country
+    Mongolia = ...  # type: QLocale.Country
+    Montserrat = ...  # type: QLocale.Country
+    Morocco = ...  # type: QLocale.Country
+    Mozambique = ...  # type: QLocale.Country
+    Myanmar = ...  # type: QLocale.Country
+    Namibia = ...  # type: QLocale.Country
+    NauruCountry = ...  # type: QLocale.Country
+    Nepal = ...  # type: QLocale.Country
+    Netherlands = ...  # type: QLocale.Country
+    NewCaledonia = ...  # type: QLocale.Country
+    NewZealand = ...  # type: QLocale.Country
+    Nicaragua = ...  # type: QLocale.Country
+    Niger = ...  # type: QLocale.Country
+    Nigeria = ...  # type: QLocale.Country
+    Niue = ...  # type: QLocale.Country
+    NorfolkIsland = ...  # type: QLocale.Country
+    NorthernMarianaIslands = ...  # type: QLocale.Country
+    Norway = ...  # type: QLocale.Country
+    Oman = ...  # type: QLocale.Country
+    Pakistan = ...  # type: QLocale.Country
+    Palau = ...  # type: QLocale.Country
+    Panama = ...  # type: QLocale.Country
+    PapuaNewGuinea = ...  # type: QLocale.Country
+    Paraguay = ...  # type: QLocale.Country
+    Peru = ...  # type: QLocale.Country
+    Philippines = ...  # type: QLocale.Country
+    Pitcairn = ...  # type: QLocale.Country
+    Poland = ...  # type: QLocale.Country
+    Portugal = ...  # type: QLocale.Country
+    PuertoRico = ...  # type: QLocale.Country
+    Qatar = ...  # type: QLocale.Country
+    Reunion = ...  # type: QLocale.Country
+    Romania = ...  # type: QLocale.Country
+    RussianFederation = ...  # type: QLocale.Country
+    Rwanda = ...  # type: QLocale.Country
+    SaintKittsAndNevis = ...  # type: QLocale.Country
+    Samoa = ...  # type: QLocale.Country
+    SanMarino = ...  # type: QLocale.Country
+    SaoTomeAndPrincipe = ...  # type: QLocale.Country
+    SaudiArabia = ...  # type: QLocale.Country
+    Senegal = ...  # type: QLocale.Country
+    Seychelles = ...  # type: QLocale.Country
+    SierraLeone = ...  # type: QLocale.Country
+    Singapore = ...  # type: QLocale.Country
+    Slovakia = ...  # type: QLocale.Country
+    Slovenia = ...  # type: QLocale.Country
+    SolomonIslands = ...  # type: QLocale.Country
+    Somalia = ...  # type: QLocale.Country
+    SouthAfrica = ...  # type: QLocale.Country
+    SouthGeorgiaAndTheSouthSandwichIslands = ...  # type: QLocale.Country
+    Spain = ...  # type: QLocale.Country
+    SriLanka = ...  # type: QLocale.Country
+    Sudan = ...  # type: QLocale.Country
+    Suriname = ...  # type: QLocale.Country
+    SvalbardAndJanMayenIslands = ...  # type: QLocale.Country
+    Swaziland = ...  # type: QLocale.Country
+    Sweden = ...  # type: QLocale.Country
+    Switzerland = ...  # type: QLocale.Country
+    SyrianArabRepublic = ...  # type: QLocale.Country
+    Taiwan = ...  # type: QLocale.Country
+    Tajikistan = ...  # type: QLocale.Country
+    Tanzania = ...  # type: QLocale.Country
+    Thailand = ...  # type: QLocale.Country
+    Togo = ...  # type: QLocale.Country
+    Tokelau = ...  # type: QLocale.Country
+    TrinidadAndTobago = ...  # type: QLocale.Country
+    Tunisia = ...  # type: QLocale.Country
+    Turkey = ...  # type: QLocale.Country
+    Turkmenistan = ...  # type: QLocale.Country
+    TurksAndCaicosIslands = ...  # type: QLocale.Country
+    Tuvalu = ...  # type: QLocale.Country
+    Uganda = ...  # type: QLocale.Country
+    Ukraine = ...  # type: QLocale.Country
+    UnitedArabEmirates = ...  # type: QLocale.Country
+    UnitedKingdom = ...  # type: QLocale.Country
+    UnitedStates = ...  # type: QLocale.Country
+    UnitedStatesMinorOutlyingIslands = ...  # type: QLocale.Country
+    Uruguay = ...  # type: QLocale.Country
+    Uzbekistan = ...  # type: QLocale.Country
+    Vanuatu = ...  # type: QLocale.Country
+    VaticanCityState = ...  # type: QLocale.Country
+    Venezuela = ...  # type: QLocale.Country
+    BritishVirginIslands = ...  # type: QLocale.Country
+    WallisAndFutunaIslands = ...  # type: QLocale.Country
+    WesternSahara = ...  # type: QLocale.Country
+    Yemen = ...  # type: QLocale.Country
+    Zambia = ...  # type: QLocale.Country
+    Zimbabwe = ...  # type: QLocale.Country
+    Montenegro = ...  # type: QLocale.Country
+    Serbia = ...  # type: QLocale.Country
+    SaintBarthelemy = ...  # type: QLocale.Country
+    SaintMartin = ...  # type: QLocale.Country
+    LatinAmericaAndTheCaribbean = ...  # type: QLocale.Country
+    LastCountry = ...  # type: QLocale.Country
+    Brunei = ...  # type: QLocale.Country
+    CongoKinshasa = ...  # type: QLocale.Country
+    CongoBrazzaville = ...  # type: QLocale.Country
+    Fiji = ...  # type: QLocale.Country
+    Guernsey = ...  # type: QLocale.Country
+    NorthKorea = ...  # type: QLocale.Country
+    SouthKorea = ...  # type: QLocale.Country
+    Laos = ...  # type: QLocale.Country
+    Libya = ...  # type: QLocale.Country
+    CuraSao = ...  # type: QLocale.Country
+    PalestinianTerritories = ...  # type: QLocale.Country
+    Russia = ...  # type: QLocale.Country
+    SaintLucia = ...  # type: QLocale.Country
+    SaintVincentAndTheGrenadines = ...  # type: QLocale.Country
+    SaintHelena = ...  # type: QLocale.Country
+    SaintPierreAndMiquelon = ...  # type: QLocale.Country
+    Syria = ...  # type: QLocale.Country
+    Tonga = ...  # type: QLocale.Country
+    Vietnam = ...  # type: QLocale.Country
+    UnitedStatesVirginIslands = ...  # type: QLocale.Country
+    CanaryIslands = ...  # type: QLocale.Country
+    ClippertonIsland = ...  # type: QLocale.Country
+    AscensionIsland = ...  # type: QLocale.Country
+    AlandIslands = ...  # type: QLocale.Country
+    DiegoGarcia = ...  # type: QLocale.Country
+    CeutaAndMelilla = ...  # type: QLocale.Country
+    IsleOfMan = ...  # type: QLocale.Country
+    Jersey = ...  # type: QLocale.Country
+    TristanDaCunha = ...  # type: QLocale.Country
+    SouthSudan = ...  # type: QLocale.Country
+    Bonaire = ...  # type: QLocale.Country
+    SintMaarten = ...  # type: QLocale.Country
+    Kosovo = ...  # type: QLocale.Country
+    TokelauCountry = ...  # type: QLocale.Country
+    TuvaluCountry = ...  # type: QLocale.Country
+    EuropeanUnion = ...  # type: QLocale.Country
+    OutlyingOceania = ...  # type: QLocale.Country
+    LatinAmerica = ...  # type: QLocale.Country
+    World = ...  # type: QLocale.Country
+    Europe = ...  # type: QLocale.Country
 
     class Language(int):
         C = ... # type: QLocale.Language
@@ -5743,6 +7960,392 @@ class QLocale(sip.simplewrapper):
         Muscogee = ... # type: QLocale.Language
         Silesian = ... # type: QLocale.Language
 
+    C = ...  # type: QLocale.Language
+    Abkhazian = ...  # type: QLocale.Language
+    Afan = ...  # type: QLocale.Language
+    Afar = ...  # type: QLocale.Language
+    Afrikaans = ...  # type: QLocale.Language
+    Albanian = ...  # type: QLocale.Language
+    Amharic = ...  # type: QLocale.Language
+    Arabic = ...  # type: QLocale.Language
+    Armenian = ...  # type: QLocale.Language
+    Assamese = ...  # type: QLocale.Language
+    Aymara = ...  # type: QLocale.Language
+    Azerbaijani = ...  # type: QLocale.Language
+    Bashkir = ...  # type: QLocale.Language
+    Basque = ...  # type: QLocale.Language
+    Bengali = ...  # type: QLocale.Language
+    Bhutani = ...  # type: QLocale.Language
+    Bihari = ...  # type: QLocale.Language
+    Bislama = ...  # type: QLocale.Language
+    Breton = ...  # type: QLocale.Language
+    Bulgarian = ...  # type: QLocale.Language
+    Burmese = ...  # type: QLocale.Language
+    Byelorussian = ...  # type: QLocale.Language
+    Cambodian = ...  # type: QLocale.Language
+    Catalan = ...  # type: QLocale.Language
+    Chinese = ...  # type: QLocale.Language
+    Corsican = ...  # type: QLocale.Language
+    Croatian = ...  # type: QLocale.Language
+    Czech = ...  # type: QLocale.Language
+    Danish = ...  # type: QLocale.Language
+    Dutch = ...  # type: QLocale.Language
+    English = ...  # type: QLocale.Language
+    Esperanto = ...  # type: QLocale.Language
+    Estonian = ...  # type: QLocale.Language
+    Faroese = ...  # type: QLocale.Language
+    Finnish = ...  # type: QLocale.Language
+    French = ...  # type: QLocale.Language
+    Frisian = ...  # type: QLocale.Language
+    Gaelic = ...  # type: QLocale.Language
+    Galician = ...  # type: QLocale.Language
+    Georgian = ...  # type: QLocale.Language
+    German = ...  # type: QLocale.Language
+    Greek = ...  # type: QLocale.Language
+    Greenlandic = ...  # type: QLocale.Language
+    Guarani = ...  # type: QLocale.Language
+    Gujarati = ...  # type: QLocale.Language
+    Hausa = ...  # type: QLocale.Language
+    Hebrew = ...  # type: QLocale.Language
+    Hindi = ...  # type: QLocale.Language
+    Hungarian = ...  # type: QLocale.Language
+    Icelandic = ...  # type: QLocale.Language
+    Indonesian = ...  # type: QLocale.Language
+    Interlingua = ...  # type: QLocale.Language
+    Interlingue = ...  # type: QLocale.Language
+    Inuktitut = ...  # type: QLocale.Language
+    Inupiak = ...  # type: QLocale.Language
+    Irish = ...  # type: QLocale.Language
+    Italian = ...  # type: QLocale.Language
+    Japanese = ...  # type: QLocale.Language
+    Javanese = ...  # type: QLocale.Language
+    Kannada = ...  # type: QLocale.Language
+    Kashmiri = ...  # type: QLocale.Language
+    Kazakh = ...  # type: QLocale.Language
+    Kinyarwanda = ...  # type: QLocale.Language
+    Kirghiz = ...  # type: QLocale.Language
+    Korean = ...  # type: QLocale.Language
+    Kurdish = ...  # type: QLocale.Language
+    Kurundi = ...  # type: QLocale.Language
+    Latin = ...  # type: QLocale.Language
+    Latvian = ...  # type: QLocale.Language
+    Lingala = ...  # type: QLocale.Language
+    Lithuanian = ...  # type: QLocale.Language
+    Macedonian = ...  # type: QLocale.Language
+    Malagasy = ...  # type: QLocale.Language
+    Malay = ...  # type: QLocale.Language
+    Malayalam = ...  # type: QLocale.Language
+    Maltese = ...  # type: QLocale.Language
+    Maori = ...  # type: QLocale.Language
+    Marathi = ...  # type: QLocale.Language
+    Moldavian = ...  # type: QLocale.Language
+    Mongolian = ...  # type: QLocale.Language
+    NauruLanguage = ...  # type: QLocale.Language
+    Nepali = ...  # type: QLocale.Language
+    Norwegian = ...  # type: QLocale.Language
+    Occitan = ...  # type: QLocale.Language
+    Oriya = ...  # type: QLocale.Language
+    Pashto = ...  # type: QLocale.Language
+    Persian = ...  # type: QLocale.Language
+    Polish = ...  # type: QLocale.Language
+    Portuguese = ...  # type: QLocale.Language
+    Punjabi = ...  # type: QLocale.Language
+    Quechua = ...  # type: QLocale.Language
+    RhaetoRomance = ...  # type: QLocale.Language
+    Romanian = ...  # type: QLocale.Language
+    Russian = ...  # type: QLocale.Language
+    Samoan = ...  # type: QLocale.Language
+    Sanskrit = ...  # type: QLocale.Language
+    Serbian = ...  # type: QLocale.Language
+    SerboCroatian = ...  # type: QLocale.Language
+    Shona = ...  # type: QLocale.Language
+    Sindhi = ...  # type: QLocale.Language
+    Slovak = ...  # type: QLocale.Language
+    Slovenian = ...  # type: QLocale.Language
+    Somali = ...  # type: QLocale.Language
+    Spanish = ...  # type: QLocale.Language
+    Sundanese = ...  # type: QLocale.Language
+    Swahili = ...  # type: QLocale.Language
+    Swedish = ...  # type: QLocale.Language
+    Tagalog = ...  # type: QLocale.Language
+    Tajik = ...  # type: QLocale.Language
+    Tamil = ...  # type: QLocale.Language
+    Tatar = ...  # type: QLocale.Language
+    Telugu = ...  # type: QLocale.Language
+    Thai = ...  # type: QLocale.Language
+    Tibetan = ...  # type: QLocale.Language
+    Tigrinya = ...  # type: QLocale.Language
+    Tsonga = ...  # type: QLocale.Language
+    Turkish = ...  # type: QLocale.Language
+    Turkmen = ...  # type: QLocale.Language
+    Twi = ...  # type: QLocale.Language
+    Uigur = ...  # type: QLocale.Language
+    Ukrainian = ...  # type: QLocale.Language
+    Urdu = ...  # type: QLocale.Language
+    Uzbek = ...  # type: QLocale.Language
+    Vietnamese = ...  # type: QLocale.Language
+    Volapuk = ...  # type: QLocale.Language
+    Welsh = ...  # type: QLocale.Language
+    Wolof = ...  # type: QLocale.Language
+    Xhosa = ...  # type: QLocale.Language
+    Yiddish = ...  # type: QLocale.Language
+    Yoruba = ...  # type: QLocale.Language
+    Zhuang = ...  # type: QLocale.Language
+    Zulu = ...  # type: QLocale.Language
+    Bosnian = ...  # type: QLocale.Language
+    Divehi = ...  # type: QLocale.Language
+    Manx = ...  # type: QLocale.Language
+    Cornish = ...  # type: QLocale.Language
+    LastLanguage = ...  # type: QLocale.Language
+    NorwegianBokmal = ...  # type: QLocale.Language
+    NorwegianNynorsk = ...  # type: QLocale.Language
+    Akan = ...  # type: QLocale.Language
+    Konkani = ...  # type: QLocale.Language
+    Ga = ...  # type: QLocale.Language
+    Igbo = ...  # type: QLocale.Language
+    Kamba = ...  # type: QLocale.Language
+    Syriac = ...  # type: QLocale.Language
+    Blin = ...  # type: QLocale.Language
+    Geez = ...  # type: QLocale.Language
+    Koro = ...  # type: QLocale.Language
+    Sidamo = ...  # type: QLocale.Language
+    Atsam = ...  # type: QLocale.Language
+    Tigre = ...  # type: QLocale.Language
+    Jju = ...  # type: QLocale.Language
+    Friulian = ...  # type: QLocale.Language
+    Venda = ...  # type: QLocale.Language
+    Ewe = ...  # type: QLocale.Language
+    Walamo = ...  # type: QLocale.Language
+    Hawaiian = ...  # type: QLocale.Language
+    Tyap = ...  # type: QLocale.Language
+    Chewa = ...  # type: QLocale.Language
+    Filipino = ...  # type: QLocale.Language
+    SwissGerman = ...  # type: QLocale.Language
+    SichuanYi = ...  # type: QLocale.Language
+    Kpelle = ...  # type: QLocale.Language
+    LowGerman = ...  # type: QLocale.Language
+    SouthNdebele = ...  # type: QLocale.Language
+    NorthernSotho = ...  # type: QLocale.Language
+    NorthernSami = ...  # type: QLocale.Language
+    Taroko = ...  # type: QLocale.Language
+    Gusii = ...  # type: QLocale.Language
+    Taita = ...  # type: QLocale.Language
+    Fulah = ...  # type: QLocale.Language
+    Kikuyu = ...  # type: QLocale.Language
+    Samburu = ...  # type: QLocale.Language
+    Sena = ...  # type: QLocale.Language
+    NorthNdebele = ...  # type: QLocale.Language
+    Rombo = ...  # type: QLocale.Language
+    Tachelhit = ...  # type: QLocale.Language
+    Kabyle = ...  # type: QLocale.Language
+    Nyankole = ...  # type: QLocale.Language
+    Bena = ...  # type: QLocale.Language
+    Vunjo = ...  # type: QLocale.Language
+    Bambara = ...  # type: QLocale.Language
+    Embu = ...  # type: QLocale.Language
+    Cherokee = ...  # type: QLocale.Language
+    Morisyen = ...  # type: QLocale.Language
+    Makonde = ...  # type: QLocale.Language
+    Langi = ...  # type: QLocale.Language
+    Ganda = ...  # type: QLocale.Language
+    Bemba = ...  # type: QLocale.Language
+    Kabuverdianu = ...  # type: QLocale.Language
+    Meru = ...  # type: QLocale.Language
+    Kalenjin = ...  # type: QLocale.Language
+    Nama = ...  # type: QLocale.Language
+    Machame = ...  # type: QLocale.Language
+    Colognian = ...  # type: QLocale.Language
+    Masai = ...  # type: QLocale.Language
+    Soga = ...  # type: QLocale.Language
+    Luyia = ...  # type: QLocale.Language
+    Asu = ...  # type: QLocale.Language
+    Teso = ...  # type: QLocale.Language
+    Saho = ...  # type: QLocale.Language
+    KoyraChiini = ...  # type: QLocale.Language
+    Rwa = ...  # type: QLocale.Language
+    Luo = ...  # type: QLocale.Language
+    Chiga = ...  # type: QLocale.Language
+    CentralMoroccoTamazight = ...  # type: QLocale.Language
+    KoyraboroSenni = ...  # type: QLocale.Language
+    Shambala = ...  # type: QLocale.Language
+    AnyLanguage = ...  # type: QLocale.Language
+    Rundi = ...  # type: QLocale.Language
+    Bodo = ...  # type: QLocale.Language
+    Aghem = ...  # type: QLocale.Language
+    Basaa = ...  # type: QLocale.Language
+    Zarma = ...  # type: QLocale.Language
+    Duala = ...  # type: QLocale.Language
+    JolaFonyi = ...  # type: QLocale.Language
+    Ewondo = ...  # type: QLocale.Language
+    Bafia = ...  # type: QLocale.Language
+    LubaKatanga = ...  # type: QLocale.Language
+    MakhuwaMeetto = ...  # type: QLocale.Language
+    Mundang = ...  # type: QLocale.Language
+    Kwasio = ...  # type: QLocale.Language
+    Nuer = ...  # type: QLocale.Language
+    Sakha = ...  # type: QLocale.Language
+    Sangu = ...  # type: QLocale.Language
+    CongoSwahili = ...  # type: QLocale.Language
+    Tasawaq = ...  # type: QLocale.Language
+    Vai = ...  # type: QLocale.Language
+    Walser = ...  # type: QLocale.Language
+    Yangben = ...  # type: QLocale.Language
+    Oromo = ...  # type: QLocale.Language
+    Dzongkha = ...  # type: QLocale.Language
+    Belarusian = ...  # type: QLocale.Language
+    Khmer = ...  # type: QLocale.Language
+    Fijian = ...  # type: QLocale.Language
+    WesternFrisian = ...  # type: QLocale.Language
+    Lao = ...  # type: QLocale.Language
+    Marshallese = ...  # type: QLocale.Language
+    Romansh = ...  # type: QLocale.Language
+    Sango = ...  # type: QLocale.Language
+    Ossetic = ...  # type: QLocale.Language
+    SouthernSotho = ...  # type: QLocale.Language
+    Tswana = ...  # type: QLocale.Language
+    Sinhala = ...  # type: QLocale.Language
+    Swati = ...  # type: QLocale.Language
+    Sardinian = ...  # type: QLocale.Language
+    Tongan = ...  # type: QLocale.Language
+    Tahitian = ...  # type: QLocale.Language
+    Nyanja = ...  # type: QLocale.Language
+    Avaric = ...  # type: QLocale.Language
+    Chamorro = ...  # type: QLocale.Language
+    Chechen = ...  # type: QLocale.Language
+    Church = ...  # type: QLocale.Language
+    Chuvash = ...  # type: QLocale.Language
+    Cree = ...  # type: QLocale.Language
+    Haitian = ...  # type: QLocale.Language
+    Herero = ...  # type: QLocale.Language
+    HiriMotu = ...  # type: QLocale.Language
+    Kanuri = ...  # type: QLocale.Language
+    Komi = ...  # type: QLocale.Language
+    Kongo = ...  # type: QLocale.Language
+    Kwanyama = ...  # type: QLocale.Language
+    Limburgish = ...  # type: QLocale.Language
+    Luxembourgish = ...  # type: QLocale.Language
+    Navaho = ...  # type: QLocale.Language
+    Ndonga = ...  # type: QLocale.Language
+    Ojibwa = ...  # type: QLocale.Language
+    Pali = ...  # type: QLocale.Language
+    Walloon = ...  # type: QLocale.Language
+    Avestan = ...  # type: QLocale.Language
+    Asturian = ...  # type: QLocale.Language
+    Ngomba = ...  # type: QLocale.Language
+    Kako = ...  # type: QLocale.Language
+    Meta = ...  # type: QLocale.Language
+    Ngiemboon = ...  # type: QLocale.Language
+    Uighur = ...  # type: QLocale.Language
+    Aragonese = ...  # type: QLocale.Language
+    Akkadian = ...  # type: QLocale.Language
+    AncientEgyptian = ...  # type: QLocale.Language
+    AncientGreek = ...  # type: QLocale.Language
+    Aramaic = ...  # type: QLocale.Language
+    Balinese = ...  # type: QLocale.Language
+    Bamun = ...  # type: QLocale.Language
+    BatakToba = ...  # type: QLocale.Language
+    Buginese = ...  # type: QLocale.Language
+    Buhid = ...  # type: QLocale.Language
+    Carian = ...  # type: QLocale.Language
+    Chakma = ...  # type: QLocale.Language
+    ClassicalMandaic = ...  # type: QLocale.Language
+    Coptic = ...  # type: QLocale.Language
+    Dogri = ...  # type: QLocale.Language
+    EasternCham = ...  # type: QLocale.Language
+    EasternKayah = ...  # type: QLocale.Language
+    Etruscan = ...  # type: QLocale.Language
+    Gothic = ...  # type: QLocale.Language
+    Hanunoo = ...  # type: QLocale.Language
+    Ingush = ...  # type: QLocale.Language
+    LargeFloweryMiao = ...  # type: QLocale.Language
+    Lepcha = ...  # type: QLocale.Language
+    Limbu = ...  # type: QLocale.Language
+    Lisu = ...  # type: QLocale.Language
+    Lu = ...  # type: QLocale.Language
+    Lycian = ...  # type: QLocale.Language
+    Lydian = ...  # type: QLocale.Language
+    Mandingo = ...  # type: QLocale.Language
+    Manipuri = ...  # type: QLocale.Language
+    Meroitic = ...  # type: QLocale.Language
+    NorthernThai = ...  # type: QLocale.Language
+    OldIrish = ...  # type: QLocale.Language
+    OldNorse = ...  # type: QLocale.Language
+    OldPersian = ...  # type: QLocale.Language
+    OldTurkish = ...  # type: QLocale.Language
+    Pahlavi = ...  # type: QLocale.Language
+    Parthian = ...  # type: QLocale.Language
+    Phoenician = ...  # type: QLocale.Language
+    PrakritLanguage = ...  # type: QLocale.Language
+    Rejang = ...  # type: QLocale.Language
+    Sabaean = ...  # type: QLocale.Language
+    Samaritan = ...  # type: QLocale.Language
+    Santali = ...  # type: QLocale.Language
+    Saurashtra = ...  # type: QLocale.Language
+    Sora = ...  # type: QLocale.Language
+    Sylheti = ...  # type: QLocale.Language
+    Tagbanwa = ...  # type: QLocale.Language
+    TaiDam = ...  # type: QLocale.Language
+    TaiNua = ...  # type: QLocale.Language
+    Ugaritic = ...  # type: QLocale.Language
+    Akoose = ...  # type: QLocale.Language
+    Lakota = ...  # type: QLocale.Language
+    StandardMoroccanTamazight = ...  # type: QLocale.Language
+    Mapuche = ...  # type: QLocale.Language
+    CentralKurdish = ...  # type: QLocale.Language
+    LowerSorbian = ...  # type: QLocale.Language
+    UpperSorbian = ...  # type: QLocale.Language
+    Kenyang = ...  # type: QLocale.Language
+    Mohawk = ...  # type: QLocale.Language
+    Nko = ...  # type: QLocale.Language
+    Prussian = ...  # type: QLocale.Language
+    Kiche = ...  # type: QLocale.Language
+    SouthernSami = ...  # type: QLocale.Language
+    LuleSami = ...  # type: QLocale.Language
+    InariSami = ...  # type: QLocale.Language
+    SkoltSami = ...  # type: QLocale.Language
+    Warlpiri = ...  # type: QLocale.Language
+    ManichaeanMiddlePersian = ...  # type: QLocale.Language
+    Mende = ...  # type: QLocale.Language
+    AncientNorthArabian = ...  # type: QLocale.Language
+    LinearA = ...  # type: QLocale.Language
+    HmongNjua = ...  # type: QLocale.Language
+    Ho = ...  # type: QLocale.Language
+    Lezghian = ...  # type: QLocale.Language
+    Bassa = ...  # type: QLocale.Language
+    Mono = ...  # type: QLocale.Language
+    TedimChin = ...  # type: QLocale.Language
+    Maithili = ...  # type: QLocale.Language
+    Ahom = ...  # type: QLocale.Language
+    AmericanSignLanguage = ...  # type: QLocale.Language
+    ArdhamagadhiPrakrit = ...  # type: QLocale.Language
+    Bhojpuri = ...  # type: QLocale.Language
+    HieroglyphicLuwian = ...  # type: QLocale.Language
+    LiteraryChinese = ...  # type: QLocale.Language
+    Mazanderani = ...  # type: QLocale.Language
+    Mru = ...  # type: QLocale.Language
+    Newari = ...  # type: QLocale.Language
+    NorthernLuri = ...  # type: QLocale.Language
+    Palauan = ...  # type: QLocale.Language
+    Papiamento = ...  # type: QLocale.Language
+    Saraiki = ...  # type: QLocale.Language
+    TokelauLanguage = ...  # type: QLocale.Language
+    TokPisin = ...  # type: QLocale.Language
+    TuvaluLanguage = ...  # type: QLocale.Language
+    UncodedLanguages = ...  # type: QLocale.Language
+    Cantonese = ...  # type: QLocale.Language
+    Osage = ...  # type: QLocale.Language
+    Tangut = ...  # type: QLocale.Language
+    Ido = ...  # type: QLocale.Language
+    Lojban = ...  # type: QLocale.Language
+    Sicilian = ...  # type: QLocale.Language
+    SouthernKurdish = ...  # type: QLocale.Language
+    WesternBalochi = ...  # type: QLocale.Language
+    Cebuano = ...  # type: QLocale.Language
+    Erzya = ...  # type: QLocale.Language
+    Chickasaw = ...  # type: QLocale.Language
+    Muscogee = ...  # type: QLocale.Language
+    Silesian = ...  # type: QLocale.Language
+
     class NumberOptions(sip.simplewrapper):
 
         @typing.overload
@@ -5911,6 +8514,11 @@ class QLockFile(sip.simplewrapper):
         PermissionError = ... # type: QLockFile.LockError
         UnknownError = ... # type: QLockFile.LockError
 
+    NoError = ...  # type: QLockFile.LockError
+    LockFailedError = ...  # type: QLockFile.LockError
+    PermissionError = ...  # type: QLockFile.LockError
+    UnknownError = ...  # type: QLockFile.LockError
+
     def __init__(self, fileName: str) -> None: ...
 
     def error(self) -> 'QLockFile.LockError': ...
@@ -6041,10 +8649,19 @@ class QMetaMethod(sip.simplewrapper):
         Slot = ... # type: QMetaMethod.MethodType
         Constructor = ... # type: QMetaMethod.MethodType
 
+    Method = ...  # type: QMetaMethod.MethodType
+    Signal = ...  # type: QMetaMethod.MethodType
+    Slot = ...  # type: QMetaMethod.MethodType
+    Constructor = ...  # type: QMetaMethod.MethodType
+
     class Access(int):
         Private = ... # type: QMetaMethod.Access
         Protected = ... # type: QMetaMethod.Access
         Public = ... # type: QMetaMethod.Access
+
+    Private = ...  # type: QMetaMethod.Access
+    Protected = ...  # type: QMetaMethod.Access
+    Public = ...  # type: QMetaMethod.Access
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6152,6 +8769,12 @@ class QMetaType(sip.simplewrapper):
         PointerToQObject = ... # type: QMetaType.TypeFlag
         IsEnumeration = ... # type: QMetaType.TypeFlag
 
+    NeedsConstruction = ...  # type: QMetaType.TypeFlag
+    NeedsDestruction = ...  # type: QMetaType.TypeFlag
+    MovableType = ...  # type: QMetaType.TypeFlag
+    PointerToQObject = ...  # type: QMetaType.TypeFlag
+    IsEnumeration = ...  # type: QMetaType.TypeFlag
+
     class Type(int):
         UnknownType = ... # type: QMetaType.Type
         Void = ... # type: QMetaType.Type
@@ -6237,6 +8860,90 @@ class QMetaType(sip.simplewrapper):
         QColorSpace = ... # type: QMetaType.Type
         User = ... # type: QMetaType.Type
 
+    UnknownType = ...  # type: QMetaType.Type
+    Void = ...  # type: QMetaType.Type
+    Bool = ...  # type: QMetaType.Type
+    Int = ...  # type: QMetaType.Type
+    UInt = ...  # type: QMetaType.Type
+    LongLong = ...  # type: QMetaType.Type
+    ULongLong = ...  # type: QMetaType.Type
+    Double = ...  # type: QMetaType.Type
+    QChar = ...  # type: QMetaType.Type
+    QVariantMap = ...  # type: QMetaType.Type
+    QVariantList = ...  # type: QMetaType.Type
+    QVariantHash = ...  # type: QMetaType.Type
+    QString = ...  # type: QMetaType.Type
+    QStringList = ...  # type: QMetaType.Type
+    QByteArray = ...  # type: QMetaType.Type
+    QBitArray = ...  # type: QMetaType.Type
+    QDate = ...  # type: QMetaType.Type
+    QTime = ...  # type: QMetaType.Type
+    QDateTime = ...  # type: QMetaType.Type
+    QUrl = ...  # type: QMetaType.Type
+    QLocale = ...  # type: QMetaType.Type
+    QRect = ...  # type: QMetaType.Type
+    QRectF = ...  # type: QMetaType.Type
+    QSize = ...  # type: QMetaType.Type
+    QSizeF = ...  # type: QMetaType.Type
+    QLine = ...  # type: QMetaType.Type
+    QLineF = ...  # type: QMetaType.Type
+    QPoint = ...  # type: QMetaType.Type
+    QPointF = ...  # type: QMetaType.Type
+    QRegExp = ...  # type: QMetaType.Type
+    LastCoreType = ...  # type: QMetaType.Type
+    FirstGuiType = ...  # type: QMetaType.Type
+    QFont = ...  # type: QMetaType.Type
+    QPixmap = ...  # type: QMetaType.Type
+    QBrush = ...  # type: QMetaType.Type
+    QColor = ...  # type: QMetaType.Type
+    QPalette = ...  # type: QMetaType.Type
+    QIcon = ...  # type: QMetaType.Type
+    QImage = ...  # type: QMetaType.Type
+    QPolygon = ...  # type: QMetaType.Type
+    QRegion = ...  # type: QMetaType.Type
+    QBitmap = ...  # type: QMetaType.Type
+    QCursor = ...  # type: QMetaType.Type
+    QSizePolicy = ...  # type: QMetaType.Type
+    QKeySequence = ...  # type: QMetaType.Type
+    QPen = ...  # type: QMetaType.Type
+    QTextLength = ...  # type: QMetaType.Type
+    QTextFormat = ...  # type: QMetaType.Type
+    QMatrix = ...  # type: QMetaType.Type
+    QTransform = ...  # type: QMetaType.Type
+    VoidStar = ...  # type: QMetaType.Type
+    Long = ...  # type: QMetaType.Type
+    Short = ...  # type: QMetaType.Type
+    Char = ...  # type: QMetaType.Type
+    ULong = ...  # type: QMetaType.Type
+    UShort = ...  # type: QMetaType.Type
+    UChar = ...  # type: QMetaType.Type
+    Float = ...  # type: QMetaType.Type
+    QObjectStar = ...  # type: QMetaType.Type
+    QMatrix4x4 = ...  # type: QMetaType.Type
+    QVector2D = ...  # type: QMetaType.Type
+    QVector3D = ...  # type: QMetaType.Type
+    QVector4D = ...  # type: QMetaType.Type
+    QQuaternion = ...  # type: QMetaType.Type
+    QEasingCurve = ...  # type: QMetaType.Type
+    QVariant = ...  # type: QMetaType.Type
+    QUuid = ...  # type: QMetaType.Type
+    QModelIndex = ...  # type: QMetaType.Type
+    QPolygonF = ...  # type: QMetaType.Type
+    SChar = ...  # type: QMetaType.Type
+    QRegularExpression = ...  # type: QMetaType.Type
+    QJsonValue = ...  # type: QMetaType.Type
+    QJsonObject = ...  # type: QMetaType.Type
+    QJsonArray = ...  # type: QMetaType.Type
+    QJsonDocument = ...  # type: QMetaType.Type
+    QByteArrayList = ...  # type: QMetaType.Type
+    QPersistentModelIndex = ...  # type: QMetaType.Type
+    QCborSimpleType = ...  # type: QMetaType.Type
+    QCborValue = ...  # type: QMetaType.Type
+    QCborArray = ...  # type: QMetaType.Type
+    QCborMap = ...  # type: QMetaType.Type
+    QColorSpace = ...  # type: QMetaType.Type
+    User = ...  # type: QMetaType.Type
+
     class TypeFlags(sip.simplewrapper):
 
         @typing.overload
@@ -6310,6 +9017,10 @@ class QMimeDatabase(sip.simplewrapper):
         MatchExtension = ... # type: QMimeDatabase.MatchMode
         MatchContent = ... # type: QMimeDatabase.MatchMode
 
+    MatchDefault = ...  # type: QMimeDatabase.MatchMode
+    MatchExtension = ...  # type: QMimeDatabase.MatchMode
+    MatchContent = ...  # type: QMimeDatabase.MatchMode
+
     def __init__(self) -> None: ...
 
     def allMimeTypes(self) -> typing.List['QMimeType']: ...
@@ -6375,6 +9086,9 @@ class QMutex(sip.simplewrapper):
     class RecursionMode(int):
         NonRecursive = ... # type: QMutex.RecursionMode
         Recursive = ... # type: QMutex.RecursionMode
+
+    NonRecursive = ...  # type: QMutex.RecursionMode
+    Recursive = ...  # type: QMutex.RecursionMode
 
     def __init__(self, mode: 'QMutex.RecursionMode' = ...) -> None: ...
 
@@ -6490,6 +9204,14 @@ class QOperatingSystemVersion(sip.simplewrapper):
         TvOS = ... # type: QOperatingSystemVersion.OSType
         WatchOS = ... # type: QOperatingSystemVersion.OSType
         Android = ... # type: QOperatingSystemVersion.OSType
+
+    Unknown = ...  # type: QOperatingSystemVersion.OSType
+    Windows = ...  # type: QOperatingSystemVersion.OSType
+    MacOS = ...  # type: QOperatingSystemVersion.OSType
+    IOS = ...  # type: QOperatingSystemVersion.OSType
+    TvOS = ...  # type: QOperatingSystemVersion.OSType
+    WatchOS = ...  # type: QOperatingSystemVersion.OSType
+    Android = ...  # type: QOperatingSystemVersion.OSType
 
     AndroidJellyBean = ... # type: 'QOperatingSystemVersion'
     AndroidJellyBean_MR1 = ... # type: 'QOperatingSystemVersion'
@@ -6680,6 +9402,9 @@ class QProcess(QIODevice):
         ManagedInputChannel = ... # type: QProcess.InputChannelMode
         ForwardedInputChannel = ... # type: QProcess.InputChannelMode
 
+    ManagedInputChannel = ...  # type: QProcess.InputChannelMode
+    ForwardedInputChannel = ...  # type: QProcess.InputChannelMode
+
     class ProcessChannelMode(int):
         SeparateChannels = ... # type: QProcess.ProcessChannelMode
         MergedChannels = ... # type: QProcess.ProcessChannelMode
@@ -6687,14 +9412,27 @@ class QProcess(QIODevice):
         ForwardedOutputChannel = ... # type: QProcess.ProcessChannelMode
         ForwardedErrorChannel = ... # type: QProcess.ProcessChannelMode
 
+    SeparateChannels = ...  # type: QProcess.ProcessChannelMode
+    MergedChannels = ...  # type: QProcess.ProcessChannelMode
+    ForwardedChannels = ...  # type: QProcess.ProcessChannelMode
+    ForwardedOutputChannel = ...  # type: QProcess.ProcessChannelMode
+    ForwardedErrorChannel = ...  # type: QProcess.ProcessChannelMode
+
     class ProcessChannel(int):
         StandardOutput = ... # type: QProcess.ProcessChannel
         StandardError = ... # type: QProcess.ProcessChannel
+
+    StandardOutput = ...  # type: QProcess.ProcessChannel
+    StandardError = ...  # type: QProcess.ProcessChannel
 
     class ProcessState(int):
         NotRunning = ... # type: QProcess.ProcessState
         Starting = ... # type: QProcess.ProcessState
         Running = ... # type: QProcess.ProcessState
+
+    NotRunning = ...  # type: QProcess.ProcessState
+    Starting = ...  # type: QProcess.ProcessState
+    Running = ...  # type: QProcess.ProcessState
 
     class ProcessError(int):
         FailedToStart = ... # type: QProcess.ProcessError
@@ -6704,9 +9442,19 @@ class QProcess(QIODevice):
         WriteError = ... # type: QProcess.ProcessError
         UnknownError = ... # type: QProcess.ProcessError
 
+    FailedToStart = ...  # type: QProcess.ProcessError
+    Crashed = ...  # type: QProcess.ProcessError
+    Timedout = ...  # type: QProcess.ProcessError
+    ReadError = ...  # type: QProcess.ProcessError
+    WriteError = ...  # type: QProcess.ProcessError
+    UnknownError = ...  # type: QProcess.ProcessError
+
     class ExitStatus(int):
         NormalExit = ... # type: QProcess.ExitStatus
         CrashExit = ... # type: QProcess.ExitStatus
+
+    NormalExit = ...  # type: QProcess.ExitStatus
+    CrashExit = ...  # type: QProcess.ExitStatus
 
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
 
@@ -6852,6 +9600,9 @@ class QReadWriteLock(sip.simplewrapper):
     class RecursionMode(int):
         NonRecursive = ... # type: QReadWriteLock.RecursionMode
         Recursive = ... # type: QReadWriteLock.RecursionMode
+
+    NonRecursive = ...  # type: QReadWriteLock.RecursionMode
+    Recursive = ...  # type: QReadWriteLock.RecursionMode
 
     def __init__(self, recursionMode: 'QReadWriteLock.RecursionMode' = ...) -> None: ...
 
@@ -7085,6 +9836,10 @@ class QRegExp(sip.simplewrapper):
         CaretAtOffset = ... # type: QRegExp.CaretMode
         CaretWontMatch = ... # type: QRegExp.CaretMode
 
+    CaretAtZero = ...  # type: QRegExp.CaretMode
+    CaretAtOffset = ...  # type: QRegExp.CaretMode
+    CaretWontMatch = ...  # type: QRegExp.CaretMode
+
     class PatternSyntax(int):
         RegExp = ... # type: QRegExp.PatternSyntax
         RegExp2 = ... # type: QRegExp.PatternSyntax
@@ -7092,6 +9847,13 @@ class QRegExp(sip.simplewrapper):
         FixedString = ... # type: QRegExp.PatternSyntax
         WildcardUnix = ... # type: QRegExp.PatternSyntax
         W3CXmlSchema11 = ... # type: QRegExp.PatternSyntax
+
+    RegExp = ...  # type: QRegExp.PatternSyntax
+    RegExp2 = ...  # type: QRegExp.PatternSyntax
+    Wildcard = ...  # type: QRegExp.PatternSyntax
+    FixedString = ...  # type: QRegExp.PatternSyntax
+    WildcardUnix = ...  # type: QRegExp.PatternSyntax
+    W3CXmlSchema11 = ...  # type: QRegExp.PatternSyntax
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -7133,11 +9895,20 @@ class QRegularExpression(sip.simplewrapper):
         AnchoredMatchOption = ... # type: QRegularExpression.MatchOption
         DontCheckSubjectStringMatchOption = ... # type: QRegularExpression.MatchOption
 
+    NoMatchOption = ...  # type: QRegularExpression.MatchOption
+    AnchoredMatchOption = ...  # type: QRegularExpression.MatchOption
+    DontCheckSubjectStringMatchOption = ...  # type: QRegularExpression.MatchOption
+
     class MatchType(int):
         NormalMatch = ... # type: QRegularExpression.MatchType
         PartialPreferCompleteMatch = ... # type: QRegularExpression.MatchType
         PartialPreferFirstMatch = ... # type: QRegularExpression.MatchType
         NoMatch = ... # type: QRegularExpression.MatchType
+
+    NormalMatch = ...  # type: QRegularExpression.MatchType
+    PartialPreferCompleteMatch = ...  # type: QRegularExpression.MatchType
+    PartialPreferFirstMatch = ...  # type: QRegularExpression.MatchType
+    NoMatch = ...  # type: QRegularExpression.MatchType
 
     class PatternOption(int):
         NoPatternOption = ... # type: QRegularExpression.PatternOption
@@ -7150,6 +9921,17 @@ class QRegularExpression(sip.simplewrapper):
         UseUnicodePropertiesOption = ... # type: QRegularExpression.PatternOption
         OptimizeOnFirstUsageOption = ... # type: QRegularExpression.PatternOption
         DontAutomaticallyOptimizeOption = ... # type: QRegularExpression.PatternOption
+
+    NoPatternOption = ...  # type: QRegularExpression.PatternOption
+    CaseInsensitiveOption = ...  # type: QRegularExpression.PatternOption
+    DotMatchesEverythingOption = ...  # type: QRegularExpression.PatternOption
+    MultilineOption = ...  # type: QRegularExpression.PatternOption
+    ExtendedPatternSyntaxOption = ...  # type: QRegularExpression.PatternOption
+    InvertedGreedinessOption = ...  # type: QRegularExpression.PatternOption
+    DontCaptureOption = ...  # type: QRegularExpression.PatternOption
+    UseUnicodePropertiesOption = ...  # type: QRegularExpression.PatternOption
+    OptimizeOnFirstUsageOption = ...  # type: QRegularExpression.PatternOption
+    DontAutomaticallyOptimizeOption = ...  # type: QRegularExpression.PatternOption
 
     class PatternOptions(sip.simplewrapper):
 
@@ -7269,6 +10051,10 @@ class QResource(sip.simplewrapper):
         ZlibCompression = ... # type: QResource.Compression
         ZstdCompression = ... # type: QResource.Compression
 
+    NoCompression = ...  # type: QResource.Compression
+    ZlibCompression = ...  # type: QResource.Compression
+    ZstdCompression = ...  # type: QResource.Compression
+
     def __init__(self, fileName: str = ..., locale: QLocale = ...) -> None: ...
 
     def uncompressedData(self) -> QByteArray: ...
@@ -7376,15 +10162,26 @@ class QSettings(QObject):
         UserScope = ... # type: QSettings.Scope
         SystemScope = ... # type: QSettings.Scope
 
+    UserScope = ...  # type: QSettings.Scope
+    SystemScope = ...  # type: QSettings.Scope
+
     class Format(int):
         NativeFormat = ... # type: QSettings.Format
         IniFormat = ... # type: QSettings.Format
         InvalidFormat = ... # type: QSettings.Format
 
+    NativeFormat = ...  # type: QSettings.Format
+    IniFormat = ...  # type: QSettings.Format
+    InvalidFormat = ...  # type: QSettings.Format
+
     class Status(int):
         NoError = ... # type: QSettings.Status
         AccessError = ... # type: QSettings.Status
         FormatError = ... # type: QSettings.Status
+
+    NoError = ...  # type: QSettings.Status
+    AccessError = ...  # type: QSettings.Status
+    FormatError = ...  # type: QSettings.Status
 
     @typing.overload
     def __init__(self, organization: str, application: str = ..., parent: typing.Optional[QObject] = ...) -> None: ...
@@ -7453,9 +10250,22 @@ class QSharedMemory(QObject):
         OutOfResources = ... # type: QSharedMemory.SharedMemoryError
         UnknownError = ... # type: QSharedMemory.SharedMemoryError
 
+    NoError = ...  # type: QSharedMemory.SharedMemoryError
+    PermissionDenied = ...  # type: QSharedMemory.SharedMemoryError
+    InvalidSize = ...  # type: QSharedMemory.SharedMemoryError
+    KeyError = ...  # type: QSharedMemory.SharedMemoryError
+    AlreadyExists = ...  # type: QSharedMemory.SharedMemoryError
+    NotFound = ...  # type: QSharedMemory.SharedMemoryError
+    LockError = ...  # type: QSharedMemory.SharedMemoryError
+    OutOfResources = ...  # type: QSharedMemory.SharedMemoryError
+    UnknownError = ...  # type: QSharedMemory.SharedMemoryError
+
     class AccessMode(int):
         ReadOnly = ... # type: QSharedMemory.AccessMode
         ReadWrite = ... # type: QSharedMemory.AccessMode
+
+    ReadOnly = ...  # type: QSharedMemory.AccessMode
+    ReadWrite = ...  # type: QSharedMemory.AccessMode
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
@@ -7607,6 +10417,10 @@ class QSocketNotifier(QObject):
         Write = ... # type: QSocketNotifier.Type
         Exception = ... # type: QSocketNotifier.Type
 
+    Read = ...  # type: QSocketNotifier.Type
+    Write = ...  # type: QSocketNotifier.Type
+    Exception = ...  # type: QSocketNotifier.Type
+
     def __init__(self, socket: sip.voidptr, a1: 'QSocketNotifier.Type', parent: typing.Optional[QObject] = ...) -> None: ...
 
     def event(self, a0: QEvent) -> bool: ...
@@ -7704,6 +10518,9 @@ class QStandardPaths(sip.simplewrapper):
         LocateFile = ... # type: QStandardPaths.LocateOption
         LocateDirectory = ... # type: QStandardPaths.LocateOption
 
+    LocateFile = ...  # type: QStandardPaths.LocateOption
+    LocateDirectory = ...  # type: QStandardPaths.LocateOption
+
     class StandardLocation(int):
         DesktopLocation = ... # type: QStandardPaths.StandardLocation
         DocumentsLocation = ... # type: QStandardPaths.StandardLocation
@@ -7725,6 +10542,27 @@ class QStandardPaths(sip.simplewrapper):
         AppDataLocation = ... # type: QStandardPaths.StandardLocation
         AppLocalDataLocation = ... # type: QStandardPaths.StandardLocation
         AppConfigLocation = ... # type: QStandardPaths.StandardLocation
+
+    DesktopLocation = ...  # type: QStandardPaths.StandardLocation
+    DocumentsLocation = ...  # type: QStandardPaths.StandardLocation
+    FontsLocation = ...  # type: QStandardPaths.StandardLocation
+    ApplicationsLocation = ...  # type: QStandardPaths.StandardLocation
+    MusicLocation = ...  # type: QStandardPaths.StandardLocation
+    MoviesLocation = ...  # type: QStandardPaths.StandardLocation
+    PicturesLocation = ...  # type: QStandardPaths.StandardLocation
+    TempLocation = ...  # type: QStandardPaths.StandardLocation
+    HomeLocation = ...  # type: QStandardPaths.StandardLocation
+    DataLocation = ...  # type: QStandardPaths.StandardLocation
+    CacheLocation = ...  # type: QStandardPaths.StandardLocation
+    GenericDataLocation = ...  # type: QStandardPaths.StandardLocation
+    RuntimeLocation = ...  # type: QStandardPaths.StandardLocation
+    ConfigLocation = ...  # type: QStandardPaths.StandardLocation
+    DownloadLocation = ...  # type: QStandardPaths.StandardLocation
+    GenericCacheLocation = ...  # type: QStandardPaths.StandardLocation
+    GenericConfigLocation = ...  # type: QStandardPaths.StandardLocation
+    AppDataLocation = ...  # type: QStandardPaths.StandardLocation
+    AppLocalDataLocation = ...  # type: QStandardPaths.StandardLocation
+    AppConfigLocation = ...  # type: QStandardPaths.StandardLocation
 
     class LocateOptions(sip.simplewrapper):
 
@@ -7767,9 +10605,15 @@ class QState(QAbstractState):
         DontRestoreProperties = ... # type: QState.RestorePolicy
         RestoreProperties = ... # type: QState.RestorePolicy
 
+    DontRestoreProperties = ...  # type: QState.RestorePolicy
+    RestoreProperties = ...  # type: QState.RestorePolicy
+
     class ChildMode(int):
         ExclusiveStates = ... # type: QState.ChildMode
         ParallelStates = ... # type: QState.ChildMode
+
+    ExclusiveStates = ...  # type: QState.ChildMode
+    ParallelStates = ...  # type: QState.ChildMode
 
     @typing.overload
     def __init__(self, parent: typing.Optional['QState'] = ...) -> None: ...
@@ -7810,9 +10654,18 @@ class QStateMachine(QState):
         NoCommonAncestorForTransitionError = ... # type: QStateMachine.Error
         StateMachineChildModeSetToParallelError = ... # type: QStateMachine.Error
 
+    NoError = ...  # type: QStateMachine.Error
+    NoInitialStateError = ...  # type: QStateMachine.Error
+    NoDefaultStateInHistoryStateError = ...  # type: QStateMachine.Error
+    NoCommonAncestorForTransitionError = ...  # type: QStateMachine.Error
+    StateMachineChildModeSetToParallelError = ...  # type: QStateMachine.Error
+
     class EventPriority(int):
         NormalPriority = ... # type: QStateMachine.EventPriority
         HighPriority = ... # type: QStateMachine.EventPriority
+
+    NormalPriority = ...  # type: QStateMachine.EventPriority
+    HighPriority = ...  # type: QStateMachine.EventPriority
 
     class SignalEvent(QEvent):
 
@@ -7927,9 +10780,20 @@ class QSystemSemaphore(sip.simplewrapper):
         OutOfResources = ... # type: QSystemSemaphore.SystemSemaphoreError
         UnknownError = ... # type: QSystemSemaphore.SystemSemaphoreError
 
+    NoError = ...  # type: QSystemSemaphore.SystemSemaphoreError
+    PermissionDenied = ...  # type: QSystemSemaphore.SystemSemaphoreError
+    KeyError = ...  # type: QSystemSemaphore.SystemSemaphoreError
+    AlreadyExists = ...  # type: QSystemSemaphore.SystemSemaphoreError
+    NotFound = ...  # type: QSystemSemaphore.SystemSemaphoreError
+    OutOfResources = ...  # type: QSystemSemaphore.SystemSemaphoreError
+    UnknownError = ...  # type: QSystemSemaphore.SystemSemaphoreError
+
     class AccessMode(int):
         Open = ... # type: QSystemSemaphore.AccessMode
         Create = ... # type: QSystemSemaphore.AccessMode
+
+    Open = ...  # type: QSystemSemaphore.AccessMode
+    Create = ...  # type: QSystemSemaphore.AccessMode
 
     def __init__(self, key: str, initialValue: int = ..., mode: 'QSystemSemaphore.AccessMode' = ...) -> None: ...
 
@@ -7994,6 +10858,11 @@ class QTextBoundaryFinder(sip.simplewrapper):
         Line = ... # type: QTextBoundaryFinder.BoundaryType
         Sentence = ... # type: QTextBoundaryFinder.BoundaryType
 
+    Grapheme = ...  # type: QTextBoundaryFinder.BoundaryType
+    Word = ...  # type: QTextBoundaryFinder.BoundaryType
+    Line = ...  # type: QTextBoundaryFinder.BoundaryType
+    Sentence = ...  # type: QTextBoundaryFinder.BoundaryType
+
     class BoundaryReason(int):
         NotAtBoundary = ... # type: QTextBoundaryFinder.BoundaryReason
         SoftHyphen = ... # type: QTextBoundaryFinder.BoundaryReason
@@ -8001,6 +10870,13 @@ class QTextBoundaryFinder(sip.simplewrapper):
         StartOfItem = ... # type: QTextBoundaryFinder.BoundaryReason
         EndOfItem = ... # type: QTextBoundaryFinder.BoundaryReason
         MandatoryBreak = ... # type: QTextBoundaryFinder.BoundaryReason
+
+    NotAtBoundary = ...  # type: QTextBoundaryFinder.BoundaryReason
+    SoftHyphen = ...  # type: QTextBoundaryFinder.BoundaryReason
+    BreakOpportunity = ...  # type: QTextBoundaryFinder.BoundaryReason
+    StartOfItem = ...  # type: QTextBoundaryFinder.BoundaryReason
+    EndOfItem = ...  # type: QTextBoundaryFinder.BoundaryReason
+    MandatoryBreak = ...  # type: QTextBoundaryFinder.BoundaryReason
 
     class BoundaryReasons(sip.simplewrapper):
 
@@ -8043,6 +10919,10 @@ class QTextCodec(sip.wrapper):
         DefaultConversion = ... # type: QTextCodec.ConversionFlag
         ConvertInvalidToNull = ... # type: QTextCodec.ConversionFlag
         IgnoreHeader = ... # type: QTextCodec.ConversionFlag
+
+    DefaultConversion = ...  # type: QTextCodec.ConversionFlag
+    ConvertInvalidToNull = ...  # type: QTextCodec.ConversionFlag
+    IgnoreHeader = ...  # type: QTextCodec.ConversionFlag
 
     class ConversionFlags(sip.simplewrapper):
 
@@ -8139,6 +11019,11 @@ class QTextStream(sip.simplewrapper):
         ReadCorruptData = ... # type: QTextStream.Status
         WriteFailed = ... # type: QTextStream.Status
 
+    Ok = ...  # type: QTextStream.Status
+    ReadPastEnd = ...  # type: QTextStream.Status
+    ReadCorruptData = ...  # type: QTextStream.Status
+    WriteFailed = ...  # type: QTextStream.Status
+
     class NumberFlag(int):
         ShowBase = ... # type: QTextStream.NumberFlag
         ForcePoint = ... # type: QTextStream.NumberFlag
@@ -8146,16 +11031,31 @@ class QTextStream(sip.simplewrapper):
         UppercaseBase = ... # type: QTextStream.NumberFlag
         UppercaseDigits = ... # type: QTextStream.NumberFlag
 
+    ShowBase = ...  # type: QTextStream.NumberFlag
+    ForcePoint = ...  # type: QTextStream.NumberFlag
+    ForceSign = ...  # type: QTextStream.NumberFlag
+    UppercaseBase = ...  # type: QTextStream.NumberFlag
+    UppercaseDigits = ...  # type: QTextStream.NumberFlag
+
     class FieldAlignment(int):
         AlignLeft = ... # type: QTextStream.FieldAlignment
         AlignRight = ... # type: QTextStream.FieldAlignment
         AlignCenter = ... # type: QTextStream.FieldAlignment
         AlignAccountingStyle = ... # type: QTextStream.FieldAlignment
 
+    AlignLeft = ...  # type: QTextStream.FieldAlignment
+    AlignRight = ...  # type: QTextStream.FieldAlignment
+    AlignCenter = ...  # type: QTextStream.FieldAlignment
+    AlignAccountingStyle = ...  # type: QTextStream.FieldAlignment
+
     class RealNumberNotation(int):
         SmartNotation = ... # type: QTextStream.RealNumberNotation
         FixedNotation = ... # type: QTextStream.RealNumberNotation
         ScientificNotation = ... # type: QTextStream.RealNumberNotation
+
+    SmartNotation = ...  # type: QTextStream.RealNumberNotation
+    FixedNotation = ...  # type: QTextStream.RealNumberNotation
+    ScientificNotation = ...  # type: QTextStream.RealNumberNotation
 
     class NumberFlags(sip.simplewrapper):
 
@@ -8234,6 +11134,15 @@ class QThread(QObject):
         HighestPriority = ... # type: QThread.Priority
         TimeCriticalPriority = ... # type: QThread.Priority
         InheritPriority = ... # type: QThread.Priority
+
+    IdlePriority = ...  # type: QThread.Priority
+    LowestPriority = ...  # type: QThread.Priority
+    LowPriority = ...  # type: QThread.Priority
+    NormalPriority = ...  # type: QThread.Priority
+    HighPriority = ...  # type: QThread.Priority
+    HighestPriority = ...  # type: QThread.Priority
+    TimeCriticalPriority = ...  # type: QThread.Priority
+    InheritPriority = ...  # type: QThread.Priority
 
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
 
@@ -8316,9 +11225,16 @@ class QTimeLine(QObject):
         Paused = ... # type: QTimeLine.State
         Running = ... # type: QTimeLine.State
 
+    NotRunning = ...  # type: QTimeLine.State
+    Paused = ...  # type: QTimeLine.State
+    Running = ...  # type: QTimeLine.State
+
     class Direction(int):
         Forward = ... # type: QTimeLine.Direction
         Backward = ... # type: QTimeLine.Direction
+
+    Forward = ...  # type: QTimeLine.Direction
+    Backward = ...  # type: QTimeLine.Direction
 
     class CurveShape(int):
         EaseInCurve = ... # type: QTimeLine.CurveShape
@@ -8327,6 +11243,13 @@ class QTimeLine(QObject):
         LinearCurve = ... # type: QTimeLine.CurveShape
         SineCurve = ... # type: QTimeLine.CurveShape
         CosineCurve = ... # type: QTimeLine.CurveShape
+
+    EaseInCurve = ...  # type: QTimeLine.CurveShape
+    EaseOutCurve = ...  # type: QTimeLine.CurveShape
+    EaseInOutCurve = ...  # type: QTimeLine.CurveShape
+    LinearCurve = ...  # type: QTimeLine.CurveShape
+    SineCurve = ...  # type: QTimeLine.CurveShape
+    CosineCurve = ...  # type: QTimeLine.CurveShape
 
     def __init__(self, duration: int = ..., parent: typing.Optional[QObject] = ...) -> None: ...
 
@@ -8402,10 +11325,19 @@ class QTimeZone(sip.simplewrapper):
         ShortName = ... # type: QTimeZone.NameType
         OffsetName = ... # type: QTimeZone.NameType
 
+    DefaultName = ...  # type: QTimeZone.NameType
+    LongName = ...  # type: QTimeZone.NameType
+    ShortName = ...  # type: QTimeZone.NameType
+    OffsetName = ...  # type: QTimeZone.NameType
+
     class TimeType(int):
         StandardTime = ... # type: QTimeZone.TimeType
         DaylightTime = ... # type: QTimeZone.TimeType
         GenericTime = ... # type: QTimeZone.TimeType
+
+    StandardTime = ...  # type: QTimeZone.TimeType
+    DaylightTime = ...  # type: QTimeZone.TimeType
+    GenericTime = ...  # type: QTimeZone.TimeType
 
     class OffsetData(sip.simplewrapper):
 
@@ -8530,6 +11462,9 @@ class QUrl(sip.simplewrapper):
         DefaultResolution = ... # type: QUrl.UserInputResolutionOption
         AssumeLocalFile = ... # type: QUrl.UserInputResolutionOption
 
+    DefaultResolution = ...  # type: QUrl.UserInputResolutionOption
+    AssumeLocalFile = ...  # type: QUrl.UserInputResolutionOption
+
     class ComponentFormattingOption(int):
         PrettyDecoded = ... # type: QUrl.ComponentFormattingOption
         EncodeSpaces = ... # type: QUrl.ComponentFormattingOption
@@ -8539,6 +11474,15 @@ class QUrl(sip.simplewrapper):
         DecodeReserved = ... # type: QUrl.ComponentFormattingOption
         FullyEncoded = ... # type: QUrl.ComponentFormattingOption
         FullyDecoded = ... # type: QUrl.ComponentFormattingOption
+
+    PrettyDecoded = ...  # type: QUrl.ComponentFormattingOption
+    EncodeSpaces = ...  # type: QUrl.ComponentFormattingOption
+    EncodeUnicode = ...  # type: QUrl.ComponentFormattingOption
+    EncodeDelimiters = ...  # type: QUrl.ComponentFormattingOption
+    EncodeReserved = ...  # type: QUrl.ComponentFormattingOption
+    DecodeReserved = ...  # type: QUrl.ComponentFormattingOption
+    FullyEncoded = ...  # type: QUrl.ComponentFormattingOption
+    FullyDecoded = ...  # type: QUrl.ComponentFormattingOption
 
     class UrlFormattingOption(int):
         None_ = ... # type: QUrl.UrlFormattingOption
@@ -8555,10 +11499,28 @@ class QUrl(sip.simplewrapper):
         RemoveFilename = ... # type: QUrl.UrlFormattingOption
         NormalizePathSegments = ... # type: QUrl.UrlFormattingOption
 
+    None_ = ...  # type: QUrl.UrlFormattingOption
+    RemoveScheme = ...  # type: QUrl.UrlFormattingOption
+    RemovePassword = ...  # type: QUrl.UrlFormattingOption
+    RemoveUserInfo = ...  # type: QUrl.UrlFormattingOption
+    RemovePort = ...  # type: QUrl.UrlFormattingOption
+    RemoveAuthority = ...  # type: QUrl.UrlFormattingOption
+    RemovePath = ...  # type: QUrl.UrlFormattingOption
+    RemoveQuery = ...  # type: QUrl.UrlFormattingOption
+    RemoveFragment = ...  # type: QUrl.UrlFormattingOption
+    PreferLocalFile = ...  # type: QUrl.UrlFormattingOption
+    StripTrailingSlash = ...  # type: QUrl.UrlFormattingOption
+    RemoveFilename = ...  # type: QUrl.UrlFormattingOption
+    NormalizePathSegments = ...  # type: QUrl.UrlFormattingOption
+
     class ParsingMode(int):
         TolerantMode = ... # type: QUrl.ParsingMode
         StrictMode = ... # type: QUrl.ParsingMode
         DecodedMode = ... # type: QUrl.ParsingMode
+
+    TolerantMode = ...  # type: QUrl.ParsingMode
+    StrictMode = ...  # type: QUrl.ParsingMode
+    DecodedMode = ...  # type: QUrl.ParsingMode
 
     class FormattingOptions(sip.simplewrapper):
 
@@ -8721,6 +11683,10 @@ class QUuid(sip.simplewrapper):
         WithoutBraces = ... # type: QUuid.StringFormat
         Id128 = ... # type: QUuid.StringFormat
 
+    WithBraces = ...  # type: QUuid.StringFormat
+    WithoutBraces = ...  # type: QUuid.StringFormat
+    Id128 = ...  # type: QUuid.StringFormat
+
     class Version(int):
         VerUnknown = ... # type: QUuid.Version
         Time = ... # type: QUuid.Version
@@ -8730,12 +11696,26 @@ class QUuid(sip.simplewrapper):
         Random = ... # type: QUuid.Version
         Sha1 = ... # type: QUuid.Version
 
+    VerUnknown = ...  # type: QUuid.Version
+    Time = ...  # type: QUuid.Version
+    EmbeddedPOSIX = ...  # type: QUuid.Version
+    Md5 = ...  # type: QUuid.Version
+    Name = ...  # type: QUuid.Version
+    Random = ...  # type: QUuid.Version
+    Sha1 = ...  # type: QUuid.Version
+
     class Variant(int):
         VarUnknown = ... # type: QUuid.Variant
         NCS = ... # type: QUuid.Variant
         DCE = ... # type: QUuid.Variant
         Microsoft = ... # type: QUuid.Variant
         Reserved = ... # type: QUuid.Variant
+
+    VarUnknown = ...  # type: QUuid.Variant
+    NCS = ...  # type: QUuid.Variant
+    DCE = ...  # type: QUuid.Variant
+    Microsoft = ...  # type: QUuid.Variant
+    Reserved = ...  # type: QUuid.Variant
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8842,6 +11822,66 @@ class QVariant(sip.simplewrapper):
         RegularExpression = ... # type: QVariant.Type
         PersistentModelIndex = ... # type: QVariant.Type
         UserType = ... # type: QVariant.Type
+
+    Invalid = ...  # type: QVariant.Type
+    Bool = ...  # type: QVariant.Type
+    Int = ...  # type: QVariant.Type
+    UInt = ...  # type: QVariant.Type
+    LongLong = ...  # type: QVariant.Type
+    ULongLong = ...  # type: QVariant.Type
+    Double = ...  # type: QVariant.Type
+    Char = ...  # type: QVariant.Type
+    Map = ...  # type: QVariant.Type
+    List = ...  # type: QVariant.Type
+    String = ...  # type: QVariant.Type
+    StringList = ...  # type: QVariant.Type
+    ByteArray = ...  # type: QVariant.Type
+    BitArray = ...  # type: QVariant.Type
+    Date = ...  # type: QVariant.Type
+    Time = ...  # type: QVariant.Type
+    DateTime = ...  # type: QVariant.Type
+    Url = ...  # type: QVariant.Type
+    Locale = ...  # type: QVariant.Type
+    Rect = ...  # type: QVariant.Type
+    RectF = ...  # type: QVariant.Type
+    Size = ...  # type: QVariant.Type
+    SizeF = ...  # type: QVariant.Type
+    Line = ...  # type: QVariant.Type
+    LineF = ...  # type: QVariant.Type
+    Point = ...  # type: QVariant.Type
+    PointF = ...  # type: QVariant.Type
+    RegExp = ...  # type: QVariant.Type
+    Font = ...  # type: QVariant.Type
+    Pixmap = ...  # type: QVariant.Type
+    Brush = ...  # type: QVariant.Type
+    Color = ...  # type: QVariant.Type
+    Palette = ...  # type: QVariant.Type
+    Icon = ...  # type: QVariant.Type
+    Image = ...  # type: QVariant.Type
+    Polygon = ...  # type: QVariant.Type
+    Region = ...  # type: QVariant.Type
+    Bitmap = ...  # type: QVariant.Type
+    Cursor = ...  # type: QVariant.Type
+    SizePolicy = ...  # type: QVariant.Type
+    KeySequence = ...  # type: QVariant.Type
+    Pen = ...  # type: QVariant.Type
+    TextLength = ...  # type: QVariant.Type
+    TextFormat = ...  # type: QVariant.Type
+    Matrix = ...  # type: QVariant.Type
+    Transform = ...  # type: QVariant.Type
+    Hash = ...  # type: QVariant.Type
+    Matrix4x4 = ...  # type: QVariant.Type
+    Vector2D = ...  # type: QVariant.Type
+    Vector3D = ...  # type: QVariant.Type
+    Vector4D = ...  # type: QVariant.Type
+    Quaternion = ...  # type: QVariant.Type
+    EasingCurve = ...  # type: QVariant.Type
+    Uuid = ...  # type: QVariant.Type
+    ModelIndex = ...  # type: QVariant.Type
+    PolygonF = ...  # type: QVariant.Type
+    RegularExpression = ...  # type: QVariant.Type
+    PersistentModelIndex = ...  # type: QVariant.Type
+    UserType = ...  # type: QVariant.Type
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -9057,10 +12097,20 @@ class QXmlStreamReader(sip.simplewrapper):
         NotWellFormedError = ... # type: QXmlStreamReader.Error
         PrematureEndOfDocumentError = ... # type: QXmlStreamReader.Error
 
+    NoError = ...  # type: QXmlStreamReader.Error
+    UnexpectedElementError = ...  # type: QXmlStreamReader.Error
+    CustomError = ...  # type: QXmlStreamReader.Error
+    NotWellFormedError = ...  # type: QXmlStreamReader.Error
+    PrematureEndOfDocumentError = ...  # type: QXmlStreamReader.Error
+
     class ReadElementTextBehaviour(int):
         ErrorOnUnexpectedElement = ... # type: QXmlStreamReader.ReadElementTextBehaviour
         IncludeChildElements = ... # type: QXmlStreamReader.ReadElementTextBehaviour
         SkipChildElements = ... # type: QXmlStreamReader.ReadElementTextBehaviour
+
+    ErrorOnUnexpectedElement = ...  # type: QXmlStreamReader.ReadElementTextBehaviour
+    IncludeChildElements = ...  # type: QXmlStreamReader.ReadElementTextBehaviour
+    SkipChildElements = ...  # type: QXmlStreamReader.ReadElementTextBehaviour
 
     class TokenType(int):
         NoToken = ... # type: QXmlStreamReader.TokenType
@@ -9074,6 +12124,18 @@ class QXmlStreamReader(sip.simplewrapper):
         DTD = ... # type: QXmlStreamReader.TokenType
         EntityReference = ... # type: QXmlStreamReader.TokenType
         ProcessingInstruction = ... # type: QXmlStreamReader.TokenType
+
+    NoToken = ...  # type: QXmlStreamReader.TokenType
+    Invalid = ...  # type: QXmlStreamReader.TokenType
+    StartDocument = ...  # type: QXmlStreamReader.TokenType
+    EndDocument = ...  # type: QXmlStreamReader.TokenType
+    StartElement = ...  # type: QXmlStreamReader.TokenType
+    EndElement = ...  # type: QXmlStreamReader.TokenType
+    Characters = ...  # type: QXmlStreamReader.TokenType
+    Comment = ...  # type: QXmlStreamReader.TokenType
+    DTD = ...  # type: QXmlStreamReader.TokenType
+    EntityReference = ...  # type: QXmlStreamReader.TokenType
+    ProcessingInstruction = ...  # type: QXmlStreamReader.TokenType
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -9209,8 +12271,14 @@ class QSysInfo(sip.simplewrapper):
         LittleEndian = ... # type: QSysInfo.Endian
         ByteOrder = ... # type: QSysInfo.Endian
 
+    BigEndian = ...  # type: QSysInfo.Endian
+    LittleEndian = ...  # type: QSysInfo.Endian
+    ByteOrder = ...  # type: QSysInfo.Endian
+
     class Sizes(int):
         WordSize = ... # type: QSysInfo.Sizes
+
+    WordSize = ...  # type: QSysInfo.Sizes
 
     @typing.overload
     def __init__(self) -> None: ...
