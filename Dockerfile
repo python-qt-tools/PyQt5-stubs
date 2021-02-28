@@ -26,6 +26,10 @@ FROM archlinux:${ARCH_VERSION} AS build-dep
 # Reuse argument from previous build scope
 ARG BUILD_DATE
 
+# WORKAROUND for glibc 2.33 and old Docker
+# See https://github.com/actions/virtual-environments/issues/2658
+# Thanks to https://github.com/lxqt/lxqt-panel/pull/1562
+# https://github.com/qutebrowser/qutebrowser/blob/30d54c8da4a8e091dbe439770d4e1796dc7c78dc/scripts/dev/ci/docker/Dockerfile.j2#L3-L8
 RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
     curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
     bsdtar -C / -xvf "$patched_glibc"
