@@ -64,6 +64,10 @@ class QWebElement(sip.simplewrapper):
         CascadedStyle = ... # type: QWebElement.StyleResolveStrategy
         ComputedStyle = ... # type: QWebElement.StyleResolveStrategy
 
+    InlineStyle = ...  # type: QWebElement.StyleResolveStrategy
+    CascadedStyle = ...  # type: QWebElement.StyleResolveStrategy
+    ComputedStyle = ...  # type: QWebElement.StyleResolveStrategy
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -270,6 +274,9 @@ class QWebSecurityOrigin(sip.simplewrapper):
         AllowSubdomains = ... # type: QWebSecurityOrigin.SubdomainSetting
         DisallowSubdomains = ... # type: QWebSecurityOrigin.SubdomainSetting
 
+    AllowSubdomains = ...  # type: QWebSecurityOrigin.SubdomainSetting
+    DisallowSubdomains = ...  # type: QWebSecurityOrigin.SubdomainSetting
+
     @typing.overload
     def __init__(self, url: QtCore.QUrl) -> None: ...
     @typing.overload
@@ -302,11 +309,20 @@ class QWebSettings(sip.simplewrapper):
         AlwaysBlockThirdPartyCookies = ... # type: QWebSettings.ThirdPartyCookiePolicy
         AllowThirdPartyWithExistingCookies = ... # type: QWebSettings.ThirdPartyCookiePolicy
 
+    AlwaysAllowThirdPartyCookies = ...  # type: QWebSettings.ThirdPartyCookiePolicy
+    AlwaysBlockThirdPartyCookies = ...  # type: QWebSettings.ThirdPartyCookiePolicy
+    AllowThirdPartyWithExistingCookies = ...  # type: QWebSettings.ThirdPartyCookiePolicy
+
     class FontSize(int):
         MinimumFontSize = ... # type: QWebSettings.FontSize
         MinimumLogicalFontSize = ... # type: QWebSettings.FontSize
         DefaultFontSize = ... # type: QWebSettings.FontSize
         DefaultFixedFontSize = ... # type: QWebSettings.FontSize
+
+    MinimumFontSize = ...  # type: QWebSettings.FontSize
+    MinimumLogicalFontSize = ...  # type: QWebSettings.FontSize
+    DefaultFontSize = ...  # type: QWebSettings.FontSize
+    DefaultFixedFontSize = ...  # type: QWebSettings.FontSize
 
     class WebGraphic(int):
         MissingImageGraphic = ... # type: QWebSettings.WebGraphic
@@ -316,6 +332,14 @@ class QWebSettings(sip.simplewrapper):
         InputSpeechButtonGraphic = ... # type: QWebSettings.WebGraphic
         SearchCancelButtonGraphic = ... # type: QWebSettings.WebGraphic
         SearchCancelButtonPressedGraphic = ... # type: QWebSettings.WebGraphic
+
+    MissingImageGraphic = ...  # type: QWebSettings.WebGraphic
+    MissingPluginGraphic = ...  # type: QWebSettings.WebGraphic
+    DefaultFrameIconGraphic = ...  # type: QWebSettings.WebGraphic
+    TextAreaSizeGripCornerGraphic = ...  # type: QWebSettings.WebGraphic
+    InputSpeechButtonGraphic = ...  # type: QWebSettings.WebGraphic
+    SearchCancelButtonGraphic = ...  # type: QWebSettings.WebGraphic
+    SearchCancelButtonPressedGraphic = ...  # type: QWebSettings.WebGraphic
 
     class WebAttribute(int):
         AutoLoadImages = ... # type: QWebSettings.WebAttribute
@@ -353,6 +377,41 @@ class QWebSettings(sip.simplewrapper):
         WebAudioEnabled = ... # type: QWebSettings.WebAttribute
         Accelerated2dCanvasEnabled = ... # type: QWebSettings.WebAttribute
 
+    AutoLoadImages = ...  # type: QWebSettings.WebAttribute
+    JavascriptEnabled = ...  # type: QWebSettings.WebAttribute
+    JavaEnabled = ...  # type: QWebSettings.WebAttribute
+    PluginsEnabled = ...  # type: QWebSettings.WebAttribute
+    PrivateBrowsingEnabled = ...  # type: QWebSettings.WebAttribute
+    JavascriptCanOpenWindows = ...  # type: QWebSettings.WebAttribute
+    JavascriptCanCloseWindows = ...  # type: QWebSettings.WebAttribute
+    JavascriptCanAccessClipboard = ...  # type: QWebSettings.WebAttribute
+    DeveloperExtrasEnabled = ...  # type: QWebSettings.WebAttribute
+    LinksIncludedInFocusChain = ...  # type: QWebSettings.WebAttribute
+    ZoomTextOnly = ...  # type: QWebSettings.WebAttribute
+    PrintElementBackgrounds = ...  # type: QWebSettings.WebAttribute
+    OfflineStorageDatabaseEnabled = ...  # type: QWebSettings.WebAttribute
+    OfflineWebApplicationCacheEnabled = ...  # type: QWebSettings.WebAttribute
+    LocalStorageDatabaseEnabled = ...  # type: QWebSettings.WebAttribute
+    LocalStorageEnabled = ...  # type: QWebSettings.WebAttribute
+    LocalContentCanAccessRemoteUrls = ...  # type: QWebSettings.WebAttribute
+    DnsPrefetchEnabled = ...  # type: QWebSettings.WebAttribute
+    XSSAuditingEnabled = ...  # type: QWebSettings.WebAttribute
+    AcceleratedCompositingEnabled = ...  # type: QWebSettings.WebAttribute
+    SpatialNavigationEnabled = ...  # type: QWebSettings.WebAttribute
+    LocalContentCanAccessFileUrls = ...  # type: QWebSettings.WebAttribute
+    TiledBackingStoreEnabled = ...  # type: QWebSettings.WebAttribute
+    FrameFlatteningEnabled = ...  # type: QWebSettings.WebAttribute
+    SiteSpecificQuirksEnabled = ...  # type: QWebSettings.WebAttribute
+    WebGLEnabled = ...  # type: QWebSettings.WebAttribute
+    HyperlinkAuditingEnabled = ...  # type: QWebSettings.WebAttribute
+    CSSRegionsEnabled = ...  # type: QWebSettings.WebAttribute
+    CSSGridLayoutEnabled = ...  # type: QWebSettings.WebAttribute
+    ScrollAnimatorEnabled = ...  # type: QWebSettings.WebAttribute
+    CaretBrowsingEnabled = ...  # type: QWebSettings.WebAttribute
+    NotificationsEnabled = ...  # type: QWebSettings.WebAttribute
+    WebAudioEnabled = ...  # type: QWebSettings.WebAttribute
+    Accelerated2dCanvasEnabled = ...  # type: QWebSettings.WebAttribute
+
     class FontFamily(int):
         StandardFont = ... # type: QWebSettings.FontFamily
         FixedFont = ... # type: QWebSettings.FontFamily
@@ -360,6 +419,13 @@ class QWebSettings(sip.simplewrapper):
         SansSerifFont = ... # type: QWebSettings.FontFamily
         CursiveFont = ... # type: QWebSettings.FontFamily
         FantasyFont = ... # type: QWebSettings.FontFamily
+
+    StandardFont = ...  # type: QWebSettings.FontFamily
+    FixedFont = ...  # type: QWebSettings.FontFamily
+    SerifFont = ...  # type: QWebSettings.FontFamily
+    SansSerifFont = ...  # type: QWebSettings.FontFamily
+    CursiveFont = ...  # type: QWebSettings.FontFamily
+    FantasyFont = ...  # type: QWebSettings.FontFamily
 
     def cssMediaType(self) -> str: ...
     def setCSSMediaType(self, a0: str) -> None: ...

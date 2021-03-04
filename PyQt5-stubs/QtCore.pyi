@@ -77,6 +77,14 @@ class QtMsgType(int):
     QtInfoMsg = ... # type: QtMsgType
 
 
+QtDebugMsg = ... # type: QtMsgType
+QtWarningMsg = ... # type: QtMsgType
+QtCriticalMsg = ... # type: QtMsgType
+QtFatalMsg = ... # type: QtMsgType
+QtSystemMsg = ... # type: QtMsgType
+QtInfoMsg = ... # type: QtMsgType
+
+
 class QCborKnownTags(int):
     DateTimeString = ... # type: QCborKnownTags
     UnixTime_t = ... # type: QCborKnownTags

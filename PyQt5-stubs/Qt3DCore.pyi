@@ -51,6 +51,17 @@ class ChangeFlag(int):
     CallbackTriggered = ... # type: ChangeFlag
     AllChanges = ... # type: ChangeFlag
 
+NodeCreated = ... # type: ChangeFlag
+NodeDeleted = ... # type: ChangeFlag
+PropertyUpdated = ... # type: ChangeFlag
+PropertyValueAdded = ... # type: ChangeFlag
+PropertyValueRemoved = ... # type: ChangeFlag
+ComponentAdded = ... # type: ChangeFlag
+ComponentRemoved = ... # type: ChangeFlag
+CommandRequested = ... # type: ChangeFlag
+CallbackTriggered = ... # type: ChangeFlag
+AllChanges = ... # type: ChangeFlag
+
 class QAbstractAspect(QtCore.QObject):
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
