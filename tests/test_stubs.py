@@ -1,6 +1,7 @@
 import os.path
 import pytest
 from mypy import api
+from PyQt5 import QtWidgets
 
 
 TESTS_DIR = os.path.dirname(__file__)
