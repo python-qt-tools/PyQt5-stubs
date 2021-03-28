@@ -6,6 +6,11 @@ from mypy import api
 TESTS_DIR = os.path.dirname(__file__)
 
 
+application = QtWidgets.QApplication.instance()
+assert application is None
+application = QtWidgets.QApplication([])
+
+
 def gen_tests():
     for filename in os.listdir(TESTS_DIR):
         if filename.endswith('.py') and not filename.startswith('test_'):
