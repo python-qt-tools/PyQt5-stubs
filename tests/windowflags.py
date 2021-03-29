@@ -183,6 +183,31 @@ def test_on_window_flags() -> None:
 	# correct way to do it
 	windowFlagsTest = QtCore.Qt.WindowFlags(33)
 
+	# assignments operations with WindowType
+	assert_type_windowFlags(windowFlagsTest)
+	windowFlagsTest |= windowType1
+	assert_type_windowFlags(windowFlagsTest)
+
+	assert_type_windowFlags(windowFlagsTest)
+	windowFlagsTest &= windowType1
+	assert_type_windowFlags(windowFlagsTest)
+
+	assert_type_windowFlags(windowFlagsTest)
+	windowFlagsTest ^= windowType1
+	assert_type_windowFlags(windowFlagsTest)
+
+	# assignments operations with int
+	assert_type_windowFlags(windowFlagsTest)
+	windowFlagsTest |= 33
+	assert_type_windowFlags(windowFlagsTest)
+
+	assert_type_windowFlags(windowFlagsTest)
+	windowFlagsTest &= 33
+	assert_type_windowFlags(windowFlagsTest)
+
+	assert_type_windowFlags(windowFlagsTest)
+	windowFlagsTest ^= 33
+	assert_type_windowFlags(windowFlagsTest)
 
 	#########################################################3
 	#
@@ -208,4 +233,22 @@ def test_on_window_flags() -> None:
 	pytest.raises(TypeError, lambda: windowType1 - windowFlags1)	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: 33 + windowFlags1)				# type: ignore[operator]
 	pytest.raises(TypeError, lambda: 33 - windowFlags1)				# type: ignore[operator]
+
+	def f1() -> None:
+		windowFlagsTest = QtCore.Qt.WindowFlags()
+		windowFlagsTest += windowType1	  # type: ignore[assignment, operator]
+	def f2() -> None:
+		windowFlagsTest = QtCore.Qt.WindowFlags()
+		windowFlagsTest += 33	  # type: ignore[assignment, operator]
+	def f3() -> None:
+		windowFlagsTest = QtCore.Qt.WindowFlags()
+		windowFlagsTest -= windowType1	  # type: ignore[assignment, operator]
+	def f4() -> None:
+		windowFlagsTest = QtCore.Qt.WindowFlags()
+		windowFlagsTest -= 33	  # type: ignore[assignment, operator]
+
+	pytest.raises(TypeError, f1)
+	pytest.raises(TypeError, f2)
+	pytest.raises(TypeError, f3)
+	pytest.raises(TypeError, f4)
 
