@@ -1,5 +1,14 @@
+from PyQt5 import QtCore, QtWidgets
 
-from PyQt5 import QtCore
+#########################################################3
+#
+#        The original problem
+#
+#########################################################3
+app = QtWidgets.QApplication([])
+
+w = QtWidgets.QWidget()
+w.setWindowFlags(w.windowFlags() & ~QtCore.Qt.WindowContextHelpButtonHint)
 
 #########################################################3
 #
