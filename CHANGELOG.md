@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 * [#138](https://github.com/python-qt-tools/PyQt5-stubs/pull/138) update to PyQt5 5.15.3
-* [#138](https://github.com/python-qt-tools/PyQt5-stubs/pull/145) Support all implemented arithmetic operations between Qt.WindowType and Qt.WindowFlags and int
+* [#145](https://github.com/python-qt-tools/PyQt5-stubs/pull/145) Support all implemented arithmetic operations between Qt.WindowType and Qt.WindowFlags and int
+* [#144](https://github.com/python-qt-tools/PyQt5-stubs/pull/144) add `QTreeWidgetItem.__lt__()` to allow sorting of items in a QTreeWidget
 
 ## 5.15.2.0
 
