@@ -2378,17 +2378,27 @@ class Qt(sip.simplewrapper):
     class WindowType(int):
         def __init__(self, f: typing.Union['Qt.WindowType', int]) -> None: ...
         def __int__(self) -> int: ...
-        def __invert__(self) -> 'Qt.WindowFlags': ...   # type: ignore[override]
-        def __add__ (self, other: typing.Union['Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
-        def __sub__ (self, other: typing.Union['Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
-        def __or__ (self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
-        def __and__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
-        def __xor__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
-        def __rand__(self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
-        def __rxor__(self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
-        def __radd__ (self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
-        def __rsub__ (self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
+        @typing.overload
+        def __or__ (self, other: 'Qt.WindowType') -> 'Qt.WindowFlags': ...
+        @typing.overload
+        def __ror__ (self, other: int) -> 'Qt.WindowFlags': ...
+
+        # def __add__ (self, other: typing.Union['Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
+        # def __sub__ (self, other: typing.Union['Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
+        # @typing.overload
+        # def __or__ (self, other: 'Qt.WindowFlags') -> 'Qt.WindowFlags': ...
+        # @typing.overload
+        # def __and__ (self, other: 'Qt.WindowFlags') -> 'Qt.WindowFlags': ...
+        # @typing.overload
+        # def __xor__ (self, other: 'Qt.WindowFlags') -> 'Qt.WindowFlags': ...
+        # def __or__ (self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
+        # def __and__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
+        # def __xor__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...   # type: ignore[override]
+        # def __ror__ (self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
+        # def __rand__(self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
+        # def __rxor__(self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
+        # def __radd__ (self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
+        # def __rsub__ (self, other: int) -> 'Qt.WindowFlags': ...   # type: ignore[misc, override]
 
         Widget = ... # type: Qt.WindowType
         Window = ... # type: Qt.WindowType
