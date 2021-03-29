@@ -1,5 +1,5 @@
 from typing import Union
-
+import pytest	# type: ignore[import]
 from PyQt5 import QtCore, QtWidgets
 
 #########################################################3
@@ -38,16 +38,14 @@ def assert_type_windowFlags(value: QtCore.Qt.WindowFlags) -> None:
 def test_on_windowtype() -> None:
 	windowType1 = QtCore.Qt.WindowContextHelpButtonHint
 	windowType2 = QtCore.Qt.WindowMaximizeButtonHint
-
-	assert_type_windowType(windowType1)
-	assert_type_windowType(windowType2)
-
 	windowTypeTest = windowType1    # type: QtCore.Qt.WindowType
 	intValue = 0                    # type: int
 	windowFlagsTest = QtCore.Qt.WindowFlags()
 	windowFlagsOrTypeTest = windowType1		# type: Union[QtCore.Qt.WindowType, QtCore.Qt.WindowFlags]
 	windowTypeOrInt = windowType1	# type: Union[int, QtCore.Qt.WindowType]
 
+	assert_type_windowType(windowType1)
+	assert_type_windowType(windowType2)
 	assert_type_windowType(windowTypeTest)
 	assert_type_windowFlags(windowFlagsTest)
 	assert_type_int(intValue)
@@ -129,92 +127,57 @@ def test_on_windowtype() -> None:
 
 def test_on_window_flags() -> None:
 	windowType1 = QtCore.Qt.WindowContextHelpButtonHint
-	windowType2 = QtCore.Qt.WindowMaximizeButtonHint
-
 	windowFlags1 = QtCore.Qt.WindowFlags()
 	windowFlags2 = QtCore.Qt.WindowFlags()
-
 	windowFlagsTest = windowFlags1     # type: QtCore.Qt.WindowFlags
+	intValue = 0
+
+	assert_type_windowType(windowType1)
+	assert_type_windowFlags(windowFlags1)
+	assert_type_windowFlags(windowFlags2)
+	assert_type_windowFlags(windowFlagsTest)
+	assert_type_int(intValue)
 
 
 	# window flags may be created by combining windowFlags together
-	windowFlagsTest = ~windowFlags1
-	windowFlagsTest = windowFlags1 | windowFlags2
-	windowFlagsTest = windowFlags1 & windowFlags2
-	windowFlagsTest = windowFlags1 ^ windowFlags2
-
-	# window flags may be created by combining windowType together
-	if 0:
-		windowFlagsTest = ~windowType1
-		windowFlagsTest = windowType1 & windowType2
-		windowFlagsTest = windowType1 | windowType2
-		windowFlagsTest = windowType1 ^ windowType2
-		windowFlagsTest = windowType1 + windowType2
-		windowFlagsTest = windowType1 - windowType2
-	else:
-		intValue = ~windowType1
-		intValue = windowType1 & windowType2
-		intValue = windowType1 | windowType2
-		intValue = windowType1 ^ windowType2
-		intValue = windowType1 + windowType2
-		intValue = windowType1 - windowType2
-
-
-	# window flags may also be created by combining windowType and int, left or right
-	if 0:
-		windowFlagsTest = windowType1 & 33
-		windowFlagsTest = windowType1 | 33
-		windowFlagsTest = windowType1 ^ 33
-		windowFlagsTest = windowType1 + 33
-		windowFlagsTest = windowType1 - 33
-		windowFlagsTest =  33 & windowType1
-		windowFlagsTest =  33 | windowType1
-		windowFlagsTest =  33 ^ windowType1
-		windowFlagsTest =  33 + windowType1
-		windowFlagsTest =  33 - windowType1
-	else:
-		intValue = windowType1 & 33
-		intValue = windowType1 | 33
-		intValue = windowType1 ^ 33
-		intValue = windowType1 + 33
-		intValue = windowType1 - 33
-		intValue =  33 & windowType1
-		intValue =  33 | windowType1
-		intValue =  33 ^ windowType1
-		intValue =  33 + windowType1
-		intValue =  33 - windowType1
+	assert_type_windowFlags( ~windowFlags1 )
+	assert_type_windowFlags( windowFlags1 | windowFlags2 )
+	assert_type_windowFlags( windowFlags1 & windowFlags2 )
+	assert_type_windowFlags( windowFlags1 ^ windowFlags2 )
 
 
 	# window flags may be created by combining windowFlags and windowType, left or right
-	windowFlagsTest = windowFlags1 | windowType1
-	windowFlagsTest = windowFlags1 & windowType1
-	windowFlagsTest = windowFlags1 ^ windowType1
-	windowFlagsTest = windowType1 | windowFlags1
-	windowFlagsTest = windowType1 & windowFlags1
-	windowFlagsTest = windowType1 ^ windowFlags1
+	assert_type_windowFlags( windowFlags1 | windowType1 )
+	assert_type_windowFlags( windowFlags1 & windowType1 )
+	assert_type_windowFlags( windowFlags1 ^ windowType1 )
+
+	assert_type_windowFlags( windowType1 | windowFlags1 )
+	assert_type_windowFlags( windowType1 & windowFlags1 )
+	assert_type_windowFlags( windowType1 ^ windowFlags1 )
 
 
 	# window flags may be created by combining windowFlags and int, right only
-	windowFlagsTest = windowFlags1 | 33
-	windowFlagsTest = windowFlags1 & 33
-	windowFlagsTest = windowFlags1 ^ 33
+	assert_type_windowFlags(windowFlags1 | 33)
+	assert_type_windowFlags(windowFlags1 & 33)
+	assert_type_windowFlags(windowFlags1 ^ 33)
 
 
-	# this is rejected and is slightly annoying: you can not pass a WindowType variable to a method expecting a WindowFlags
+	# this is rejected by mypy and is slightly annoying: you can not pass a WindowType variable to a method expecting a WindowFlags
 	# explicit typing must be used on those methods to accept both WindowType and WindowFlags
 	windowFlagsTest = windowType1   # type: ignore
 
 	# correct way to do it
 	windowFlagsTest = QtCore.Qt.WindowFlags(windowType1)
+	assert_type_windowFlags(windowFlagsTest)
 
-	# this is rejected for the same reason as for windowType. We want windowFlags to be stay precise typing
+	# this is rejected for the same reason as for windowType.
 	intValue = windowFlagsTest      # type: ignore
 
 	# correct way to do it
 	intValue = int(windowFlagsTest)
+	assert_type_int(intValue)
 
-	# rejected because all other operations on WindowFlags would then fail, because int
-	# does not support as many operations as WindowFlags
+	# rejected by mypy rightfully
 	windowFlagsTest = 33            # type: ignore
 
 	# correct way to do it
@@ -231,81 +194,18 @@ def test_on_window_flags() -> None:
 	# + and - operations are not supported on windowFlags
 	# combining int with windowFlags does not work
 
-	try:
-		windowFlagsTest = windowFlags1 + windowFlags2		# type: ignore
-		assert False
-	except TypeError:
-		pass
+	pytest.raises(TypeError, lambda: 33 | windowFlags1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 & windowFlags1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 ^ windowFlags1 )	# type: ignore[operator]
 
-	try:
-		windowFlagsTest = windowFlags1 - windowFlags2		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = windowFlags1 + windowType1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = windowFlags1 - windowType1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = windowType1 + windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = windowType1 - windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = windowFlags1 + 33		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = windowFlags1 - 33		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = 33 + windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = 33 - windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = 33 | windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = 33 & windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
-
-	try:
-		windowFlagsTest = 33 ^ windowFlags1		# type: ignore
-		assert False
-	except TypeError:
-		pass
+	pytest.raises(TypeError, lambda: windowFlags1 + windowFlags2 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowFlags1 - windowFlags2 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowFlags1 + windowType1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowFlags1 - windowType1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowFlags1 + 33)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowFlags1 - 33)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowType1 + windowFlags1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: windowType1 - windowFlags1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 + windowFlags1)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 - windowFlags1)				# type: ignore[operator]
 
