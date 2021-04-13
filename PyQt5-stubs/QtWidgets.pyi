@@ -3530,6 +3530,11 @@ class QDial(QAbstractSlider):
 class QDialogButtonBox(QWidget):
 
     class StandardButton(int):
+        @typing.overload  # type: ignore[override]
+        def __or__(self, other: typing.Union['QDialogButtonBox.StandardButton', 'QDialogButtonBox.StandardButtons']) -> 'QDialogButtonBox.StandardButtons': ...  # type: ignore[misc]
+        @typing.overload
+        def __or__(self, other: int) -> int: ...
+
         NoButton = ... # type: QDialogButtonBox.StandardButton
         Ok = ... # type: QDialogButtonBox.StandardButton
         Save = ... # type: QDialogButtonBox.StandardButton
@@ -3620,6 +3625,7 @@ class QDialogButtonBox(QWidget):
         def __invert__(self) -> 'QDialogButtonBox.StandardButtons': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
+        def __or__(self, other: typing.Union[int, 'QDialogButtonBox.StandardButtons', 'QDialogButtonBox.StandardButton']) -> 'QDialogButtonBox.StandardButtons': ...
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QWidget] = ...) -> None: ...
