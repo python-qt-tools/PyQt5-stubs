@@ -61,6 +61,7 @@ def test_on_windowtype() -> None:
 
 	# correct way to do it
 	windowTypeTest = QtCore.Qt.WindowType(33)
+	windowTypeTest = QtCore.Qt.WindowType(windowType1)
 
 	# The rules of WindowType conversion defined in PyQt5 are:
 	# 1. | ~= with WindowType return a WindowFlags (which is not compatible to int)
