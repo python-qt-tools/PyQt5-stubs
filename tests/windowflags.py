@@ -1,5 +1,5 @@
 from typing import Union
-import pytest	# type: ignore[import]
+import pytest	
 from PyQt5 import QtCore, QtWidgets
 
 #########################################################3
