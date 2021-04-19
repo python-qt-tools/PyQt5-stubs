@@ -2379,7 +2379,7 @@ class Qt(sip.simplewrapper):
         def __init__(self, f: typing.Union['Qt.WindowType', int]) -> None: ...
         def __int__(self) -> int: ...
         def __or__ (self, other: 'Qt.WindowType') -> 'Qt.WindowFlags': ...  # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.WindowFlags': ...             # type: ignore[override]
+        def __ror__ (self, other: int) -> 'Qt.WindowFlags': ...             # type: ignore[override, misc]
 
         Widget = ... # type: Qt.WindowType
         Window = ... # type: Qt.WindowType
