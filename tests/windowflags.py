@@ -2,11 +2,16 @@ from typing import Union, TypeVar, Type
 import pytest		# type: ignore
 from PyQt5 import QtCore, QtWidgets
 
+### Specific part
+# This file is used as a source to generate all qflags related tests. The specific part
+# changes for each test but the rest of the file is totally identical
+
 OneFlagClass = QtCore.Qt.WindowType
 MultiFlagClass = QtCore.Qt.WindowFlags
 
 oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
 oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+### End of specific part
 
 T = TypeVar('T')
 def assert_type_of_value(expected_type: Type[T], value: T) -> None:

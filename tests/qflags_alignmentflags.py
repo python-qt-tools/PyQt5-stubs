@@ -2,11 +2,15 @@ from typing import Union, TypeVar, Type
 import pytest		# type: ignore
 from PyQt5 import QtCore, QtWidgets
 
+### Specific part
+# file generated from windowFlags.py for QFlags class "QtCore.Qt.Alignment" and flag class "QtCore.Qt.AlignmentFlag"
+
 OneFlagClass = QtCore.Qt.AlignmentFlag
 MultiFlagClass = QtCore.Qt.Alignment
 
 oneFlagRefValue1 = QtCore.Qt.AlignLeft
 oneFlagRefValue2 = QtCore.Qt.AlignRight
+### End of specific part
 
 T = TypeVar('T')
 def assert_type_of_value(expected_type: Type[T], value: T) -> None:
