@@ -14,179 +14,173 @@ def assert_type_of_value(expected_type: Type[T], value: T) -> None:
 	assert type(value) == expected_type
 
 
-#########################################################3
-#
-#        tests on WindowType
-#
-#########################################################3
-
 def test_on_one_flag_class() -> None:
-	windowType1 = oneFlagRefValue1
-	windowType2 = oneFlagRefValue2
-	windowTypeTest = windowType1    # type: QtCore.Qt.WindowType
+	oneFlagValue1 = oneFlagRefValue1
+	oneFlagValue2 = oneFlagRefValue2
+	oneFlagValueTest = oneFlagValue1    # type: OneFlagClass
 	intValue = 0                    # type: int
-	windowFlagsOrTypeTest = windowType1		# type: Union[QtCore.Qt.WindowType, QtCore.Qt.WindowFlags]
-	windowTypeOrInt = windowType1	# type: Union[int, QtCore.Qt.WindowType]
+	oneOrMultiFlagValueTest = oneFlagValue1		# type: Union[OneFlagClass, MultiFlagClass]
+	oneFlagOrIntValue = oneFlagValue1	# type: Union[int, OneFlagClass]
 
-	assert_type_of_value(OneFlagClass, windowType1)
-	assert_type_of_value(OneFlagClass, windowType2)
-	assert_type_of_value(OneFlagClass, windowTypeTest)
+	assert_type_of_value(OneFlagClass, oneFlagValue1)
+	assert_type_of_value(OneFlagClass, oneFlagValue2)
+	assert_type_of_value(OneFlagClass, oneFlagValueTest)
 	assert_type_of_value(int, intValue)
 
 
-	# upcast from WindowType to int
-	intValue = windowType1
+	# upcast from OneFlagClass to int
+	intValue = oneFlagValue1
 
 	# conversion also accepted
-	intValue = int(windowType1)
+	intValue = int(oneFlagValue1)
 
-	# this is not supported for a good reason
-	windowTypeTest = 33		# type: ignore
+	# this is not supported type-safely for a good reason
+	oneFlagValueTest = 33		# type: ignore
 
 	# correct way to do it
-	windowTypeTest = OneFlagClass(33)
-	windowTypeTest = OneFlagClass(windowType1)
+	oneFlagValueTest = OneFlagClass(33)
+	oneFlagValueTest = OneFlagClass(oneFlagValue1)
 
-	# The rules of WindowType conversion defined in PyQt5 are:
-	# 1. | ~= with WindowType return a WindowFlags (which is not compatible to int)
+	# The rules of OneFlagClass conversion defined in PyQt5 are:
+	# 1. | ~= with OneFlagClass return a MultiFlagClass (which is not compatible to int)
 	#   Note that this breaks Liskov principle
 	# 2. everything else returns int: & ^ &= ^=
 	# 3. operations with int return int.
 
-	assert_type_of_value(MultiFlagClass, windowType1 | windowType2)
-	assert_type_of_value(int, ~windowType1)
-	assert_type_of_value(int, windowType1 & windowType2)
-	assert_type_of_value(int, windowType1 ^ windowType2)
+	assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
+	assert_type_of_value(int, ~oneFlagValue1)
+	assert_type_of_value(int, oneFlagValue1 & oneFlagValue2)
+	assert_type_of_value(int, oneFlagValue1 ^ oneFlagValue2)
 
 	# right operand
-	assert_type_of_value(int, windowType1 | 33)
-	assert_type_of_value(int, windowType1 & 33)
-	assert_type_of_value(int, windowType1 ^ 33)
-	assert_type_of_value(int, windowType1 + 33)
-	assert_type_of_value(int, windowType1 - 33)
+	assert_type_of_value(int, oneFlagValue1 | 33)
+	assert_type_of_value(int, oneFlagValue1 & 33)
+	assert_type_of_value(int, oneFlagValue1 ^ 33)
+	assert_type_of_value(int, oneFlagValue1 + 33)
+	assert_type_of_value(int, oneFlagValue1 - 33)
 
 	# left operand
-	assert_type_of_value(MultiFlagClass, 33 | windowType1)
-	assert_type_of_value(int, 33 & windowType1)
-	assert_type_of_value(int, 33 ^ windowType1)
-	assert_type_of_value(int, 33 + windowType1)
-	assert_type_of_value(int, 33 - windowType1)
+	assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
+	assert_type_of_value(int, 33 & oneFlagValue1)
+	assert_type_of_value(int, 33 ^ oneFlagValue1)
+	assert_type_of_value(int, 33 + oneFlagValue1)
+	assert_type_of_value(int, 33 - oneFlagValue1)
 
-	windowFlagsOrTypeTest = windowType1	# reset type and value
-	assert_type_of_value(OneFlagClass, windowFlagsOrTypeTest)
-	windowFlagsOrTypeTest |= windowType2
-	assert_type_of_value(MultiFlagClass, windowFlagsOrTypeTest)	# nice violation of Liskov here
+	oneOrMultiFlagValueTest = oneFlagValue1	# reset type and value
+	assert_type_of_value(OneFlagClass, oneOrMultiFlagValueTest)
+	oneOrMultiFlagValueTest |= oneFlagValue2
+	assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)	# nice violation of Liskov principle here
 
-	windowTypeOrInt = windowType1	# reset type and value
-	assert_type_of_value(OneFlagClass, windowTypeOrInt)
-	windowTypeOrInt |= 33
-	assert_type_of_value(int, windowTypeOrInt)
+	oneFlagOrIntValue = oneFlagValue1	# reset type and value
+	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	oneFlagOrIntValue |= 33
+	assert_type_of_value(int, oneFlagOrIntValue)
 
-	windowTypeOrInt = windowType1	# reset type and value
-	assert_type_of_value(OneFlagClass, windowTypeOrInt)
-	windowTypeOrInt &= 33
-	assert_type_of_value(int, windowTypeOrInt)
+	oneFlagOrIntValue = oneFlagValue1	# reset type and value
+	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	oneFlagOrIntValue &= 33
+	assert_type_of_value(int, oneFlagOrIntValue)
 
-	windowTypeOrInt = windowType1	# reset type and value
-	assert_type_of_value(OneFlagClass, windowTypeOrInt)
-	windowTypeOrInt &= windowType2
-	assert_type_of_value(int, windowTypeOrInt)
+	oneFlagOrIntValue = oneFlagValue1	# reset type and value
+	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	oneFlagOrIntValue &= oneFlagValue2
+	assert_type_of_value(int, oneFlagOrIntValue)
 
-	windowTypeOrInt = windowType1	# reset type and value
-	assert_type_of_value(OneFlagClass, windowTypeOrInt)
-	windowTypeOrInt ^= 33
-	assert_type_of_value(int, windowTypeOrInt)
+	oneFlagOrIntValue = oneFlagValue1	# reset type and value
+	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	oneFlagOrIntValue ^= 33
+	assert_type_of_value(int, oneFlagOrIntValue)
 
-	windowTypeOrInt = windowType1	# reset type and value
-	assert_type_of_value(OneFlagClass, windowTypeOrInt)
-	windowTypeOrInt ^= windowType2
-	assert_type_of_value(int, windowTypeOrInt)
+	oneFlagOrIntValue = oneFlagValue1	# reset type and value
+	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	oneFlagOrIntValue ^= oneFlagValue2
+	assert_type_of_value(int, oneFlagOrIntValue)
 
 
 
 def test_on_multi_flag_class() -> None:
-	windowType1 = oneFlagRefValue1
-	windowFlags1 = MultiFlagClass()
-	windowFlags2 = MultiFlagClass()
-	windowFlagsTest = windowFlags1     # type: MultiFlagClass
+	oneFlagValue1 = oneFlagRefValue1
+	multiFlagValue1 = MultiFlagClass()
+	multiFlagValue2 = MultiFlagClass()
+	multiFlagValueTest = multiFlagValue1     # type: MultiFlagClass
 	intValue = 0
 
-	assert_type_of_value(OneFlagClass, windowType1)
-	assert_type_of_value(MultiFlagClass, windowFlags1)
-	assert_type_of_value(MultiFlagClass, windowFlags2)
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	assert_type_of_value(OneFlagClass, oneFlagValue1)
+	assert_type_of_value(MultiFlagClass, multiFlagValue1)
+	assert_type_of_value(MultiFlagClass, multiFlagValue2)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 	assert_type_of_value(int, intValue)
 
 
-	# window flags may be created by combining windowFlags together
-	assert_type_of_value(MultiFlagClass,  ~windowFlags1 )
-	assert_type_of_value(MultiFlagClass,  windowFlags1 | windowFlags2 )
-	assert_type_of_value(MultiFlagClass,  windowFlags1 & windowFlags2 )
-	assert_type_of_value(MultiFlagClass,  windowFlags1 ^ windowFlags2 )
+	# MultiFlagClass may be created by combining MultiFlagClass together
+	assert_type_of_value(MultiFlagClass,  ~multiFlagValue1 )
+	assert_type_of_value(MultiFlagClass,  multiFlagValue1 | multiFlagValue2 )
+	assert_type_of_value(MultiFlagClass,  multiFlagValue1 & multiFlagValue2 )
+	assert_type_of_value(MultiFlagClass,  multiFlagValue1 ^ multiFlagValue2 )
 
 
-	# window flags may be created by combining windowFlags and windowType, left or right
-	assert_type_of_value(MultiFlagClass,  windowFlags1 | windowType1 )
-	assert_type_of_value(MultiFlagClass,  windowFlags1 & windowType1 )
-	assert_type_of_value(MultiFlagClass,  windowFlags1 ^ windowType1 )
+	# MultiFlagClass may be created by combining MultiFlagClass and OneFlagClass, left or right
+	assert_type_of_value(MultiFlagClass,  multiFlagValue1 | oneFlagValue1 )
+	assert_type_of_value(MultiFlagClass,  multiFlagValue1 & oneFlagValue1 )
+	assert_type_of_value(MultiFlagClass,  multiFlagValue1 ^ oneFlagValue1 )
 
-	assert_type_of_value(MultiFlagClass,  windowType1 | windowFlags1 )
-	assert_type_of_value(MultiFlagClass,  windowType1 & windowFlags1 )
-	assert_type_of_value(MultiFlagClass,  windowType1 ^ windowFlags1 )
-
-
-	# window flags may be created by combining windowFlags and int, right only
-	assert_type_of_value(MultiFlagClass, windowFlags1 | 33)
-	assert_type_of_value(MultiFlagClass, windowFlags1 & 33)
-	assert_type_of_value(MultiFlagClass, windowFlags1 ^ 33)
+	assert_type_of_value(MultiFlagClass,  oneFlagValue1 | multiFlagValue1 )
+	assert_type_of_value(MultiFlagClass,  oneFlagValue1 & multiFlagValue1 )
+	assert_type_of_value(MultiFlagClass,  oneFlagValue1 ^ multiFlagValue1 )
 
 
-	# this is rejected by mypy and is slightly annoying: you can not pass a WindowType variable to a method expecting a WindowFlags
-	# explicit typing must be used on those methods to accept both WindowType and WindowFlags
-	windowFlagsTest = windowType1   # type: ignore
+	# MultClassFlag may be created by combining MultiFlagClass and int, right only
+	assert_type_of_value(MultiFlagClass, multiFlagValue1 | 33)
+	assert_type_of_value(MultiFlagClass, multiFlagValue1 & 33)
+	assert_type_of_value(MultiFlagClass, multiFlagValue1 ^ 33)
 
-	# correct way to do it
-	windowFlagsTest = MultiFlagClass(windowType1)
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
 
-	# this is rejected for the same reason as for windowType.
-	intValue = windowFlagsTest      # type: ignore
+	# this is rejected by mypy and is slightly annoying: you can not pass a OneFlagClass variable to a method expecting a MultiFlagClass
+	# explicit typing must be used on those methods to accept both OneFlagClass and MultiFlagClass
+	multiFlagValueTest = oneFlagValue1   # type: ignore
 
 	# correct way to do it
-	intValue = int(windowFlagsTest)
+	multiFlagValueTest = MultiFlagClass(oneFlagValue1)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+
+	# this is rejected for the same reason as for OneFlagClass.
+	intValue = multiFlagValueTest      # type: ignore
+
+	# correct way to do it
+	intValue = int(multiFlagValueTest)
 	assert_type_of_value(int, intValue)
 
 	# rejected by mypy rightfully
-	windowFlagsTest = 33            # type: ignore
+	multiFlagValueTest = 33            # type: ignore
 
 	# correct way to do it
-	windowFlagsTest = MultiFlagClass(33)
+	multiFlagValueTest = MultiFlagClass(33)
 
-	# assignments operations with WindowType
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
-	windowFlagsTest |= windowType1
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	# assignments operations with OneFlagClass
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	multiFlagValueTest |= oneFlagValue1
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
-	windowFlagsTest &= windowType1
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	multiFlagValueTest &= oneFlagValue1
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
-	windowFlagsTest ^= windowType1
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	multiFlagValueTest ^= oneFlagValue1
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 
 	# assignments operations with int
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
-	windowFlagsTest |= 33
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	multiFlagValueTest |= 33
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
-	windowFlagsTest &= 33
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	multiFlagValueTest &= 33
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
-	windowFlagsTest ^= 33
-	assert_type_of_value(MultiFlagClass, windowFlagsTest)
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	multiFlagValueTest ^= 33
+	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
 
 	#########################################################3
 	#
@@ -195,36 +189,36 @@ def test_on_multi_flag_class() -> None:
 	#########################################################3
 
 	# This checks the following:
-	# + and - operations are not supported on windowFlags
-	# combining int with windowFlags does not work
+	# + and - operations are not supported on MultiFlagClass
+	# combining int with MultiFlagClass does not work
 
-	pytest.raises(TypeError, lambda: 33 | windowFlags1 )	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 & windowFlags1 )	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 ^ windowFlags1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 | multiFlagValue1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 & multiFlagValue1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 ^ multiFlagValue1 )	# type: ignore[operator]
 
-	pytest.raises(TypeError, lambda: windowFlags1 + windowFlags2 )	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowFlags1 - windowFlags2 )	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowFlags1 + windowType1)	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowFlags1 - windowType1)	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowFlags1 + 33)				# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowFlags1 - 33)				# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowType1 + windowFlags1)	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: windowType1 - windowFlags1)	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 + windowFlags1)				# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 - windowFlags1)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 + multiFlagValue2 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 - multiFlagValue2 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 + oneFlagValue1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 - oneFlagValue1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 + 33)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 - 33)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: oneFlagValue1 + multiFlagValue1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: oneFlagValue1 - multiFlagValue1)	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 + multiFlagValue1)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 33 - multiFlagValue1)				# type: ignore[operator]
 
 	def f1() -> None:
-		windowFlagsTest = MultiFlagClass()
-		windowFlagsTest += windowType1	  # type: ignore[assignment, operator]
+		multiFlagValueTest = MultiFlagClass()
+		multiFlagValueTest += oneFlagValue1	  # type: ignore[assignment, operator]
 	def f2() -> None:
-		windowFlagsTest = MultiFlagClass()
-		windowFlagsTest += 33	  # type: ignore[assignment, operator]
+		multiFlagValueTest = MultiFlagClass()
+		multiFlagValueTest += 33	  # type: ignore[assignment, operator]
 	def f3() -> None:
-		windowFlagsTest = MultiFlagClass()
-		windowFlagsTest -= windowType1	  # type: ignore[assignment, operator]
+		multiFlagValueTest = MultiFlagClass()
+		multiFlagValueTest -= oneFlagValue1	  # type: ignore[assignment, operator]
 	def f4() -> None:
-		windowFlagsTest = MultiFlagClass()
-		windowFlagsTest -= 33	  # type: ignore[assignment, operator]
+		multiFlagValueTest = MultiFlagClass()
+		multiFlagValueTest -= 33	  # type: ignore[assignment, operator]
 
 	pytest.raises(TypeError, f1)
 	pytest.raises(TypeError, f2)
