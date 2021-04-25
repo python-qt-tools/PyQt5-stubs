@@ -160,7 +160,6 @@ src\printsupport\dialogs\qabstractprintdialog.h:    Q_DECLARE_FLAGS(PrintDialogO
 src\platformsupport\kmsconvenience\qkmsdevice_p.h:    Q_DECLARE_FLAGS(Rotations, Rotation)
 src\sql\kernel\qtsqlglobal.h:    Q_DECLARE_FLAGS(ParamType, ParamTypeFlag)
 src\widgets\dialogs\qcolordialog.h:    Q_DECLARE_FLAGS(ColorDialogOptions, ColorDialogOption)
-src\tools\moc\token.h:    F(Q_DECLARE_FLAGS_TOKEN) \
 src\widgets\dialogs\qfiledialog.h:    Q_DECLARE_FLAGS(Options, Option)
 src\widgets\dialogs\qfilesystemmodel.h:    Q_DECLARE_FLAGS(Options, Option)
 src\widgets\dialogs\qfontdialog.h:    Q_DECLARE_FLAGS(FontDialogOptions, FontDialogOption)
