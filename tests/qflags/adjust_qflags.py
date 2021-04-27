@@ -1,4 +1,4 @@
-import pprint
+import pprint, collections
 
 # command-line to generate the file: all_qflags.txt
 # qt-src\qt5\qtbase>rg  --type-add "headers:*.h" -t headers Q_DECLARE_FLAGS --no-heading > all-flags.txt
@@ -11,7 +11,12 @@ MODULES = [
 	['QtWidgets', '../../PyQt5-stubs/QtWidgets.pyi'],
 	['QtGui', '../../PyQt5-stubs/QtGui.pyi'],
 	['QtNetwork', '../../PyQt5-stubs/QtNetwork.pyi'],
-
+	['QtDbus', '../../PyQt5-stubs/QtDbus.pyi'],
+	['QtOpengl', '../../PyQt5-stubs/QtOpengl.pyi'],
+	['QtPrintsupport', '../../PyQt5-stubs/QtPrintsupport.pyi'],
+	['QtSql', '../../PyQt5-stubs/QtSql.pyi'],
+	['QtTest', '../../PyQt5-stubs/QtTest.pyi'],
+	['QtXml', '../../PyQt5-stubs/QtXml.pyi'],
 ]
 
 def parse_declared_qflags(fname: str) -> None:
@@ -37,6 +42,7 @@ def parse_declared_qflags(fname: str) -> None:
 		mod_name, mod_stub_path = mod_info
 		mod_info.append(open(mod_stub_path).read())
 
+	mod_qflags = collections.defaultdict(lambda: collections.defaultdict(int))
 
 	for qflag_info in parsed_qflags:
 		qflag_fname, qflag_class, enum_class, qflag_modules = qflag_info
@@ -49,41 +55,56 @@ def parse_declared_qflags(fname: str) -> None:
 				# we have found one module
 				print('Adding QFlags %s to module %s' % (qflag_class, mod_name))
 				qflag_modules.append(mod_name)
+				mod_qflags[mod_name][qflag_class] += 1
 
 
-	qflags_with_one_module = [ qflag_info for qflag_info in parsed_qflags if len(qflag_info[-1]) == 1]
+	qflags_with_one_module_single = [ qflag_info for qflag_info in parsed_qflags
+				   if (len(qflag_info[-1]) == 1) and (mod_qflags[qflag_info[-1][0]][qflag_info[1]] == 1) ]
+	qflags_with_one_module_multiple = [ qflag_info for qflag_info in parsed_qflags
+				  if (len(qflag_info[-1]) == 1) and (mod_qflags[qflag_info[-1][0]][qflag_info[1]] != 1) ]
 	qflags_with_no_module = [ qflag_info for qflag_info in parsed_qflags if len(qflag_info[-1]) == 0]
 	qflags_with_many_module = [ qflag_info for qflag_info in parsed_qflags if len(qflag_info[-1]) > 1]
 
-	qflags_with_one_module.sort(key=lambda v: (v[-1], v[1]))
+	qflags_with_one_module_single.sort(key=lambda v: (v[-1], v[1]))
+	qflags_with_one_module_multiple.sort(key=lambda v: (v[-1], v[1]))
 	qflags_with_no_module.sort(key=lambda v: (v[-1], v[1]))
 	qflags_with_many_module.sort(key=lambda v: (v[-1], v[1]))
 
-	print('\nFlags idenfied with a module')
-	last_mod_name = ''
-	for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_one_module:
-		mod_name = qflag_modules[0]
-		if mod_name != last_mod_name:
-			print('\t%s:' % mod_name)
-			last_mod_name = mod_name
-		print('\t\t"%s" "%s" \t\t%s' % (qflag_class, enum_class, qflag_fname))	
+	DISP_RESULTS = True
+	if DISP_RESULTS:
+		print('\nFlags identified with one module, unique in the module')
+		last_mod_name = ''
+		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_one_module_single:
+			mod_name = qflag_modules[0]
+			if mod_name != last_mod_name:
+				print('\t%s:' % mod_name)
+				last_mod_name = mod_name
+			print('\t\t"%s" "%s" \t\t%s' % (qflag_class, enum_class, qflag_fname))
 
 
-	print('\nqflags without module:')
-	for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_no_module:
-		print('\t\t"%s" "%s" \t\t%s []' % (qflag_class, enum_class, qflag_fname))	
+		print('\nFlags identified with one module, multiples in the module')
+		last_mod_name = ''
+		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_one_module_multiple:
+			mod_name = qflag_modules[0]
+			if mod_name != last_mod_name:
+				print('\t%s:' % mod_name)
+				last_mod_name = mod_name
+			print('\t\t"%s" "%s" \t\t%s' % (qflag_class, enum_class, qflag_fname))
 
 
-	print('\nqflags with many module:')
-	for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_many_module:
-		print('\t\t"%s" "%s" \t\t%s [%s]' % (qflag_class, enum_class, qflag_fname, ' '.join(qflag_modules)))	
+		print('\nqflags without module:')
+		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_no_module:
+			print('\t\t"%s" "%s" \t\t%s []' % (qflag_class, enum_class, qflag_fname))
 
 
+		print('\nqflags with many module:')
+		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_many_module:
+			print('\t\t"%s" "%s" \t\t%s [%s]' % (qflag_class, enum_class, qflag_fname, ' '.join(qflag_modules)))
 
-# parse all-qflags.txt
-#	-> identify QFlag class and enum
-#	-> identify attached module
-# save the result
+	return qflags_with_one_module_single
+
+
+# TODO:
 
 # for each module/flag
 # - generate a test file is not already present
@@ -101,4 +122,6 @@ def parse_declared_qflags(fname: str) -> None:
 # analyse the result
 
 if __name__ == '__main__':
-	parse_declared_qflags(DECLARED_QFLAGS_FNAME)
+	qflags_with_module = parse_declared_qflags(DECLARED_QFLAGS_FNAME)
+	for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_module:
+		generate_test_file(qflag_class, enum_class, qflag_fname)
