@@ -35,13 +35,13 @@ import datetime
 TypeEnumFlag = typing.TypeVar('TypeEnumFlag')
 TypeQFlagsDef = typing.TypeVar('TypeQFlagsDef')
 
-class EnumFlag(typing.Generic[TypeQFlagsDef, TypeEnumFlag]):
+class EnumFlag(typing.Protocol[TypeQFlagsDef, TypeEnumFlag]):
     '''Generic parent class describing an Enum to be used within a QFlags class'''
     def __or__ (self: TypeEnumFlag, other: TypeEnumFlag) -> TypeQFlagsDef: ...  
     def __ror__ (self: TypeEnumFlag, other: int) -> TypeQFlagsDef: ... 
 
 
-class QFlagsDef(typing.Generic[TypeQFlagsDef, TypeEnumFlag]):
+class QFlagsDef(typing.Protocol[TypeQFlagsDef, TypeEnumFlag]):
     '''Generic parent class describing an QFlags class to be used with an EnumFlag class'''
 
     @typing.overload
