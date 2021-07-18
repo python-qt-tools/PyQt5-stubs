@@ -1,4 +1,4 @@
-from PyQt5.QtCore import pyqtSlot
+from PyQt6.QtCore import pyqtSlot
 
 @pyqtSlot(str)
 def func_none(s: str) -> None:

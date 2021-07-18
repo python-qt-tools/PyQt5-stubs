@@ -11,7 +11,7 @@ from docker.models.images import Image
 from docker.utils.json_stream import json_stream
 
 DEFAULT_DOCKERFILE = Path("Dockerfile")
-DEFAULT_OUTPUT_DIR = Path("PyQt5-stubs")
+DEFAULT_OUTPUT_DIR = Path("PyQt6-stubs")
 
 
 def parse_args() -> argparse.Namespace:

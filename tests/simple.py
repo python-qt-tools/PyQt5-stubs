@@ -1,1 +1,1 @@
-from PyQt5 import QtCore
+from PyQt6 import QtCore

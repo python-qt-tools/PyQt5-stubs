@@ -1,5 +1,5 @@
 import typing
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 
 class Class(QtCore.QObject):
