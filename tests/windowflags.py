@@ -1,6 +1,6 @@
 from typing import Union, TypeVar, Type
-import pytest		# type: ignore
-from PyQt5 import QtCore, QtWidgets
+import pytest
+from PyQt5 import QtCore
 
 ### Specific part
 # This file is used as a source to generate all qflags related tests. The specific part

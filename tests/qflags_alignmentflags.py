@@ -1,6 +1,6 @@
 from typing import Union, TypeVar, Type
-import pytest		# type: ignore
-from PyQt5 import QtCore, QtWidgets
+import pytest
+from PyQt5 import QtCore
 
 ### Specific part
 # file generated from windowFlags.py for QFlags class "QtCore.Qt.Alignment" and flag class "QtCore.Qt.AlignmentFlag"
