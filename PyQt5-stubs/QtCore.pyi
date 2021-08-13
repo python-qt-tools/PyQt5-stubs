@@ -3767,6 +3767,15 @@ class QByteArray(sip.simplewrapper):
     @typing.overload
     def __init__(self, a: typing.Union['QByteArray', bytes, bytearray]) -> None: ...
 
+    # TODO: this is a lie...  :|  it is actually the buffer C-api that is
+    #       implemented. see the discussions below and correct this when a
+    #       proper fix is available.
+    #
+    #   	https://github.com/python-qt-tools/PyQt5-stubs/pull/143
+    #       https://github.com/python/typing/issues/593
+    #       https://bugs.python.org/issue27501
+    def __bytes__(self) -> bytes: ...
+
     @staticmethod
     def fromBase64Encoding(base64: typing.Union['QByteArray', bytes, bytearray], options: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option'] = ...) -> 'QByteArray.FromBase64Result': ...
     def isLower(self) -> bool: ...
