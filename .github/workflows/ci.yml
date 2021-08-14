@@ -27,13 +27,6 @@ jobs:
             runs-on: ubuntu-latest
             matrix: linux
           https://github.com/python-qt-tools/PyQt5-stubs/issues/122
-          - name: Windows
-            runs-on: windows-latest
-            matrix: windows
-#          https://github.com/python-qt-tools/PyQt5-stubs/issues/122
-#          - name: macOS
-#            runs-on: macos-latest
-#            matrix: macos
         python:
           - name: CPython 3.6
             tox: py36
@@ -47,6 +40,13 @@ jobs:
           - name: CPython 3.9
             tox: py39
             action: 3.9
+        include:
+          - name: Windows with python 3.9
+            runs-on: windows-latest
+            python:
+              - name: CPython 3.9
+                tox: py39
+                action: 3.9
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
