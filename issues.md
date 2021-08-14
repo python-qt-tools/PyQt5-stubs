@@ -30,14 +30,14 @@ function signatures.`
 
 ### Solution
 
-None, yet. Backup solution is to use #type: ignore to eleminate the mypy error.
+None, yet. Backup solution is to use `# type: ignore[misc]` to eleminate the mypy error.
 
 
 ```python
 class QImageReader(sip.simplewrapper):
 
     # this is a static method
-    @typing.overload  # type: ignore
+    @typing.overload  # type: ignore[misc]
     @staticmethod
     def imageFormat(fileName: str) -> QtCore.QByteArray: ...
 
@@ -48,7 +48,7 @@ class QImageReader(sip.simplewrapper):
 
     # non-static
     @typing.overload
-    def imageFormat(self) -> QImage.Format: ...  # type: ignore
+    def imageFormat(self) -> QImage.Format: ...
 ```
 
 ## #2 Method signature is incompatible with supertype
@@ -84,7 +84,7 @@ supertype "QPaintDevice".`
 Actually it should be avoided to narrow inputs or broaden outputs of derived classes.
 As mypy demands to respect the Liskov substitution principle there is no way to prevent
 this error from happening. However, due to the given codebase of PyQt5 and Qt5 itself
-the only way to avoid this error from occuring is to use # type: ignore.
+the only way to avoid this error from occuring is to use `# type: ignore[override]`.
 
 ```python
 class QPaintDevice(sip.simplewrapper):
@@ -95,7 +95,7 @@ class QPaintDevice(sip.simplewrapper):
 
 class QPixmap(QPaintDevice):
     # ...
-    def devicePixelRatio(self) -> float: ...  # type: ignore
+    def devicePixelRatio(self) -> float: ...  # type: ignore[override]
     # ...
 ```
 
@@ -195,7 +195,7 @@ definition in base class "QPaintDevice".`
 ### Solution
 
 This error is due to the Qt5 codebase and can not be fixed without breaking the current
-codebase. So silencing the error with # type: ignore seems to be the right way to go.
+codebase. So silencing the error with `# type: ignore[misc]` seems to be the right way to go.
 
 ## #5 Signals need to be defined as pyqtSignal instead of functions
 
@@ -273,3 +273,25 @@ def Q_FLAGS(*a0) -> None: ...
 Add type annotation of type `typing.Any`.
 
 This should be fixed in the original PyQt5 stubs.
+
+## #7 Can't assign to keyword
+
+### Description
+
+When "None" is used as an enum member, mypy will fail.
+
+### Example
+
+```python
+class RepeatMode(int): ...
+None = ... # type: 'QKeyframeAnimation.RepeatMode'
+```
+
+**mypy error:**
+`error: can't assign to keyword`
+
+### Solution
+
+Rename `None` to `None_`.
+
+This should be fixed in the original PyQt5 stubs -> [Reported upstream](https://www.riverbankcomputing.com/pipermail/pyqt/2020-May/042878.html)

@@ -39,20 +39,23 @@ long_description = read('README.md')
 
 setup(
     name="PyQt5-stubs",
-    url="https://github.com/stlehmann/PyQt5-stubs",
+    url="https://github.com/python-qt-tools/PyQt5-stubs",
     author="Stefan Lehmann",
-    author_email="stlm@posteo.de",
+    maintainer="Kyle Altendorf, Bryce Beagle, Florian Bruhin",
+    maintainer_email="sda@fstab.net",
     description="PEP561 stub files for the PyQt5 framework",
     long_description=long_description,
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
+    python_requires=">= 3.5",
     package_data={"PyQt5-stubs": ['*.pyi']},
-    install_requires=["PyQt5>=5, <6"],
     packages=["PyQt5-stubs"],
+    tests_require=["PyQt5==5.14.*"],
+    extras_require={"build": ["docker==4.2.0"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Programming Language :: Python :: 3",
         "Topic :: Software Development"
     ]
