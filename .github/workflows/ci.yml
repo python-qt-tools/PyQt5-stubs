@@ -13,14 +13,12 @@ on:
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
-    runs-on: ${{ matrix.os.runs-on }}
     strategy:
       fail-fast: false
       matrix:
         os:
           - name: Linux
             runs-on: ubuntu-latest
-            matrix: linux
         python:
           - name: CPython 3.6
             tox: py36
@@ -35,8 +33,9 @@ jobs:
             tox: py39
             action: 3.9
         include:
-          - name: Windows with python 3.9
-            runs-on: windows-latest
+            os:
+              - name: Windows
+                runs-on: windows-latest
             python:
               - name: CPython 3.9
                 tox: py39
