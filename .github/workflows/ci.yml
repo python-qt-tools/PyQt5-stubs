@@ -13,6 +13,7 @@ on:
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
+    runs-on: ${{ matrix.runs-on }} 
     strategy:
       fail-fast: false
       matrix:
@@ -33,11 +34,11 @@ jobs:
             tox: py39
             action: 3.9
         include:
-            os:
-              - name: Windows
+            - os:
+                name: Windows
                 runs-on: windows-latest
-            python:
-              - name: CPython 3.9
+              python:
+                name: CPython 3.9
                 tox: py39
                 action: 3.9
     steps:
