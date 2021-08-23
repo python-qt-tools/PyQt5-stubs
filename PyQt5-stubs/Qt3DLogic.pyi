@@ -42,7 +42,8 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 class QFrameAction(Qt3DCore.QComponent):
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
-    triggered: typing.ClassVar[QtCore.pyqtSignal]
+
+    def triggered(self, dt: float) -> None: ...
 
 class QLogicAspect(Qt3DCore.QAbstractAspect):
 
