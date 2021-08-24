@@ -1,3 +1,6 @@
+from typing import List, Tuple
+
+import functools
 import pprint, collections
 
 # command-line to generate the file: all_qflags.txt
@@ -5,8 +8,12 @@ import pprint, collections
 # note add something to make re at word-boundary
 DECLARED_QFLAGS_FNAME = 'all-flags.txt'
 QFLAG_SRC='src\\corelib\\global\\qflags.h'
+SOURCE_QFLAGS_TESTS = 'qflags_windowFlags.py'
+MARKER_SPECIFIC_START = '### Specific part'
+MARKER_SPECIFIC_END = '### End of specific part'
 
-MODULES = [
+
+QTBASE_MODULES = [
 	['QtCore', '../../PyQt5-stubs/QtCore.pyi'],
 	['QtWidgets', '../../PyQt5-stubs/QtWidgets.pyi'],
 	['QtGui', '../../PyQt5-stubs/QtGui.pyi'],
@@ -19,8 +26,17 @@ MODULES = [
 	['QtXml', '../../PyQt5-stubs/QtXml.pyi'],
 ]
 
-def parse_declared_qflags(fname: str) -> None:
-	parsed_qflags = []	# type: List[Tuple[str, str, str]] -> fname, qflags, enum
+def parse_declared_qflags(fname: str) -> List[Tuple[str, str, str, List[str]]]:
+	'''Parses the list of modules from QTBASE_MODULES and look for the qflags declated in QFLAG_SRC
+
+	Sort the result into 4 cases:
+	- qflag present once in only one module: we are sure that these can be safely replaced by a better version
+	- qflag present multiple times in one module: probably some extra module parsing might be needed to
+	    	understand which version is the qflag which we want to modify
+	- qflag present multiple times in multiples modules: we can not infer which module the flag is in
+	- qflag not present anywhere: these are probably not exported to PyQt
+	'''
+	parsed_qflags = []	# type: List[Tuple[str, str, str, List[str]]] # -> fname, qflags, enum
 	with open(fname) as f:
 		for l in f.readlines()[:]:
 			if len(l.strip()) == 0:
@@ -38,7 +54,7 @@ def parse_declared_qflags(fname: str) -> None:
 			# print('->', qflag_class, enum_class)
 
 	# fill up modules with content
-	for mod_info in MODULES:
+	for mod_info in QTBASE_MODULES:
 		mod_name, mod_stub_path = mod_info
 		mod_info.append(open(mod_stub_path).read())
 
@@ -49,7 +65,7 @@ def parse_declared_qflags(fname: str) -> None:
 
 		decl_qflag_class = 'class %s(' % qflag_class
 		decl_enum_class = 'class %s(' % enum_class
-		for mod_name, mod_stub_path, mod_content in MODULES:
+		for mod_name, mod_stub_path, mod_content in QTBASE_MODULES:
 
 			if decl_qflag_class in mod_content and decl_enum_class in mod_content:
 				# we have found one module
@@ -103,6 +119,60 @@ def parse_declared_qflags(fname: str) -> None:
 
 	return qflags_with_one_module_single
 
+@functools.lru_cache(maxsize=1)
+def read_qflag_test_template() -> Tuple[List[str], List[str], List[str]]:
+	'''Return the source of template for generating qflags test.
+
+	Return 3 parts:
+	- the first part should be unmodified
+	- the second part should be replaced for a specific QFlag class
+	- the third part should be unmodified
+	'''
+	with open(SOURCE_QFLAGS_TESTS) as f:
+		lines = f.readlines()
+
+	sourcePart1, sourcePart2, sourcePart3 = [], [], []
+	fillPart2, fillPart3 = False, False
+	for l in lines:
+		if fillPart3:
+			sourcePart3.append(l)
+			continue
+
+		if fillPart2:
+			if MARKER_SPECIFIC_END in l:
+				fillPart3 = True
+				sourcePart3.append(l)
+				continue
+
+			sourcePart2.append(l)
+			continue
+
+		sourcePart1.append(l)
+		if MARKER_SPECIFIC_START in l:
+			fillPart2 = True
+
+	return sourcePart1, sourcePart2, sourcePart3
+
+
+def generate_one_qflag_file(qflag_fname: str, multiFlagName: str, oneFlagName: str, oneFlagValue1: str, oneFlagValue2: str) -> None:
+	sourcePart1, sourcePart2, sourcePart3 = read_qflag_test_template()
+
+	with open(qflag_fname, 'w') as f:
+		f.writelines(sourcePart1)
+		f.write('''# file generated from {source} for QFlags class "{multiFlagName}" and flag class "{oneFlagName}"
+
+OneFlagClass = {oneFlagName}
+MultiFlagClass = {multiFlagName}
+
+oneFlagRefValue1 = {oneFlagValue1}
+oneFlagRefValue2 = {oneFlagValue2}
+'''.format(source=SOURCE_QFLAGS_TESTS, multiFlagName=multiFlagName, oneFlagName=oneFlagName,
+		   oneFlagValue1=oneFlagValue1, oneFlagValue2=oneFlagValue2
+		   ))
+		f.writelines(sourcePart3)
+	print('File %s generated' % qflag_fname)
+
+
 
 # TODO:
 
@@ -124,4 +194,5 @@ def parse_declared_qflags(fname: str) -> None:
 if __name__ == '__main__':
 	qflags_with_module = parse_declared_qflags(DECLARED_QFLAGS_FNAME)
 	for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_module:
-		generate_test_file(qflag_class, enum_class, qflag_fname)
+		# generate_test_file(qflag_class, enum_class, qflag_fname)
+		pass
