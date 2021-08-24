@@ -225,6 +225,46 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 		assert mod_content.count('class %s(' % flag_info.qflag_class) == 1
 		assert mod_content.count('class %s(' % flag_info.qflag_enum) == 1
 
+		mod_lines = mod_content.split('\n')
+
+		# find fqn of the class
+		qflag_class_lines = simple_class_finder(mod_lines, flag_info.qflag_class)
+		qflag_enum_lines = simple_class_finder(mod_lines, flag_info.qflag_enum)
+
+		'''
+Operation to perform:
+
+On the enum class, add two methods:
+    class KeyboardModifier(int):
++       def __or__ (self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...  # type: ignore[override]
++       def __ror__ (self, other: int) -> 'Qt.KeyboardModifiers': ...             # type: ignore[override, misc]
+
+On the qflag class, add one more argument to __init__()
+-       def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier']) -> None: ...
++       def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None: ...
+
+Possibly, remove the __init__() with only int argument if it exists
+
+Add more methods:
+        def __or__ (self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
+        def __and__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
+        def __xor__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
+        def __ror__ (self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
+        def __rand__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
+        def __rxor__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
+'''
+		# find the method content of the class
+
+		# check that the mandatory operators are present or missing
+		# generate the filename
+		# if all conditions are met, declare the flag as already done
+		# if not, create the missing methods
+		#         generate the test file
+		# run tox
+		# mark the test as done
+
+		# if there are more flags to process, return False
+		# if all flags are processed, return True
 		return False
 	finally:
 		with open(qflag_result_json, 'w') as f:
