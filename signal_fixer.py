@@ -11,6 +11,9 @@ from PyQt5 import QtCore
 
 def is_signal(module: ModuleType, cls_name: str, func_name: str) -> bool:
     """Check if a method of the given Qt class is a signal."""
+    if cls_name == "QGeoPositionInfoSource" and func_name == "error":
+        # this is a fix for the broken error method.
+        return False
     cls = getattr(module, cls_name)
     try:
         func = getattr(cls, func_name)
