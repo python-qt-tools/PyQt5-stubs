@@ -2,8 +2,9 @@ from typing import List, Tuple, Dict
 
 import dataclasses
 import functools
+import itertools
 import json
-import pprint, collections
+import collections
 
 '''How to use this generator script:
 
@@ -136,58 +137,99 @@ def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFl
 
 	return d
 
-def extract_qflags_to_process(qflags_modules_analysis_json: str) -> None:
-	'''Take the json file as input describing qflags and their location in modules.
+def extract_qflags_to_process(qflags_modules_analysis_json: str,
+							  qflags_to_process_json: str,
+							  ) -> None:
+	'''Take the json file as input describing qflags and their modules and output a json file of qflags planned to be processed.
 
 	The qflags which are located in a single module will be selected for further processing.
-
-	The others are marked as skipped.
+	The others are marked as skipped with a proper reason.
 	'''
-	return
-	qflags_with_one_module_single = [ qflag_info for qflag_info in parsed_qflags
-				   if (len(qflag_info[-1]) == 1) and (mod_qflags[qflag_info[-1][0]][qflag_info[1]] == 1) ]
-	qflags_with_one_module_multiple = [ qflag_info for qflag_info in parsed_qflags
-				  if (len(qflag_info[-1]) == 1) and (mod_qflags[qflag_info[-1][0]][qflag_info[1]] != 1) ]
-	qflags_with_no_module = [ qflag_info for qflag_info in parsed_qflags if len(qflag_info[-1]) == 0]
-	qflags_with_many_module = [ qflag_info for qflag_info in parsed_qflags if len(qflag_info[-1]) > 1]
+	with open(qflags_modules_analysis_json) as f:
+		d = json.load(f)
 
-	qflags_with_one_module_single.sort(key=lambda v: (v[-1], v[1]))
-	qflags_with_one_module_multiple.sort(key=lambda v: (v[-1], v[1]))
-	qflags_with_no_module.sort(key=lambda v: (v[-1], v[1]))
-	qflags_with_many_module.sort(key=lambda v: (v[-1], v[1]))
+	result = {
+		'__': 'This file can be adjusted manually by a human prior to being processed by the tool',
+		'qflags_to_process': [],
+		'qflags_to_skip': [],
+	}
 
-	DISP_RESULTS = True
-	if DISP_RESULTS:
-		print('\nFlags identified with one module, unique in the module')
-		last_mod_name = ''
-		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_one_module_single:
-			mod_name = qflag_modules[0]
-			if mod_name != last_mod_name:
-				print('\t%s:' % mod_name)
-				last_mod_name = mod_name
-			print('\t\t"%s" "%s" \t\t%s' % (qflag_class, enum_class, qflag_fname))
+	for qflag_info in d['one_flag_many_modules']:
+		result['qflags_to_skip'].append(
+			{
+				'qflag_class': qflag_info['qflag_class'],
+				'qflag_enum': qflag_info['qflag_enum'],
+				'skipReason': 'QFlag present more than once or in multiple modules'
+			}
+		)
 
+		for qflag_info in d['one_flag_no_module']:
+			result['qflags_to_skip'].append(
+				{
+					'qflag_class': qflag_info['qflag_class'],
+					'qflag_enum':  qflag_info['qflag_enum'],
+					'skipReason':  'QFlag not found',
+				}
+			)
 
-		print('\nFlags identified with one module, multiples in the module')
-		last_mod_name = ''
-		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_one_module_multiple:
-			mod_name = qflag_modules[0]
-			if mod_name != last_mod_name:
-				print('\t%s:' % mod_name)
-				last_mod_name = mod_name
-			print('\t\t"%s" "%s" \t\t%s' % (qflag_class, enum_class, qflag_fname))
+	for qflag_info in d['one_flag_one_module']:
+		result['qflags_to_process'].append( qflag_info )
 
-
-		print('\nqflags without module:')
-		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_no_module:
-			print('\t\t"%s" "%s" \t\t%s []' % (qflag_class, enum_class, qflag_fname))
+	with open(qflags_to_process_json, 'w') as f:
+		json.dump(result, f, indent=4)
 
 
-		print('\nqflags with many module:')
-		for qflag_fname, qflag_class, enum_class, qflag_modules in qflags_with_many_module:
-			print('\t\t"%s" "%s" \t\t%s [%s]' % (qflag_class, enum_class, qflag_fname, ' '.join(qflag_modules)))
+def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
+	'''Read the qflags to process from the json file
 
-	return qflags_with_one_module_single
+	Process one qflag, by either:
+	* identifying that this flag is already processed and moving the flag to qflags_done
+	* identifying a reason why this flag can't be processed and moving the flag to qflags_error
+	* performing the qflag ajustment process:
+		* generate a test file for this qflag usage
+		* change the .pyi module for this qflag for supporting all the qflag operations
+		* run pytest on the result
+		* run mypy on the result
+		* run the tox on result
+
+	Return True when all flags have been processed
+	'''
+	with open(qflag_to_process_json) as f:
+		d = json.load(f)
+
+	result = {
+		'qflag_already_done': [],
+		'qflag_processed_done': [],
+		'qflag_process_error': [],
+	}
+
+	if len(d['qflags_to_process']) == 0:
+		return True
+
+	try:
+		flag_info_dict = d['qflags_to_process'].pop(0)
+
+		# check if qflag has already been processed. If so move to the next one
+		# if all qflags have been processed, return True
+
+		flag_info = QFlagLocationInfo(**flag_info_dict)
+		print('Processing qflag: %s / %s in module %s ' %
+			  (flag_info.qflag_class,
+			   flag_info.qflag_enum,
+			   flag_info.module_info[0][0] if len(flag_info.module_info) else ''
+			   ))
+
+		with open(flag_info.module_info[0][1], encoding='utf8') as f:
+			mod_content = f.read()
+
+		assert mod_content.count('class %s(' % flag_info.qflag_class) == 1
+		assert mod_content.count('class %s(' % flag_info.qflag_enum) == 1
+
+		return False
+	finally:
+		with open(qflag_result_json, 'w') as f:
+			json.dump(result, f, indent=4)
+
 
 @functools.lru_cache(maxsize=1)
 def read_qflag_test_template() -> Tuple[List[str], List[str], List[str]]:
@@ -261,7 +303,8 @@ oneFlagRefValue2 = {oneFlagValue2}
 #
 # analyse the result
 
-if __name__ == '__main__':
+def generate_qflags_to_process():
+	'''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
 	qt_qflag_grep_result_fname = 'qt-qflag-grep-result.txt'
 	location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, QTBASE_MODULES)
 	print('%d qflags extracted from grep file' % len(location_qflags))
@@ -274,5 +317,18 @@ if __name__ == '__main__':
 		json.dump(qflags_groups, f, indent=4, default=json_encode_qflaglocationinfo)
 	print('QFlag analysis saved to: %s' % qflags_modules_analysis_json)
 
-	qflags_to_process = extract_qflags_to_process(qflags_modules_analysis_json)
-	#
+	qflags_to_process_json = 'qflags_to_process.json'
+	extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json)
+
+
+if __name__ == '__main__':
+	# generate_qflags_to_process()
+
+	qflags_to_process_json = 'qflags_to_process.json'
+	# here we have the opportunity for human modification of the json file
+
+	qflag_result_json = 'qflag_process_result.json'
+
+	process_qflag(qflags_to_process_json, qflag_result_json)
+
+
