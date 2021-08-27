@@ -1,4 +1,4 @@
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Union, Any
 
 import dataclasses
 import functools
@@ -48,7 +48,9 @@ class QFlagLocationInfo:
 	# list of (module_name, module_path)
 	module_info: List[ Tuple[str, str] ]
 
-def json_encode_qflaglocationinfo(flag_loc_info: object) -> object:
+
+def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
+	'''Encore the QFlagClassLoationInfo into a format suitable for json export (a dict)'''
 	if not isinstance(flag_loc_info, QFlagLocationInfo):
 		# oups, we don't know how to encode that
 		return flag_loc_info
@@ -110,6 +112,7 @@ def identify_qflag_location(fname_grep_result: str,
 
 	return parsed_qflags
 
+
 def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFlagLocationInfo]]:
 	'''Group the QFlags into the following groups:
 	* one_flag_one_module: this flag is present once in one module exactly.
@@ -136,6 +139,7 @@ def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFl
 	}
 
 	return d
+
 
 def extract_qflags_to_process(qflags_modules_analysis_json: str,
 							  qflags_to_process_json: str,
@@ -183,14 +187,15 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 	'''Read the qflags to process from the json file
 
 	Process one qflag, by either:
-	* identifying that this flag is already processed and moving the flag to qflags_done
-	* identifying a reason why this flag can't be processed and moving the flag to qflags_error
+	* identifying that this flag is already processed and add the flag to qflags_alraedy_done
+	* identifying a reason why this flag can't be processed and adding the flag to qflags_processed_error
 	* performing the qflag ajustment process:
 		* generate a test file for this qflag usage
 		* change the .pyi module for this qflag for supporting all the qflag operations
 		* run pytest on the result
 		* run mypy on the result
 		* run the tox on result
+		* add the flag to qflag_processed_done
 
 	Return True when all flags have been processed
 	'''
@@ -219,47 +224,8 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 			   flag_info.module_info[0][0] if len(flag_info.module_info) else ''
 			   ))
 
-		with open(flag_info.module_info[0][1], encoding='utf8') as f:
-			mod_content = f.read()
+		check_qflag_in_module(flag_info)
 
-		assert mod_content.count('class %s(' % flag_info.qflag_class) == 1
-		assert mod_content.count('class %s(' % flag_info.qflag_enum) == 1
-
-		mod_lines = mod_content.split('\n')
-
-		# find fqn of the class
-		qflag_class_lines = simple_class_finder(mod_lines, flag_info.qflag_class)
-		qflag_enum_lines = simple_class_finder(mod_lines, flag_info.qflag_enum)
-
-		'''
-Operation to perform:
-
-On the enum class, add two methods:
-    class KeyboardModifier(int):
-+       def __or__ (self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...  # type: ignore[override]
-+       def __ror__ (self, other: int) -> 'Qt.KeyboardModifiers': ...             # type: ignore[override, misc]
-
-On the qflag class, add one more argument to __init__()
--       def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier']) -> None: ...
-+       def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None: ...
-
-Possibly, remove the __init__() with only int argument if it exists
-
-Add more methods:
-        def __or__ (self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
-        def __and__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
-        def __xor__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
-        def __ror__ (self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
-        def __rand__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
-        def __rxor__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
-'''
-		# find the method content of the class
-
-		# check that the mandatory operators are present or missing
-		# generate the filename
-		# if all conditions are met, declare the flag as already done
-		# if not, create the missing methods
-		#         generate the test file
 		# run tox
 		# mark the test as done
 
@@ -269,6 +235,10 @@ Add more methods:
 	finally:
 		with open(qflag_result_json, 'w') as f:
 			json.dump(result, f, indent=4)
+
+
+
+
 
 
 @functools.lru_cache(maxsize=1)
