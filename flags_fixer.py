@@ -9,14 +9,14 @@ METHOD_TEMPLATE = (
     "self, other: typing.Union['{base_type}', '{flag_type}']"
     ") -> '{base_type}': ..."
 )
-METHODS_TO_ADD = {
+METHODS_TO_ADD = [
     "__and__",
     "__iand__",
     "__or__",
     "__ior__",
     "__xor__",
     "__ixor__",
-}
+]
 
 
 def get_flag_constructor_flag_type(
@@ -73,7 +73,7 @@ class TypingTransformer(cst.CSTTransformer):
         """
         self._last_class.append(node)
         self._last_flag_type = None
-        self._missing_methods = set(METHODS_TO_ADD)
+        self._missing_methods = METHODS_TO_ADD[:]
         return True
 
     def leave_FunctionDef(
