@@ -86,6 +86,12 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
         # TODO: check also for existence of the test file
         return (QFlagCheckResult.CodeAlreadyModified, visitor.error_msg)
 
+    if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.Not):
+        visitor.error_msg += 'Enum methods are present but not QFlag methods\n'
+
+    if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.Not, MethodPresent.All):
+        visitor.error_msg += 'QFlag methods are present but not Enum methods\n'
+
     if visitor.error_msg:
         return (QFlagCheckResult.ErrorDuringProcessing, visitor.error_msg)
 
@@ -101,8 +107,9 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
     with open('..\..\pyqt5-stubs\QtCore.pyi', 'w') as f:
         f.write(updated_mod_cst.code)
 
-    pass
     # generate test file
+
+    return (QFlagCheckResult.CodeModifiedSuccessfully, '')
 
 
 class MethodPresent(Enum):
@@ -145,7 +152,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         if node.name.value == self.enum_class_name:
             # we found it
             if self.enum_class_full_name != '':
-                self.error_msg = 'class %s found multiple times' % self.enum_class_name
+                self.error_msg = 'class %s found multiple times\n' % self.enum_class_name
                 return
             self.enum_class_full_name = '.'.join(self.full_name_stack)
             self.enum_class_cst_node = node
@@ -155,7 +162,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         elif node.name.value == self.qflag_class_name:
             # we found it
             if self.qflag_class_full_name != '':
-                self.error_msg = 'class %s found multiple times' % self.qflag_class_name
+                self.error_msg = 'class %s found multiple times\n' % self.qflag_class_name
                 return
             self.qflag_class_full_name = '.'.join(self.full_name_stack)
             self.qflag_class_cst_node = node
@@ -168,7 +175,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         '''Check if the class contains method __or__ and __ror__ with one argument and if class
         inherit from int'''
         if len(enum_node.bases) == 0 or enum_node.bases[0].value.value != 'int':
-            self.error_msg += 'Class %s does not inherit from int' % self.enum_class_full_name
+            self.error_msg += 'Class %s does not inherit from int\n' % self.enum_class_full_name
             return
         has_or = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__or__')))
         has_ror = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__ror__')))
@@ -294,44 +301,61 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 
 
     def transform_qflag_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
-        return updated_node
+        '''
+        On the qflag class, add one more argument to __init__()
+        -       def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier']) -> None: ...
+        +       def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None: ...
+
+        Possibly, remove the __init__() with only int argument if it exists
+        '''
+        init_methods = matchers.findall(updated_node.body, matchers.FunctionDef(name=matchers.Name('__init__')))
+        if len(init_methods) == 1:
+            # we do not handle the case where there is only one init function
+            # to handle it, we would need to do the following:
+            # * add an @typing.overload to the current init function
+            # * add a new init function
+            #
+            # This is not difficult, it's just that I don't think we have such cases
+            self.error_msg += 'Only one __init__ method in QFlag class %s, do not know how to transform it\n' % self.qflag_full_name
+            return updated_node
+
+        # find the last __init__() method index
+        last_init_idx = 0
+        nb_init_found = 0
+        for i, body_element in enumerate(updated_node.body.body):
+            if matchers.matches(body_element, matchers.FunctionDef(name=matchers.Name('__init__'))):
+                nb_init_found += 1
+                if nb_init_found == len(init_methods):
+                    last_init_idx = i
+                    break
+        assert last_init_idx != 0
+
+        cst_init = cst.parse_statement( '@typing.overload\ndef __init__(self, f: int) -> None: ...' )
+        updated_node = updated_node.with_changes(body=updated_node.body.with_changes(body=
+                            tuple(updated_node.body.body[:last_init_idx+1]) +
+                            (cst_init,) +
+                            tuple(updated_node.body.body[last_init_idx+1:])
+                            )
+        )
+
+        new_methods = (
+            "def __or__ (self, other: typing.Union['{qflag}', '{enum}', int]) -> '{qflag}': ...",
+            "def __and__(self, other: typing.Union['{qflag}', '{enum}', int]) -> '{qflag}': ...",
+            "def __xor__(self, other: typing.Union['{qflag}', '{enum}', int]) -> '{qflag}': ...",
+            "def __ror__ (self, other: '{enum}') -> '{qflag}': ...",
+            "def __rand__(self, other: '{enum}') -> '{qflag}': ...",
+            "def __rxor__(self, other: '{enum}') -> '{qflag}': ...",
+        )
+        new_methods_cst = tuple(
+            cst.parse_statement(s.format(enum=self.enum_full_name, qflag=self.qflag_full_name))
+            for s in new_methods
+        )
+        return updated_node.with_changes(body=updated_node.body.with_changes(body=
+                                     tuple(updated_node.body.body) + new_methods_cst ) )
 
 
 
 
-import unittest
-class TestMe(unittest.TestCase):
 
-    def test1(self):
-        mod_cst = cst.parse_module('''
-class Toto:
-
-    class Titi:
-        'bla bla bla'
-        
-        def toto(self) -> None: ... 
-    
-        @overload
-        def my_titi(self) -> str: ...
-        
-        
-    class QFlagExample:
-        def abd(self): ...
-        def __or__(self, other): ...
-        def __ror__(self, other): ...
-    ''')
-        visitor = QFlagAndEnumFinder('Titi')
-        mod_cst.visit(visitor)
-        self.assertEqual(visitor.enum_class_full_name, 'Toto.Titi')
-        print(visitor.enum_class_cst_node)
-
-
-        visitor = QFlagAndEnumFinder('QFlagExample')
-        mod_cst.visit(visitor)
-        self.assertEqual(visitor.enum_class_full_name, 'Toto.QFlagExample')
-        print(visitor.enum_class_cst_node)
-
-
-
-
-check_qflag_in_module(None)
+result, error = check_qflag_in_module(None)
+print(result, error)
