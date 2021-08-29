@@ -224,10 +224,12 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 			   flag_info.module_info[0][0] if len(flag_info.module_info) else ''
 			   ))
 
-		check_qflag_in_module(flag_info)
+		result, error_msg = check_qflag_in_module(flag_info)
 
-		# run tox
-		# mark the test as done
+		# if result is failed, add error message and move to next flag
+		# if result succeeds:
+			# run tox
+			# mark the test as done
 
 		# if there are more flags to process, return False
 		# if all flags are processed, return True
