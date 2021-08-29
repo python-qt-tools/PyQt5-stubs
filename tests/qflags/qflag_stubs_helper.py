@@ -8,6 +8,9 @@ except ImportError:
     raise ImportError('You need libcst to run the code analysis and transform\n'
                       'Please run the command:\n\tpython -m pip install libcst')
 
+def log_progress(s: str) -> None:
+    print('>>>>>>>>>>>>>>', s)
+
 class QFlagCheckResult(Enum):
     CodeModifiedSuccessfully = 0
     CodeAlreadyModified = 1
@@ -68,9 +71,15 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
         raise ImportError('You need libcst to run the code analysis and transform\n'
                           'Please run the command:\n\tpython -m pip install libcst')
 
-    mod_content = open('..\..\pyqt5-stubs\QtCore.pyi').read()
+    log_progress('Opening module %s' % 'QtCore.pyi')
+    with open('..\..\pyqt5-stubs\QtCore.pyi') as f:
+        mod_content = f.read()
+
+    log_progress('Parsing module %s' % 'QtCore.pyi')
     mod_cst = cst.parse_module(mod_content)
-    visitor = QFlagFinder('WindowState', 'WindowStates')
+
+    log_progress('Checking qflags and enumh module %s' % 'QtCore.pyi')
+    visitor = QFlagAndEnumFinder('WindowState', 'WindowStates')
     mod_cst.visit(visitor)
 
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
@@ -83,7 +92,16 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
     assert visitor.enum_methods_present == MethodPresent.Not
     assert visitor.qflag_method_present == MethodPresent.Not
 
-    # perform code modification
+    log_progress('Transforming module %s by adding new methods' % 'QtCore.pyi')
+    transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
+                                      visitor.qflag_class_name, visitor.qflag_class_full_name)
+    updated_mod_cst = mod_cst.visit(transformer)
+
+    log_progress('Saving updated module %s' % 'QtCore.pyi')
+    with open('..\..\pyqt5-stubs\QtCore.pyi', 'w') as f:
+        f.write(updated_mod_cst.code)
+
+    pass
     # generate test file
 
 
@@ -94,7 +112,7 @@ class MethodPresent(Enum):
     Partial = 3
 
 
-class QFlagFinder(cst.CSTVisitor):
+class QFlagAndEnumFinder(cst.CSTVisitor):
 
     def __init__(self, enum_class: str, qflag_class: str) -> None:
         super().__init__()
@@ -149,7 +167,7 @@ class QFlagFinder(cst.CSTVisitor):
     def check_enum_method_present(self, enum_node: cst.ClassDef) -> None:
         '''Check if the class contains method __or__ and __ror__ with one argument and if class
         inherit from int'''
-        if len(enum_node.bases) == 0 or enum_node.bases[0].value != 'int':
+        if len(enum_node.bases) == 0 or enum_node.bases[0].value.value != 'int':
             self.error_msg += 'Class %s does not inherit from int' % self.enum_class_full_name
             return
         has_or = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__or__')))
@@ -221,6 +239,66 @@ class QFlagFinder(cst.CSTVisitor):
         self.full_name_stack.pop()
 
 
+class QFlagAndEnumUpdater(cst.CSTTransformer):
+
+    def __init__(self, enum_class: str, enum_full_name: str, qflag_class: str, qflag_full_name: str) -> None:
+        super().__init__()
+
+        self.error_msg = ''
+
+        # the class name we are looking for
+        self.enum_class = enum_class
+        self.qflag_class = qflag_class
+        self.enum_full_name = enum_full_name
+        self.qflag_full_name = qflag_full_name
+
+        # set when enum_methods_present is set to partial, to add more contect information
+        self.error_msg = ''
+
+
+    def leave_ClassDef(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
+        if original_node.name.value == self.enum_class:
+            return self.transform_enum_class(original_node, updated_node)
+        elif original_node.name.value == self.qflag_class:
+            return self.transform_qflag_class(original_node, updated_node)
+        return updated_node
+
+
+    def transform_enum_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
+        '''Add the two methods __or__ and __ror__ to the class body'''
+
+        # we keep comments separated to align them properly in the final file
+        new_methods_parts = (
+            ("def __or__ (self, other: '{enum}') -> '{qflag}': ...", "# type: ignore[override]\n"),
+            ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+        )
+
+        # fill the class names
+        new_methods_filled = tuple(
+            (code.format(enum=self.enum_full_name, qflag=self.qflag_full_name), comment)
+            for code, comment in new_methods_parts
+        )
+
+        # new calculate the proper spacing to have aligned comments
+        max_code_len = max(len(code) for code, comment in new_methods_filled)
+        new_methods_spaced = tuple(
+            code + ' '*(4+max_code_len-len(code)) + comment
+            for code, comment in new_methods_filled
+        )
+        new_methods_cst = tuple(cst.parse_statement(s) for s in new_methods_spaced)
+        return updated_node.with_changes(body=updated_node.body.with_changes(body=
+                                     new_methods_cst \
+                                     + (updated_node.body.body[0].with_changes(leading_lines=
+                                          updated_node.body.body[0].leading_lines + (cst.EmptyLine(),)),) \
+                                     + updated_node.body.body[1:] ) )
+
+
+    def transform_qflag_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
+        return updated_node
+
+
+
+
 import unittest
 class TestMe(unittest.TestCase):
 
@@ -242,13 +320,13 @@ class Toto:
         def __or__(self, other): ...
         def __ror__(self, other): ...
     ''')
-        visitor = QFlagFinder('Titi')
+        visitor = QFlagAndEnumFinder('Titi')
         mod_cst.visit(visitor)
         self.assertEqual(visitor.enum_class_full_name, 'Toto.Titi')
         print(visitor.enum_class_cst_node)
 
 
-        visitor = QFlagFinder('QFlagExample')
+        visitor = QFlagAndEnumFinder('QFlagExample')
         mod_cst.visit(visitor)
         self.assertEqual(visitor.enum_class_full_name, 'Toto.QFlagExample')
         print(visitor.enum_class_cst_node)
