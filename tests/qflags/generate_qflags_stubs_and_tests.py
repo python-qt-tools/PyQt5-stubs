@@ -3,6 +3,7 @@ from typing import List, Tuple, Dict, Union, Any, Optional
 import dataclasses
 import functools
 import json
+import os
 from enum import Enum
 
 try:
@@ -26,7 +27,7 @@ except ImportError:
 QFLAG_SRC='src\\corelib\\global\\qflags.h'
 
 # the template after which we model all generated qflag tests
-SOURCE_QFLAGS_TESTS = 'qflags_windowFlags.py'
+TEMPLATE_QFLAGS_TESTS = 'qflags_test_template.py'
 
 # the markers inside the above template to identify the parts to replace
 MARKER_SPECIFIC_START = '### Specific part'
@@ -54,6 +55,11 @@ class QFlagLocationInfo:
 	grep_line: str
 	qflag_class: str
 	qflag_enum: str
+
+	qflag_value1: str
+	qflag_value2: str
+	qflag_full_class_name: str
+	qflag_full_enum_name: str
 
 	# list of (module_name, module_path)
 	module_info: List[ Tuple[str, str] ]
@@ -173,7 +179,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 			{
 				'qflag_class': qflag_info['qflag_class'],
 				'qflag_enum': qflag_info['qflag_enum'],
-				'skipReason': 'QFlag present more than once or in multiple modules'
+				'skip_reason': 'QFlag present more than once or in multiple modules'
 			}
 		)
 
@@ -182,7 +188,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 				{
 					'qflag_class': qflag_info['qflag_class'],
 					'qflag_enum':  qflag_info['qflag_enum'],
-					'skipReason':  'QFlag not found',
+					'skip_reason':  'QFlag not found',
 				}
 			)
 
@@ -212,41 +218,61 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 	with open(qflag_to_process_json) as f:
 		d = json.load(f)
 
-	result = {
+	qflags_to_process = d['qflags_to_process']
+
+	result_json = {
 		'qflag_already_done': [],
 		'qflag_processed_done': [],
 		'qflag_process_error': [],
 	}
 
-	if len(d['qflags_to_process']) == 0:
-		return True
-
-	try:
-		flag_info_dict = d['qflags_to_process'].pop(0)
-
-		# check if qflag has already been processed. If so move to the next one
-		# if all qflags have been processed, return True
-
-		flag_info = QFlagLocationInfo(**flag_info_dict)
-		print('Processing qflag: %s / %s in module %s ' %
-			  (flag_info.qflag_class,
-			   flag_info.qflag_enum,
-			   flag_info.module_info[0][0] if len(flag_info.module_info) else ''
-			   ))
-
-		result, error_msg = check_qflag_in_module(flag_info)
-
-		# if result is failed, add error message and move to next flag
-		# if result succeeds:
-			# run tox
-			# mark the test as done
-
-		# if there are more flags to process, return False
-		# if all flags are processed, return True
+	def qflag_already_processed(flag_info: QFlagLocationInfo) -> bool:
+		'''Return True if the qflag is already included in one of the lists
+		of result_json'''
+		flag_info_tuple = dataclasses.astuple(flag_info)
+		if flag_info_tuple in set(result['qflag_already_done']) \
+				or flag_info_tuple in set(result['qflag_processed_done']) \
+				or flag_info_tuple in set(result['qflag_process_error']):
+			return True
 		return False
-	finally:
-		with open(qflag_result_json, 'w') as f:
-			json.dump(result, f, indent=4)
+
+	while len(qflags_to_process) != 0:
+		flag_info_dict = qflags_to_process.pop(0)
+		flag_info = QFlagLocationInfo(**flag_info_dict)
+		if not qflag_already_processed(flag_info):
+			break
+	else:
+		# we have exhausted the list of qflag to process
+		return False
+
+	# check that the qflag is actually in the module
+	check_result, error_msg = check_qflag_in_module(flag_info)
+
+	# flag_info has been modified in-place with additional info: qflag_value1 and qflag_value2
+	if check_result == QFlagCheckResult.CodeModifiedSuccessfully:
+		generate_qflag_test_file(flag_info)
+
+		# run verifications
+
+	if check_result == QFlagCheckResult.CodeAlreadyModified:
+		# qflag methods are already there, check that the test filename is here too
+		test_qflag_fname = gen_test_fname(flag_info)
+		if os.path.exists(test_qflag_fname):
+			result_json['qflag_already_done'].append(flag_info_dict)
+		else:
+			error_msg += 'QFlag methods presents but test file %s is missing\n' % test_qflag_fname
+			check_result = QFlagCheckResult.ErrorDuringProcessing
+
+	if check_result == QFlagCheckResult.ErrorDuringProcessing:
+		flag_info_dict['error'] = flag_info_dict.get('error', '') + error_msg
+		result_json['qflag_process_error'].append(flag_info_dict)
+
+	# save our processing result
+	with open(qflag_result_json, 'w') as f:
+		json.dump(result, f, indent=4)
+
+	# return True to indicate that more flags may be processed
+	return True
 
 
 
@@ -262,6 +288,9 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
     all the advanced QFlag operations.
 
     If they do not, add the missing information by performing code transformation and saving the result.
+
+    The flag_info is also modified in place to add one or two of the possible values taken by the enum. This
+    is needed for generating a proper test file. I don't like in-pace modification but here, it's the simplest.
 
     Returns:
     * QFlag operations already present
@@ -317,7 +346,6 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
 	mod_cst.visit(visitor)
 
 	if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
-		# TODO: check also for existence of the test file
 		return (QFlagCheckResult.CodeAlreadyModified, visitor.error_msg)
 
 	if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.Not):
@@ -331,6 +359,12 @@ def check_qflag_in_module(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagCheckRes
 
 	assert visitor.enum_methods_present == MethodPresent.Not
 	assert visitor.qflag_method_present == MethodPresent.Not
+
+	# storing the enum_values for further usage
+	flag_info.qflag_full_enum_name = visitor.enum_class_full_name
+	flag_info.qflag_value1 = visitor.enum_value1
+	flag_info.qflag_value2 = visitor.enum_value2
+	flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
 	log_progress('Transforming module %s by adding new methods' % flag_info.module_info[0][0])
 	transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
@@ -369,6 +403,10 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 		self.enum_class_full_name = ''
 		self.qflag_class_full_name = ''
 
+		# the name of two values of the enum class
+		self.enum_value1 = ''
+		self.enum_value2 = ''
+
 		# the node of the class, for debugging purpose
 		self.enum_class_cst_node = None
 		self.qflag_class_cst_node = None
@@ -392,6 +430,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 			self.enum_class_cst_node = node
 
 			self.check_enum_method_present(node)
+			self.collect_enum_values(node)
 
 		elif node.name.value == self.qflag_class_name:
 			# we found it
@@ -426,6 +465,24 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 				args = ('__ror__', '__or__')
 
 			self.error_msg += 'class %s, method %s present without method %s\n' % ((self.enum_class_full_name,)+args)
+
+	def collect_enum_values(self, enum_node: cst.ClassDef) -> None:
+		'''Collect two actual values for the enum and store them into self.enum_value1 and enum_value2
+		'''
+		# find all lines consisting of an assignment to an ellipsis:
+		# example: AlignLeft = ...
+		enum_values = matchers.findall(enum_node.body, matchers.SimpleStatementLine(
+			body=[matchers.Assign(value=matchers.Ellipsis())]))
+		if len(enum_values) == 0:
+			self.error_msg += 'class %s, could not find any enum values\n' % self.enum_class_full_name
+			return
+
+		self.enum_value1 = enum_values[0].body[0].targets[0].target.value
+		if len(enum_values) > 1:
+			self.enum_value2 = enum_values[1].body[0].targets[0].target.value
+		else:
+			# it works find if both values are the same so don't bother
+			self.enum_value2 = self.enum_value1
 
 
 	def check_qflag_method_present(self, qflag_node: cst.ClassDef) -> None:
@@ -592,7 +649,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 
 
 @functools.lru_cache(maxsize=1)
-def read_qflag_test_template() -> Tuple[List[str], List[str], List[str]]:
+def read_qflag_test_template(template_fname: str) -> Tuple[List[str], List[str], List[str]]:
 	'''Return the source of template for generating qflags test.
 
 	Return 3 parts:
@@ -600,7 +657,7 @@ def read_qflag_test_template() -> Tuple[List[str], List[str], List[str]]:
 	- the second part should be replaced for a specific QFlag class
 	- the third part should be unmodified
 	'''
-	with open(SOURCE_QFLAGS_TESTS) as f:
+	with open(template_fname) as f:
 		lines = f.readlines()
 
 	sourcePart1, sourcePart2, sourcePart3 = [], [], []
@@ -626,11 +683,23 @@ def read_qflag_test_template() -> Tuple[List[str], List[str], List[str]]:
 	return sourcePart1, sourcePart2, sourcePart3
 
 
-def generate_one_qflag_file(qflag_fname: str, multiFlagName: str, oneFlagName: str, oneFlagValue1: str, oneFlagValue2: str) -> None:
-	sourcePart1, sourcePart2, sourcePart3 = read_qflag_test_template()
+def gen_test_fname(fli: QFlagLocationInfo) -> str:
+	'''Generate the name of the test file which will verify this qflag'''
+	return 'test_{fli.module_info[0][0]}_{fli.qflag_class}_{fli.qflag_enum}'.format(fli=fli)
 
-	with open(qflag_fname, 'w') as f:
-		f.writelines(sourcePart1)
+
+def generate_qflag_test_file(flag_info: QFlagLocationInfo) -> None:
+	'''Generate a qflag test file.
+
+	The filename is inferred from flag_info using gen_test_fname()
+	'''
+	test_qflag_fname = gen_test_fname(flag_info)
+	generic_part_before, _replacable_part, generic_part_after = read_qflag_test_template(TEMPLATE_QFLAGS_TESTS)
+
+	with open(test_qflag_fname, 'w') as f:
+		f.writelines(generic_part_before)
+
+		# replace the repplacable_part with code dedicated to our qflag
 		f.write('''# file generated from {source} for QFlags class "{multiFlagName}" and flag class "{oneFlagName}"
 
 OneFlagClass = {oneFlagName}
@@ -638,30 +707,15 @@ MultiFlagClass = {multiFlagName}
 
 oneFlagRefValue1 = {oneFlagValue1}
 oneFlagRefValue2 = {oneFlagValue2}
-'''.format(source=SOURCE_QFLAGS_TESTS, multiFlagName=multiFlagName, oneFlagName=oneFlagName,
-		   oneFlagValue1=oneFlagValue1, oneFlagValue2=oneFlagValue2
+'''.format(source=TEMPLATE_QFLAGS_TESTS,
+		   multiFlagName=flag_info.qflag_full_class_name,
+		   oneFlagName=flag_info.qflag_full_enum_name,
+		   oneFlagValue1=flag_info.qflag_value1,
+		   oneFlagValue2=flag_info.qflag_value2
 		   ))
-		f.writelines(sourcePart3)
-	print('File %s generated' % qflag_fname)
+		f.writelines(generic_part_after)
+	print('File %s generated' % test_qflag_fname)
 
-
-
-# TODO:
-
-# for each module/flag
-# - generate a test file is not already present
-# - run test file. If it fails, skip this flag
-# - find where the class is located in the module
-# - check if class is in raw form (not QFlag based yet) or already patched
-# - if not patched
-# 	- modify the code of the module with better implementation
-# - generate a test file is not already present
-# - run test file and mypy for the qflag class
-# - if successful execution, commit it
-# - if unsuccessful execution, revert the changes on the module
-# repeat...
-#
-# analyse the result
 
 def generate_qflags_to_process():
 	'''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
@@ -694,6 +748,9 @@ if __name__ == '__main__':
 	flag_info = QFlagLocationInfo(qflag_enum='WindowState',
 								  qflag_class='WindowStates',
 								  module_info=[ ('QtCore.pyi', r'..\..\pyqt5-stubs\QtCore.pyi')],
-								  grep_line='')
+								  grep_line='', qflag_value1='', qflag_value2='')
 	result, error_msg = check_qflag_in_module(flag_info)
 
+
+# TODO:
+# * check_qflag should be renamed
