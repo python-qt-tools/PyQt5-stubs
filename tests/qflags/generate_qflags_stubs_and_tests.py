@@ -1,4 +1,4 @@
-from typing import List, Tuple, Dict, Union, Any, Optional
+from typing import List, Tuple, Dict, Union, Any, Optional, cast
 
 import dataclasses
 import functools
@@ -53,21 +53,21 @@ def log_progress(s: str) -> None:
 @dataclasses.dataclass
 class QFlagLocationInfo:
 
-	# grep line indicating this qflag
-	grep_line: str
-
 	# qflag and enum name used in the QDECLARE() grep line
 	qflag_class: str
 	enum_class: str
 
+	# grep line indicating this qflag
+	grep_line: str = ''
+
 	# full class name (including nesting classes) generated in a second pass
-	qflag_full_class_name: str
-	enum_full_class_name: str
-	enum_value1: str
-	enum_value2: str
+	qflag_full_class_name: str = ''
+	enum_full_class_name: str = ''
+	enum_value1: str = ''
+	enum_value2: str = ''
 
 	# list of (module_name, module_path) where the qflag has been found
-	module_info: List[ Tuple[str, str] ]
+	module_info: Tuple[ Tuple[str, str], ... ] = dataclasses.field(default_factory=tuple)
 
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
@@ -101,7 +101,7 @@ def identify_qflag_location(fname_grep_result: str,
 			s = qflag_declare_stmt[qflag_declare_stmt.index('(')+1:qflag_declare_stmt.index(')')]
 			qflag_class, enum_class = [v.strip(' ') for v in s.split(',')]
 			parsed_qflags.append(
-				QFlagLocationInfo(grep_line, qflag_class, enum_class, [])
+				QFlagLocationInfo(qflag_class, enum_class, grep_line)
 			)
 
 	# fill up modules with content
@@ -116,7 +116,7 @@ def identify_qflag_location(fname_grep_result: str,
 			if decl_qflag_class in mod_content and decl_enum_class in mod_content:
 				# we have found one module
 				print('Adding QFlags %s to module %s' % (flag_info.qflag_class, mod_name))
-				flag_info.module_info.append((mod_name, mod_stub_path))
+				flag_info.module_info += ((mod_name, mod_stub_path),)
 
 				count_qflag_class = mod_content.count(decl_qflag_class)
 				count_enum_class = mod_content.count(decl_enum_class)
@@ -124,7 +124,7 @@ def identify_qflag_location(fname_grep_result: str,
 					print('QFlag present more than once, adding it more than once')
 					extra_add = min(count_qflag_class, count_enum_class) - 1
 					for _ in range(extra_add):
-						flag_info.module_info.append((mod_name, mod_stub_path))
+						flag_info.module_info += ((mod_name, mod_stub_path),)
 
 	return parsed_qflags
 
@@ -175,7 +175,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 	}
 
 	for flag_info in d['one_flag_many_modules']:
-		result['qflags_to_skip'].append(
+		cast(List, result['qflags_to_skip']).append(
 			{
 				'qflag_class': flag_info['qflag_class'],
 				'enum_class': flag_info['enum_class'],
@@ -184,7 +184,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 		)
 
 		for flag_info in d['one_flag_no_module']:
-			result['qflags_to_skip'].append(
+			cast(List, result['qflags_to_skip']).append(
 				{
 					'qflag_class': flag_info['qflag_class'],
 					'enum_class':  flag_info['enum_class'],
@@ -193,7 +193,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 			)
 
 	for flag_info in d['one_flag_one_module']:
-		result['qflags_to_process'].append( flag_info )
+		cast(List, result['qflags_to_process']).append( flag_info )
 
 	with open(qflags_to_process_json, 'w') as f:
 		json.dump(result, f, indent=4)
@@ -220,30 +220,49 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 
 	qflags_to_process = d['qflags_to_process']
 
-	result_json = {
+	result_json: Dict[str, List[Dict]] = {
 		'qflag_already_done': [],
 		'qflag_processed_done': [],
 		'qflag_process_error': [],
 	}
 
+	if os.path.exists(qflag_result_json):
+		with open(qflag_result_json, 'r') as f:
+			result_json = json.loads(f.read())
+
 	def qflag_already_processed(flag_info: QFlagLocationInfo) -> bool:
 		'''Return True if the qflag is already included in one of the result lists
 		of result_json'''
-		flag_info_tuple = dataclasses.astuple(flag_info)
-		if flag_info_tuple in set(result_json['qflag_already_done']) \
-				or flag_info_tuple in set(result_json['qflag_processed_done']) \
-				or flag_info_tuple in set(result_json['qflag_process_error']):
+		flag_desc = (flag_info.module_info[0][0], flag_info.qflag_class, flag_info.enum_class)
+		already_done_set = set( (flag_info_dict['module_info'][0][0],
+						 flag_info_dict['qflag_class'],
+						 flag_info_dict['enum_class'])
+						for flag_info_dict in result_json['qflag_already_done'])
+		processed_done_set = set( (flag_info_dict['module_info'][0][0],
+								   flag_info_dict['qflag_class'],
+								   flag_info_dict['enum_class'])
+								  for flag_info_dict in result_json['qflag_processed_done'])
+		process_error_set = set( (flag_info_dict['module_info'][0][0],
+						 flag_info_dict['qflag_class'],
+						 flag_info_dict['enum_class'])
+							for flag_info_dict in result_json['qflag_process_error'])
+		if flag_desc in already_done_set or flag_desc in processed_done_set or flag_desc in process_error_set:
 			return True
 		return False
 
 	while len(qflags_to_process) != 0:
 		flag_info_dict = qflags_to_process.pop(0)
 		flag_info = QFlagLocationInfo(**flag_info_dict)
+		# force module_info into a tuple to make it hashable
+		flag_info.module_info = tuple((m0, m1) for (m0, m1) in flag_info.module_info)
 		if not qflag_already_processed(flag_info):
 			break
 	else:
 		# we have exhausted the list of qflag to process
 		return False
+
+	log_progress('Generate stubs for %s and %s in module %s' %
+				 (flag_info.qflag_class, flag_info.enum_class, flag_info.module_info[0][0]))
 
 	# check that the qflag is actually in the module
 	gen_result, error_msg = generate_missing_stubs(flag_info)
@@ -270,7 +289,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 
 	# save our processing result
 	with open(qflag_result_json, 'w') as f:
-		json.dump(result, f, indent=4)
+		json.dump(result_json, f, indent=4)
 
 	# return True to indicate that more flags may be processed
 	return True
@@ -407,8 +426,6 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 		self.enum_value2 = ''
 
 		# the node of the class, for debugging purpose
-		self.enum_class_cst_node = None
-		self.qflag_class_cst_node = None
 
 		# when filled, set to one of the MethodPresent values
 		self.enum_methods_present = MethodPresent.Unset
@@ -424,9 +441,8 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 			# we found it
 			if self.enum_class_full_name != '':
 				self.error_msg = 'class %s found multiple times\n' % self.enum_class_name
-				return
+				return None
 			self.enum_class_full_name = '.'.join(self.full_name_stack)
-			self.enum_class_cst_node = node
 
 			self.check_enum_method_present(node)
 			self.collect_enum_values(node)
@@ -435,9 +451,8 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 			# we found it
 			if self.qflag_class_full_name != '':
 				self.error_msg = 'class %s found multiple times\n' % self.qflag_class_name
-				return
+				return None
 			self.qflag_class_full_name = '.'.join(self.full_name_stack)
-			self.qflag_class_cst_node = node
 
 			self.check_qflag_method_present(node)
 		return None
@@ -553,7 +568,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 		self.error_msg = ''
 
 
-	def leave_ClassDef(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
+	def leave_ClassDef(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
 		if original_node.name.value == self.enum_class:
 			return self.transform_enum_class(original_node, updated_node)
 		elif original_node.name.value == self.qflag_class:
@@ -561,7 +576,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 		return updated_node
 
 
-	def transform_enum_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
+	def transform_enum_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
 		'''Add the two methods __or__ and __ror__ to the class body'''
 
 		# we keep comments separated to align them properly in the final file
@@ -591,7 +606,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 			 + updated_node.body.body[1:] ) )
 
 
-	def transform_qflag_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.CSTNode:
+	def transform_qflag_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
 		'''
         On the qflag class, add one more overload __init__() and add more methods
         +		@typing.overload
@@ -681,7 +696,7 @@ def read_qflag_test_template(template_fname: str) -> Tuple[List[str], List[str],
 
 def gen_test_fname(fli: QFlagLocationInfo) -> str:
 	'''Generate the name of the test file which will verify this qflag'''
-	return 'test_{fli.module_info[0][0]}_{fli.qflag_class}_{fli.enum_class}'.format(fli=fli)
+	return 'test_{fli.module_info[0][0]}_{fli.qflag_class}_{fli.enum_class}.py'.format(fli=fli)
 
 
 def generate_qflag_test_file(flag_info: QFlagLocationInfo) -> None:
@@ -697,20 +712,22 @@ def generate_qflag_test_file(flag_info: QFlagLocationInfo) -> None:
 
 		# replace the repplacable_part with code dedicated to our qflag
 		f.write('''# file generated from {source} for QFlags class "{multiFlagName}" and flag class "{oneFlagName}"
+from PyQt5 import {qtmodule}
 
-OneFlagClass = {oneFlagName}
-MultiFlagClass = {multiFlagName}
+OneFlagClass = {qtmodule}.{oneFlagName}
+MultiFlagClass = {qtmodule}.{multiFlagName}
 
-oneFlagRefValue1 = {oneFlagValue1}
-oneFlagRefValue2 = {oneFlagValue2}
+oneFlagRefValue1 = {qtmodule}.{oneFlagValue1}
+oneFlagRefValue2 = {qtmodule}.{oneFlagValue2}
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
 		   multiFlagName=flag_info.qflag_full_class_name,
 		   oneFlagName=flag_info.enum_full_class_name,
 		   oneFlagValue1=flag_info.enum_value1,
-		   oneFlagValue2=flag_info.enum_value2
+		   oneFlagValue2=flag_info.enum_value2,
+		   qtmodule=flag_info.module_info[0][0]
 		   ))
 		f.writelines(generic_part_after)
-	print('File %s generated' % test_qflag_fname)
+	log_progress('Test file generated: %s' % test_qflag_fname)
 
 
 def generate_qflags_to_process():
@@ -739,14 +756,12 @@ if __name__ == '__main__':
 
 	qflag_result_json = 'qflag_process_result.json'
 
-	# process_qflag(qflags_to_process_json, qflag_result_json)
+	if 0:
+		flag_info = QFlagLocationInfo(enum_class='WindowState',
+									  qflag_class='WindowStates',
+									  module_info=[ ('QtCore.pyi', r'..\..\pyqt5-stubs\QtCore.pyi')])
+		result, error_msg = generate_missing_stubs(flag_info)
 
-	flag_info = QFlagLocationInfo(qflag_enum='WindowState',
-								  qflag_class='WindowStates',
-								  module_info=[ ('QtCore.pyi', r'..\..\pyqt5-stubs\QtCore.pyi')],
-								  grep_line='', qflag_value1='', qflag_value2='')
-	result, error_msg = generate_missing_stubs(flag_info)
+	result = process_qflag(qflags_to_process_json, qflag_result_json)
+	print(result)
 
-
-# TODO:
-# * check_qflag should be renamed
