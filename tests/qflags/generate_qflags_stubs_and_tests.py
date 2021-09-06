@@ -4,6 +4,7 @@ import dataclasses
 import functools
 import json
 import os
+import subprocess
 from enum import Enum
 
 try:
@@ -266,24 +267,43 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 
 	# check that the qflag is actually in the module
 	gen_result, error_msg = generate_missing_stubs(flag_info)
+	test_qflag_fname = gen_test_fname(flag_info)
 
 	# Note that flag_info has been modified in-place with additional info:
 	# enum_value1, enum_value2, full_enum_class_name, full_qflag_class_name
 	if gen_result == QFlagGenResult.CodeModifiedSuccessfully:
 		generate_qflag_test_file(flag_info)
-		# run verifications
-		result_json['qflag_processed_done'].append(flag_info_dict)
+		log_progress('Running pytest %s' % test_qflag_fname)
+		p = subprocess.run(['pytest', '-v', '--capture=no', test_qflag_fname])
+		if p.returncode != 0:
+			error_msg += 'pytest failed\n'
+			gen_result = QFlagGenResult.ErrorDuringProcessing
+		else:
+			log_progress('Running mypy %s' % test_qflag_fname)
+			p = subprocess.run(['mypy', test_qflag_fname])
+			if p.returncode != 0:
+				error_msg += 'mypy failed\n'
+				gen_result = QFlagGenResult.ErrorDuringProcessing
+			else:
+				log_progress('validation completed successfully')
+				result_json['qflag_processed_done'].append(flag_info_dict)
+				log_progress('Staging changes to git')
+				subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
 
 	if gen_result == QFlagGenResult.CodeAlreadyModified:
 		# qflag methods are already there, check that the test filename is here too
-		test_qflag_fname = gen_test_fname(flag_info)
 		if os.path.exists(test_qflag_fname):
+			log_progress('QFlag %s %s already supported by %s' % (flag_info.qflag_class,
+																  flag_info.enum_class,
+																  flag_info.module_info[0][0]))
 			result_json['qflag_already_done'].append(flag_info_dict)
 		else:
 			error_msg += 'QFlag methods presents but test file %s is missing\n' % test_qflag_fname
 			gen_result = QFlagGenResult.ErrorDuringProcessing
 
 	if gen_result == QFlagGenResult.ErrorDuringProcessing:
+		log_progress('Error during processing of QFlag %s %s' % (flag_info.qflag_class,
+															  flag_info.enum_class))
 		flag_info_dict['error'] = flag_info_dict.get('error', '') + error_msg
 		result_json['qflag_process_error'].append(flag_info_dict)
 
@@ -763,5 +783,4 @@ if __name__ == '__main__':
 		result, error_msg = generate_missing_stubs(flag_info)
 
 	result = process_qflag(qflags_to_process_json, qflag_result_json)
-	print(result)
 
