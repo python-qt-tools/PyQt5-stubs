@@ -15,14 +15,17 @@ except ImportError:
 					  'Please run the command:\n\tpython -m pip install libcst')
 
 
-'''How to use this generator script:
+USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename>
+	Process the <grep result filename> to extract all the qflag location information. Generates
+	two output:
+	- qflags_modules_analysis.json : a general file describing which qflag are suitable for processing
+	- qflags_to_process.json: a list of qflag ready to process with the next command.
 
-1. Grep Qt sources, looking for all QFlag based classes. The command-line to use is:
-
-	qt-src\qt5\qtbase>rg  --type-add "headers:*.h" -t headers Q_DECLARE_FLAGS --no-heading > qt-qflag-grep-result.txt
-
-2. Run the script to identify where each QFlag is located in PyQt.
-'''
+Usage 2: {prog} gen_qflag_stub <number>
+	Using file qflag_to_process.json, process <number> qflags and modify the PyQt modules.
+	The output of this processing is available in qflag_process_result.json
+	If <number> is not provided, defaults to 1
+'''.format(prog=sys.argv[0])
 
 # the file defining the qflag implementation, to be skipped
 QFLAG_SRC='src\\corelib\\global\\qflags.h'
@@ -40,8 +43,8 @@ QTBASE_MODULES = [
 	('QtWidgets', '../../PyQt5-stubs/QtWidgets.pyi'),
 	('QtGui', '../../PyQt5-stubs/QtGui.pyi'),
 	('QtNetwork', '../../PyQt5-stubs/QtNetwork.pyi'),
-	('QtDBus', '../../PyQt5-stubs/QtDbus.pyi'),
-	('QtOpengl', '../../PyQt5-stubs/QtOpengl.pyi'),
+	('QtDBus', '../../PyQt5-stubs/QtDBus.pyi'),
+	('QtOpenGL', '../../PyQt5-stubs/QtOpenGL.pyi'),
 	('QtPrintsupport', '../../PyQt5-stubs/QtPrintsupport.pyi'),
 	('QtSql', '../../PyQt5-stubs/QtSql.pyi'),
 	('QtTest', '../../PyQt5-stubs/QtTest.pyi'),
@@ -750,37 +753,53 @@ oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
 	log_progress('Test file generated: %s' % test_qflag_fname)
 
 
-def generate_qflags_to_process():
+def generate_qflags_to_process(qt_qflag_grep_result_fname):
 	'''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
-	qt_qflag_grep_result_fname = 'qt-qflag-grep-result.txt'
 	location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, QTBASE_MODULES)
-	print('%d qflags extracted from grep file' % len(location_qflags))
+	log_progress('%d qflags extracted from grep file' % len(location_qflags))
 	qflags_groups = group_qflags(location_qflags)
-	print('%d qflags ready to be processed' % len(qflags_groups['one_flag_one_module']))
+	log_progress('%d qflags ready to be processed' % len(qflags_groups['one_flag_one_module']))
 
 	qflags_modules_analysis_json = 'qflags_modules_analysis.json'
 	# put our intermediate classification into a json file for human review
 	with open(qflags_modules_analysis_json, 'w') as f:
 		json.dump(qflags_groups, f, indent=4, default=json_encode_qflaglocationinfo)
-	print('QFlag analysis saved to: %s' % qflags_modules_analysis_json)
+	log_progress('QFlag analysis saved to: %s' % qflags_modules_analysis_json)
 
 	qflags_to_process_json = 'qflags_to_process.json'
 	extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json)
-
+	log_progress('qflag file ready to process: %s' % qflags_to_process_json)
 
 if __name__ == '__main__':
-	# generate_qflags_to_process()
 
-	qflags_to_process_json = 'qflags_to_process.json'
-	# here we have the opportunity for human modification of the json file
+	if len(sys.argv) <= 1:
+		print(USAGE)
+		sys.exit(1)
 
-	qflag_result_json = 'qflag_process_result.json'
+	if sys.argv[1] == 'gen_qflag_stub':
+		nb = 1
+		if len(sys.argv) > 2:
+			nb = int(sys.argv[2])
 
-	if 0:
-		flag_info = QFlagLocationInfo(enum_class='WindowState',
-									  qflag_class='WindowStates',
-									  module_info=[ ('QtCore.pyi', r'..\..\pyqt5-stubs\QtCore.pyi')])
-		result, error_msg = generate_missing_stubs(flag_info)
+		qflags_to_process_json = 'qflags_to_process.json'
+		qflag_result_json = 'qflag_process_result.json'
+		more_available = True
+		while nb > 0 and more_available:
+			nb -= 1
+			more_available = process_qflag(qflags_to_process_json, qflag_result_json)
 
-	result = process_qflag(qflags_to_process_json, qflag_result_json)
+	elif sys.argv[1] == 'analyse_grep_results':
+		if len(sys.argv) <= 2:
+			print('Error, you must provide the filename of the grep results\n')
+			print(USAGE)
+			sys.exit(1)
+
+		grep_fname = sys.argv[2]
+		generate_qflags_to_process(grep_fname)
+
+	else:
+		print('Error, invalid command line arguments\n')
+		print(USAGE)
+		sys.exit(1)
+
 
