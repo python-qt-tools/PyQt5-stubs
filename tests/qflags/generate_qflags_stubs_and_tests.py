@@ -39,7 +39,7 @@ QTBASE_MODULES = [
 	('QtWidgets', '../../PyQt5-stubs/QtWidgets.pyi'),
 	('QtGui', '../../PyQt5-stubs/QtGui.pyi'),
 	('QtNetwork', '../../PyQt5-stubs/QtNetwork.pyi'),
-	('QtDbus', '../../PyQt5-stubs/QtDbus.pyi'),
+	('QtDBus', '../../PyQt5-stubs/QtDbus.pyi'),
 	('QtOpengl', '../../PyQt5-stubs/QtOpengl.pyi'),
 	('QtPrintsupport', '../../PyQt5-stubs/QtPrintsupport.pyi'),
 	('QtSql', '../../PyQt5-stubs/QtSql.pyi'),
@@ -271,8 +271,8 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 	# enum_value1, enum_value2, full_enum_class_name, full_qflag_class_name
 	if gen_result == QFlagGenResult.CodeModifiedSuccessfully:
 		generate_qflag_test_file(flag_info)
-
 		# run verifications
+		result_json['qflag_processed_done'].append(flag_info_dict)
 
 	if gen_result == QFlagGenResult.CodeAlreadyModified:
 		# qflag methods are already there, check that the test filename is here too
@@ -717,8 +717,8 @@ from PyQt5 import {qtmodule}
 OneFlagClass = {qtmodule}.{oneFlagName}
 MultiFlagClass = {qtmodule}.{multiFlagName}
 
-oneFlagRefValue1 = {qtmodule}.{oneFlagValue1}
-oneFlagRefValue2 = {qtmodule}.{oneFlagValue2}
+oneFlagRefValue1 = {qtmodule}.{oneFlagName}.{oneFlagValue1}
+oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
 		   multiFlagName=flag_info.qflag_full_class_name,
 		   oneFlagName=flag_info.enum_full_class_name,

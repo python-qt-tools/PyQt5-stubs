@@ -1,5 +1,5 @@
 from typing import Union, TypeVar, Type
-import pytest		# type: ignore
+import pytest
 from PyQt5 import QtCore, QtWidgets
 
 ### Specific part
