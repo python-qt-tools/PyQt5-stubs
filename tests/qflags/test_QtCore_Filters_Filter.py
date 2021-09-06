@@ -1,16 +1,15 @@
 from typing import Union, TypeVar, Type
 import pytest
-from PyQt5 import QtCore, QtWidgets
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
+# file generated from qflags_test_template.py for QFlags class "QDir.Filters" and flag class "QDir.Filter"
+from PyQt5 import QtCore
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtCore.QDir.Filter
+MultiFlagClass = QtCore.QDir.Filters
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtCore.QDir.Filter.Dirs
+oneFlagRefValue2 = QtCore.QDir.Filter.Files
 ### End of specific part
 
 T = TypeVar('T')

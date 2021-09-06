@@ -1,16 +1,15 @@
 from typing import Union, TypeVar, Type
 import pytest
-from PyQt5 import QtCore, QtWidgets
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
+# file generated from qflags_test_template.py for QFlags class "QGLFormat.OpenGLVersionFlags" and flag class "QGLFormat.OpenGLVersionFlag"
+from PyQt5 import QtOpenGL
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtOpenGL.QGLFormat.OpenGLVersionFlag
+MultiFlagClass = QtOpenGL.QGLFormat.OpenGLVersionFlags
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtOpenGL.QGLFormat.OpenGLVersionFlag.OpenGL_Version_None
+oneFlagRefValue2 = QtOpenGL.QGLFormat.OpenGLVersionFlag.OpenGL_Version_1_1
 ### End of specific part
 
 T = TypeVar('T')

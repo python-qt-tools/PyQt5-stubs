@@ -1,16 +1,15 @@
 from typing import Union, TypeVar, Type
 import pytest
-from PyQt5 import QtCore, QtWidgets
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
+# file generated from qflags_test_template.py for QFlags class "QDBusConnection.ConnectionCapabilities" and flag class "QDBusConnection.ConnectionCapability"
+from PyQt5 import QtDBus
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtDBus.QDBusConnection.ConnectionCapability
+MultiFlagClass = QtDBus.QDBusConnection.ConnectionCapabilities
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtDBus.QDBusConnection.ConnectionCapability.UnixFileDescriptorPassing
+oneFlagRefValue2 = QtDBus.QDBusConnection.ConnectionCapability.UnixFileDescriptorPassing
 ### End of specific part
 
 T = TypeVar('T')
