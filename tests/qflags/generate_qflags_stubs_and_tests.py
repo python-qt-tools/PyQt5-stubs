@@ -4,6 +4,7 @@ import dataclasses
 import functools
 import json
 import os
+import sys
 import subprocess
 from enum import Enum
 
@@ -269,7 +270,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 				 (flag_info.qflag_class, flag_info.enum_class, flag_info.module_info[0][0]))
 
 	# check that the qflag is actually in the module
-	gen_result, error_msg = generate_missing_stubs(flag_info)
+	gen_result, error_msg, old_mod_content = generate_missing_stubs(flag_info)
 	test_qflag_fname = gen_test_fname(flag_info)
 
 	# Note that flag_info has been modified in-place with additional info:
@@ -281,17 +282,25 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 		if p.returncode != 0:
 			error_msg += 'pytest failed\n'
 			gen_result = QFlagGenResult.ErrorDuringProcessing
+			log_progress('Restoring module content')
+			with open(flag_info.module_info[0][1], 'w') as f:
+				f.write(old_mod_content)
 		else:
 			log_progress('Running mypy %s' % test_qflag_fname)
 			p = subprocess.run(['mypy', test_qflag_fname])
 			if p.returncode != 0:
 				error_msg += 'mypy failed\n'
 				gen_result = QFlagGenResult.ErrorDuringProcessing
+				log_progress('Restoring module content')
+				with open(flag_info.module_info[0][1], 'w') as f:
+					f.write(old_mod_content)
 			else:
 				log_progress('validation completed successfully')
 				result_json['qflag_processed_done'].append(flag_info_dict)
 				log_progress('Staging changes to git')
 				subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
+				print('QFlag operations for %s, %s in module %s' %
+					  (flag_info.qflag_full_class_name, flag_info.enum_full_class_name, flag_info.module_info[0][0]))
 
 	if gen_result == QFlagGenResult.CodeAlreadyModified:
 		# qflag methods are already there, check that the test filename is here too
@@ -326,7 +335,7 @@ class QFlagGenResult(Enum):
 	ErrorDuringProcessing = 2
 
 
-def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResult, str]:
+def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResult, str, str]:
 	'''
     Check that the QFlag enum+class are present in the module and check whether they support
     all the advanced QFlag operations.
@@ -360,20 +369,25 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 		+   def __rand__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
 		+   def __rxor__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
 
-    Returns a tuple of (QFlagGenResult, error_msg):
+    Returns a tuple of (QFlagGenResult, error_msg, mod_content):
     * CodeModifiedSuccessfully:
         All modifications to the code of the module have been performed successfully.
         Error message is empty.
+        mod_content contains the full text of the module. If when performing verifications on this
+        change, it turns out that the change is not valid, you can restore the module to its
+        previous content using mod_content
 
     * CodeAlreadyModified:
         All modifications to the code were already done, no processing done.
         Error message also indicates this information.
+        mod_content is empty (not useful)
 
     * ErrorDuringProcessing:
         Some error occured during the processing, such as some modifications were partially done,
         class not found, class found multiple times, ...
 
         The detail of the error is provided in the second argument of the return value.
+        mod_content is empty (not useful)
 '''
 	log_progress('Opening module %s' % flag_info.module_info[0][0])
 	with open(flag_info.module_info[0][1]) as f:
@@ -388,7 +402,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 	mod_cst.visit(visitor)
 
 	if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
-		return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg)
+		return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
 
 	if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.Not):
 		visitor.error_msg += 'Enum methods are present but not QFlag methods\n'
@@ -397,7 +411,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 		visitor.error_msg += 'QFlag methods are present but not Enum methods\n'
 
 	if visitor.error_msg:
-		return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg)
+		return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg, '')
 
 	assert visitor.enum_methods_present == MethodPresent.Not
 	assert visitor.qflag_method_present == MethodPresent.Not
@@ -417,7 +431,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 	with open(flag_info.module_info[0][1], 'w') as f:
 		f.write(updated_mod_cst.code)
 
-	return (QFlagGenResult.CodeModifiedSuccessfully, '')
+	return (QFlagGenResult.CodeModifiedSuccessfully, '', mod_content)
 
 
 class MethodPresent(Enum):
