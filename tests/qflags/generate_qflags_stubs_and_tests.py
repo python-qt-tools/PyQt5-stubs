@@ -24,19 +24,9 @@ USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename>
 
 Usage 2: {prog} gen_qflag_stub <number>
 	Using file qflag_to_process.json, process <number> qflags and modify the PyQt modules.
-	The output of this processing is available in qflag_process_result.json
+	The output of this processing is available in qflags_process_result.json
 	If <number> is not provided, defaults to 1
 '''.format(prog=sys.argv[0])
-
-# the file defining the qflag implementation, to be skipped
-QFLAG_SRC='src\\corelib\\global\\qflags.h'
-
-# the template after which we model all generated qflag tests
-TEMPLATE_QFLAGS_TESTS = 'qflags_test_template.py'
-
-# the markers inside the above template to identify the parts to replace
-MARKER_SPECIFIC_START = '### Specific part'
-MARKER_SPECIFIC_END = '### End of specific part'
 
 
 QTBASE_MODULES = [
@@ -92,6 +82,9 @@ def identify_qflag_location(fname_grep_result: str,
 
 	Return a list of QFlagLocationInfo indicating in which module the flag has been located.
 	'''
+	# the file defining the qflag implementation, to be skipped when performing QDECLARE analysis
+	QFLAG_SRC = 'src\\corelib\\global\\qflags.h'
+
 	parsed_qflags = []	# type: List[ QFlagLocationInfo ]
 	with open(fname_grep_result) as f:
 		for l in f.readlines()[:]:
@@ -705,6 +698,11 @@ def read_qflag_test_template(template_fname: str) -> Tuple[List[str], List[str],
 	- the second part should be replaced for a specific QFlag class
 	- the third part should be unmodified
 	'''
+
+	# the markers inside the above template to identify the parts to replace
+	MARKER_SPECIFIC_START = '### Specific part'
+	MARKER_SPECIFIC_END = '### End of specific part'
+
 	with open(template_fname) as f:
 		lines = f.readlines()
 
@@ -741,6 +739,10 @@ def generate_qflag_test_file(flag_info: QFlagLocationInfo) -> None:
 
 	The filename is inferred from flag_info using gen_test_fname()
 	'''
+
+	# the template after which we model all generated qflag tests
+	TEMPLATE_QFLAGS_TESTS = 'qflags_test_template.py'
+
 	test_qflag_fname = gen_test_fname(flag_info)
 	generic_part_before, _replacable_part, generic_part_after = read_qflag_test_template(TEMPLATE_QFLAGS_TESTS)
 
@@ -796,7 +798,7 @@ if __name__ == '__main__':
 			nb = int(sys.argv[2])
 
 		qflags_to_process_json = 'qflags_to_process.json'
-		qflag_result_json = 'qflag_process_result.json'
+		qflag_result_json = 'qflags_process_result.json'
 		more_available = True
 		while nb > 0 and more_available:
 			nb -= 1
