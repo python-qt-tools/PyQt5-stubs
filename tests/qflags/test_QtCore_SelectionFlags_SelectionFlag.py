@@ -1,15 +1,15 @@
 from typing import Union, TypeVar, Type
 import pytest
-from PyQt5 import QtCore, QtWidgets
 
 ### Specific part
-# file generated from windowFlags.py for QFlags class "QtCore.Qt.Alignment" and flag class "QtCore.Qt.AlignmentFlag"
+# file generated from qflags_test_template.py for QFlags class "QItemSelectionModel.SelectionFlags" and flag class "QItemSelectionModel.SelectionFlag"
+from PyQt5 import QtCore
 
-OneFlagClass = QtCore.Qt.AlignmentFlag
-MultiFlagClass = QtCore.Qt.Alignment
+OneFlagClass = QtCore.QItemSelectionModel.SelectionFlag
+MultiFlagClass = QtCore.QItemSelectionModel.SelectionFlags
 
-oneFlagRefValue1 = QtCore.Qt.AlignLeft
-oneFlagRefValue2 = QtCore.Qt.AlignRight
+oneFlagRefValue1 = QtCore.QItemSelectionModel.SelectionFlag.NoUpdate
+oneFlagRefValue2 = QtCore.QItemSelectionModel.SelectionFlag.Clear
 ### End of specific part
 
 T = TypeVar('T')

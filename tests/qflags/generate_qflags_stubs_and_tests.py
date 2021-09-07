@@ -21,22 +21,15 @@ USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename>
 	two output:
 	- qflags_modules_analysis.json : a general file describing which qflag are suitable for processing
 	- qflags_to_process.json: a list of qflag ready to process with the next command.
-
-Usage 2: {prog} gen_qflag_stub <number>
+	
+Usage 2: {prog} gen_qflag_stub <number> (--auto-commit)
 	Using file qflag_to_process.json, process <number> qflags and modify the PyQt modules.
-	The output of this processing is available in qflag_process_result.json
+	The output of this processing is available in qflags_process_result.json
 	If <number> is not provided, defaults to 1
+	
+	If --auto-commit is specified, a git commit is performed after each successful QFlag validation
+
 '''.format(prog=sys.argv[0])
-
-# the file defining the qflag implementation, to be skipped
-QFLAG_SRC='src\\corelib\\global\\qflags.h'
-
-# the template after which we model all generated qflag tests
-TEMPLATE_QFLAGS_TESTS = 'qflags_test_template.py'
-
-# the markers inside the above template to identify the parts to replace
-MARKER_SPECIFIC_START = '### Specific part'
-MARKER_SPECIFIC_END = '### End of specific part'
 
 
 QTBASE_MODULES = [
@@ -92,6 +85,9 @@ def identify_qflag_location(fname_grep_result: str,
 
 	Return a list of QFlagLocationInfo indicating in which module the flag has been located.
 	'''
+	# the file defining the qflag implementation, to be skipped when performing QDECLARE analysis
+	QFLAG_SRC = 'src\\corelib\\global\\qflags.h'
+
 	parsed_qflags = []	# type: List[ QFlagLocationInfo ]
 	with open(fname_grep_result) as f:
 		for l in f.readlines()[:]:
@@ -204,7 +200,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 		json.dump(result, f, indent=4)
 
 
-def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
+def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commit: bool) -> bool:
 	'''Read the qflags to process from the json file
 
 	Process one qflag, by either:
@@ -217,6 +213,8 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 		* run mypy on the result
 		* run the tox on result
 		* add the flag to qflag_processed_done
+
+	* auto_commit: if True, a git commit is performed after each successful QFlag validation
 
 	Return True when all flags have been processed
 	'''
@@ -280,27 +278,43 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 		log_progress('Running pytest %s' % test_qflag_fname)
 		p = subprocess.run(['pytest', '-v', '--capture=no', test_qflag_fname])
 		if p.returncode != 0:
-			error_msg += 'pytest failed\n'
+			error_msg += 'pytest failed:\n'
+			# Re-run the same command to capture the output in the error message
+			# in the first run, the stdout/stderr was simply displayed and not captured
+			# here, we want to capture it and not display it
+			p = subprocess.run(['pytest', '-v', '--capture=no', test_qflag_fname],
+							   stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf8')
+			error_msg += p.stdout
 			gen_result = QFlagGenResult.ErrorDuringProcessing
 			log_progress('Restoring module content')
 			with open(flag_info.module_info[0][1], 'w') as f:
 				f.write(old_mod_content)
+			os.unlink(test_qflag_fname)
 		else:
 			log_progress('Running mypy %s' % test_qflag_fname)
 			p = subprocess.run(['mypy', test_qflag_fname])
 			if p.returncode != 0:
 				error_msg += 'mypy failed\n'
+				# Re-run the same command to capture the output in the error message
+				# in the first run, the stdout/stderr was simply displayed and not captured
+				# here, we want to capture it and not display it
+				p = subprocess.run(['mypy', test_qflag_fname],
+								   stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf8')
+				error_msg += p.stdout
 				gen_result = QFlagGenResult.ErrorDuringProcessing
 				log_progress('Restoring module content')
 				with open(flag_info.module_info[0][1], 'w') as f:
 					f.write(old_mod_content)
+				os.unlink(test_qflag_fname)
 			else:
 				log_progress('validation completed successfully')
 				result_json['qflag_processed_done'].append(flag_info_dict)
-				log_progress('Staging changes to git')
-				subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
-				print('QFlag operations for %s, %s in module %s' %
-					  (flag_info.qflag_full_class_name, flag_info.enum_full_class_name, flag_info.module_info[0][0]))
+
+				if auto_commit:
+					log_progress('Performing git commit')
+					subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
+					subprocess.run(['git', 'commit', '-m', 'QFlag operations for %s, %s in module %s' %
+						  (flag_info.qflag_full_class_name, flag_info.enum_full_class_name, flag_info.module_info[0][0])])
 
 	if gen_result == QFlagGenResult.CodeAlreadyModified:
 		# qflag methods are already there, check that the test filename is here too
@@ -705,6 +719,11 @@ def read_qflag_test_template(template_fname: str) -> Tuple[List[str], List[str],
 	- the second part should be replaced for a specific QFlag class
 	- the third part should be unmodified
 	'''
+
+	# the markers inside the above template to identify the parts to replace
+	MARKER_SPECIFIC_START = '### Specific part'
+	MARKER_SPECIFIC_END = '### End of specific part'
+
 	with open(template_fname) as f:
 		lines = f.readlines()
 
@@ -741,6 +760,10 @@ def generate_qflag_test_file(flag_info: QFlagLocationInfo) -> None:
 
 	The filename is inferred from flag_info using gen_test_fname()
 	'''
+
+	# the template after which we model all generated qflag tests
+	TEMPLATE_QFLAGS_TESTS = 'qflags_test_template.py'
+
 	test_qflag_fname = gen_test_fname(flag_info)
 	generic_part_before, _replacable_part, generic_part_after = read_qflag_test_template(TEMPLATE_QFLAGS_TESTS)
 
@@ -790,17 +813,21 @@ if __name__ == '__main__':
 		print(USAGE)
 		sys.exit(1)
 
+	auto_commit = False
+	if '--auto-commit' in sys.argv:
+		auto_commit = True
+
 	if sys.argv[1] == 'gen_qflag_stub':
 		nb = 1
 		if len(sys.argv) > 2:
 			nb = int(sys.argv[2])
 
 		qflags_to_process_json = 'qflags_to_process.json'
-		qflag_result_json = 'qflag_process_result.json'
+		qflag_result_json = 'qflags_process_result.json'
 		more_available = True
 		while nb > 0 and more_available:
 			nb -= 1
-			more_available = process_qflag(qflags_to_process_json, qflag_result_json)
+			more_available = process_qflag(qflags_to_process_json, qflag_result_json, auto_commit)
 
 	elif sys.argv[1] == 'analyse_grep_results':
 		if len(sys.argv) <= 2:
