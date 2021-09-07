@@ -21,11 +21,14 @@ USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename>
 	two output:
 	- qflags_modules_analysis.json : a general file describing which qflag are suitable for processing
 	- qflags_to_process.json: a list of qflag ready to process with the next command.
-
-Usage 2: {prog} gen_qflag_stub <number>
+	
+Usage 2: {prog} gen_qflag_stub <number> (--auto-commit)
 	Using file qflag_to_process.json, process <number> qflags and modify the PyQt modules.
 	The output of this processing is available in qflags_process_result.json
 	If <number> is not provided, defaults to 1
+	
+	If --auto-commit is specified, a git commit is performed after each successful QFlag validation
+
 '''.format(prog=sys.argv[0])
 
 
@@ -197,7 +200,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 		json.dump(result, f, indent=4)
 
 
-def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
+def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commit: bool) -> bool:
 	'''Read the qflags to process from the json file
 
 	Process one qflag, by either:
@@ -210,6 +213,8 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 		* run mypy on the result
 		* run the tox on result
 		* add the flag to qflag_processed_done
+
+	* auto_commit: if True, a git commit is performed after each successful QFlag validation
 
 	Return True when all flags have been processed
 	'''
@@ -278,7 +283,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 			# in the first run, the stdout/stderr was simply displayed and not captured
 			# here, we want to capture it and not display it
 			p = subprocess.run(['pytest', '-v', '--capture=no', test_qflag_fname],
-							   stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+							   stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf8')
 			error_msg += p.stdout
 			gen_result = QFlagGenResult.ErrorDuringProcessing
 			log_progress('Restoring module content')
@@ -294,7 +299,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 				# in the first run, the stdout/stderr was simply displayed and not captured
 				# here, we want to capture it and not display it
 				p = subprocess.run(['mypy', test_qflag_fname],
-								   stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+								   stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf8')
 				error_msg += p.stdout
 				gen_result = QFlagGenResult.ErrorDuringProcessing
 				log_progress('Restoring module content')
@@ -304,10 +309,12 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 			else:
 				log_progress('validation completed successfully')
 				result_json['qflag_processed_done'].append(flag_info_dict)
-				log_progress('Staging changes to git')
-				subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
-				print('QFlag operations for %s, %s in module %s' %
-					  (flag_info.qflag_full_class_name, flag_info.enum_full_class_name, flag_info.module_info[0][0]))
+
+				if auto_commit:
+					log_progress('Staging changes to git')
+					subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
+					subprocess.run(['git', 'commit', '-m', 'QFlag operations for %s, %s in module %s' %
+						  (flag_info.qflag_full_class_name, flag_info.enum_full_class_name, flag_info.module_info[0][0])])
 
 	if gen_result == QFlagGenResult.CodeAlreadyModified:
 		# qflag methods are already there, check that the test filename is here too
@@ -806,6 +813,10 @@ if __name__ == '__main__':
 		print(USAGE)
 		sys.exit(1)
 
+	auto_commit = False
+	if '--auto-commit' in sys.argv:
+		auto_commit = True
+
 	if sys.argv[1] == 'gen_qflag_stub':
 		nb = 1
 		if len(sys.argv) > 2:
@@ -816,7 +827,7 @@ if __name__ == '__main__':
 		more_available = True
 		while nb > 0 and more_available:
 			nb -= 1
-			more_available = process_qflag(qflags_to_process_json, qflag_result_json)
+			more_available = process_qflag(qflags_to_process_json, qflag_result_json, auto_commit)
 
 	elif sys.argv[1] == 'analyse_grep_results':
 		if len(sys.argv) <= 2:
