@@ -273,20 +273,34 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str) -> bool:
 		log_progress('Running pytest %s' % test_qflag_fname)
 		p = subprocess.run(['pytest', '-v', '--capture=no', test_qflag_fname])
 		if p.returncode != 0:
-			error_msg += 'pytest failed\n'
+			error_msg += 'pytest failed:\n'
+			# Re-run the same command to capture the output in the error message
+			# in the first run, the stdout/stderr was simply displayed and not captured
+			# here, we want to capture it and not display it
+			p = subprocess.run(['pytest', '-v', '--capture=no', test_qflag_fname],
+							   stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+			error_msg += p.stdout
 			gen_result = QFlagGenResult.ErrorDuringProcessing
 			log_progress('Restoring module content')
 			with open(flag_info.module_info[0][1], 'w') as f:
 				f.write(old_mod_content)
+			os.unlink(test_qflag_fname)
 		else:
 			log_progress('Running mypy %s' % test_qflag_fname)
 			p = subprocess.run(['mypy', test_qflag_fname])
 			if p.returncode != 0:
 				error_msg += 'mypy failed\n'
+				# Re-run the same command to capture the output in the error message
+				# in the first run, the stdout/stderr was simply displayed and not captured
+				# here, we want to capture it and not display it
+				p = subprocess.run(['mypy', test_qflag_fname],
+								   stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+				error_msg += p.stdout
 				gen_result = QFlagGenResult.ErrorDuringProcessing
 				log_progress('Restoring module content')
 				with open(flag_info.module_info[0][1], 'w') as f:
 					f.write(old_mod_content)
+				os.unlink(test_qflag_fname)
 			else:
 				log_progress('validation completed successfully')
 				result_json['qflag_processed_done'].append(flag_info_dict)
