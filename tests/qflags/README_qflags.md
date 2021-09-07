@@ -47,16 +47,14 @@ With human verification, you can add more QFlags to the qflags_to_process.json f
 ### Generate and test the new stubs
 
 Run:
-    python generate_qflags_stubs_and_tests.py gen_qflag_stub 5
+    python generate_qflags_stubs_and_tests.py gen_qflag_stub 5 --auto-commit
 
 This will process 5 QFlags from qflags_to_process.json . The result of the processing is:
 * the file qflags_process_result.json is updated
 * when the generation and test is successful:
     ** the qt module is updated
     ** a new test file is added in the format test_<qtmodule>_<qflag>.py
-    ** the new test file and the module are staged in git
-
-Now, you can manually perform the git commit.
+    ** a git commit with the test file and updated module is performed (only if you specifed --auto-commit)
 
 ## Conclusion
 

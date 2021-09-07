@@ -311,7 +311,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
 				result_json['qflag_processed_done'].append(flag_info_dict)
 
 				if auto_commit:
-					log_progress('Staging changes to git')
+					log_progress('Performing git commit')
 					subprocess.run(['git', 'add', test_qflag_fname, flag_info.module_info[0][1]])
 					subprocess.run(['git', 'commit', '-m', 'QFlag operations for %s, %s in module %s' %
 						  (flag_info.qflag_full_class_name, flag_info.enum_full_class_name, flag_info.module_info[0][0])])
