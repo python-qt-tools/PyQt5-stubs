@@ -11,6 +11,10 @@ MultiFlagClass = QtCore.Qt.WindowFlags
 
 oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
 oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+
+OR_CONVERTS_TO_MULTI = True
+OR_INT_CONVERTS_TO_MULTI = False
+INT_OR_CONVERTS_TO_MULTI = True
 ### End of specific part
 
 T = TypeVar('T')
@@ -52,20 +56,30 @@ def test_on_one_flag_class() -> None:
 	# 2. everything else returns int: & ^ &= ^=
 	# 3. operations with int return int.
 
-	assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
+	if OR_CONVERTS_TO_MULTI:
+		assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
+	else:
+		assert_type_of_value(int, oneFlagValue1 | oneFlagValue2)
+
 	assert_type_of_value(int, ~oneFlagValue1)
 	assert_type_of_value(int, oneFlagValue1 & oneFlagValue2)
 	assert_type_of_value(int, oneFlagValue1 ^ oneFlagValue2)
 
 	# right operand
-	assert_type_of_value(int, oneFlagValue1 | 33)
+	if OR_INT_CONVERTS_TO_MULTI:
+		assert_type_of_value(MultiFlagClass, oneFlagValue1 | 33)
+	else:
+		assert_type_of_value(int, oneFlagValue1 | 33)
 	assert_type_of_value(int, oneFlagValue1 & 33)
 	assert_type_of_value(int, oneFlagValue1 ^ 33)
 	assert_type_of_value(int, oneFlagValue1 + 33)
 	assert_type_of_value(int, oneFlagValue1 - 33)
 
 	# left operand
-	assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
+	if INT_OR_CONVERTS_TO_MULTI:
+		assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
+	else:
+		assert_type_of_value(int, 33 | oneFlagValue1)
 	assert_type_of_value(int, 33 & oneFlagValue1)
 	assert_type_of_value(int, 33 ^ oneFlagValue1)
 	assert_type_of_value(int, 33 + oneFlagValue1)
@@ -74,12 +88,18 @@ def test_on_one_flag_class() -> None:
 	oneOrMultiFlagValueTest = oneFlagValue1	# reset type and value
 	assert_type_of_value(OneFlagClass, oneOrMultiFlagValueTest)
 	oneOrMultiFlagValueTest |= oneFlagValue2
-	assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)	# nice violation of Liskov principle here
+	if OR_CONVERTS_TO_MULTI:
+		assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)   # nice violation of Liskov principle here
+	else:
+		assert_type_of_value(int, oneOrMultiFlagValueTest)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
 	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
 	oneFlagOrIntValue |= 33
-	assert_type_of_value(int, oneFlagOrIntValue)
+	if OR_INT_CONVERTS_TO_MULTI:
+		assert_type_of_value(MultiFlagClass, oneFlagOrIntValue)
+	else:
+		assert_type_of_value(int, oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
 	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)

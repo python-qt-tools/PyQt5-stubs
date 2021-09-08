@@ -837,6 +837,10 @@ MultiFlagClass = {qtmodule}.{multiFlagName}
 
 oneFlagRefValue1 = {qtmodule}.{oneFlagName}.{oneFlagValue1}
 oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
+
+OR_CONVERTS_TO_MULTI = True
+OR_INT_CONVERTS_TO_MULTI = False
+INT_OR_CONVERTS_TO_MULTI = True
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
            multiFlagName=flag_info.qflag_full_class_name,
            oneFlagName=flag_info.enum_full_class_name,
