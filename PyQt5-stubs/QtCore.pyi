@@ -2537,9 +2537,10 @@ class Qt(sip.simplewrapper):
     TextJustificationForced = ...  # type: Qt.TextFlag
 
     class AlignmentFlag(int):
-        def __or__ (self, other: 'Qt.AlignmentFlag') -> 'Qt.Alignment': ...  # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.Alignment': ...             # type: ignore[override, misc]
+        def __or__ (self, other: 'Qt.AlignmentFlag') -> 'Qt.Alignment': ...    # type: ignore[override]
+        def __ror__ (self, other: int) -> 'Qt.Alignment': ...                  # type: ignore[override, misc]
 
+        
         AlignLeft = ... # type: Qt.AlignmentFlag
         AlignLeading = ... # type: Qt.AlignmentFlag
         AlignRight = ... # type: Qt.AlignmentFlag
@@ -2833,6 +2834,8 @@ class Qt(sip.simplewrapper):
         def __init__(self, f: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int]) -> None: ...
         @typing.overload
         def __init__(self, a0: 'Qt.Alignment') -> None: ...
+        @typing.overload
+        def __init__(self, f: int) -> None: ...
 
         def __hash__(self) -> int: ...
         def __bool__(self) -> int: ...
