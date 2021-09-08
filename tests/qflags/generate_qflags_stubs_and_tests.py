@@ -354,7 +354,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
     if gen_result == QFlagGenResult.ErrorDuringProcessing:
         log_progress('Error during processing of QFlag %s %s' % (flag_info.qflag_class,
                                                               flag_info.enum_class))
-        flag_info_dict['error'] = flag_info_dict.get('error', '') + error_msg
+        flag_info_dict['error'] = error_msg.splitlines()
         result_json['qflag_process_error'].append(flag_info_dict)
 
     # save our processing result
@@ -362,6 +362,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
         json.dump(result_json, f, indent=4)
 
     # return True to indicate that more flags may be processed
+    log_progress('.')
     return True
 
 
