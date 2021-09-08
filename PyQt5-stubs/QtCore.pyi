@@ -771,6 +771,7 @@ class Qt(sip.simplewrapper):
     class InputMethodQuery(int):
         def __or__ (self, other: 'Qt.InputMethodQuery') -> 'Qt.InputMethodQueries': ...    # type: ignore[override]
         def __ror__ (self, other: int) -> 'Qt.InputMethodQueries': ...                     # type: ignore[override, misc]
+
         
         ImMicroFocus = ... # type: Qt.InputMethodQuery
         ImFont = ... # type: Qt.InputMethodQuery
