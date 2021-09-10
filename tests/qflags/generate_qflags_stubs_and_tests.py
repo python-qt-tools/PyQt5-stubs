@@ -293,6 +293,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
 
     # check that the qflag is actually in the module
     gen_result, error_msg, old_mod_content = generate_missing_stubs(flag_info)
+    flag_info_dict = dataclasses.asdict(flag_info)
     test_qflag_fname = gen_test_fname(flag_info)
 
     # Note that flag_info has been modified in-place with additional info:
@@ -441,6 +442,13 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
                                  flag_info.module_count, flag_info.module_idx)
     mod_cst.visit(visitor)
 
+    # storing the enum_values + full class name for further usage
+    flag_info.enum_full_class_name = visitor.enum_class_full_name
+    flag_info.enum_value1 = visitor.enum_value1
+    flag_info.enum_value2 = visitor.enum_value2
+    flag_info.qflag_full_class_name = visitor.qflag_class_full_name
+
+
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
         return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
 
@@ -453,14 +461,6 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     if visitor.error_msg:
         return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg, '')
 
-    assert visitor.enum_methods_present == MethodPresent.Not
-    assert visitor.qflag_method_present == MethodPresent.Not
-
-    # storing the enum_values for further usage
-    flag_info.enum_full_class_name = visitor.enum_class_full_name
-    flag_info.enum_value1 = visitor.enum_value1
-    flag_info.enum_value2 = visitor.enum_value2
-    flag_info.qflag_full_class_name = visitor.qflag_class_full_name
     log_progress('Found %s and %s' % (flag_info.qflag_full_class_name, flag_info.enum_full_class_name))
 
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
