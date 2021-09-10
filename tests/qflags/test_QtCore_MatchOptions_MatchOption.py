@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
+# file generated from qflags_test_template.py for QFlags class "QRegularExpression.MatchOptions" and flag class "QRegularExpression.MatchOption"
 from PyQt5 import QtCore
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtCore.QRegularExpression.MatchOption
+MultiFlagClass = QtCore.QRegularExpression.MatchOptions
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtCore.QRegularExpression.MatchOption.NoMatchOption
+oneFlagRefValue2 = QtCore.QRegularExpression.MatchOption.AnchoredMatchOption
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False

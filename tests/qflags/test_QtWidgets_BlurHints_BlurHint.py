@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
-from PyQt5 import QtCore
+# file generated from qflags_test_template.py for QFlags class "QGraphicsBlurEffect.BlurHints" and flag class "QGraphicsBlurEffect.BlurHint"
+from PyQt5 import QtWidgets
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtWidgets.QGraphicsBlurEffect.BlurHint
+MultiFlagClass = QtWidgets.QGraphicsBlurEffect.BlurHints
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtWidgets.QGraphicsBlurEffect.BlurHint.PerformanceHint
+oneFlagRefValue2 = QtWidgets.QGraphicsBlurEffect.BlurHint.QualityHint
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False

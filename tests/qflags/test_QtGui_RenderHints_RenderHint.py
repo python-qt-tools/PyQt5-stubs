@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
-from PyQt5 import QtCore
+# file generated from qflags_test_template.py for QFlags class "QPainter.RenderHints" and flag class "QPainter.RenderHint"
+from PyQt5 import QtGui
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtGui.QPainter.RenderHint
+MultiFlagClass = QtGui.QPainter.RenderHints
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtGui.QPainter.RenderHint.Antialiasing
+oneFlagRefValue2 = QtGui.QPainter.RenderHint.TextAntialiasing
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False

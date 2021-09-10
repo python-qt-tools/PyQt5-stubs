@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
-from PyQt5 import QtCore
+# file generated from qflags_test_template.py for QFlags class "QAbstractSocket.BindMode" and flag class "QAbstractSocket.BindFlag"
+from PyQt5 import QtNetwork
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtNetwork.QAbstractSocket.BindFlag
+MultiFlagClass = QtNetwork.QAbstractSocket.BindMode
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtNetwork.QAbstractSocket.BindFlag.DefaultForPlatform
+oneFlagRefValue2 = QtNetwork.QAbstractSocket.BindFlag.ShareAddress
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False

@@ -2,19 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
+# file generated from qflags_test_template.py for QFlags class "QStandardPaths.LocateOptions" and flag class "QStandardPaths.LocateOption"
 from PyQt5 import QtCore
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtCore.QStandardPaths.LocateOption
+MultiFlagClass = QtCore.QStandardPaths.LocateOptions
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
-
-OR_CONVERTS_TO_MULTI = True
-OR_INT_CONVERTS_TO_MULTI = False
-INT_OR_CONVERTS_TO_MULTI = True
+oneFlagRefValue1 = QtCore.QStandardPaths.LocateOption.LocateFile
+oneFlagRefValue2 = QtCore.QStandardPaths.LocateOption.LocateDirectory
 ### End of specific part
 
 T = TypeVar('T')
@@ -56,30 +51,20 @@ def test_on_one_flag_class() -> None:
 	# 2. everything else returns int: & ^ &= ^=
 	# 3. operations with int return int.
 
-	if OR_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
-	else:
-		assert_type_of_value(int, oneFlagValue1 | oneFlagValue2)
-
+	assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
 	assert_type_of_value(int, ~oneFlagValue1)
 	assert_type_of_value(int, oneFlagValue1 & oneFlagValue2)
 	assert_type_of_value(int, oneFlagValue1 ^ oneFlagValue2)
 
 	# right operand
-	if OR_INT_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneFlagValue1 | 33)
-	else:
-		assert_type_of_value(int, oneFlagValue1 | 33)
+	assert_type_of_value(int, oneFlagValue1 | 33)
 	assert_type_of_value(int, oneFlagValue1 & 33)
 	assert_type_of_value(int, oneFlagValue1 ^ 33)
 	assert_type_of_value(int, oneFlagValue1 + 33)
 	assert_type_of_value(int, oneFlagValue1 - 33)
 
 	# left operand
-	if INT_OR_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
-	else:
-		assert_type_of_value(int, 33 | oneFlagValue1)
+	assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
 	assert_type_of_value(int, 33 & oneFlagValue1)
 	assert_type_of_value(int, 33 ^ oneFlagValue1)
 	assert_type_of_value(int, 33 + oneFlagValue1)
@@ -88,18 +73,12 @@ def test_on_one_flag_class() -> None:
 	oneOrMultiFlagValueTest = oneFlagValue1	# reset type and value
 	assert_type_of_value(OneFlagClass, oneOrMultiFlagValueTest)
 	oneOrMultiFlagValueTest |= oneFlagValue2
-	if OR_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)   # nice violation of Liskov principle here
-	else:
-		assert_type_of_value(int, oneOrMultiFlagValueTest)
+	assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)	# nice violation of Liskov principle here
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
 	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
 	oneFlagOrIntValue |= 33
-	if OR_INT_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneFlagOrIntValue)
-	else:
-		assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value(int, oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
 	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)

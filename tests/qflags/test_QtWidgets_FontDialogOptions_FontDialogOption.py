@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
-from PyQt5 import QtCore
+# file generated from qflags_test_template.py for QFlags class "QFontDialog.FontDialogOptions" and flag class "QFontDialog.FontDialogOption"
+from PyQt5 import QtWidgets
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtWidgets.QFontDialog.FontDialogOption
+MultiFlagClass = QtWidgets.QFontDialog.FontDialogOptions
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtWidgets.QFontDialog.FontDialogOption.NoButtons
+oneFlagRefValue2 = QtWidgets.QFontDialog.FontDialogOption.DontUseNativeDialog
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False

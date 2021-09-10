@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
-from PyQt5 import QtCore
+# file generated from qflags_test_template.py for QFlags class "QTextDocument.FindFlags" and flag class "QTextDocument.FindFlag"
+from PyQt5 import QtGui
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtGui.QTextDocument.FindFlag
+MultiFlagClass = QtGui.QTextDocument.FindFlags
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtGui.QTextDocument.FindFlag.FindBackward
+oneFlagRefValue2 = QtGui.QTextDocument.FindFlag.FindCaseSensitively
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False

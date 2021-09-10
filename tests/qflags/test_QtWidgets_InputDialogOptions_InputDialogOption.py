@@ -2,15 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# This file is used as a source to generate all qflags related tests. The specific part
-# changes for each test but the rest of the file is totally identical
-from PyQt5 import QtCore
+# file generated from qflags_test_template.py for QFlags class "QInputDialog.InputDialogOptions" and flag class "QInputDialog.InputDialogOption"
+from PyQt5 import QtWidgets
 
-OneFlagClass = QtCore.Qt.WindowType
-MultiFlagClass = QtCore.Qt.WindowFlags
+OneFlagClass = QtWidgets.QInputDialog.InputDialogOption
+MultiFlagClass = QtWidgets.QInputDialog.InputDialogOptions
 
-oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
-oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
+oneFlagRefValue1 = QtWidgets.QInputDialog.InputDialogOption.NoButtons
+oneFlagRefValue2 = QtWidgets.QInputDialog.InputDialogOption.UseListViewForComboBoxItems
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False
