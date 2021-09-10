@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#138](https://github.com/python-qt-tools/PyQt5-stubs/pull/138) update to PyQt5 5.15.3
 * [#144](https://github.com/python-qt-tools/PyQt5-stubs/pull/144) add `QTreeWidgetItem.__lt__()` to allow sorting of items in a QTreeWidget
 
+### Changed
+* [#152](https://github.com/python-qt-tools/PyQt5-stubs/pull/152) `.__or__()` for `QDialogButtonBox.StandardButton` and `QDialogButtonBox.StandardButtons`
+
 ## 5.15.2.0
 
 ### Added
