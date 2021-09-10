@@ -2,14 +2,14 @@ from typing import Union, TypeVar, Type
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QFileDialog.Options" and flag class "QFileDialog.Option"
+# file generated from qflags_test_template.py for QFlags class "QFileIconProvider.Options" and flag class "QFileIconProvider.Option"
 from PyQt5 import QtWidgets
 
-OneFlagClass = QtWidgets.QFileDialog.Option
-MultiFlagClass = QtWidgets.QFileDialog.Options
+OneFlagClass = QtWidgets.QFileIconProvider.Option
+MultiFlagClass = QtWidgets.QFileIconProvider.Options
 
-oneFlagRefValue1 = QtWidgets.QFileDialog.Option.ShowDirsOnly
-oneFlagRefValue2 = QtWidgets.QFileDialog.Option.DontResolveSymlinks
+oneFlagRefValue1 = QtWidgets.QFileIconProvider.Option.DontUseCustomDirectoryIcons
+oneFlagRefValue2 = QtWidgets.QFileIconProvider.Option.DontUseCustomDirectoryIcons
 
 OR_CONVERTS_TO_MULTI = True
 OR_INT_CONVERTS_TO_MULTI = False
