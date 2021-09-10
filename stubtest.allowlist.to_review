@@ -24,3 +24,5 @@ PyQt5.QtTest.QAbstractItemModelTester.FailureReportingMode.__new__
 PyQt5.QtWebEngineCore.QWebEngineUrlScheme.Syntax.__new__
 PyQt5.QtWebEngineWidgets.QWebEnginePage.LifecycleState.__new__
 PyQt5.QtWidgets.QActionGroup.ExclusionPolicy.__new__
+PyQt5.QtCore.pyqtProperty
+PyQt5.QtQml.QQmlListProperty
