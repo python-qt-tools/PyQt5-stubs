@@ -9,7 +9,7 @@ TESTS_DIR = Path(__file__).parent
 def gen_tests():
     '''List of all tests files included in the directory tests'''
     for filename in TESTS_DIR.glob('*.py'):
-        if not str(filename).startswith('test_'):
+        if not str(filename.parts[-1]).startswith('test_'):
             yield filename
 
 def gen_abs_qflags_tests():
