@@ -355,6 +355,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
     if gen_result == QFlagGenResult.ErrorDuringProcessing:
         log_progress('Error during processing of QFlag %s %s' % (flag_info.qflag_class,
                                                               flag_info.enum_class))
+        print(error_msg)
         flag_info_dict['error'] = error_msg.splitlines()
         result_json['qflag_process_error'].append(flag_info_dict)
 
@@ -467,6 +468,9 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
                                       visitor.qflag_class_name, visitor.qflag_class_full_name, flag_info.module_idx)
     updated_mod_cst = mod_cst.visit(transformer)
+
+    if transformer.error_msg:
+        return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg, '')
 
     log_progress('Saving updated module %s' % flag_info.module_name)
     with open(flag_info.module_path, 'w') as f:
@@ -741,7 +745,11 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
                 if nb_init_found == len(init_methods):
                     last_init_idx = i
                     break
-        assert last_init_idx != 0
+
+        if last_init_idx == 0:
+            self.error_msg += 'No __init__ method found in class %s' % self.qflag_full_name
+            return updated_node
+
 
         cst_init = cst.parse_statement( '@typing.overload\ndef __init__(self, f: int) -> None: ...' )
         updated_node = updated_node.with_changes(body=updated_node.body.with_changes(body=
