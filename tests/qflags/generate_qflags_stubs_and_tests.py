@@ -449,6 +449,11 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.enum_value2 = visitor.enum_value2
     flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
+    if visitor.enum_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
+
+    if visitor.qflag_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.qflag_class_name, '')
 
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
         return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
@@ -534,14 +539,14 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         if node.name.value == self.enum_class_name:
             self.visit_enum_idx += 1
             if self.visit_enum_idx > self.module_count:
-                self.error_msg = 'class %s found too times: %d\n' % (self.enum_class_name, self.visit_enum_idx)
+                self.error_msg = 'class %s found too many times: %d\n' % (self.enum_class_name, self.visit_enum_idx)
                 return None
 
             if self.visit_enum_idx == self.module_idx:
                 # we found the index we are looking for
-                self.enum_class_full_name = '.'.join(self.full_name_stack)
-                self.check_enum_method_present(node)
-                self.collect_enum_values(node)
+                if self.check_enum_method_present(node):
+                    self.enum_class_full_name = '.'.join(self.full_name_stack)
+                    self.collect_enum_values(node)
                 return None
 
         elif node.name.value == self.qflag_class_name:
@@ -552,19 +557,19 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 
             if self.visit_qflag_idx == self.module_idx:
                 # we found the index we are looking for
-                self.qflag_class_full_name = '.'.join(self.full_name_stack)
-                self.check_qflag_method_present(node)
+                if self.check_qflag_method_present(node):
+                    self.qflag_class_full_name = '.'.join(self.full_name_stack)
                 return None
 
         return None
 
 
-    def check_enum_method_present(self, enum_node: cst.ClassDef) -> None:
+    def check_enum_method_present(self, enum_node: cst.ClassDef) -> bool:
         '''Check if the class contains method __or__ and __ror__ with one argument and if class
         inherit from int'''
         if len(enum_node.bases) == 0 or enum_node.bases[0].value.value != 'int':
-            self.error_msg += 'Class %s does not inherit from int\n' % self.enum_class_full_name
-            return
+            # class does not inherit from int, not the one we are looking for
+            return False
         has_or = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__or__')))
         has_ror = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__ror__')))
         self.enum_methods_present = {
@@ -580,6 +585,8 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
                 args = ('__ror__', '__or__')
 
             self.error_msg += 'class %s, method %s present without method %s\n' % ((self.enum_class_full_name,)+args)
+
+        return True
 
 
     def collect_enum_values(self, enum_node: cst.ClassDef) -> None:
@@ -600,7 +607,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
             self.enum_value2 = self.enum_value1
 
 
-    def check_qflag_method_present(self, qflag_node: cst.ClassDef) -> None:
+    def check_qflag_method_present(self, qflag_node: cst.ClassDef) -> bool:
         '''Check if the class contains method:
         def __or__
         def __and__
@@ -614,6 +621,16 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier']) -> None:
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None:
         '''
+        if (len(qflag_node.bases) == 0
+            or not matchers.matches(qflag_node.bases[0],
+                                matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
+                                                                      attr=matchers.Name('simplewrapper')
+                                                                      )
+                                             )
+                                )
+            ):
+            # 'Class does not inherit from sip.simplewrapper'
+            return False
 
         has_method = [
             (m, matchers.findall(qflag_node.body, matchers.FunctionDef(name=matchers.Name(m))))
@@ -623,12 +640,12 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         if all(has_info[1] for has_info in has_method):
             # all method presents
             self.qflag_method_present = MethodPresent.All
-            return
+            return True
 
         if all(not has_info[1] for has_info in has_method):
             # all method absent
             self.qflag_method_present = MethodPresent.Not
-            return
+            return True
 
         self.qflag_method_present = MethodPresent.Partial
 
@@ -639,6 +656,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
             else:
                 self.error_msg += 'class %s, method %s missing\n' \
                                   % ((self.qflag_class_full_name, m_name))
+        return True
 
 
     def visit_FunctionDef(self, node: cst.FunctionDef) -> Optional[bool]:
