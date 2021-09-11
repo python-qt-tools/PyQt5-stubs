@@ -34,12 +34,9 @@ def test_stubs(filename: Path) -> None:
     assert exitcode == 0
 
 
-@pytest.mark.parametrize('filename',
-                         list(gen_abs_qflags_tests()),
-                         ids=[v.parts[-1] for v in gen_abs_qflags_tests()])
-def test_stubs_qflags(filename: Path) -> None:
+def test_stubs_qflags() -> None:
     """Run mypy over qflags files."""
-    stdout, stderr, exitcode = api.run([str(filename)])
+    stdout, stderr, exitcode = api.run([str(f) for f in gen_abs_qflags_tests()])
     if stdout:
         print(stdout)
     if stderr:
