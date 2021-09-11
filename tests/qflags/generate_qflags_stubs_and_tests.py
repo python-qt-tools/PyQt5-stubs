@@ -221,7 +221,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
         json.dump(result, f, indent=4)
 
 
-def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commit: bool) -> bool:
+def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commit: bool) -> int:
     '''Read the qflags to process from the json file
 
     Process one qflag, by either:
@@ -237,7 +237,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
 
     * auto_commit: if True, a git commit is performed after each successful QFlag validation
 
-    Return True when all flags have been processed
+    Return number of remaining flags to process (0 when everything done)
     '''
     with open(qflag_to_process_json) as f:
         d = json.load(f)
@@ -286,7 +286,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
             break
     else:
         # we have exhausted the list of qflag to process
-        return False
+        return 0
 
     log_progress('Processing %s and %s in module %s, index %d' %
              (flag_info.qflag_class, flag_info.enum_class, flag_info.module_name, flag_info.module_idx))
@@ -364,7 +364,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
 
     # return True to indicate that more flags may be processed
     log_progress('.')
-    return True
+    return len(qflags_to_process)
 
 
 
@@ -891,10 +891,12 @@ if __name__ == '__main__':
 
         qflags_to_process_json = 'qflags_to_process.json'
         qflag_result_json = 'qflags_process_result.json'
-        more_available = True
-        while (nb > 0 or process_all) and more_available:
+        more_available = -1
+        while (nb > 0 or process_all) and (more_available == -1 or more_available > 0):
             nb -= 1
             more_available = process_qflag(qflags_to_process_json, qflag_result_json, auto_commit)
+            if more_available:
+                log_progress('Still %d flags to process' % more_available)
 
     elif sys.argv[1] == 'analyse_grep_results':
         if len(sys.argv) <= 2:
