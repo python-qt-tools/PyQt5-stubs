@@ -57,6 +57,10 @@ class QFlagLocationInfo:
     qflag_class: str
     enum_class: str
 
+    # sometimes, human help is needed to identify a qflag/enum pair
+    human_hint_qflag_full_class_name: str = ''
+    human_hint_enum_full_class_name: str = ''
+
     # one or more grep lines where this qflag name has been found
     grep_line: Tuple[str] = dataclasses.field(default_factory=tuple)
 
@@ -439,8 +443,13 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Looking for class %s and %s in module %s, index %d' %
                  (flag_info.qflag_class, flag_info.enum_class, flag_info.module_name, flag_info.module_idx))
+    if len(flag_info.human_hint_enum_full_class_name) and len(flag_info.human_hint_qflag_full_class_name):
+        log_progress('Using hints: %s and %s' % (flag_info.human_hint_enum_full_class_name, flag_info.human_hint_qflag_full_class_name))
     visitor = QFlagAndEnumFinder(flag_info.enum_class, flag_info.qflag_class,
-                                 flag_info.module_count, flag_info.module_idx)
+                                 flag_info.module_count, flag_info.module_idx,
+                                 flag_info.human_hint_enum_full_class_name,
+                                 flag_info.human_hint_qflag_full_class_name,
+                                 )
     mod_cst.visit(visitor)
 
     # storing the enum_values + full class name for further usage
@@ -471,7 +480,8 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
-                                      visitor.qflag_class_name, visitor.qflag_class_full_name, flag_info.module_idx)
+                                      visitor.qflag_class_name, visitor.qflag_class_full_name, flag_info.module_idx,
+                                      flag_info.human_hint_enum_full_class_name, flag_info.human_hint_qflag_full_class_name)
     updated_mod_cst = mod_cst.visit(transformer)
 
     if transformer.error_msg:
@@ -495,7 +505,10 @@ class MethodPresent(Enum):
 class QFlagAndEnumFinder(cst.CSTVisitor):
 
     def __init__(self, enum_class: str, qflag_class: str,
-                 module_count: int, module_idx: int) -> None:
+                 module_count: int, module_idx: int,
+                 human_hint_enum_full_class_name: str = '',
+                 human_hint_qflag_full_class_name: str = '',
+                 ) -> None:
         super().__init__()
 
         # used internally to generate the full class name
@@ -504,6 +517,17 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         # the class name we are looking for
         self.enum_class_name = enum_class
         self.qflag_class_name = qflag_class
+
+        # human help for finding the class
+        if human_hint_enum_full_class_name:
+            self.human_hint_enum_full_class_name = human_hint_enum_full_class_name.split('.')
+        else:
+            self.human_hint_enum_full_class_name = ''
+
+        if human_hint_qflag_full_class_name:
+            self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name.split('.')
+        else:
+            self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name
 
         # the number of expected occurences in this module of this flag
         self.module_count = module_count
@@ -538,12 +562,20 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         self.full_name_stack.append( node.name.value )
         if node.name.value == self.enum_class_name:
             self.visit_enum_idx += 1
-            if self.visit_enum_idx > self.module_count:
-                self.error_msg = 'class %s found too many times: %d\n' % (self.enum_class_name, self.visit_enum_idx)
-                return None
+            found_enum_class = False
+            if self.human_hint_enum_full_class_name:
+                if self.human_hint_enum_full_class_name == self.full_name_stack:
+                    found_enum_class = True
+            else:
+                if self.visit_enum_idx > self.module_count:
+                    self.error_msg = 'class %s found too many times: %d\n' % (self.enum_class_name, self.visit_enum_idx)
+                    return None
 
-            if self.visit_enum_idx == self.module_idx:
-                # we found the index we are looking for
+                if self.visit_enum_idx == self.module_idx:
+                    # we found the index we are looking for
+                    found_enum_class = True
+
+            if found_enum_class:
                 if self.check_enum_method_present(node):
                     self.enum_class_full_name = '.'.join(self.full_name_stack)
                     self.collect_enum_values(node)
@@ -551,12 +583,20 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 
         elif node.name.value == self.qflag_class_name:
             self.visit_qflag_idx += 1
-            if self.visit_qflag_idx > self.module_count:
-                self.error_msg = 'class %s found too times: %d\n' % (self.qflag_class_name, self.visit_qflag_idx)
-                return None
+            found_qflag_class = False
+            if self.human_hint_qflag_full_class_name:
+                if self.human_hint_qflag_full_class_name == self.full_name_stack:
+                    found_qflag_class = True
+            else:
+                if self.visit_qflag_idx > self.module_count:
+                    self.error_msg = 'class %s found too times: %d\n' % (self.qflag_class_name, self.visit_qflag_idx)
+                    return None
 
-            if self.visit_qflag_idx == self.module_idx:
-                # we found the index we are looking for
+                if self.visit_qflag_idx == self.module_idx:
+                    # we found the index we are looking for
+                    found_qflag_class = True
+
+            if found_qflag_class:
                 if self.check_qflag_method_present(node):
                     self.qflag_class_full_name = '.'.join(self.full_name_stack)
                 return None
@@ -673,8 +713,13 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 class QFlagAndEnumUpdater(cst.CSTTransformer):
 
     def __init__(self, enum_class: str, enum_full_name: str, qflag_class: str, qflag_full_name: str,
-                 module_idx: int) -> None:
+                 module_idx: int,
+                 human_hint_enum_full_class_name: str,
+                 human_hint_qflag_full_class_name: str) -> None:
         super().__init__()
+
+        # used internally to generate the full class name
+        self.full_name_stack: List[str] = []
 
         self.error_msg = ''
 
@@ -683,6 +728,10 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         self.qflag_class = qflag_class
         self.enum_full_name = enum_full_name
         self.qflag_full_name = qflag_full_name
+
+        # human help for finding the class
+        self.human_hint_enum_full_class_name = human_hint_enum_full_class_name.split('.')
+        self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name.split('.')
 
         # the index in this module of the  class we are looking for
         self.module_idx = module_idx
@@ -694,16 +743,47 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         # set when enum_methods_present is set to partial, to add more contect information
         self.error_msg = ''
 
+    def visit_ClassDef(self, node: cst.ClassDef) -> Optional[bool]:
+        self.full_name_stack.append( node.name.value )
+        return None
+
+    def visit_FunctionDef(self, node: cst.FunctionDef) -> Optional[bool]:
+        self.full_name_stack.append( node.name.value )
+        return None
+
+    def leave_FunctionDef(self, node: cst.FunctionDef, updated_node: cst.FunctionDef) -> cst.FunctionDef:
+        self.full_name_stack.pop()
+        return updated_node
 
     def leave_ClassDef(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
-        if original_node.name.value == self.enum_class:
-            self.visit_enum_idx += 1
-            if self.visit_enum_idx == self.module_idx:
-                return self.transform_enum_class(original_node, updated_node)
-        elif original_node.name.value == self.qflag_class:
+        found_enum_class = False
+        found_qflag_class = False
+
+        if self.human_hint_enum_full_class_name:
+            if self.human_hint_enum_full_class_name == self.full_name_stack:
+                found_enum_class = True
+        else:
+            if original_node.name.value == self.enum_class:
+                self.visit_enum_idx += 1
+                if self.visit_enum_idx == self.module_idx:
+                    found_enum_class = True
+
+        if self.human_hint_qflag_full_class_name:
+            if self.human_hint_qflag_full_class_name == self.full_name_stack:
+                found_qflag_class = True
+        else:
             self.visit_qflag_idx += 1
             if self.visit_qflag_idx == self.module_idx:
-                return self.transform_qflag_class(original_node, updated_node)
+                found_qflag_class = True
+
+        self.full_name_stack.pop()
+
+        if found_enum_class:
+            return self.transform_enum_class(original_node, updated_node)
+
+        if found_qflag_class:
+            return self.transform_qflag_class(original_node, updated_node)
+
         return updated_node
 
 
