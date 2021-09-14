@@ -8,6 +8,8 @@ import sys
 import subprocess
 from enum import Enum
 
+from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
+                   QtPrintSupport, QtSql, QtTest, QtXml)
 try:
     import libcst as cst
     import libcst.matchers as matchers
@@ -79,6 +81,12 @@ class QFlagLocationInfo:
     # module name and path
     module_name: str = ''
     module_path: str = ''
+
+    # specific behavior of some QFlag classes varies slightly
+    # this helps to define the exact behavior
+    or_converts_to_multi = True
+    or_int_converts_to_multi = False
+    int_or_converts_to_multi = True
 
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
@@ -478,10 +486,19 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Found %s and %s' % (flag_info.qflag_full_class_name, flag_info.enum_full_class_name))
 
+    # evaluate exact behavior of QFlag
+    flag_info.or_converts_to_multi = 'int' != eval('''type({value1} | {value2})'''.format(value1=flag_info.enum_value1, value2=flag_info.value2))
+    flag_info.or_int_converts_to_multi = 'int' != eval('''type({value1} | 33)'''.format(value1=flag_info.enum_value1))
+    flag_info.int_or_converts_to_multi = 'int' != eval('''type(33 | {value1})'''.format(value1=flag_info.enum_value1))
+
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
                                       visitor.qflag_class_name, visitor.qflag_class_full_name, flag_info.module_idx,
-                                      flag_info.human_hint_enum_full_class_name, flag_info.human_hint_qflag_full_class_name)
+                                      flag_info.human_hint_enum_full_class_name,
+                                      flag_info.human_hint_qflag_full_class_name,
+                                      flag_info.or_converts_to_multi,
+                                      flag_info.or_int_converts_to_multi,
+                                      flag_info.int_or_converts_to_multi)
     updated_mod_cst = mod_cst.visit(transformer)
 
     if transformer.error_msg:
@@ -715,7 +732,10 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
     def __init__(self, enum_class: str, enum_full_name: str, qflag_class: str, qflag_full_name: str,
                  module_idx: int,
                  human_hint_enum_full_class_name: str,
-                 human_hint_qflag_full_class_name: str) -> None:
+                 human_hint_qflag_full_class_name: str,
+                 or_converts_to_multi: bool,
+                 or_int_converts_to_multi: bool,
+                 int_or_converts_to_multi: bool) -> None:
         super().__init__()
 
         # used internally to generate the full class name
@@ -739,6 +759,10 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         # our current count of visit
         self.visit_enum_idx = -1
         self.visit_qflag_idx = -1
+
+        self.or_converts_to_multi = or_converts_to_multi
+        self.or_int_converts_to_multi = or_int_converts_to_multi
+        self.int_or_converts_to_multi = int_or_converts_to_multi
 
         # set when enum_methods_present is set to partial, to add more contect information
         self.error_msg = ''
@@ -791,10 +815,25 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         '''Add the two methods __or__ and __ror__ to the class body'''
 
         # we keep comments separated to align them properly in the final file
-        new_methods_parts = (
-            ("def __or__ (self, other: '{enum}') -> '{qflag}': ...", "# type: ignore[override]\n"),
-            ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
-        )
+        or_behavior = (self.or_converts_to_multi, self.or_int_converts_to_multi, self.int_or_converts_to_multi)
+        if or_behavior == (True, False, True):
+            new_methods_parts = (
+                ("def __or__ (self, other: '{enum}') -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+            )
+        elif or_behavior == (True, True, True):
+            new_methods_parts = (
+                ("def __or__ (self, other: typing.Union[int, '{enum}]') -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+            )
+        elif or_behavior == (False, False, False):
+            new_methods_parts = (
+                ("def __or__ (self, other: '{enum}') -> int: ...", "\n"),
+                ("def __ror__ (self, other: int) -> int: ...", "\n\n")
+            )
+        else:
+            raise ValueError('Unsupported or behavior:', or_behavior)
+
 
         # fill the class names
         new_methods_filled = tuple(
