@@ -1,4 +1,4 @@
-from typing import Union, TypeVar, Type
+from typing import Union, TypeVar, Type, Literal
 import pytest
 
 ### Specific part
@@ -12,15 +12,23 @@ MultiFlagClass = QtCore.Qt.WindowFlags
 oneFlagRefValue1 = QtCore.Qt.WindowContextHelpButtonHint
 oneFlagRefValue2 = QtCore.Qt.WindowMaximizeButtonHint
 
-OR_CONVERTS_TO_MULTI = True
-OR_INT_CONVERTS_TO_MULTI = False
-INT_OR_CONVERTS_TO_MULTI = True
+OR_CONVERTS_TO_MULTI: Literal[True] = True
+OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
+INT_OR_CONVERTS_TO_MULTI: Literal[True] = True
 ### End of specific part
 
-T = TypeVar('T')
-def assert_type_of_value(expected_type: Type[T], value: T) -> None:
+def assert_type_of_value_int(value: int) -> None:
 	'''Raise an exception if the value is not of type expected_type'''
-	assert type(value) == expected_type
+	assert isinstance(value, int)
+
+def assert_type_of_value_oneFlag(value: OneFlagClass) -> None:
+	'''Raise an exception if the value is not of type expected_type'''
+	assert type(value) == OneFlagClass
+
+def assert_type_of_value_multiFlag(value: MultiFlagClass) -> None:
+	'''Raise an exception if the value is not of type expected_type'''
+	assert type(value) == MultiFlagClass
+
 
 
 def test_on_one_flag_class() -> None:
@@ -30,12 +38,6 @@ def test_on_one_flag_class() -> None:
 	intValue = 0                    # type: int
 	oneOrMultiFlagValueTest = oneFlagValue1		# type: Union[OneFlagClass, MultiFlagClass]
 	oneFlagOrIntValue = oneFlagValue1	# type: Union[int, OneFlagClass]
-
-	assert_type_of_value(OneFlagClass, oneFlagValue1)
-	assert_type_of_value(OneFlagClass, oneFlagValue2)
-	assert_type_of_value(OneFlagClass, oneFlagValueTest)
-	assert_type_of_value(int, intValue)
-
 
 	# upcast from OneFlagClass to int
 	intValue = oneFlagValue1
@@ -57,69 +59,75 @@ def test_on_one_flag_class() -> None:
 	# 3. operations with int return int.
 
 	if OR_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
+		assert_type_of_value_multiFlag(oneFlagValue1 | oneFlagValue2)
 	else:
-		assert_type_of_value(int, oneFlagValue1 | oneFlagValue2)
+		assert_type_of_value_int(oneFlagValue1 | oneFlagValue2)
 
-	assert_type_of_value(int, ~oneFlagValue1)
-	assert_type_of_value(int, oneFlagValue1 & oneFlagValue2)
-	assert_type_of_value(int, oneFlagValue1 ^ oneFlagValue2)
+	assert_type_of_value_int(~oneFlagValue1)
+	assert_type_of_value_int(oneFlagValue1 & oneFlagValue2)
+	assert_type_of_value_int(oneFlagValue1 ^ oneFlagValue2)
 
 	# right operand
 	if OR_INT_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneFlagValue1 | 33)
+		assert_type_of_value_multiFlag(oneFlagValue1 | 33)
 	else:
-		assert_type_of_value(int, oneFlagValue1 | 33)
-	assert_type_of_value(int, oneFlagValue1 & 33)
-	assert_type_of_value(int, oneFlagValue1 ^ 33)
-	assert_type_of_value(int, oneFlagValue1 + 33)
-	assert_type_of_value(int, oneFlagValue1 - 33)
+		assert_type_of_value_int(oneFlagValue1 | 33)
+	assert_type_of_value_int(oneFlagValue1 & 33)
+	assert_type_of_value_int(oneFlagValue1 ^ 33)
+	assert_type_of_value_int(oneFlagValue1 + 33)
+	assert_type_of_value_int(oneFlagValue1 - 33)
 
 	# left operand
 	if INT_OR_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
+		assert_type_of_value_multiFlag(33 | oneFlagValue1)
 	else:
-		assert_type_of_value(int, 33 | oneFlagValue1)
-	assert_type_of_value(int, 33 & oneFlagValue1)
-	assert_type_of_value(int, 33 ^ oneFlagValue1)
-	assert_type_of_value(int, 33 + oneFlagValue1)
-	assert_type_of_value(int, 33 - oneFlagValue1)
+		assert_type_of_value_int(33 | oneFlagValue1)
+	assert_type_of_value_int(33 & oneFlagValue1)
+	assert_type_of_value_int(33 ^ oneFlagValue1)
+	assert_type_of_value_int(33 + oneFlagValue1)
+	assert_type_of_value_int(33 - oneFlagValue1)
 
-	oneOrMultiFlagValueTest = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneOrMultiFlagValueTest)
-	oneOrMultiFlagValueTest |= oneFlagValue2
 	if OR_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)   # nice violation of Liskov principle here
+		oneOrMultiFlagValueTest = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneOrMultiFlagValueTest)
+		oneOrMultiFlagValueTest |= oneFlagValue2
+		assert_type_of_value_multiFlag(oneOrMultiFlagValueTest)   # nice violation of Liskov principle here
 	else:
-		assert_type_of_value(int, oneOrMultiFlagValueTest)
+		oneFlagOrIntValue = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneFlagOrIntValue)
+		oneFlagOrIntValue |= oneFlagValue2
+		assert_type_of_value_int(oneFlagOrIntValue)
 
-	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
-	oneFlagOrIntValue |= 33
 	if OR_INT_CONVERTS_TO_MULTI:
-		assert_type_of_value(MultiFlagClass, oneFlagOrIntValue)
+		oneOrMultiFlagValueTest = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneOrMultiFlagValueTest)
+		oneOrMultiFlagValueTest |= 33
+		assert_type_of_value_multiFlag(oneOrMultiFlagValueTest)
 	else:
-		assert_type_of_value(int, oneFlagOrIntValue)
+		oneFlagOrIntValue = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneFlagOrIntValue)
+		oneFlagOrIntValue |= 33
+		assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
 	oneFlagOrIntValue &= 33
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
 	oneFlagOrIntValue &= oneFlagValue2
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
 	oneFlagOrIntValue ^= 33
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
 	oneFlagOrIntValue ^= oneFlagValue2
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 
 
@@ -130,34 +138,34 @@ def test_on_multi_flag_class() -> None:
 	multiFlagValueTest = multiFlagValue1     # type: MultiFlagClass
 	intValue = 0
 
-	assert_type_of_value(OneFlagClass, oneFlagValue1)
-	assert_type_of_value(MultiFlagClass, multiFlagValue1)
-	assert_type_of_value(MultiFlagClass, multiFlagValue2)
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
-	assert_type_of_value(int, intValue)
+	assert_type_of_value_oneFlag(oneFlagValue1)
+	assert_type_of_value_multiFlag(multiFlagValue1)
+	assert_type_of_value_multiFlag(multiFlagValue2)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
+	assert_type_of_value_int(intValue)
 
 
 	# MultiFlagClass may be created by combining MultiFlagClass together
-	assert_type_of_value(MultiFlagClass,  ~multiFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 | multiFlagValue2 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 & multiFlagValue2 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 ^ multiFlagValue2 )
+	assert_type_of_value_multiFlag( ~multiFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 | multiFlagValue2 )
+	assert_type_of_value_multiFlag( multiFlagValue1 & multiFlagValue2 )
+	assert_type_of_value_multiFlag( multiFlagValue1 ^ multiFlagValue2 )
 
 
 	# MultiFlagClass may be created by combining MultiFlagClass and OneFlagClass, left or right
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 | oneFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 & oneFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 ^ oneFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 | oneFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 & oneFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 ^ oneFlagValue1 )
 
-	assert_type_of_value(MultiFlagClass,  oneFlagValue1 | multiFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  oneFlagValue1 & multiFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  oneFlagValue1 ^ multiFlagValue1 )
+	assert_type_of_value_multiFlag( oneFlagValue1 | multiFlagValue1 )
+	assert_type_of_value_multiFlag( oneFlagValue1 & multiFlagValue1 )
+	assert_type_of_value_multiFlag( oneFlagValue1 ^ multiFlagValue1 )
 
 
 	# MultClassFlag may be created by combining MultiFlagClass and int, right only
-	assert_type_of_value(MultiFlagClass, multiFlagValue1 | 33)
-	assert_type_of_value(MultiFlagClass, multiFlagValue1 & 33)
-	assert_type_of_value(MultiFlagClass, multiFlagValue1 ^ 33)
+	assert_type_of_value_multiFlag(multiFlagValue1 | 33)
+	assert_type_of_value_multiFlag(multiFlagValue1 & 33)
+	assert_type_of_value_multiFlag(multiFlagValue1 ^ 33)
 
 
 	# this is rejected by mypy and is slightly annoying: you can not pass a OneFlagClass variable to a method expecting a MultiFlagClass
@@ -166,14 +174,14 @@ def test_on_multi_flag_class() -> None:
 
 	# correct way to do it
 	multiFlagValueTest = MultiFlagClass(oneFlagValue1)
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
 	# this is rejected for the same reason as for OneFlagClass.
 	intValue = multiFlagValueTest      # type: ignore
 
 	# correct way to do it
 	intValue = int(multiFlagValueTest)
-	assert_type_of_value(int, intValue)
+	assert_type_of_value_int(intValue)
 
 	# rejected by mypy rightfully
 	multiFlagValueTest = 33            # type: ignore
@@ -182,30 +190,30 @@ def test_on_multi_flag_class() -> None:
 	multiFlagValueTest = MultiFlagClass(33)
 
 	# assignments operations with OneFlagClass
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest |= oneFlagValue1
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest &= oneFlagValue1
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest ^= oneFlagValue1
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
 	# assignments operations with int
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest |= 33
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest &= 33
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest ^= 33
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
 	#########################################################3
 	#
