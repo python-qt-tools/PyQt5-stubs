@@ -466,6 +466,16 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.enum_value2 = visitor.enum_value2
     flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
+    # evaluate exact behavior of QFlag
+    flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(
+        value1=flag_info.enum_value1, value2=flag_info.enum_value2,
+        qtmodule=flag_info.module_name,
+        oneFlagName=flag_info.enum_full_class_name))
+    flag_info.or_int_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | 33) == int'''.format(
+        value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
+    flag_info.int_or_converts_to_multi = not eval('''type(33 | {qtmodule}.{oneFlagName}.{value1}) == int'''.format(
+        value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
+
     if visitor.enum_class_full_name == '':
         return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
 
@@ -486,10 +496,10 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Found %s and %s' % (flag_info.qflag_full_class_name, flag_info.enum_full_class_name))
 
-    # evaluate exact behavior of QFlag
-    flag_info.or_converts_to_multi = 'int' != eval('''type({value1} | {value2})'''.format(value1=flag_info.enum_value1, value2=flag_info.value2))
-    flag_info.or_int_converts_to_multi = 'int' != eval('''type({value1} | 33)'''.format(value1=flag_info.enum_value1))
-    flag_info.int_or_converts_to_multi = 'int' != eval('''type(33 | {value1})'''.format(value1=flag_info.enum_value1))
+    print('OR behavior:')
+    print('- or_converts_to_multi: ', flag_info.or_converts_to_multi)
+    print('- or_int_converts_to_multi: ', flag_info.or_int_converts_to_multi)
+    print('- int_or_converts_to_multi: ', flag_info.int_or_converts_to_multi)
 
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
@@ -750,8 +760,12 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         self.qflag_full_name = qflag_full_name
 
         # human help for finding the class
-        self.human_hint_enum_full_class_name = human_hint_enum_full_class_name.split('.')
-        self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name.split('.')
+        self.human_hint_enum_full_class_name = ''
+        if human_hint_enum_full_class_name:
+            self.human_hint_enum_full_class_name = human_hint_enum_full_class_name.split('.')
+        self.human_hint_qflag_full_class_name = ''
+        if human_hint_qflag_full_class_name:
+            self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name.split('.')
 
         # the index in this module of the  class we are looking for
         self.module_idx = module_idx
@@ -796,9 +810,10 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
             if self.human_hint_qflag_full_class_name == self.full_name_stack:
                 found_qflag_class = True
         else:
-            self.visit_qflag_idx += 1
-            if self.visit_qflag_idx == self.module_idx:
-                found_qflag_class = True
+            if original_node.name.value == self.qflag_class:
+                self.visit_qflag_idx += 1
+                if self.visit_qflag_idx == self.module_idx:
+                    found_qflag_class = True
 
         self.full_name_stack.pop()
 
@@ -823,7 +838,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
             )
         elif or_behavior == (True, True, True):
             new_methods_parts = (
-                ("def __or__ (self, other: typing.Union[int, '{enum}]') -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __or__ (self, other: typing.Union[int, '{enum}']) -> '{qflag}': ...", "# type: ignore[override]\n"),
                 ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
             )
         elif or_behavior == (False, False, False):
@@ -983,15 +998,18 @@ MultiFlagClass = {qtmodule}.{multiFlagName}
 oneFlagRefValue1 = {qtmodule}.{oneFlagName}.{oneFlagValue1}
 oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
 
-OR_CONVERTS_TO_MULTI = True
-OR_INT_CONVERTS_TO_MULTI = False
-INT_OR_CONVERTS_TO_MULTI = True
+OR_CONVERTS_TO_MULTI: Literal[{or_converts_to_multi}] = {or_converts_to_multi}
+OR_INT_CONVERTS_TO_MULTI: Literal[{or_int_converts_to_multi}] = {or_int_converts_to_multi}
+INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts_to_multi}
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
            multiFlagName=flag_info.qflag_full_class_name,
            oneFlagName=flag_info.enum_full_class_name,
            oneFlagValue1=flag_info.enum_value1,
            oneFlagValue2=flag_info.enum_value2,
-           qtmodule=flag_info.module_name
+           qtmodule=flag_info.module_name,
+           or_converts_to_multi=flag_info.or_converts_to_multi,
+           or_int_converts_to_multi=flag_info.or_int_converts_to_multi,
+           int_or_converts_to_multi=flag_info.int_or_converts_to_multi
            ))
         f.writelines(generic_part_after)
     log_progress('Test file generated: %s' % test_qflag_fname)
