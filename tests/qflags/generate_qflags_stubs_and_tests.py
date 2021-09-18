@@ -84,9 +84,9 @@ class QFlagLocationInfo:
 
     # specific behavior of some QFlag classes varies slightly
     # this helps to define the exact behavior
-    or_converts_to_multi = True
-    or_int_converts_to_multi = False
-    int_or_converts_to_multi = True
+    or_converts_to_multi: bool = True
+    or_int_converts_to_multi: bool = False
+    int_or_converts_to_multi: bool = True
 
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
