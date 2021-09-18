@@ -43,7 +43,7 @@ QTBASE_MODULES = {
     'QtNetwork':        '../../PyQt5-stubs/QtNetwork.pyi',
     'QtDBus':           '../../PyQt5-stubs/QtDBus.pyi',
     'QtOpenGL':         '../../PyQt5-stubs/QtOpenGL.pyi',
-    'QtPrintsupport':   '../../PyQt5-stubs/QtPrintsupport.pyi',
+    'QtPrintsupport':   '../../PyQt5-stubs/QtPrintSupport.pyi',
     'QtSql':            '../../PyQt5-stubs/QtSql.pyi',
     'QtTest':           '../../PyQt5-stubs/QtTest.pyi',
     'QtXml':            '../../PyQt5-stubs/QtXml.pyi',
@@ -251,6 +251,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
 
     Return number of remaining flags to process (0 when everything done)
     '''
+
     with open(qflag_to_process_json) as f:
         d = json.load(f)
 
@@ -1032,6 +1033,22 @@ def generate_qflags_to_process(qt_qflag_grep_result_fname):
     extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json)
     log_progress('qflag file ready to process: %s' % qflags_to_process_json)
 
+
+def regen_test_files(qflag_process_results: str) -> None:
+    with open(qflag_process_results) as f:
+        results_content = f.read()
+    results = json.loads(results_content)
+
+    flags_to_process =  results['qflag_processed_done'] + results['qflag_already_done']
+    log_progress('%d test files to regenerate' % len(flags_to_process))
+    for flag_info_dict in flags_to_process:
+        flag_info = QFlagLocationInfo(**flag_info_dict)
+        test_qflag_fname = gen_test_fname(flag_info)
+        print('Updating', test_qflag_fname)
+        generate_qflag_test_file(flag_info)
+
+
+
 if __name__ == '__main__':
 
     if len(sys.argv) <= 1:
@@ -1069,6 +1086,17 @@ if __name__ == '__main__':
 
         grep_fname = sys.argv[2]
         generate_qflags_to_process(grep_fname)
+
+
+    elif sys.argv[1] == 'regen_test_files':
+
+        if len(sys.argv) <= 2:
+            print('Error, you must provide the filename of the qflag-process-results\n')
+            print(USAGE)
+            sys.exit(1)
+
+        qflag_process_results = sys.argv[2]
+        regen_test_files(qflag_process_results)
 
     else:
         print('Error, invalid command line arguments\n')
