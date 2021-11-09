@@ -64,8 +64,42 @@ class pyqtSignal:
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., object], pyqtBoundSignal]
 
-
 QObjectT = typing.TypeVar("QObjectT", bound="QObject")
+
+TPropertyTypeVal = typing.TypeVar('TPropertyTypeVal')
+TPropGetter = typing.TypeVar('TPropGetter', bound=typing.Callable[[QObjectT], PropertyTypeVal])
+TPropSetter = typing.TypeVar('TPropSetter', bound=typing.Callable[[QObjectT, PropertyTypeVal], None])
+TPropDeleter = typing.TypeVar('TPropDeleter', bound=typing.Callable[[QObjectT], None])
+
+class pyqtProperty:
+
+    def __init__(self,
+                 type: typing.Union[type, str],
+                 fget: typing.Optional[typing.Callable[[QObjectT], TPropertyTypeVal]] = None,
+                 fset: typing.Optional[typing.Callable[[QObjectT, TPropertyTypeVal], None]] = None,
+                 freset: typing.Optional[typing.Callable[[QObjectT], None]] = None,
+                 fdel: typing.Optional[typing.Callable[[QObjectT], None]] = None,
+                 doc: typing.Optional[str] = '',
+                 designable: bool = True,
+                 scriptable: bool = True,
+                 stored: bool = True,
+                 user: bool = True,
+                 constant: bool = True,
+                 final: bool = True,
+                 notify: typing.Optional[pyqtSignal] = None,
+                 revision: int = 0,
+                 ) -> 'pyqtProperty':
+        ...
+
+        type: typing.Union[type, str]
+        fget: typing.Optional[typing.Callable[[], TPropertyTypeVal]]
+        fset: typing.Optional[typing.Callable[[TPropertyTypeVal], None]]
+        freset: typing.Optional[typing.Callable[[], None]]
+        fdel: typing.Optional[typing.Callable[[], None]]
+
+        def getter(self, func: TPropGetter) -> TPropGetter: ...
+        def setter(self, func: TPropSetter) -> TPropSetter: ...
+        def deleter(self, func: TPropDeleter) -> TPropDeleter: ...
 
 
 class QtMsgType(int):
