@@ -6,4 +6,4 @@ c = a | 0  # type: QtWidgets.QMessageBox.StandardButtons
 d = a | QtWidgets.QMessageBox.Ok  # type: QtWidgets.QMessageBox.StandardButtons
 e = a | a  # type: QtWidgets.QMessageBox.StandardButtons
 
-m = QtWidgets.QMessageBox(None, 'this is a title', 'this is some content')
+m = QtWidgets.QMessageBox.critical(None, 'this is a title', 'this is some content')
