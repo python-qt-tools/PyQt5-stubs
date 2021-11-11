@@ -6,6 +6,7 @@ import json
 import os
 import sys
 import subprocess
+import traceback
 from enum import Enum
 
 from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
@@ -475,10 +476,14 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
     # evaluate exact behavior of QFlag
-    flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(
-        value1=flag_info.enum_value1, value2=flag_info.enum_value2,
-        qtmodule=flag_info.module_name,
-        oneFlagName=flag_info.enum_full_class_name))
+    try:
+        flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(
+            value1=flag_info.enum_value1, value2=flag_info.enum_value2,
+            qtmodule=flag_info.module_name,
+            oneFlagName=flag_info.enum_full_class_name))
+    except Exception as exc:
+        return (QFlagGenResult.ErrorDuringProcessing, traceback.format_exc(), '')
+
     flag_info.or_int_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | 33) == int'''.format(
         value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
     flag_info.int_or_converts_to_multi = not eval('''type(33 | {qtmodule}.{oneFlagName}.{value1}) == int'''.format(
