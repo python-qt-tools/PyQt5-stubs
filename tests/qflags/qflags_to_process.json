@@ -837,8 +837,8 @@
         {
             "qflag_class": "Types",
             "enum_class": "Type",
-            "human_hint_qflag_full_class_name": "",
-            "human_hint_enum_full_class_name": "",
+            "human_hint_qflag_full_class_name": "QOpenGLDebugMessage.Types",
+            "human_hint_enum_full_class_name": "QOpenGLDebugMessage.Type",
             "grep_line": [
                 "src\\gui\\opengl\\qopengldebug.h:    Q_DECLARE_FLAGS(Types, Type)"
             ],
