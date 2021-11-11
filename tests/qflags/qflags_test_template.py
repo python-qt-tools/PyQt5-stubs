@@ -246,7 +246,7 @@ def test_on_multi_flag_class() -> None:
 	def f2() -> None:
 		multiFlagValueTest = MultiFlagClass()
 		multiFlagValueTest += 1	  # type: ignore[assignment, operator]
-	def f1() -> None:
+	def f3() -> None:
 		multiFlagValueTest = MultiFlagClass()
 		multiFlagValueTest -= oneFlagValue1	  # type: ignore[assignment, operator]
 	def f4() -> None:
