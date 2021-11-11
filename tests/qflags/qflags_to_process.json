@@ -1919,23 +1919,6 @@
         {
             "qflag_class": "State",
             "enum_class": "StateFlag",
-            "grep_line": [
-                "src\\widgets\\styles\\qstyle.h:    Q_DECLARE_FLAGS(State, StateFlag)"
-            ],
-            "human_hint_qflag_full_class_name": "QStyle.State",
-            "human_hint_enum_full_class_name": "QStyle.StateFlag",
-            "qflag_full_class_name": "",
-            "enum_full_class_name": "",
-            "enum_value1": "",
-            "enum_value2": "",
-            "module_count": 1,
-            "module_idx": 0,
-            "module_name": "QtWidgets",
-            "module_path": "../../PyQt5-stubs/QtWidgets.pyi"
-        },
-        {
-            "qflag_class": "State",
-            "enum_class": "StateFlag",
             "human_hint_qflag_full_class_name": "",
             "human_hint_enum_full_class_name": "",
             "grep_line": [
@@ -1947,8 +1930,8 @@
             "enum_value2": "",
             "module_count": 1,
             "module_idx": 0,
-            "module_name": "QtNetwork",
-            "module_path": "../../PyQt5-stubs/QtNetwork.pyi"
+            "module_name": "QtWidgets",
+            "module_path": "../../PyQt5-stubs/QtWidgets.pyi"
         },
         {
             "qflag_class": "SubControls",
