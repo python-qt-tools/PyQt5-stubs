@@ -43,7 +43,7 @@ QTBASE_MODULES = {
     'QtNetwork':        '../../PyQt5-stubs/QtNetwork.pyi',
     'QtDBus':           '../../PyQt5-stubs/QtDBus.pyi',
     'QtOpenGL':         '../../PyQt5-stubs/QtOpenGL.pyi',
-    'QtPrintsupport':   '../../PyQt5-stubs/QtPrintSupport.pyi',
+    'QtPrintSupport':   '../../PyQt5-stubs/QtPrintSupport.pyi',
     'QtSql':            '../../PyQt5-stubs/QtSql.pyi',
     'QtTest':           '../../PyQt5-stubs/QtTest.pyi',
     'QtXml':            '../../PyQt5-stubs/QtXml.pyi',
@@ -95,7 +95,14 @@ def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[s
         # oups, we don't know how to encode that
         return flag_loc_info
 
-    return dataclasses.asdict(flag_loc_info)
+    d = dataclasses.asdict(flag_loc_info)
+    # when returning the result of the grep analysis, we want only a specific subset
+    # of the datablass fields
+    del d["or_converts_to_multi"]
+    del d["or_int_converts_to_multi"]
+    del d["int_or_converts_to_multi"]
+
+    return d
 
 
 def identify_qflag_location(fname_grep_result: str,
@@ -127,7 +134,7 @@ def identify_qflag_location(fname_grep_result: str,
                 # just extend the grep line then
                 parsed_qflags[(qflag_class, enum_class)].grep_line += (grep_line,)
             else:
-                parsed_qflags[(qflag_class, enum_class)] = QFlagLocationInfo(qflag_class, enum_class, (grep_line,))
+                parsed_qflags[(qflag_class, enum_class)] = QFlagLocationInfo(qflag_class, enum_class, grep_line=(grep_line,))
 
     # fill up modules with content
     qt_modules_content = [ (mod_name, open(mod_stub_path, encoding='utf8').read())
@@ -137,8 +144,8 @@ def identify_qflag_location(fname_grep_result: str,
     module_mapping: Dict[ Tuple[str, str], Dict[str, QFlagLocationInfo]] = {}
 
     for qflag_key, flag_info in parsed_qflags.items():
-        decl_qflag_class = 'class %s(' % flag_info.qflag_class
-        decl_enum_class = 'class %s(' % flag_info.enum_class
+        decl_qflag_class = 'class %s(sip.simplewrapper' % flag_info.qflag_class
+        decl_enum_class = 'class %s(int' % flag_info.enum_class
         for mod_name, mod_content in qt_modules_content:
 
             if decl_qflag_class in mod_content and decl_enum_class in mod_content:
