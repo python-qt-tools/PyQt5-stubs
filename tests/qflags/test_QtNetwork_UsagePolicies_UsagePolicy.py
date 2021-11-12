@@ -2,18 +2,18 @@ from typing import Union, TypeVar, Type, Literal
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QDialogButtonBox.StandardButtons" and flag class "QDialogButtonBox.StandardButton"
-from PyQt5 import QtWidgets
+# file generated from qflags_test_template.py for QFlags class "QNetworkSession.UsagePolicies" and flag class "QNetworkSession.UsagePolicy"
+from PyQt5 import QtNetwork
 
-OneFlagClass = QtWidgets.QDialogButtonBox.StandardButton
-MultiFlagClass = QtWidgets.QDialogButtonBox.StandardButtons
+OneFlagClass = QtNetwork.QNetworkSession.UsagePolicy
+MultiFlagClass = QtNetwork.QNetworkSession.UsagePolicies
 
-oneFlagRefValue1 = QtWidgets.QDialogButtonBox.StandardButton.NoButton
-oneFlagRefValue2 = QtWidgets.QDialogButtonBox.StandardButton.Ok
+oneFlagRefValue1 = QtNetwork.QNetworkSession.UsagePolicy.NoPolicy
+oneFlagRefValue2 = QtNetwork.QNetworkSession.UsagePolicy.NoBackgroundTrafficPolicy
 
-OR_CONVERTS_TO_MULTI: Literal[True] = True
+OR_CONVERTS_TO_MULTI: Literal[False] = False
 OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
-INT_OR_CONVERTS_TO_MULTI: Literal[True] = True
+INT_OR_CONVERTS_TO_MULTI: Literal[False] = False
 ### End of specific part
 
 def assert_type_of_value_int(value: int) -> None:

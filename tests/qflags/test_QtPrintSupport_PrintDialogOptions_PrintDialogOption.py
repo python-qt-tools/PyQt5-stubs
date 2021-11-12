@@ -2,14 +2,14 @@ from typing import Union, TypeVar, Type, Literal
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QDialogButtonBox.StandardButtons" and flag class "QDialogButtonBox.StandardButton"
-from PyQt5 import QtWidgets
+# file generated from qflags_test_template.py for QFlags class "QAbstractPrintDialog.PrintDialogOptions" and flag class "QAbstractPrintDialog.PrintDialogOption"
+from PyQt5 import QtPrintSupport
 
-OneFlagClass = QtWidgets.QDialogButtonBox.StandardButton
-MultiFlagClass = QtWidgets.QDialogButtonBox.StandardButtons
+OneFlagClass = QtPrintSupport.QAbstractPrintDialog.PrintDialogOption
+MultiFlagClass = QtPrintSupport.QAbstractPrintDialog.PrintDialogOptions
 
-oneFlagRefValue1 = QtWidgets.QDialogButtonBox.StandardButton.NoButton
-oneFlagRefValue2 = QtWidgets.QDialogButtonBox.StandardButton.Ok
+oneFlagRefValue1 = QtPrintSupport.QAbstractPrintDialog.PrintDialogOption.None_
+oneFlagRefValue2 = QtPrintSupport.QAbstractPrintDialog.PrintDialogOption.PrintToFile
 
 OR_CONVERTS_TO_MULTI: Literal[True] = True
 OR_INT_CONVERTS_TO_MULTI: Literal[False] = False

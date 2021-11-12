@@ -6,8 +6,11 @@ import json
 import os
 import sys
 import subprocess
+import traceback
 from enum import Enum
 
+from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
+                   QtPrintSupport, QtSql, QtTest, QtXml)
 try:
     import libcst as cst
     import libcst.matchers as matchers
@@ -41,7 +44,7 @@ QTBASE_MODULES = {
     'QtNetwork':        '../../PyQt5-stubs/QtNetwork.pyi',
     'QtDBus':           '../../PyQt5-stubs/QtDBus.pyi',
     'QtOpenGL':         '../../PyQt5-stubs/QtOpenGL.pyi',
-    'QtPrintsupport':   '../../PyQt5-stubs/QtPrintsupport.pyi',
+    'QtPrintSupport':   '../../PyQt5-stubs/QtPrintSupport.pyi',
     'QtSql':            '../../PyQt5-stubs/QtSql.pyi',
     'QtTest':           '../../PyQt5-stubs/QtTest.pyi',
     'QtXml':            '../../PyQt5-stubs/QtXml.pyi',
@@ -56,6 +59,10 @@ class QFlagLocationInfo:
     # qflag and enum name used in the QDECLARE() grep line
     qflag_class: str
     enum_class: str
+
+    # sometimes, human help is needed to identify a qflag/enum pair
+    human_hint_qflag_full_class_name: str = ''
+    human_hint_enum_full_class_name: str = ''
 
     # one or more grep lines where this qflag name has been found
     grep_line: Tuple[str] = dataclasses.field(default_factory=tuple)
@@ -76,6 +83,12 @@ class QFlagLocationInfo:
     module_name: str = ''
     module_path: str = ''
 
+    # specific behavior of some QFlag classes varies slightly
+    # this helps to define the exact behavior
+    or_converts_to_multi: bool = True
+    or_int_converts_to_multi: bool = False
+    int_or_converts_to_multi: bool = True
+
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
     '''Encode the QFlagClassLoationInfo into a format suitable for json export (a dict)'''
@@ -83,7 +96,14 @@ def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[s
         # oups, we don't know how to encode that
         return flag_loc_info
 
-    return dataclasses.asdict(flag_loc_info)
+    d = dataclasses.asdict(flag_loc_info)
+    # when returning the result of the grep analysis, we want only a specific subset
+    # of the datablass fields
+    del d["or_converts_to_multi"]
+    del d["or_int_converts_to_multi"]
+    del d["int_or_converts_to_multi"]
+
+    return d
 
 
 def identify_qflag_location(fname_grep_result: str,
@@ -115,7 +135,7 @@ def identify_qflag_location(fname_grep_result: str,
                 # just extend the grep line then
                 parsed_qflags[(qflag_class, enum_class)].grep_line += (grep_line,)
             else:
-                parsed_qflags[(qflag_class, enum_class)] = QFlagLocationInfo(qflag_class, enum_class, (grep_line,))
+                parsed_qflags[(qflag_class, enum_class)] = QFlagLocationInfo(qflag_class, enum_class, grep_line=(grep_line,))
 
     # fill up modules with content
     qt_modules_content = [ (mod_name, open(mod_stub_path, encoding='utf8').read())
@@ -125,8 +145,8 @@ def identify_qflag_location(fname_grep_result: str,
     module_mapping: Dict[ Tuple[str, str], Dict[str, QFlagLocationInfo]] = {}
 
     for qflag_key, flag_info in parsed_qflags.items():
-        decl_qflag_class = 'class %s(' % flag_info.qflag_class
-        decl_enum_class = 'class %s(' % flag_info.enum_class
+        decl_qflag_class = 'class %s(sip.simplewrapper' % flag_info.qflag_class
+        decl_enum_class = 'class %s(int' % flag_info.enum_class
         for mod_name, mod_content in qt_modules_content:
 
             if decl_qflag_class in mod_content and decl_enum_class in mod_content:
@@ -239,6 +259,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
 
     Return number of remaining flags to process (0 when everything done)
     '''
+
     with open(qflag_to_process_json) as f:
         d = json.load(f)
 
@@ -439,8 +460,13 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Looking for class %s and %s in module %s, index %d' %
                  (flag_info.qflag_class, flag_info.enum_class, flag_info.module_name, flag_info.module_idx))
+    if len(flag_info.human_hint_enum_full_class_name) and len(flag_info.human_hint_qflag_full_class_name):
+        log_progress('Using hints: %s and %s' % (flag_info.human_hint_enum_full_class_name, flag_info.human_hint_qflag_full_class_name))
     visitor = QFlagAndEnumFinder(flag_info.enum_class, flag_info.qflag_class,
-                                 flag_info.module_count, flag_info.module_idx)
+                                 flag_info.module_count, flag_info.module_idx,
+                                 flag_info.human_hint_enum_full_class_name,
+                                 flag_info.human_hint_qflag_full_class_name,
+                                 )
     mod_cst.visit(visitor)
 
     # storing the enum_values + full class name for further usage
@@ -449,6 +475,25 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.enum_value2 = visitor.enum_value2
     flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
+    # evaluate exact behavior of QFlag
+    try:
+        flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(
+            value1=flag_info.enum_value1, value2=flag_info.enum_value2,
+            qtmodule=flag_info.module_name,
+            oneFlagName=flag_info.enum_full_class_name))
+    except Exception as exc:
+        return (QFlagGenResult.ErrorDuringProcessing, traceback.format_exc(), '')
+
+    flag_info.or_int_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | 33) == int'''.format(
+        value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
+    flag_info.int_or_converts_to_multi = not eval('''type(33 | {qtmodule}.{oneFlagName}.{value1}) == int'''.format(
+        value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
+
+    if visitor.enum_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
+
+    if visitor.qflag_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.qflag_class_name, '')
 
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
         return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
@@ -464,9 +509,19 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Found %s and %s' % (flag_info.qflag_full_class_name, flag_info.enum_full_class_name))
 
+    print('OR behavior:')
+    print('- or_converts_to_multi: ', flag_info.or_converts_to_multi)
+    print('- or_int_converts_to_multi: ', flag_info.or_int_converts_to_multi)
+    print('- int_or_converts_to_multi: ', flag_info.int_or_converts_to_multi)
+
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
-                                      visitor.qflag_class_name, visitor.qflag_class_full_name, flag_info.module_idx)
+                                      visitor.qflag_class_name, visitor.qflag_class_full_name, flag_info.module_idx,
+                                      flag_info.human_hint_enum_full_class_name,
+                                      flag_info.human_hint_qflag_full_class_name,
+                                      flag_info.or_converts_to_multi,
+                                      flag_info.or_int_converts_to_multi,
+                                      flag_info.int_or_converts_to_multi)
     updated_mod_cst = mod_cst.visit(transformer)
 
     if transformer.error_msg:
@@ -490,7 +545,10 @@ class MethodPresent(Enum):
 class QFlagAndEnumFinder(cst.CSTVisitor):
 
     def __init__(self, enum_class: str, qflag_class: str,
-                 module_count: int, module_idx: int) -> None:
+                 module_count: int, module_idx: int,
+                 human_hint_enum_full_class_name: str = '',
+                 human_hint_qflag_full_class_name: str = '',
+                 ) -> None:
         super().__init__()
 
         # used internally to generate the full class name
@@ -499,6 +557,17 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         # the class name we are looking for
         self.enum_class_name = enum_class
         self.qflag_class_name = qflag_class
+
+        # human help for finding the class
+        if human_hint_enum_full_class_name:
+            self.human_hint_enum_full_class_name = human_hint_enum_full_class_name.split('.')
+        else:
+            self.human_hint_enum_full_class_name = ''
+
+        if human_hint_qflag_full_class_name:
+            self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name.split('.')
+        else:
+            self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name
 
         # the number of expected occurences in this module of this flag
         self.module_count = module_count
@@ -533,38 +602,54 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         self.full_name_stack.append( node.name.value )
         if node.name.value == self.enum_class_name:
             self.visit_enum_idx += 1
-            if self.visit_enum_idx > self.module_count:
-                self.error_msg = 'class %s found too times: %d\n' % (self.enum_class_name, self.visit_enum_idx)
-                return None
+            found_enum_class = False
+            if self.human_hint_enum_full_class_name:
+                if self.human_hint_enum_full_class_name == self.full_name_stack:
+                    found_enum_class = True
+            else:
+                if self.visit_enum_idx > self.module_count:
+                    self.error_msg = 'class %s found too many times: %d\n' % (self.enum_class_name, self.visit_enum_idx)
+                    return None
 
-            if self.visit_enum_idx == self.module_idx:
-                # we found the index we are looking for
-                self.enum_class_full_name = '.'.join(self.full_name_stack)
-                self.check_enum_method_present(node)
-                self.collect_enum_values(node)
+                if self.visit_enum_idx == self.module_idx:
+                    # we found the index we are looking for
+                    found_enum_class = True
+
+            if found_enum_class:
+                if self.check_enum_method_present(node):
+                    self.enum_class_full_name = '.'.join(self.full_name_stack)
+                    self.collect_enum_values(node)
                 return None
 
         elif node.name.value == self.qflag_class_name:
             self.visit_qflag_idx += 1
-            if self.visit_qflag_idx > self.module_count:
-                self.error_msg = 'class %s found too times: %d\n' % (self.qflag_class_name, self.visit_qflag_idx)
-                return None
+            found_qflag_class = False
+            if self.human_hint_qflag_full_class_name:
+                if self.human_hint_qflag_full_class_name == self.full_name_stack:
+                    found_qflag_class = True
+            else:
+                if self.visit_qflag_idx > self.module_count:
+                    self.error_msg = 'class %s found too times: %d\n' % (self.qflag_class_name, self.visit_qflag_idx)
+                    return None
 
-            if self.visit_qflag_idx == self.module_idx:
-                # we found the index we are looking for
-                self.qflag_class_full_name = '.'.join(self.full_name_stack)
-                self.check_qflag_method_present(node)
+                if self.visit_qflag_idx == self.module_idx:
+                    # we found the index we are looking for
+                    found_qflag_class = True
+
+            if found_qflag_class:
+                if self.check_qflag_method_present(node):
+                    self.qflag_class_full_name = '.'.join(self.full_name_stack)
                 return None
 
         return None
 
 
-    def check_enum_method_present(self, enum_node: cst.ClassDef) -> None:
+    def check_enum_method_present(self, enum_node: cst.ClassDef) -> bool:
         '''Check if the class contains method __or__ and __ror__ with one argument and if class
         inherit from int'''
         if len(enum_node.bases) == 0 or enum_node.bases[0].value.value != 'int':
-            self.error_msg += 'Class %s does not inherit from int\n' % self.enum_class_full_name
-            return
+            # class does not inherit from int, not the one we are looking for
+            return False
         has_or = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__or__')))
         has_ror = matchers.findall(enum_node.body, matchers.FunctionDef(name=matchers.Name('__ror__')))
         self.enum_methods_present = {
@@ -580,6 +665,8 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
                 args = ('__ror__', '__or__')
 
             self.error_msg += 'class %s, method %s present without method %s\n' % ((self.enum_class_full_name,)+args)
+
+        return True
 
 
     def collect_enum_values(self, enum_node: cst.ClassDef) -> None:
@@ -600,7 +687,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
             self.enum_value2 = self.enum_value1
 
 
-    def check_qflag_method_present(self, qflag_node: cst.ClassDef) -> None:
+    def check_qflag_method_present(self, qflag_node: cst.ClassDef) -> bool:
         '''Check if the class contains method:
         def __or__
         def __and__
@@ -614,6 +701,16 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier']) -> None:
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None:
         '''
+        if (len(qflag_node.bases) == 0
+            or not matchers.matches(qflag_node.bases[0],
+                                matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
+                                                                      attr=matchers.Name('simplewrapper')
+                                                                      )
+                                             )
+                                )
+            ):
+            # 'Class does not inherit from sip.simplewrapper'
+            return False
 
         has_method = [
             (m, matchers.findall(qflag_node.body, matchers.FunctionDef(name=matchers.Name(m))))
@@ -623,12 +720,12 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         if all(has_info[1] for has_info in has_method):
             # all method presents
             self.qflag_method_present = MethodPresent.All
-            return
+            return True
 
         if all(not has_info[1] for has_info in has_method):
             # all method absent
             self.qflag_method_present = MethodPresent.Not
-            return
+            return True
 
         self.qflag_method_present = MethodPresent.Partial
 
@@ -639,6 +736,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
             else:
                 self.error_msg += 'class %s, method %s missing\n' \
                                   % ((self.qflag_class_full_name, m_name))
+        return True
 
 
     def visit_FunctionDef(self, node: cst.FunctionDef) -> Optional[bool]:
@@ -655,8 +753,16 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 class QFlagAndEnumUpdater(cst.CSTTransformer):
 
     def __init__(self, enum_class: str, enum_full_name: str, qflag_class: str, qflag_full_name: str,
-                 module_idx: int) -> None:
+                 module_idx: int,
+                 human_hint_enum_full_class_name: str,
+                 human_hint_qflag_full_class_name: str,
+                 or_converts_to_multi: bool,
+                 or_int_converts_to_multi: bool,
+                 int_or_converts_to_multi: bool) -> None:
         super().__init__()
+
+        # used internally to generate the full class name
+        self.full_name_stack: List[str] = []
 
         self.error_msg = ''
 
@@ -666,6 +772,14 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         self.enum_full_name = enum_full_name
         self.qflag_full_name = qflag_full_name
 
+        # human help for finding the class
+        self.human_hint_enum_full_class_name = ''
+        if human_hint_enum_full_class_name:
+            self.human_hint_enum_full_class_name = human_hint_enum_full_class_name.split('.')
+        self.human_hint_qflag_full_class_name = ''
+        if human_hint_qflag_full_class_name:
+            self.human_hint_qflag_full_class_name = human_hint_qflag_full_class_name.split('.')
+
         # the index in this module of the  class we are looking for
         self.module_idx = module_idx
 
@@ -673,19 +787,55 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         self.visit_enum_idx = -1
         self.visit_qflag_idx = -1
 
+        self.or_converts_to_multi = or_converts_to_multi
+        self.or_int_converts_to_multi = or_int_converts_to_multi
+        self.int_or_converts_to_multi = int_or_converts_to_multi
+
         # set when enum_methods_present is set to partial, to add more contect information
         self.error_msg = ''
 
+    def visit_ClassDef(self, node: cst.ClassDef) -> Optional[bool]:
+        self.full_name_stack.append( node.name.value )
+        return None
+
+    def visit_FunctionDef(self, node: cst.FunctionDef) -> Optional[bool]:
+        self.full_name_stack.append( node.name.value )
+        return None
+
+    def leave_FunctionDef(self, node: cst.FunctionDef, updated_node: cst.FunctionDef) -> cst.FunctionDef:
+        self.full_name_stack.pop()
+        return updated_node
 
     def leave_ClassDef(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
-        if original_node.name.value == self.enum_class:
-            self.visit_enum_idx += 1
-            if self.visit_enum_idx == self.module_idx:
-                return self.transform_enum_class(original_node, updated_node)
-        elif original_node.name.value == self.qflag_class:
-            self.visit_qflag_idx += 1
-            if self.visit_qflag_idx == self.module_idx:
-                return self.transform_qflag_class(original_node, updated_node)
+        found_enum_class = False
+        found_qflag_class = False
+
+        if self.human_hint_enum_full_class_name:
+            if self.human_hint_enum_full_class_name == self.full_name_stack:
+                found_enum_class = True
+        else:
+            if original_node.name.value == self.enum_class:
+                self.visit_enum_idx += 1
+                if self.visit_enum_idx == self.module_idx:
+                    found_enum_class = True
+
+        if self.human_hint_qflag_full_class_name:
+            if self.human_hint_qflag_full_class_name == self.full_name_stack:
+                found_qflag_class = True
+        else:
+            if original_node.name.value == self.qflag_class:
+                self.visit_qflag_idx += 1
+                if self.visit_qflag_idx == self.module_idx:
+                    found_qflag_class = True
+
+        self.full_name_stack.pop()
+
+        if found_enum_class:
+            return self.transform_enum_class(original_node, updated_node)
+
+        if found_qflag_class:
+            return self.transform_qflag_class(original_node, updated_node)
+
         return updated_node
 
 
@@ -693,10 +843,25 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         '''Add the two methods __or__ and __ror__ to the class body'''
 
         # we keep comments separated to align them properly in the final file
-        new_methods_parts = (
-            ("def __or__ (self, other: '{enum}') -> '{qflag}': ...", "# type: ignore[override]\n"),
-            ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
-        )
+        or_behavior = (self.or_converts_to_multi, self.or_int_converts_to_multi, self.int_or_converts_to_multi)
+        if or_behavior == (True, False, True):
+            new_methods_parts = (
+                ("def __or__ (self, other: '{enum}') -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+            )
+        elif or_behavior == (True, True, True):
+            new_methods_parts = (
+                ("def __or__ (self, other: typing.Union[int, '{enum}']) -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+            )
+        elif or_behavior == (False, False, False):
+            new_methods_parts = (
+                ("def __or__ (self, other: '{enum}') -> int: ...", "\n"),
+                ("def __ror__ (self, other: int) -> int: ...", "\n\n")
+            )
+        else:
+            raise ValueError('Unsupported or behavior:', or_behavior)
+
 
         # fill the class names
         new_methods_filled = tuple(
@@ -846,15 +1011,18 @@ MultiFlagClass = {qtmodule}.{multiFlagName}
 oneFlagRefValue1 = {qtmodule}.{oneFlagName}.{oneFlagValue1}
 oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
 
-OR_CONVERTS_TO_MULTI = True
-OR_INT_CONVERTS_TO_MULTI = False
-INT_OR_CONVERTS_TO_MULTI = True
+OR_CONVERTS_TO_MULTI: Literal[{or_converts_to_multi}] = {or_converts_to_multi}
+OR_INT_CONVERTS_TO_MULTI: Literal[{or_int_converts_to_multi}] = {or_int_converts_to_multi}
+INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts_to_multi}
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
            multiFlagName=flag_info.qflag_full_class_name,
            oneFlagName=flag_info.enum_full_class_name,
            oneFlagValue1=flag_info.enum_value1,
            oneFlagValue2=flag_info.enum_value2,
-           qtmodule=flag_info.module_name
+           qtmodule=flag_info.module_name,
+           or_converts_to_multi=flag_info.or_converts_to_multi,
+           or_int_converts_to_multi=flag_info.or_int_converts_to_multi,
+           int_or_converts_to_multi=flag_info.int_or_converts_to_multi
            ))
         f.writelines(generic_part_after)
     log_progress('Test file generated: %s' % test_qflag_fname)
@@ -876,6 +1044,22 @@ def generate_qflags_to_process(qt_qflag_grep_result_fname):
     qflags_to_process_json = 'qflags_to_process.json'
     extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json)
     log_progress('qflag file ready to process: %s' % qflags_to_process_json)
+
+
+def regen_test_files(qflag_process_results: str) -> None:
+    with open(qflag_process_results) as f:
+        results_content = f.read()
+    results = json.loads(results_content)
+
+    flags_to_process =  results['qflag_processed_done'] + results['qflag_already_done']
+    log_progress('%d test files to regenerate' % len(flags_to_process))
+    for flag_info_dict in flags_to_process:
+        flag_info = QFlagLocationInfo(**flag_info_dict)
+        test_qflag_fname = gen_test_fname(flag_info)
+        print('Updating', test_qflag_fname)
+        generate_qflag_test_file(flag_info)
+
+
 
 if __name__ == '__main__':
 
@@ -905,6 +1089,7 @@ if __name__ == '__main__':
             more_available = process_qflag(qflags_to_process_json, qflag_result_json, auto_commit)
             if more_available:
                 log_progress('Still %d flags to process' % more_available)
+        log_progress('All qflags are processed.')
 
     elif sys.argv[1] == 'analyse_grep_results':
         if len(sys.argv) <= 2:
@@ -914,6 +1099,17 @@ if __name__ == '__main__':
 
         grep_fname = sys.argv[2]
         generate_qflags_to_process(grep_fname)
+
+
+    elif sys.argv[1] == 'regen_test_files':
+
+        if len(sys.argv) <= 2:
+            print('Error, you must provide the filename of the qflag-process-results\n')
+            print(USAGE)
+            sys.exit(1)
+
+        qflag_process_results = sys.argv[2]
+        regen_test_files(qflag_process_results)
 
     else:
         print('Error, invalid command line arguments\n')

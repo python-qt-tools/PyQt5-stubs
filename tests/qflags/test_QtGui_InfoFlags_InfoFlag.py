@@ -2,17 +2,17 @@ from typing import Union, TypeVar, Type, Literal
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QDialogButtonBox.StandardButtons" and flag class "QDialogButtonBox.StandardButton"
-from PyQt5 import QtWidgets
+# file generated from qflags_test_template.py for QFlags class "QTouchEvent.TouchPoint.InfoFlags" and flag class "QTouchEvent.TouchPoint.InfoFlag"
+from PyQt5 import QtGui
 
-OneFlagClass = QtWidgets.QDialogButtonBox.StandardButton
-MultiFlagClass = QtWidgets.QDialogButtonBox.StandardButtons
+OneFlagClass = QtGui.QTouchEvent.TouchPoint.InfoFlag
+MultiFlagClass = QtGui.QTouchEvent.TouchPoint.InfoFlags
 
-oneFlagRefValue1 = QtWidgets.QDialogButtonBox.StandardButton.NoButton
-oneFlagRefValue2 = QtWidgets.QDialogButtonBox.StandardButton.Ok
+oneFlagRefValue1 = QtGui.QTouchEvent.TouchPoint.InfoFlag.Pen
+oneFlagRefValue2 = QtGui.QTouchEvent.TouchPoint.InfoFlag.Token
 
 OR_CONVERTS_TO_MULTI: Literal[True] = True
-OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
+OR_INT_CONVERTS_TO_MULTI: Literal[True] = True
 INT_OR_CONVERTS_TO_MULTI: Literal[True] = True
 ### End of specific part
 
