@@ -1089,6 +1089,7 @@ if __name__ == '__main__':
             more_available = process_qflag(qflags_to_process_json, qflag_result_json, auto_commit)
             if more_available:
                 log_progress('Still %d flags to process' % more_available)
+        log_progress('All qflags are processed.')
 
     elif sys.argv[1] == 'analyse_grep_results':
         if len(sys.argv) <= 2:
