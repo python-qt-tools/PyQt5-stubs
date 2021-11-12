@@ -1885,8 +1885,8 @@
         {
             "qflag_class": "CacheMode",
             "enum_class": "CacheModeFlag",
-            "human_hint_qflag_full_class_name": "",
-            "human_hint_enum_full_class_name": "",
+            "human_hint_qflag_full_class_name": "QGraphicsView.CacheMode",
+            "human_hint_enum_full_class_name": "QGraphicsView.CacheModeFlag",
             "grep_line": [
                 "src\\widgets\\graphicsview\\qgraphicsview.h:    Q_DECLARE_FLAGS(CacheMode, CacheModeFlag)"
             ],
