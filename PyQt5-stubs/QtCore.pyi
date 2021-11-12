@@ -11958,6 +11958,9 @@ class QUrl(sip.simplewrapper):
     FullyDecoded = ...  # type: QUrl.ComponentFormattingOption
 
     class UrlFormattingOption(int):
+        def __or__(self, other: 'QUrl.UrlFormattingOption') -> 'QUrl.FormattingOptions': ...  # type: ignore[override]
+        def __ror__(self, other: int) -> 'QUrl.FormattingOptions': ...  # type: ignore[override, misc]
+
         None_ = ... # type: QUrl.UrlFormattingOption
         RemoveScheme = ... # type: QUrl.UrlFormattingOption
         RemovePassword = ... # type: QUrl.UrlFormattingOption
