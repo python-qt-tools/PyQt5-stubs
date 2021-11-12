@@ -856,7 +856,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
             )
         elif or_behavior == (False, False, False):
             new_methods_parts = (
-                ("def __or__ (self, other: '{enum}') -> int: ...", "\n"),
+                ("def __or__ (self, other: '{enum}') -> int: ...", "# type: ignore[override]\n"),
                 ("def __ror__ (self, other: int) -> int: ...", "\n\n")
             )
         else:

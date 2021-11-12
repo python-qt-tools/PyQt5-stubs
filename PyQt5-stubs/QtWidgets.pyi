@@ -4534,7 +4534,7 @@ class QPanGesture(QGesture):
 class QPinchGesture(QGesture):
 
     class ChangeFlag(int):
-        def __or__ (self, other: 'QPinchGesture.ChangeFlag') -> int: ...    
+        def __or__ (self, other: 'QPinchGesture.ChangeFlag') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                          
         
         ScaleFactorChanged = ... # type: QPinchGesture.ChangeFlag
@@ -9431,7 +9431,7 @@ class QStyleOptionButton(QStyleOption):
 class QStyleOptionTab(QStyleOption):
 
     class TabFeature(int):
-        def __or__ (self, other: 'QStyleOptionTab.TabFeature') -> int: ...    
+        def __or__ (self, other: 'QStyleOptionTab.TabFeature') -> int: ...     # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                            
         
         None_ = ... # type: QStyleOptionTab.TabFeature

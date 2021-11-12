@@ -241,7 +241,7 @@ class Qt(sip.simplewrapper):
     BottomEdge = ...  # type: Qt.Edge
 
     class ApplicationState(int):
-        def __or__ (self, other: 'Qt.ApplicationState') -> int: ...    
+        def __or__ (self, other: 'Qt.ApplicationState') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                     
         
         ApplicationSuspended = ... # type: Qt.ApplicationState
@@ -273,7 +273,7 @@ class Qt(sip.simplewrapper):
     WhiteSpaceModeUndefined = ...  # type: Qt.WhiteSpaceMode
 
     class FindChildOption(int):
-        def __or__ (self, other: 'Qt.FindChildOption') -> int: ...    
+        def __or__ (self, other: 'Qt.FindChildOption') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                    
         
         FindDirectChildrenOnly = ... # type: Qt.FindChildOption
@@ -3483,7 +3483,7 @@ class QPersistentModelIndex(sip.simplewrapper):
 class QAbstractItemModel(QObject):
 
     class CheckIndexOption(int):
-        def __or__ (self, other: 'QAbstractItemModel.CheckIndexOption') -> int: ...    
+        def __or__ (self, other: 'QAbstractItemModel.CheckIndexOption') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                                     
         
         NoOption = ... # type: QAbstractItemModel.CheckIndexOption
@@ -6100,7 +6100,7 @@ class QFileDevice(QIODevice):
     MapPrivateOption = ...  # type: QFileDevice.MemoryMapFlags
 
     class FileHandleFlag(int):
-        def __or__ (self, other: 'QFileDevice.FileHandleFlag') -> int: ...    
+        def __or__ (self, other: 'QFileDevice.FileHandleFlag') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                            
         
         AutoCloseHandle = ... # type: QFileDevice.FileHandleFlag
@@ -7048,7 +7048,7 @@ class QLineF(sip.simplewrapper):
 class QLocale(sip.simplewrapper):
 
     class DataSizeFormat(int):
-        def __or__ (self, other: 'QLocale.DataSizeFormat') -> int: ...    
+        def __or__ (self, other: 'QLocale.DataSizeFormat') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                        
         
         DataSizeIecFormat = ... # type: QLocale.DataSizeFormat
@@ -11937,7 +11937,7 @@ class QTransposeProxyModel(QAbstractProxyModel):
 class QUrl(sip.simplewrapper):
 
     class UserInputResolutionOption(int):
-        def __or__ (self, other: 'QUrl.UserInputResolutionOption') -> int: ...    
+        def __or__ (self, other: 'QUrl.UserInputResolutionOption') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                                
         
         DefaultResolution = ... # type: QUrl.UserInputResolutionOption
