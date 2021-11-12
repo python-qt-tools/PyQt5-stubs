@@ -1442,8 +1442,8 @@
         {
             "qflag_class": "SocketOptions",
             "enum_class": "SocketOption",
-            "human_hint_qflag_full_class_name": "",
-            "human_hint_enum_full_class_name": "",
+            "human_hint_qflag_full_class_name": "QLocalServer.SocketOptions",
+            "human_hint_enum_full_class_name": "QLocalServer.SocketOption",
             "grep_line": [
                 "src\\network\\socket\\qlocalserver.h:    Q_DECLARE_FLAGS(SocketOptions, SocketOption)"
             ],
