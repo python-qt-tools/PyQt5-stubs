@@ -270,9 +270,6 @@ class Qt(sip.simplewrapper):
     WhiteSpaceModeUndefined = ...  # type: Qt.WhiteSpaceMode
 
     class FindChildOption(int):
-        def __or__ (self, other: 'Qt.FindChildOption') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                    
-        
         FindDirectChildrenOnly = ... # type: Qt.FindChildOption
         FindChildrenRecursively = ... # type: Qt.FindChildOption
 
@@ -6097,9 +6094,6 @@ class QFileDevice(QIODevice):
     MapPrivateOption = ...  # type: QFileDevice.MemoryMapFlags
 
     class FileHandleFlag(int):
-        def __or__ (self, other: 'QFileDevice.FileHandleFlag') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                            
-        
         AutoCloseHandle = ... # type: QFileDevice.FileHandleFlag
         DontCloseHandle = ... # type: QFileDevice.FileHandleFlag
 
@@ -7045,9 +7039,6 @@ class QLineF(sip.simplewrapper):
 class QLocale(sip.simplewrapper):
 
     class DataSizeFormat(int):
-        def __or__ (self, other: 'QLocale.DataSizeFormat') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                        
-        
         DataSizeIecFormat = ... # type: QLocale.DataSizeFormat
         DataSizeTraditionalFormat = ... # type: QLocale.DataSizeFormat
         DataSizeSIFormat = ... # type: QLocale.DataSizeFormat
@@ -11934,9 +11925,6 @@ class QTransposeProxyModel(QAbstractProxyModel):
 class QUrl(sip.simplewrapper):
 
     class UserInputResolutionOption(int):
-        def __or__ (self, other: 'QUrl.UserInputResolutionOption') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                                
-        
         DefaultResolution = ... # type: QUrl.UserInputResolutionOption
         AssumeLocalFile = ... # type: QUrl.UserInputResolutionOption
 

@@ -1077,9 +1077,6 @@ class QNetworkConfiguration(sip.simplewrapper):
     Bearer4G = ...  # type: QNetworkConfiguration.BearerType
 
     class StateFlag(int):
-        def __or__ (self, other: 'QNetworkConfiguration.StateFlag') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                                 
-        
         Undefined = ... # type: QNetworkConfiguration.StateFlag
         Defined = ... # type: QNetworkConfiguration.StateFlag
         Discovered = ... # type: QNetworkConfiguration.StateFlag
@@ -1399,9 +1396,6 @@ class QNetworkInterface(sip.simplewrapper):
 class QNetworkProxy(sip.simplewrapper):
 
     class Capability(int):
-        def __or__ (self, other: 'QNetworkProxy.Capability') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                          
-        
         TunnelingCapability = ... # type: QNetworkProxy.Capability
         ListeningCapability = ... # type: QNetworkProxy.Capability
         UdpTunnelingCapability = ... # type: QNetworkProxy.Capability
@@ -1857,9 +1851,6 @@ class QNetworkRequest(sip.simplewrapper):
 class QNetworkSession(QtCore.QObject):
 
     class UsagePolicy(int):
-        def __or__ (self, other: 'QNetworkSession.UsagePolicy') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                             
-        
         NoPolicy = ... # type: QNetworkSession.UsagePolicy
         NoBackgroundTrafficPolicy = ... # type: QNetworkSession.UsagePolicy
 

@@ -2600,9 +2600,6 @@ class QMatrix2x2(sip.simplewrapper):
 class QGlyphRun(sip.simplewrapper):
 
     class GlyphRunFlag(int):
-        def __or__ (self, other: 'QGlyphRun.GlyphRunFlag') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                        
-        
         Overline = ... # type: QGlyphRun.GlyphRunFlag
         Underline = ... # type: QGlyphRun.GlyphRunFlag
         StrikeOut = ... # type: QGlyphRun.GlyphRunFlag
@@ -3155,9 +3152,6 @@ class QImage(QPaintDevice):
 class QImageIOHandler(sip.simplewrapper):
 
     class Transformation(int):
-        def __or__ (self, other: 'QImageIOHandler.Transformation') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                                
-        
         TransformationNone = ... # type: QImageIOHandler.Transformation
         TransformationMirror = ... # type: QImageIOHandler.Transformation
         TransformationFlip = ... # type: QImageIOHandler.Transformation
@@ -6390,9 +6384,6 @@ class QPageSize(sip.simplewrapper):
 class QPainter(sip.simplewrapper):
 
     class PixmapFragmentHint(int):
-        def __or__ (self, other: 'QPainter.PixmapFragmentHint') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                             
-        
         OpaqueHint = ... # type: QPainter.PixmapFragmentHint
 
     OpaqueHint = ...  # type: QPainter.PixmapFragmentHint
@@ -7003,9 +6994,6 @@ class QPaintEngine(sip.simplewrapper):
     PolylineMode = ...  # type: QPaintEngine.PolygonDrawMode
 
     class DirtyFlag(int):
-        def __or__ (self, other: 'QPaintEngine.DirtyFlag') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                        
-        
         DirtyPen = ... # type: QPaintEngine.DirtyFlag
         DirtyBrush = ... # type: QPaintEngine.DirtyFlag
         DirtyBrushOrigin = ... # type: QPaintEngine.DirtyFlag
@@ -8924,9 +8912,6 @@ class QTextCursor(sip.simplewrapper):
 class QTextDocument(QtCore.QObject):
 
     class MarkdownFeature(int):
-        def __or__ (self, other: 'QTextDocument.MarkdownFeature') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                               
-        
         MarkdownNoHTML = ... # type: QTextDocument.MarkdownFeature
         MarkdownDialectCommonMark = ... # type: QTextDocument.MarkdownFeature
         MarkdownDialectGitHub = ... # type: QTextDocument.MarkdownFeature
