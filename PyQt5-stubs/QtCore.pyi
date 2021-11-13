@@ -241,9 +241,6 @@ class Qt(sip.simplewrapper):
     BottomEdge = ...  # type: Qt.Edge
 
     class ApplicationState(int):
-        def __or__ (self, other: 'Qt.ApplicationState') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                     
-        
         ApplicationSuspended = ... # type: Qt.ApplicationState
         ApplicationHidden = ... # type: Qt.ApplicationState
         ApplicationInactive = ... # type: Qt.ApplicationState
