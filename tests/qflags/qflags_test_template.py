@@ -1,4 +1,11 @@
-from typing import Union, TypeVar, Type, Literal
+# mypy: no-warn-unreachable
+
+import sys
+from typing import Union, TypeVar, Type
+if sys.version_info[:2] >= (3,8):
+	from typing import Literal
+else:
+	from typing_extensions import Literal
 import pytest
 
 ### Specific part
@@ -56,7 +63,7 @@ def test_on_one_flag_class() -> None:
 	# 1. | ~= with OneFlagClass return a MultiFlagClass (which is not compatible to int)
 	#   Note that this breaks Liskov principle
 	# 2. everything else returns int: & ^ &= ^=
-	# 1. operations with int return int.
+	# 3. operations with int return int.
 
 	if OR_CONVERTS_TO_MULTI:
 		assert_type_of_value_multiFlag(oneFlagValue1 | oneFlagValue2)
@@ -255,6 +262,6 @@ def test_on_multi_flag_class() -> None:
 
 	pytest.raises(TypeError, f1)
 	pytest.raises(TypeError, f2)
-	pytest.raises(TypeError, f1)
+	pytest.raises(TypeError, f3)
 	pytest.raises(TypeError, f4)
 

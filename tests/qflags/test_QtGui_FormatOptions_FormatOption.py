@@ -1,6 +1,11 @@
 # mypy: no-warn-unreachable
 
+import sys
 from typing import Union, TypeVar, Type
+if sys.version_info[:2] >= (3,8):
+	from typing import Literal
+else:
+	from typing_extensions import Literal
 import pytest
 
 ### Specific part
@@ -12,12 +17,24 @@ MultiFlagClass = QtGui.QSurfaceFormat.FormatOptions
 
 oneFlagRefValue1 = QtGui.QSurfaceFormat.FormatOption.StereoBuffers
 oneFlagRefValue2 = QtGui.QSurfaceFormat.FormatOption.DebugContext
+
+OR_CONVERTS_TO_MULTI: Literal[True] = True
+OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
+INT_OR_CONVERTS_TO_MULTI: Literal[True] = True
 ### End of specific part
 
-T = TypeVar('T')
-def assert_type_of_value(expected_type: Type[T], value: T) -> None:
+def assert_type_of_value_int(value: int) -> None:
 	'''Raise an exception if the value is not of type expected_type'''
-	assert type(value) == expected_type
+	assert isinstance(value, int)
+
+def assert_type_of_value_oneFlag(value: OneFlagClass) -> None:
+	'''Raise an exception if the value is not of type expected_type'''
+	assert type(value) == OneFlagClass
+
+def assert_type_of_value_multiFlag(value: MultiFlagClass) -> None:
+	'''Raise an exception if the value is not of type expected_type'''
+	assert type(value) == MultiFlagClass
+
 
 
 def test_on_one_flag_class() -> None:
@@ -28,12 +45,6 @@ def test_on_one_flag_class() -> None:
 	oneOrMultiFlagValueTest = oneFlagValue1		# type: Union[OneFlagClass, MultiFlagClass]
 	oneFlagOrIntValue = oneFlagValue1	# type: Union[int, OneFlagClass]
 
-	assert_type_of_value(OneFlagClass, oneFlagValue1)
-	assert_type_of_value(OneFlagClass, oneFlagValue2)
-	assert_type_of_value(OneFlagClass, oneFlagValueTest)
-	assert_type_of_value(int, intValue)
-
-
 	# upcast from OneFlagClass to int
 	intValue = oneFlagValue1
 
@@ -41,10 +52,10 @@ def test_on_one_flag_class() -> None:
 	intValue = int(oneFlagValue1)
 
 	# this is not supported type-safely for a good reason
-	oneFlagValueTest = 33		# type: ignore
+	oneFlagValueTest = 1		# type: ignore
 
 	# correct way to do it
-	oneFlagValueTest = OneFlagClass(33)
+	oneFlagValueTest = OneFlagClass(1)
 	oneFlagValueTest = OneFlagClass(oneFlagValue1)
 
 	# The rules of OneFlagClass conversion defined in PyQt5 are:
@@ -53,54 +64,76 @@ def test_on_one_flag_class() -> None:
 	# 2. everything else returns int: & ^ &= ^=
 	# 3. operations with int return int.
 
-	assert_type_of_value(MultiFlagClass, oneFlagValue1 | oneFlagValue2)
-	assert_type_of_value(int, ~oneFlagValue1)
-	assert_type_of_value(int, oneFlagValue1 & oneFlagValue2)
-	assert_type_of_value(int, oneFlagValue1 ^ oneFlagValue2)
+	if OR_CONVERTS_TO_MULTI:
+		assert_type_of_value_multiFlag(oneFlagValue1 | oneFlagValue2)
+	else:
+		assert_type_of_value_int(oneFlagValue1 | oneFlagValue2)
+
+	assert_type_of_value_int(~oneFlagValue1)
+	assert_type_of_value_int(oneFlagValue1 & oneFlagValue2)
+	assert_type_of_value_int(oneFlagValue1 ^ oneFlagValue2)
 
 	# right operand
-	assert_type_of_value(int, oneFlagValue1 | 33)
-	assert_type_of_value(int, oneFlagValue1 & 33)
-	assert_type_of_value(int, oneFlagValue1 ^ 33)
-	assert_type_of_value(int, oneFlagValue1 + 33)
-	assert_type_of_value(int, oneFlagValue1 - 33)
+	if OR_INT_CONVERTS_TO_MULTI:
+		assert_type_of_value_multiFlag(oneFlagValue1 | 1)
+	else:
+		assert_type_of_value_int(oneFlagValue1 | 1)
+	assert_type_of_value_int(oneFlagValue1 & 1)
+	assert_type_of_value_int(oneFlagValue1 ^ 1)
+	assert_type_of_value_int(oneFlagValue1 + 1)
+	assert_type_of_value_int(oneFlagValue1 - 1)
 
 	# left operand
-	assert_type_of_value(MultiFlagClass, 33 | oneFlagValue1)
-	assert_type_of_value(int, 33 & oneFlagValue1)
-	assert_type_of_value(int, 33 ^ oneFlagValue1)
-	assert_type_of_value(int, 33 + oneFlagValue1)
-	assert_type_of_value(int, 33 - oneFlagValue1)
+	if INT_OR_CONVERTS_TO_MULTI:
+		assert_type_of_value_multiFlag(1 | oneFlagValue1)
+	else:
+		assert_type_of_value_int(1 | oneFlagValue1)
+	assert_type_of_value_int(1 & oneFlagValue1)
+	assert_type_of_value_int(1 ^ oneFlagValue1)
+	assert_type_of_value_int(1 + oneFlagValue1)
+	assert_type_of_value_int(1 - oneFlagValue1)
 
-	oneOrMultiFlagValueTest = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneOrMultiFlagValueTest)
-	oneOrMultiFlagValueTest |= oneFlagValue2
-	assert_type_of_value(MultiFlagClass, oneOrMultiFlagValueTest)	# nice violation of Liskov principle here
+	if OR_CONVERTS_TO_MULTI:
+		oneOrMultiFlagValueTest = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneOrMultiFlagValueTest)
+		oneOrMultiFlagValueTest |= oneFlagValue2
+		assert_type_of_value_multiFlag(oneOrMultiFlagValueTest)   # nice violation of Liskov principle here
+	else:
+		oneFlagOrIntValue = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneFlagOrIntValue)
+		oneFlagOrIntValue |= oneFlagValue2
+		assert_type_of_value_int(oneFlagOrIntValue)
+
+	if OR_INT_CONVERTS_TO_MULTI:
+		oneOrMultiFlagValueTest = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneOrMultiFlagValueTest)
+		oneOrMultiFlagValueTest |= 1
+		assert_type_of_value_multiFlag(oneOrMultiFlagValueTest)
+	else:
+		oneFlagOrIntValue = oneFlagValue1  # reset type and value
+		assert_type_of_value_oneFlag(oneFlagOrIntValue)
+		oneFlagOrIntValue |= 1
+		assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
-	oneFlagOrIntValue |= 33
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
+	oneFlagOrIntValue &= 1
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
-	oneFlagOrIntValue &= 33
-	assert_type_of_value(int, oneFlagOrIntValue)
-
-	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
 	oneFlagOrIntValue &= oneFlagValue2
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
-	oneFlagOrIntValue ^= 33
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
+	oneFlagOrIntValue ^= 1
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 	oneFlagOrIntValue = oneFlagValue1	# reset type and value
-	assert_type_of_value(OneFlagClass, oneFlagOrIntValue)
+	assert_type_of_value_oneFlag(oneFlagOrIntValue)
 	oneFlagOrIntValue ^= oneFlagValue2
-	assert_type_of_value(int, oneFlagOrIntValue)
+	assert_type_of_value_int(oneFlagOrIntValue)
 
 
 
@@ -111,34 +144,34 @@ def test_on_multi_flag_class() -> None:
 	multiFlagValueTest = multiFlagValue1     # type: MultiFlagClass
 	intValue = 0
 
-	assert_type_of_value(OneFlagClass, oneFlagValue1)
-	assert_type_of_value(MultiFlagClass, multiFlagValue1)
-	assert_type_of_value(MultiFlagClass, multiFlagValue2)
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
-	assert_type_of_value(int, intValue)
+	assert_type_of_value_oneFlag(oneFlagValue1)
+	assert_type_of_value_multiFlag(multiFlagValue1)
+	assert_type_of_value_multiFlag(multiFlagValue2)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
+	assert_type_of_value_int(intValue)
 
 
 	# MultiFlagClass may be created by combining MultiFlagClass together
-	assert_type_of_value(MultiFlagClass,  ~multiFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 | multiFlagValue2 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 & multiFlagValue2 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 ^ multiFlagValue2 )
+	assert_type_of_value_multiFlag( ~multiFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 | multiFlagValue2 )
+	assert_type_of_value_multiFlag( multiFlagValue1 & multiFlagValue2 )
+	assert_type_of_value_multiFlag( multiFlagValue1 ^ multiFlagValue2 )
 
 
 	# MultiFlagClass may be created by combining MultiFlagClass and OneFlagClass, left or right
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 | oneFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 & oneFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  multiFlagValue1 ^ oneFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 | oneFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 & oneFlagValue1 )
+	assert_type_of_value_multiFlag( multiFlagValue1 ^ oneFlagValue1 )
 
-	assert_type_of_value(MultiFlagClass,  oneFlagValue1 | multiFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  oneFlagValue1 & multiFlagValue1 )
-	assert_type_of_value(MultiFlagClass,  oneFlagValue1 ^ multiFlagValue1 )
+	assert_type_of_value_multiFlag( oneFlagValue1 | multiFlagValue1 )
+	assert_type_of_value_multiFlag( oneFlagValue1 & multiFlagValue1 )
+	assert_type_of_value_multiFlag( oneFlagValue1 ^ multiFlagValue1 )
 
 
 	# MultClassFlag may be created by combining MultiFlagClass and int, right only
-	assert_type_of_value(MultiFlagClass, multiFlagValue1 | 33)
-	assert_type_of_value(MultiFlagClass, multiFlagValue1 & 33)
-	assert_type_of_value(MultiFlagClass, multiFlagValue1 ^ 33)
+	assert_type_of_value_multiFlag(multiFlagValue1 | 1)
+	assert_type_of_value_multiFlag(multiFlagValue1 & 1)
+	assert_type_of_value_multiFlag(multiFlagValue1 ^ 1)
 
 
 	# this is rejected by mypy and is slightly annoying: you can not pass a OneFlagClass variable to a method expecting a MultiFlagClass
@@ -147,84 +180,84 @@ def test_on_multi_flag_class() -> None:
 
 	# correct way to do it
 	multiFlagValueTest = MultiFlagClass(oneFlagValue1)
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
 	# this is rejected for the same reason as for OneFlagClass.
 	intValue = multiFlagValueTest      # type: ignore
 
 	# correct way to do it
 	intValue = int(multiFlagValueTest)
-	assert_type_of_value(int, intValue)
+	assert_type_of_value_int(intValue)
 
 	# rejected by mypy rightfully
-	multiFlagValueTest = 33            # type: ignore
+	multiFlagValueTest = 1            # type: ignore
 
 	# correct way to do it
-	multiFlagValueTest = MultiFlagClass(33)
+	multiFlagValueTest = MultiFlagClass(1)
 
 	# assignments operations with OneFlagClass
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest |= oneFlagValue1
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest &= oneFlagValue1
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 	multiFlagValueTest ^= oneFlagValue1
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
 	# assignments operations with int
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
-	multiFlagValueTest |= 33
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
+	multiFlagValueTest |= 1
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
-	multiFlagValueTest &= 33
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
+	multiFlagValueTest &= 1
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
-	multiFlagValueTest ^= 33
-	assert_type_of_value(MultiFlagClass, multiFlagValueTest)
+	assert_type_of_value_multiFlag(multiFlagValueTest)
+	multiFlagValueTest ^= 1
+	assert_type_of_value_multiFlag(multiFlagValueTest)
 
-	#########################################################3
+	#########################################################1
 	#
 	#        Exploring errors
 	#
-	#########################################################3
+	#########################################################1
 
 	# This checks the following:
 	# + and - operations are not supported on MultiFlagClass
 	# combining int with MultiFlagClass does not work
 
-	pytest.raises(TypeError, lambda: 33 | multiFlagValue1 )	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 & multiFlagValue1 )	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 ^ multiFlagValue1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 1 | multiFlagValue1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 1 & multiFlagValue1 )	# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 1 ^ multiFlagValue1 )	# type: ignore[operator]
 
 	pytest.raises(TypeError, lambda: multiFlagValue1 + multiFlagValue2 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: multiFlagValue1 - multiFlagValue2 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: multiFlagValue1 + oneFlagValue1)	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: multiFlagValue1 - oneFlagValue1)	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: multiFlagValue1 + 33)				# type: ignore[operator]
-	pytest.raises(TypeError, lambda: multiFlagValue1 - 33)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 + 1)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: multiFlagValue1 - 1)				# type: ignore[operator]
 	pytest.raises(TypeError, lambda: oneFlagValue1 + multiFlagValue1)	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: oneFlagValue1 - multiFlagValue1)	# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 + multiFlagValue1)				# type: ignore[operator]
-	pytest.raises(TypeError, lambda: 33 - multiFlagValue1)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 1 + multiFlagValue1)				# type: ignore[operator]
+	pytest.raises(TypeError, lambda: 1 - multiFlagValue1)				# type: ignore[operator]
 
 	def f1() -> None:
 		multiFlagValueTest = MultiFlagClass()
 		multiFlagValueTest += oneFlagValue1	  # type: ignore[assignment, operator]
 	def f2() -> None:
 		multiFlagValueTest = MultiFlagClass()
-		multiFlagValueTest += 33	  # type: ignore[assignment, operator]
+		multiFlagValueTest += 1	  # type: ignore[assignment, operator]
 	def f3() -> None:
 		multiFlagValueTest = MultiFlagClass()
 		multiFlagValueTest -= oneFlagValue1	  # type: ignore[assignment, operator]
 	def f4() -> None:
 		multiFlagValueTest = MultiFlagClass()
-		multiFlagValueTest -= 33	  # type: ignore[assignment, operator]
+		multiFlagValueTest -= 1	  # type: ignore[assignment, operator]
 
 	pytest.raises(TypeError, f1)
 	pytest.raises(TypeError, f2)
