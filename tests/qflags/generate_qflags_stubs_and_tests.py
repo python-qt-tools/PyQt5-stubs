@@ -502,7 +502,12 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
         visitor.error_msg += 'Enum methods are present but not QFlag methods\n'
 
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.Not, MethodPresent.All):
-        visitor.error_msg += 'QFlag methods are present but not Enum methods\n'
+        # this is ok if enum does not need any special method
+        if (flag_info.or_converts_to_multi
+           or flag_info.int_or_converts_to_multi
+           or flag_info.or_int_converts_to_multi):
+            # this means __or__ or __ror__ must be present, we have an error
+            visitor.error_msg += 'QFlag methods are present but not Enum methods\n'
 
     if visitor.error_msg:
         return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg, '')
@@ -855,10 +860,8 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
                 ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
             )
         elif or_behavior == (False, False, False):
-            new_methods_parts = (
-                ("def __or__ (self, other: '{enum}') -> int: ...", "# type: ignore[override]\n"),
-                ("def __ror__ (self, other: int) -> int: ...", "\n\n")
-            )
+            # no changes needed
+            return updated_node
         else:
             raise ValueError('Unsupported or behavior:', or_behavior)
 
