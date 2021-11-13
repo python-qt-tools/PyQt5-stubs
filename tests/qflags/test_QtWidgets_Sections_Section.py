@@ -1,3 +1,5 @@
+# mypy: no-warn-unreachable
+
 from typing import Union, TypeVar, Type
 import pytest
 
