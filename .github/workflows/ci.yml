@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "*"
+      - master
     tags:
       - v*
   pull_request:
@@ -13,7 +13,7 @@ on:
   schedule:
     # Daily at 06:14.  This is just an arbitrary time to stagger
     # relative to other daily builds in any given organization.
-    # - cron: '14 6 * * *'
+    - cron: '14 6 * * *'
 
 jobs:
   test:
