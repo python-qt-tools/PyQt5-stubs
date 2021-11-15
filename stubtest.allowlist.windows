@@ -34,4 +34,5 @@ PyQt5.QtCore.QWinEventNotifier
 PyQt5.QtCore.QAbstractEventDispatcher.registerEventNotifier
 PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
 
+PyQt5.QtX11Extras
 
