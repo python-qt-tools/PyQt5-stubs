@@ -12297,6 +12297,67 @@ class QSysInfo(sip.simplewrapper):
 
     WordSize = ...  # type: QSysInfo.Sizes
 
+    class WinVersion(int):
+        WV_10_0 = ...   # type: int
+        WV_2000 = ...   # type: int
+        WV_2003 = ...   # type: int
+        WV_32s = ...   # type: int
+        WV_4_0 = ...   # type: int
+        WV_5_0 = ...   # type: int
+        WV_5_1 = ...   # type: int
+        WV_5_2 = ...   # type: int
+        WV_6_0 = ...   # type: int
+        WV_6_1 = ...   # type: int
+        WV_6_2 = ...   # type: int
+        WV_6_3 = ...   # type: int
+        WV_95 = ...   # type: int
+        WV_98 = ...   # type: int
+        WV_CE = ...   # type: int
+        WV_CENET = ...   # type: int
+        WV_CE_5 = ...   # type: int
+        WV_CE_6 = ...   # type: int
+        WV_CE_based = ...   # type: int
+        WV_DOS_based = ...   # type: int
+        WV_Me = ...   # type: int
+        WV_NT = ...   # type: int
+        WV_NT_based = ...   # type: int
+        WV_VISTA = ...   # type: int
+        WV_WINDOWS10 = ...   # type: int
+        WV_WINDOWS7 = ...   # type: int
+        WV_WINDOWS8 = ...   # type: int
+        WV_WINDOWS8_1 = ...   # type: int
+        WV_XP = ...   # type: int
+
+    WV_10_0 = ...   # type: int
+    WV_2000 = ...   # type: int
+    WV_2003 = ...   # type: int
+    WV_32s = ...   # type: int
+    WV_4_0 = ...   # type: int
+    WV_5_0 = ...   # type: int
+    WV_5_1 = ...   # type: int
+    WV_5_2 = ...   # type: int
+    WV_6_0 = ...   # type: int
+    WV_6_1 = ...   # type: int
+    WV_6_2 = ...   # type: int
+    WV_6_3 = ...   # type: int
+    WV_95 = ...   # type: int
+    WV_98 = ...   # type: int
+    WV_CE = ...   # type: int
+    WV_CENET = ...   # type: int
+    WV_CE_5 = ...   # type: int
+    WV_CE_6 = ...   # type: int
+    WV_CE_based = ...   # type: int
+    WV_DOS_based = ...   # type: int
+    WV_Me = ...   # type: int
+    WV_NT = ...   # type: int
+    WV_NT_based = ...   # type: int
+    WV_VISTA = ...   # type: int
+    WV_WINDOWS10 = ...   # type: int
+    WV_WINDOWS7 = ...   # type: int
+    WV_WINDOWS8 = ...   # type: int
+    WV_WINDOWS8_1 = ...   # type: int
+    WV_XP = ...   # type: int
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -12320,6 +12381,10 @@ class QSysInfo(sip.simplewrapper):
     def buildCpuArchitecture() -> str: ...
     @staticmethod
     def buildAbi() -> str: ...
+    @staticmethod
+    def windowsVersion() -> 'QSysInfo.WinVersion': ...
+
+    WindowsVersion = ... # type: QSysInfo.WinVersion
 
 
 PYQT_VERSION = ... # type: int
