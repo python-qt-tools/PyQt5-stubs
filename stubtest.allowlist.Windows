@@ -39,8 +39,6 @@ PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
 PyQt5.QtX11Extras
 
 # stubs missing because of pyqt5 bugs
-PyQt5.QtPrintSupport.QPrinter.printerSelectionOption
-PyQt5.QtPrintSupport.QPrinter.setPrinterSelectionOption
 PyQt5.QtNetworkAuth.QAbstractOAuth.callback
 PyQt5.QtNetworkAuth.QAbstractOAuth.generateRandomString
 PyQt5.QtNetworkAuth.QAbstractOAuth.resourceOwnerAuthorization
