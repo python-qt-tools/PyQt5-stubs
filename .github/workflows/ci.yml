@@ -10,10 +10,6 @@ on:
   pull_request:
     branches:
       - "*"
-  schedule:
-    # Daily at 06:14.  This is just an arbitrary time to stagger
-    # relative to other daily builds in any given organization.
-    - cron: '14 6 * * *'
 
 jobs:
   test:
