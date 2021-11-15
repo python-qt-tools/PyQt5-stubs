@@ -31,4 +31,7 @@ PyQt5.QtCore.QSysInfo.WinVersion
 PyQt5.QtCore.QSysInfo.WindowsVersion
 PyQt5.QtCore.QSysInfo.windowsVersion
 PyQt5.QtCore.QWinEventNotifier
+PyQt5.QtCore.QAbstractEventDispatcher.registerEventNotifier
+PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
+
 
