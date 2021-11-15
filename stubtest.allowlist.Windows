@@ -37,11 +37,17 @@ PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
 
 # Stubs which are missing because not supported on Windows
 PyQt5.QtX11Extras
-PyQt5.QtPrintSupport.QPrinter.printerSelectionOption
-PyQt5.QtPrintSupport.QPrinter.setPrinterSelectionOption
 
 # stubs missing because of pyqt5 bugs
+PyQt5.QtPrintSupport.QPrinter.printerSelectionOption
+PyQt5.QtPrintSupport.QPrinter.setPrinterSelectionOption
 PyQt5.QtNetworkAuth.QAbstractOAuth.callback
 PyQt5.QtNetworkAuth.QAbstractOAuth.generateRandomString
 PyQt5.QtNetworkAuth.QAbstractOAuth.resourceOwnerAuthorization
 PyQt5.QtNetworkAuth.QAbstractOAuth.setStatus
+PyQt5.QtGui.QPaintDeviceWindow.paintEvent
+PyQt5.Qt3DAnimation.QAbstractAnimation.setDuration
+PyQt5.Qt3DExtras.QAbstractCameraController.keyboardDevice
+PyQt5.Qt3DExtras.QAbstractCameraController.mouseDevice
+PyQt5.Qt3DRender.QAbstractTextureImage.dataGenerator
+PyQt5.Qt3DRender.QAbstractTextureImage.notifyDataGeneratorChanged
