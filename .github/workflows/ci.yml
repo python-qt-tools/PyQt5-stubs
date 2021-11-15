@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - run-ci-on-windows
     tags:
       - v*
   pull_request:
