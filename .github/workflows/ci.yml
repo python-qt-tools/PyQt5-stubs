@@ -34,14 +34,24 @@ jobs:
           - name: CPython 3.9
             tox: py39
             action: 3.9
+          - name: CPython 3.10
+            tox: py310
+            action: 3.10
         include:
-            - os:
+          - os:
+              name: Windows
+              runs-on: windows-latest
+            python:
+              name: CPython 3.6
+              tox: py36
+              action: 3.6
+          - os:
                 name: Windows
                 runs-on: windows-latest
-              python:
-                name: CPython 3.9
-                tox: py39
-                action: 3.9
+            python:
+                name: CPython 3.10
+                tox: py310
+                action: 3.10
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
