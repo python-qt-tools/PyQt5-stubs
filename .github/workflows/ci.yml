@@ -36,7 +36,7 @@ jobs:
             action: 3.9
           - name: CPython 3.10
             tox: py310
-            action: 3.10
+            action: '3.10'
         include:
           - os:
               name: Windows
@@ -51,7 +51,7 @@ jobs:
             python:
                 name: CPython 3.10
                 tox: py310
-                action: 3.10
+                action: '3.10'
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
