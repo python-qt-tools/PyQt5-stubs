@@ -2187,7 +2187,91 @@
             "module_idx": 0,
             "module_name": "QtWidgets",
             "module_path": "../../PyQt5-stubs/QtWidgets.pyi"
+        },
+        {
+            "qflag_class": "ChangeFlags",
+            "enum_class": "ChangeFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\core\\changes\\qscenechange.h:Q_DECLARE_FLAGS(ChangeFlags, ChangeFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DCore",
+            "module_path": "../../PyQt5-stubs/Qt3DCore.pyi"
+        },
+        {
+            "qflag_class": "DeliveryFlags",
+            "enum_class": "DeliveryFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\core\\changes\\qscenechange.h:    Q_DECLARE_FLAGS(DeliveryFlags, DeliveryFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DCore",
+            "module_path": "../../PyQt5-stubs/Qt3DCore.pyi"
+        },
+        {
+            "qflag_class": "BufferTypeFlags",
+            "enum_class": "BufferType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\render\\framegraph\\qclearbuffers.h:    Q_DECLARE_FLAGS(BufferTypeFlags, BufferType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DRender",
+            "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
+        },
+        {
+            "qflag_class": "Operations",
+            "enum_class": "Operation",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\render\\framegraph\\qmemorybarrier.h:    Q_DECLARE_FLAGS(Operations, Operation)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DRender",
+            "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
         }
     ],
-    "qflags_to_skip": []
+    "qflags_to_skip": [
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "skip_reason": "QFlag not found"
+        },
+        {
+            "qflag_class": "BackendNodeDirtySet",
+            "enum_class": "BackendNodeDirtyFlag",
+            "skip_reason": "QFlag not found"
+        },
+        {
+            "qflag_class": "DirtyFlags",
+            "enum_class": "DirtyFlag",
+            "skip_reason": "QFlag not found"
+        }
+    ]
 }

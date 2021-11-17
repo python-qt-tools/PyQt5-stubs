@@ -18,25 +18,6 @@ except ImportError:
     raise ImportError('You need libcst to run the missing stubs generation\n'
                       'Please run the command:\n\tpython -m pip install libcst')
 
-
-USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename>
-    Process the <grep result filename> to extract all the qflag location information. Generates
-    two output:
-    - qflags_modules_analysis.json : a general file describing which qflag are suitable for processing
-    - qflags_to_process.json: a list of qflag ready to process with the next command.
-    
-Usage 2: {prog} gen_qflag_stub (<number>|all) (--auto-commit)
-    Using file qflag_to_process.json, process qflags and modify the PyQt modules.
-    The output of this processing is available in qflags_process_result.json
-    
-    If <number> is not provided, defaults to 1. If "all" is provied, all qflags
-    are processed.
-    
-    If --auto-commit is specified, a git commit is performed after each successful QFlag validation
-
-'''.format(prog=sys.argv[0])
-
-
 MODULE_GROUPS = {
     'qtbase': [
         'QtCore',
@@ -51,14 +32,38 @@ MODULE_GROUPS = {
         'QtXml',
     ],
     'qt3d': [
-        'Qt3DAnimation.pyi',
-        'Qt3DCore.pyi',
-        'Qt3DExtras.pyi',
-        'Qt3DInput.pyi',
-        'Qt3DLogic.pyi',
-        'Qt3DRender.pyi',
+        'Qt3DAnimation',
+        'Qt3DCore',
+        'Qt3DExtras',
+        'Qt3DInput',
+        'Qt3DLogic',
+        'Qt3DRender',
     ]
 }
+
+
+USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename> --group <module_group>
+    Process the <grep result filename> to extract all the qflag location information. 
+    
+    Generates two output:
+    - qflags_modules_analysis.json : a general file describing which qflag are suitable for processing
+    - qflags_to_process.json: a list of qflag ready to process with the next command.
+    
+    The <module group> is the name of a group of modules to see where to look for for the exact name
+    of the qflags. Possible modules groups are:
+    - {groups}
+    
+Usage 2: {prog} gen_qflag_stub (<number>|all) (--auto-commit)
+    Using file qflag_to_process.json, process qflags and modify the PyQt modules.
+    The output of this processing is available in qflags_process_result.json
+    
+    If <number> is not provided, defaults to 1. If "all" is provied, all qflags
+    are processed.
+    
+    If --auto-commit is specified, a git commit is performed after each successful QFlag validation
+
+'''.format(prog=sys.argv[0], groups='\n    - '.join(MODULE_GROUPS.keys()))
+
 
 
 def log_progress(s: str) -> None:
@@ -150,18 +155,21 @@ def identify_qflag_location(fname_grep_result: str,
 
     # fill up modules with content
     qt_modules_content = [ (mod_name, open('../../PyQt5-stubs/%s.pyi' % mod_name, encoding='utf8').read())
-                           for mod_name in qt_modules.items()]
+                           for mod_name in qt_modules]
 
     # associate a qflag enum/class with a mapping from module to QFlagLocationInfo
     module_mapping: Dict[ Tuple[str, str], Dict[str, QFlagLocationInfo]] = {}
+    flag_not_found = []
 
     for qflag_key, flag_info in parsed_qflags.items():
         decl_qflag_class = 'class %s(sip.simplewrapper' % flag_info.qflag_class
         decl_enum_class = 'class %s(int' % flag_info.enum_class
+        module_found = False
         for mod_name, mod_content in qt_modules_content:
 
             if decl_qflag_class in mod_content and decl_enum_class in mod_content:
                 # we have found one module
+                module_found = True
                 # print('Adding QFlags %s to module %s' % (flag_info.qflag_class, mod_name))
                 if qflag_key not in module_mapping:
                     module_mapping[qflag_key] = {}
@@ -182,6 +190,9 @@ def identify_qflag_location(fname_grep_result: str,
                     # print('QFlag present more than once, adding it more than once')
                     mod_map[mod_name].module_count += min(count_qflag_class, count_enum_class) - 1
 
+        if not module_found:
+            flag_not_found.append(qflag_key)
+
     # now, we flatten the structure by recreating one QFlagLocationInfo per module location
 
     all_qflags: List[QFlagLocationInfo] = []
@@ -193,6 +204,9 @@ def identify_qflag_location(fname_grep_result: str,
                                                       module_name=mod_name,
                                                       module_path='../../PyQt5-stubs/%s.pyi' % mod_name))
                 idx += 1
+
+    for qflag_key in flag_not_found:
+        all_qflags.append(parsed_qflags[qflag_key])
 
     return all_qflags
 
@@ -221,6 +235,7 @@ def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFl
 
 def extract_qflags_to_process(qflags_modules_analysis_json: str,
                               qflags_to_process_json: str,
+                              module_group: str,
                               ) -> None:
     '''Take the json file as input describing qflags and their modules and output a json file of qflags planned to be processed.
 
@@ -230,18 +245,22 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
     with open(qflags_modules_analysis_json) as f:
         d = json.load(f)
 
-    result = {
-        '__': 'This file can be adjusted manually by a human prior to being processed by the tool',
-        'qflags_to_process': [],
-        'qflags_to_skip': [],
-    }
+    if os.path.exists(qflags_to_process_json):
+        with open(qflags_to_process_json) as f:
+            result = json.load(f)
+    else:
+        result = {
+            '__': 'This file can be adjusted manually by a human prior to being processed by the tool',
+            'qflags_to_process': [],
+            'qflags_to_skip': [],
+        }
 
     for flag_info in d['flag_without_module']:
         cast(List, result['qflags_to_skip']).append(
             {
                 'qflag_class': flag_info['qflag_class'],
                 'enum_class':  flag_info['enum_class'],
-                'skip_reason':  'QFlag not found',
+                'skip_reason':  'QFlag not found in module group %s' % module_group,
             }
         )
 
@@ -1042,9 +1061,9 @@ INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts
     log_progress('Test file generated: %s' % test_qflag_fname)
 
 
-def generate_qflags_to_process(qt_qflag_grep_result_fname):
+def generate_qflags_to_process(qt_qflag_grep_result_fname: str, module_group: str) -> None:
     '''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
-    location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, MODULE_GROUPS['qtbase'])
+    location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, MODULE_GROUPS[module_group])
     log_progress('%d qflags extracted from grep file' % len(location_qflags))
     qflags_groups = group_qflags(location_qflags)
     log_progress('%d qflags ready to be processed' % len(qflags_groups['flag_and_module_identified']))
@@ -1056,7 +1075,7 @@ def generate_qflags_to_process(qt_qflag_grep_result_fname):
     log_progress('QFlag analysis saved to: %s' % qflags_modules_analysis_json)
 
     qflags_to_process_json = 'qflags_to_process.json'
-    extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json)
+    extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json, module_group)
     log_progress('qflag file ready to process: %s' % qflags_to_process_json)
 
 
@@ -1106,13 +1125,19 @@ if __name__ == '__main__':
         log_progress('All qflags are processed.')
 
     elif sys.argv[1] == 'analyse_grep_results':
-        if len(sys.argv) <= 2:
-            print('Error, you must provide the filename of the grep results\n')
+        if len(sys.argv) <= 4 or sys.argv[3] != '--group':
+            print('Error, you must provide the filename of the grep results and the group of modules to use\n')
             print(USAGE)
             sys.exit(1)
 
         grep_fname = sys.argv[2]
-        generate_qflags_to_process(grep_fname)
+        module_group = sys.argv[4]
+        if not module_group in MODULE_GROUPS:
+            print('Unknown module group: %s' % module_group)
+            print('Possible choices are:\n-', '\n- '.join(MODULE_GROUPS.keys()))
+            sys.exit(0)
+
+        generate_qflags_to_process(grep_fname, module_group)
 
 
     elif sys.argv[1] == 'regen_test_files':
