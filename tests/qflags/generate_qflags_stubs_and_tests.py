@@ -10,7 +10,9 @@ import traceback
 from enum import Enum
 
 from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
-                   QtPrintSupport, QtSql, QtTest, QtXml)
+                   QtPrintSupport, QtSql, QtTest, QtXml,
+                    Qt3DAnimation, Qt3DCore, Qt3DExtras, Qt3DInput, Qt3DLogic, Qt3DRender,
+                   )
 try:
     import libcst as cst
     import libcst.matchers as matchers
