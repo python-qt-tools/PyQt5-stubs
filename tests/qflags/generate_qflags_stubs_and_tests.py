@@ -37,18 +37,29 @@ Usage 2: {prog} gen_qflag_stub (<number>|all) (--auto-commit)
 '''.format(prog=sys.argv[0])
 
 
-QTBASE_MODULES = {
-    'QtCore':           '../../PyQt5-stubs/QtCore.pyi',
-    'QtWidgets':        '../../PyQt5-stubs/QtWidgets.pyi',
-    'QtGui':            '../../PyQt5-stubs/QtGui.pyi',
-    'QtNetwork':        '../../PyQt5-stubs/QtNetwork.pyi',
-    'QtDBus':           '../../PyQt5-stubs/QtDBus.pyi',
-    'QtOpenGL':         '../../PyQt5-stubs/QtOpenGL.pyi',
-    'QtPrintSupport':   '../../PyQt5-stubs/QtPrintSupport.pyi',
-    'QtSql':            '../../PyQt5-stubs/QtSql.pyi',
-    'QtTest':           '../../PyQt5-stubs/QtTest.pyi',
-    'QtXml':            '../../PyQt5-stubs/QtXml.pyi',
+MODULE_GROUPS = {
+    'qtbase': [
+        'QtCore',
+        'QtWidgets',
+        'QtGui',
+        'QtNetwork',
+        'QtDBus',
+        'QtOpenGL',
+        'QtPrintSupport',
+        'QtSql',
+        'QtTest',
+        'QtXml',
+    ],
+    'qt3d': [
+        'Qt3DAnimation.pyi',
+        'Qt3DCore.pyi',
+        'Qt3DExtras.pyi',
+        'Qt3DInput.pyi',
+        'Qt3DLogic.pyi',
+        'Qt3DRender.pyi',
+    ]
 }
+
 
 def log_progress(s: str) -> None:
     print('>>>>>>>>>>>>>>', s)
@@ -107,7 +118,7 @@ def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[s
 
 
 def identify_qflag_location(fname_grep_result: str,
-                            qt_modules: Dict[str, str],
+                            qt_modules: List[str]
                             ) -> List[ QFlagLocationInfo ]:
     '''Parses the grep results to extract each qflag, and then look into all Qt modules
     to see where the flag is located.
@@ -138,8 +149,8 @@ def identify_qflag_location(fname_grep_result: str,
                 parsed_qflags[(qflag_class, enum_class)] = QFlagLocationInfo(qflag_class, enum_class, grep_line=(grep_line,))
 
     # fill up modules with content
-    qt_modules_content = [ (mod_name, open(mod_stub_path, encoding='utf8').read())
-                           for (mod_name, mod_stub_path) in qt_modules.items()]
+    qt_modules_content = [ (mod_name, open('../../PyQt5-stubs/%s.pyi' % mod_name, encoding='utf8').read())
+                           for mod_name in qt_modules.items()]
 
     # associate a qflag enum/class with a mapping from module to QFlagLocationInfo
     module_mapping: Dict[ Tuple[str, str], Dict[str, QFlagLocationInfo]] = {}
@@ -180,7 +191,7 @@ def identify_qflag_location(fname_grep_result: str,
             while idx < flag_info.module_count:
                 all_qflags.append(dataclasses.replace(flag_info, module_idx=idx,
                                                       module_name=mod_name,
-                                                      module_path=qt_modules[mod_name]))
+                                                      module_path='../../PyQt5-stubs/%s.pyi' % mod_name))
                 idx += 1
 
     return all_qflags
@@ -1033,7 +1044,7 @@ INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts
 
 def generate_qflags_to_process(qt_qflag_grep_result_fname):
     '''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
-    location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, QTBASE_MODULES)
+    location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, MODULE_GROUPS['qtbase'])
     log_progress('%d qflags extracted from grep file' % len(location_qflags))
     qflags_groups = group_qflags(location_qflags)
     log_progress('%d qflags ready to be processed' % len(qflags_groups['flag_and_module_identified']))
