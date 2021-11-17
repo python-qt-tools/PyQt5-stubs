@@ -1,0 +1,4 @@
+src\script\api\qscriptclass.h:    Q_DECLARE_FLAGS(QueryFlags, QueryFlag)
+src\script\api\qscriptengine.h:    Q_DECLARE_FLAGS(QObjectWrapOptions, QObjectWrapOption)
+src\script\api\qscriptvalue.h:    Q_DECLARE_FLAGS(ResolveFlags, ResolveFlag)
+src\script\api\qscriptvalue.h:    Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)

@@ -1,0 +1,2 @@
+src\serialport\qserialport.h:    Q_DECLARE_FLAGS(Directions, Direction)
+src\serialport\qserialport.h:    Q_DECLARE_FLAGS(PinoutSignals, PinoutSignal)

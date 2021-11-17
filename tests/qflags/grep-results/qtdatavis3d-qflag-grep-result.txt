@@ -1,0 +1,6 @@
+src\datavisualizationqml2\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)
+src\datavisualizationqml2\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)
+src\datavisualization\data\qsurface3dseries.h:    Q_DECLARE_FLAGS(DrawFlags, DrawFlag)
+src\datavisualization\engine\qabstract3dgraph.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)
+src\datavisualization\engine\qabstract3dgraph.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)
+src\datavisualization\utils\surfaceobject_p.h:    Q_DECLARE_FLAGS(DataDimensions, DataDimension)
