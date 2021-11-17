@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements/production.txt requirements/production.in
 #
-pyqt5==5.15.4
+pyqt5==5.15.6
     # via -r requirements/production.in
 pyqt5-qt5==5.15.2
     # via pyqt5

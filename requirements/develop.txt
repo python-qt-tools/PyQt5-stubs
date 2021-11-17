@@ -20,7 +20,7 @@ py==1.10.0
     # via pytest
 pyparsing==2.4.7
     # via packaging
-pyqt5==5.15.4
+pyqt5==5.15.6
     # via -r requirements/production.txt
 pyqt5-sip==12.9.0
     # via
