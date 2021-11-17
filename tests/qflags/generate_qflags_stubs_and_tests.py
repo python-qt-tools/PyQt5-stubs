@@ -418,6 +418,23 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
     log_progress('.')
     return len(qflags_to_process)
 
+local_cst_module_cache: Dict[str, Tuple[str, cst.Module]] = {}
+
+def retrieve_cst_parsed_module(mod_name: str, mod_content: str) -> cst.Module:
+    '''Return the cst parsed module and cache the result for each module name'''
+    if mod_name in local_cst_module_cache:
+        cached_mod_content, cached_parsed_module = local_cst_module_cache[mod_name]
+        if cached_mod_content == mod_content:
+            log_progress('Returning cached %s parse results' % mod_name)
+            return cached_parsed_module
+        else:
+            log_progress('Updating cache for module %s' % mod_name)
+    else:
+        log_progress('Parsing module %s and adding it to cache' % mod_name)
+
+    parsed_module = cst.parse_module(mod_content)
+    local_cst_module_cache[mod_name] = (mod_content, parsed_module)
+    return parsed_module
 
 
 class QFlagGenResult(Enum):
@@ -485,8 +502,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     with open(flag_info.module_path) as f:
         mod_content = f.read()
 
-    log_progress('Parsing module %s' % flag_info.module_name)
-    mod_cst = cst.parse_module(mod_content)
+    mod_cst = retrieve_cst_parsed_module(flag_info.module_name, mod_content)
 
     log_progress('Looking for class %s and %s in module %s, index %d' %
                  (flag_info.qflag_class, flag_info.enum_class, flag_info.module_name, flag_info.module_idx))
