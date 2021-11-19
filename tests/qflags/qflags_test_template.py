@@ -1,7 +1,7 @@
 # mypy: no-warn-unreachable
 
 import sys
-from typing import Union, TypeVar, Type
+from typing import Union
 if sys.version_info[:2] >= (3,8):
 	from typing import Literal
 else:
@@ -164,9 +164,10 @@ def test_on_multi_flag_class() -> None:
 	assert_type_of_value_multiFlag( multiFlagValue1 & oneFlagValue1 )
 	assert_type_of_value_multiFlag( multiFlagValue1 ^ oneFlagValue1 )
 
-	assert_type_of_value_multiFlag( oneFlagValue1 | multiFlagValue1 )
-	assert_type_of_value_multiFlag( oneFlagValue1 & multiFlagValue1 )
-	assert_type_of_value_multiFlag( oneFlagValue1 ^ multiFlagValue1 )
+	if SUPPORTS_ONE_OP_MULTI:
+		assert_type_of_value_multiFlag( oneFlagValue1 | multiFlagValue1 )
+		assert_type_of_value_multiFlag( oneFlagValue1 & multiFlagValue1 )
+		assert_type_of_value_multiFlag( oneFlagValue1 ^ multiFlagValue1 )
 
 
 	# MultClassFlag may be created by combining MultiFlagClass and int, right only
@@ -228,14 +229,18 @@ def test_on_multi_flag_class() -> None:
 	#
 	#########################################################1
 
-	# This checks the following:
-	# + and - operations are not supported on MultiFlagClass
-	# combining int with MultiFlagClass does not work
+	if not SUPPORTS_ONE_OP_MULTI:
+		pytest.raises(TypeError, lambda: oneFlagValue1 | multiFlagValue1)  # type: ignore[operator]
+		pytest.raises(TypeError, lambda: oneFlagValue1 & multiFlagValue1)  # type: ignore[operator]
+		pytest.raises(TypeError, lambda: oneFlagValue1 ^ multiFlagValue1)  # type: ignore[operator]
 
 	pytest.raises(TypeError, lambda: 1 | multiFlagValue1 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: 1 & multiFlagValue1 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: 1 ^ multiFlagValue1 )	# type: ignore[operator]
 
+	# This checks the following:
+	# + and - operations are not supported on MultiFlagClass
+	# combining int with MultiFlagClass does not work
 	pytest.raises(TypeError, lambda: multiFlagValue1 + multiFlagValue2 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: multiFlagValue1 - multiFlagValue2 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: multiFlagValue1 + oneFlagValue1)	# type: ignore[operator]

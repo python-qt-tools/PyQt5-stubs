@@ -106,6 +106,7 @@ class QFlagLocationInfo:
     or_converts_to_multi: bool = True
     or_int_converts_to_multi: bool = False
     int_or_converts_to_multi: bool = True
+    supports_one_op_multi: bool = True
 
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
@@ -120,6 +121,7 @@ def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[s
     del d["or_converts_to_multi"]
     del d["or_int_converts_to_multi"]
     del d["int_or_converts_to_multi"]
+    del d["supports_one_op_multi"]
 
     return d
 
@@ -537,6 +539,15 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.int_or_converts_to_multi = not eval('''type(33 | {qtmodule}.{oneFlagName}.{value1}) == int'''.format(
         value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
 
+    try:
+        flag_info.supports_one_op_multi = True
+        eval('''{qtmodule}.{oneFlagName} | {qtmodule}.{multiFlagName}()''').format(
+            oneFlagName=flag_info.enum_value1, multiFlagName=flag_info.qflag_full_class_name,
+            qtmodule=flag_info.module_name
+        )
+    except Exception:
+        flag_info.supports_one_op_multi = False
+
     if visitor.enum_class_full_name == '':
         return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
 
@@ -562,10 +573,11 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     log_progress('Found %s and %s' % (flag_info.qflag_full_class_name, flag_info.enum_full_class_name))
 
-    print('OR behavior:')
+    print('enum behavior:')
     print('- or_converts_to_multi: ', flag_info.or_converts_to_multi)
     print('- or_int_converts_to_multi: ', flag_info.or_int_converts_to_multi)
     print('- int_or_converts_to_multi: ', flag_info.int_or_converts_to_multi)
+    print('- supports_one_op_multi: ', flag_info.supports_one_op_multi)
 
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
@@ -1065,6 +1077,7 @@ oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
 OR_CONVERTS_TO_MULTI: Literal[{or_converts_to_multi}] = {or_converts_to_multi}
 OR_INT_CONVERTS_TO_MULTI: Literal[{or_int_converts_to_multi}] = {or_int_converts_to_multi}
 INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts_to_multi}
+SUPPORTS_ONE_OP_MULTI: Literal[{supports_one_op_multi}] = {supports_one_op_multi}
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
            multiFlagName=flag_info.qflag_full_class_name,
            oneFlagName=flag_info.enum_full_class_name,
@@ -1073,7 +1086,8 @@ INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts
            qtmodule=flag_info.module_name,
            or_converts_to_multi=flag_info.or_converts_to_multi,
            or_int_converts_to_multi=flag_info.or_int_converts_to_multi,
-           int_or_converts_to_multi=flag_info.int_or_converts_to_multi
+           int_or_converts_to_multi=flag_info.int_or_converts_to_multi,
+           supports_one_op_multi=flag_info.supports_one_op_multi
            ))
         f.writelines(generic_part_after)
     log_progress('Test file generated: %s' % test_qflag_fname)
