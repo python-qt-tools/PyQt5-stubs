@@ -2724,6 +2724,216 @@
             "or_int_converts_to_multi": false,
             "int_or_converts_to_multi": false,
             "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "TargetAccessModes",
+            "enum_class": "TargetAccessMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\nfc\\qnearfieldmanager.h:    Q_DECLARE_FLAGS(TargetAccessModes, TargetAccessMode)"
+            ],
+            "qflag_full_class_name": "QNearFieldManager.TargetAccessModes",
+            "enum_full_class_name": "QNearFieldManager.TargetAccessMode",
+            "enum_value1": "NoTargetAccess",
+            "enum_value2": "NdefReadTargetAccess",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtNfc",
+            "module_path": "../../PyQt5-stubs/QtNfc.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "ShareModes",
+            "enum_class": "ShareMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\nfc\\qnearfieldsharemanager.h:    Q_DECLARE_FLAGS(ShareModes, ShareMode)"
+            ],
+            "qflag_full_class_name": "QNearFieldShareManager.ShareModes",
+            "enum_full_class_name": "QNearFieldShareManager.ShareMode",
+            "enum_value1": "NoShare",
+            "enum_value2": "NdefShare",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtNfc",
+            "module_path": "../../PyQt5-stubs/QtNfc.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "AccessMethods",
+            "enum_class": "AccessMethod",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\nfc\\qnearfieldtarget.h:    Q_DECLARE_FLAGS(AccessMethods, AccessMethod)"
+            ],
+            "qflag_full_class_name": "QNearFieldTarget.AccessMethods",
+            "enum_full_class_name": "QNearFieldTarget.AccessMethod",
+            "enum_value1": "UnknownAccess",
+            "enum_value2": "NdefAccess",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtNfc",
+            "module_path": "../../PyQt5-stubs/QtNfc.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "SecurityFlags",
+            "enum_class": "Security",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qbluetooth.h:Q_DECLARE_FLAGS(SecurityFlags, Security)"
+            ],
+            "qflag_full_class_name": "QBluetooth.SecurityFlags",
+            "enum_full_class_name": "QBluetooth.Security",
+            "enum_value1": "NoSecurity",
+            "enum_value2": "Authorization",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "AttAccessConstraints",
+            "enum_class": "AttAccessConstraint",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qbluetooth.h:Q_DECLARE_FLAGS(AttAccessConstraints, AttAccessConstraint)"
+            ],
+            "qflag_full_class_name": "QBluetooth.AttAccessConstraints",
+            "enum_full_class_name": "QBluetooth.AttAccessConstraint",
+            "enum_value1": "AttAuthorizationRequired",
+            "enum_value2": "AttAuthenticationRequired",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "ServiceClasses",
+            "enum_class": "ServiceClass",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qbluetoothdeviceinfo.h:    Q_DECLARE_FLAGS(ServiceClasses, ServiceClass)"
+            ],
+            "qflag_full_class_name": "QBluetoothDeviceInfo.ServiceClasses",
+            "enum_full_class_name": "QBluetoothDeviceInfo.ServiceClass",
+            "enum_value1": "NoService",
+            "enum_value2": "PositioningService",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "Fields",
+            "enum_class": "Field",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qbluetoothdeviceinfo.h:    Q_DECLARE_FLAGS(Fields, Field)"
+            ],
+            "qflag_full_class_name": "QBluetoothDeviceInfo.Fields",
+            "enum_full_class_name": "QBluetoothDeviceInfo.Field",
+            "enum_value1": "None_",
+            "enum_value2": "RSSI",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "CoreConfigurations",
+            "enum_class": "CoreConfiguration",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qbluetoothdeviceinfo.h:    Q_DECLARE_FLAGS(CoreConfigurations, CoreConfiguration)"
+            ],
+            "qflag_full_class_name": "QBluetoothDeviceInfo.CoreConfigurations",
+            "enum_full_class_name": "QBluetoothDeviceInfo.CoreConfiguration",
+            "enum_value1": "UnknownCoreConfiguration",
+            "enum_value2": "LowEnergyCoreConfiguration",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "PropertyTypes",
+            "enum_class": "PropertyType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qlowenergycharacteristic.h:    Q_DECLARE_FLAGS(PropertyTypes, PropertyType)"
+            ],
+            "qflag_full_class_name": "QLowEnergyCharacteristic.PropertyTypes",
+            "enum_full_class_name": "QLowEnergyCharacteristic.PropertyType",
+            "enum_value1": "Unknown",
+            "enum_value2": "Broadcasting",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "ServiceTypes",
+            "enum_class": "ServiceType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qlowenergyservice.h:    Q_DECLARE_FLAGS(ServiceTypes, ServiceType)"
+            ],
+            "qflag_full_class_name": "QLowEnergyService.ServiceTypes",
+            "enum_full_class_name": "QLowEnergyService.ServiceType",
+            "enum_value1": "PrimaryService",
+            "enum_value2": "IncludedService",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
         }
     ],
     "qflag_process_error": [
@@ -2749,6 +2959,34 @@
             "supports_one_op_multi": false,
             "error": [
                 "Enum methods are present but not QFlag methods"
+            ]
+        },
+        {
+            "qflag_class": "DiscoveryMethods",
+            "enum_class": "DiscoveryMethod",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\bluetooth\\qbluetoothdevicediscoveryagent.h:    Q_DECLARE_FLAGS(DiscoveryMethods, DiscoveryMethod)"
+            ],
+            "qflag_full_class_name": "QBluetoothDeviceDiscoveryAgent.DiscoveryMethods",
+            "enum_full_class_name": "QBluetoothDeviceDiscoveryAgent.DiscoveryMethod",
+            "enum_value1": "NoMethod",
+            "enum_value2": "ClassicMethod",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtBluetooth",
+            "module_path": "../../PyQt5-stubs/QtBluetooth.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true,
+            "error": [
+                "Traceback (most recent call last):",
+                "  File \"generate_qflags_stubs_and_tests.py\", line 552, in generate_missing_stubs",
+                "    flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(",
+                "  File \"<string>\", line 1, in <module>",
+                "AttributeError: sip.enumtype object 'DiscoveryMethod' has no member 'NoMethod'"
             ]
         }
     ]
