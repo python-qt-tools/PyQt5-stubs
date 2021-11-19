@@ -9,14 +9,14 @@ else:
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QQuickWindow.CreateTextureOptions" and flag class "QQuickWindow.CreateTextureOption"
+# file generated from qflags_test_template.py for QFlags class "QSGEngine.CreateTextureOptions" and flag class "QSGEngine.CreateTextureOption"
 from PyQt5 import QtQuick
 
-OneFlagClass = QtQuick.QQuickWindow.CreateTextureOption
-MultiFlagClass = QtQuick.QQuickWindow.CreateTextureOptions
+OneFlagClass = QtQuick.QSGEngine.CreateTextureOption
+MultiFlagClass = QtQuick.QSGEngine.CreateTextureOptions
 
-oneFlagRefValue1 = QtQuick.QQuickWindow.CreateTextureOption.TextureHasAlphaChannel
-oneFlagRefValue2 = QtQuick.QQuickWindow.CreateTextureOption.TextureHasMipmaps
+oneFlagRefValue1 = QtQuick.QSGEngine.CreateTextureOption.TextureHasAlphaChannel
+oneFlagRefValue2 = QtQuick.QSGEngine.CreateTextureOption.TextureOwnsGLTexture
 
 OR_CONVERTS_TO_MULTI: Literal[False] = False
 OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
