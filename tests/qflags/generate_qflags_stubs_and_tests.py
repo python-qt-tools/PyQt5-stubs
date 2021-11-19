@@ -17,6 +17,7 @@ from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
                     QtDataVisualization,
                     QtQuick, QtQml,
                     QtPositioning, QtLocation,
+                    QtMultimedia,
                    )
 try:
     import libcst as cst
@@ -63,6 +64,9 @@ MODULE_GROUPS = {
     'qtlocation': [
         'QtPositioning',
         'QtLocation',
+    ],
+    'qtmultimedia': [
+        'QtMultimedia',
     ],
 }
 
