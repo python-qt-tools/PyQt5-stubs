@@ -541,11 +541,13 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
     try:
         flag_info.supports_one_op_multi = True
-        eval('''{qtmodule}.{oneFlagName} | {qtmodule}.{multiFlagName}()''').format(
-            oneFlagName=flag_info.enum_value1, multiFlagName=flag_info.qflag_full_class_name,
+        eval('''{qtmodule}.{oneFlagName}.{enumValue} | {qtmodule}.{multiFlagName}()'''.format(
+            oneFlagName=flag_info.enum_full_class_name,
+        enumValue=flag_info.enum_value1,
+            multiFlagName=flag_info.qflag_full_class_name,
             qtmodule=flag_info.module_name
-        )
-    except Exception:
+        ))
+    except TypeError:
         flag_info.supports_one_op_multi = False
 
     if visitor.enum_class_full_name == '':
