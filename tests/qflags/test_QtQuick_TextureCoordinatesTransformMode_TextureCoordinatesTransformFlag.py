@@ -9,14 +9,14 @@ else:
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QSGImageNode.TextureCoordinatesTransformMode" and flag class "QSGImageNode.TextureCoordinatesTransformFlag"
+# file generated from qflags_test_template.py for QFlags class "QSGSimpleTextureNode.TextureCoordinatesTransformMode" and flag class "QSGSimpleTextureNode.TextureCoordinatesTransformFlag"
 from PyQt5 import QtQuick
 
-OneFlagClass = QtQuick.QSGImageNode.TextureCoordinatesTransformFlag
-MultiFlagClass = QtQuick.QSGImageNode.TextureCoordinatesTransformMode
+OneFlagClass = QtQuick.QSGSimpleTextureNode.TextureCoordinatesTransformFlag
+MultiFlagClass = QtQuick.QSGSimpleTextureNode.TextureCoordinatesTransformMode
 
-oneFlagRefValue1 = QtQuick.QSGImageNode.TextureCoordinatesTransformFlag.NoTransform
-oneFlagRefValue2 = QtQuick.QSGImageNode.TextureCoordinatesTransformFlag.MirrorHorizontally
+oneFlagRefValue1 = QtQuick.QSGSimpleTextureNode.TextureCoordinatesTransformFlag.NoTransform
+oneFlagRefValue2 = QtQuick.QSGSimpleTextureNode.TextureCoordinatesTransformFlag.MirrorHorizontally
 
 OR_CONVERTS_TO_MULTI: Literal[True] = True
 OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
