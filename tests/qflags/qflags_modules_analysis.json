@@ -322,6 +322,59 @@
             "module_idx": 0,
             "module_name": "QtBluetooth",
             "module_path": "../../PyQt5-stubs/QtBluetooth.pyi"
+        },
+        {
+            "qflag_class": "SelectionFlags",
+            "enum_class": "SelectionFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualizationqml2\\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)",
+                "src\\datavisualization\\engine\\qabstract3dgraph.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
+        },
+        {
+            "qflag_class": "OptimizationHints",
+            "enum_class": "OptimizationHint",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualizationqml2\\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)",
+                "src\\datavisualization\\engine\\qabstract3dgraph.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
+        },
+        {
+            "qflag_class": "DrawFlags",
+            "enum_class": "DrawFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualization\\data\\qsurface3dseries.h:    Q_DECLARE_FLAGS(DrawFlags, DrawFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
         }
     ],
     "flag_without_module": [
@@ -384,6 +437,23 @@
             "human_hint_enum_full_class_name": "",
             "grep_line": [
                 "src\\bluetooth\\qlowenergycontroller_bluezdbus_p.h:        Q_DECLARE_FLAGS(JobFlags, JobFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "DataDimensions",
+            "enum_class": "DataDimension",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualization\\utils\\surfaceobject_p.h:    Q_DECLARE_FLAGS(DataDimensions, DataDimension)"
             ],
             "qflag_full_class_name": "",
             "enum_full_class_name": "",

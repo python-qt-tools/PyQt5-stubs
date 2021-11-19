@@ -2510,6 +2510,59 @@
             "module_idx": 0,
             "module_name": "QtBluetooth",
             "module_path": "../../PyQt5-stubs/QtBluetooth.pyi"
+        },
+        {
+            "qflag_class": "SelectionFlags",
+            "enum_class": "SelectionFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualizationqml2\\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)",
+                "src\\datavisualization\\engine\\qabstract3dgraph.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
+        },
+        {
+            "qflag_class": "OptimizationHints",
+            "enum_class": "OptimizationHint",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualizationqml2\\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)",
+                "src\\datavisualization\\engine\\qabstract3dgraph.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
+        },
+        {
+            "qflag_class": "DrawFlags",
+            "enum_class": "DrawFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualization\\data\\qsurface3dseries.h:    Q_DECLARE_FLAGS(DrawFlags, DrawFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
         }
     ],
     "qflags_to_skip": [
@@ -2562,6 +2615,11 @@
             "qflag_class": "JobFlags",
             "enum_class": "JobFlag",
             "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "DataDimensions",
+            "enum_class": "DataDimension",
+            "skip_reason": "QFlag not found in module group qtdatavisualization"
         }
     ]
 }

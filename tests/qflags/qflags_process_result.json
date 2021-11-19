@@ -2934,6 +2934,71 @@
             "or_int_converts_to_multi": false,
             "int_or_converts_to_multi": true,
             "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "SelectionFlags",
+            "enum_class": "SelectionFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualizationqml2\\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)",
+                "src\\datavisualization\\engine\\qabstract3dgraph.h:    Q_DECLARE_FLAGS(SelectionFlags, SelectionFlag)"
+            ],
+            "qflag_full_class_name": "QAbstract3DGraph.SelectionFlags",
+            "enum_full_class_name": "QAbstract3DGraph.SelectionFlag",
+            "enum_value1": "SelectionNone",
+            "enum_value2": "SelectionItem",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "OptimizationHints",
+            "enum_class": "OptimizationHint",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualizationqml2\\abstractdeclarative_p.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)",
+                "src\\datavisualization\\engine\\qabstract3dgraph.h:    Q_DECLARE_FLAGS(OptimizationHints, OptimizationHint)"
+            ],
+            "qflag_full_class_name": "QAbstract3DGraph.OptimizationHints",
+            "enum_full_class_name": "QAbstract3DGraph.OptimizationHint",
+            "enum_value1": "OptimizationDefault",
+            "enum_value2": "OptimizationStatic",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "DrawFlags",
+            "enum_class": "DrawFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\datavisualization\\data\\qsurface3dseries.h:    Q_DECLARE_FLAGS(DrawFlags, DrawFlag)"
+            ],
+            "qflag_full_class_name": "QSurface3DSeries.DrawFlags",
+            "enum_full_class_name": "QSurface3DSeries.DrawFlag",
+            "enum_value1": "DrawWireframe",
+            "enum_value2": "DrawSurface",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDataVisualization",
+            "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
         }
     ],
     "qflag_process_error": [
