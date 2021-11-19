@@ -2255,6 +2255,329 @@
             "module_idx": 0,
             "module_name": "Qt3DRender",
             "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
+        },
+        {
+            "qflag_class": "ChangeFlags",
+            "enum_class": "ChangeFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\core\\changes\\qscenechange.h:Q_DECLARE_FLAGS(ChangeFlags, ChangeFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DCore",
+            "module_path": "../../PyQt5-stubs/Qt3DCore.pyi"
+        },
+        {
+            "qflag_class": "DeliveryFlags",
+            "enum_class": "DeliveryFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\core\\changes\\qscenechange.h:    Q_DECLARE_FLAGS(DeliveryFlags, DeliveryFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DCore",
+            "module_path": "../../PyQt5-stubs/Qt3DCore.pyi"
+        },
+        {
+            "qflag_class": "BufferTypeFlags",
+            "enum_class": "BufferType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\render\\framegraph\\qclearbuffers.h:    Q_DECLARE_FLAGS(BufferTypeFlags, BufferType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DRender",
+            "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
+        },
+        {
+            "qflag_class": "Operations",
+            "enum_class": "Operation",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\render\\framegraph\\qmemorybarrier.h:    Q_DECLARE_FLAGS(Operations, Operation)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DRender",
+            "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
+        },
+        {
+            "qflag_class": "AnimationOptions",
+            "enum_class": "AnimationOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qchart.h:    Q_DECLARE_FLAGS(AnimationOptions, AnimationOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "RubberBands",
+            "enum_class": "RubberBand",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qchartview.h:    Q_DECLARE_FLAGS(RubberBands, RubberBand)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "PolarOrientations",
+            "enum_class": "PolarOrientation",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qpolarchart.h:    Q_DECLARE_FLAGS(PolarOrientations, PolarOrientation)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "AxisTypes",
+            "enum_class": "AxisType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\axis\\qabstractaxis.h:    Q_DECLARE_FLAGS(AxisTypes, AxisType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "ChangeFlags",
+            "enum_class": "ChangeFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\core\\changes\\qscenechange.h:Q_DECLARE_FLAGS(ChangeFlags, ChangeFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DCore",
+            "module_path": "../../PyQt5-stubs/Qt3DCore.pyi"
+        },
+        {
+            "qflag_class": "DeliveryFlags",
+            "enum_class": "DeliveryFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\core\\changes\\qscenechange.h:    Q_DECLARE_FLAGS(DeliveryFlags, DeliveryFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DCore",
+            "module_path": "../../PyQt5-stubs/Qt3DCore.pyi"
+        },
+        {
+            "qflag_class": "BufferTypeFlags",
+            "enum_class": "BufferType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\render\\framegraph\\qclearbuffers.h:    Q_DECLARE_FLAGS(BufferTypeFlags, BufferType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DRender",
+            "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
+        },
+        {
+            "qflag_class": "Operations",
+            "enum_class": "Operation",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\render\\framegraph\\qmemorybarrier.h:    Q_DECLARE_FLAGS(Operations, Operation)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "Qt3DRender",
+            "module_path": "../../PyQt5-stubs/Qt3DRender.pyi"
+        },
+        {
+            "qflag_class": "AnimationOptions",
+            "enum_class": "AnimationOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qchart.h:    Q_DECLARE_FLAGS(AnimationOptions, AnimationOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "RubberBands",
+            "enum_class": "RubberBand",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qchartview.h:    Q_DECLARE_FLAGS(RubberBands, RubberBand)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "PolarOrientations",
+            "enum_class": "PolarOrientation",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qpolarchart.h:    Q_DECLARE_FLAGS(PolarOrientations, PolarOrientation)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "AxisTypes",
+            "enum_class": "AxisType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\axis\\qabstractaxis.h:    Q_DECLARE_FLAGS(AxisTypes, AxisType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi"
+        },
+        {
+            "qflag_class": "TargetAccessModes",
+            "enum_class": "TargetAccessMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\nfc\\qnearfieldmanager.h:    Q_DECLARE_FLAGS(TargetAccessModes, TargetAccessMode)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtNfc",
+            "module_path": "../../PyQt5-stubs/QtNfc.pyi"
+        },
+        {
+            "qflag_class": "ShareModes",
+            "enum_class": "ShareMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\nfc\\qnearfieldsharemanager.h:    Q_DECLARE_FLAGS(ShareModes, ShareMode)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtNfc",
+            "module_path": "../../PyQt5-stubs/QtNfc.pyi"
+        },
+        {
+            "qflag_class": "AccessMethods",
+            "enum_class": "AccessMethod",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\nfc\\qnearfieldtarget.h:    Q_DECLARE_FLAGS(AccessMethods, AccessMethod)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtNfc",
+            "module_path": "../../PyQt5-stubs/QtNfc.pyi"
         }
     ],
     "qflags_to_skip": [
@@ -2272,6 +2595,81 @@
             "qflag_class": "DirtyFlags",
             "enum_class": "DirtyFlag",
             "skip_reason": "QFlag not found"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "skip_reason": "QFlag not found in module group qtchart"
+        },
+        {
+            "qflag_class": "BackendNodeDirtySet",
+            "enum_class": "BackendNodeDirtyFlag",
+            "skip_reason": "QFlag not found in module group qtchart"
+        },
+        {
+            "qflag_class": "DirtyFlags",
+            "enum_class": "DirtyFlag",
+            "skip_reason": "QFlag not found in module group qtchart"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "BackendNodeDirtySet",
+            "enum_class": "BackendNodeDirtyFlag",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "DirtyFlags",
+            "enum_class": "DirtyFlag",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "SecurityFlags",
+            "enum_class": "Security",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "AttAccessConstraints",
+            "enum_class": "AttAccessConstraint",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "DiscoveryMethods",
+            "enum_class": "DiscoveryMethod",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "ServiceClasses",
+            "enum_class": "ServiceClass",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "Fields",
+            "enum_class": "Field",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "CoreConfigurations",
+            "enum_class": "CoreConfiguration",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "PropertyTypes",
+            "enum_class": "PropertyType",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "JobFlags",
+            "enum_class": "JobFlag",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
+        },
+        {
+            "qflag_class": "ServiceTypes",
+            "enum_class": "ServiceType",
+            "skip_reason": "QFlag not found in module group qtconnectivity"
         }
     ]
 }
