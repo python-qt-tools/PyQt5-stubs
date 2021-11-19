@@ -1,2 +1,0 @@
-src\gamepad\qgamepadmanager.h:    Q_DECLARE_FLAGS(GamepadButtons, GamepadButton)
-src\gamepad\qgamepadmanager.h:    Q_DECLARE_FLAGS(GamepadAxes, GamepadAxis)
