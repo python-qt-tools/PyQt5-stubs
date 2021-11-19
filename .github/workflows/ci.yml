@@ -1,19 +1,16 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
+      - more-qflags
     tags:
       - v*
   pull_request:
     branches:
       - "*"
-  schedule:
-    # Daily at 06:14.  This is just an arbitrary time to stagger
-    # relative to other daily builds in any given organization.
-    - cron: '14 6 * * *'
-
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
@@ -24,15 +21,6 @@ jobs:
         os:
           - name: Linux
             runs-on: ubuntu-latest
-            matrix: linux
-#          https://github.com/python-qt-tools/PyQt5-stubs/issues/122
-#          - name: Windows
-#            runs-on: windows-latest
-#            matrix: windows
-#          https://github.com/python-qt-tools/PyQt5-stubs/issues/122
-#          - name: macOS
-#            runs-on: macos-latest
-#            matrix: macos
         python:
           - name: CPython 3.6
             tox: py36
@@ -46,6 +34,24 @@ jobs:
           - name: CPython 3.9
             tox: py39
             action: 3.9
+          - name: CPython 3.10
+            tox: py310
+            action: '3.10'
+        include:
+          - os:
+              name: Windows
+              runs-on: windows-latest
+            python:
+              name: CPython 3.6
+              tox: py36
+              action: 3.6
+          - os:
+                name: Windows
+                runs-on: windows-latest
+            python:
+                name: CPython 3.9
+                tox: py39
+                action: '3.9'
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
@@ -55,7 +61,7 @@ jobs:
           architecture: x64
       - uses: twisted/python-info-action@v1.0.1
       - name: Install Linux Qt5 dependencies
-        if: matrix.os.matrix == 'linux'
+        if: matrix.os.name == 'Linux'
         run: |
           sudo apt-get update --yes
           sudo apt-get install --yes libgl1
