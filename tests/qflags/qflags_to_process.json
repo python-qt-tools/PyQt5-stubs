@@ -3350,6 +3350,125 @@
             "module_idx": 0,
             "module_name": "QtSerialPort",
             "module_path": "../../PyQt5-stubs/QtSerialPort.pyi"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "QWebEngineUrlScheme.Flags",
+            "human_hint_enum_full_class_name": "QWebEngineUrlScheme.Flag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineCore",
+            "module_path": "../../PyQt5-stubs/QtWebEngineCore.pyi"
+        },
+        {
+            "qflag_class": "MediaFlags",
+            "enum_class": "MediaFlag",
+            "human_hint_qflag_full_class_name": "QWebEngineContextMenuData.MediaFlags",
+            "human_hint_enum_full_class_name": "QWebEngineContextMenuData.MediaFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineWidgets",
+            "module_path": "../../PyQt5-stubs/QtWebEngineWidgets.pyi"
+        },
+        {
+            "qflag_class": "EditFlags",
+            "enum_class": "EditFlag",
+            "human_hint_qflag_full_class_name": "QWebEngineContextMenuData.EditFlags",
+            "human_hint_enum_full_class_name": "QWebEngineContextMenuData.EditFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineWidgets",
+            "module_path": "../../PyQt5-stubs/QtWebEngineWidgets.pyi"
+        },
+        {
+            "qflag_class": "FindFlags",
+            "enum_class": "FindFlag",
+            "human_hint_qflag_full_class_name": "QWebEnginePage.FindFlags",
+            "human_hint_enum_full_class_name": "QWebEnginePage.FindFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineWidgets",
+            "module_path": "../../PyQt5-stubs/QtWebEngineWidgets.pyi"
+        },
+        {
+            "qflag_class": "RenderLayers",
+            "enum_class": "RenderLayer",
+            "human_hint_qflag_full_class_name": "QWebFrame.RenderLayers",
+            "human_hint_enum_full_class_name": "QWebFrame.RenderLayer",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebKitWiddgets",
+            "module_path": "../../PyQt5-stubs/QtWebKitWidgets.pyi"
+        },
+        {
+            "qflag_class": "FindFlags",
+            "enum_class": "FindFlag",
+            "human_hint_qflag_full_class_name": "QWebPage.FindFlags",
+            "human_hint_enum_full_class_name": "QWebPage.FindFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebKitWiddgets",
+            "module_path": "../../PyQt5-stubs/QtWebKitWidgets.pyi"
+        },
+        {
+            "qflag_class": "Feature",
+            "enum_class": "FeatureFlag",
+            "human_hint_qflag_full_class_name": "QDesignerFormWindowInterface.Feature",
+            "human_hint_enum_full_class_name": "QDesignerFormWindowInterface.FeatureFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebKitWiddgets",
+            "module_path": "../../PyQt5-stubs/QtWebKitWidgets.pyi"
         }
     ],
     "qflags_to_skip": [
