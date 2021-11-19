@@ -1919,8 +1919,8 @@
         {
             "qflag_class": "State",
             "enum_class": "StateFlag",
-            "human_hint_qflag_full_class_name": "",
-            "human_hint_enum_full_class_name": "",
+            "human_hint_qflag_full_class_name": "QStyle.State",
+            "human_hint_enum_full_class_name": "QStyle.StateFlag",
             "grep_line": [
                 "src\\widgets\\styles\\qstyle.h:    Q_DECLARE_FLAGS(State, StateFlag)"
             ],
