@@ -2947,6 +2947,256 @@
             "module_idx": 1,
             "module_name": "QtQuick",
             "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "VisibilityScope",
+            "enum_class": "Visibility",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\qlocation.h:Q_DECLARE_FLAGS(VisibilityScope, Visibility)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "PositioningMethods",
+            "enum_class": "PositioningMethod",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\positioningquick\\qdeclarativepositionsource_p.h:    Q_DECLARE_FLAGS(PositioningMethods, PositioningMethod)",
+                "src\\positioning\\qgeopositioninfosource.h:    Q_DECLARE_FLAGS(PositioningMethods, PositioningMethod)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtPositioning",
+            "module_path": "../../PyQt5-stubs/QtPositioning.pyi"
+        },
+        {
+            "qflag_class": "AreaMonitorFeatures",
+            "enum_class": "AreaMonitorFeature",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\positioning\\qgeoareamonitorsource.h:    Q_DECLARE_FLAGS(AreaMonitorFeatures, AreaMonitorFeature)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtPositioning",
+            "module_path": "../../PyQt5-stubs/QtPositioning.pyi"
+        },
+        {
+            "qflag_class": "TravelModes",
+            "enum_class": "TravelMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoroutemodel_p.h:    Q_DECLARE_FLAGS(TravelModes, TravelMode)",
+                "src\\location\\maps\\qgeorouterequest.h:    Q_DECLARE_FLAGS(TravelModes, TravelMode)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "FeatureTypes",
+            "enum_class": "FeatureType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoroutemodel_p.h:    Q_DECLARE_FLAGS(FeatureTypes, FeatureType)",
+                "src\\location\\maps\\qgeorouterequest.h:    Q_DECLARE_FLAGS(FeatureTypes, FeatureType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "FeatureWeights",
+            "enum_class": "FeatureWeight",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoroutemodel_p.h:    Q_DECLARE_FLAGS(FeatureWeights, FeatureWeight)",
+                "src\\location\\maps\\qgeorouterequest.h:    Q_DECLARE_FLAGS(FeatureWeights, FeatureWeight)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "RouteOptimizations",
+            "enum_class": "RouteOptimization",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoroutemodel_p.h:    Q_DECLARE_FLAGS(RouteOptimizations, RouteOptimization)",
+                "src\\location\\maps\\qgeorouterequest.h:    Q_DECLARE_FLAGS(RouteOptimizations, RouteOptimization)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "SegmentDetails",
+            "enum_class": "SegmentDetail",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoroutemodel_p.h:    Q_DECLARE_FLAGS(SegmentDetails, SegmentDetail)",
+                "src\\location\\maps\\qgeorouterequest.h:    Q_DECLARE_FLAGS(SegmentDetails, SegmentDetail)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "ManeuverDetails",
+            "enum_class": "ManeuverDetail",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoroutemodel_p.h:    Q_DECLARE_FLAGS(ManeuverDetails, ManeuverDetail)",
+                "src\\location\\maps\\qgeorouterequest.h:    Q_DECLARE_FLAGS(ManeuverDetails, ManeuverDetail)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "RoutingFeatures",
+            "enum_class": "RoutingFeature",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoserviceprovider_p.h:    Q_DECLARE_FLAGS(RoutingFeatures, RoutingFeature)",
+                "src\\location\\maps\\qgeoserviceprovider.h:    Q_DECLARE_FLAGS(RoutingFeatures, RoutingFeature)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "GeocodingFeatures",
+            "enum_class": "GeocodingFeature",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoserviceprovider_p.h:    Q_DECLARE_FLAGS(GeocodingFeatures, GeocodingFeature)",
+                "src\\location\\maps\\qgeoserviceprovider.h:    Q_DECLARE_FLAGS(GeocodingFeatures, GeocodingFeature)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "MappingFeatures",
+            "enum_class": "MappingFeature",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoserviceprovider_p.h:    Q_DECLARE_FLAGS(MappingFeatures, MappingFeature)",
+                "src\\location\\maps\\qgeoserviceprovider.h:    Q_DECLARE_FLAGS(MappingFeatures, MappingFeature)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "PlacesFeatures",
+            "enum_class": "PlacesFeature",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoserviceprovider_p.h:    Q_DECLARE_FLAGS(PlacesFeatures, PlacesFeature)",
+                "src\\location\\maps\\qgeoserviceprovider.h:    Q_DECLARE_FLAGS(PlacesFeatures, PlacesFeature)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
+        },
+        {
+            "qflag_class": "NavigationFeatures",
+            "enum_class": "NavigationFeature",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\location\\declarativemaps\\qdeclarativegeoserviceprovider_p.h:    Q_DECLARE_FLAGS(NavigationFeatures, NavigationFeature)",
+                "src\\location\\maps\\qgeoserviceprovider.h:    Q_DECLARE_FLAGS(NavigationFeatures, NavigationFeature)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtLocation",
+            "module_path": "../../PyQt5-stubs/QtLocation.pyi"
         }
     ],
     "qflags_to_skip": [
@@ -3134,6 +3384,51 @@
             "qflag_class": "DrawingHints",
             "enum_class": "DrawingHint",
             "skip_reason": "QFlag not found in module group qtquick"
+        },
+        {
+            "qflag_class": "CacheAreas",
+            "enum_class": "CacheArea",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "ItemTypes",
+            "enum_class": "ItemType",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "Capabilities",
+            "enum_class": "Capability",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "Features",
+            "enum_class": "Feature",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "AcceptedGestures",
+            "enum_class": "GeoMapGesture",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "SyncStates",
+            "enum_class": "SyncState",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "ResourceFlags",
+            "enum_class": "ResourceFlag",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "PositionFields",
+            "enum_class": "PositionField",
+            "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "VelocityFields",
+            "enum_class": "VelocityField",
+            "skip_reason": "QFlag not found in module group qtlocation"
         }
     ]
 }
