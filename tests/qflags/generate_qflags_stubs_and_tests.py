@@ -176,11 +176,13 @@ def identify_qflag_location(fname_grep_result: str,
 
     for qflag_key, flag_info in parsed_qflags.items():
         decl_qflag_class = 'class %s(sip.simplewrapper' % flag_info.qflag_class
+        decl_qflag_class2 = 'class %s(sip.wrapper' % flag_info.qflag_class
         decl_enum_class = 'class %s(int' % flag_info.enum_class
         module_found = False
         for mod_name, mod_content in qt_modules_content:
 
-            if decl_qflag_class in mod_content and decl_enum_class in mod_content:
+            if (decl_qflag_class in mod_content or decl_qflag_class2 in mod_content) \
+                    and decl_enum_class in mod_content:
                 # we have found one module
                 module_found = True
                 # print('Adding QFlags %s to module %s' % (flag_info.qflag_class, mod_name))
