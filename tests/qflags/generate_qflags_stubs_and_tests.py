@@ -14,6 +14,7 @@ from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
                     Qt3DAnimation, Qt3DCore, Qt3DExtras, Qt3DInput, Qt3DLogic, Qt3DRender,
                     QtChart,
                     QtBluetooth, QtNfc,
+                    QtDataVisualization,
                    )
 try:
     import libcst as cst
@@ -49,6 +50,9 @@ MODULE_GROUPS = {
     'qtconnectivity': [
         'QtBluetooth',
         'QtNfc',
+    ],
+    'qtdatavisualization': [
+        'QtDataVisualization',
     ],
 }
 
@@ -109,6 +113,10 @@ class QFlagLocationInfo:
     # module name and path
     module_name: str = ''
     module_path: str = ''
+
+    def key(self) -> Tuple[str, str, str]:
+        '''Mostly unique description of the QFlagInfo'''
+        return (self.module_name, self.qflag_class, self.enum_class)
 
     # specific behavior of some QFlag classes varies slightly
     # this helps to define the exact behavior
@@ -241,14 +249,22 @@ def group_qflags(qflag_location: List[QFlagLocationInfo],
             'flag_without_module': [],
         }
 
-    qflags_group_initial['flag_and_module_identified'].extend([
-        flag_info for flag_info in qflag_location
-            if flag_info.module_name != ''
-    ])
-    qflags_group_initial['flag_without_module'].extend([
-        flag_info for flag_info in qflag_location
-            if flag_info.module_name == ''
-    ])
+    qflag_already_present = [
+        (loc.module_name, loc.qflag_class, loc.enum_class)
+        for loc in qflags_group_initial['flag_and_module_identified']
+    ]
+
+    for flag_info in qflag_location:
+        qflag_key = flag_info.key()
+
+        if flag_info.module_name != '':
+            if qflag_key in qflag_already_present:
+                print('QFlag already analysed: ', qflag_key)
+                continue
+
+            qflags_group_initial['flag_and_module_identified'].append(flag_info)
+        else:
+            qflags_group_initial['flag_without_module'].append(flag_info)
 
     return qflags_group_initial
 
@@ -275,7 +291,13 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
             'qflags_to_skip': [],
         }
 
+    skip_already_present = set( (d['qflag_class'], d['enum_class'])
+        for d in result['qflags_to_skip']
+    )
     for flag_info in d['flag_without_module']:
+        key = (flag_info['qflag_class'], flag_info['enum_class'])
+        if key in skip_already_present:
+            continue
         cast(List, result['qflags_to_skip']).append(
             {
                 'qflag_class': flag_info['qflag_class'],
@@ -284,8 +306,15 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
             }
         )
 
-    for flag_info in d['flag_and_module_identified']:
-        cast(List, result['qflags_to_process']).append( flag_info )
+    already_present = set((flag_info_d['module_name'], flag_info_d['qflag_class'], flag_info_d['enum_class'])
+                          for flag_info_d in result['qflags_to_process'])
+
+    for flag_info_d in d['flag_and_module_identified']:
+        key = (flag_info_d['module_name'], flag_info_d['qflag_class'], flag_info_d['enum_class'])
+        if key in already_present:
+            print('QFlag to process already present: ', key )
+            continue
+        cast(List, result['qflags_to_process']).append( flag_info_d )
 
     with open(qflags_to_process_json, 'w') as f:
         json.dump(result, f, indent=4)
@@ -1138,8 +1167,11 @@ def generate_qflags_to_process(qt_qflag_grep_result_fname: str, module_group: st
     else:
         qflag_groups_initial = None
 
+
+    initial_len = len(qflag_groups_initial['flag_and_module_identified'])
     qflags_groups = group_qflags(location_qflags, qflag_groups_initial)
-    log_progress('%d qflags ready to be processed' % len(qflags_groups['flag_and_module_identified']))
+    new_len = len(qflag_groups_initial['flag_and_module_identified'])
+    log_progress('%d qflags ready to be processed' % (new_len - initial_len))
 
     with open(qflags_modules_analysis_json, 'w') as f:
         json.dump(qflags_groups, f, indent=4, default=json_encode_qflaglocationinfo)
