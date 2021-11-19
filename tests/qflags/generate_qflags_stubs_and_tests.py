@@ -525,6 +525,12 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.enum_value2 = visitor.enum_value2
     flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
+    if visitor.enum_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
+
+    if visitor.qflag_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.qflag_class_name, '')
+
     # evaluate exact behavior of QFlag
     try:
         flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(
@@ -550,12 +556,6 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     except TypeError:
         flag_info.supports_one_op_multi = False
 
-    if visitor.enum_class_full_name == '':
-        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
-
-    if visitor.qflag_class_full_name == '':
-        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.qflag_class_name, '')
-
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
         return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
 
@@ -569,6 +569,9 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
            or flag_info.or_int_converts_to_multi):
             # this means __or__ or __ror__ must be present, we have an error
             visitor.error_msg += 'QFlag methods are present but not Enum methods\n'
+        else:
+            # it's ok
+            return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
 
     if visitor.error_msg:
         return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg, '')
