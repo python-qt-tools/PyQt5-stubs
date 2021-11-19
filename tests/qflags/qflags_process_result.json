@@ -2640,6 +2640,90 @@
             "or_int_converts_to_multi": false,
             "int_or_converts_to_multi": false,
             "supports_one_op_multi": false
+        },
+        {
+            "qflag_class": "AnimationOptions",
+            "enum_class": "AnimationOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qchart.h:    Q_DECLARE_FLAGS(AnimationOptions, AnimationOption)"
+            ],
+            "qflag_full_class_name": "QChart.AnimationOptions",
+            "enum_full_class_name": "QChart.AnimationOption",
+            "enum_value1": "NoAnimation",
+            "enum_value2": "GridAxisAnimations",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": true,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "RubberBands",
+            "enum_class": "RubberBand",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qchartview.h:    Q_DECLARE_FLAGS(RubberBands, RubberBand)"
+            ],
+            "qflag_full_class_name": "QChartView.RubberBands",
+            "enum_full_class_name": "QChartView.RubberBand",
+            "enum_value1": "NoRubberBand",
+            "enum_value2": "VerticalRubberBand",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "PolarOrientations",
+            "enum_class": "PolarOrientation",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\qpolarchart.h:    Q_DECLARE_FLAGS(PolarOrientations, PolarOrientation)"
+            ],
+            "qflag_full_class_name": "QPolarChart.PolarOrientations",
+            "enum_full_class_name": "QPolarChart.PolarOrientation",
+            "enum_value1": "PolarOrientationRadial",
+            "enum_value2": "PolarOrientationAngular",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "AxisTypes",
+            "enum_class": "AxisType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\charts\\axis\\qabstractaxis.h:    Q_DECLARE_FLAGS(AxisTypes, AxisType)"
+            ],
+            "qflag_full_class_name": "QAbstractAxis.AxisTypes",
+            "enum_full_class_name": "QAbstractAxis.AxisType",
+            "enum_value1": "AxisTypeNoAxis",
+            "enum_value2": "AxisTypeValue",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtChart",
+            "module_path": "../../PyQt5-stubs/QtChart.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
         }
     ],
     "qflag_process_error": [
