@@ -3429,6 +3429,21 @@
             "qflag_class": "VelocityFields",
             "enum_class": "VelocityField",
             "skip_reason": "QFlag not found in module group qtlocation"
+        },
+        {
+            "qflag_class": "ShaderTypes",
+            "enum_class": "ShaderType",
+            "skip_reason": "QFlag not found in module group qtmultimedia"
+        },
+        {
+            "qflag_class": "FrameFlags",
+            "enum_class": "FrameFlag",
+            "skip_reason": "QFlag not found in module group qtmultimedia"
+        },
+        {
+            "qflag_class": "EmptyStreamOptions",
+            "enum_class": "EmptyStreamOption",
+            "skip_reason": "QFlag not found in module group qtmultimedia"
         }
     ]
 }
