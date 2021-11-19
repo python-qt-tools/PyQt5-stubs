@@ -3937,6 +3937,111 @@
             "or_int_converts_to_multi": false,
             "int_or_converts_to_multi": true,
             "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "QWebEngineUrlScheme.Flags",
+            "human_hint_enum_full_class_name": "QWebEngineUrlScheme.Flag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QWebEngineUrlScheme.Flags",
+            "enum_full_class_name": "QWebEngineUrlScheme.Flag",
+            "enum_value1": "SecureScheme",
+            "enum_value2": "LocalScheme",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineCore",
+            "module_path": "../../PyQt5-stubs/QtWebEngineCore.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "MediaFlags",
+            "enum_class": "MediaFlag",
+            "human_hint_qflag_full_class_name": "QWebEngineContextMenuData.MediaFlags",
+            "human_hint_enum_full_class_name": "QWebEngineContextMenuData.MediaFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QWebEngineContextMenuData.MediaFlags",
+            "enum_full_class_name": "QWebEngineContextMenuData.MediaFlag",
+            "enum_value1": "MediaInError",
+            "enum_value2": "MediaPaused",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineWidgets",
+            "module_path": "../../PyQt5-stubs/QtWebEngineWidgets.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "EditFlags",
+            "enum_class": "EditFlag",
+            "human_hint_qflag_full_class_name": "QWebEngineContextMenuData.EditFlags",
+            "human_hint_enum_full_class_name": "QWebEngineContextMenuData.EditFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QWebEngineContextMenuData.EditFlags",
+            "enum_full_class_name": "QWebEngineContextMenuData.EditFlag",
+            "enum_value1": "CanUndo",
+            "enum_value2": "CanRedo",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineWidgets",
+            "module_path": "../../PyQt5-stubs/QtWebEngineWidgets.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "FindFlags",
+            "enum_class": "FindFlag",
+            "human_hint_qflag_full_class_name": "QWebEnginePage.FindFlags",
+            "human_hint_enum_full_class_name": "QWebEnginePage.FindFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QWebEnginePage.FindFlags",
+            "enum_full_class_name": "QWebEnginePage.FindFlag",
+            "enum_value1": "FindBackward",
+            "enum_value2": "FindCaseSensitively",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebEngineWidgets",
+            "module_path": "../../PyQt5-stubs/QtWebEngineWidgets.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "Feature",
+            "enum_class": "FeatureFlag",
+            "human_hint_qflag_full_class_name": "QDesignerFormWindowInterface.Feature",
+            "human_hint_enum_full_class_name": "QDesignerFormWindowInterface.FeatureFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QDesignerFormWindowInterface.Feature",
+            "enum_full_class_name": "QDesignerFormWindowInterface.FeatureFlag",
+            "enum_value1": "EditFeature",
+            "enum_value2": "GridFeature",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtDesigner",
+            "module_path": "../../PyQt5-stubs/QtDesigner.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
         }
     ],
     "qflag_process_error": [
@@ -4014,6 +4119,62 @@
             "supports_one_op_multi": true,
             "error": [
                 "Could not locate class DirtyState"
+            ]
+        },
+        {
+            "qflag_class": "RenderLayers",
+            "enum_class": "RenderLayer",
+            "human_hint_qflag_full_class_name": "QWebFrame.RenderLayers",
+            "human_hint_enum_full_class_name": "QWebFrame.RenderLayer",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QWebFrame.RenderLayers",
+            "enum_full_class_name": "QWebFrame.RenderLayer",
+            "enum_value1": "ContentsLayer",
+            "enum_value2": "ScrollBarLayer",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebKitWiddgets",
+            "module_path": "../../PyQt5-stubs/QtWebKitWidgets.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true,
+            "error": [
+                "Traceback (most recent call last):",
+                "  File \"generate_qflags_stubs_and_tests.py\", line 601, in generate_missing_stubs",
+                "    flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(",
+                "  File \"<string>\", line 1, in <module>",
+                "NameError: name 'QtWebKitWiddgets' is not defined"
+            ]
+        },
+        {
+            "qflag_class": "FindFlags",
+            "enum_class": "FindFlag",
+            "human_hint_qflag_full_class_name": "QWebPage.FindFlags",
+            "human_hint_enum_full_class_name": "QWebPage.FindFlag",
+            "grep_line": [
+                ""
+            ],
+            "qflag_full_class_name": "QWebPage.FindFlags",
+            "enum_full_class_name": "QWebPage.FindFlag",
+            "enum_value1": "FindBackward",
+            "enum_value2": "FindCaseSensitively",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtWebKitWiddgets",
+            "module_path": "../../PyQt5-stubs/QtWebKitWidgets.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true,
+            "error": [
+                "Traceback (most recent call last):",
+                "  File \"generate_qflags_stubs_and_tests.py\", line 601, in generate_missing_stubs",
+                "    flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(",
+                "  File \"<string>\", line 1, in <module>",
+                "NameError: name 'QtWebKitWiddgets' is not defined"
             ]
         }
     ]

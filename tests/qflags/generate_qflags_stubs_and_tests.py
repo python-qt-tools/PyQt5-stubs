@@ -19,6 +19,8 @@ from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
                     QtPositioning, QtLocation,
                     QtMultimedia,
                     QtSerialPort,
+                    QtDesigner,
+                    QtWebEngineWidgets, QtWebEngineCore,
                    )
 try:
     import libcst as cst
