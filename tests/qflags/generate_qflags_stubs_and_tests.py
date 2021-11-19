@@ -788,14 +788,21 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None:
         '''
         if (len(qflag_node.bases) == 0
-            or not matchers.matches(qflag_node.bases[0],
+           or not (matchers.matches(qflag_node.bases[0],
+                                         matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
+                                                                               attr=matchers.Name('simplewrapper')
+                                                                               )
+                                                      )
+                                         )
+                   or matchers.matches(qflag_node.bases[0],
                                 matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
-                                                                      attr=matchers.Name('simplewrapper')
+                                                                      attr=matchers.Name('wrapper')
                                                                       )
                                              )
                                 )
+                )
             ):
-            # 'Class does not inherit from sip.simplewrapper'
+            # 'Class does not inherit from sip.simplewrapper' or sip.wrapper
             return False
 
         has_method = [
