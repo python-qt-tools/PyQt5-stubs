@@ -9,14 +9,14 @@ else:
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QSGNode.Flags" and flag class "QSGNode.Flag"
+# file generated from qflags_test_template.py for QFlags class "QSGMaterialRhiShader.Flags" and flag class "QSGMaterialRhiShader.Flag"
 from PyQt5 import QtQuick
 
-OneFlagClass = QtQuick.QSGNode.Flag
-MultiFlagClass = QtQuick.QSGNode.Flags
+OneFlagClass = QtQuick.QSGMaterialRhiShader.Flag
+MultiFlagClass = QtQuick.QSGMaterialRhiShader.Flags
 
-oneFlagRefValue1 = QtQuick.QSGNode.Flag.OwnedByParent
-oneFlagRefValue2 = QtQuick.QSGNode.Flag.UsePreprocess
+oneFlagRefValue1 = QtQuick.QSGMaterialRhiShader.Flag.UpdatesGraphicsPipelineState
+oneFlagRefValue2 = QtQuick.QSGMaterialRhiShader.Flag.UpdatesGraphicsPipelineState
 
 OR_CONVERTS_TO_MULTI: Literal[True] = True
 OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
