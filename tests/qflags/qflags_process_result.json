@@ -3895,6 +3895,48 @@
             "or_int_converts_to_multi": false,
             "int_or_converts_to_multi": true,
             "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "Directions",
+            "enum_class": "Direction",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\serialport\\qserialport.h:    Q_DECLARE_FLAGS(Directions, Direction)"
+            ],
+            "qflag_full_class_name": "QSerialPort.Directions",
+            "enum_full_class_name": "QSerialPort.Direction",
+            "enum_value1": "Input",
+            "enum_value2": "Output",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtSerialPort",
+            "module_path": "../../PyQt5-stubs/QtSerialPort.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "PinoutSignals",
+            "enum_class": "PinoutSignal",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\serialport\\qserialport.h:    Q_DECLARE_FLAGS(PinoutSignals, PinoutSignal)"
+            ],
+            "qflag_full_class_name": "QSerialPort.PinoutSignals",
+            "enum_full_class_name": "QSerialPort.PinoutSignal",
+            "enum_value1": "NoSignal",
+            "enum_value2": "TransmittedDataSignal",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtSerialPort",
+            "module_path": "../../PyQt5-stubs/QtSerialPort.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
         }
     ],
     "qflag_process_error": [
