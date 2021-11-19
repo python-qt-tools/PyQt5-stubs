@@ -230,9 +230,9 @@ def test_on_multi_flag_class() -> None:
 	#########################################################1
 
 	if not SUPPORTS_ONE_OP_MULTI:
-		pytest.raises(TypeError, lambda: oneFlagValue1 | multiFlagValue1)
-		pytest.raises(TypeError, lambda: oneFlagValue1 & multiFlagValue1)
-		pytest.raises(TypeError, lambda: oneFlagValue1 ^ multiFlagValue1)
+		pytest.raises(TypeError, lambda: oneFlagValue1 | multiFlagValue1)  # type: ignore[operator]
+		pytest.raises(TypeError, lambda: oneFlagValue1 & multiFlagValue1)  # type: ignore[operator]
+		pytest.raises(TypeError, lambda: oneFlagValue1 ^ multiFlagValue1)  # type: ignore[operator]
 
 	pytest.raises(TypeError, lambda: 1 | multiFlagValue1 )	# type: ignore[operator]
 	pytest.raises(TypeError, lambda: 1 & multiFlagValue1 )	# type: ignore[operator]
