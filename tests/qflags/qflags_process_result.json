@@ -3748,6 +3748,153 @@
             "or_int_converts_to_multi": false,
             "int_or_converts_to_multi": true,
             "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "CaptureModes",
+            "enum_class": "CaptureMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\camera\\qcamera.h:    Q_DECLARE_FLAGS(CaptureModes, CaptureMode)"
+            ],
+            "qflag_full_class_name": "QCamera.CaptureModes",
+            "enum_full_class_name": "QCamera.CaptureMode",
+            "enum_value1": "CaptureViewfinder",
+            "enum_value2": "CaptureStillImage",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "LockTypes",
+            "enum_class": "LockType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\camera\\qcamera.h:    Q_DECLARE_FLAGS(LockTypes, LockType)"
+            ],
+            "qflag_full_class_name": "QCamera.LockTypes",
+            "enum_full_class_name": "QCamera.LockType",
+            "enum_value1": "NoLock",
+            "enum_value2": "LockExposure",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "FlashModes",
+            "enum_class": "FlashMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\camera\\qcameraexposure.h:    Q_DECLARE_FLAGS(FlashModes, FlashMode)"
+            ],
+            "qflag_full_class_name": "QCameraExposure.FlashModes",
+            "enum_full_class_name": "QCameraExposure.FlashMode",
+            "enum_value1": "FlashAuto",
+            "enum_value2": "FlashOff",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "FocusModes",
+            "enum_class": "FocusMode",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\camera\\qcamerafocus.h:    Q_DECLARE_FLAGS(FocusModes, FocusMode)"
+            ],
+            "qflag_full_class_name": "QCameraFocus.FocusModes",
+            "enum_full_class_name": "QCameraFocus.FocusMode",
+            "enum_value1": "ManualFocus",
+            "enum_value2": "HyperfocalFocus",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "CaptureDestinations",
+            "enum_class": "CaptureDestination",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\camera\\qcameraimagecapture.h:    Q_DECLARE_FLAGS(CaptureDestinations, CaptureDestination)"
+            ],
+            "qflag_full_class_name": "QCameraImageCapture.CaptureDestinations",
+            "enum_full_class_name": "QCameraImageCapture.CaptureDestination",
+            "enum_value1": "CaptureToFile",
+            "enum_value2": "CaptureToBuffer",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\playback\\qmediaplayer.h:    Q_DECLARE_FLAGS(Flags, Flag)"
+            ],
+            "qflag_full_class_name": "QMediaPlayer.Flags",
+            "enum_full_class_name": "QMediaPlayer.Flag",
+            "enum_value1": "LowLatency",
+            "enum_value2": "StreamPlayback",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": false,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": false,
+            "supports_one_op_multi": true
+        },
+        {
+            "qflag_class": "RunFlags",
+            "enum_class": "RunFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\multimedia\\video\\qabstractvideofilter.h:    Q_DECLARE_FLAGS(RunFlags, RunFlag)"
+            ],
+            "qflag_full_class_name": "QVideoFilterRunnable.RunFlags",
+            "enum_full_class_name": "QVideoFilterRunnable.RunFlag",
+            "enum_value1": "LastInChain",
+            "enum_value2": "LastInChain",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtMultimedia",
+            "module_path": "../../PyQt5-stubs/QtMultimedia.pyi",
+            "or_converts_to_multi": true,
+            "or_int_converts_to_multi": false,
+            "int_or_converts_to_multi": true,
+            "supports_one_op_multi": true
         }
     ],
     "qflag_process_error": [
