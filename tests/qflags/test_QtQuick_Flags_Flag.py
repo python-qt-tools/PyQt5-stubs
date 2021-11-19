@@ -9,14 +9,14 @@ else:
 import pytest
 
 ### Specific part
-# file generated from qflags_test_template.py for QFlags class "QSGMaterial.Flags" and flag class "QSGMaterial.Flag"
+# file generated from qflags_test_template.py for QFlags class "QSGNode.Flags" and flag class "QSGNode.Flag"
 from PyQt5 import QtQuick
 
-OneFlagClass = QtQuick.QSGMaterial.Flag
-MultiFlagClass = QtQuick.QSGMaterial.Flags
+OneFlagClass = QtQuick.QSGNode.Flag
+MultiFlagClass = QtQuick.QSGNode.Flags
 
-oneFlagRefValue1 = QtQuick.QSGMaterial.Flag.Blending
-oneFlagRefValue2 = QtQuick.QSGMaterial.Flag.RequiresDeterminant
+oneFlagRefValue1 = QtQuick.QSGNode.Flag.OwnedByParent
+oneFlagRefValue2 = QtQuick.QSGNode.Flag.UsePreprocess
 
 OR_CONVERTS_TO_MULTI: Literal[True] = True
 OR_INT_CONVERTS_TO_MULTI: Literal[False] = False
