@@ -15,6 +15,7 @@ from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
                     QtChart,
                     QtBluetooth, QtNfc,
                     QtDataVisualization,
+                    QtQuick, QtQml
                    )
 try:
     import libcst as cst
@@ -53,6 +54,10 @@ MODULE_GROUPS = {
     ],
     'qtdatavisualization': [
         'QtDataVisualization',
+    ],
+    'qtquick': [
+        'QtQuick',
+        'QtQml',
     ],
 }
 

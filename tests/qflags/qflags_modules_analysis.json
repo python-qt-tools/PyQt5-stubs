@@ -375,6 +375,390 @@
             "module_idx": 0,
             "module_name": "QtDataVisualization",
             "module_path": "../../PyQt5-stubs/QtDataVisualization.pyi"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quickshapes\\qquickshape_p_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlcustomparser_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlengine.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\qsgcontextplugin_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\items\\qquickitem.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "tests\\auto\\qml\\qmltyperegistrar\\tst_qmltyperegistrar.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterial.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialrhishader.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgnode.h:    Q_DECLARE_FLAGS(Flags, Flag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 4,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quickshapes\\qquickshape_p_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlcustomparser_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlengine.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\qsgcontextplugin_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\items\\qquickitem.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "tests\\auto\\qml\\qmltyperegistrar\\tst_qmltyperegistrar.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterial.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialrhishader.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgnode.h:    Q_DECLARE_FLAGS(Flags, Flag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 4,
+            "module_idx": 1,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quickshapes\\qquickshape_p_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlcustomparser_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlengine.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\qsgcontextplugin_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\items\\qquickitem.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "tests\\auto\\qml\\qmltyperegistrar\\tst_qmltyperegistrar.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterial.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialrhishader.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgnode.h:    Q_DECLARE_FLAGS(Flags, Flag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 4,
+            "module_idx": 2,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quickshapes\\qquickshape_p_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlcustomparser_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlengine.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\qsgcontextplugin_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\items\\qquickitem.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "tests\\auto\\qml\\qmltyperegistrar\\tst_qmltyperegistrar.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterial.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialrhishader.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgnode.h:    Q_DECLARE_FLAGS(Flags, Flag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 4,
+            "module_idx": 3,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "Flags",
+            "enum_class": "Flag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quickshapes\\qquickshape_p_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlcustomparser_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\qml\\qml\\qqmlengine.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\qsgcontextplugin_p.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\items\\qquickitem.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "tests\\auto\\qml\\qmltyperegistrar\\tst_qmltyperegistrar.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterial.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialrhishader.h:    Q_DECLARE_FLAGS(Flags, Flag)",
+                "src\\quick\\scenegraph\\coreapi\\qsgnode.h:    Q_DECLARE_FLAGS(Flags, Flag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQml",
+            "module_path": "../../PyQt5-stubs/QtQml.pyi"
+        },
+        {
+            "qflag_class": "Extensions",
+            "enum_class": "Extension",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\qml\\jsapi\\qjsengine.h:    Q_DECLARE_FLAGS(Extensions, Extension)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQml",
+            "module_path": "../../PyQt5-stubs/QtQml.pyi"
+        },
+        {
+            "qflag_class": "PerformanceHints",
+            "enum_class": "PerformanceHint",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickpainteditem.h:    Q_DECLARE_FLAGS(PerformanceHints, PerformanceHint)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "CreateTextureOptions",
+            "enum_class": "CreateTextureOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickwindow.h:    Q_DECLARE_FLAGS(CreateTextureOptions, CreateTextureOption)",
+                "src\\quick\\scenegraph\\util\\qsgengine.h:    Q_DECLARE_FLAGS(CreateTextureOptions, CreateTextureOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 2,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "CreateTextureOptions",
+            "enum_class": "CreateTextureOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickwindow.h:    Q_DECLARE_FLAGS(CreateTextureOptions, CreateTextureOption)",
+                "src\\quick\\scenegraph\\util\\qsgengine.h:    Q_DECLARE_FLAGS(CreateTextureOptions, CreateTextureOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 2,
+            "module_idx": 1,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "ClearMode",
+            "enum_class": "ClearModeBit",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgabstractrenderer.h:    Q_DECLARE_FLAGS(ClearMode, ClearModeBit)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "MatrixTransformFlags",
+            "enum_class": "MatrixTransformFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgabstractrenderer.h:    Q_DECLARE_FLAGS(MatrixTransformFlags, MatrixTransformFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "ColorMask",
+            "enum_class": "ColorMaskComponent",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialrhishader.h:        Q_DECLARE_FLAGS(ColorMask, ColorMaskComponent)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "DirtyStates",
+            "enum_class": "DirtyState",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgmaterialshader.h:        Q_DECLARE_FLAGS(DirtyStates, DirtyState)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "DirtyState",
+            "enum_class": "DirtyStateBit",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgnode.h:    Q_DECLARE_FLAGS(DirtyState, DirtyStateBit)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "ShaderCompilationTypes",
+            "enum_class": "ShaderCompilationType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgrendererinterface.h:    Q_DECLARE_FLAGS(ShaderCompilationTypes, ShaderCompilationType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "ShaderSourceTypes",
+            "enum_class": "ShaderSourceType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgrendererinterface.h:    Q_DECLARE_FLAGS(ShaderSourceTypes, ShaderSourceType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "StateFlags",
+            "enum_class": "StateFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgrendernode.h:    Q_DECLARE_FLAGS(StateFlags, StateFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "RenderingFlags",
+            "enum_class": "RenderingFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgrendernode.h:    Q_DECLARE_FLAGS(RenderingFlags, RenderingFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 1,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "TextureCoordinatesTransformMode",
+            "enum_class": "TextureCoordinatesTransformFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\util\\qsgimagenode.h:    Q_DECLARE_FLAGS(TextureCoordinatesTransformMode, TextureCoordinatesTransformFlag)",
+                "src\\quick\\scenegraph\\util\\qsgsimpletexturenode.h:    Q_DECLARE_FLAGS(TextureCoordinatesTransformMode, TextureCoordinatesTransformFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 2,
+            "module_idx": 0,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
+        },
+        {
+            "qflag_class": "TextureCoordinatesTransformMode",
+            "enum_class": "TextureCoordinatesTransformFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\util\\qsgimagenode.h:    Q_DECLARE_FLAGS(TextureCoordinatesTransformMode, TextureCoordinatesTransformFlag)",
+                "src\\quick\\scenegraph\\util\\qsgsimpletexturenode.h:    Q_DECLARE_FLAGS(TextureCoordinatesTransformMode, TextureCoordinatesTransformFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 2,
+            "module_idx": 1,
+            "module_name": "QtQuick",
+            "module_path": "../../PyQt5-stubs/QtQuick.pyi"
         }
     ],
     "flag_without_module": [
@@ -454,6 +838,450 @@
             "human_hint_enum_full_class_name": "",
             "grep_line": [
                 "src\\datavisualization\\utils\\surfaceobject_p.h:    Q_DECLARE_FLAGS(DataDimensions, DataDimension)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "ReleaseFlags",
+            "enum_class": "ReleaseFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\qmlmodels\\qqmlobjectmodel_p.h:    Q_DECLARE_FLAGS(ReleaseFlags, ReleaseFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "ChangeTypes",
+            "enum_class": "ChangeType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\qml\\animations\\qabstractanimationjob_p.h:    Q_DECLARE_FLAGS(ChangeTypes, ChangeType)",
+                "src\\quick\\items\\qquickitem_p.h:    Q_DECLARE_FLAGS(ChangeTypes, ChangeType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "PropertyFlags",
+            "enum_class": "PropertyFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\qml\\jsruntime\\qv4global_p.h:Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "WriteFlags",
+            "enum_class": "WriteFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\qml\\qml\\qqmlpropertydata_p.h:    Q_DECLARE_FLAGS(WriteFlags, WriteFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "BindingFlags",
+            "enum_class": "BindingFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\qml\\qml\\qqmlproperty_p.h:    Q_DECLARE_FLAGS(BindingFlags, BindingFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "Anchors",
+            "enum_class": "Anchor",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickanchors_p.h:    Q_DECLARE_FLAGS(Anchors, Anchor)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "GrabPermissions",
+            "enum_class": "GrabPermission",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\handlers\\qquickpointerhandler_p.h:    Q_DECLARE_FLAGS(GrabPermissions, GrabPermission)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "States",
+            "enum_class": "State",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickevents_p_p.h:    Q_DECLARE_FLAGS(States, State)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "DeviceTypes",
+            "enum_class": "DeviceType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickevents_p_p.h:    Q_DECLARE_FLAGS(DeviceTypes, DeviceType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "PointerTypes",
+            "enum_class": "PointerType",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickevents_p_p.h:    Q_DECLARE_FLAGS(PointerTypes, PointerType)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "Capabilities",
+            "enum_class": "CapabilityFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickevents_p_p.h:    Q_DECLARE_FLAGS(Capabilities, CapabilityFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "BoundsBehavior",
+            "enum_class": "BoundsBehaviorFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickflickable_p.h:    Q_DECLARE_FLAGS(BoundsBehavior, BoundsBehaviorFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "DirtyShaderFlags",
+            "enum_class": "DirtyShaderFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\qsgadaptationlayer_p.h:    Q_DECLARE_FLAGS(DirtyShaderFlags, DirtyShaderFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "LoadPixmapOptions",
+            "enum_class": "LoadPixmapOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickimagebase_p.h:    Q_DECLARE_FLAGS(LoadPixmapOptions, LoadPixmapOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "Options",
+            "enum_class": "Option",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\util\\qquickpixmapcache_p.h:    Q_DECLARE_FLAGS(Options, Option)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "RebuildOptions",
+            "enum_class": "RebuildOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquicktableview_p_p.h:    Q_DECLARE_FLAGS(RebuildOptions, RebuildOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "Decorations",
+            "enum_class": "Decoration",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquicktextnodeengine_p.h:    Q_DECLARE_FLAGS(Decorations, Decoration)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "FocusOptions",
+            "enum_class": "FocusOption",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\items\\qquickwindow_p.h:    Q_DECLARE_FLAGS(FocusOptions, FocusOption)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "MyFlags",
+            "enum_class": "MyFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "tests\\auto\\qml\\qqmlecmascript\\testtypes.h:    Q_DECLARE_FLAGS(MyFlags, MyFlag)",
+                "tests\\auto\\qml\\qqmllanguage\\testtypes.h:    Q_DECLARE_FLAGS(MyFlags, MyFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "ClearFlags",
+            "enum_class": "ClearFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\plugins\\scenegraph\\d3d12\\qsgd3d12engine_p.h:    Q_DECLARE_FLAGS(ClearFlags, ClearFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "TextureCreateFlags",
+            "enum_class": "TextureCreateFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\plugins\\scenegraph\\d3d12\\qsgd3d12engine_p.h:    Q_DECLARE_FLAGS(TextureCreateFlags, TextureCreateFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "TextureUploadFlags",
+            "enum_class": "TextureUploadFlag",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\plugins\\scenegraph\\d3d12\\qsgd3d12engine_p.h:    Q_DECLARE_FLAGS(TextureUploadFlags, TextureUploadFlag)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "UpdateResults",
+            "enum_class": "UpdateResult",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\plugins\\scenegraph\\d3d12\\qsgd3d12material_p.h:    Q_DECLARE_FLAGS(UpdateResults, UpdateResult)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "ClipType",
+            "enum_class": "ClipTypeBit",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\coreapi\\qsgbatchrenderer_p.h:    Q_DECLARE_FLAGS(ClipType, ClipTypeBit)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "Attachments",
+            "enum_class": "Attachment",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\util\\qsgdepthstencilbuffer_p.h:    Q_DECLARE_FLAGS(Attachments, Attachment)"
+            ],
+            "qflag_full_class_name": "",
+            "enum_full_class_name": "",
+            "enum_value1": "",
+            "enum_value2": "",
+            "module_count": 0,
+            "module_idx": -1,
+            "module_name": "",
+            "module_path": ""
+        },
+        {
+            "qflag_class": "DrawingHints",
+            "enum_class": "DrawingHint",
+            "human_hint_qflag_full_class_name": "",
+            "human_hint_enum_full_class_name": "",
+            "grep_line": [
+                "src\\quick\\scenegraph\\adaptations\\software\\qsgsoftwareinternalimagenode_p.h:    Q_DECLARE_FLAGS(DrawingHints, DrawingHint)"
             ],
             "qflag_full_class_name": "",
             "enum_full_class_name": "",
