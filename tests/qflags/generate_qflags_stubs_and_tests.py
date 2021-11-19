@@ -12,6 +12,8 @@ from enum import Enum
 from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
                    QtPrintSupport, QtSql, QtTest, QtXml,
                     Qt3DAnimation, Qt3DCore, Qt3DExtras, Qt3DInput, Qt3DLogic, Qt3DRender,
+                    QtChart,
+                    QtBluetooth, QtNfc,
                    )
 try:
     import libcst as cst
@@ -40,7 +42,14 @@ MODULE_GROUPS = {
         'Qt3DInput',
         'Qt3DLogic',
         'Qt3DRender',
-    ]
+    ],
+    'qtchart': [
+        'QtChart',
+    ],
+    'qtconnectivity': [
+        'QtBluetooth',
+        'QtNfc',
+    ],
 }
 
 
@@ -215,7 +224,8 @@ def identify_qflag_location(fname_grep_result: str,
     return all_qflags
 
 
-def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFlagLocationInfo]]:
+def group_qflags(qflag_location: List[QFlagLocationInfo],
+                 qflags_group_initial: Optional[Dict[str, List[QFlagLocationInfo]]]) -> Dict[str, List[QFlagLocationInfo]]:
     '''Group the QFlags into the following groups (inside a dictionnary):
     * flag_and_module_identified: this flag is present once in one module exactly.
     * flag_without_module: this flag is not present in any modules at all.
@@ -223,18 +233,22 @@ def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFl
     The first group is suitable for automatic processing.
     The last group reflects the QFlags not exported to PyQt or coming from modules not present in PyQt
     '''
-    d = {
-        'flag_and_module_identified': [
-                flag_info for flag_info in qflag_location
-                                if flag_info.module_name != ''
-        ],
-        'flag_without_module': [
-            flag_info for flag_info in qflag_location
-                    if flag_info.module_name == ''
-        ],
-    }
+    if not qflags_group_initial:
+        qflags_group_initial = {
+            'flag_and_module_identified': [],
+            'flag_without_module': [],
+        }
 
-    return d
+    qflags_group_initial['flag_and_module_identified'].extend([
+        flag_info for flag_info in qflag_location
+            if flag_info.module_name != ''
+    ])
+    qflags_group_initial['flag_without_module'].extend([
+        flag_info for flag_info in qflag_location
+            if flag_info.module_name == ''
+    ])
+
+    return qflags_group_initial
 
 
 def extract_qflags_to_process(qflags_modules_analysis_json: str,
@@ -1102,11 +1116,22 @@ def generate_qflags_to_process(qt_qflag_grep_result_fname: str, module_group: st
     '''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
     location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, MODULE_GROUPS[module_group])
     log_progress('%d qflags extracted from grep file' % len(location_qflags))
-    qflags_groups = group_qflags(location_qflags)
-    log_progress('%d qflags ready to be processed' % len(qflags_groups['flag_and_module_identified']))
 
     qflags_modules_analysis_json = 'qflags_modules_analysis.json'
     # put our intermediate classification into a json file for human review
+    if os.path.exists(qflags_modules_analysis_json):
+        with open(qflags_modules_analysis_json) as f:
+            d = json.load(f)
+            qflag_groups_initial = {
+                'flag_and_module_identified': [QFlagLocationInfo(**v) for v in d['flag_and_module_identified']],
+                'flag_without_module': [QFlagLocationInfo(**v) for v in d['flag_without_module']]
+            }
+    else:
+        qflag_groups_initial = None
+
+    qflags_groups = group_qflags(location_qflags, qflag_groups_initial)
+    log_progress('%d qflags ready to be processed' % len(qflags_groups['flag_and_module_identified']))
+
     with open(qflags_modules_analysis_json, 'w') as f:
         json.dump(qflags_groups, f, indent=4, default=json_encode_qflaglocationinfo)
     log_progress('QFlag analysis saved to: %s' % qflags_modules_analysis_json)
