@@ -40,9 +40,6 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
         typing.Sequence[float], sip.Buffer, int, None]
 
 
-class QtWebEngineCore(sip.simplewrapper): ...
-
-
 class QWebEngineClientCertificateStore(sip.simplewrapper):
 
     def clear(self) -> None: ...
