@@ -14,6 +14,7 @@ ARG PYQT_CHART_VERSION="5.15.4"
 ARG PYQT_DATA_VISUALIZATION_VERSION="5.15.4"
 ARG PYQT_PURCHASING_VERSION="5.15.4"
 ARG PYQT_WEB_ENGINE_VERSION="5.15.4"
+ARG PYQT_NETWORK_AUTH_VERSION="5.15.4"
 
 ARG MAKEFLAGS=""
 
@@ -302,6 +303,39 @@ WORKDIR /output/
 RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 ################################################################################
+# PyQtNetworkAuth
+################################################################################
+
+FROM build-dep AS pyqt-network-auth
+
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
+ARG PYQT_NETWORK_AUTH_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtnetworkauth/PyQtNetworkAuth-${PYQT_NETWORK_AUTH_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtNetworkAuth with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
 # Output
 ################################################################################
 
@@ -316,6 +350,7 @@ COPY --from=pyqt-chart /output/* ./
 COPY --from=pyqt-data-visualization /output/* ./
 COPY --from=pyqt-purchasing /output/* ./
 COPY --from=pyqt-web-engine /output/* ./
+COPY --from=pyqt-network-auth /output/* ./
 
 # Required to run the image (which we need to do to get the files)
 CMD /bin/true
