@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [unreleased]
 
 ### Added
+* [#176](https://github.com/python-qt-tools/PyQt5-stubs/pull/176) update to PyQt5 5.15.5
+* [#175](https://github.com/python-qt-tools/PyQt5-stubs/pull/175) catch up PyQtNetworkAuth with the 5.15.4 release
+* [#149](https://github.com/python-qt-tools/PyQt5-stubs/pull/149) update to PyQt5 5.15.4
 * [#138](https://github.com/python-qt-tools/PyQt5-stubs/pull/138) update to PyQt5 5.15.3
 * [#144](https://github.com/python-qt-tools/PyQt5-stubs/pull/144) add `QTreeWidgetItem.__lt__()` to allow sorting of items in a QTreeWidget
 * [#143](https://github.com/python-qt-tools/PyQt5-stubs/pull/143) make `bytes(QByteArray())` valid by incorrectly adding `.__bytes__()` until a proper solution is developed upstream
