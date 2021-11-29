@@ -2,18 +2,19 @@
 #       https://hub.docker.com/_/archlinux?tab=tags&page=1&ordering=last_updated
 # BUILD_DATE is a path from:
 #       https://archive.archlinux.org/repos/
-ARG ARCH_VERSION="base-20210221.0.15908"
-ARG BUILD_DATE="2021/03/13"
+ARG ARCH_VERSION="base-20211017.0.36769"
+ARG BUILD_DATE="2021/10/28"
 
-ARG SIP_VERSION="6.0.3"
-# Also the major.minor of PyQt5-sip
-ARG SIP_ABI_VERSION="12.8"
-ARG PYQT_VERSION="5.15.4"
-ARG PYQT_3D_VERSION="5.15.4"
-ARG PYQT_CHART_VERSION="5.15.4"
-ARG PYQT_DATA_VISUALIZATION_VERSION="5.15.4"
-ARG PYQT_PURCHASING_VERSION="5.15.4"
-ARG PYQT_WEB_ENGINE_VERSION="5.15.4"
+ARG SIP_VERSION="6.3.1"
+# Also the major of PyQt5-sip
+ARG SIP_ABI_VERSION="12"
+ARG PYQT_VERSION="5.15.5"
+ARG PYQT_3D_VERSION="5.15.5"
+ARG PYQT_CHART_VERSION="5.15.5"
+ARG PYQT_DATA_VISUALIZATION_VERSION="5.15.5"
+ARG PYQT_PURCHASING_VERSION="5.15.5"
+ARG PYQT_WEB_ENGINE_VERSION="5.15.5"
+ARG PYQT_NETWORK_AUTH_VERSION="5.15.5"
 
 ARG MAKEFLAGS=""
 
@@ -302,6 +303,39 @@ WORKDIR /output/
 RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 ################################################################################
+# PyQtNetworkAuth
+################################################################################
+
+FROM build-dep AS pyqt-network-auth
+
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
+ARG PYQT_NETWORK_AUTH_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtnetworkauth/PyQtNetworkAuth-${PYQT_NETWORK_AUTH_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtNetworkAuth with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
 # Output
 ################################################################################
 
@@ -316,6 +350,7 @@ COPY --from=pyqt-chart /output/* ./
 COPY --from=pyqt-data-visualization /output/* ./
 COPY --from=pyqt-purchasing /output/* ./
 COPY --from=pyqt-web-engine /output/* ./
+COPY --from=pyqt-network-auth /output/* ./
 
 # Required to run the image (which we need to do to get the files)
 CMD /bin/true
