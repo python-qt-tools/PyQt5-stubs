@@ -2,18 +2,19 @@
 #       https://hub.docker.com/_/archlinux?tab=tags&page=1&ordering=last_updated
 # BUILD_DATE is a path from:
 #       https://archive.archlinux.org/repos/
-ARG ARCH_VERSION="base-20201129.0.10056"
-ARG BUILD_DATE="2020/12/02"
+ARG ARCH_VERSION="base-20211121.0.39613"
+ARG BUILD_DATE="2021/11/29"
 
-ARG SIP_VERSION="5.4.0"
-# Also the major.minor of PyQt5-sip
-ARG SIP_ABI_VERSION="12.8"
-ARG PYQT_VERSION="5.15.2"
-ARG PYQT_3D_VERSION="5.15.2"
-ARG PYQT_CHART_VERSION="5.15.2"
-ARG PYQT_DATA_VISUALIZATION_VERSION="5.15.2"
-ARG PYQT_PURCHASING_VERSION="5.15.2"
-ARG PYQT_WEB_ENGINE_VERSION="5.15.2"
+ARG SIP_VERSION="6.4.0"
+# Also the major of PyQt5-sip
+ARG SIP_ABI_VERSION="12"
+ARG PYQT_VERSION="5.15.6"
+ARG PYQT_3D_VERSION="5.15.5"
+ARG PYQT_CHART_VERSION="5.15.5"
+ARG PYQT_DATA_VISUALIZATION_VERSION="5.15.5"
+ARG PYQT_PURCHASING_VERSION="5.15.5"
+ARG PYQT_WEB_ENGINE_VERSION="5.15.5"
+ARG PYQT_NETWORK_AUTH_VERSION="5.15.5"
 
 ARG MAKEFLAGS=""
 
@@ -26,6 +27,14 @@ FROM archlinux:${ARCH_VERSION} AS build-dep
 # Reuse argument from previous build scope
 ARG BUILD_DATE
 
+# WORKAROUND for glibc 2.33 and old Docker
+# See https://github.com/actions/virtual-environments/issues/2658
+# Thanks to https://github.com/lxqt/lxqt-panel/pull/1562
+# https://github.com/qutebrowser/qutebrowser/blob/30d54c8da4a8e091dbe439770d4e1796dc7c78dc/scripts/dev/ci/docker/Dockerfile.j2#L3-L8
+RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
+    curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
+    bsdtar -C / -xvf "$patched_glibc"
+
 # Use Arch archive to freeze packages to a certain date
 RUN echo "Server=https://archive.archlinux.org/repos/${BUILD_DATE}/\$repo/os/\$arch" \
         | tee /etc/pacman.d/mirrorlist && \
@@ -36,7 +45,7 @@ RUN pacman --noconfirm -S \
         # Build stuff
         base-devel wget \
         # PyQt stuff
-        pyqt-builder python-sip sip5 \
+        pyqt-builder sip \
         # Used to build other PyQt modules in later build stages
         python-pyqt5 \
         # Qt core
@@ -294,6 +303,39 @@ WORKDIR /output/
 RUN find /upstream/ -name \*.pyi -exec cp {} . \;
 
 ################################################################################
+# PyQtNetworkAuth
+################################################################################
+
+FROM build-dep AS pyqt-network-auth
+
+# Reuse arguments from previous build scope
+ARG MAKEFLAGS
+ARG PYQT_NETWORK_AUTH_VERSION
+
+# Download source tar
+RUN wget --no-verbose \
+    --output-document upstream.tar.gz \
+    https://pypi.io/packages/source/p/pyqtnetworkauth/PyQtNetworkAuth-${PYQT_NETWORK_AUTH_VERSION}.tar.gz
+RUN mkdir /upstream/ && \
+    tar -xf \
+        upstream.tar.gz \
+        --directory /upstream/ \
+        --strip-components 1
+
+# Build PyQtNetworkAuth with stubs
+# TODO: Find way to build only stubs
+WORKDIR /upstream/
+RUN sip-install \
+    --qmake /usr/bin/qmake-qt5 \
+    --pep484-pyi \
+    --build-dir ./build \
+    --verbose
+
+# Copy all .pyi files to output dir
+WORKDIR /output/
+RUN find /upstream/ -name \*.pyi -exec cp {} . \;
+
+################################################################################
 # Output
 ################################################################################
 
@@ -308,6 +350,7 @@ COPY --from=pyqt-chart /output/* ./
 COPY --from=pyqt-data-visualization /output/* ./
 COPY --from=pyqt-purchasing /output/* ./
 COPY --from=pyqt-web-engine /output/* ./
+COPY --from=pyqt-network-auth /output/* ./
 
 # Required to run the image (which we need to do to get the files)
 CMD /bin/true
