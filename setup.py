@@ -50,7 +50,10 @@ setup(
     python_requires=">= 3.5",
     package_data={"PyQt5-stubs": ['*.pyi']},
     packages=["PyQt5-stubs"],
-    extras_require={"build": ["docker==4.2.0"]},
+    extras_require={
+        "build": ["docker==4.2.0"],
+        "dev": ["mypy", "pytest"],
+    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
