@@ -2,13 +2,13 @@
 #       https://hub.docker.com/_/archlinux?tab=tags&page=1&ordering=last_updated
 # BUILD_DATE is a path from:
 #       https://archive.archlinux.org/repos/
-ARG ARCH_VERSION="base-20211017.0.36769"
-ARG BUILD_DATE="2021/10/28"
+ARG ARCH_VERSION="base-20211121.0.39613"
+ARG BUILD_DATE="2021/11/29"
 
-ARG SIP_VERSION="6.3.1"
+ARG SIP_VERSION="6.4.0"
 # Also the major of PyQt5-sip
 ARG SIP_ABI_VERSION="12"
-ARG PYQT_VERSION="5.15.5"
+ARG PYQT_VERSION="5.15.6"
 ARG PYQT_3D_VERSION="5.15.5"
 ARG PYQT_CHART_VERSION="5.15.5"
 ARG PYQT_DATA_VISUALIZATION_VERSION="5.15.5"
