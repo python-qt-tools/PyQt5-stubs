@@ -1,20 +1,23 @@
 name: CI
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
-      - run-ci-on-windows
     tags:
       - v*
   pull_request:
     branches:
       - "*"
+  schedule:
+    # Daily at 06:14.  This is just an arbitrary time to stagger
+    # relative to other daily builds in any given organization.
+    - cron: '14 6 * * *'
+
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
-    runs-on: ${{ matrix.os.runs-on }} 
+    runs-on: ${{ matrix.os.runs-on }}
     strategy:
       fail-fast: false
       matrix:
@@ -46,12 +49,34 @@ jobs:
               tox: py36
               action: 3.6
           - os:
-                name: Windows
-                runs-on: windows-latest
+              name: Windows
+              runs-on: windows-latest
             python:
-                name: CPython 3.9
-                tox: py39
-                action: '3.9'
+              name: CPython 3.7
+              tox: py37
+              action: 3.7
+          - os:
+              name: Windows
+              runs-on: windows-latest
+            python:
+              name: CPytron 3.8
+              tox: py38
+              action: 3.8
+          - os:
+              name: Windows
+              runs-on: windows-latest
+            python:
+              name: CPython 3.9
+              tox: py39
+              action: 3.9
+# Windows 10 not working yet, because there are no wheels yet for it.
+#         - os:
+#               name: Windows
+#               runs-on: windows-latest
+#           python:
+#               name: CPython 3.10
+#               tox: py310
+#               action: '3.10'
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
@@ -61,7 +86,7 @@ jobs:
           architecture: x64
       - uses: twisted/python-info-action@v1.0.1
       - name: Install Linux Qt5 dependencies
-        if: matrix.os.name == 'Linux'
+        if: matrix.os.matrix == 'linux'
         run: |
           sudo apt-get update --yes
           sudo apt-get install --yes libgl1
