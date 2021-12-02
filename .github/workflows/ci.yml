@@ -57,7 +57,7 @@ jobs:
           architecture: x64
       - uses: twisted/python-info-action@v1.0.1
       - name: Install Linux Qt5 dependencies
-        if: matrix.os.matrix == 'linux'
+        if: matrix.os.name == 'Linux'
         run: |
           sudo apt-get update --yes
           sudo apt-get install --yes libgl1
