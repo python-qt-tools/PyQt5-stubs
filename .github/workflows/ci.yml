@@ -24,8 +24,10 @@ jobs:
         os:
           - name: Linux
             runs-on: ubuntu-latest
+            tox: linux
           - name: Windows
             runs-on: windows-latest
+            tox: windows
         python:
           - name: CPython 3.6
             tox: py36
@@ -69,7 +71,7 @@ jobs:
           pip install tox
       - name: Test
         run: |
-          tox -v -e ${{ matrix.python.tox }}
+          tox -v -e ${{ matrix.python.tox }}-${{ matrix.os.tox }}
 
   all:
     name: All
