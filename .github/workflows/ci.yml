@@ -44,12 +44,6 @@ jobs:
           - name: CPython 3.10
             tox: py310
             action: '3.10'
-        exclude:
-# Windows 10 not working yet, because there are no wheels yet for it.
-         - os:
-               name: Windows
-           python:
-               name: CPython 3.10
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
