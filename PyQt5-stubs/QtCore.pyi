@@ -12329,8 +12329,7 @@ class QSysInfo(sip.simplewrapper):
             WV_WINDOWS8_1 = ...   # type: int
             WV_XP = ...   # type: int
 
-        @staticmethod
-        def windowsVersion() -> 'QSysInfo.WinVersion': ...
+        WindowsVersion = ... # type: QSysInfo.WinVersion
 
         WV_10_0 = ...   # type: int
         WV_2000 = ...   # type: int
@@ -12362,7 +12361,8 @@ class QSysInfo(sip.simplewrapper):
         WV_WINDOWS8_1 = ...   # type: int
         WV_XP = ...   # type: int
 
-        WindowsVersion = ... # type: QSysInfo.WinVersion
+        @staticmethod
+        def windowsVersion() -> 'QSysInfo.WinVersion': ...
 
     @typing.overload
     def __init__(self) -> None: ...
