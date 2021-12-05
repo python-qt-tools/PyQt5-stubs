@@ -1,9 +1,19 @@
 import os.path
 import pytest
 from mypy import api
+from PyQt5.QtWidgets import QApplication
 
 
 TESTS_DIR = os.path.dirname(__file__)
+
+
+@pytest.fixture(name="qapplication", scope="session")
+def qapplication_fixture():
+    application = QApplication.instance()
+    if application is None:
+        application = QApplication(["-platform", "minimal"])
+
+    return application
 
 
 def gen_tests():
@@ -26,7 +36,7 @@ def test_stubs(filename):
 
 
 @pytest.mark.parametrize('filename', list(gen_tests()))
-def test_files(filename):
+def test_files(filename, qapplication):
     """Run the test files to make sure they work properly."""
     path = os.path.join(TESTS_DIR, filename)
     with open(path, 'r') as f:
