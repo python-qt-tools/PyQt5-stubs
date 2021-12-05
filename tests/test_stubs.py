@@ -11,7 +11,7 @@ TESTS_DIR = os.path.dirname(__file__)
 def qapplication_fixture():
     application = QApplication.instance()
     if application is None:
-        application = QApplication()
+        application = QApplication([])
 
     return application
 
