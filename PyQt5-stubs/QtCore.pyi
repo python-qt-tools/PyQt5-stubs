@@ -20,6 +20,7 @@
 # WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+import sys
 import typing
 
 from PyQt5 import sip
@@ -12356,6 +12357,67 @@ class QSysInfo(sip.simplewrapper):
     WV_WINDOWS8 = ...   # type: int
     WV_WINDOWS8_1 = ...   # type: int
     WV_XP = ...   # type: int
+
+    if sys.platform == "darwin":
+        class MacintoshVersion(int):
+            MV_10_0 = ...  # type: int
+            MV_10_1 = ...  # type: int
+            MV_10_10 = ...  # type: int
+            MV_10_11 = ...  # type: int
+            MV_10_12 = ...  # type: int
+            MV_10_2 = ...  # type: int
+            MV_10_3 = ...  # type: int
+            MV_10_4 = ...  # type: int
+            MV_10_5 = ...  # type: int
+            MV_10_6 = ...  # type: int
+            MV_10_7 = ...  # type: int
+            MV_10_8 = ...  # type: int
+            MV_10_9 = ...  # type: int
+            MV_9 = ...  # type: int
+            MV_CHEETAH = ...  # type: int
+            MV_ELCAPITAN = ...  # type: int
+            MV_IOS = ...  # type: int
+            MV_IOS_10_0 = ...  # type: int
+            MV_IOS_4_3 = ...  # type: int
+            MV_IOS_5_0 = ...  # type: int
+            MV_IOS_5_1 = ...  # type: int
+            MV_IOS_6_0 = ...  # type: int
+            MV_IOS_6_1 = ...  # type: int
+            MV_IOS_7_0 = ...  # type: int
+            MV_IOS_7_1 = ...  # type: int
+            MV_IOS_8_0 = ...  # type: int
+            MV_IOS_8_1 = ...  # type: int
+            MV_IOS_8_2 = ...  # type: int
+            MV_IOS_8_3 = ...  # type: int
+            MV_IOS_8_4 = ...  # type: int
+            MV_IOS_9_0 = ...  # type: int
+            MV_IOS_9_1 = ...  # type: int
+            MV_IOS_9_2 = ...  # type: int
+            MV_IOS_9_3 = ...  # type: int
+            MV_JAGUAR = ...  # type: int
+            MV_LEOPARD = ...  # type: int
+            MV_LION = ...  # type: int
+            MV_MAVERICKS = ...  # type: int
+            MV_MOUNTAINLION = ...  # type: int
+            MV_PANTHER = ...  # type: int
+            MV_PUMA = ...  # type: int
+            MV_SIERRA = ...  # type: int
+            MV_SNOWLEOPARD = ...  # type: int
+            MV_TIGER = ...  # type: int
+            MV_TVOS = ...  # type: int
+            MV_TVOS_10_0 = ...  # type: int
+            MV_TVOS_9_0 = ...  # type: int
+            MV_TVOS_9_1 = ...  # type: int
+            MV_TVOS_9_2 = ...  # type: int
+            MV_Unknown = ...  # type: int
+            MV_WATCHOS = ...  # type: int
+            MV_WATCHOS_2_0 = ...  # type: int
+            MV_WATCHOS_2_1 = ...  # type: int
+            MV_WATCHOS_2_2 = ...  # type: int
+            MV_WATCHOS_3_0 = ...  # type: int
+            MV_YOSEMITE = ...  # type: int
+
+        MacintoshVersion = ...  # type: QSysInfo.MacintoshVersion
 
     @typing.overload
     def __init__(self) -> None: ...
