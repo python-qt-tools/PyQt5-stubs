@@ -46,7 +46,7 @@ jobs:
             action: '3.10'
     env:
       QT_DEBUG_PLUGINS: '1'
-      QT_QPA_PLATFORM=offscreen
+      QT_QPA_PLATFORM: offscreen
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
