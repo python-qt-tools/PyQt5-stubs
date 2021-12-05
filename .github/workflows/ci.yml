@@ -24,14 +24,13 @@ jobs:
         os:
           - name: Linux
             runs-on: ubuntu-latest
-            matrix: linux
-#          https://github.com/python-qt-tools/PyQt5-stubs/issues/122
-#          - name: Windows
-#            runs-on: windows-latest
-#            matrix: windows
+            tox: linux
           - name: macOS
             runs-on: macos-latest
-            matrix: macos
+            tox: macos
+          - name: Windows
+            runs-on: windows-latest
+            tox: windows
         python:
           - name: CPython 3.6
             tox: py36
@@ -45,6 +44,9 @@ jobs:
           - name: CPython 3.9
             tox: py39
             action: 3.9
+          - name: CPython 3.10
+            tox: py310
+            action: '3.10'
     steps:
       - uses: actions/checkout@v2
       - name: Set up ${{ matrix.python.name }}
@@ -54,7 +56,7 @@ jobs:
           architecture: x64
       - uses: twisted/python-info-action@v1.0.1
       - name: Install Linux Qt5 dependencies
-        if: matrix.os.matrix == 'linux'
+        if: matrix.os.name == 'Linux'
         run: |
           sudo apt-get update --yes
           sudo apt-get install --yes libgl1
@@ -66,7 +68,7 @@ jobs:
           pip install tox
       - name: Test
         run: |
-          tox -v -e ${{ matrix.python.tox }}
+          tox -v -e ${{ matrix.python.tox }}-${{ matrix.os.tox }}
 
   all:
     name: All
