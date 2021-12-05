@@ -12417,7 +12417,7 @@ class QSysInfo(sip.simplewrapper):
             MV_WATCHOS_3_0 = ...  # type: int
             MV_YOSEMITE = ...  # type: int
 
-        MacintoshVersion = ...  # type: QSysInfo.MacintoshVersion
+        macVersion = ...  # type: QSysInfo.MacintoshVersion
 
     @typing.overload
     def __init__(self) -> None: ...
