@@ -1,3 +1,0 @@
-# implementation present only on Windows
-PyQt5.QtCore.QSysInfo.WinVersion
-PyQt5.QtCore.QSysInfo.windowsVersion
