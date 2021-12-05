@@ -56,7 +56,7 @@ jobs:
         if: matrix.os.name == 'Linux'
         run: |
           sudo apt-get update --yes
-          sudo apt-get install --yes libgl1
+          sudo apt-get install --yes libgl1 libgles2-mesa-dev
           # Required to stubtest QtMultimedia
           sudo apt-get install --yes libpulse-mainloop-glib0
       - name: Install
