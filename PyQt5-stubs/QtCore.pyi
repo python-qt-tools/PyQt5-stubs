@@ -10364,6 +10364,15 @@ class QSize(sip.simplewrapper):
     @typing.overload
     def __init__(self, a0: 'QSize') -> None: ...
 
+    def __add__(self, value: 'QSize') -> 'QSize': ...
+    def __eq__(self, value: object) -> bool: ...
+    def __iadd__(self, value: 'QSize') -> 'QSize': ...
+    def __imul__(self, value: float) -> 'QSize': ...
+    def __isub__(self, value: 'QSize') -> 'QSize': ...
+    def __mul__(self, value: float) -> 'QSize': ...
+    def __ne__(self, value: object) -> bool: ...
+    def __sub__(self, value: 'QSize') -> 'QSize': ...
+
     def shrunkBy(self, m: QMargins) -> 'QSize': ...
     def grownBy(self, m: QMargins) -> 'QSize': ...
     def transposed(self) -> 'QSize': ...
@@ -10399,6 +10408,15 @@ class QSizeF(sip.simplewrapper):
     def __init__(self, w: float, h: float) -> None: ...
     @typing.overload
     def __init__(self, a0: 'QSizeF') -> None: ...
+
+    def __add__(self, value: 'QSizeF') -> 'QSizeF': ...
+    def __eq__(self, value: object) -> bool: ...
+    def __iadd__(self, value: 'QSizeF') -> 'QSizeF': ...
+    def __imul__(self, value: float) -> 'QSizeF': ...
+    def __isub__(self, value: 'QSizeF') -> 'QSizeF': ...
+    def __mul__(self, value: float) -> 'QSizeF': ...
+    def __ne__(self, value: object) -> bool: ...
+    def __sub__(self, value: 'QSizeF') -> 'QSizeF': ...
 
     def shrunkBy(self, m: QMarginsF) -> 'QSizeF': ...
     def grownBy(self, m: QMarginsF) -> 'QSizeF': ...
@@ -12296,6 +12314,67 @@ class QSysInfo(sip.simplewrapper):
 
     WordSize = ...  # type: QSysInfo.Sizes
 
+    class WinVersion(int):
+        WV_10_0 = ...   # type: int
+        WV_2000 = ...   # type: int
+        WV_2003 = ...   # type: int
+        WV_32s = ...   # type: int
+        WV_4_0 = ...   # type: int
+        WV_5_0 = ...   # type: int
+        WV_5_1 = ...   # type: int
+        WV_5_2 = ...   # type: int
+        WV_6_0 = ...   # type: int
+        WV_6_1 = ...   # type: int
+        WV_6_2 = ...   # type: int
+        WV_6_3 = ...   # type: int
+        WV_95 = ...   # type: int
+        WV_98 = ...   # type: int
+        WV_CE = ...   # type: int
+        WV_CENET = ...   # type: int
+        WV_CE_5 = ...   # type: int
+        WV_CE_6 = ...   # type: int
+        WV_CE_based = ...   # type: int
+        WV_DOS_based = ...   # type: int
+        WV_Me = ...   # type: int
+        WV_NT = ...   # type: int
+        WV_NT_based = ...   # type: int
+        WV_VISTA = ...   # type: int
+        WV_WINDOWS10 = ...   # type: int
+        WV_WINDOWS7 = ...   # type: int
+        WV_WINDOWS8 = ...   # type: int
+        WV_WINDOWS8_1 = ...   # type: int
+        WV_XP = ...   # type: int
+
+    WV_10_0 = ...   # type: int
+    WV_2000 = ...   # type: int
+    WV_2003 = ...   # type: int
+    WV_32s = ...   # type: int
+    WV_4_0 = ...   # type: int
+    WV_5_0 = ...   # type: int
+    WV_5_1 = ...   # type: int
+    WV_5_2 = ...   # type: int
+    WV_6_0 = ...   # type: int
+    WV_6_1 = ...   # type: int
+    WV_6_2 = ...   # type: int
+    WV_6_3 = ...   # type: int
+    WV_95 = ...   # type: int
+    WV_98 = ...   # type: int
+    WV_CE = ...   # type: int
+    WV_CENET = ...   # type: int
+    WV_CE_5 = ...   # type: int
+    WV_CE_6 = ...   # type: int
+    WV_CE_based = ...   # type: int
+    WV_DOS_based = ...   # type: int
+    WV_Me = ...   # type: int
+    WV_NT = ...   # type: int
+    WV_NT_based = ...   # type: int
+    WV_VISTA = ...   # type: int
+    WV_WINDOWS10 = ...   # type: int
+    WV_WINDOWS7 = ...   # type: int
+    WV_WINDOWS8 = ...   # type: int
+    WV_WINDOWS8_1 = ...   # type: int
+    WV_XP = ...   # type: int
+
     @typing.overload
     def __init__(self) -> None: ...
     @typing.overload
@@ -12319,6 +12398,10 @@ class QSysInfo(sip.simplewrapper):
     def buildCpuArchitecture() -> str: ...
     @staticmethod
     def buildAbi() -> str: ...
+    @staticmethod
+    def windowsVersion() -> 'QSysInfo.WinVersion': ...
+
+    WindowsVersion = ... # type: QSysInfo.WinVersion
 
 
 PYQT_VERSION = ... # type: int
