@@ -14,8 +14,7 @@ def gen_tests():
 
 def gen_abs_qflags_tests():
     '''List of all tests included in the directory qflags'''
-    for filename in (TESTS_DIR/'qflags').glob('test_*.py'):
-        yield filename
+    yield from TESTS_DIR.joinpath('qflags').glob('test_*.py')
 
 
 @pytest.mark.parametrize('filename',
