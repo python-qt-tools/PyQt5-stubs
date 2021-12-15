@@ -36,7 +36,7 @@ def test_stubs(filename: Path) -> None:
 
 def test_stubs_qflags() -> None:
     """Run mypy over qflags files."""
-    stdout, stderr, exitcode = api.run([str(f) for f in gen_abs_qflags_tests()])
+    stdout, stderr, exitcode = api.run([os.fspath(path) for path in gen_abs_qflags_tests()])
     if stdout:
         print(stdout)
     if stderr:
