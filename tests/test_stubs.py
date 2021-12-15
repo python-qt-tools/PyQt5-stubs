@@ -13,14 +13,14 @@ def gen_tests():
             yield filename
 
 def gen_abs_qflags_tests():
-    '''List of all tests included in the directory qflags'''
+    """List of all tests included in the directory qflags"""
     for filename in (TESTS_DIR/'qflags').glob('test_*.py'):
         yield filename
 
 
 @pytest.mark.parametrize('filename',
                          list(gen_tests()),
-                         ids=[v.parts[-1] for v in gen_tests()]
+                         ids=[v.relative_to(TESTS_DIR).as_posix() for v in gen_tests()]
                          )
 def test_stubs(filename: Path) -> None:
     """Run mypy over example files."""
@@ -37,7 +37,7 @@ def test_stubs(filename: Path) -> None:
 
 def test_stubs_qflags() -> None:
     """Run mypy over qflags files."""
-    stdout, stderr, exitcode = api.run([str(f) for f in gen_abs_qflags_tests()])
+    stdout, stderr, exitcode = api.run([os.fspath(f) for f in gen_abs_qflags_tests()])
     if stdout:
         print(stdout)
     if stderr:
@@ -49,12 +49,11 @@ def test_stubs_qflags() -> None:
 
 # note: no need to run explicitely pytest over qflags, because pytest finds them automatically
 
-@pytest.mark.parametrize('filename',
+@pytest.mark.parametrize('filepath',
                          list(gen_tests()),
                          ids=[v.parts[-1] for v in gen_tests()]
                          )
-def test_files(filename):
+def test_files(filepath):
     """Run the test files to make sure they work properly."""
-    with open(str(filename), 'r') as f:
-        code = f.read()
-    exec(compile(code, filename, 'exec'), {})
+    code = filepath.read_text(encoding='utf-8')
+    exec(compile(code, filepath, 'exec'), {})
