@@ -1,11 +1,9 @@
 name: CI
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
-      - more-qflags
     tags:
       - v*
   pull_request:
