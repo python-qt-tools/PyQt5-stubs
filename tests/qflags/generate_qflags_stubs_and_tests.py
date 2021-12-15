@@ -147,7 +147,7 @@ class QFlagLocationInfo:
 
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
-    '''Encode the QFlagClassLoationInfo into a format suitable for json export (a dict)'''
+    """Encode the QFlagClassLoationInfo into a format suitable for json export (a dict)"""
     if not isinstance(flag_loc_info, QFlagLocationInfo):
         # oups, we don't know how to encode that
         return flag_loc_info
@@ -166,11 +166,11 @@ def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[s
 def identify_qflag_location(fname_grep_result: str,
                             qt_modules: List[str]
                             ) -> List[ QFlagLocationInfo ]:
-    '''Parses the grep results to extract each qflag, and then look into all Qt modules
+    """Parses the grep results to extract each qflag, and then look into all Qt modules
     to see where the flag is located.
 
     Return a list of QFlagLocationInfo indicating in which module the flag has been located.
-    '''
+    """
     # the file defining the qflag implementation, to be skipped when performing QDECLARE analysis
     QFLAG_SRC = 'src\\corelib\\global\\qflags.h'
 
@@ -256,13 +256,13 @@ def identify_qflag_location(fname_grep_result: str,
 
 def group_qflags(qflag_location: List[QFlagLocationInfo],
                  qflags_group_initial: Optional[Dict[str, List[QFlagLocationInfo]]]) -> Dict[str, List[QFlagLocationInfo]]:
-    '''Group the QFlags into the following groups (inside a dictionnary):
+    """Group the QFlags into the following groups (inside a dictionnary):
     * flag_and_module_identified: this flag is present once in one module exactly.
     * flag_without_module: this flag is not present in any modules at all.
 
     The first group is suitable for automatic processing.
     The last group reflects the QFlags not exported to PyQt or coming from modules not present in PyQt
-    '''
+    """
     if not qflags_group_initial:
         qflags_group_initial = {
             'flag_and_module_identified': [],
@@ -293,11 +293,11 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
                               qflags_to_process_json: str,
                               module_group: str,
                               ) -> None:
-    '''Take the json file as input describing qflags and their modules and output a json file of qflags planned to be processed.
+    """Take the json file as input describing qflags and their modules and output a json file of qflags planned to be processed.
 
     The qflags which are located in a single module will be selected for further processing.
     The others are marked as skipped with a proper reason.
-    '''
+    """
     with open(qflags_modules_analysis_json) as f:
         d = json.load(f)
 
@@ -341,7 +341,7 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
 
 
 def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commit: bool) -> int:
-    '''Read the qflags to process from the json file
+    """Read the qflags to process from the json file
 
     Process one qflag, by either:
     * identifying that this flag is already processed and add the flag to qflags_alraedy_done
@@ -357,7 +357,7 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
     * auto_commit: if True, a git commit is performed after each successful QFlag validation
 
     Return number of remaining flags to process (0 when everything done)
-    '''
+    """
 
     with open(qflag_to_process_json) as f:
         d = json.load(f)
@@ -375,8 +375,8 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
             result_json = json.loads(f.read())
 
     def qflag_already_processed(flag_info: QFlagLocationInfo) -> bool:
-        '''Return True if the qflag is already included in one of the result lists
-        of result_json'''
+        """Return True if the qflag is already included in one of the result lists
+        of result_json"""
         flag_desc = (flag_info.module_name, flag_info.module_idx,
                      flag_info.qflag_class, flag_info.enum_class)
         already_done_set = set( (flag_info_dict['module_name'],
@@ -507,14 +507,14 @@ def retrieve_cst_parsed_module(mod_name: str, mod_content: str) -> cst.Module:
 
 
 class QFlagGenResult(Enum):
-    '''Enum indicating the result of generating the possibly missing stubs on the qflag classes'''
+    """Enum indicating the result of generating the possibly missing stubs on the qflag classes"""
     CodeModifiedSuccessfully = 0
     CodeAlreadyModified = 1
     ErrorDuringProcessing = 2
 
 
 def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResult, str, str]:
-    '''
+    """
     Check that the QFlag enum+class are present in the module and check whether they support
     all the advanced QFlag operations.
 
@@ -566,7 +566,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
         The detail of the error is provided in the second argument of the return value.
         mod_content is empty (not useful)
-'''
+"""
     log_progress('Opening module %s' % flag_info.module_name)
     with open(flag_info.module_path) as f:
         mod_content = f.read()
@@ -670,7 +670,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
 
 
 class MethodPresent(Enum):
-    '''An enum to reflect if a method is already present or not'''
+    """An enum to reflect if a method is already present or not"""
     Unset = 0
     All = 1
     Not = 2
@@ -780,8 +780,8 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 
 
     def check_enum_method_present(self, enum_node: cst.ClassDef) -> bool:
-        '''Check if the class contains method __or__ and __ror__ with one argument and if class
-        inherit from int'''
+        """Check if the class contains method __or__ and __ror__ with one argument and if class
+        inherit from int"""
         if len(enum_node.bases) == 0 or enum_node.bases[0].value.value != 'int':
             # class does not inherit from int, not the one we are looking for
             return False
@@ -805,8 +805,8 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 
 
     def collect_enum_values(self, enum_node: cst.ClassDef) -> None:
-        '''Collect two actual values for the enum and store them into self.enum_value1 and enum_value2
-        '''
+        """Collect two actual values for the enum and store them into self.enum_value1 and enum_value2
+        """
         # find all lines consisting of an assignment to an ellipsis, like "AlignLeft = ..."
         enum_values = matchers.findall(enum_node.body, matchers.SimpleStatementLine(
             body=[matchers.Assign(value=matchers.Ellipsis())]))
@@ -823,7 +823,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 
 
     def check_qflag_method_present(self, qflag_node: cst.ClassDef) -> bool:
-        '''Check if the class contains method:
+        """Check if the class contains method:
         def __or__
         def __and__
         def __xor__
@@ -835,7 +835,7 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
 
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier']) -> None:
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None:
-        '''
+        """
         if (len(qflag_node.bases) == 0
            or not (matchers.matches(qflag_node.bases[0],
                                          matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
@@ -982,7 +982,7 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 
 
     def transform_enum_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
-        '''Add the two methods __or__ and __ror__ to the class body'''
+        """Add the two methods __or__ and __ror__ to the class body"""
 
         # we keep comments separated to align them properly in the final file
         or_behavior = (self.or_converts_to_multi, self.or_int_converts_to_multi, self.int_or_converts_to_multi)
@@ -1025,11 +1025,11 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 
 
     def transform_qflag_class(self, original_node: cst.ClassDef, updated_node: cst.ClassDef) -> cst.ClassDef:
-        '''
+        """
         On the qflag class, add one more overload __init__() and add more methods
         +       @typing.overload
         +       def __init__(self, f: int) -> None: ...
-        '''
+        """
         init_methods = matchers.findall(updated_node.body, matchers.FunctionDef(name=matchers.Name('__init__')))
         if len(init_methods) == 1:
             # we do not handle the case where there is only one init function
@@ -1083,13 +1083,13 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
 
 @functools.lru_cache(maxsize=1)
 def read_qflag_test_template(template_fname: str) -> Tuple[List[str], List[str], List[str]]:
-    '''Return the source of the template for generating qflags test.
+    """Return the source of the template for generating qflags test.
 
     Return 3 parts as a list of strings:
     - the first part should be unmodified
     - the second part should be replaced for a specific QFlag class
     - the third part should be unmodified
-    '''
+    """
 
     # the markers inside the above template to identify the parts to replace
     MARKER_SPECIFIC_START = '### Specific part'
@@ -1122,15 +1122,15 @@ def read_qflag_test_template(template_fname: str) -> Tuple[List[str], List[str],
 
 
 def gen_test_fname(fli: QFlagLocationInfo) -> str:
-    '''Generate the name of the test file which will verify this qflag'''
+    """Generate the name of the test file which will verify this qflag"""
     return 'test_{fli.module_name}_{fli.qflag_class}_{fli.enum_class}.py'.format(fli=fli)
 
 
 def generate_qflag_test_file(flag_info: QFlagLocationInfo) -> None:
-    '''Generate a qflag test file.
+    """Generate a qflag test file.
 
     The filename is inferred from flag_info using gen_test_fname()
-    '''
+    """
 
     # the template after which we model all generated qflag tests
     TEMPLATE_QFLAGS_TESTS = 'qflags_test_template.py'
@@ -1171,7 +1171,7 @@ SUPPORTS_ONE_OP_MULTI: Literal[{supports_one_op_multi}] = {supports_one_op_multi
 
 
 def generate_qflags_to_process(qt_qflag_grep_result_fname: str, module_group: str) -> None:
-    '''Run the generation process from the grep output parsing to the generation of json file listing the flags to process'''
+    """Run the generation process from the grep output parsing to the generation of json file listing the flags to process"""
     location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, MODULE_GROUPS[module_group])
     log_progress('%d qflags extracted from grep file' % len(location_qflags))
 

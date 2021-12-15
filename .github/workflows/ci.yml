@@ -11,6 +11,11 @@ on:
   pull_request:
     branches:
       - "*"
+  schedule:
+    # Daily at 06:14.  This is just an arbitrary time to stagger
+    # relative to other daily builds in any given organization.
+    - cron: '14 6 * * *'
+
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
@@ -21,6 +26,10 @@ jobs:
         os:
           - name: Linux
             runs-on: ubuntu-latest
+            tox: linux
+          - name: Windows
+            runs-on: windows-latest
+            tox: windows
         python:
           - name: CPython 3.6
             tox: py36
@@ -58,7 +67,7 @@ jobs:
           pip install tox
       - name: Test
         run: |
-          tox -v -e ${{ matrix.python.tox }}
+          tox -v -e ${{ matrix.python.tox }}-${{ matrix.os.tox }}
 
   all:
     name: All
