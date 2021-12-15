@@ -46,7 +46,7 @@ def test_stubs_qflags() -> None:
     assert not stderr
     assert exitcode == 0
 
-# note: no need to run explicitely pytest over qflags, because pytest finds them automatically
+# note: no need to run explicitly pytest over qflags, because pytest finds them automatically
 
 @pytest.mark.parametrize('filename',
                          list(gen_tests()),
