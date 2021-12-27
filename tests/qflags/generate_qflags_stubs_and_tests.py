@@ -10,7 +10,18 @@ import traceback
 from enum import Enum
 
 from PyQt5 import (QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL,
-                   QtPrintSupport, QtSql, QtTest, QtXml)
+                   QtPrintSupport, QtSql, QtTest, QtXml,
+                    Qt3DAnimation, Qt3DCore, Qt3DExtras, Qt3DInput, Qt3DLogic, Qt3DRender,
+                    QtChart,
+                    QtBluetooth, QtNfc,
+                    QtDataVisualization,
+                    QtQuick, QtQml,
+                    QtPositioning, QtLocation,
+                    QtMultimedia,
+                    QtSerialPort,
+                    QtDesigner,
+                    QtWebEngineWidgets, QtWebEngineCore,
+                   )
 try:
     import libcst as cst
     import libcst.matchers as matchers
@@ -18,12 +29,64 @@ except ImportError:
     raise ImportError('You need libcst to run the missing stubs generation\n'
                       'Please run the command:\n\tpython -m pip install libcst')
 
+MODULE_GROUPS = {
+    'qtbase': [
+        'QtCore',
+        'QtWidgets',
+        'QtGui',
+        'QtNetwork',
+        'QtDBus',
+        'QtOpenGL',
+        'QtPrintSupport',
+        'QtSql',
+        'QtTest',
+        'QtXml',
+    ],
+    'qt3d': [
+        'Qt3DAnimation',
+        'Qt3DCore',
+        'Qt3DExtras',
+        'Qt3DInput',
+        'Qt3DLogic',
+        'Qt3DRender',
+    ],
+    'qtchart': [
+        'QtChart',
+    ],
+    'qtconnectivity': [
+        'QtBluetooth',
+        'QtNfc',
+    ],
+    'qtdatavisualization': [
+        'QtDataVisualization',
+    ],
+    'qtquick': [
+        'QtQuick',
+        'QtQml',
+    ],
+    'qtlocation': [
+        'QtPositioning',
+        'QtLocation',
+    ],
+    'qtmultimedia': [
+        'QtMultimedia',
+    ],
+    'qtserialport': [
+        'QtSerialPort',
+    ],
+}
 
-USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename>
-    Process the <grep result filename> to extract all the qflag location information. Generates
-    two output:
+
+USAGE = '''Usage 1: {prog} analyse_grep_results <grep result filename> --group <module_group>
+    Process the <grep result filename> to extract all the qflag location information. 
+    
+    Generates two output:
     - qflags_modules_analysis.json : a general file describing which qflag are suitable for processing
     - qflags_to_process.json: a list of qflag ready to process with the next command.
+    
+    The <module group> is the name of a group of modules to see where to look for for the exact name
+    of the qflags. Possible modules groups are:
+    - {groups}
     
 Usage 2: {prog} gen_qflag_stub (<number>|all) (--auto-commit)
     Using file qflag_to_process.json, process qflags and modify the PyQt modules.
@@ -34,21 +97,9 @@ Usage 2: {prog} gen_qflag_stub (<number>|all) (--auto-commit)
     
     If --auto-commit is specified, a git commit is performed after each successful QFlag validation
 
-'''.format(prog=sys.argv[0])
+'''.format(prog=sys.argv[0], groups='\n    - '.join(MODULE_GROUPS.keys()))
 
 
-QTBASE_MODULES = {
-    'QtCore':           '../../PyQt5-stubs/QtCore.pyi',
-    'QtWidgets':        '../../PyQt5-stubs/QtWidgets.pyi',
-    'QtGui':            '../../PyQt5-stubs/QtGui.pyi',
-    'QtNetwork':        '../../PyQt5-stubs/QtNetwork.pyi',
-    'QtDBus':           '../../PyQt5-stubs/QtDBus.pyi',
-    'QtOpenGL':         '../../PyQt5-stubs/QtOpenGL.pyi',
-    'QtPrintSupport':   '../../PyQt5-stubs/QtPrintSupport.pyi',
-    'QtSql':            '../../PyQt5-stubs/QtSql.pyi',
-    'QtTest':           '../../PyQt5-stubs/QtTest.pyi',
-    'QtXml':            '../../PyQt5-stubs/QtXml.pyi',
-}
 
 def log_progress(s: str) -> None:
     print('>>>>>>>>>>>>>>', s)
@@ -83,11 +134,16 @@ class QFlagLocationInfo:
     module_name: str = ''
     module_path: str = ''
 
+    def key(self) -> Tuple[str, str, str]:
+        '''Mostly unique description of the QFlagInfo'''
+        return (self.module_name, self.qflag_class, self.enum_class)
+
     # specific behavior of some QFlag classes varies slightly
     # this helps to define the exact behavior
     or_converts_to_multi: bool = True
     or_int_converts_to_multi: bool = False
     int_or_converts_to_multi: bool = True
+    supports_one_op_multi: bool = True
 
 
 def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[str, Any]]:
@@ -102,12 +158,13 @@ def json_encode_qflaglocationinfo(flag_loc_info: object) -> Union[object, Dict[s
     del d["or_converts_to_multi"]
     del d["or_int_converts_to_multi"]
     del d["int_or_converts_to_multi"]
+    del d["supports_one_op_multi"]
 
     return d
 
 
 def identify_qflag_location(fname_grep_result: str,
-                            qt_modules: Dict[str, str],
+                            qt_modules: List[str]
                             ) -> List[ QFlagLocationInfo ]:
     """Parses the grep results to extract each qflag, and then look into all Qt modules
     to see where the flag is located.
@@ -138,19 +195,24 @@ def identify_qflag_location(fname_grep_result: str,
                 parsed_qflags[(qflag_class, enum_class)] = QFlagLocationInfo(qflag_class, enum_class, grep_line=(grep_line,))
 
     # fill up modules with content
-    qt_modules_content = [ (mod_name, open(mod_stub_path, encoding='utf8').read())
-                           for (mod_name, mod_stub_path) in qt_modules.items()]
+    qt_modules_content = [ (mod_name, open('../../PyQt5-stubs/%s.pyi' % mod_name, encoding='utf8').read())
+                           for mod_name in qt_modules]
 
     # associate a qflag enum/class with a mapping from module to QFlagLocationInfo
     module_mapping: Dict[ Tuple[str, str], Dict[str, QFlagLocationInfo]] = {}
+    flag_not_found = []
 
     for qflag_key, flag_info in parsed_qflags.items():
         decl_qflag_class = 'class %s(sip.simplewrapper' % flag_info.qflag_class
+        decl_qflag_class2 = 'class %s(sip.wrapper' % flag_info.qflag_class
         decl_enum_class = 'class %s(int' % flag_info.enum_class
+        module_found = False
         for mod_name, mod_content in qt_modules_content:
 
-            if decl_qflag_class in mod_content and decl_enum_class in mod_content:
+            if (decl_qflag_class in mod_content or decl_qflag_class2 in mod_content) \
+                    and decl_enum_class in mod_content:
                 # we have found one module
+                module_found = True
                 # print('Adding QFlags %s to module %s' % (flag_info.qflag_class, mod_name))
                 if qflag_key not in module_mapping:
                     module_mapping[qflag_key] = {}
@@ -171,6 +233,9 @@ def identify_qflag_location(fname_grep_result: str,
                     # print('QFlag present more than once, adding it more than once')
                     mod_map[mod_name].module_count += min(count_qflag_class, count_enum_class) - 1
 
+        if not module_found:
+            flag_not_found.append(qflag_key)
+
     # now, we flatten the structure by recreating one QFlagLocationInfo per module location
 
     all_qflags: List[QFlagLocationInfo] = []
@@ -180,13 +245,17 @@ def identify_qflag_location(fname_grep_result: str,
             while idx < flag_info.module_count:
                 all_qflags.append(dataclasses.replace(flag_info, module_idx=idx,
                                                       module_name=mod_name,
-                                                      module_path=qt_modules[mod_name]))
+                                                      module_path='../../PyQt5-stubs/%s.pyi' % mod_name))
                 idx += 1
+
+    for qflag_key in flag_not_found:
+        all_qflags.append(parsed_qflags[qflag_key])
 
     return all_qflags
 
 
-def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFlagLocationInfo]]:
+def group_qflags(qflag_location: List[QFlagLocationInfo],
+                 qflags_group_initial: Optional[Dict[str, List[QFlagLocationInfo]]]) -> Dict[str, List[QFlagLocationInfo]]:
     """Group the QFlags into the following groups (inside a dictionnary):
     * flag_and_module_identified: this flag is present once in one module exactly.
     * flag_without_module: this flag is not present in any modules at all.
@@ -194,22 +263,35 @@ def group_qflags(qflag_location: List[QFlagLocationInfo] ) -> Dict[str, List[QFl
     The first group is suitable for automatic processing.
     The last group reflects the QFlags not exported to PyQt or coming from modules not present in PyQt
     """
-    d = {
-        'flag_and_module_identified': [
-                flag_info for flag_info in qflag_location
-                                if flag_info.module_name != ''
-        ],
-        'flag_without_module': [
-            flag_info for flag_info in qflag_location
-                    if flag_info.module_name == ''
-        ],
-    }
+    if not qflags_group_initial:
+        qflags_group_initial = {
+            'flag_and_module_identified': [],
+            'flag_without_module': [],
+        }
 
-    return d
+    qflag_already_present = [
+        (loc.module_name, loc.qflag_class, loc.enum_class)
+        for loc in qflags_group_initial['flag_and_module_identified']
+    ]
+
+    for flag_info in qflag_location:
+        qflag_key = flag_info.key()
+
+        if flag_info.module_name != '':
+            if qflag_key in qflag_already_present:
+                print('QFlag already analysed: ', qflag_key)
+                continue
+
+            qflags_group_initial['flag_and_module_identified'].append(flag_info)
+        else:
+            qflags_group_initial['flag_without_module'].append(flag_info)
+
+    return qflags_group_initial
 
 
 def extract_qflags_to_process(qflags_modules_analysis_json: str,
                               qflags_to_process_json: str,
+                              module_group: str,
                               ) -> None:
     """Take the json file as input describing qflags and their modules and output a json file of qflags planned to be processed.
 
@@ -219,23 +301,40 @@ def extract_qflags_to_process(qflags_modules_analysis_json: str,
     with open(qflags_modules_analysis_json) as f:
         d = json.load(f)
 
-    result = {
-        '__': 'This file can be adjusted manually by a human prior to being processed by the tool',
-        'qflags_to_process': [],
-        'qflags_to_skip': [],
-    }
+    if os.path.exists(qflags_to_process_json):
+        with open(qflags_to_process_json) as f:
+            result = json.load(f)
+    else:
+        result = {
+            '__': 'This file can be adjusted manually by a human prior to being processed by the tool',
+            'qflags_to_process': [],
+            'qflags_to_skip': [],
+        }
 
+    skip_already_present = set( (d['qflag_class'], d['enum_class'])
+        for d in result['qflags_to_skip']
+    )
     for flag_info in d['flag_without_module']:
+        key = (flag_info['qflag_class'], flag_info['enum_class'])
+        if key in skip_already_present:
+            continue
         cast(List, result['qflags_to_skip']).append(
             {
                 'qflag_class': flag_info['qflag_class'],
                 'enum_class':  flag_info['enum_class'],
-                'skip_reason':  'QFlag not found',
+                'skip_reason':  'QFlag not found in module group %s' % module_group,
             }
         )
 
-    for flag_info in d['flag_and_module_identified']:
-        cast(List, result['qflags_to_process']).append( flag_info )
+    already_present = set((flag_info_d['module_name'], flag_info_d['qflag_class'], flag_info_d['enum_class'])
+                          for flag_info_d in result['qflags_to_process'])
+
+    for flag_info_d in d['flag_and_module_identified']:
+        key = (flag_info_d['module_name'], flag_info_d['qflag_class'], flag_info_d['enum_class'])
+        if key in already_present:
+            print('QFlag to process already present: ', key )
+            continue
+        cast(List, result['qflags_to_process']).append( flag_info_d )
 
     with open(qflags_to_process_json, 'w') as f:
         json.dump(result, f, indent=4)
@@ -388,6 +487,23 @@ def process_qflag(qflag_to_process_json: str, qflag_result_json: str, auto_commi
     log_progress('.')
     return len(qflags_to_process)
 
+local_cst_module_cache: Dict[str, Tuple[str, cst.Module]] = {}
+
+def retrieve_cst_parsed_module(mod_name: str, mod_content: str) -> cst.Module:
+    '''Return the cst parsed module and cache the result for each module name'''
+    if mod_name in local_cst_module_cache:
+        cached_mod_content, cached_parsed_module = local_cst_module_cache[mod_name]
+        if cached_mod_content == mod_content:
+            log_progress('Returning cached %s parse results' % mod_name)
+            return cached_parsed_module
+        else:
+            log_progress('Updating cache for module %s' % mod_name)
+    else:
+        log_progress('Parsing module %s and adding it to cache' % mod_name)
+
+    parsed_module = cst.parse_module(mod_content)
+    local_cst_module_cache[mod_name] = (mod_content, parsed_module)
+    return parsed_module
 
 
 class QFlagGenResult(Enum):
@@ -455,8 +571,7 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     with open(flag_info.module_path) as f:
         mod_content = f.read()
 
-    log_progress('Parsing module %s' % flag_info.module_name)
-    mod_cst = cst.parse_module(mod_content)
+    mod_cst = retrieve_cst_parsed_module(flag_info.module_name, mod_content)
 
     log_progress('Looking for class %s and %s in module %s, index %d' %
                  (flag_info.qflag_class, flag_info.enum_class, flag_info.module_name, flag_info.module_idx))
@@ -475,6 +590,12 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.enum_value2 = visitor.enum_value2
     flag_info.qflag_full_class_name = visitor.qflag_class_full_name
 
+    if visitor.enum_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
+
+    if visitor.qflag_class_full_name == '':
+        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.qflag_class_name, '')
+
     # evaluate exact behavior of QFlag
     try:
         flag_info.or_converts_to_multi = not eval('''type({qtmodule}.{oneFlagName}.{value1} | {qtmodule}.{oneFlagName}.{value2}) == int'''.format(
@@ -489,11 +610,16 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
     flag_info.int_or_converts_to_multi = not eval('''type(33 | {qtmodule}.{oneFlagName}.{value1}) == int'''.format(
         value1=flag_info.enum_value1, qtmodule = flag_info.module_name, oneFlagName = flag_info.enum_full_class_name))
 
-    if visitor.enum_class_full_name == '':
-        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.enum_class_name, '')
-
-    if visitor.qflag_class_full_name == '':
-        return (QFlagGenResult.ErrorDuringProcessing, 'Could not locate class %s' % visitor.qflag_class_name, '')
+    try:
+        flag_info.supports_one_op_multi = True
+        eval('''{qtmodule}.{oneFlagName}.{enumValue} | {qtmodule}.{multiFlagName}()'''.format(
+            oneFlagName=flag_info.enum_full_class_name,
+        enumValue=flag_info.enum_value1,
+            multiFlagName=flag_info.qflag_full_class_name,
+            qtmodule=flag_info.module_name
+        ))
+    except TypeError:
+        flag_info.supports_one_op_multi = False
 
     if (visitor.enum_methods_present, visitor.qflag_method_present) == (MethodPresent.All, MethodPresent.All):
         return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
@@ -508,16 +634,20 @@ def generate_missing_stubs(flag_info: 'QFlagLocationInfo') -> Tuple[QFlagGenResu
            or flag_info.or_int_converts_to_multi):
             # this means __or__ or __ror__ must be present, we have an error
             visitor.error_msg += 'QFlag methods are present but not Enum methods\n'
+        else:
+            # it's ok
+            return (QFlagGenResult.CodeAlreadyModified, visitor.error_msg, '')
 
     if visitor.error_msg:
         return (QFlagGenResult.ErrorDuringProcessing, visitor.error_msg, '')
 
     log_progress('Found %s and %s' % (flag_info.qflag_full_class_name, flag_info.enum_full_class_name))
 
-    print('OR behavior:')
+    print('enum behavior:')
     print('- or_converts_to_multi: ', flag_info.or_converts_to_multi)
     print('- or_int_converts_to_multi: ', flag_info.or_int_converts_to_multi)
     print('- int_or_converts_to_multi: ', flag_info.int_or_converts_to_multi)
+    print('- supports_one_op_multi: ', flag_info.supports_one_op_multi)
 
     log_progress('Updating module %s by adding new methods' % flag_info.module_name)
     transformer = QFlagAndEnumUpdater(visitor.enum_class_name, visitor.enum_class_full_name,
@@ -707,14 +837,21 @@ class QFlagAndEnumFinder(cst.CSTVisitor):
         def __init__(self, f: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> None:
         """
         if (len(qflag_node.bases) == 0
-            or not matchers.matches(qflag_node.bases[0],
+           or not (matchers.matches(qflag_node.bases[0],
+                                         matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
+                                                                               attr=matchers.Name('simplewrapper')
+                                                                               )
+                                                      )
+                                         )
+                   or matchers.matches(qflag_node.bases[0],
                                 matchers.Arg(value=matchers.Attribute(value=matchers.Name('sip'),
-                                                                      attr=matchers.Name('simplewrapper')
+                                                                      attr=matchers.Name('wrapper')
                                                                       )
                                              )
                                 )
+                )
             ):
-            # 'Class does not inherit from sip.simplewrapper'
+            # 'Class does not inherit from sip.simplewrapper' or sip.wrapper
             return False
 
         has_method = [
@@ -1017,6 +1154,7 @@ oneFlagRefValue2 = {qtmodule}.{oneFlagName}.{oneFlagValue2}
 OR_CONVERTS_TO_MULTI: Literal[{or_converts_to_multi}] = {or_converts_to_multi}
 OR_INT_CONVERTS_TO_MULTI: Literal[{or_int_converts_to_multi}] = {or_int_converts_to_multi}
 INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts_to_multi}
+SUPPORTS_ONE_OP_MULTI: Literal[{supports_one_op_multi}] = {supports_one_op_multi}
 '''.format(source=TEMPLATE_QFLAGS_TESTS,
            multiFlagName=flag_info.qflag_full_class_name,
            oneFlagName=flag_info.enum_full_class_name,
@@ -1025,27 +1163,42 @@ INT_OR_CONVERTS_TO_MULTI: Literal[{int_or_converts_to_multi}] = {int_or_converts
            qtmodule=flag_info.module_name,
            or_converts_to_multi=flag_info.or_converts_to_multi,
            or_int_converts_to_multi=flag_info.or_int_converts_to_multi,
-           int_or_converts_to_multi=flag_info.int_or_converts_to_multi
+           int_or_converts_to_multi=flag_info.int_or_converts_to_multi,
+           supports_one_op_multi=flag_info.supports_one_op_multi
            ))
         f.writelines(generic_part_after)
     log_progress('Test file generated: %s' % test_qflag_fname)
 
 
-def generate_qflags_to_process(qt_qflag_grep_result_fname):
+def generate_qflags_to_process(qt_qflag_grep_result_fname: str, module_group: str) -> None:
     """Run the generation process from the grep output parsing to the generation of json file listing the flags to process"""
-    location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, QTBASE_MODULES)
+    location_qflags = identify_qflag_location(qt_qflag_grep_result_fname, MODULE_GROUPS[module_group])
     log_progress('%d qflags extracted from grep file' % len(location_qflags))
-    qflags_groups = group_qflags(location_qflags)
-    log_progress('%d qflags ready to be processed' % len(qflags_groups['flag_and_module_identified']))
 
     qflags_modules_analysis_json = 'qflags_modules_analysis.json'
     # put our intermediate classification into a json file for human review
+    if os.path.exists(qflags_modules_analysis_json):
+        with open(qflags_modules_analysis_json) as f:
+            d = json.load(f)
+            qflag_groups_initial = {
+                'flag_and_module_identified': [QFlagLocationInfo(**v) for v in d['flag_and_module_identified']],
+                'flag_without_module': [QFlagLocationInfo(**v) for v in d['flag_without_module']]
+            }
+    else:
+        qflag_groups_initial = None
+
+
+    initial_len = len(qflag_groups_initial['flag_and_module_identified'])
+    qflags_groups = group_qflags(location_qflags, qflag_groups_initial)
+    new_len = len(qflag_groups_initial['flag_and_module_identified'])
+    log_progress('%d qflags ready to be processed' % (new_len - initial_len))
+
     with open(qflags_modules_analysis_json, 'w') as f:
         json.dump(qflags_groups, f, indent=4, default=json_encode_qflaglocationinfo)
     log_progress('QFlag analysis saved to: %s' % qflags_modules_analysis_json)
 
     qflags_to_process_json = 'qflags_to_process.json'
-    extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json)
+    extract_qflags_to_process(qflags_modules_analysis_json, qflags_to_process_json, module_group)
     log_progress('qflag file ready to process: %s' % qflags_to_process_json)
 
 
@@ -1095,13 +1248,19 @@ if __name__ == '__main__':
         log_progress('All qflags are processed.')
 
     elif sys.argv[1] == 'analyse_grep_results':
-        if len(sys.argv) <= 2:
-            print('Error, you must provide the filename of the grep results\n')
+        if len(sys.argv) <= 4 or sys.argv[3] != '--group':
+            print('Error, you must provide the filename of the grep results and the group of modules to use\n')
             print(USAGE)
             sys.exit(1)
 
         grep_fname = sys.argv[2]
-        generate_qflags_to_process(grep_fname)
+        module_group = sys.argv[4]
+        if not module_group in MODULE_GROUPS:
+            print('Unknown module group: %s' % module_group)
+            print('Possible choices are:\n-', '\n- '.join(MODULE_GROUPS.keys()))
+            sys.exit(0)
+
+        generate_qflags_to_process(grep_fname, module_group)
 
 
     elif sys.argv[1] == 'regen_test_files':

@@ -1,0 +1,4 @@
+src\charts\qchart.h:    Q_DECLARE_FLAGS(AnimationOptions, AnimationOption)
+src\charts\qchartview.h:    Q_DECLARE_FLAGS(RubberBands, RubberBand)
+src\charts\qpolarchart.h:    Q_DECLARE_FLAGS(PolarOrientations, PolarOrientation)
+src\charts\axis\qabstractaxis.h:    Q_DECLARE_FLAGS(AxisTypes, AxisType)

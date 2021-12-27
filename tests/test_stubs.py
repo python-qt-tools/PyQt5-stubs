@@ -51,7 +51,7 @@ def test_stubs_qflags() -> None:
 
 @pytest.mark.parametrize('filepath',
                          list(gen_tests()),
-                         ids=[v.parts[-1] for v in gen_tests()]
+                         ids=[v.name for v in gen_tests()]
                          )
 def test_files(filepath):
     """Run the test files to make sure they work properly."""
