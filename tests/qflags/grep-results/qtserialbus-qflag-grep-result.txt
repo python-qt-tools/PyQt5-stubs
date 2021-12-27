@@ -1,0 +1,6 @@
+src\serialbus\qcanbusdevice.h:        Q_DECLARE_FLAGS(FormatFilters, FormatFilter)
+src\serialbus\qcanbusdevice.h:    Q_DECLARE_FLAGS(Directions, Direction)
+src\serialbus\qcanbusframe.h:    Q_DECLARE_FLAGS(FrameErrors, FrameError)
+src\plugins\canbus\passthrucan\j2534passthru.h:    Q_DECLARE_FLAGS(RxStatus, RxStatusBit)
+src\plugins\canbus\passthrucan\j2534passthru.h:    Q_DECLARE_FLAGS(TxFlags, TxFlag)
+src\plugins\canbus\passthrucan\j2534passthru.h:    Q_DECLARE_FLAGS(ConnectFlags, ConnectFlag)
