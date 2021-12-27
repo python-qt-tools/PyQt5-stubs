@@ -43,7 +43,7 @@ class QFrameAction(Qt3DCore.QComponent):
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
-    def triggered(self, dt: float) -> None: ...
+    triggered: typing.ClassVar[QtCore.pyqtSignal]
 
 class QLogicAspect(Qt3DCore.QAbstractAspect):
 
