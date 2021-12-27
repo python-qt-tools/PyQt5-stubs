@@ -12877,6 +12877,7 @@ class QSysInfo(sip.simplewrapper):
 
 PYQT_VERSION = ... # type: int
 PYQT_VERSION_STR = ... # type: str
+PYQT_CONFIGURATION = ... # type: typing.Dict[str, str]
 QT_VERSION = ... # type: int
 QT_VERSION_STR = ... # type: str
 

@@ -20,6 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#153](https://github.com/python-qt-tools/PyQt5-stubs/pull/153) Support all implemented arithmetic operations for QFlags 
   based classes in modules QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL, QtPrintsupport, QtSql, QtTest, QtXml
 * [#162](https://github.com/python-qt-tools/PyQt5-stubs/pull/162) fixes all method not declared as signals
+* [#184](https://github.com/python-qt-tools/PyQt5-stubs/pull/184) Fix missing module variable
+   detected by latest mypy 0.930
 
 ## 5.15.2.0
 
