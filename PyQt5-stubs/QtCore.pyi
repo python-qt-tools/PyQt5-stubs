@@ -12851,7 +12851,7 @@ class QSysInfo(sip.simplewrapper):
         def windowsVersion() -> 'QSysInfo.WinVersion': ...
 
     if sys.platform == "darwin":
-        class MacintoshVersion(int):
+        class MacVersion(int):
             MV_10_0 = ...  # type: int
             MV_10_1 = ...  # type: int
             MV_10_10 = ...  # type: int
@@ -12966,10 +12966,10 @@ class QSysInfo(sip.simplewrapper):
         MV_WATCHOS_3_0 = ...  # type: int
         MV_YOSEMITE = ...  # type: int
 
-        MacVersion = ... # type: QSysInfo.MacintoshVersion
+        MacintoshVersion = ... # type: QSysInfo.MacVersion
 
         @staticmethod
-        def macVersion() -> 'QSysInfo.MacintoshVersion': ...
+        def macVersion() -> 'QSysInfo.MacVersion': ...
 
     @typing.overload
     def __init__(self) -> None: ...
