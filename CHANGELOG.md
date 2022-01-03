@@ -23,6 +23,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#184](https://github.com/python-qt-tools/PyQt5-stubs/pull/184) Fix missing module variable
    detected by latest mypy 0.930
 * [#183](https://github.com/python-qt-tools/PyQt5-stubs/pull/183) Add missing operations on QSize
+* [#187](https://github.com/python-qt-tools/PyQt5-stubs/pull/187) Allow `None` as argument for `QLineEdit.setText()`
+ 
+ 
 ## 5.15.2.0
 
 ### Added
