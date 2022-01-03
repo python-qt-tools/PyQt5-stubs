@@ -1,4 +1,5 @@
-from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QScrollArea
 
-# https://github.com/python-qt-tools/PyQt5-stubs/issues/147
-QtWidgets.QScrollArea(widgetResizable=True)
+app = QApplication(['my_program', '-platform', 'offscreen'])
+
+scrollArea = QScrollArea(widgetResizable=True)
