@@ -95,4 +95,3 @@ of packages and modules:
 * Bryce Beagle 
 * Florian Bruhin
 * Philippe Fremy
-
