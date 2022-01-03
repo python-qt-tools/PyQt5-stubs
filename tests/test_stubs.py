@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 from mypy import api
 
+
 TESTS_DIR = Path(__file__).parent
 
 
