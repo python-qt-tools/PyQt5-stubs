@@ -1,7 +1,11 @@
+import os
 
-from PyQt5.QtWidgets import QApplication, QLineEdit
+os.environ['QT_DEBUG_PLUGINS'] = '1'
 
-app = QApplication(['-platform', 'minimal'])
+from PyQt5.QtWidgets import QLineEdit, QApplication
+from PyQt5.QtGui import QGuiApplication
+
+app = QApplication(['my_program', '-platform', 'offscreen'])
 
 le = QLineEdit()
 le.setText(None)
