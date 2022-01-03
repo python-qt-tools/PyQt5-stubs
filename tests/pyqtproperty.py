@@ -65,6 +65,15 @@ class UseProps2(QObject):
         self._prop3 = v + 100  # add + 100 for fun
         self.prop3_sig_changed.emit()
 
+    def prop3_another_getter(self) -> int:
+        myprint('prop3 another getter')
+        return - self._prop3
+
+    def prop3_another_setter(self, v: int) -> None:
+        myprint('prop3 another setter')
+        self._prop3 = v + 1000  # add + 100 for fun
+        self.prop3_sig_changed.emit()
+
     def prop3_resetter(self) -> None:
         myprint('prop3 resetter')
         self._prop3 = 0
@@ -94,6 +103,9 @@ class UseProps2(QObject):
                     notify=prop3_sig_changed,
                     revision=1
     )
+
+    # create another property, with just the setter being different
+    prop4 = prop3.setter(prop3_another_setter)      # type: ignore[type-var] # I can not figure out how to make this work
 
 
 
@@ -158,6 +170,11 @@ up2.setProperty('prop3', 3)
 myprint( up2.property('prop3') )
 metaProperty = up2.metaObject().property(up2.metaObject().indexOfProperty('prop3'))
 myprint('Qt property available: ', metaProperty.name())
+
+myprint(up2.prop4)
+up2.prop4 = 500     # type: ignore[assignment]  # mypy does not understand that prop4 is a property
+myprint(up2.prop4)
+
 
 myprint('Resetting')
 up2.prop3_resetter()
