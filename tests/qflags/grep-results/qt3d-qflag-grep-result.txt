@@ -1,0 +1,8 @@
+src\animation\frontend\qanimationcallback.h:    Q_DECLARE_FLAGS(Flags, Flag)
+src\core\changes\qscenechange.h:Q_DECLARE_FLAGS(ChangeFlags, ChangeFlag)
+src\core\changes\qscenechange.h:    Q_DECLARE_FLAGS(DeliveryFlags, DeliveryFlag)
+src\render\backend\abstractrenderer_p.h:    Q_DECLARE_FLAGS(BackendNodeDirtySet, BackendNodeDirtyFlag)
+src\render\framegraph\qclearbuffers.h:    Q_DECLARE_FLAGS(BufferTypeFlags, BufferType)
+src\render\framegraph\qmemorybarrier.h:    Q_DECLARE_FLAGS(Operations, Operation)
+src\render\texture\texture_p.h:    Q_DECLARE_FLAGS(DirtyFlags, DirtyFlag)
+src\quick3d\imports\scene3d\scene3dview_p.h:    Q_DECLARE_FLAGS(DirtyFlags, DirtyFlag)
