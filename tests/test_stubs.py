@@ -2,15 +2,8 @@ import os
 from pathlib import Path
 import pytest
 from mypy import api
-from PyQt5 import QtWidgets
-
 
 TESTS_DIR = Path(__file__).parent
-
-
-application = QtWidgets.QApplication.instance()
-assert application is None
-application = QtWidgets.QApplication([])
 
 
 def gen_tests():
