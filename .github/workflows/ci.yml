@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  workflow_dispatch:  # allow manual trigger of CI
+
   push:
     branches:
       - master
