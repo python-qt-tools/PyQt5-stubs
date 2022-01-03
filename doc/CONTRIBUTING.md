@@ -81,17 +81,73 @@ Also install `pytest` and `mypy` :
 Go to the directory `tests` and run `pytest`:
 
     .../PyQt5-stubs/ (env_for_tests) $  cd tests
-    .../PyQt5-stubs/tests/ (env_for_tests) $  pytest
+    .../PyQt5-stubs/tests/ (env_for_tests) $  pytest -v
+    ======================================== test session starts ========================================
+    platform win32 -- Python 3.8.8, pytest-6.2.2, py-1.10.0, pluggy-0.13.1 -- c:\python38-32\python.exe
+    cachedir: .pytest_cache
+    tempdir: C:\Users\g582619\AppData\Local\Temp\tests
+    rootdir: ...\PyQt5-stubs\PyQt5-stubs, configfile: tox.ini
+    plugins: tempdir-2019.10.12
+    collected 382 items
+
+    test_stubs.py::test_stubs[pyqtsignal.py] PASSED                                                [  0%]
+    test_stubs.py::test_stubs[pyqtslot.py] PASSED                                                  [  0%]
+    test_stubs.py::test_stubs[qbytearray.py] PASSED                                                [  0%]
+    test_stubs.py::test_stubs[qdialogbuttonbox.py] PASSED                                          [  1%]
+    test_stubs.py::test_stubs[qmessagebox.py] PASSED                                               [  1%]
+    test_stubs.py::test_stubs[qobject.py] PASSED                                                   [  1%]
+    test_stubs.py::test_stubs[qtimer.py] PASSED                                                    [  1%]
+    test_stubs.py::test_stubs[qtreewidgetitem.py] PASSED                                           [  2%]
+    test_stubs.py::test_stubs[simple.py] PASSED                                                    [  2%]
+    test_stubs.py::test_stubs_qflags PASSED                                                        [  2%]
+    test_stubs.py::test_files[pyqtsignal.py] PASSED                                                [  2%]
+    test_stubs.py::test_files[pyqtslot.py] PASSED                                                  [  3%]
+    test_stubs.py::test_files[qbytearray.py] PASSED                                                [  3%]
+    test_stubs.py::test_files[qdialogbuttonbox.py] PASSED                                          [  3%]
+    test_stubs.py::test_files[qmessagebox.py] PASSED                                               [  3%]
+    test_stubs.py::test_files[qobject.py] PASSED                                                   [  4%]
+    test_stubs.py::test_files[qtimer.py] PASSED                                                    [  4%]
+    test_stubs.py::test_files[qtreewidgetitem.py] PASSED                                           [  4%]
+    test_stubs.py::test_files[simple.py] PASSED                                                    [  4%]
+    qflags\test_Qt3DCore_ChangeFlags_ChangeFlag.py::test_on_one_flag_class PASSED                  [  5%]
+    qflags\test_Qt3DCore_ChangeFlags_ChangeFlag.py::test_on_multi_flag_class PASSED                [  5%]
+    qflags\test_Qt3DCore_DeliveryFlags_DeliveryFlag.py::test_on_one_flag_class PASSED              [  5%]
+    qflags\test_Qt3DCore_DeliveryFlags_DeliveryFlag.py::test_on_multi_flag_class PASSED            [  6%]
     [...]
+    qflags\test_QtWidgets_ViewItemFeatures_ViewItemFeature.py::test_on_one_flag_class PASSED       [ 99%]
+    qflags\test_QtWidgets_ViewItemFeatures_ViewItemFeature.py::test_on_multi_flag_class PASSED     [ 99%]
+    qflags\test_QtWidgets_WizardOptions_WizardOption.py::test_on_one_flag_class PASSED             [ 99%]
+    qflags\test_QtWidgets_WizardOptions_WizardOption.py::test_on_multi_flag_class PASSED           [100%]
+
+    ======================================= 382 passed in 11.72s ========================================
+
 
 
 The different phases of the testing process are driven by the script `test_stub.py`. The steps are:
 
 1. Run mypy on every file of the directory not starting with `test_` . This is the part which generates
-   the output `blablabla` XXX
+   the output:
+
+```
+   test_stubs.py::test_stubs[pyqtsignal.py] PASSED                                                [  0%]
+   test_stubs.py::test_stubs[pyqtslot.py] PASSED                                                  [  0%]
+   [...]
+   test_stubs.py::test_files[qtreewidgetitem.py] PASSED                                           [  4%]
+   test_stubs.py::test_files[simple.py] PASSED                                                    [  4%]
+```
    
-2. Run the example python files themselves, to make sure they are correct.
-    XXX
+2. Run the example python files themselves, to make sure they are correct. This is
+   the longest part of the output:
+
+```
+   qflags\test_Qt3DCore_ChangeFlags_ChangeFlag.py::test_on_one_flag_class PASSED                  [  5%]
+   qflags\test_Qt3DCore_ChangeFlags_ChangeFlag.py::test_on_multi_flag_class PASSED                [  5%]
+   [...]
+   qflags\test_QtWidgets_ViewItemFeatures_ViewItemFeature.py::test_on_one_flag_class PASSED       [ 99%]
+   qflags\test_QtWidgets_ViewItemFeatures_ViewItemFeature.py::test_on_multi_flag_class PASSED     [ 99%]
+
+   ======================================= 382 passed in 11.72s ========================================
+```
 
 
 ### Adding new tests
@@ -109,10 +165,13 @@ what is expected from mypy. The steps to do so are:
     to the `QApplication` constructor will do the trick. See `qlineedit.py` for an example of how
     to do it.
    
-3. Run your example file with Python. There should be no error. Example:
+3. Run your example file with Python. There should be no error and no output. 
+   
+   Example:
 
 ```
 .../PyQt5-stubs/tests/ (env_for_tests) $ python qlineedit.py
+.../PyQt5-stubs/tests/ (env_for_tests) $
 ```
 
 
@@ -121,13 +180,17 @@ what is expected from mypy. The steps to do so are:
 
 ```
 .../PyQt5-stubs/tests/ (env_for_tests) $ mypy qlineedit.py
+Success: no issues found in 1 source file
+
 ```
    
 5. When everything works, you can run the full tests again. It will pickup your example
    automatically:
   
 ```
-.../PyQt5-stubs/tests/ (env_for_tests) $ pytest 
+.../PyQt5-stubs/tests/ (env_for_tests) $ pytest  -v
+[...]
+======================================= 382 passed in 11.72s ========================================
 ```
 
 
@@ -138,6 +201,7 @@ what is expected from mypy. The steps to do so are:
 ```
 .../PyQt5-stubs/tests/ (env_for_tests) $ cd ..
 .../PyQt5-stubs/ (env_for_tests) $ stubtest --allowlist ./stubtest.allowlist --allowlist ./stubtest.allowlist.to_review --allowlist ./stubtest.allowlist.linux PyQt5
+.../PyQt5-stubs/ (env_for_tests) $
 ```
 
 This may reveal some quirks, like some method added for convenience but not existing in the PyQt5 package. How
