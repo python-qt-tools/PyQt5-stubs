@@ -1,0 +1,2 @@
+src\quicktemplates2\qquickpopup_p.h:    Q_DECLARE_FLAGS(ClosePolicy, ClosePolicyFlag)
+tests\manual\gifs\eventcapturer.h:    Q_DECLARE_FLAGS(MoveEventTrimFlags, MoveEventTrimFlag)
