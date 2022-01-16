@@ -23,15 +23,12 @@ jobs:
       matrix:
         os:
           - name: Linux
-            matrix: linux
             runs-on: ubuntu-latest
             tox: linux
           - name: macOS
-            matrix: macos
             runs-on: macos-latest
             tox: macos
           - name: Windows
-            matrix: windows
             runs-on: windows-latest
             tox: windows
         python:
@@ -62,7 +59,7 @@ jobs:
         if: matrix.os.name == 'Linux'
         run: |
           sudo apt-get update --yes
-          sudo apt-get install --yes libgl1 libgles2-mesa-dev
+          sudo apt-get install --yes libgl1
           # Required to stubtest QtMultimedia
           sudo apt-get install --yes libpulse-mainloop-glib0
           sudo apt-get install --yes libgl1 libgl1-mesa-dev xvfb x11-utils libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0
