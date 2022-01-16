@@ -12,10 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * [#175](https://github.com/python-qt-tools/PyQt5-stubs/pull/175) catch up PyQtNetworkAuth with the 5.15.4 release
 * [#149](https://github.com/python-qt-tools/PyQt5-stubs/pull/149) update to PyQt5 5.15.4
 * [#138](https://github.com/python-qt-tools/PyQt5-stubs/pull/138) update to PyQt5 5.15.3
+* [#145](https://github.com/python-qt-tools/PyQt5-stubs/pull/145) Support all implemented arithmetic operations between Qt.WindowType and Qt.WindowFlags and int
 * [#144](https://github.com/python-qt-tools/PyQt5-stubs/pull/144) add `QTreeWidgetItem.__lt__()` to allow sorting of items in a QTreeWidget
 * [#143](https://github.com/python-qt-tools/PyQt5-stubs/pull/143) make `bytes(QByteArray())` valid by incorrectly adding `.__bytes__()` until a proper solution is developed upstream
 * [#152](https://github.com/python-qt-tools/PyQt5-stubs/pull/152) add `.__or__()` for `QDialogButtonBox.StandardButton` and `QDialogButtonBox.StandardButtons`
 * [#156](https://github.com/python-qt-tools/PyQt5-stubs/pull/156) add operators to `QSize` and `QSizeF`
+* [#153](https://github.com/python-qt-tools/PyQt5-stubs/pull/153) Support all implemented arithmetic operations for QFlags 
+  based classes in modules QtCore, QtWidgets, QtGui, QtNetwork, QtDBus, QtOpenGL, QtPrintsupport, QtSql, QtTest, QtXml
+* [#162](https://github.com/python-qt-tools/PyQt5-stubs/pull/162) fixes all method not declared as signals
+* [#184](https://github.com/python-qt-tools/PyQt5-stubs/pull/184) Fix missing module variable
+   detected by latest mypy 0.930
+* [#183](https://github.com/python-qt-tools/PyQt5-stubs/pull/183) Add missing operations on QSize
+* [#189](https://github.com/python-qt-tools/PyQt5-stubs/pull/189) Fix QListWidget, QTreeWidget and QTableWidget so that their respective items are now optional in many places when used as argument or return value
 * [#165](https://github.com/python-qt-tools/PyQt5-stubs/pull/165) allow `None` as argument for `QLineEdit.setText()`
 
 ## 5.15.2.0
