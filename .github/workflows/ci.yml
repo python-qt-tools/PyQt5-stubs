@@ -23,12 +23,15 @@ jobs:
       matrix:
         os:
           - name: Linux
+            matrix: linux
             runs-on: ubuntu-latest
             tox: linux
           - name: macOS
+            matrix: macos
             runs-on: macos-latest
             tox: macos
           - name: Windows
+            matrix: windows
             runs-on: windows-latest
             tox: windows
         python:
@@ -63,6 +66,7 @@ jobs:
           # Required to stubtest QtMultimedia
           sudo apt-get install --yes libpulse-mainloop-glib0
       - uses: altendky/QTBUG-88688-libxcb-util@v2
+        if: matrix.os.matrix == 'linux'
       - name: Install
         run: |
           pip install --upgrade pip setuptools wheel
