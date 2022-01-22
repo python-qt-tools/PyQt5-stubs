@@ -1,5 +1,3 @@
-from PyQt5.QtWidgets import QApplication, QGroupBox
-
-app = QApplication(['my_program', '-platform', 'offscreen'])
+from PyQt5.QtWidgets import QGroupBox
 
 groupBox = QGroupBox(objectName='some_name')

@@ -2,15 +2,19 @@ import os
 from pathlib import Path
 import pytest
 from mypy import api
-from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication
 
 
 TESTS_DIR = Path(__file__).parent
 
 
-application = QtWidgets.QApplication.instance()
-assert application is None
-application = QtWidgets.QApplication([])
+@pytest.fixture(name="qapplication", scope="session")
+def qapplication_fixture():
+    application = QApplication.instance()
+    if application is None:
+        application = QApplication([])
+
+    return application
 
 
 def gen_tests():
@@ -59,7 +63,7 @@ def test_stubs_qflags() -> None:
                          list(gen_tests()),
                          ids=[v.name for v in gen_tests()]
                          )
-def test_files(filepath):
+def test_files(filepath, qapplication):
     """Run the test files to make sure they work properly."""
     code = filepath.read_text(encoding='utf-8')
     exec(compile(code, filepath, 'exec'), {})

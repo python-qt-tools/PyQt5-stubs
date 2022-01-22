@@ -1,5 +1,3 @@
-from PyQt5.QtWidgets import QApplication, QScrollArea
-
-app = QApplication(['my_program', '-platform', 'offscreen'])
+from PyQt5.QtWidgets import QScrollArea
 
 scrollArea = QScrollArea(widgetResizable=True)
