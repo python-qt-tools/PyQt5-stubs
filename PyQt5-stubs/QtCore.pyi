@@ -10767,14 +10767,17 @@ class QSize(sip.simplewrapper):
     @typing.overload
     def __init__(self, a0: 'QSize') -> None: ...
 
-    def __add__(self, value: 'QSize') -> 'QSize': ...
     def __eq__(self, value: object) -> bool: ...
+    def __ne__(self, value: object) -> bool: ...
+    def __add__(self, value: 'QSize') -> 'QSize': ...
     def __iadd__(self, value: 'QSize') -> 'QSize': ...
-    def __imul__(self, value: float) -> 'QSize': ...
+    def __sub__(self, value: 'QSize') -> 'QSize': ...
     def __isub__(self, value: 'QSize') -> 'QSize': ...
     def __mul__(self, value: float) -> 'QSize': ...
-    def __ne__(self, value: object) -> bool: ...
-    def __sub__(self, value: 'QSize') -> 'QSize': ...
+    def __rmul__(self, value: float) -> 'QSize': ...
+    def __imul__(self, value: float) -> 'QSize': ...
+    def __truediv__(self, value: float) -> 'QSize': ...
+    def __itruediv__(self, value: float) -> 'QSize': ...
 
     def shrunkBy(self, m: QMargins) -> 'QSize': ...
     def grownBy(self, m: QMargins) -> 'QSize': ...
@@ -10812,14 +10815,17 @@ class QSizeF(sip.simplewrapper):
     @typing.overload
     def __init__(self, a0: 'QSizeF') -> None: ...
 
-    def __add__(self, value: 'QSizeF') -> 'QSizeF': ...
     def __eq__(self, value: object) -> bool: ...
+    def __ne__(self, value: object) -> bool: ...
+    def __add__(self, value: 'QSizeF') -> 'QSizeF': ...
     def __iadd__(self, value: 'QSizeF') -> 'QSizeF': ...
-    def __imul__(self, value: float) -> 'QSizeF': ...
+    def __sub__(self, value: 'QSizeF') -> 'QSizeF': ...
     def __isub__(self, value: 'QSizeF') -> 'QSizeF': ...
     def __mul__(self, value: float) -> 'QSizeF': ...
-    def __ne__(self, value: object) -> bool: ...
-    def __sub__(self, value: 'QSizeF') -> 'QSizeF': ...
+    def __rmul__(self, value: float) -> 'QSizeF': ...
+    def __imul__(self, value: float) -> 'QSizeF': ...
+    def __truediv__(self, value: float) -> 'QSizeF': ...
+    def __itruediv__(self, value: float) -> 'QSizeF': ...
 
     def shrunkBy(self, m: QMarginsF) -> 'QSizeF': ...
     def grownBy(self, m: QMarginsF) -> 'QSizeF': ...
@@ -12849,6 +12855,127 @@ class QSysInfo(sip.simplewrapper):
 
         @staticmethod
         def windowsVersion() -> 'QSysInfo.WinVersion': ...
+
+    if sys.platform == "darwin":
+        class MacVersion(int):
+            MV_10_0 = ...  # type: int
+            MV_10_1 = ...  # type: int
+            MV_10_10 = ...  # type: int
+            MV_10_11 = ...  # type: int
+            MV_10_12 = ...  # type: int
+            MV_10_2 = ...  # type: int
+            MV_10_3 = ...  # type: int
+            MV_10_4 = ...  # type: int
+            MV_10_5 = ...  # type: int
+            MV_10_6 = ...  # type: int
+            MV_10_7 = ...  # type: int
+            MV_10_8 = ...  # type: int
+            MV_10_9 = ...  # type: int
+            MV_9 = ...  # type: int
+            MV_CHEETAH = ...  # type: int
+            MV_ELCAPITAN = ...  # type: int
+            MV_IOS = ...  # type: int
+            MV_IOS_10_0 = ...  # type: int
+            MV_IOS_4_3 = ...  # type: int
+            MV_IOS_5_0 = ...  # type: int
+            MV_IOS_5_1 = ...  # type: int
+            MV_IOS_6_0 = ...  # type: int
+            MV_IOS_6_1 = ...  # type: int
+            MV_IOS_7_0 = ...  # type: int
+            MV_IOS_7_1 = ...  # type: int
+            MV_IOS_8_0 = ...  # type: int
+            MV_IOS_8_1 = ...  # type: int
+            MV_IOS_8_2 = ...  # type: int
+            MV_IOS_8_3 = ...  # type: int
+            MV_IOS_8_4 = ...  # type: int
+            MV_IOS_9_0 = ...  # type: int
+            MV_IOS_9_1 = ...  # type: int
+            MV_IOS_9_2 = ...  # type: int
+            MV_IOS_9_3 = ...  # type: int
+            MV_JAGUAR = ...  # type: int
+            MV_LEOPARD = ...  # type: int
+            MV_LION = ...  # type: int
+            MV_MAVERICKS = ...  # type: int
+            MV_MOUNTAINLION = ...  # type: int
+            MV_PANTHER = ...  # type: int
+            MV_PUMA = ...  # type: int
+            MV_SIERRA = ...  # type: int
+            MV_SNOWLEOPARD = ...  # type: int
+            MV_TIGER = ...  # type: int
+            MV_TVOS = ...  # type: int
+            MV_TVOS_10_0 = ...  # type: int
+            MV_TVOS_9_0 = ...  # type: int
+            MV_TVOS_9_1 = ...  # type: int
+            MV_TVOS_9_2 = ...  # type: int
+            MV_Unknown = ...  # type: int
+            MV_WATCHOS = ...  # type: int
+            MV_WATCHOS_2_0 = ...  # type: int
+            MV_WATCHOS_2_1 = ...  # type: int
+            MV_WATCHOS_2_2 = ...  # type: int
+            MV_WATCHOS_3_0 = ...  # type: int
+            MV_YOSEMITE = ...  # type: int
+
+        MV_10_0 = ...  # type: int
+        MV_10_1 = ...  # type: int
+        MV_10_10 = ...  # type: int
+        MV_10_11 = ...  # type: int
+        MV_10_12 = ...  # type: int
+        MV_10_2 = ...  # type: int
+        MV_10_3 = ...  # type: int
+        MV_10_4 = ...  # type: int
+        MV_10_5 = ...  # type: int
+        MV_10_6 = ...  # type: int
+        MV_10_7 = ...  # type: int
+        MV_10_8 = ...  # type: int
+        MV_10_9 = ...  # type: int
+        MV_9 = ...  # type: int
+        MV_CHEETAH = ...  # type: int
+        MV_ELCAPITAN = ...  # type: int
+        MV_IOS = ...  # type: int
+        MV_IOS_10_0 = ...  # type: int
+        MV_IOS_4_3 = ...  # type: int
+        MV_IOS_5_0 = ...  # type: int
+        MV_IOS_5_1 = ...  # type: int
+        MV_IOS_6_0 = ...  # type: int
+        MV_IOS_6_1 = ...  # type: int
+        MV_IOS_7_0 = ...  # type: int
+        MV_IOS_7_1 = ...  # type: int
+        MV_IOS_8_0 = ...  # type: int
+        MV_IOS_8_1 = ...  # type: int
+        MV_IOS_8_2 = ...  # type: int
+        MV_IOS_8_3 = ...  # type: int
+        MV_IOS_8_4 = ...  # type: int
+        MV_IOS_9_0 = ...  # type: int
+        MV_IOS_9_1 = ...  # type: int
+        MV_IOS_9_2 = ...  # type: int
+        MV_IOS_9_3 = ...  # type: int
+        MV_JAGUAR = ...  # type: int
+        MV_LEOPARD = ...  # type: int
+        MV_LION = ...  # type: int
+        MV_MAVERICKS = ...  # type: int
+        MV_MOUNTAINLION = ...  # type: int
+        MV_PANTHER = ...  # type: int
+        MV_PUMA = ...  # type: int
+        MV_SIERRA = ...  # type: int
+        MV_SNOWLEOPARD = ...  # type: int
+        MV_TIGER = ...  # type: int
+        MV_TVOS = ...  # type: int
+        MV_TVOS_10_0 = ...  # type: int
+        MV_TVOS_9_0 = ...  # type: int
+        MV_TVOS_9_1 = ...  # type: int
+        MV_TVOS_9_2 = ...  # type: int
+        MV_Unknown = ...  # type: int
+        MV_WATCHOS = ...  # type: int
+        MV_WATCHOS_2_0 = ...  # type: int
+        MV_WATCHOS_2_1 = ...  # type: int
+        MV_WATCHOS_2_2 = ...  # type: int
+        MV_WATCHOS_3_0 = ...  # type: int
+        MV_YOSEMITE = ...  # type: int
+
+        MacintoshVersion = ... # type: QSysInfo.MacVersion
+
+        @staticmethod
+        def macVersion() -> 'QSysInfo.MacVersion': ...
 
     @typing.overload
     def __init__(self) -> None: ...
