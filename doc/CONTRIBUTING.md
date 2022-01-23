@@ -36,12 +36,13 @@ The CI is based on `tox`, you can check the `tox.ini` file to see what is actual
 
 The big steps are:
 * run our tests with `pytest`. This runs the tests as python scripts and verifies them with mypy.
+* run `mypy` against the PyQt5 and PyQt5-stubs.
 * check the PyQt5-stubs content against the actual PyQt5 modules. We rely on the tool `stubtest.py` (from
   the mypy project). The checks are quite extensive and should spot any missing or non-existing attributes.
   
 Some errors reported by `stubtest.py` can not be fixed because they reflect the design of Qt5 or
 are a limitation of static typing capabilities. In these case, it is OK to silence them,
-see the file `limitaions.md` for details.
+see the file `limitations.md` for details.
 
 
 ## Running the tests locally
@@ -64,24 +65,23 @@ First, create a dedicated virtual envonment for running the tests and activate i
 Then install the required packages. The exact PyQt5 packages versions is hidden inside
 the `tox.ini` file. Just copy the corresponding line:
 
-    .../PyQt5-stubs/ (env_for_tests) $ # copy the line from tox.ini
-    .../PyQt5-stubs/ (env_for_tests) $ pip install PyQt5==5.15.6 PyQt3D==5.15.5 PyQtChart==5.15.5 PyQtDataVisualization==5.15.5 PyQtNetworkAuth==5.15.5 PyQtPurchasing==5.15.5 PyQtWebEngine==5.15.5
+    (env_for_tests) .../PyQt5-stubs/$ # copy the line from tox.ini
+    (env_for_tests) .../PyQt5-stubs/$ pip install PyQt5==5.15.6 PyQt3D==5.15.5 PyQtChart==5.15.5 PyQtDataVisualization==5.15.5 PyQtNetworkAuth==5.15.5 PyQtPurchasing==5.15.5 PyQtWebEngine==5.15.5
 
-Install the local version of PyQt-stubs:
+Install the current directory as PyQt5-stubs:
 
-    .../PyQt5-stubs/ (env_for_tests) $ pip install -e .
+    (env_for_tests) .../PyQt5-stubs/$ pip install -e .
 
 Also install `pytest` and `mypy` :
 
-    .../PyQt5-stubs/ (env_for_tests) $ pip install mypy pytest
+    (env_for_tests) .../PyQt5-stubs/$ pip install mypy pytest
 
 
 ### Running the tests
 
-Go to the directory `tests` and run `pytest`:
+Simply run `pytest`:
 
-    .../PyQt5-stubs/ (env_for_tests) $  cd tests
-    .../PyQt5-stubs/tests/ (env_for_tests) $  pytest -v
+    (env_for_tests) .../PyQt5-stubs/$  pytest -v
     ======================================== test session starts ========================================
     platform win32 -- Python 3.8.8, pytest-6.2.2, py-1.10.0, pluggy-0.13.1 -- c:\python38-32\python.exe
     cachedir: .pytest_cache
@@ -153,44 +153,41 @@ The different phases of the testing process are driven by the script `test_stub.
 ### Adding new tests
 
 Each time you find an incorrect stub, it is a good idea to add a dedicated test to show
-what is expected from mypy. The steps to do so are:
+what is expected from mypy. The steps to take are:
 
 1. Add a new file under the test directory with a meaningful name (usually, the name of the 
-   offending class). Example: `qlineedit.py`
+   relevant class). Example: `qlineedit.py`
    
 2. In the file, write the correct python code which should typecheck correctly. This is usually
-    just a few lines of code as you can see from the other examples. If you need to 
-    instantiate a widget, you need a `QApplication` instance
-    first, which should also run in our GUI-less CI. Passing `['my_program', '-platform', 'offscreen']`
-    to the `QApplication` constructor will do the trick. See `qlineedit.py` for an example of how
-    to do it.
+    just a few lines of code as you can see from the other examples. A QApplication has already 
+    been created as part of the test execution, so you are free to create an QObject or widgets.
    
 3. Run your example file with Python. There should be no error and no output. 
    
    Example:
 
 ```
-.../PyQt5-stubs/tests/ (env_for_tests) $ python qlineedit.py
-.../PyQt5-stubs/tests/ (env_for_tests) $
+   (env_for_tests) .../PyQt5-stubs/tests/$ python qlineedit.py
+   (env_for_tests) .../PyQt5-stubs/tests/$
 ```
 
 
-4. Run your example file through mypy. Usually, this is where you are getting the error
+4. Run your example file through `mypy`. Usually, this is where you are getting the error
    you are reporting. Fix the PyQt5-stubs to fix your error and run it again.
 
 ```
-.../PyQt5-stubs/tests/ (env_for_tests) $ mypy qlineedit.py
-Success: no issues found in 1 source file
+   (env_for_tests) .../PyQt5-stubs/tests/$ mypy qlineedit.py
+   Success: no issues found in 1 source file
 
 ```
    
-5. When everything works, you can run the full tests again. It will pickup your example
+5. When everything works, you can run the full tests again. It will pick up your example
    automatically:
   
 ```
-.../PyQt5-stubs/tests/ (env_for_tests) $ pytest  -v
-[...]
-======================================= 382 passed in 11.72s ========================================
+   (env_for_tests) .../PyQt5-stubs/tests/$ pytest  -v
+   [...]
+   ======================================= 382 passed in 11.72s ========================================
 ```
 
 
@@ -199,9 +196,8 @@ Success: no issues found in 1 source file
    project base directory) is:
 
 ```
-.../PyQt5-stubs/tests/ (env_for_tests) $ cd ..
-.../PyQt5-stubs/ (env_for_tests) $ stubtest --allowlist ./stubtest.allowlist --allowlist ./stubtest.allowlist.to_review --allowlist ./stubtest.allowlist.linux PyQt5
-.../PyQt5-stubs/ (env_for_tests) $
+   (env_for_tests) .../PyQt5-stubs/$ stubtest --allowlist ./stubtest.allowlist --allowlist ./stubtest.allowlist.to_review --allowlist ./stubtest.allowlist.linux PyQt5
+   (env_for_tests) .../PyQt5-stubs/$
 ```
 
 This may reveal some quirks, like some method added for convenience but not existing in the PyQt5 package. How
@@ -211,7 +207,7 @@ to deal with this is described in the file `limitations.md`.
 
 
 When you complete all these steps (or even before they are completed), you can submit a Pull Request to the
-the project and we will gladly review it.
+project, and we will gladly review it.
 
 
 
