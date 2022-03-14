@@ -8,11 +8,11 @@
 
 # Mypy stubs for the PyQt5 framework
 
-This repository holds the stubs of the PyQt5 framework. The stub files released by
-within the PyQt5 packages have been modified to allow using them for type-checking via Mypy. 
+This repository holds the stubs of the PyQt5 framework. The stub files released
+within the PyQt5 packages have been modified to allow using them for type-checking via mypy. 
 Improvements over the default stubs include:
 
-* Signals are proberly typed as signals and not as methods
+* Signals are properly typed as signals and not as methods
 * QFlags derived classes correctly support all combination operations
 * Many methods accepting an optional None have been annotated so
 * and more...
