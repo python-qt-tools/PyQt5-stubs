@@ -185,9 +185,9 @@ what is expected from mypy. The steps to take are:
    automatically:
   
 ```
-   (env_for_tests) .../PyQt5-stubs/tests/$ pytest  -v
-   [...]
-   ======================================= 382 passed in 11.72s ========================================
+(env_for_tests) .../PyQt5-stubs/tests/$ pytest  -v
+[...]
+======================================= 382 passed in 11.72s ========================================
 ```
 
 
