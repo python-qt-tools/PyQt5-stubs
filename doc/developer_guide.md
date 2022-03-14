@@ -196,8 +196,7 @@ what is expected from mypy. The steps to take are:
    project base directory) is:
 
 ```
-   (env_for_tests) .../PyQt5-stubs/$ stubtest --allowlist ./stubtest.allowlist --allowlist ./stubtest.allowlist.to_review --allowlist ./stubtest.allowlist.linux PyQt5
-   (env_for_tests) .../PyQt5-stubs/$
+(env_for_tests) .../PyQt5-stubs/$ stubtest --allowlist ./stubtest.allowlist --allowlist ./stubtest.allowlist.to_review --allowlist ./stubtest.allowlist.linux PyQt5
 ```
 
 This may reveal some quirks, like some method added for convenience but not existing in the PyQt5 package. How
