@@ -1,6 +1,6 @@
 # How to contribute
 
-We welcome contribuors.
+We welcome contributors.
 
 Just keep in ming that this project is maintained by people working in their free time. We are usually
 quite reactive, but it may happen that a contribution stays without feedback for a while.
