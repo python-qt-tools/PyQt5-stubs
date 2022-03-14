@@ -205,7 +205,7 @@ to deal with this is described in the file `limitations.md`.
 7. Update the `ChangeLog.md` describing your changes.
 
 
-When you complete all these steps (or even before they are completed), you can submit a Pull Request to the
+When you complete all these steps (or even before they are completed), you can submit a pull request to the
 project, and we will gladly review it.
 
 
