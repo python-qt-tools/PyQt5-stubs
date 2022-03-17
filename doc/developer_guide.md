@@ -202,7 +202,7 @@ what is expected from mypy. The steps to take are:
 This may reveal some quirks, like some method added for convenience but not existing in the PyQt5 package. How
 to deal with this is described in the file `limitations.md`.
    
-7. Update the `ChangeLog.md` describing your changes.
+7. Update the `CHANGELOG.md` describing your changes.
 
 
 When you complete all these steps (or even before they are completed), you can submit a pull request to the
