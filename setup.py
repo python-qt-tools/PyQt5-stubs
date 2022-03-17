@@ -52,7 +52,7 @@ setup(
     packages=["PyQt5-stubs"],
     extras_require={
         "build": ["docker==4.2.0"],
-        "dev": ["mypy", "pytest", "pytest-xvfb"],
+        "dev": ["mypy==0.930", "pytest", "pytest-xvfb"],
     },
     classifiers=[
         "Development Status :: 4 - Beta",
