@@ -2,7 +2,7 @@
 
 We welcome contributors.
 
-Just keep in ming that this project is maintained by people working in their free time. We are usually
+Just keep in mind that this project is maintained by people working in their free time. We are usually
 quite reactive, but it may happen that a contribution stays without feedback for a while.
 Don't be surprised and if you don't get feedback withing one month, don't hesitate to
 signal it in the issue.
