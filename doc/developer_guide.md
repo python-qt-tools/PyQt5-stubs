@@ -191,7 +191,7 @@ what is expected from mypy. The steps to take are:
 ```
 
 
-6. If you want to run also the checks done by the CI, you may want to run the `stubtest.py` script. Check
+6. If you want to also run the checks done by the CI, you may want to run the `stubtest.py` script. Check
    the command-line from `tox.ini` . If you are on a Linux computer, the command-line to run it (from the
    project base directory) is:
 
