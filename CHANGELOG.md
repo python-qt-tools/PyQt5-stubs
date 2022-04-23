@@ -24,6 +24,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
    detected by latest mypy 0.930
 * [#183](https://github.com/python-qt-tools/PyQt5-stubs/pull/183) Add missing operations on QSize
 * [#185](https://github.com/python-qt-tools/PyQt5-stubs/pull/185) Add support for pyqtProperty()
+* [#189](https://github.com/python-qt-tools/PyQt5-stubs/pull/189) Fix QListWidget, QTreeWidget and QTableWidget so that their respective items are now optional in many places when used as argument or return value
+* [#165](https://github.com/python-qt-tools/PyQt5-stubs/pull/165) allow `None` as argument for `QLineEdit.setText()`
+* [#148](https://github.com/python-qt-tools/PyQt5-stubs/pull/148) add `widgetResizable` parameter to `QScrollArea.__init__()` and `objectName` parameter to `QGroupBox.__init__()`.
+
 
 
 ## 5.15.2.0
