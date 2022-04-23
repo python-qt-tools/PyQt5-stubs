@@ -204,4 +204,53 @@ del up3.prop4
 
 
 
+'''
+More stuff to check in a future version of pyqtproperties
 
+
+class C(QtCore.QObject):
+    pc: QtCore.pyqtProperty = QtCore.pyqtProperty(type=int)
+    pccv: typing.ClassVar[QtCore.pyqtProperty] = QtCore.pyqtProperty(type=int)
+
+    @QtCore.pyqtProperty(type=int)
+    def pd(self) -> int:
+        return 5
+
+    @pd.setter
+    def pd_setter(self, value: int) -> None:
+        pass
+
+    def pcf_setter(self, value: int) -> None:
+        pass
+
+    pcf = QtCore.pyqtProperty(type=int, fset=pcf_setter)
+    pcfc: typing.ClassVar[QtCore.pyqtProperty] = QtCore.pyqtProperty(type=int, fset=pcf_setter)
+
+
+def main() -> None:
+    application = QtCore.QCoreApplication([])
+    c = C()
+    c.pc = 3
+    c.pccv = 3
+
+    # just exploring the handling of the not-None case
+    assert c.pccv.fget is not None
+    x: int = c.pccv.fget()
+    y: str = c.pccv.fget()
+
+    c.pcf = 5
+    c.pcf = ""
+    # just exploring the handling of the not-None case
+    assert c.pcf.fset is not None
+    c.pcf.fset(7)
+    c.pcf.fset("")
+
+    c.pcfc = 5
+    c.pcfc = ""
+    # just exploring the handling of the not-None case
+    assert c.pcfc.fset is not None
+    c.pcfc.fset(7)
+    c.pcfc.fset("")
+
+
+'''
