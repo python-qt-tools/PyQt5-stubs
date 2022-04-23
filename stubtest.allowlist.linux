@@ -1,0 +1,3 @@
+# Windows specific
+PyQt5.QtCore.QAbstractEventDispatcher.registerEventNotifier
+PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
