@@ -21,6 +21,7 @@
 
 
 import typing
+import sys
 
 from PyQt5 import sip
 
@@ -1286,8 +1287,10 @@ class QDrag(QtCore.QObject):
 
     def __init__(self, dragSource: QtCore.QObject) -> None: ...
 
-    @staticmethod
-    def cancel() -> None: ...
+    if sys.platform != "darwin":
+        @staticmethod
+        def cancel() -> None: ...
+
     def defaultAction(self) -> QtCore.Qt.DropAction: ...
     def supportedActions(self) -> QtCore.Qt.DropActions: ...
     def dragCursor(self, action: QtCore.Qt.DropAction) -> QPixmap: ...
