@@ -22,8 +22,8 @@
 
 import typing
 
-import PyQt5.sip
 
+from PyQt5 import sip
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
@@ -35,10 +35,8 @@ PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        PyQt5.sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], PyQt5.sip.Buffer, int, None]
+PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float], sip.Buffer, None]
+PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float], sip.Buffer, int, None]
 
 
 class QMacPasteboardMime(sip.simplewrapper):
@@ -49,6 +47,12 @@ class QMacPasteboardMime(sip.simplewrapper):
         MIME_QT_CONVERTOR = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
         MIME_QT3_CONVERTOR = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
         MIME_ALL = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
+
+    MIME_DND = ...  # type: QMacPasteboardMime.QMacPasteboardMimeType
+    MIME_CLIP = ...  # type: QMacPasteboardMime.QMacPasteboardMimeType
+    MIME_QT_CONVERTOR = ...  # type: QMacPasteboardMime.QMacPasteboardMimeType
+    MIME_QT3_CONVERTOR = ...  # type: QMacPasteboardMime.QMacPasteboardMimeType
+    MIME_ALL = ...  # type: QMacPasteboardMime.QMacPasteboardMimeType
 
     @typing.overload
     def __init__(self, t: int) -> None: ...
@@ -96,6 +100,10 @@ class QMacToolBarItem(QtCore.QObject):
         Space = ... # type: QMacToolBarItem.StandardItem
         FlexibleSpace = ... # type: QMacToolBarItem.StandardItem
 
+    NoStandardItem = ...  # type: QMacToolBarItem.StandardItem
+    Space = ...  # type: QMacToolBarItem.StandardItem
+    FlexibleSpace = ...  # type: QMacToolBarItem.StandardItem
+
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
     def activated(self) -> None: ...
@@ -110,7 +118,7 @@ class QMacToolBarItem(QtCore.QObject):
     def selectable(self) -> bool: ...
 
 
-class QtMac(PyQt5.sip.simplewrapper):
+class QtMac(sip.simplewrapper):
 
     def isMainWindow(self, window: QtGui.QWindow) -> bool: ...
     def badgeLabelText(self) -> str: ...
