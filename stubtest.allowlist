@@ -1,3 +1,4 @@
+# ignore some stubtest complains about methods which have no problems:
 PyQt5.Qt3DRender.QBufferDataGenerator.__call__
 PyQt5.Qt3DRender.QGeometryFactory.__call__
 PyQt5.Qt3DRender.QTextureGenerator.__call__
@@ -40,8 +41,6 @@ PyQt5.QtQuick.QSGTextureProvider.__init__
 PyQt5.QtQuick.QSGTransformNode.__init__
 PyQt5.QtQuick.QSGVertexColorMaterial.__init__
 PyQt5.QtSvg.QSvgGenerator.__init__
-PyQt5.QtWebKit
-PyQt5.QtWebKitWidgets
 PyQt5.QtWidgets.QCommonStyle.__init__
 PyQt5.QtWidgets.QDesktopWidget.__init__
 PyQt5.QtWidgets.QFileIconProvider.__init__
@@ -54,6 +53,37 @@ PyQt5.QtXml.QXmlSimpleReader.__init__
 PyQt5.QtXmlPatterns.QAbstractXmlNodeModel.__init__
 PyQt5.QtXmlPatterns.QAbstractXmlReceiver.__init__
 PyQt5.QtXmlPatterns.QXmlResultItems.__init__
-PyQt5.sip.array
 PyQt5.sip.simplewrapper.__init__
 PyQt5.sip.wrappertype.__init__
+PyQt5.QtBluetooth.QBluetoothDeviceInfo.Field.__new__
+PyQt5.QtCore.QAbstractItemModel.CheckIndexOption.__new__
+PyQt5.QtCore.QByteArray.Base64DecodingStatus.__new__
+PyQt5.QtCore.QByteArray.__bytes__
+PyQt5.QtCore.QCalendar.System.__new__
+PyQt5.QtCore.QCborKnownTags.__new__
+PyQt5.QtCore.QCborSimpleType.__new__
+PyQt5.QtCore.QDateTime.YearRange.__new__
+PyQt5.QtCore.Qt.HighDpiScaleFactorRoundingPolicy.__new__
+PyQt5.QtGui.QColorSpace.Primaries.__new__
+PyQt5.QtGui.QColorSpace.TransferFunction.__new__
+PyQt5.QtGui.QTextBlockFormat.MarkerType.__new__
+PyQt5.QtNetwork.QOcspCertificateStatus.__new__
+PyQt5.QtNetwork.QOcspRevocationReason.__new__
+PyQt5.QtNetwork.QSslCertificate.PatternSyntax.__new__
+PyQt5.QtNetworkAuth.QAbstractOAuth.ContentType.__new__
+PyQt5.QtNetworkAuth.QAbstractOAuth.Error.__new__
+PyQt5.QtNetworkAuth.QAbstractOAuth.Stage.__new__
+PyQt5.QtNetworkAuth.QAbstractOAuth.Status.__new__
+PyQt5.QtNetworkAuth.QOAuth1.SignatureMethod.__new__
+PyQt5.QtNetworkAuth.QOAuth1Signature.HttpRequestMethod.__new__
+PyQt5.QtNfc.QNearFieldManager.AdapterState.__new__
+PyQt5.QtTest.QAbstractItemModelTester.FailureReportingMode.__new__
+PyQt5.QtWebEngineCore.QWebEngineUrlScheme.Syntax.__new__
+PyQt5.QtWebEngineWidgets.QWebEnginePage.LifecycleState.__new__
+PyQt5.QtWidgets.QActionGroup.ExclusionPolicy.__new__
+
+# stubs which we really want to ignore
+PyQt5.sip.array
+PyQt5.QtWebKit
+PyQt5.QtWebKitWidgets
+PyQt5.QtQml.QQmlListProperty
