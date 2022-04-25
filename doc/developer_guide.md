@@ -208,31 +208,5 @@ to deal with this is described in the file `limitations.md`.
 When you complete all these steps (or even before they are completed), you can submit a pull request to the
 project, and we will gladly review it.
 
-## Syncing with upstream PyQt5 releases
-
-Qt5 and PyQt5 have entered a stable state, so very few releases are expected for the future. So the process is still
-quite manual and will remain so.
-
-To synchronize with a new release, follow the steps below:
-
-1. Checkout the branch `upstream` (but keep this documentation open in a separate window):
-   ```git checkout upstream```
- 
-2. Download the latest version of all packages, for all platforms:
-   ```pip download -d incoming PyQt5 PyQt3D PyQtChart PyQtDataVisualization  PyQtNetworkAuth  PyQtPurchasing PyQtWebEngine  PyQtWebkit```
- 
-3. Extract the .pyi files from the wheel and put them in PyQt5-stubs directory
-4. Commit the result, tag it with the version:
-   ```git tag X.Y.Z```
-5. Push the tag and the upstream branch: ```git push upstream && git push --tags```
-6. Checkout master, and create a new branch starting from master for the integration
-   ```git checkout master && git checkout -b integrate_upstream```
-7. Trigger the merge with the branch upstream. This may generate some conflicts:
-   ```git merge upstream```
-8. Fix all conflicts, run tests, run teststubs on the result. Fix more problems as they are detected (see above)
-9. Commit all the fixes, update the ChangeLog and submit a Pull Request.
-
-That's it!
-
 
 
