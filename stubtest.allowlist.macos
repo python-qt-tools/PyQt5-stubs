@@ -1,4 +1,5 @@
 # Linux only
+PyQt5.QtX11Extras
 
 # Windows only
 PyQt5.QAxContainer
