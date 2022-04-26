@@ -21,6 +21,8 @@ instance.signal.disconnect
 instance.signal[str].emit
 
 # use some of them
+connection = QtCore.QMetaObject.Connection()
+
 connection = instance.signal.connect(instance.my_slot)
 instance.signal.disconnect()
 connection = instance.signal.connect(instance.my_slot)
