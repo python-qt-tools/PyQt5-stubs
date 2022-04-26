@@ -1,6 +1,9 @@
 # Linux only
 PyQt5.QtX11Extras
 
+# MacOsX only
+PyQt5.QtMacExtras
+
 # stubs missing because of pyqt5 bugs
 PyQt5.QtPrintSupport.QPrinter.printerSelectionOption
 PyQt5.QtPrintSupport.QPrinter.setPrinterSelectionOption

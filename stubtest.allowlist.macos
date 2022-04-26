@@ -1,11 +1,6 @@
 # Linux only
-PyQt5.QtX11Extras
 
 # Windows only
-# PyQt5.QtCore.QAbstractEventDispatcher.registerEventNotifier
-# PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
+PyQt5.QAxContainer
+PyQt5.QtWinExtras
 
-# To review
-# PyQt5.QtGui.QDrag.cancel
-# PyQt5.QtWidgets.QMacCocoaViewContainer
-# PyQt5.QtWidgets.QMenu.setAsDockMenu

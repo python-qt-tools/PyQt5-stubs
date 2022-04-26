@@ -25,3 +25,4 @@ PyQt5.QtWebEngineCore.QWebEngineUrlScheme.Syntax.__new__
 PyQt5.QtWebEngineWidgets.QWebEnginePage.LifecycleState.__new__
 PyQt5.QtWidgets.QActionGroup.ExclusionPolicy.__new__
 PyQt5.QtQml.QQmlListProperty
+PyQt5.QtQuick3D.QQuick3DGeometry.PrimitiveType.__new__
