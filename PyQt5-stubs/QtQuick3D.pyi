@@ -22,8 +22,8 @@
 
 import typing
 
-import PyQt5.sip
 
+from PyQt5 import sip
 from PyQt5 import QtQml
 from PyQt5 import QtGui
 from PyQt5 import QtCore
@@ -37,9 +37,9 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
 PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        PyQt5.sip.Buffer, None]
+        sip.Buffer, None]
 PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], PyQt5.sip.Buffer, int, None]
+        typing.Sequence[float], sip.Buffer, int, None]
 
 
 class QQuick3D(sip.simplewrapper):
@@ -77,6 +77,14 @@ class QQuick3DGeometry(QQuick3DObject):
         TriangleFan = ... # type: QQuick3DGeometry.PrimitiveType
         Triangles = ... # type: QQuick3DGeometry.PrimitiveType
 
+    Unknown = ...  # type: QQuick3DGeometry.PrimitiveType
+    Points = ...  # type: QQuick3DGeometry.PrimitiveType
+    LineStrip = ...  # type: QQuick3DGeometry.PrimitiveType
+    Lines = ...  # type: QQuick3DGeometry.PrimitiveType
+    TriangleStrip = ...  # type: QQuick3DGeometry.PrimitiveType
+    TriangleFan = ...  # type: QQuick3DGeometry.PrimitiveType
+    Triangles = ...  # type: QQuick3DGeometry.PrimitiveType
+
     class Attribute(sip.simplewrapper):
 
         class ComponentType(int):
@@ -84,6 +92,11 @@ class QQuick3DGeometry(QQuick3DObject):
             U16Type = ... # type: QQuick3DGeometry.Attribute.ComponentType
             U32Type = ... # type: QQuick3DGeometry.Attribute.ComponentType
             F32Type = ... # type: QQuick3DGeometry.Attribute.ComponentType
+
+        DefaultType = ...  # type: QQuick3DGeometry.Attribute.ComponentType
+        U16Type = ...  # type: QQuick3DGeometry.Attribute.ComponentType
+        U32Type = ...  # type: QQuick3DGeometry.Attribute.ComponentType
+        F32Type = ...  # type: QQuick3DGeometry.Attribute.ComponentType
 
         class Semantic(int):
             UnknownSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic
@@ -93,6 +106,14 @@ class QQuick3DGeometry(QQuick3DObject):
             TexCoordSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic
             TangentSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic
             BinormalSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic
+
+        UnknownSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
+        IndexSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
+        PositionSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
+        NormalSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
+        TexCoordSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
+        TangentSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
+        BinormalSemantic = ...  # type: QQuick3DGeometry.Attribute.Semantic
 
         componentType = ... # type: 'QQuick3DGeometry.Attribute.ComponentType'
         offset = ... # type: int
