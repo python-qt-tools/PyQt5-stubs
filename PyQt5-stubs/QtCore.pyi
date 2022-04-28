@@ -4194,7 +4194,7 @@ class QByteArrayMatcher(sip.simplewrapper):
 
 class QCalendar(sip.simplewrapper):
 
-    class System(int):
+    class System(enum.IntEnum):
         Gregorian = ... # type: QCalendar.System
         Julian = ... # type: QCalendar.System
         Milankovic = ... # type: QCalendar.System
