@@ -128,7 +128,7 @@ QtSystemMsg = ... # type: QtMsgType
 QtInfoMsg = ... # type: QtMsgType
 
 
-class QCborKnownTags(int):
+class QCborKnownTags(enum.IntEnum):
     DateTimeString = ... # type: QCborKnownTags
     UnixTime_t = ... # type: QCborKnownTags
     PositiveBignum = ... # type: QCborKnownTags
@@ -154,7 +154,7 @@ class QCborKnownTags(int):
     Signature = ... # type: QCborKnownTags
 
 
-class QCborSimpleType(int):
+class QCborSimpleType(enum.IntEnum):
     False_ = ... # type: QCborSimpleType
     True_ = ... # type: QCborSimpleType
     Null = ... # type: QCborSimpleType
@@ -163,7 +163,7 @@ class QCborSimpleType(int):
 
 class Qt(sip.simplewrapper):
 
-    class HighDpiScaleFactorRoundingPolicy(int):
+    class HighDpiScaleFactorRoundingPolicy(enum.IntEnum):
         Round = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
         Ceil = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
         Floor = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
@@ -3518,7 +3518,7 @@ class QPersistentModelIndex(sip.simplewrapper):
 
 class QAbstractItemModel(QObject):
 
-    class CheckIndexOption(int):
+    class CheckIndexOption(enum.IntEnum):
         def __or__ (self, other: 'QAbstractItemModel.CheckIndexOption') -> int: ...    # type: ignore[override]
         def __ror__ (self, other: int) -> int: ...                                     
         
@@ -3972,7 +3972,7 @@ class QBuffer(QIODevice):
 
 class QByteArray(sip.simplewrapper):
 
-    class Base64DecodingStatus(int):
+    class Base64DecodingStatus(enum.IntEnum):
         Ok = ... # type: QByteArray.Base64DecodingStatus
         IllegalInputLength = ... # type: QByteArray.Base64DecodingStatus
         IllegalCharacter = ... # type: QByteArray.Base64DecodingStatus
@@ -5445,7 +5445,7 @@ class QTime(sip.simplewrapper):
 
 class QDateTime(sip.simplewrapper):
 
-    class YearRange(int):
+    class YearRange(enum.IntEnum):
         First = ... # type: QDateTime.YearRange
         Last = ... # type: QDateTime.YearRange
 

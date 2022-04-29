@@ -29,6 +29,7 @@ from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -291,7 +292,7 @@ class QWebEngineUrlScheme(sip.simplewrapper):
 
     PortUnspecified = ...  # type: QWebEngineUrlScheme.SpecialPort
 
-    class Syntax(int):
+    class Syntax(enum.IntEnum):
         HostPortAndUserInformation = ... # type: QWebEngineUrlScheme.Syntax
         HostAndPort = ... # type: QWebEngineUrlScheme.Syntax
         Host = ... # type: QWebEngineUrlScheme.Syntax
