@@ -69,3 +69,6 @@ PyQt5.QtXmlPatterns.QXmlResultItems.__init__
 PyQt5.sip.simplewrapper.__init__
 PyQt5.sip.wrappertype.__init__
 
+# modules can not be imported as wheel on linux + macosx. Ignore for now
+PyQt5.QtWebKit
+PyQt5.QtWebKitWidgets
