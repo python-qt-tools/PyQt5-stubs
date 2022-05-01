@@ -4,8 +4,9 @@ PyQt5.QtQml.QQmlListProperty
 # sip.array exists as an internal type of sip. We have to fake it
 PyQt5.sip.array
 
-# method does not exist (sip uses the buffer protocol) but QByteArray behaves
-# 100% like method is there. So, just ignore the stubtest error
+# This is in fact wrong but our best workaround for now.
+# https://github.com/python-qt-tools/PyQt5-stubs/pull/143
+# https://github.com/python-qt-tools/PyQt5-stubs/blob/5cfd4436ab46469ed32036e4f50dfb6ce2c8a68f/PyQt5-stubs/QtCore.pyi#L4048-L4055
 PyQt5.QtCore.QByteArray.__bytes__
 
 # Looks like the way sip declares the __call__ is understood incorrectly by stubtest, so ignore these errors
