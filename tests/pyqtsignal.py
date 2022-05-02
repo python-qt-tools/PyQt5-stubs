@@ -27,3 +27,4 @@ connection = instance.signal.connect(instance.my_slot)
 instance.signal.disconnect()
 connection = instance.signal.connect(instance.my_slot)
 instance.signal.disconnect(connection)
+
