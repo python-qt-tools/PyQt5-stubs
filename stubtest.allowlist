@@ -1,26 +1,41 @@
+# QQmlListProperty is implemented but stub for it is not provided.
+PyQt5.QtQml.QQmlListProperty
+
+# sip.array exists as an internal type of sip. We have to fake it
+PyQt5.sip.array
+
+# This is in fact wrong but our best workaround for now.
+# https://github.com/python-qt-tools/PyQt5-stubs/pull/143
+# https://github.com/python-qt-tools/PyQt5-stubs/blob/5cfd4436ab46469ed32036e4f50dfb6ce2c8a68f/PyQt5-stubs/QtCore.pyi#L4048-L4055
+PyQt5.QtCore.QByteArray.__bytes__
+
+# Looks like the way sip declares the __call__ is understood incorrectly by stubtest, so ignore these errors
 PyQt5.Qt3DRender.QBufferDataGenerator.__call__
 PyQt5.Qt3DRender.QGeometryFactory.__call__
 PyQt5.Qt3DRender.QTextureGenerator.__call__
 PyQt5.Qt3DRender.QTextureImageDataGenerator.__call__
+PyQt5.QtCore.QLoggingCategory.__call__
+PyQt5.QtCore.QRandomGenerator.__call__
+PyQt5.QtCore.pyqtBoundSignal.__call__
+PyQt5.QtCore.pyqtSignal.__call__
+
+
+# Looks like the way sip declares the __init__ is understood incorrectly by stubtest, so ignore these errors
 PyQt5.QtCore.QAbstractNativeEventFilter.__init__
 PyQt5.QtCore.QCommandLineParser.__init__
-PyQt5.QtCore.QLoggingCategory.__call__
 PyQt5.QtCore.QMimeData.__init__
 PyQt5.QtCore.QMimeDatabase.__init__
 PyQt5.QtCore.QObjectCleanupHandler.__init__
-PyQt5.QtCore.QRandomGenerator.__call__
 PyQt5.QtCore.QRecursiveMutex.__init__
 PyQt5.QtCore.QWaitCondition.__init__
-PyQt5.QtCore.pyqtBoundSignal.__call__
-PyQt5.QtCore.pyqtSignal.__call__
 PyQt5.QtDesigner.QAbstractFormBuilder.__init__
 PyQt5.QtDesigner.QFormBuilder.__init__
 PyQt5.QtGui.QImageIOHandler.__init__
 PyQt5.QtGui.QOpenGLTextureBlitter.__init__
 PyQt5.QtGui.QPagedPaintDevice.__init__
 PyQt5.QtGui.QPaintDevice.__init__
-PyQt5.QtQuick.QQuickImageResponse.__init__
 PyQt5.QtQml.QQmlIncubationController.__init__
+PyQt5.QtQuick.QQuickImageResponse.__init__
 PyQt5.QtQuick.QQuickTextureFactory.__init__
 PyQt5.QtQuick.QSGClipNode.__init__
 PyQt5.QtQuick.QSGDynamicTexture.__init__
@@ -40,8 +55,6 @@ PyQt5.QtQuick.QSGTextureProvider.__init__
 PyQt5.QtQuick.QSGTransformNode.__init__
 PyQt5.QtQuick.QSGVertexColorMaterial.__init__
 PyQt5.QtSvg.QSvgGenerator.__init__
-PyQt5.QtWebKit
-PyQt5.QtWebKitWidgets
 PyQt5.QtWidgets.QCommonStyle.__init__
 PyQt5.QtWidgets.QDesktopWidget.__init__
 PyQt5.QtWidgets.QFileIconProvider.__init__
@@ -54,6 +67,9 @@ PyQt5.QtXml.QXmlSimpleReader.__init__
 PyQt5.QtXmlPatterns.QAbstractXmlNodeModel.__init__
 PyQt5.QtXmlPatterns.QAbstractXmlReceiver.__init__
 PyQt5.QtXmlPatterns.QXmlResultItems.__init__
-PyQt5.sip.array
 PyQt5.sip.simplewrapper.__init__
 PyQt5.sip.wrappertype.__init__
+
+# modules can not be imported as wheel on linux + macosx. Ignore for now
+PyQt5.QtWebKit
+PyQt5.QtWebKitWidgets

@@ -28,6 +28,7 @@ from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -35,11 +36,11 @@ PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 class QAbstractOAuth(QtCore.QObject):
 
-    class ContentType(int):
+    class ContentType(enum.IntEnum):
         WwwFormUrlEncoded = ... # type: QAbstractOAuth.ContentType
         Json = ... # type: QAbstractOAuth.ContentType
 
-    class Error(int):
+    class Error(enum.IntEnum):
         NoError = ... # type: QAbstractOAuth.Error
         NetworkError = ... # type: QAbstractOAuth.Error
         ServerError = ... # type: QAbstractOAuth.Error
@@ -47,13 +48,13 @@ class QAbstractOAuth(QtCore.QObject):
         OAuthTokenSecretNotFoundError = ... # type: QAbstractOAuth.Error
         OAuthCallbackNotVerified = ... # type: QAbstractOAuth.Error
 
-    class Stage(int):
+    class Stage(enum.IntEnum):
         RequestingTemporaryCredentials = ... # type: QAbstractOAuth.Stage
         RequestingAuthorization = ... # type: QAbstractOAuth.Stage
         RequestingAccessToken = ... # type: QAbstractOAuth.Stage
         RefreshingAccessToken = ... # type: QAbstractOAuth.Stage
 
-    class Status(int):
+    class Status(enum.IntEnum):
         NotAuthenticated = ... # type: QAbstractOAuth.Status
         TemporaryCredentialsReceived = ... # type: QAbstractOAuth.Status
         Granted = ... # type: QAbstractOAuth.Status
@@ -161,7 +162,7 @@ class QAbstractOAuthReplyHandler(QtCore.QObject):
 
 class QOAuth1(QAbstractOAuth):
 
-    class SignatureMethod(int):
+    class SignatureMethod(enum.IntEnum):
         Hmac_Sha1 = ... # type: QOAuth1.SignatureMethod
         Rsa_Sha1 = ... # type: QOAuth1.SignatureMethod
         PlainText = ... # type: QOAuth1.SignatureMethod
@@ -219,7 +220,7 @@ class QOAuth1(QAbstractOAuth):
 
 class QOAuth1Signature(sip.simplewrapper):
 
-    class HttpRequestMethod(int):
+    class HttpRequestMethod(enum.IntEnum):
         Head = ... # type: QOAuth1Signature.HttpRequestMethod
         Get = ... # type: QOAuth1Signature.HttpRequestMethod
         Put = ... # type: QOAuth1Signature.HttpRequestMethod

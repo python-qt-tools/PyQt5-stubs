@@ -18,8 +18,7 @@
 #
 # This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 # WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-
-
+import enum
 import typing
 
 from PyQt5 import sip
@@ -1198,7 +1197,7 @@ class QAction(QtCore.QObject):
 
 class QActionGroup(QtCore.QObject):
 
-    class ExclusionPolicy(int):
+    class ExclusionPolicy(enum.IntEnum):
         None_ = ... # type: QActionGroup.ExclusionPolicy
         Exclusive = ... # type: QActionGroup.ExclusionPolicy
         ExclusiveOptional = ... # type: QActionGroup.ExclusionPolicy
