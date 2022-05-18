@@ -30,6 +30,7 @@ from PyQt5 import QtGui  # add import of QtGui
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -43,7 +44,7 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 
 class QAbstractItemModelTester(QtCore.QObject):
 
-    class FailureReportingMode(int):
+    class FailureReportingMode(enum.IntEnum):
         QtTest = ... # type: QAbstractItemModelTester.FailureReportingMode
         Warning = ... # type: QAbstractItemModelTester.FailureReportingMode
         Fatal = ... # type: QAbstractItemModelTester.FailureReportingMode

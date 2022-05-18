@@ -27,6 +27,7 @@ from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -235,7 +236,7 @@ class QNdefNfcUriRecord(QNdefRecord):
 
 class QNearFieldManager(QtCore.QObject):
 
-    class AdapterState(int):
+    class AdapterState(enum.IntEnum):
         Offline = ... # type: QNearFieldManager.AdapterState
         TurningOn = ... # type: QNearFieldManager.AdapterState
         Online = ... # type: QNearFieldManager.AdapterState
