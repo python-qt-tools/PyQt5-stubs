@@ -1,9 +1,6 @@
 # QQmlListProperty is implemented but stub for it is not provided.
 PyQt5.QtQml.QQmlListProperty
 
-# sip.array exists as an internal type of sip. We have to fake it
-PyQt5.sip.array
-
 # This is in fact wrong but our best workaround for now.
 # https://github.com/python-qt-tools/PyQt5-stubs/pull/143
 # https://github.com/python-qt-tools/PyQt5-stubs/blob/5cfd4436ab46469ed32036e4f50dfb6ce2c8a68f/PyQt5-stubs/QtCore.pyi#L4048-L4055
