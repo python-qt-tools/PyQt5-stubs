@@ -28,12 +28,13 @@ from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
-class QOcspRevocationReason(int):
+class QOcspRevocationReason(enum.IntEnum):
     None_ = ... # type: QOcspRevocationReason
     Unspecified = ... # type: QOcspRevocationReason
     KeyCompromise = ... # type: QOcspRevocationReason
@@ -45,7 +46,7 @@ class QOcspRevocationReason(int):
     RemoveFromCRL = ... # type: QOcspRevocationReason
 
 
-class QOcspCertificateStatus(int):
+class QOcspCertificateStatus(enum.IntEnum):
     Good = ... # type: QOcspCertificateStatus
     Revoked = ... # type: QOcspCertificateStatus
     Unknown = ... # type: QOcspCertificateStatus
@@ -2079,7 +2080,7 @@ class QSsl(sip.simplewrapper):
 
 class QSslCertificate(sip.simplewrapper):
 
-    class PatternSyntax(int):
+    class PatternSyntax(enum.IntEnum):
         RegularExpression = ... # type: QSslCertificate.PatternSyntax
         Wildcard = ... # type: QSslCertificate.PatternSyntax
         FixedString = ... # type: QSslCertificate.PatternSyntax
