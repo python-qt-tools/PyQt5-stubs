@@ -1,0 +1,7 @@
+# Windows only
+PyQt5.QAxContainer
+PyQt5.QtWinExtras
+
+
+# MacOsX only
+PyQt5.QtMacExtras

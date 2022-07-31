@@ -3446,6 +3446,9 @@ class QAbstractEventDispatcher(QObject):
     awake: typing.ClassVar[QtCore.pyqtSignal]
     aboutToBlock: typing.ClassVar[QtCore.pyqtSignal]
     def filterNativeEvent(self, eventType: typing.Union['QByteArray', bytes, bytearray], message: sip.voidptr) -> typing.Tuple[bool, int]: ...
+    if sys.platform == "win32":
+        def unregisterEventNotifier(self, notifier: 'QWinEventNotifier') -> None: ...
+        def registerEventNotifier(self, notifier: 'QWinEventNotifier') -> bool: ...
     def removeNativeEventFilter(self, filterObj: 'QAbstractNativeEventFilter') -> None: ...
     def installNativeEventFilter(self, filterObj: 'QAbstractNativeEventFilter') -> None: ...
     def remainingTime(self, timerId: int) -> int: ...
@@ -12833,186 +12836,186 @@ class QSysInfo(sip.simplewrapper):
 
     if sys.platform == "win32":
         class WinVersion(int):
-            WV_10_0 = ...   # type: int
-            WV_2000 = ...   # type: int
-            WV_2003 = ...   # type: int
-            WV_32s = ...   # type: int
-            WV_4_0 = ...   # type: int
-            WV_5_0 = ...   # type: int
-            WV_5_1 = ...   # type: int
-            WV_5_2 = ...   # type: int
-            WV_6_0 = ...   # type: int
-            WV_6_1 = ...   # type: int
-            WV_6_2 = ...   # type: int
-            WV_6_3 = ...   # type: int
-            WV_95 = ...   # type: int
-            WV_98 = ...   # type: int
-            WV_CE = ...   # type: int
-            WV_CENET = ...   # type: int
-            WV_CE_5 = ...   # type: int
-            WV_CE_6 = ...   # type: int
-            WV_CE_based = ...   # type: int
-            WV_DOS_based = ...   # type: int
-            WV_Me = ...   # type: int
-            WV_NT = ...   # type: int
-            WV_NT_based = ...   # type: int
-            WV_VISTA = ...   # type: int
-            WV_WINDOWS10 = ...   # type: int
-            WV_WINDOWS7 = ...   # type: int
-            WV_WINDOWS8 = ...   # type: int
-            WV_WINDOWS8_1 = ...   # type: int
-            WV_XP = ...   # type: int
+            WV_10_0 = ...   # type: 'QSysInfo.WinVersion'
+            WV_2000 = ...   # type: 'QSysInfo.WinVersion'
+            WV_2003 = ...   # type: 'QSysInfo.WinVersion'
+            WV_32s = ...   # type: 'QSysInfo.WinVersion'
+            WV_4_0 = ...   # type: 'QSysInfo.WinVersion'
+            WV_5_0 = ...   # type: 'QSysInfo.WinVersion'
+            WV_5_1 = ...   # type: 'QSysInfo.WinVersion'
+            WV_5_2 = ...   # type: 'QSysInfo.WinVersion'
+            WV_6_0 = ...   # type: 'QSysInfo.WinVersion'
+            WV_6_1 = ...   # type: 'QSysInfo.WinVersion'
+            WV_6_2 = ...   # type: 'QSysInfo.WinVersion'
+            WV_6_3 = ...   # type: 'QSysInfo.WinVersion'
+            WV_95 = ...   # type: 'QSysInfo.WinVersion'
+            WV_98 = ...   # type: 'QSysInfo.WinVersion'
+            WV_CE = ...   # type: 'QSysInfo.WinVersion'
+            WV_CENET = ...   # type: 'QSysInfo.WinVersion'
+            WV_CE_5 = ...   # type: 'QSysInfo.WinVersion'
+            WV_CE_6 = ...   # type: 'QSysInfo.WinVersion'
+            WV_CE_based = ...   # type: 'QSysInfo.WinVersion'
+            WV_DOS_based = ...   # type: 'QSysInfo.WinVersion'
+            WV_Me = ...   # type: 'QSysInfo.WinVersion'
+            WV_NT = ...   # type: 'QSysInfo.WinVersion'
+            WV_NT_based = ...   # type: 'QSysInfo.WinVersion'
+            WV_VISTA = ...   # type: 'QSysInfo.WinVersion'
+            WV_WINDOWS10 = ...   # type: 'QSysInfo.WinVersion'
+            WV_WINDOWS7 = ...   # type: 'QSysInfo.WinVersion'
+            WV_WINDOWS8 = ...   # type: 'QSysInfo.WinVersion'
+            WV_WINDOWS8_1 = ...   # type: 'QSysInfo.WinVersion'
+            WV_XP = ...   # type: 'QSysInfo.WinVersion'
 
         WindowsVersion = ... # type: QSysInfo.WinVersion
 
-        WV_10_0 = ...   # type: int
-        WV_2000 = ...   # type: int
-        WV_2003 = ...   # type: int
-        WV_32s = ...   # type: int
-        WV_4_0 = ...   # type: int
-        WV_5_0 = ...   # type: int
-        WV_5_1 = ...   # type: int
-        WV_5_2 = ...   # type: int
-        WV_6_0 = ...   # type: int
-        WV_6_1 = ...   # type: int
-        WV_6_2 = ...   # type: int
-        WV_6_3 = ...   # type: int
-        WV_95 = ...   # type: int
-        WV_98 = ...   # type: int
-        WV_CE = ...   # type: int
-        WV_CENET = ...   # type: int
-        WV_CE_5 = ...   # type: int
-        WV_CE_6 = ...   # type: int
-        WV_CE_based = ...   # type: int
-        WV_DOS_based = ...   # type: int
-        WV_Me = ...   # type: int
-        WV_NT = ...   # type: int
-        WV_NT_based = ...   # type: int
-        WV_VISTA = ...   # type: int
-        WV_WINDOWS10 = ...   # type: int
-        WV_WINDOWS7 = ...   # type: int
-        WV_WINDOWS8 = ...   # type: int
-        WV_WINDOWS8_1 = ...   # type: int
-        WV_XP = ...   # type: int
+        WV_10_0 = ...   # type: 'QSysInfo.WinVersion'
+        WV_2000 = ...   # type: 'QSysInfo.WinVersion'
+        WV_2003 = ...   # type: 'QSysInfo.WinVersion'
+        WV_32s = ...   # type: 'QSysInfo.WinVersion'
+        WV_4_0 = ...   # type: 'QSysInfo.WinVersion'
+        WV_5_0 = ...   # type: 'QSysInfo.WinVersion'
+        WV_5_1 = ...   # type: 'QSysInfo.WinVersion'
+        WV_5_2 = ...   # type: 'QSysInfo.WinVersion'
+        WV_6_0 = ...   # type: 'QSysInfo.WinVersion'
+        WV_6_1 = ...   # type: 'QSysInfo.WinVersion'
+        WV_6_2 = ...   # type: 'QSysInfo.WinVersion'
+        WV_6_3 = ...   # type: 'QSysInfo.WinVersion'
+        WV_95 = ...   # type: 'QSysInfo.WinVersion'
+        WV_98 = ...   # type: 'QSysInfo.WinVersion'
+        WV_CE = ...   # type: 'QSysInfo.WinVersion'
+        WV_CENET = ...   # type: 'QSysInfo.WinVersion'
+        WV_CE_5 = ...   # type: 'QSysInfo.WinVersion'
+        WV_CE_6 = ...   # type: 'QSysInfo.WinVersion'
+        WV_CE_based = ...   # type: 'QSysInfo.WinVersion'
+        WV_DOS_based = ...   # type: 'QSysInfo.WinVersion'
+        WV_Me = ...   # type: 'QSysInfo.WinVersion'
+        WV_NT = ...   # type: 'QSysInfo.WinVersion'
+        WV_NT_based = ...   # type: 'QSysInfo.WinVersion'
+        WV_VISTA = ...   # type: 'QSysInfo.WinVersion'
+        WV_WINDOWS10 = ...   # type: 'QSysInfo.WinVersion'
+        WV_WINDOWS7 = ...   # type: 'QSysInfo.WinVersion'
+        WV_WINDOWS8 = ...   # type: 'QSysInfo.WinVersion'
+        WV_WINDOWS8_1 = ...   # type: 'QSysInfo.WinVersion'
+        WV_XP = ...   # type: 'QSysInfo.WinVersion'
 
         @staticmethod
         def windowsVersion() -> 'QSysInfo.WinVersion': ...
 
     if sys.platform == "darwin":
         class MacVersion(int):
-            MV_10_0 = ...  # type: int
-            MV_10_1 = ...  # type: int
-            MV_10_10 = ...  # type: int
-            MV_10_11 = ...  # type: int
-            MV_10_12 = ...  # type: int
-            MV_10_2 = ...  # type: int
-            MV_10_3 = ...  # type: int
-            MV_10_4 = ...  # type: int
-            MV_10_5 = ...  # type: int
-            MV_10_6 = ...  # type: int
-            MV_10_7 = ...  # type: int
-            MV_10_8 = ...  # type: int
-            MV_10_9 = ...  # type: int
-            MV_9 = ...  # type: int
-            MV_CHEETAH = ...  # type: int
-            MV_ELCAPITAN = ...  # type: int
-            MV_IOS = ...  # type: int
-            MV_IOS_10_0 = ...  # type: int
-            MV_IOS_4_3 = ...  # type: int
-            MV_IOS_5_0 = ...  # type: int
-            MV_IOS_5_1 = ...  # type: int
-            MV_IOS_6_0 = ...  # type: int
-            MV_IOS_6_1 = ...  # type: int
-            MV_IOS_7_0 = ...  # type: int
-            MV_IOS_7_1 = ...  # type: int
-            MV_IOS_8_0 = ...  # type: int
-            MV_IOS_8_1 = ...  # type: int
-            MV_IOS_8_2 = ...  # type: int
-            MV_IOS_8_3 = ...  # type: int
-            MV_IOS_8_4 = ...  # type: int
-            MV_IOS_9_0 = ...  # type: int
-            MV_IOS_9_1 = ...  # type: int
-            MV_IOS_9_2 = ...  # type: int
-            MV_IOS_9_3 = ...  # type: int
-            MV_JAGUAR = ...  # type: int
-            MV_LEOPARD = ...  # type: int
-            MV_LION = ...  # type: int
-            MV_MAVERICKS = ...  # type: int
-            MV_MOUNTAINLION = ...  # type: int
-            MV_PANTHER = ...  # type: int
-            MV_PUMA = ...  # type: int
-            MV_SIERRA = ...  # type: int
-            MV_SNOWLEOPARD = ...  # type: int
-            MV_TIGER = ...  # type: int
-            MV_TVOS = ...  # type: int
-            MV_TVOS_10_0 = ...  # type: int
-            MV_TVOS_9_0 = ...  # type: int
-            MV_TVOS_9_1 = ...  # type: int
-            MV_TVOS_9_2 = ...  # type: int
-            MV_Unknown = ...  # type: int
-            MV_WATCHOS = ...  # type: int
-            MV_WATCHOS_2_0 = ...  # type: int
-            MV_WATCHOS_2_1 = ...  # type: int
-            MV_WATCHOS_2_2 = ...  # type: int
-            MV_WATCHOS_3_0 = ...  # type: int
-            MV_YOSEMITE = ...  # type: int
+            MV_10_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_10 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_11 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_12 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_2 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_3 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_4 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_5 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_6 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_7 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_8 = ...  # type: 'QSysInfo.MacVersion'
+            MV_10_9 = ...  # type: 'QSysInfo.MacVersion'
+            MV_9 = ...  # type: 'QSysInfo.MacVersion'
+            MV_CHEETAH = ...  # type: 'QSysInfo.MacVersion'
+            MV_ELCAPITAN = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_10_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_4_3 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_5_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_5_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_6_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_6_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_7_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_7_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_8_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_8_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_8_2 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_8_3 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_8_4 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_9_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_9_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_9_2 = ...  # type: 'QSysInfo.MacVersion'
+            MV_IOS_9_3 = ...  # type: 'QSysInfo.MacVersion'
+            MV_JAGUAR = ...  # type: 'QSysInfo.MacVersion'
+            MV_LEOPARD = ...  # type: 'QSysInfo.MacVersion'
+            MV_LION = ...  # type: 'QSysInfo.MacVersion'
+            MV_MAVERICKS = ...  # type: 'QSysInfo.MacVersion'
+            MV_MOUNTAINLION = ...  # type: 'QSysInfo.MacVersion'
+            MV_PANTHER = ...  # type: 'QSysInfo.MacVersion'
+            MV_PUMA = ...  # type: 'QSysInfo.MacVersion'
+            MV_SIERRA = ...  # type: 'QSysInfo.MacVersion'
+            MV_SNOWLEOPARD = ...  # type: 'QSysInfo.MacVersion'
+            MV_TIGER = ...  # type: 'QSysInfo.MacVersion'
+            MV_TVOS = ...  # type: 'QSysInfo.MacVersion'
+            MV_TVOS_10_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_TVOS_9_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_TVOS_9_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_TVOS_9_2 = ...  # type: 'QSysInfo.MacVersion'
+            MV_Unknown = ...  # type: 'QSysInfo.MacVersion'
+            MV_WATCHOS = ...  # type: 'QSysInfo.MacVersion'
+            MV_WATCHOS_2_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_WATCHOS_2_1 = ...  # type: 'QSysInfo.MacVersion'
+            MV_WATCHOS_2_2 = ...  # type: 'QSysInfo.MacVersion'
+            MV_WATCHOS_3_0 = ...  # type: 'QSysInfo.MacVersion'
+            MV_YOSEMITE = ...  # type: 'QSysInfo.MacVersion'
 
-        MV_10_0 = ...  # type: int
-        MV_10_1 = ...  # type: int
-        MV_10_10 = ...  # type: int
-        MV_10_11 = ...  # type: int
-        MV_10_12 = ...  # type: int
-        MV_10_2 = ...  # type: int
-        MV_10_3 = ...  # type: int
-        MV_10_4 = ...  # type: int
-        MV_10_5 = ...  # type: int
-        MV_10_6 = ...  # type: int
-        MV_10_7 = ...  # type: int
-        MV_10_8 = ...  # type: int
-        MV_10_9 = ...  # type: int
-        MV_9 = ...  # type: int
-        MV_CHEETAH = ...  # type: int
-        MV_ELCAPITAN = ...  # type: int
-        MV_IOS = ...  # type: int
-        MV_IOS_10_0 = ...  # type: int
-        MV_IOS_4_3 = ...  # type: int
-        MV_IOS_5_0 = ...  # type: int
-        MV_IOS_5_1 = ...  # type: int
-        MV_IOS_6_0 = ...  # type: int
-        MV_IOS_6_1 = ...  # type: int
-        MV_IOS_7_0 = ...  # type: int
-        MV_IOS_7_1 = ...  # type: int
-        MV_IOS_8_0 = ...  # type: int
-        MV_IOS_8_1 = ...  # type: int
-        MV_IOS_8_2 = ...  # type: int
-        MV_IOS_8_3 = ...  # type: int
-        MV_IOS_8_4 = ...  # type: int
-        MV_IOS_9_0 = ...  # type: int
-        MV_IOS_9_1 = ...  # type: int
-        MV_IOS_9_2 = ...  # type: int
-        MV_IOS_9_3 = ...  # type: int
-        MV_JAGUAR = ...  # type: int
-        MV_LEOPARD = ...  # type: int
-        MV_LION = ...  # type: int
-        MV_MAVERICKS = ...  # type: int
-        MV_MOUNTAINLION = ...  # type: int
-        MV_PANTHER = ...  # type: int
-        MV_PUMA = ...  # type: int
-        MV_SIERRA = ...  # type: int
-        MV_SNOWLEOPARD = ...  # type: int
-        MV_TIGER = ...  # type: int
-        MV_TVOS = ...  # type: int
-        MV_TVOS_10_0 = ...  # type: int
-        MV_TVOS_9_0 = ...  # type: int
-        MV_TVOS_9_1 = ...  # type: int
-        MV_TVOS_9_2 = ...  # type: int
-        MV_Unknown = ...  # type: int
-        MV_WATCHOS = ...  # type: int
-        MV_WATCHOS_2_0 = ...  # type: int
-        MV_WATCHOS_2_1 = ...  # type: int
-        MV_WATCHOS_2_2 = ...  # type: int
-        MV_WATCHOS_3_0 = ...  # type: int
-        MV_YOSEMITE = ...  # type: int
+        MV_10_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_10 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_11 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_12 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_2 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_3 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_4 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_5 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_6 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_7 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_8 = ...  # type: 'QSysInfo.MacVersion'
+        MV_10_9 = ...  # type: 'QSysInfo.MacVersion'
+        MV_9 = ...  # type: 'QSysInfo.MacVersion'
+        MV_CHEETAH = ...  # type: 'QSysInfo.MacVersion'
+        MV_ELCAPITAN = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_10_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_4_3 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_5_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_5_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_6_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_6_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_7_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_7_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_8_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_8_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_8_2 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_8_3 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_8_4 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_9_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_9_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_9_2 = ...  # type: 'QSysInfo.MacVersion'
+        MV_IOS_9_3 = ...  # type: 'QSysInfo.MacVersion'
+        MV_JAGUAR = ...  # type: 'QSysInfo.MacVersion'
+        MV_LEOPARD = ...  # type: 'QSysInfo.MacVersion'
+        MV_LION = ...  # type: 'QSysInfo.MacVersion'
+        MV_MAVERICKS = ...  # type: 'QSysInfo.MacVersion'
+        MV_MOUNTAINLION = ...  # type: 'QSysInfo.MacVersion'
+        MV_PANTHER = ...  # type: 'QSysInfo.MacVersion'
+        MV_PUMA = ...  # type: 'QSysInfo.MacVersion'
+        MV_SIERRA = ...  # type: 'QSysInfo.MacVersion'
+        MV_SNOWLEOPARD = ...  # type: 'QSysInfo.MacVersion'
+        MV_TIGER = ...  # type: 'QSysInfo.MacVersion'
+        MV_TVOS = ...  # type: 'QSysInfo.MacVersion'
+        MV_TVOS_10_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_TVOS_9_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_TVOS_9_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_TVOS_9_2 = ...  # type: 'QSysInfo.MacVersion'
+        MV_Unknown = ...  # type: 'QSysInfo.MacVersion'
+        MV_WATCHOS = ...  # type: 'QSysInfo.MacVersion'
+        MV_WATCHOS_2_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_WATCHOS_2_1 = ...  # type: 'QSysInfo.MacVersion'
+        MV_WATCHOS_2_2 = ...  # type: 'QSysInfo.MacVersion'
+        MV_WATCHOS_3_0 = ...  # type: 'QSysInfo.MacVersion'
+        MV_YOSEMITE = ...  # type: 'QSysInfo.MacVersion'
 
         MacintoshVersion = ... # type: QSysInfo.MacVersion
 
@@ -13042,6 +13045,22 @@ class QSysInfo(sip.simplewrapper):
     def buildCpuArchitecture() -> str: ...
     @staticmethod
     def buildAbi() -> str: ...
+
+
+if sys.platform == "win32":
+    class QWinEventNotifier(QObject):
+
+        @typing.overload
+        def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
+        @typing.overload
+        def __init__(self, hEvent: sip.voidptr, parent: typing.Optional[QObject] = ...) -> None: ...
+
+        def event(self, e: QEvent) -> bool: ...
+        def activated(self, hEvent: sip.voidptr) -> None: ...
+        def setEnabled(self, enable: bool) -> None: ...
+        def setHandle(self, hEvent: sip.voidptr) -> None: ...
+        def isEnabled(self) -> bool: ...
+        def handle(self) -> sip.voidptr: ...
 
 
 PYQT_VERSION = ... # type: int
