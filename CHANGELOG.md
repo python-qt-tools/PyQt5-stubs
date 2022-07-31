@@ -15,6 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   * check signal connect() call returns a QMetaObject.Connection
   * check argument for disconnect() is optional
   * check QCoreApplication.instance() may return None
+* [#192](https://github.com/python-qt-tools/PyQt5-stubs/pull/192) Add missing platform specific stubs:
+  * Windows specific: QAxContainer.pyi QtWinExtras.pyi QtCore.QWinEventNotifier
+  * MacOs X specific: QtMacExtras.pyi QtWidgets.QMacCocoaViewContainer
 
 
 ### Added
