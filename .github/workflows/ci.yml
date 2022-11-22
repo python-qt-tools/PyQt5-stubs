@@ -14,6 +14,10 @@ on:
     # relative to other daily builds in any given organization.
     - cron: '14 6 * * *'
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == github.event.repository.default_branch && github.sha || '' }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
