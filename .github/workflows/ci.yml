@@ -52,9 +52,9 @@ jobs:
             tox: py310
             action: '3.10'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up ${{ matrix.python.name }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '${{ matrix.python.action }}.0-alpha - ${{ matrix.python.action }}.X'
           architecture: x64
