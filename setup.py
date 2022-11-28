@@ -54,7 +54,7 @@ setup(
         "dev": [
             "mypy==0.991; python_version >= '3.7'",
             # https://github.com/python/mypy/commit/dc118e293203863ab1007699b2cecf0f26ddfa22
-            "mypy==0.980; python_version < '3.7'",
+            "mypy==0.971; python_version < '3.7'",
             "pytest",
             "pytest-xvfb",
         ],
