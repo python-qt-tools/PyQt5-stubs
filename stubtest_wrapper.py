@@ -21,6 +21,7 @@ def maybe_monkey_patch() -> None:
         return
 
     mypy.stubtest._verify_final = noop_generator
+    print("mypy.stubtest._verify_final monkey patched to do nothing")
     return
 
 
