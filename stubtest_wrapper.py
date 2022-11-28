@@ -1,5 +1,6 @@
 # workaround for https://github.com/python/mypy/issues/14196
 
+import faulthandler
 import sys
 import typing
 
@@ -30,6 +31,9 @@ def main() -> int:
 
     # make sure the messages get out since we're working around a segfault here
     sys.stdout.flush()
+    # in case we still get a segfault, try to report it
+    faulthandler.enable()
+
     return mypy.stubtest.main()
 
 
