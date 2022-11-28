@@ -28,6 +28,8 @@ def maybe_monkey_patch() -> None:
 def main() -> int:
     maybe_monkey_patch()
 
+    # make sure the messages get out since we're working around a segfault here
+    sys.stdout.flush()
     return mypy.stubtest.main()
 
 
