@@ -7,27 +7,31 @@ import typing
 import mypy.stubtest
 
 
+sentinel = object
+
+
 def noop_generator(*args, **kwargs) -> typing.Iterator[object]:
     return
     yield  # make it a generator as the original is
 
 
-def maybe_monkey_patch() -> None:
-    if not hasattr(mypy.stubtest, "_verify_final"):
-        print("mypy.stubtest._verify_final does not exist, skipping monkey patching")
+def maybe_monkey_patch(object_: object, name: str, replacement: object) -> None:
+    attribute = getattr(object_, name, sentinel)
+    if attribute is sentinel:
+        print(f"{name} does not exist on {object_}, skipping monkey patching")
         return
 
-    if not callable(mypy.stubtest._verify_final):
-        print("mypy.stubtest._verify_final is not a callable, skipping monkey patching")
-        return
-
-    mypy.stubtest._verify_final = noop_generator
-    print("mypy.stubtest._verify_final monkey patched to do nothing")
+    setattr(object_, name, replacement)
+    print(f"{name} on {object_} monkey patched by {replacement}")
     return
 
 
 def main() -> int:
-    maybe_monkey_patch()
+    maybe_monkey_patch(
+        object_=mypy.stubtest,
+        name="_verify_final",
+        replacement=noop_generator,
+    )
 
     # make sure the messages get out since we're working around a segfault here
     sys.stdout.flush()
