@@ -33,6 +33,7 @@ from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -402,7 +403,7 @@ class QWebEngineHistory(sip.simplewrapper):
 
 class QWebEnginePage(QtCore.QObject):
 
-    class LifecycleState(int):
+    class LifecycleState(enum.IntEnum):
         Active = ... # type: QWebEnginePage.LifecycleState
         Frozen = ... # type: QWebEnginePage.LifecycleState
         Discarded = ... # type: QWebEnginePage.LifecycleState

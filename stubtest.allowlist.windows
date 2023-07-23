@@ -1,10 +1,8 @@
-# stubs which are Windows specific, missing from the stub definition and to be added
-PyQt5.QtCore.QWinEventNotifier
-PyQt5.QtCore.QAbstractEventDispatcher.registerEventNotifier
-PyQt5.QtCore.QAbstractEventDispatcher.unregisterEventNotifier
-
-# Stubs which are missing because not supported on Windows
+# Linux only
 PyQt5.QtX11Extras
+
+# MacOsX only
+PyQt5.QtMacExtras
 
 # stubs missing because of pyqt5 bugs
 PyQt5.QtPrintSupport.QPrinter.printerSelectionOption

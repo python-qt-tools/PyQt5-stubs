@@ -21,6 +21,7 @@
 
 
 import typing
+import sys
 
 from PyQt5 import sip
 
@@ -29,6 +30,7 @@ from PyQt5 import QtWidgets
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -1150,14 +1152,14 @@ class QClipboard(QtCore.QObject):
 
 class QColorSpace(sip.simplewrapper):
 
-    class TransferFunction(int):
+    class TransferFunction(enum.IntEnum):
         Custom = ... # type: QColorSpace.TransferFunction
         Linear = ... # type: QColorSpace.TransferFunction
         Gamma = ... # type: QColorSpace.TransferFunction
         SRgb = ... # type: QColorSpace.TransferFunction
         ProPhotoRgb = ... # type: QColorSpace.TransferFunction
 
-    class Primaries(int):
+    class Primaries(enum.IntEnum):
         Custom = ... # type: QColorSpace.Primaries
         SRgb = ... # type: QColorSpace.Primaries
         AdobeRgb = ... # type: QColorSpace.Primaries
@@ -1286,8 +1288,10 @@ class QDrag(QtCore.QObject):
 
     def __init__(self, dragSource: QtCore.QObject) -> None: ...
 
-    @staticmethod
-    def cancel() -> None: ...
+    if sys.platform != "darwin":
+        @staticmethod
+        def cancel() -> None: ...
+
     def defaultAction(self) -> QtCore.Qt.DropAction: ...
     def supportedActions(self) -> QtCore.Qt.DropActions: ...
     def dragCursor(self, action: QtCore.Qt.DropAction) -> QPixmap: ...
@@ -9654,7 +9658,7 @@ class QTextCharFormat(QTextFormat):
 
 class QTextBlockFormat(QTextFormat):
 
-    class MarkerType(int):
+    class MarkerType(enum.IntEnum):
         NoMarker = ... # type: QTextBlockFormat.MarkerType
         Unchecked = ... # type: QTextBlockFormat.MarkerType
         Checked = ... # type: QTextBlockFormat.MarkerType

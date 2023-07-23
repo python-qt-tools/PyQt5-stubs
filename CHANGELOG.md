@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## To be released
+### Added
+* [#192](https://github.com/python-qt-tools/PyQt5-stubs/pull/192) Add missing platform specific stubs:
+  * Windows specific: QAxContainer.pyi QtWinExtras.pyi QtCore.QWinEventNotifier
+  * MacOs X specific: QtMacExtras.pyi QtWidgets.QMacCocoaViewContainer
+* [#195](https://github.com/python-qt-tools/PyQt5-stubs/pull/195) Add more tests based on the historical PR and issues:
+  * check that QTest methods are static
+  * check all pyqtSlot() usage
+  * check sip.voidptr behavior
+  * check sip.array[int] type
+  * check comparison operators for QModelIndex, QTableWidgetItem, QListWidgetItem, QTreeWidgetItem
+  * check QProgressDialog.setCancelButton() accepts optional None
+  * check signal connect() call returns a QMetaObject.Connection
+  * check argument for disconnect() is optional
+  * check QCoreApplication.instance() may return None
+
+
+### Changed
+* [#198](https://github.com/python-qt-tools/PyQt5-stubs/pull/198) Corrected `QTableWidget.cellWidget()` to return an an optional `QWidget` instead of a list of `QWidgets`.
+* [#210](https://github.com/python-qt-tools/PyQt5-stubs/pull/210) Correct `QLineEdit.setValidator()` to accept `None` for removing the validator.
+
 ## 5.15.6.0
 
 ### Added

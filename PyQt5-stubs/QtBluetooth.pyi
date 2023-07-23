@@ -27,6 +27,7 @@ from PyQt5 import QtCore
 
 # Support for QDate, QDateTime and QTime.
 import datetime
+import enum
 
 # Convenient type aliases.
 PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
@@ -204,7 +205,7 @@ class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
 
 class QBluetoothDeviceInfo(sip.wrapper):
 
-    class Field(int):
+    class Field(enum.IntEnum):
         None_ = ... # type: QBluetoothDeviceInfo.Field
         RSSI = ... # type: QBluetoothDeviceInfo.Field
         ManufacturerData = ... # type: QBluetoothDeviceInfo.Field
