@@ -30,7 +30,7 @@ jobs:
             runs-on: ubuntu-latest
             tox: linux
           - name: macOS
-            runs-on: macos-latest
+            runs-on: macos-15-intel
             tox: macos
           - name: Windows
             runs-on: windows-latest
