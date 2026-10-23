@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 * [#198](https://github.com/python-qt-tools/PyQt5-stubs/pull/198) Corrected `QTableWidget.cellWidget()` to return an an optional `QWidget` instead of a list of `QWidgets`.
 * [#210](https://github.com/python-qt-tools/PyQt5-stubs/pull/210) Correct `QLineEdit.setValidator()` to accept `None` for removing the validator.
+* Run macOS CI on native Intel runners for the supported x64 Python versions.
 
 ## 5.15.6.0
 
