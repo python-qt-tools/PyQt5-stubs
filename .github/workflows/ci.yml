@@ -21,7 +21,7 @@ concurrency:
 jobs:
   test:
     name: ${{ matrix.os.name }} ${{ matrix.python.name }}
-    runs-on: ${{ matrix.os.runs-on }}
+    runs-on: ${{ matrix.os.tox == 'linux' && matrix.python.tox == 'py37' && 'ubuntu-22.04' || matrix.os.runs-on }}
     strategy:
       fail-fast: false
       matrix:

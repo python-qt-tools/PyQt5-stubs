@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
 ### Changed
+* Use Ubuntu 22.04 for Linux/Python 3.7 CI, where a compatible Python build is available.
 * [#198](https://github.com/python-qt-tools/PyQt5-stubs/pull/198) Corrected `QTableWidget.cellWidget()` to return an an optional `QWidget` instead of a list of `QWidgets`.
 * [#210](https://github.com/python-qt-tools/PyQt5-stubs/pull/210) Correct `QLineEdit.setValidator()` to accept `None` for removing the validator.
 
