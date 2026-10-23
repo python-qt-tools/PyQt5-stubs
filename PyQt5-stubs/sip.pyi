@@ -25,6 +25,7 @@ from typing import overload, Any, Generic, Iterable, Sequence, TypeVar, Union
 
 
 # Constants.
+SIP_ABI_VERSION = ...   # type: int
 SIP_VERSION = ...       # type: int
 SIP_VERSION_STR = ...   # type: str
 
