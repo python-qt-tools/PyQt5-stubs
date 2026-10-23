@@ -30,15 +30,12 @@ jobs:
             runs-on: ubuntu-latest
             tox: linux
           - name: macOS
-            runs-on: macos-latest
+            runs-on: macos-15-intel
             tox: macos
           - name: Windows
             runs-on: windows-latest
             tox: windows
         python:
-          - name: CPython 3.7
-            tox: py37
-            action: 3.7
           - name: CPython 3.8
             tox: py38
             action: 3.8

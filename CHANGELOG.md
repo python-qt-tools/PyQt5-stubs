@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## To be released
 ### Added
 * Add a `pyqt5` extra for optional PyQt5 version compatibility constraints.
+* Add the `sip.SIP_ABI_VERSION` integer constant while retaining stubtest compatibility with older SIP versions.
 * [#192](https://github.com/python-qt-tools/PyQt5-stubs/pull/192) Add missing platform specific stubs:
   * Windows specific: QAxContainer.pyi QtWinExtras.pyi QtCore.QWinEventNotifier
   * MacOs X specific: QtMacExtras.pyi QtWidgets.QMacCocoaViewContainer
@@ -23,8 +24,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
 ### Changed
+* Remove Python 3.7 from CI and the default tox matrix.
 * [#198](https://github.com/python-qt-tools/PyQt5-stubs/pull/198) Corrected `QTableWidget.cellWidget()` to return an an optional `QWidget` instead of a list of `QWidgets`.
 * [#210](https://github.com/python-qt-tools/PyQt5-stubs/pull/210) Correct `QLineEdit.setValidator()` to accept `None` for removing the validator.
+* Run macOS CI on native Intel runners for the supported x64 Python versions.
 
 ## 5.15.6.0
 

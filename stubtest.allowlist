@@ -1,3 +1,7 @@
+# Older PyQt5-sip versions do not expose this constant.
+# Matching the empty string permits this entry to be unused on newer versions.
+(?:PyQt5\.sip\.SIP_ABI_VERSION)?
+
 # QQmlListProperty is implemented but stub for it is not provided.
 PyQt5.QtQml.QQmlListProperty
 
