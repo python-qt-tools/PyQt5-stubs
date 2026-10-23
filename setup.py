@@ -51,7 +51,19 @@ setup(
     package_data={"PyQt5-stubs": ['*.pyi']},
     packages=["PyQt5-stubs"],
     extras_require={
-        "dev": ["mypy==0.930", "pytest", "pytest-xvfb"],
+        "dev": [
+            # 0.940 introduced class finality testing that segfaults on PyQt5
+            #   https://github.com/python/mypy/commit/080bb0e04e9d5c4d2513621d1fb62f1d61a573e9
+            #   https://www.riverbankcomputing.com/pipermail/pyqt/2022-November/045068.html
+            # >= 0.990 for monkey patchable class finality check function
+            #   https://github.com/python/mypy/commit/55d757e4910a0ae73175a71f3c0f02caad53e059
+            "mypy==0.991; python_version >= '3.7'",
+            # 0.981 dropped 3.6 support
+            #   https://github.com/python/mypy/commit/dc118e293203863ab1007699b2cecf0f26ddfa22
+            "mypy<0.940; python_version < '3.7'",
+            "pytest",
+            "pytest-xvfb",
+        ],
     },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
