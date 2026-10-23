@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## To be released
 ### Added
+* Add a `pyqt5` extra for optional PyQt5 version compatibility constraints.
 * Add the `sip.SIP_ABI_VERSION` integer constant while retaining stubtest compatibility with older SIP versions.
 * [#192](https://github.com/python-qt-tools/PyQt5-stubs/pull/192) Add missing platform specific stubs:
   * Windows specific: QAxContainer.pyi QtWinExtras.pyi QtCore.QWinEventNotifier

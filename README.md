@@ -22,9 +22,17 @@ appreciate any PRs or Issues that help making this stub-repository more reliable
 
 # Installation
 
-Simply install PyQt5-stubs with pip:
+Install the stubs with pip:
 
     $ pip install PyQt5-stubs
+
+To opt into enforcement of any declared PyQt5 version compatibility constraints,
+select the `pyqt5` extra:
+
+    $ pip install "PyQt5-stubs[pyqt5]"
+
+The extra currently declares no PyQt5 version bounds. Selecting it may also
+cause pip to install PyQt5 as a side effect of satisfying the dependency.
 
 Or clone the latest version from Github and install it via Python setuptools:
 
