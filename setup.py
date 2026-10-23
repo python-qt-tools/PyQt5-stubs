@@ -52,7 +52,7 @@ setup(
     packages=["PyQt5-stubs"],
     extras_require={
         "pyqt5": ["PyQt5"],
-        "dev": ["mypy==0.930", "pytest", "pytest-xvfb"],
+        "dev": ["mypy==0.930", "pytest<9", "pytest-xvfb"],
     },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
