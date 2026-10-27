@@ -27,7 +27,7 @@ jobs:
       matrix:
         os:
           - name: Linux
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-24.04
             tox: linux
           - name: macOS
             runs-on: macos-15-intel
