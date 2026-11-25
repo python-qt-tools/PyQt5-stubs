@@ -22,6 +22,9 @@ appreciate any PRs or Issues that help making this stub-repository more reliable
 
 # Installation
 
+Python 3.11 or newer is required. CI tests Python 3.11 through 3.15 on Linux,
+macOS, and Windows.
+
 Install the stubs with pip:
 
     $ pip install PyQt5-stubs

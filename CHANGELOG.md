@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
 ### Changed
+* Require Python 3.11 or newer and test Python 3.11 through 3.15 in CI.
 * Constrain pytest below version 9 to remain compatible with the pinned mypy 0.930.
 * Remove Python 3.7 from CI and the default tox matrix.
 * [#198](https://github.com/python-qt-tools/PyQt5-stubs/pull/198) Corrected `QTableWidget.cellWidget()` to return an an optional `QWidget` instead of a list of `QWidgets`.
