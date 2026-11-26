@@ -42,7 +42,8 @@ _PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 
 class QtWin(PyQt5.sip.simplewrapper):
 
-    class WindowFlip3DPolicy(int):
+    @typing.final
+    class WindowFlip3DPolicy(int, metaclass=PyQt5.sip._enumtype):
         FlipDefault = ... # type: QtWin.WindowFlip3DPolicy
         FlipExcludeBelow = ... # type: QtWin.WindowFlip3DPolicy
         FlipExcludeAbove = ... # type: QtWin.WindowFlip3DPolicy
@@ -51,7 +52,8 @@ class QtWin(PyQt5.sip.simplewrapper):
     FlipExcludeBelow = ...  # type: QtWin.WindowFlip3DPolicy
     FlipExcludeAbove = ...  # type: QtWin.WindowFlip3DPolicy
 
-    class HBitmapFormat(int):
+    @typing.final
+    class HBitmapFormat(int, metaclass=PyQt5.sip._enumtype):
         HBitmapNoAlpha = ... # type: QtWin.HBitmapFormat
         HBitmapPremultipliedAlpha = ... # type: QtWin.HBitmapFormat
         HBitmapAlpha = ... # type: QtWin.HBitmapFormat
@@ -165,7 +167,8 @@ class QWinJumpList(QtCore.QObject):
 
 class QWinJumpListCategory(PyQt5.sip.wrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=PyQt5.sip._enumtype):
         Custom = ... # type: QWinJumpListCategory.Type
         Recent = ... # type: QWinJumpListCategory.Type
         Frequent = ... # type: QWinJumpListCategory.Type
@@ -198,7 +201,8 @@ class QWinJumpListCategory(PyQt5.sip.wrapper):
 
 class QWinJumpListItem(PyQt5.sip.wrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=PyQt5.sip._enumtype):
         Destination = ... # type: QWinJumpListItem.Type
         Link = ... # type: QWinJumpListItem.Type
         Separator = ... # type: QWinJumpListItem.Type

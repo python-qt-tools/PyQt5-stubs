@@ -41,7 +41,8 @@ _PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[fl
 
 class QMacPasteboardMime(sip.simplewrapper):
 
-    class QMacPasteboardMimeType(int):
+    @typing.final
+    class QMacPasteboardMimeType(int, metaclass=sip._enumtype):
         MIME_DND = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
         MIME_CLIP = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
         MIME_QT_CONVERTOR = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
@@ -95,7 +96,8 @@ class NSToolbarItem(sip.simplewrapper): ...
 
 class QMacToolBarItem(QtCore.QObject):
 
-    class StandardItem(int):
+    @typing.final
+    class StandardItem(int, metaclass=sip._enumtype):
         NoStandardItem = ... # type: QMacToolBarItem.StandardItem
         Space = ... # type: QMacToolBarItem.StandardItem
         FlexibleSpace = ... # type: QMacToolBarItem.StandardItem

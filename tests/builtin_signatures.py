@@ -51,6 +51,8 @@ obj = QtCore.QObject()
 sip.dump(obj)
 with pytest.raises(TypeError):
     sip.dump(obj=obj)  # type: ignore[call-arg]
+with pytest.raises(TypeError):
+    sip.dump(obj, obj)  # type: ignore[call-arg]
 
 assert_type(QtCore.QCborKnownTags.DateTimeString, Literal[QtCore.QCborKnownTags.DateTimeString])
 assert_type(

@@ -2,6 +2,11 @@
 # Matching the empty string permits this entry to be unused on newer versions.
 (?:PyQt5\.sip\.SIP_ABI_VERSION)?
 
+# On Python 3.13+, signature introspection reports a spurious self parameter
+# for this one-argument function. Runtime and typing tests verify its contract.
+# Matching the empty string permits this entry to be unused on older Python.
+(?:PyQt5\.sip\.dump)?
+
 # QQmlListProperty is implemented but stub for it is not provided.
 PyQt5.QtQml.QQmlListProperty
 

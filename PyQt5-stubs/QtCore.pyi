@@ -13056,7 +13056,8 @@ class QSysInfo(sip.simplewrapper):
     WordSize = ...  # type: QSysInfo.Sizes
 
     if sys.platform == "win32":
-        class WinVersion(int):
+        @typing.final
+        class WinVersion(int, metaclass=sip._enumtype):
             WV_10_0 = ...   # type: 'QSysInfo.WinVersion'
             WV_2000 = ...   # type: 'QSysInfo.WinVersion'
             WV_2003 = ...   # type: 'QSysInfo.WinVersion'
@@ -13123,7 +13124,8 @@ class QSysInfo(sip.simplewrapper):
         def windowsVersion() -> 'QSysInfo.WinVersion': ...
 
     if sys.platform == "darwin":
-        class MacVersion(int):
+        @typing.final
+        class MacVersion(int, metaclass=sip._enumtype):
             MV_10_0 = ...  # type: 'QSysInfo.MacVersion'
             MV_10_1 = ...  # type: 'QSysInfo.MacVersion'
             MV_10_10 = ...  # type: 'QSysInfo.MacVersion'
