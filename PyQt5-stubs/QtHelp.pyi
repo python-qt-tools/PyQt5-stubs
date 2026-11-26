@@ -31,13 +31,13 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QCompressedHelpInfo(sip.simplewrapper):
@@ -234,7 +234,8 @@ class QHelpLink(sip.simplewrapper):
 
 class QHelpSearchQuery(sip.simplewrapper):
 
-    class FieldName(int):
+    @typing.final
+    class FieldName(int, metaclass=sip._enumtype):
         DEFAULT = ... # type: QHelpSearchQuery.FieldName
         FUZZY = ... # type: QHelpSearchQuery.FieldName
         WITHOUT = ... # type: QHelpSearchQuery.FieldName

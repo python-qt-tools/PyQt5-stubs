@@ -22,6 +22,9 @@ appreciate any PRs or Issues that help making this stub-repository more reliable
 
 # Installation
 
+Python 3.11 or newer is required. CI tests Python 3.11 through 3.15 on Linux,
+macOS, and Windows.
+
 Install the stubs with pip:
 
     $ pip install PyQt5-stubs
@@ -41,6 +44,9 @@ Or clone the latest version from Github and install it via Python setuptools:
 
 
 # Supported Modules
+
+The aggregate `PyQt5.Qt` module, `QtTextToSpeech`, translation/resource command-line
+tools, and `uic` and its implementation modules are outside the current stub coverage.
 
 The modules supported by PyQt5-stubs include modules from the PyQt5 package as well as modules from the other
 packages released by Riverbank Computing (PyQt3D, PyQtCharts, ...). Here is the full list

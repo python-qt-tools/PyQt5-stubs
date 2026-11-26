@@ -31,13 +31,13 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QDesignerActionEditorInterface(QtWidgets.QWidget):
@@ -80,7 +80,8 @@ class QDesignerFormEditorInterface(QtCore.QObject):
 
 class QDesignerFormWindowInterface(QtWidgets.QWidget):
 
-    class FeatureFlag(int):
+    @typing.final
+    class FeatureFlag(int, metaclass=sip._enumtype):
         EditFeature = ... # type: QDesignerFormWindowInterface.FeatureFlag
         GridFeature = ... # type: QDesignerFormWindowInterface.FeatureFlag
         TabOrderFeature = ... # type: QDesignerFormWindowInterface.FeatureFlag
@@ -107,12 +108,12 @@ class QDesignerFormWindowInterface(QtWidgets.QWidget):
         def __invert__(self) -> 'QDesignerFormWindowInterface.Feature': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QDesignerFormWindowInterface.Feature', 'QDesignerFormWindowInterface.FeatureFlag', int]) -> 'QDesignerFormWindowInterface.Feature': ...
-        def __and__(self, other: typing.Union['QDesignerFormWindowInterface.Feature', 'QDesignerFormWindowInterface.FeatureFlag', int]) -> 'QDesignerFormWindowInterface.Feature': ...
-        def __xor__(self, other: typing.Union['QDesignerFormWindowInterface.Feature', 'QDesignerFormWindowInterface.FeatureFlag', int]) -> 'QDesignerFormWindowInterface.Feature': ...
-        def __ror__ (self, other: 'QDesignerFormWindowInterface.FeatureFlag') -> 'QDesignerFormWindowInterface.Feature': ...
-        def __rand__(self, other: 'QDesignerFormWindowInterface.FeatureFlag') -> 'QDesignerFormWindowInterface.Feature': ...
-        def __rxor__(self, other: 'QDesignerFormWindowInterface.FeatureFlag') -> 'QDesignerFormWindowInterface.Feature': ...
+        def __or__ (self, other: typing.Union['QDesignerFormWindowInterface.Feature', 'QDesignerFormWindowInterface.FeatureFlag', int], /) -> 'QDesignerFormWindowInterface.Feature': ...
+        def __and__(self, other: typing.Union['QDesignerFormWindowInterface.Feature', 'QDesignerFormWindowInterface.FeatureFlag', int], /) -> 'QDesignerFormWindowInterface.Feature': ...
+        def __xor__(self, other: typing.Union['QDesignerFormWindowInterface.Feature', 'QDesignerFormWindowInterface.FeatureFlag', int], /) -> 'QDesignerFormWindowInterface.Feature': ...
+        def __ror__ (self, other: 'QDesignerFormWindowInterface.FeatureFlag', /) -> 'QDesignerFormWindowInterface.Feature': ...
+        def __rand__(self, other: 'QDesignerFormWindowInterface.FeatureFlag', /) -> 'QDesignerFormWindowInterface.Feature': ...
+        def __rxor__(self, other: 'QDesignerFormWindowInterface.FeatureFlag', /) -> 'QDesignerFormWindowInterface.Feature': ...
 
     def __init__(self, parent: typing.Optional[QtWidgets.QWidget] = ..., flags: typing.Union[QtCore.Qt.WindowFlags, QtCore.Qt.WindowType] = ...) -> None: ...
 
@@ -185,14 +186,16 @@ class QDesignerFormWindowInterface(QtWidgets.QWidget):
 
 class QDesignerFormWindowCursorInterface(sip.simplewrapper):
 
-    class MoveMode(int):
+    @typing.final
+    class MoveMode(int, metaclass=sip._enumtype):
         MoveAnchor = ... # type: QDesignerFormWindowCursorInterface.MoveMode
         KeepAnchor = ... # type: QDesignerFormWindowCursorInterface.MoveMode
 
     MoveAnchor = ...  # type: QDesignerFormWindowCursorInterface.MoveMode
     KeepAnchor = ...  # type: QDesignerFormWindowCursorInterface.MoveMode
 
-    class MoveOperation(int):
+    @typing.final
+    class MoveOperation(int, metaclass=sip._enumtype):
         NoMove = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
         Start = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
         End = ... # type: QDesignerFormWindowCursorInterface.MoveOperation
@@ -236,12 +239,14 @@ class QDesignerFormWindowCursorInterface(sip.simplewrapper):
 
 class QDesignerFormWindowManagerInterface(QtCore.QObject):
 
-    class ActionGroup(int):
+    @typing.final
+    class ActionGroup(int, metaclass=sip._enumtype):
         StyledPreviewActionGroup = ... # type: QDesignerFormWindowManagerInterface.ActionGroup
 
     StyledPreviewActionGroup = ...  # type: QDesignerFormWindowManagerInterface.ActionGroup
 
-    class Action(int):
+    @typing.final
+    class Action(int, metaclass=sip._enumtype):
         CutAction = ... # type: QDesignerFormWindowManagerInterface.Action
         CopyAction = ... # type: QDesignerFormWindowManagerInterface.Action
         PasteAction = ... # type: QDesignerFormWindowManagerInterface.Action

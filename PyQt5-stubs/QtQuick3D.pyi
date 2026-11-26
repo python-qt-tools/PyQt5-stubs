@@ -21,6 +21,7 @@
 
 
 import typing
+import enum
 
 
 from PyQt5 import sip
@@ -32,14 +33,14 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QQuick3D(sip.simplewrapper):
@@ -68,14 +69,14 @@ class QQuick3DObject(QtCore.QObject, QtQml.QQmlParserStatus):
 
 class QQuick3DGeometry(QQuick3DObject):
 
-    class PrimitiveType(int):
-        Unknown = ... # type: QQuick3DGeometry.PrimitiveType
-        Points = ... # type: QQuick3DGeometry.PrimitiveType
-        LineStrip = ... # type: QQuick3DGeometry.PrimitiveType
-        Lines = ... # type: QQuick3DGeometry.PrimitiveType
-        TriangleStrip = ... # type: QQuick3DGeometry.PrimitiveType
-        TriangleFan = ... # type: QQuick3DGeometry.PrimitiveType
-        Triangles = ... # type: QQuick3DGeometry.PrimitiveType
+    class PrimitiveType(enum.IntEnum):
+        Unknown = ...
+        Points = ...
+        LineStrip = ...
+        Lines = ...
+        TriangleStrip = ...
+        TriangleFan = ...
+        Triangles = ...
 
     Unknown = ...  # type: QQuick3DGeometry.PrimitiveType
     Points = ...  # type: QQuick3DGeometry.PrimitiveType
@@ -87,7 +88,8 @@ class QQuick3DGeometry(QQuick3DObject):
 
     class Attribute(sip.simplewrapper):
 
-        class ComponentType(int):
+        @typing.final
+        class ComponentType(int, metaclass=sip._enumtype):
             DefaultType = ... # type: QQuick3DGeometry.Attribute.ComponentType
             U16Type = ... # type: QQuick3DGeometry.Attribute.ComponentType
             U32Type = ... # type: QQuick3DGeometry.Attribute.ComponentType
@@ -98,7 +100,8 @@ class QQuick3DGeometry(QQuick3DObject):
         U32Type = ...  # type: QQuick3DGeometry.Attribute.ComponentType
         F32Type = ...  # type: QQuick3DGeometry.Attribute.ComponentType
 
-        class Semantic(int):
+        @typing.final
+        class Semantic(int, metaclass=sip._enumtype):
             UnknownSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic
             IndexSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic
             PositionSemantic = ... # type: QQuick3DGeometry.Attribute.Semantic

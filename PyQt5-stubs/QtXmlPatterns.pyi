@@ -30,7 +30,7 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QAbstractMessageHandler(QtCore.QObject):
@@ -50,7 +50,8 @@ class QAbstractUriResolver(QtCore.QObject):
 
 class QXmlNodeModelIndex(sip.simplewrapper):
 
-    class DocumentOrder(int):
+    @typing.final
+    class DocumentOrder(int, metaclass=sip._enumtype):
         Precedes = ... # type: QXmlNodeModelIndex.DocumentOrder
         Is = ... # type: QXmlNodeModelIndex.DocumentOrder
         Follows = ... # type: QXmlNodeModelIndex.DocumentOrder
@@ -59,7 +60,8 @@ class QXmlNodeModelIndex(sip.simplewrapper):
     Is = ...  # type: QXmlNodeModelIndex.DocumentOrder
     Follows = ...  # type: QXmlNodeModelIndex.DocumentOrder
 
-    class NodeKind(int):
+    @typing.final
+    class NodeKind(int, metaclass=sip._enumtype):
         Attribute = ... # type: QXmlNodeModelIndex.NodeKind
         Comment = ... # type: QXmlNodeModelIndex.NodeKind
         Document = ... # type: QXmlNodeModelIndex.NodeKind
@@ -91,7 +93,8 @@ class QXmlNodeModelIndex(sip.simplewrapper):
 
 class QAbstractXmlNodeModel(sip.simplewrapper):
 
-    class SimpleAxis(int):
+    @typing.final
+    class SimpleAxis(int, metaclass=sip._enumtype):
         Parent = ... # type: QAbstractXmlNodeModel.SimpleAxis
         FirstChild = ... # type: QAbstractXmlNodeModel.SimpleAxis
         PreviousSibling = ... # type: QAbstractXmlNodeModel.SimpleAxis
@@ -264,7 +267,8 @@ class QXmlNamePool(sip.simplewrapper):
 
 class QXmlQuery(sip.simplewrapper):
 
-    class QueryLanguage(int):
+    @typing.final
+    class QueryLanguage(int, metaclass=sip._enumtype):
         XQuery10 = ... # type: QXmlQuery.QueryLanguage
         XSLT20 = ... # type: QXmlQuery.QueryLanguage
 

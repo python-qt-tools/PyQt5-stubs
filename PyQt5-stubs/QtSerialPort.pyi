@@ -29,12 +29,13 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QSerialPort(QtCore.QIODevice):
 
-    class SerialPortError(int):
+    @typing.final
+    class SerialPortError(int, metaclass=sip._enumtype):
         NoError = ... # type: QSerialPort.SerialPortError
         DeviceNotFoundError = ... # type: QSerialPort.SerialPortError
         PermissionError = ... # type: QSerialPort.SerialPortError
@@ -65,7 +66,8 @@ class QSerialPort(QtCore.QIODevice):
     NotOpenError = ...  # type: QSerialPort.SerialPortError
     UnknownError = ...  # type: QSerialPort.SerialPortError
 
-    class DataErrorPolicy(int):
+    @typing.final
+    class DataErrorPolicy(int, metaclass=sip._enumtype):
         SkipPolicy = ... # type: QSerialPort.DataErrorPolicy
         PassZeroPolicy = ... # type: QSerialPort.DataErrorPolicy
         IgnorePolicy = ... # type: QSerialPort.DataErrorPolicy
@@ -78,9 +80,10 @@ class QSerialPort(QtCore.QIODevice):
     StopReceivingPolicy = ...  # type: QSerialPort.DataErrorPolicy
     UnknownPolicy = ...  # type: QSerialPort.DataErrorPolicy
 
-    class PinoutSignal(int):
-        def __or__ (self, other: 'QSerialPort.PinoutSignal') -> 'QSerialPort.PinoutSignals': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QSerialPort.PinoutSignals': ...                          # type: ignore[override, misc]
+    @typing.final
+    class PinoutSignal(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QSerialPort.PinoutSignal', /) -> 'QSerialPort.PinoutSignals': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QSerialPort.PinoutSignals': ...                          # type: ignore[override, misc]
         
         NoSignal = ... # type: QSerialPort.PinoutSignal
         TransmittedDataSignal = ... # type: QSerialPort.PinoutSignal
@@ -106,7 +109,8 @@ class QSerialPort(QtCore.QIODevice):
     SecondaryTransmittedDataSignal = ...  # type: QSerialPort.PinoutSignal
     SecondaryReceivedDataSignal = ...  # type: QSerialPort.PinoutSignal
 
-    class FlowControl(int):
+    @typing.final
+    class FlowControl(int, metaclass=sip._enumtype):
         NoFlowControl = ... # type: QSerialPort.FlowControl
         HardwareControl = ... # type: QSerialPort.FlowControl
         SoftwareControl = ... # type: QSerialPort.FlowControl
@@ -117,7 +121,8 @@ class QSerialPort(QtCore.QIODevice):
     SoftwareControl = ...  # type: QSerialPort.FlowControl
     UnknownFlowControl = ...  # type: QSerialPort.FlowControl
 
-    class StopBits(int):
+    @typing.final
+    class StopBits(int, metaclass=sip._enumtype):
         OneStop = ... # type: QSerialPort.StopBits
         OneAndHalfStop = ... # type: QSerialPort.StopBits
         TwoStop = ... # type: QSerialPort.StopBits
@@ -128,7 +133,8 @@ class QSerialPort(QtCore.QIODevice):
     TwoStop = ...  # type: QSerialPort.StopBits
     UnknownStopBits = ...  # type: QSerialPort.StopBits
 
-    class Parity(int):
+    @typing.final
+    class Parity(int, metaclass=sip._enumtype):
         NoParity = ... # type: QSerialPort.Parity
         EvenParity = ... # type: QSerialPort.Parity
         OddParity = ... # type: QSerialPort.Parity
@@ -143,7 +149,8 @@ class QSerialPort(QtCore.QIODevice):
     MarkParity = ...  # type: QSerialPort.Parity
     UnknownParity = ...  # type: QSerialPort.Parity
 
-    class DataBits(int):
+    @typing.final
+    class DataBits(int, metaclass=sip._enumtype):
         Data5 = ... # type: QSerialPort.DataBits
         Data6 = ... # type: QSerialPort.DataBits
         Data7 = ... # type: QSerialPort.DataBits
@@ -156,7 +163,8 @@ class QSerialPort(QtCore.QIODevice):
     Data8 = ...  # type: QSerialPort.DataBits
     UnknownDataBits = ...  # type: QSerialPort.DataBits
 
-    class BaudRate(int):
+    @typing.final
+    class BaudRate(int, metaclass=sip._enumtype):
         Baud1200 = ... # type: QSerialPort.BaudRate
         Baud2400 = ... # type: QSerialPort.BaudRate
         Baud4800 = ... # type: QSerialPort.BaudRate
@@ -177,9 +185,10 @@ class QSerialPort(QtCore.QIODevice):
     Baud115200 = ...  # type: QSerialPort.BaudRate
     UnknownBaud = ...  # type: QSerialPort.BaudRate
 
-    class Direction(int):
-        def __or__ (self, other: 'QSerialPort.Direction') -> 'QSerialPort.Directions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QSerialPort.Directions': ...                       # type: ignore[override, misc]
+    @typing.final
+    class Direction(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QSerialPort.Direction', /) -> 'QSerialPort.Directions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QSerialPort.Directions': ...                       # type: ignore[override, misc]
         
         Input = ... # type: QSerialPort.Direction
         Output = ... # type: QSerialPort.Direction
@@ -205,12 +214,12 @@ class QSerialPort(QtCore.QIODevice):
         def __invert__(self) -> 'QSerialPort.Directions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSerialPort.Directions', 'QSerialPort.Direction', int]) -> 'QSerialPort.Directions': ...
-        def __and__(self, other: typing.Union['QSerialPort.Directions', 'QSerialPort.Direction', int]) -> 'QSerialPort.Directions': ...
-        def __xor__(self, other: typing.Union['QSerialPort.Directions', 'QSerialPort.Direction', int]) -> 'QSerialPort.Directions': ...
-        def __ror__ (self, other: 'QSerialPort.Direction') -> 'QSerialPort.Directions': ...
-        def __rand__(self, other: 'QSerialPort.Direction') -> 'QSerialPort.Directions': ...
-        def __rxor__(self, other: 'QSerialPort.Direction') -> 'QSerialPort.Directions': ...
+        def __or__ (self, other: typing.Union['QSerialPort.Directions', 'QSerialPort.Direction', int], /) -> 'QSerialPort.Directions': ...
+        def __and__(self, other: typing.Union['QSerialPort.Directions', 'QSerialPort.Direction', int], /) -> 'QSerialPort.Directions': ...
+        def __xor__(self, other: typing.Union['QSerialPort.Directions', 'QSerialPort.Direction', int], /) -> 'QSerialPort.Directions': ...
+        def __ror__ (self, other: 'QSerialPort.Direction', /) -> 'QSerialPort.Directions': ...
+        def __rand__(self, other: 'QSerialPort.Direction', /) -> 'QSerialPort.Directions': ...
+        def __rxor__(self, other: 'QSerialPort.Direction', /) -> 'QSerialPort.Directions': ...
 
     class PinoutSignals(sip.simplewrapper):
 
@@ -228,12 +237,12 @@ class QSerialPort(QtCore.QIODevice):
         def __invert__(self) -> 'QSerialPort.PinoutSignals': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSerialPort.PinoutSignals', 'QSerialPort.PinoutSignal', int]) -> 'QSerialPort.PinoutSignals': ...
-        def __and__(self, other: typing.Union['QSerialPort.PinoutSignals', 'QSerialPort.PinoutSignal', int]) -> 'QSerialPort.PinoutSignals': ...
-        def __xor__(self, other: typing.Union['QSerialPort.PinoutSignals', 'QSerialPort.PinoutSignal', int]) -> 'QSerialPort.PinoutSignals': ...
-        def __ror__ (self, other: 'QSerialPort.PinoutSignal') -> 'QSerialPort.PinoutSignals': ...
-        def __rand__(self, other: 'QSerialPort.PinoutSignal') -> 'QSerialPort.PinoutSignals': ...
-        def __rxor__(self, other: 'QSerialPort.PinoutSignal') -> 'QSerialPort.PinoutSignals': ...
+        def __or__ (self, other: typing.Union['QSerialPort.PinoutSignals', 'QSerialPort.PinoutSignal', int], /) -> 'QSerialPort.PinoutSignals': ...
+        def __and__(self, other: typing.Union['QSerialPort.PinoutSignals', 'QSerialPort.PinoutSignal', int], /) -> 'QSerialPort.PinoutSignals': ...
+        def __xor__(self, other: typing.Union['QSerialPort.PinoutSignals', 'QSerialPort.PinoutSignal', int], /) -> 'QSerialPort.PinoutSignals': ...
+        def __ror__ (self, other: 'QSerialPort.PinoutSignal', /) -> 'QSerialPort.PinoutSignals': ...
+        def __rand__(self, other: 'QSerialPort.PinoutSignal', /) -> 'QSerialPort.PinoutSignals': ...
+        def __rxor__(self, other: 'QSerialPort.PinoutSignal', /) -> 'QSerialPort.PinoutSignals': ...
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...

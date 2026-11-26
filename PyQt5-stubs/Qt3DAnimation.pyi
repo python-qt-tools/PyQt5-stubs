@@ -32,18 +32,19 @@ from PyQt5 import Qt3DCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstractAnimation(QtCore.QObject):
 
-    class AnimationType(int):
+    @typing.final
+    class AnimationType(int, metaclass=sip._enumtype):
         KeyframeAnimation = ... # type: QAbstractAnimation.AnimationType
         MorphingAnimation = ... # type: QAbstractAnimation.AnimationType
         VertexBlendAnimation = ... # type: QAbstractAnimation.AnimationType
@@ -73,7 +74,8 @@ class QAbstractChannelMapping(Qt3DCore.QNode): ...
 
 class QAbstractClipAnimator(Qt3DCore.QComponent):
 
-    class Loops(int):
+    @typing.final
+    class Loops(int, metaclass=sip._enumtype):
         Infinite = ... # type: QAbstractClipAnimator.Loops
 
     Infinite = ...  # type: QAbstractClipAnimator.Loops
@@ -147,7 +149,8 @@ class QAnimationClipData(sip.simplewrapper):
 
 class QAnimationClipLoader('QAbstractAnimationClip'):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         NotReady = ... # type: QAnimationClipLoader.Status
         Ready = ... # type: QAnimationClipLoader.Status
         Error = ... # type: QAnimationClipLoader.Status
@@ -313,7 +316,8 @@ class QClock(Qt3DCore.QNode):
 
 class QKeyFrame(sip.simplewrapper):
 
-    class InterpolationType(int):
+    @typing.final
+    class InterpolationType(int, metaclass=sip._enumtype):
         ConstantInterpolation = ... # type: QKeyFrame.InterpolationType
         LinearInterpolation = ... # type: QKeyFrame.InterpolationType
         BezierInterpolation = ... # type: QKeyFrame.InterpolationType
@@ -342,7 +346,8 @@ class QKeyFrame(sip.simplewrapper):
 
 class QKeyframeAnimation('QAbstractAnimation'):
 
-    class RepeatMode(int):
+    @typing.final
+    class RepeatMode(int, metaclass=sip._enumtype):
         None_ = ... # type: QKeyframeAnimation.RepeatMode
         Constant = ... # type: QKeyframeAnimation.RepeatMode
         Repeat = ... # type: QKeyframeAnimation.RepeatMode
@@ -392,7 +397,8 @@ class QLerpClipBlend('QAbstractClipBlendNode'):
 
 class QMorphingAnimation('QAbstractAnimation'):
 
-    class Method(int):
+    @typing.final
+    class Method(int, metaclass=sip._enumtype):
         Normalized = ... # type: QMorphingAnimation.Method
         Relative = ... # type: QMorphingAnimation.Method
 

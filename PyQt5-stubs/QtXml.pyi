@@ -30,12 +30,13 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QDomImplementation(sip.simplewrapper):
 
-    class InvalidDataPolicy(int):
+    @typing.final
+    class InvalidDataPolicy(int, metaclass=sip._enumtype):
         AcceptInvalidChars = ... # type: QDomImplementation.InvalidDataPolicy
         DropInvalidChars = ... # type: QDomImplementation.InvalidDataPolicy
         ReturnNullNode = ... # type: QDomImplementation.InvalidDataPolicy
@@ -61,14 +62,16 @@ class QDomImplementation(sip.simplewrapper):
 
 class QDomNode(sip.simplewrapper):
 
-    class EncodingPolicy(int):
+    @typing.final
+    class EncodingPolicy(int, metaclass=sip._enumtype):
         EncodingFromDocument = ... # type: QDomNode.EncodingPolicy
         EncodingFromTextStream = ... # type: QDomNode.EncodingPolicy
 
     EncodingFromDocument = ...  # type: QDomNode.EncodingPolicy
     EncodingFromTextStream = ...  # type: QDomNode.EncodingPolicy
 
-    class NodeType(int):
+    @typing.final
+    class NodeType(int, metaclass=sip._enumtype):
         ElementNode = ... # type: QDomNode.NodeType
         AttributeNode = ... # type: QDomNode.NodeType
         TextNode = ... # type: QDomNode.NodeType

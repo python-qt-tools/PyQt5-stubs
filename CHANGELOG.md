@@ -24,7 +24,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
 ### Changed
-* Constrain pytest below version 9 to remain compatible with the pinned mypy 0.930.
+* Require Python 3.11 or newer and test Python 3.11 through 3.15 in CI.
+* Upgrade mypy to 2.4.1 and remove the pytest version restriction needed by mypy 0.930.
+* Correct enum member declarations and positional-only property and SIP method signatures for current type checkers.
+* Model SIP metaclasses, enum finality, and extension-type layout restrictions, and correct positional-only operator signatures.
+* Keep typing helpers private and clarify the stubtest coverage boundary.
+* Update generated QFlags exception tests for current pytest while preserving their operator checks.
 * Remove Python 3.7 from CI and the default tox matrix.
 * [#198](https://github.com/python-qt-tools/PyQt5-stubs/pull/198) Corrected `QTableWidget.cellWidget()` to return an an optional `QWidget` instead of a list of `QWidgets`.
 * [#210](https://github.com/python-qt-tools/PyQt5-stubs/pull/210) Correct `QLineEdit.setValidator()` to accept `None` for removing the validator.

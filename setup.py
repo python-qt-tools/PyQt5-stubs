@@ -47,12 +47,13 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     version=find_version('PyQt5-stubs', '__init__.pyi'),
-    python_requires=">= 3.7",
+    python_requires=">= 3.11",
     package_data={"PyQt5-stubs": ['*.pyi']},
     packages=["PyQt5-stubs"],
+    install_requires=["typing_extensions>=4.15"],
     extras_require={
         "pyqt5": ["PyQt5"],
-        "dev": ["mypy==0.930", "pytest<9", "pytest-xvfb"],
+        "dev": ["mypy==2.4.1", "pytest", "pytest-xvfb"],
     },
     classifiers=[
         "Development Status :: 5 - Production/Stable",

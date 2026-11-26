@@ -22,6 +22,8 @@
 
 import sys
 import typing
+import types
+from typing_extensions import disjoint_base
 
 from PyQt5 import sip
 from PyQt5 import QtCore
@@ -31,24 +33,28 @@ import enum  # import was missing
 # Support for QDate, QDateTime and QTime.
 import datetime
 
+__license__: types.MappingProxyType[str, str]
 
+
+@typing.final
 class pyqtBoundSignal:
 
     signal = ... # type: str
 
-    def __getitem__(self, key: object) -> "pyqtBoundSignal": ...
+    def __getitem__(self, key: object, /) -> "pyqtBoundSignal": ...
 
-    def connect(self, slot: "PYQT_SLOT") -> "QMetaObject.Connection": ...
+    def connect(self, slot: "_PYQT_SLOT") -> "QMetaObject.Connection": ...
 
     @typing.overload
     def disconnect(self) -> None: ...
 
     @typing.overload
-    def disconnect(self, slot: typing.Union["PYQT_SLOT", "QMetaObject.Connection"]) -> None: ...
+    def disconnect(self, slot: typing.Union["_PYQT_SLOT", "QMetaObject.Connection"]) -> None: ...
 
     def emit(self, *args: typing.Any) -> None: ...
 
 
+@typing.final
 class pyqtSignal:
 
     signatures = ...  # type: typing.Tuple[str, ...]
@@ -57,38 +63,34 @@ class pyqtSignal:
 
     if sys.version_info >= (3, 10):
         @typing.overload
-        def __get__(self, instance: None, owner: typing.Optional[typing.Type["QObject"]] = ...) -> "pyqtSignal": ...
+        def __get__(self, instance: None, owner: typing.Optional[typing.Type["QObject"]] = ..., /) -> "pyqtSignal": ...
 
         @typing.overload
-        def __get__(self, instance: "QObject", owner: typing.Optional[typing.Type["QObject"]] = ...) -> pyqtBoundSignal: ...
+        def __get__(self, instance: "QObject", owner: typing.Optional[typing.Type["QObject"]] = ..., /) -> pyqtBoundSignal: ...
     else:
         @typing.overload
-        def __get__(self, instance: None, owner: typing.Type["QObject"]) -> "pyqtSignal": ...
+        def __get__(self, instance: None, owner: typing.Type["QObject"], /) -> "pyqtSignal": ...
 
         @typing.overload
-        def __get__(self, instance: "QObject", owner: typing.Type["QObject"]) -> pyqtBoundSignal: ...
+        def __get__(self, instance: "QObject", owner: typing.Type["QObject"], /) -> pyqtBoundSignal: ...
 
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., object], pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., object], pyqtBoundSignal]
 
-QObjectT = typing.TypeVar("QObjectT", bound="QObject")
+_QObjectT = typing.TypeVar("_QObjectT", bound="QObject")
 
-TPropertyTypeVal = typing.TypeVar('TPropertyTypeVal')
+_TPropertyTypeVal = typing.TypeVar('_TPropertyTypeVal')
 
-TPropGetter = typing.TypeVar('TPropGetter', bound=typing.Callable[[QObjectT], TPropertyTypeVal])
-TPropSetter = typing.TypeVar('TPropSetter', bound=typing.Callable[[QObjectT, TPropertyTypeVal], None])
-TPropDeleter = typing.TypeVar('TPropDeleter', bound=typing.Callable[[QObjectT], None])
-TPropResetter = typing.TypeVar('TPropResetter', bound=typing.Callable[[QObjectT], None])
-
+@disjoint_base
 class pyqtProperty:
 
     def __init__(self,
                  type: typing.Union[type, str],
-                 fget: typing.Optional[typing.Callable[[QObjectT], TPropertyTypeVal]] = None,
-                 fset: typing.Optional[typing.Callable[[QObjectT, TPropertyTypeVal], None]] = None,
-                 freset: typing.Optional[typing.Callable[[QObjectT], None]] = None,
-                 fdel: typing.Optional[typing.Callable[[QObjectT], None]] = None,
+                 fget: typing.Optional[typing.Callable[[_QObjectT], _TPropertyTypeVal]] = None,
+                 fset: typing.Optional[typing.Callable[[_QObjectT, _TPropertyTypeVal], None]] = None,
+                 freset: typing.Optional[typing.Callable[[_QObjectT], None]] = None,
+                 fdel: typing.Optional[typing.Callable[[_QObjectT], None]] = None,
                  doc: typing.Optional[str] = '',
                  designable: bool = True,
                  scriptable: bool = True,
@@ -102,23 +104,24 @@ class pyqtProperty:
         ...
 
     type: typing.Union[type, str]
-    fget: typing.Optional[typing.Callable[[], TPropertyTypeVal]]
-    fset: typing.Optional[typing.Callable[[TPropertyTypeVal], None]]
+    fget: typing.Optional[typing.Callable[[], _TPropertyTypeVal]]
+    fset: typing.Optional[typing.Callable[[_TPropertyTypeVal], None]]
     freset: typing.Optional[typing.Callable[[], None]]
     fdel: typing.Optional[typing.Callable[[], None]]
 
-    def read(self, func: TPropGetter) -> 'pyqtProperty': ...
-    def write(self, func: TPropSetter) -> 'pyqtProperty': ...
-    def reset(self, func: TPropResetter) -> 'pyqtProperty': ...
+    def read(self, func: typing.Callable[[_QObjectT], _TPropertyTypeVal], /) -> 'pyqtProperty': ...
+    def write(self, func: typing.Callable[[_QObjectT, _TPropertyTypeVal], None], /) -> 'pyqtProperty': ...
+    def reset(self, func: typing.Callable[[_QObjectT], None], /) -> 'pyqtProperty': ...
 
-    def getter(self, func: TPropGetter) -> 'pyqtProperty': ...
-    def setter(self, func: TPropSetter) -> 'pyqtProperty': ...
-    def deleter(self, func: TPropDeleter) -> 'pyqtProperty': ...
+    def getter(self, func: typing.Callable[[_QObjectT], _TPropertyTypeVal], /) -> 'pyqtProperty': ...
+    def setter(self, func: typing.Callable[[_QObjectT, _TPropertyTypeVal], None], /) -> 'pyqtProperty': ...
+    def deleter(self, func: typing.Callable[[_QObjectT], None], /) -> 'pyqtProperty': ...
 
-    def __call__(self, func: TPropGetter) -> 'pyqtProperty': ...
+    def __call__(self, func: typing.Callable[[_QObjectT], _TPropertyTypeVal]) -> 'pyqtProperty': ...
 
 
-class QtMsgType(int):
+@typing.final
+class QtMsgType(int, metaclass=sip._enumtype):
     QtDebugMsg = ... # type: QtMsgType
     QtWarningMsg = ... # type: QtMsgType
     QtCriticalMsg = ... # type: QtMsgType
@@ -136,46 +139,46 @@ QtInfoMsg = ... # type: QtMsgType
 
 
 class QCborKnownTags(enum.IntEnum):
-    DateTimeString = ... # type: QCborKnownTags
-    UnixTime_t = ... # type: QCborKnownTags
-    PositiveBignum = ... # type: QCborKnownTags
-    NegativeBignum = ... # type: QCborKnownTags
-    Decimal = ... # type: QCborKnownTags
-    Bigfloat = ... # type: QCborKnownTags
-    COSE_Encrypt0 = ... # type: QCborKnownTags
-    COSE_Mac0 = ... # type: QCborKnownTags
-    COSE_Sign1 = ... # type: QCborKnownTags
-    ExpectedBase64url = ... # type: QCborKnownTags
-    ExpectedBase64 = ... # type: QCborKnownTags
-    ExpectedBase16 = ... # type: QCborKnownTags
-    EncodedCbor = ... # type: QCborKnownTags
-    Url = ... # type: QCborKnownTags
-    Base64url = ... # type: QCborKnownTags
-    Base64 = ... # type: QCborKnownTags
-    RegularExpression = ... # type: QCborKnownTags
-    MimeMessage = ... # type: QCborKnownTags
-    Uuid = ... # type: QCborKnownTags
-    COSE_Encrypt = ... # type: QCborKnownTags
-    COSE_Mac = ... # type: QCborKnownTags
-    COSE_Sign = ... # type: QCborKnownTags
-    Signature = ... # type: QCborKnownTags
+    DateTimeString = ...
+    UnixTime_t = ...
+    PositiveBignum = ...
+    NegativeBignum = ...
+    Decimal = ...
+    Bigfloat = ...
+    COSE_Encrypt0 = ...
+    COSE_Mac0 = ...
+    COSE_Sign1 = ...
+    ExpectedBase64url = ...
+    ExpectedBase64 = ...
+    ExpectedBase16 = ...
+    EncodedCbor = ...
+    Url = ...
+    Base64url = ...
+    Base64 = ...
+    RegularExpression = ...
+    MimeMessage = ...
+    Uuid = ...
+    COSE_Encrypt = ...
+    COSE_Mac = ...
+    COSE_Sign = ...
+    Signature = ...
 
 
 class QCborSimpleType(enum.IntEnum):
-    False_ = ... # type: QCborSimpleType
-    True_ = ... # type: QCborSimpleType
-    Null = ... # type: QCborSimpleType
-    Undefined = ... # type: QCborSimpleType
+    False_ = ...
+    True_ = ...
+    Null = ...
+    Undefined = ...
 
 
 class Qt(sip.simplewrapper):
 
     class HighDpiScaleFactorRoundingPolicy(enum.IntEnum):
-        Round = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
-        Ceil = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
-        Floor = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
-        RoundPreferFloor = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
-        PassThrough = ... # type: Qt.HighDpiScaleFactorRoundingPolicy
+        Round = ...
+        Ceil = ...
+        Floor = ...
+        RoundPreferFloor = ...
+        PassThrough = ...
 
     Round = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
     Ceil = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
@@ -183,14 +186,16 @@ class Qt(sip.simplewrapper):
     RoundPreferFloor = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
     PassThrough = ...  # type: Qt.HighDpiScaleFactorRoundingPolicy
 
-    class ChecksumType(int):
+    @typing.final
+    class ChecksumType(int, metaclass=sip._enumtype):
         ChecksumIso3309 = ... # type: Qt.ChecksumType
         ChecksumItuV41 = ... # type: Qt.ChecksumType
 
     ChecksumIso3309 = ...  # type: Qt.ChecksumType
     ChecksumItuV41 = ...  # type: Qt.ChecksumType
 
-    class EnterKeyType(int):
+    @typing.final
+    class EnterKeyType(int, metaclass=sip._enumtype):
         EnterKeyDefault = ... # type: Qt.EnterKeyType
         EnterKeyReturn = ... # type: Qt.EnterKeyType
         EnterKeyDone = ... # type: Qt.EnterKeyType
@@ -209,14 +214,16 @@ class Qt(sip.simplewrapper):
     EnterKeyNext = ...  # type: Qt.EnterKeyType
     EnterKeyPrevious = ...  # type: Qt.EnterKeyType
 
-    class ItemSelectionOperation(int):
+    @typing.final
+    class ItemSelectionOperation(int, metaclass=sip._enumtype):
         ReplaceSelection = ... # type: Qt.ItemSelectionOperation
         AddToSelection = ... # type: Qt.ItemSelectionOperation
 
     ReplaceSelection = ...  # type: Qt.ItemSelectionOperation
     AddToSelection = ...  # type: Qt.ItemSelectionOperation
 
-    class TabFocusBehavior(int):
+    @typing.final
+    class TabFocusBehavior(int, metaclass=sip._enumtype):
         NoTabFocus = ... # type: Qt.TabFocusBehavior
         TabFocusTextControls = ... # type: Qt.TabFocusBehavior
         TabFocusListControls = ... # type: Qt.TabFocusBehavior
@@ -227,15 +234,17 @@ class Qt(sip.simplewrapper):
     TabFocusListControls = ...  # type: Qt.TabFocusBehavior
     TabFocusAllControls = ...  # type: Qt.TabFocusBehavior
 
-    class MouseEventFlag(int):
-        def __or__ (self, other: 'Qt.MouseEventFlag') -> 'Qt.MouseEventFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.MouseEventFlags': ...                   # type: ignore[override, misc]
+    @typing.final
+    class MouseEventFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.MouseEventFlag', /) -> 'Qt.MouseEventFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.MouseEventFlags': ...                   # type: ignore[override, misc]
         
         MouseEventCreatedDoubleClick = ... # type: Qt.MouseEventFlag
 
     MouseEventCreatedDoubleClick = ...  # type: Qt.MouseEventFlag
 
-    class MouseEventSource(int):
+    @typing.final
+    class MouseEventSource(int, metaclass=sip._enumtype):
         MouseEventNotSynthesized = ... # type: Qt.MouseEventSource
         MouseEventSynthesizedBySystem = ... # type: Qt.MouseEventSource
         MouseEventSynthesizedByQt = ... # type: Qt.MouseEventSource
@@ -246,7 +255,8 @@ class Qt(sip.simplewrapper):
     MouseEventSynthesizedByQt = ...  # type: Qt.MouseEventSource
     MouseEventSynthesizedByApplication = ...  # type: Qt.MouseEventSource
 
-    class ScrollPhase(int):
+    @typing.final
+    class ScrollPhase(int, metaclass=sip._enumtype):
         ScrollBegin = ... # type: Qt.ScrollPhase
         ScrollUpdate = ... # type: Qt.ScrollPhase
         ScrollEnd = ... # type: Qt.ScrollPhase
@@ -259,7 +269,8 @@ class Qt(sip.simplewrapper):
     NoScrollPhase = ...  # type: Qt.ScrollPhase
     ScrollMomentum = ...  # type: Qt.ScrollPhase
 
-    class NativeGestureType(int):
+    @typing.final
+    class NativeGestureType(int, metaclass=sip._enumtype):
         BeginNativeGesture = ... # type: Qt.NativeGestureType
         EndNativeGesture = ... # type: Qt.NativeGestureType
         PanNativeGesture = ... # type: Qt.NativeGestureType
@@ -276,9 +287,10 @@ class Qt(sip.simplewrapper):
     RotateNativeGesture = ...  # type: Qt.NativeGestureType
     SwipeNativeGesture = ...  # type: Qt.NativeGestureType
 
-    class Edge(int):
-        def __or__ (self, other: 'Qt.Edge') -> 'Qt.Edges': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.Edges': ...         # type: ignore[override, misc]
+    @typing.final
+    class Edge(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.Edge', /) -> 'Qt.Edges': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.Edges': ...         # type: ignore[override, misc]
         
         TopEdge = ... # type: Qt.Edge
         LeftEdge = ... # type: Qt.Edge
@@ -290,7 +302,8 @@ class Qt(sip.simplewrapper):
     RightEdge = ...  # type: Qt.Edge
     BottomEdge = ...  # type: Qt.Edge
 
-    class ApplicationState(int):
+    @typing.final
+    class ApplicationState(int, metaclass=sip._enumtype):
         ApplicationSuspended = ... # type: Qt.ApplicationState
         ApplicationHidden = ... # type: Qt.ApplicationState
         ApplicationInactive = ... # type: Qt.ApplicationState
@@ -301,14 +314,16 @@ class Qt(sip.simplewrapper):
     ApplicationInactive = ...  # type: Qt.ApplicationState
     ApplicationActive = ...  # type: Qt.ApplicationState
 
-    class HitTestAccuracy(int):
+    @typing.final
+    class HitTestAccuracy(int, metaclass=sip._enumtype):
         ExactHit = ... # type: Qt.HitTestAccuracy
         FuzzyHit = ... # type: Qt.HitTestAccuracy
 
     ExactHit = ...  # type: Qt.HitTestAccuracy
     FuzzyHit = ...  # type: Qt.HitTestAccuracy
 
-    class WhiteSpaceMode(int):
+    @typing.final
+    class WhiteSpaceMode(int, metaclass=sip._enumtype):
         WhiteSpaceNormal = ... # type: Qt.WhiteSpaceMode
         WhiteSpacePre = ... # type: Qt.WhiteSpaceMode
         WhiteSpaceNoWrap = ... # type: Qt.WhiteSpaceMode
@@ -319,16 +334,18 @@ class Qt(sip.simplewrapper):
     WhiteSpaceNoWrap = ...  # type: Qt.WhiteSpaceMode
     WhiteSpaceModeUndefined = ...  # type: Qt.WhiteSpaceMode
 
-    class FindChildOption(int):
+    @typing.final
+    class FindChildOption(int, metaclass=sip._enumtype):
         FindDirectChildrenOnly = ... # type: Qt.FindChildOption
         FindChildrenRecursively = ... # type: Qt.FindChildOption
 
     FindDirectChildrenOnly = ...  # type: Qt.FindChildOption
     FindChildrenRecursively = ...  # type: Qt.FindChildOption
 
-    class ScreenOrientation(int):
-        def __or__ (self, other: 'Qt.ScreenOrientation') -> 'Qt.ScreenOrientations': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.ScreenOrientations': ...                      # type: ignore[override, misc]
+    @typing.final
+    class ScreenOrientation(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.ScreenOrientation', /) -> 'Qt.ScreenOrientations': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.ScreenOrientations': ...                      # type: ignore[override, misc]
         
         PrimaryOrientation = ... # type: Qt.ScreenOrientation
         PortraitOrientation = ... # type: Qt.ScreenOrientation
@@ -342,14 +359,16 @@ class Qt(sip.simplewrapper):
     InvertedPortraitOrientation = ...  # type: Qt.ScreenOrientation
     InvertedLandscapeOrientation = ...  # type: Qt.ScreenOrientation
 
-    class CursorMoveStyle(int):
+    @typing.final
+    class CursorMoveStyle(int, metaclass=sip._enumtype):
         LogicalMoveStyle = ... # type: Qt.CursorMoveStyle
         VisualMoveStyle = ... # type: Qt.CursorMoveStyle
 
     LogicalMoveStyle = ...  # type: Qt.CursorMoveStyle
     VisualMoveStyle = ...  # type: Qt.CursorMoveStyle
 
-    class NavigationMode(int):
+    @typing.final
+    class NavigationMode(int, metaclass=sip._enumtype):
         NavigationModeNone = ... # type: Qt.NavigationMode
         NavigationModeKeypadTabOrder = ... # type: Qt.NavigationMode
         NavigationModeKeypadDirectional = ... # type: Qt.NavigationMode
@@ -362,9 +381,10 @@ class Qt(sip.simplewrapper):
     NavigationModeCursorAuto = ...  # type: Qt.NavigationMode
     NavigationModeCursorForceVisible = ...  # type: Qt.NavigationMode
 
-    class GestureFlag(int):
-        def __or__ (self, other: 'Qt.GestureFlag') -> 'Qt.GestureFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.GestureFlags': ...                # type: ignore[override, misc]
+    @typing.final
+    class GestureFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.GestureFlag', /) -> 'Qt.GestureFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.GestureFlags': ...                # type: ignore[override, misc]
         
         DontStartGestureOnChildren = ... # type: Qt.GestureFlag
         ReceivePartialGestures = ... # type: Qt.GestureFlag
@@ -374,7 +394,8 @@ class Qt(sip.simplewrapper):
     ReceivePartialGestures = ...  # type: Qt.GestureFlag
     IgnoredGesturesPropagateToParent = ...  # type: Qt.GestureFlag
 
-    class GestureType(int):
+    @typing.final
+    class GestureType(int, metaclass=sip._enumtype):
         TapGesture = ... # type: Qt.GestureType
         TapAndHoldGesture = ... # type: Qt.GestureType
         PanGesture = ... # type: Qt.GestureType
@@ -389,7 +410,8 @@ class Qt(sip.simplewrapper):
     SwipeGesture = ...  # type: Qt.GestureType
     CustomGesture = ...  # type: Qt.GestureType
 
-    class GestureState(int):
+    @typing.final
+    class GestureState(int, metaclass=sip._enumtype):
         GestureStarted = ... # type: Qt.GestureState
         GestureUpdated = ... # type: Qt.GestureState
         GestureFinished = ... # type: Qt.GestureState
@@ -400,9 +422,10 @@ class Qt(sip.simplewrapper):
     GestureFinished = ...  # type: Qt.GestureState
     GestureCanceled = ...  # type: Qt.GestureState
 
-    class TouchPointState(int):
-        def __or__ (self, other: 'Qt.TouchPointState') -> 'Qt.TouchPointStates': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.TouchPointStates': ...                    # type: ignore[override, misc]
+    @typing.final
+    class TouchPointState(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.TouchPointState', /) -> 'Qt.TouchPointStates': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.TouchPointStates': ...                    # type: ignore[override, misc]
         
         TouchPointPressed = ... # type: Qt.TouchPointState
         TouchPointMoved = ... # type: Qt.TouchPointState
@@ -414,14 +437,16 @@ class Qt(sip.simplewrapper):
     TouchPointStationary = ...  # type: Qt.TouchPointState
     TouchPointReleased = ...  # type: Qt.TouchPointState
 
-    class CoordinateSystem(int):
+    @typing.final
+    class CoordinateSystem(int, metaclass=sip._enumtype):
         DeviceCoordinates = ... # type: Qt.CoordinateSystem
         LogicalCoordinates = ... # type: Qt.CoordinateSystem
 
     DeviceCoordinates = ...  # type: Qt.CoordinateSystem
     LogicalCoordinates = ...  # type: Qt.CoordinateSystem
 
-    class AnchorPoint(int):
+    @typing.final
+    class AnchorPoint(int, metaclass=sip._enumtype):
         AnchorLeft = ... # type: Qt.AnchorPoint
         AnchorHorizontalCenter = ... # type: Qt.AnchorPoint
         AnchorRight = ... # type: Qt.AnchorPoint
@@ -436,9 +461,10 @@ class Qt(sip.simplewrapper):
     AnchorVerticalCenter = ...  # type: Qt.AnchorPoint
     AnchorBottom = ...  # type: Qt.AnchorPoint
 
-    class InputMethodHint(int):
-        def __or__ (self, other: 'Qt.InputMethodHint') -> 'Qt.InputMethodHints': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.InputMethodHints': ...                    # type: ignore[override, misc]
+    @typing.final
+    class InputMethodHint(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.InputMethodHint', /) -> 'Qt.InputMethodHints': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.InputMethodHints': ...                    # type: ignore[override, misc]
         
         ImhNone = ... # type: Qt.InputMethodHint
         ImhHiddenText = ... # type: Qt.InputMethodHint
@@ -488,7 +514,8 @@ class Qt(sip.simplewrapper):
     ImhNoEditMenu = ...  # type: Qt.InputMethodHint
     ImhNoTextHandles = ...  # type: Qt.InputMethodHint
 
-    class TileRule(int):
+    @typing.final
+    class TileRule(int, metaclass=sip._enumtype):
         StretchTile = ... # type: Qt.TileRule
         RepeatTile = ... # type: Qt.TileRule
         RoundTile = ... # type: Qt.TileRule
@@ -497,7 +524,8 @@ class Qt(sip.simplewrapper):
     RepeatTile = ...  # type: Qt.TileRule
     RoundTile = ...  # type: Qt.TileRule
 
-    class WindowFrameSection(int):
+    @typing.final
+    class WindowFrameSection(int, metaclass=sip._enumtype):
         NoSection = ... # type: Qt.WindowFrameSection
         LeftSection = ... # type: Qt.WindowFrameSection
         TopLeftSection = ... # type: Qt.WindowFrameSection
@@ -520,7 +548,8 @@ class Qt(sip.simplewrapper):
     BottomLeftSection = ...  # type: Qt.WindowFrameSection
     TitleBarArea = ...  # type: Qt.WindowFrameSection
 
-    class SizeHint(int):
+    @typing.final
+    class SizeHint(int, metaclass=sip._enumtype):
         MinimumSize = ... # type: Qt.SizeHint
         PreferredSize = ... # type: Qt.SizeHint
         MaximumSize = ... # type: Qt.SizeHint
@@ -531,14 +560,16 @@ class Qt(sip.simplewrapper):
     MaximumSize = ...  # type: Qt.SizeHint
     MinimumDescent = ...  # type: Qt.SizeHint
 
-    class SizeMode(int):
+    @typing.final
+    class SizeMode(int, metaclass=sip._enumtype):
         AbsoluteSize = ... # type: Qt.SizeMode
         RelativeSize = ... # type: Qt.SizeMode
 
     AbsoluteSize = ...  # type: Qt.SizeMode
     RelativeSize = ...  # type: Qt.SizeMode
 
-    class EventPriority(int):
+    @typing.final
+    class EventPriority(int, metaclass=sip._enumtype):
         HighEventPriority = ... # type: Qt.EventPriority
         NormalEventPriority = ... # type: Qt.EventPriority
         LowEventPriority = ... # type: Qt.EventPriority
@@ -547,7 +578,8 @@ class Qt(sip.simplewrapper):
     NormalEventPriority = ...  # type: Qt.EventPriority
     LowEventPriority = ...  # type: Qt.EventPriority
 
-    class Axis(int):
+    @typing.final
+    class Axis(int, metaclass=sip._enumtype):
         XAxis = ... # type: Qt.Axis
         YAxis = ... # type: Qt.Axis
         ZAxis = ... # type: Qt.Axis
@@ -556,16 +588,18 @@ class Qt(sip.simplewrapper):
     YAxis = ...  # type: Qt.Axis
     ZAxis = ...  # type: Qt.Axis
 
-    class MaskMode(int):
+    @typing.final
+    class MaskMode(int, metaclass=sip._enumtype):
         MaskInColor = ... # type: Qt.MaskMode
         MaskOutColor = ... # type: Qt.MaskMode
 
     MaskInColor = ...  # type: Qt.MaskMode
     MaskOutColor = ...  # type: Qt.MaskMode
 
-    class TextInteractionFlag(int):
-        def __or__ (self, other: 'Qt.TextInteractionFlag') -> 'Qt.TextInteractionFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.TextInteractionFlags': ...                        # type: ignore[override, misc]
+    @typing.final
+    class TextInteractionFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.TextInteractionFlag', /) -> 'Qt.TextInteractionFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.TextInteractionFlags': ...                        # type: ignore[override, misc]
         
         NoTextInteraction = ... # type: Qt.TextInteractionFlag
         TextSelectableByMouse = ... # type: Qt.TextInteractionFlag
@@ -585,7 +619,8 @@ class Qt(sip.simplewrapper):
     TextEditorInteraction = ...  # type: Qt.TextInteractionFlag
     TextBrowserInteraction = ...  # type: Qt.TextInteractionFlag
 
-    class ItemSelectionMode(int):
+    @typing.final
+    class ItemSelectionMode(int, metaclass=sip._enumtype):
         ContainsItemShape = ... # type: Qt.ItemSelectionMode
         IntersectsItemShape = ... # type: Qt.ItemSelectionMode
         ContainsItemBoundingRect = ... # type: Qt.ItemSelectionMode
@@ -596,7 +631,8 @@ class Qt(sip.simplewrapper):
     ContainsItemBoundingRect = ...  # type: Qt.ItemSelectionMode
     IntersectsItemBoundingRect = ...  # type: Qt.ItemSelectionMode
 
-    class ApplicationAttribute(int):
+    @typing.final
+    class ApplicationAttribute(int, metaclass=sip._enumtype):
         AA_ImmediateWidgetCreation = ... # type: Qt.ApplicationAttribute
         AA_MSWindowsUseDirect3DByDefault = ... # type: Qt.ApplicationAttribute
         AA_DontShowIconsInMenus = ... # type: Qt.ApplicationAttribute
@@ -665,7 +701,8 @@ class Qt(sip.simplewrapper):
     AA_DisableSessionManager = ...  # type: Qt.ApplicationAttribute
     AA_DisableNativeVirtualKeyboard = ...  # type: Qt.ApplicationAttribute
 
-    class WindowModality(int):
+    @typing.final
+    class WindowModality(int, metaclass=sip._enumtype):
         NonModal = ... # type: Qt.WindowModality
         WindowModal = ... # type: Qt.WindowModality
         ApplicationModal = ... # type: Qt.WindowModality
@@ -674,9 +711,10 @@ class Qt(sip.simplewrapper):
     WindowModal = ...  # type: Qt.WindowModality
     ApplicationModal = ...  # type: Qt.WindowModality
 
-    class MatchFlag(int):
-        def __or__ (self, other: 'Qt.MatchFlag') -> 'Qt.MatchFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.MatchFlags': ...              # type: ignore[override, misc]
+    @typing.final
+    class MatchFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.MatchFlag', /) -> 'Qt.MatchFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.MatchFlags': ...              # type: ignore[override, misc]
         
         MatchExactly = ... # type: Qt.MatchFlag
         MatchFixedString = ... # type: Qt.MatchFlag
@@ -702,9 +740,10 @@ class Qt(sip.simplewrapper):
     MatchRecursive = ...  # type: Qt.MatchFlag
     MatchRegularExpression = ...  # type: Qt.MatchFlag
 
-    class ItemFlag(int):
-        def __or__ (self, other: 'Qt.ItemFlag') -> 'Qt.ItemFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.ItemFlags': ...             # type: ignore[override, misc]
+    @typing.final
+    class ItemFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.ItemFlag', /) -> 'Qt.ItemFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.ItemFlags': ...             # type: ignore[override, misc]
         
         NoItemFlags = ... # type: Qt.ItemFlag
         ItemIsSelectable = ... # type: Qt.ItemFlag
@@ -730,7 +769,8 @@ class Qt(sip.simplewrapper):
     ItemIsUserTristate = ...  # type: Qt.ItemFlag
     ItemIsAutoTristate = ...  # type: Qt.ItemFlag
 
-    class ItemDataRole(int):
+    @typing.final
+    class ItemDataRole(int, metaclass=sip._enumtype):
         DisplayRole = ... # type: Qt.ItemDataRole
         DecorationRole = ... # type: Qt.ItemDataRole
         EditRole = ... # type: Qt.ItemDataRole
@@ -769,7 +809,8 @@ class Qt(sip.simplewrapper):
     InitialSortOrderRole = ...  # type: Qt.ItemDataRole
     UserRole = ...  # type: Qt.ItemDataRole
 
-    class CheckState(int):
+    @typing.final
+    class CheckState(int, metaclass=sip._enumtype):
         Unchecked = ... # type: Qt.CheckState
         PartiallyChecked = ... # type: Qt.CheckState
         Checked = ... # type: Qt.CheckState
@@ -778,9 +819,10 @@ class Qt(sip.simplewrapper):
     PartiallyChecked = ...  # type: Qt.CheckState
     Checked = ...  # type: Qt.CheckState
 
-    class DropAction(int):
-        def __or__ (self, other: 'Qt.DropAction') -> 'Qt.DropActions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.DropActions': ...               # type: ignore[override, misc]
+    @typing.final
+    class DropAction(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.DropAction', /) -> 'Qt.DropActions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.DropActions': ...               # type: ignore[override, misc]
         
         CopyAction = ... # type: Qt.DropAction
         MoveAction = ... # type: Qt.DropAction
@@ -796,7 +838,8 @@ class Qt(sip.simplewrapper):
     TargetMoveAction = ...  # type: Qt.DropAction
     IgnoreAction = ...  # type: Qt.DropAction
 
-    class LayoutDirection(int):
+    @typing.final
+    class LayoutDirection(int, metaclass=sip._enumtype):
         LeftToRight = ... # type: Qt.LayoutDirection
         RightToLeft = ... # type: Qt.LayoutDirection
         LayoutDirectionAuto = ... # type: Qt.LayoutDirection
@@ -805,7 +848,8 @@ class Qt(sip.simplewrapper):
     RightToLeft = ...  # type: Qt.LayoutDirection
     LayoutDirectionAuto = ...  # type: Qt.LayoutDirection
 
-    class ToolButtonStyle(int):
+    @typing.final
+    class ToolButtonStyle(int, metaclass=sip._enumtype):
         ToolButtonIconOnly = ... # type: Qt.ToolButtonStyle
         ToolButtonTextOnly = ... # type: Qt.ToolButtonStyle
         ToolButtonTextBesideIcon = ... # type: Qt.ToolButtonStyle
@@ -818,9 +862,10 @@ class Qt(sip.simplewrapper):
     ToolButtonTextUnderIcon = ...  # type: Qt.ToolButtonStyle
     ToolButtonFollowStyle = ...  # type: Qt.ToolButtonStyle
 
-    class InputMethodQuery(int):
-        def __or__ (self, other: 'Qt.InputMethodQuery') -> 'Qt.InputMethodQueries': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.InputMethodQueries': ...                     # type: ignore[override, misc]
+    @typing.final
+    class InputMethodQuery(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.InputMethodQuery', /) -> 'Qt.InputMethodQueries': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.InputMethodQueries': ...                     # type: ignore[override, misc]
 
         
         ImMicroFocus = ... # type: Qt.InputMethodQuery
@@ -865,7 +910,8 @@ class Qt(sip.simplewrapper):
     ImAnchorRectangle = ...  # type: Qt.InputMethodQuery
     ImInputItemClipRectangle = ...  # type: Qt.InputMethodQuery
 
-    class ContextMenuPolicy(int):
+    @typing.final
+    class ContextMenuPolicy(int, metaclass=sip._enumtype):
         NoContextMenu = ... # type: Qt.ContextMenuPolicy
         PreventContextMenu = ... # type: Qt.ContextMenuPolicy
         DefaultContextMenu = ... # type: Qt.ContextMenuPolicy
@@ -878,7 +924,8 @@ class Qt(sip.simplewrapper):
     ActionsContextMenu = ...  # type: Qt.ContextMenuPolicy
     CustomContextMenu = ...  # type: Qt.ContextMenuPolicy
 
-    class FocusReason(int):
+    @typing.final
+    class FocusReason(int, metaclass=sip._enumtype):
         MouseFocusReason = ... # type: Qt.FocusReason
         TabFocusReason = ... # type: Qt.FocusReason
         BacktabFocusReason = ... # type: Qt.FocusReason
@@ -899,14 +946,16 @@ class Qt(sip.simplewrapper):
     OtherFocusReason = ...  # type: Qt.FocusReason
     NoFocusReason = ...  # type: Qt.FocusReason
 
-    class TransformationMode(int):
+    @typing.final
+    class TransformationMode(int, metaclass=sip._enumtype):
         FastTransformation = ... # type: Qt.TransformationMode
         SmoothTransformation = ... # type: Qt.TransformationMode
 
     FastTransformation = ...  # type: Qt.TransformationMode
     SmoothTransformation = ...  # type: Qt.TransformationMode
 
-    class ClipOperation(int):
+    @typing.final
+    class ClipOperation(int, metaclass=sip._enumtype):
         NoClip = ... # type: Qt.ClipOperation
         ReplaceClip = ... # type: Qt.ClipOperation
         IntersectClip = ... # type: Qt.ClipOperation
@@ -915,14 +964,16 @@ class Qt(sip.simplewrapper):
     ReplaceClip = ...  # type: Qt.ClipOperation
     IntersectClip = ...  # type: Qt.ClipOperation
 
-    class FillRule(int):
+    @typing.final
+    class FillRule(int, metaclass=sip._enumtype):
         OddEvenFill = ... # type: Qt.FillRule
         WindingFill = ... # type: Qt.FillRule
 
     OddEvenFill = ...  # type: Qt.FillRule
     WindingFill = ...  # type: Qt.FillRule
 
-    class ShortcutContext(int):
+    @typing.final
+    class ShortcutContext(int, metaclass=sip._enumtype):
         WidgetShortcut = ... # type: Qt.ShortcutContext
         WindowShortcut = ... # type: Qt.ShortcutContext
         ApplicationShortcut = ... # type: Qt.ShortcutContext
@@ -933,7 +984,8 @@ class Qt(sip.simplewrapper):
     ApplicationShortcut = ...  # type: Qt.ShortcutContext
     WidgetWithChildrenShortcut = ...  # type: Qt.ShortcutContext
 
-    class ConnectionType(int):
+    @typing.final
+    class ConnectionType(int, metaclass=sip._enumtype):
         AutoConnection = ... # type: Qt.ConnectionType
         DirectConnection = ... # type: Qt.ConnectionType
         QueuedConnection = ... # type: Qt.ConnectionType
@@ -946,7 +998,8 @@ class Qt(sip.simplewrapper):
     BlockingQueuedConnection = ...  # type: Qt.ConnectionType
     UniqueConnection = ...  # type: Qt.ConnectionType
 
-    class Corner(int):
+    @typing.final
+    class Corner(int, metaclass=sip._enumtype):
         TopLeftCorner = ... # type: Qt.Corner
         TopRightCorner = ... # type: Qt.Corner
         BottomLeftCorner = ... # type: Qt.Corner
@@ -957,14 +1010,16 @@ class Qt(sip.simplewrapper):
     BottomLeftCorner = ...  # type: Qt.Corner
     BottomRightCorner = ...  # type: Qt.Corner
 
-    class CaseSensitivity(int):
+    @typing.final
+    class CaseSensitivity(int, metaclass=sip._enumtype):
         CaseInsensitive = ... # type: Qt.CaseSensitivity
         CaseSensitive = ... # type: Qt.CaseSensitivity
 
     CaseInsensitive = ...  # type: Qt.CaseSensitivity
     CaseSensitive = ...  # type: Qt.CaseSensitivity
 
-    class ScrollBarPolicy(int):
+    @typing.final
+    class ScrollBarPolicy(int, metaclass=sip._enumtype):
         ScrollBarAsNeeded = ... # type: Qt.ScrollBarPolicy
         ScrollBarAlwaysOff = ... # type: Qt.ScrollBarPolicy
         ScrollBarAlwaysOn = ... # type: Qt.ScrollBarPolicy
@@ -973,7 +1028,8 @@ class Qt(sip.simplewrapper):
     ScrollBarAlwaysOff = ...  # type: Qt.ScrollBarPolicy
     ScrollBarAlwaysOn = ...  # type: Qt.ScrollBarPolicy
 
-    class DayOfWeek(int):
+    @typing.final
+    class DayOfWeek(int, metaclass=sip._enumtype):
         Monday = ... # type: Qt.DayOfWeek
         Tuesday = ... # type: Qt.DayOfWeek
         Wednesday = ... # type: Qt.DayOfWeek
@@ -990,7 +1046,8 @@ class Qt(sip.simplewrapper):
     Saturday = ...  # type: Qt.DayOfWeek
     Sunday = ...  # type: Qt.DayOfWeek
 
-    class TimeSpec(int):
+    @typing.final
+    class TimeSpec(int, metaclass=sip._enumtype):
         LocalTime = ... # type: Qt.TimeSpec
         UTC = ... # type: Qt.TimeSpec
         OffsetFromUTC = ... # type: Qt.TimeSpec
@@ -1001,7 +1058,8 @@ class Qt(sip.simplewrapper):
     OffsetFromUTC = ...  # type: Qt.TimeSpec
     TimeZone = ...  # type: Qt.TimeSpec
 
-    class DateFormat(int):
+    @typing.final
+    class DateFormat(int, metaclass=sip._enumtype):
         TextDate = ... # type: Qt.DateFormat
         ISODate = ... # type: Qt.DateFormat
         ISODateWithMs = ... # type: Qt.DateFormat
@@ -1026,9 +1084,10 @@ class Qt(sip.simplewrapper):
     DefaultLocaleLongDate = ...  # type: Qt.DateFormat
     RFC2822Date = ...  # type: Qt.DateFormat
 
-    class ToolBarArea(int):
-        def __or__ (self, other: 'Qt.ToolBarArea') -> 'Qt.ToolBarAreas': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.ToolBarAreas': ...                # type: ignore[override, misc]
+    @typing.final
+    class ToolBarArea(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.ToolBarArea', /) -> 'Qt.ToolBarAreas': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.ToolBarAreas': ...                # type: ignore[override, misc]
         
         LeftToolBarArea = ... # type: Qt.ToolBarArea
         RightToolBarArea = ... # type: Qt.ToolBarArea
@@ -1046,7 +1105,8 @@ class Qt(sip.simplewrapper):
     AllToolBarAreas = ...  # type: Qt.ToolBarArea
     NoToolBarArea = ...  # type: Qt.ToolBarArea
 
-    class TimerType(int):
+    @typing.final
+    class TimerType(int, metaclass=sip._enumtype):
         PreciseTimer = ... # type: Qt.TimerType
         CoarseTimer = ... # type: Qt.TimerType
         VeryCoarseTimer = ... # type: Qt.TimerType
@@ -1055,9 +1115,10 @@ class Qt(sip.simplewrapper):
     CoarseTimer = ...  # type: Qt.TimerType
     VeryCoarseTimer = ...  # type: Qt.TimerType
 
-    class DockWidgetArea(int):
-        def __or__ (self, other: 'Qt.DockWidgetArea') -> 'Qt.DockWidgetAreas': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.DockWidgetAreas': ...                   # type: ignore[override, misc]
+    @typing.final
+    class DockWidgetArea(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.DockWidgetArea', /) -> 'Qt.DockWidgetAreas': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.DockWidgetAreas': ...                   # type: ignore[override, misc]
         
         LeftDockWidgetArea = ... # type: Qt.DockWidgetArea
         RightDockWidgetArea = ... # type: Qt.DockWidgetArea
@@ -1075,7 +1136,8 @@ class Qt(sip.simplewrapper):
     AllDockWidgetAreas = ...  # type: Qt.DockWidgetArea
     NoDockWidgetArea = ...  # type: Qt.DockWidgetArea
 
-    class AspectRatioMode(int):
+    @typing.final
+    class AspectRatioMode(int, metaclass=sip._enumtype):
         IgnoreAspectRatio = ... # type: Qt.AspectRatioMode
         KeepAspectRatio = ... # type: Qt.AspectRatioMode
         KeepAspectRatioByExpanding = ... # type: Qt.AspectRatioMode
@@ -1084,7 +1146,8 @@ class Qt(sip.simplewrapper):
     KeepAspectRatio = ...  # type: Qt.AspectRatioMode
     KeepAspectRatioByExpanding = ...  # type: Qt.AspectRatioMode
 
-    class TextFormat(int):
+    @typing.final
+    class TextFormat(int, metaclass=sip._enumtype):
         PlainText = ... # type: Qt.TextFormat
         RichText = ... # type: Qt.TextFormat
         AutoText = ... # type: Qt.TextFormat
@@ -1095,7 +1158,8 @@ class Qt(sip.simplewrapper):
     AutoText = ...  # type: Qt.TextFormat
     MarkdownText = ...  # type: Qt.TextFormat
 
-    class CursorShape(int):
+    @typing.final
+    class CursorShape(int, metaclass=sip._enumtype):
         ArrowCursor = ... # type: Qt.CursorShape
         UpArrowCursor = ... # type: Qt.CursorShape
         CrossCursor = ... # type: Qt.CursorShape
@@ -1148,7 +1212,8 @@ class Qt(sip.simplewrapper):
     DragMoveCursor = ...  # type: Qt.CursorShape
     DragLinkCursor = ...  # type: Qt.CursorShape
 
-    class UIEffect(int):
+    @typing.final
+    class UIEffect(int, metaclass=sip._enumtype):
         UI_General = ... # type: Qt.UIEffect
         UI_AnimateMenu = ... # type: Qt.UIEffect
         UI_FadeMenu = ... # type: Qt.UIEffect
@@ -1165,7 +1230,8 @@ class Qt(sip.simplewrapper):
     UI_FadeTooltip = ...  # type: Qt.UIEffect
     UI_AnimateToolBox = ...  # type: Qt.UIEffect
 
-    class BrushStyle(int):
+    @typing.final
+    class BrushStyle(int, metaclass=sip._enumtype):
         NoBrush = ... # type: Qt.BrushStyle
         SolidPattern = ... # type: Qt.BrushStyle
         Dense1Pattern = ... # type: Qt.BrushStyle
@@ -1206,7 +1272,8 @@ class Qt(sip.simplewrapper):
     ConicalGradientPattern = ...  # type: Qt.BrushStyle
     TexturePattern = ...  # type: Qt.BrushStyle
 
-    class PenJoinStyle(int):
+    @typing.final
+    class PenJoinStyle(int, metaclass=sip._enumtype):
         MiterJoin = ... # type: Qt.PenJoinStyle
         BevelJoin = ... # type: Qt.PenJoinStyle
         RoundJoin = ... # type: Qt.PenJoinStyle
@@ -1219,7 +1286,8 @@ class Qt(sip.simplewrapper):
     MPenJoinStyle = ...  # type: Qt.PenJoinStyle
     SvgMiterJoin = ...  # type: Qt.PenJoinStyle
 
-    class PenCapStyle(int):
+    @typing.final
+    class PenCapStyle(int, metaclass=sip._enumtype):
         FlatCap = ... # type: Qt.PenCapStyle
         SquareCap = ... # type: Qt.PenCapStyle
         RoundCap = ... # type: Qt.PenCapStyle
@@ -1230,7 +1298,8 @@ class Qt(sip.simplewrapper):
     RoundCap = ...  # type: Qt.PenCapStyle
     MPenCapStyle = ...  # type: Qt.PenCapStyle
 
-    class PenStyle(int):
+    @typing.final
+    class PenStyle(int, metaclass=sip._enumtype):
         NoPen = ... # type: Qt.PenStyle
         SolidLine = ... # type: Qt.PenStyle
         DashLine = ... # type: Qt.PenStyle
@@ -1249,7 +1318,8 @@ class Qt(sip.simplewrapper):
     CustomDashLine = ...  # type: Qt.PenStyle
     MPenStyle = ...  # type: Qt.PenStyle
 
-    class ArrowType(int):
+    @typing.final
+    class ArrowType(int, metaclass=sip._enumtype):
         NoArrow = ... # type: Qt.ArrowType
         UpArrow = ... # type: Qt.ArrowType
         DownArrow = ... # type: Qt.ArrowType
@@ -1262,7 +1332,8 @@ class Qt(sip.simplewrapper):
     LeftArrow = ...  # type: Qt.ArrowType
     RightArrow = ...  # type: Qt.ArrowType
 
-    class Key(int):
+    @typing.final
+    class Key(int, metaclass=sip._enumtype):
         Key_Escape = ... # type: Qt.Key
         Key_Tab = ... # type: Qt.Key
         Key_Backtab = ... # type: Qt.Key
@@ -2203,16 +2274,18 @@ class Qt(sip.simplewrapper):
     Key_Dead_Belowverticalline = ...  # type: Qt.Key
     Key_Dead_Longsolidusoverlay = ...  # type: Qt.Key
 
-    class BGMode(int):
+    @typing.final
+    class BGMode(int, metaclass=sip._enumtype):
         TransparentMode = ... # type: Qt.BGMode
         OpaqueMode = ... # type: Qt.BGMode
 
     TransparentMode = ...  # type: Qt.BGMode
     OpaqueMode = ...  # type: Qt.BGMode
 
-    class ImageConversionFlag(int):
-        def __or__ (self, other: 'Qt.ImageConversionFlag') -> 'Qt.ImageConversionFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.ImageConversionFlags': ...                        # type: ignore[override, misc]
+    @typing.final
+    class ImageConversionFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.ImageConversionFlag', /) -> 'Qt.ImageConversionFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.ImageConversionFlags': ...                        # type: ignore[override, misc]
         
         AutoColor = ... # type: Qt.ImageConversionFlag
         ColorOnly = ... # type: Qt.ImageConversionFlag
@@ -2244,7 +2317,8 @@ class Qt(sip.simplewrapper):
     NoOpaqueDetection = ...  # type: Qt.ImageConversionFlag
     NoFormatConversion = ...  # type: Qt.ImageConversionFlag
 
-    class WidgetAttribute(int):
+    @typing.final
+    class WidgetAttribute(int, metaclass=sip._enumtype):
         WA_Disabled = ... # type: Qt.WidgetAttribute
         WA_UnderMouse = ... # type: Qt.WidgetAttribute
         WA_MouseTracking = ... # type: Qt.WidgetAttribute
@@ -2455,9 +2529,10 @@ class Qt(sip.simplewrapper):
     WA_ContentsMarginsRespectsSafeArea = ...  # type: Qt.WidgetAttribute
     WA_StyleSheetTarget = ...  # type: Qt.WidgetAttribute
 
-    class WindowState(int):
-        def __or__ (self, other: 'Qt.WindowState') -> 'Qt.WindowStates': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.WindowStates': ...                # type: ignore[override, misc]
+    @typing.final
+    class WindowState(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.WindowState', /) -> 'Qt.WindowStates': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.WindowStates': ...                # type: ignore[override, misc]
         
         WindowNoState = ... # type: Qt.WindowState
         WindowMinimized = ... # type: Qt.WindowState
@@ -2471,9 +2546,10 @@ class Qt(sip.simplewrapper):
     WindowFullScreen = ...  # type: Qt.WindowState
     WindowActive = ...  # type: Qt.WindowState
 
-    class WindowType(int):
-        def __or__ (self, other: 'Qt.WindowType') -> 'Qt.WindowFlags': ...  # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.WindowFlags': ...             # type: ignore[override, misc]
+    @typing.final
+    class WindowType(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.WindowType', /) -> 'Qt.WindowFlags': ...  # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.WindowFlags': ...             # type: ignore[override, misc]
 
         Widget = ... # type: Qt.WindowType
         Window = ... # type: Qt.WindowType
@@ -2553,7 +2629,8 @@ class Qt(sip.simplewrapper):
     CoverWindow = ...  # type: Qt.WindowType
     MaximizeUsingFullscreenGeometryHint = ...  # type: Qt.WindowType
 
-    class TextElideMode(int):
+    @typing.final
+    class TextElideMode(int, metaclass=sip._enumtype):
         ElideLeft = ... # type: Qt.TextElideMode
         ElideRight = ... # type: Qt.TextElideMode
         ElideMiddle = ... # type: Qt.TextElideMode
@@ -2564,7 +2641,8 @@ class Qt(sip.simplewrapper):
     ElideMiddle = ...  # type: Qt.TextElideMode
     ElideNone = ...  # type: Qt.TextElideMode
 
-    class TextFlag(int):
+    @typing.final
+    class TextFlag(int, metaclass=sip._enumtype):
         TextSingleLine = ... # type: Qt.TextFlag
         TextDontClip = ... # type: Qt.TextFlag
         TextExpandTabs = ... # type: Qt.TextFlag
@@ -2587,9 +2665,10 @@ class Qt(sip.simplewrapper):
     TextHideMnemonic = ...  # type: Qt.TextFlag
     TextJustificationForced = ...  # type: Qt.TextFlag
 
-    class AlignmentFlag(int):
-        def __or__ (self, other: 'Qt.AlignmentFlag') -> 'Qt.Alignment': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.Alignment': ...                  # type: ignore[override, misc]
+    @typing.final
+    class AlignmentFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.AlignmentFlag', /) -> 'Qt.Alignment': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.Alignment': ...                  # type: ignore[override, misc]
 
         
         AlignLeft = ... # type: Qt.AlignmentFlag
@@ -2622,14 +2701,16 @@ class Qt(sip.simplewrapper):
     AlignCenter = ...  # type: Qt.AlignmentFlag
     AlignBaseline = ...  # type: Qt.AlignmentFlag
 
-    class SortOrder(int):
+    @typing.final
+    class SortOrder(int, metaclass=sip._enumtype):
         AscendingOrder = ... # type: Qt.SortOrder
         DescendingOrder = ... # type: Qt.SortOrder
 
     AscendingOrder = ...  # type: Qt.SortOrder
     DescendingOrder = ...  # type: Qt.SortOrder
 
-    class FocusPolicy(int):
+    @typing.final
+    class FocusPolicy(int, metaclass=sip._enumtype):
         NoFocus = ... # type: Qt.FocusPolicy
         TabFocus = ... # type: Qt.FocusPolicy
         ClickFocus = ... # type: Qt.FocusPolicy
@@ -2642,9 +2723,10 @@ class Qt(sip.simplewrapper):
     StrongFocus = ...  # type: Qt.FocusPolicy
     WheelFocus = ...  # type: Qt.FocusPolicy
 
-    class Orientation(int):
-        def __or__ (self, other: 'Qt.Orientation') -> 'Qt.Orientations': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.Orientations': ...                # type: ignore[override, misc]
+    @typing.final
+    class Orientation(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.Orientation', /) -> 'Qt.Orientations': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.Orientations': ...                # type: ignore[override, misc]
         
         Horizontal = ... # type: Qt.Orientation
         Vertical = ... # type: Qt.Orientation
@@ -2652,9 +2734,10 @@ class Qt(sip.simplewrapper):
     Horizontal = ...  # type: Qt.Orientation
     Vertical = ...  # type: Qt.Orientation
 
-    class MouseButton(int):
-        def __or__ (self, other: 'Qt.MouseButton') -> 'Qt.MouseButtons': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.MouseButtons': ...                # type: ignore[override, misc]
+    @typing.final
+    class MouseButton(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.MouseButton', /) -> 'Qt.MouseButtons': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.MouseButtons': ...                # type: ignore[override, misc]
         
         NoButton = ... # type: Qt.MouseButton
         AllButtons = ... # type: Qt.MouseButton
@@ -2728,7 +2811,8 @@ class Qt(sip.simplewrapper):
     ExtraButton23 = ...  # type: Qt.MouseButton
     ExtraButton24 = ...  # type: Qt.MouseButton
 
-    class Modifier(int):
+    @typing.final
+    class Modifier(int, metaclass=sip._enumtype):
         META = ... # type: Qt.Modifier
         SHIFT = ... # type: Qt.Modifier
         CTRL = ... # type: Qt.Modifier
@@ -2743,9 +2827,10 @@ class Qt(sip.simplewrapper):
     MODIFIER_MASK = ...  # type: Qt.Modifier
     UNICODE_ACCEL = ...  # type: Qt.Modifier
 
-    class KeyboardModifier(int):
-        def __or__ (self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'Qt.KeyboardModifiers': ...                     # type: ignore[override, misc]
+    @typing.final
+    class KeyboardModifier(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'Qt.KeyboardModifier', /) -> 'Qt.KeyboardModifiers': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'Qt.KeyboardModifiers': ...                     # type: ignore[override, misc]
         
         NoModifier = ... # type: Qt.KeyboardModifier
         ShiftModifier = ... # type: Qt.KeyboardModifier
@@ -2765,7 +2850,8 @@ class Qt(sip.simplewrapper):
     GroupSwitchModifier = ...  # type: Qt.KeyboardModifier
     KeyboardModifierMask = ...  # type: Qt.KeyboardModifier
 
-    class GlobalColor(int):
+    @typing.final
+    class GlobalColor(int, metaclass=sip._enumtype):
         color0 = ... # type: Qt.GlobalColor
         color1 = ... # type: Qt.GlobalColor
         black = ... # type: Qt.GlobalColor
@@ -2824,12 +2910,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.KeyboardModifiers': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
-        def __and__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
-        def __xor__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int]) -> 'Qt.KeyboardModifiers': ...
-        def __ror__ (self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
-        def __rand__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
-        def __rxor__(self, other: 'Qt.KeyboardModifier') -> 'Qt.KeyboardModifiers': ...
+        def __or__ (self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int], /) -> 'Qt.KeyboardModifiers': ...
+        def __and__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int], /) -> 'Qt.KeyboardModifiers': ...
+        def __xor__(self, other: typing.Union['Qt.KeyboardModifiers', 'Qt.KeyboardModifier', int], /) -> 'Qt.KeyboardModifiers': ...
+        def __ror__ (self, other: 'Qt.KeyboardModifier', /) -> 'Qt.KeyboardModifiers': ...
+        def __rand__(self, other: 'Qt.KeyboardModifier', /) -> 'Qt.KeyboardModifiers': ...
+        def __rxor__(self, other: 'Qt.KeyboardModifier', /) -> 'Qt.KeyboardModifiers': ...
 
     class MouseButtons(sip.simplewrapper):
 
@@ -2847,12 +2933,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.MouseButtons': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.MouseButtons', 'Qt.MouseButton', int]) -> 'Qt.MouseButtons': ...
-        def __and__(self, other: typing.Union['Qt.MouseButtons', 'Qt.MouseButton', int]) -> 'Qt.MouseButtons': ...
-        def __xor__(self, other: typing.Union['Qt.MouseButtons', 'Qt.MouseButton', int]) -> 'Qt.MouseButtons': ...
-        def __ror__ (self, other: 'Qt.MouseButton') -> 'Qt.MouseButtons': ...
-        def __rand__(self, other: 'Qt.MouseButton') -> 'Qt.MouseButtons': ...
-        def __rxor__(self, other: 'Qt.MouseButton') -> 'Qt.MouseButtons': ...
+        def __or__ (self, other: typing.Union['Qt.MouseButtons', 'Qt.MouseButton', int], /) -> 'Qt.MouseButtons': ...
+        def __and__(self, other: typing.Union['Qt.MouseButtons', 'Qt.MouseButton', int], /) -> 'Qt.MouseButtons': ...
+        def __xor__(self, other: typing.Union['Qt.MouseButtons', 'Qt.MouseButton', int], /) -> 'Qt.MouseButtons': ...
+        def __ror__ (self, other: 'Qt.MouseButton', /) -> 'Qt.MouseButtons': ...
+        def __rand__(self, other: 'Qt.MouseButton', /) -> 'Qt.MouseButtons': ...
+        def __rxor__(self, other: 'Qt.MouseButton', /) -> 'Qt.MouseButtons': ...
 
     class Orientations(sip.simplewrapper):
 
@@ -2870,12 +2956,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.Orientations': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.Orientations', 'Qt.Orientation', int]) -> 'Qt.Orientations': ...
-        def __and__(self, other: typing.Union['Qt.Orientations', 'Qt.Orientation', int]) -> 'Qt.Orientations': ...
-        def __xor__(self, other: typing.Union['Qt.Orientations', 'Qt.Orientation', int]) -> 'Qt.Orientations': ...
-        def __ror__ (self, other: 'Qt.Orientation') -> 'Qt.Orientations': ...
-        def __rand__(self, other: 'Qt.Orientation') -> 'Qt.Orientations': ...
-        def __rxor__(self, other: 'Qt.Orientation') -> 'Qt.Orientations': ...
+        def __or__ (self, other: typing.Union['Qt.Orientations', 'Qt.Orientation', int], /) -> 'Qt.Orientations': ...
+        def __and__(self, other: typing.Union['Qt.Orientations', 'Qt.Orientation', int], /) -> 'Qt.Orientations': ...
+        def __xor__(self, other: typing.Union['Qt.Orientations', 'Qt.Orientation', int], /) -> 'Qt.Orientations': ...
+        def __ror__ (self, other: 'Qt.Orientation', /) -> 'Qt.Orientations': ...
+        def __rand__(self, other: 'Qt.Orientation', /) -> 'Qt.Orientations': ...
+        def __rxor__(self, other: 'Qt.Orientation', /) -> 'Qt.Orientations': ...
 
     class Alignment(sip.simplewrapper):
 
@@ -2891,12 +2977,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.Alignment': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int]) -> 'Qt.Alignment': ...
-        def __and__(self, other: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int]) -> 'Qt.Alignment': ...
-        def __xor__(self, other: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int]) -> 'Qt.Alignment': ...
-        def __ror__ (self, other: 'Qt.AlignmentFlag') -> 'Qt.Alignment': ...
-        def __rand__(self, other: 'Qt.AlignmentFlag') -> 'Qt.Alignment': ...
-        def __rxor__(self, other: 'Qt.AlignmentFlag') -> 'Qt.Alignment': ...
+        def __or__ (self, other: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int], /) -> 'Qt.Alignment': ...
+        def __and__(self, other: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int], /) -> 'Qt.Alignment': ...
+        def __xor__(self, other: typing.Union['Qt.Alignment', 'Qt.AlignmentFlag', int], /) -> 'Qt.Alignment': ...
+        def __ror__ (self, other: 'Qt.AlignmentFlag', /) -> 'Qt.Alignment': ...
+        def __rand__(self, other: 'Qt.AlignmentFlag', /) -> 'Qt.Alignment': ...
+        def __rxor__(self, other: 'Qt.AlignmentFlag', /) -> 'Qt.Alignment': ...
 
     class WindowFlags(sip.simplewrapper):
 
@@ -2912,12 +2998,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.WindowFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...
-        def __and__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...
-        def __xor__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int]) -> 'Qt.WindowFlags': ...
-        def __ror__ (self, other: 'Qt.WindowType') -> 'Qt.WindowFlags': ...
-        def __rand__(self, other: 'Qt.WindowType') -> 'Qt.WindowFlags': ...
-        def __rxor__(self, other: 'Qt.WindowType') -> 'Qt.WindowFlags': ...
+        def __or__ (self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int], /) -> 'Qt.WindowFlags': ...
+        def __and__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int], /) -> 'Qt.WindowFlags': ...
+        def __xor__(self, other: typing.Union['Qt.WindowFlags', 'Qt.WindowType', int], /) -> 'Qt.WindowFlags': ...
+        def __ror__ (self, other: 'Qt.WindowType', /) -> 'Qt.WindowFlags': ...
+        def __rand__(self, other: 'Qt.WindowType', /) -> 'Qt.WindowFlags': ...
+        def __rxor__(self, other: 'Qt.WindowType', /) -> 'Qt.WindowFlags': ...
 
     class WindowStates(sip.simplewrapper):
 
@@ -2935,12 +3021,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.WindowStates': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.WindowStates', 'Qt.WindowState', int]) -> 'Qt.WindowStates': ...
-        def __and__(self, other: typing.Union['Qt.WindowStates', 'Qt.WindowState', int]) -> 'Qt.WindowStates': ...
-        def __xor__(self, other: typing.Union['Qt.WindowStates', 'Qt.WindowState', int]) -> 'Qt.WindowStates': ...
-        def __ror__ (self, other: 'Qt.WindowState') -> 'Qt.WindowStates': ...
-        def __rand__(self, other: 'Qt.WindowState') -> 'Qt.WindowStates': ...
-        def __rxor__(self, other: 'Qt.WindowState') -> 'Qt.WindowStates': ...
+        def __or__ (self, other: typing.Union['Qt.WindowStates', 'Qt.WindowState', int], /) -> 'Qt.WindowStates': ...
+        def __and__(self, other: typing.Union['Qt.WindowStates', 'Qt.WindowState', int], /) -> 'Qt.WindowStates': ...
+        def __xor__(self, other: typing.Union['Qt.WindowStates', 'Qt.WindowState', int], /) -> 'Qt.WindowStates': ...
+        def __ror__ (self, other: 'Qt.WindowState', /) -> 'Qt.WindowStates': ...
+        def __rand__(self, other: 'Qt.WindowState', /) -> 'Qt.WindowStates': ...
+        def __rxor__(self, other: 'Qt.WindowState', /) -> 'Qt.WindowStates': ...
 
     class ImageConversionFlags(sip.simplewrapper):
 
@@ -2958,12 +3044,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.ImageConversionFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.ImageConversionFlags', 'Qt.ImageConversionFlag', int]) -> 'Qt.ImageConversionFlags': ...
-        def __and__(self, other: typing.Union['Qt.ImageConversionFlags', 'Qt.ImageConversionFlag', int]) -> 'Qt.ImageConversionFlags': ...
-        def __xor__(self, other: typing.Union['Qt.ImageConversionFlags', 'Qt.ImageConversionFlag', int]) -> 'Qt.ImageConversionFlags': ...
-        def __ror__ (self, other: 'Qt.ImageConversionFlag') -> 'Qt.ImageConversionFlags': ...
-        def __rand__(self, other: 'Qt.ImageConversionFlag') -> 'Qt.ImageConversionFlags': ...
-        def __rxor__(self, other: 'Qt.ImageConversionFlag') -> 'Qt.ImageConversionFlags': ...
+        def __or__ (self, other: typing.Union['Qt.ImageConversionFlags', 'Qt.ImageConversionFlag', int], /) -> 'Qt.ImageConversionFlags': ...
+        def __and__(self, other: typing.Union['Qt.ImageConversionFlags', 'Qt.ImageConversionFlag', int], /) -> 'Qt.ImageConversionFlags': ...
+        def __xor__(self, other: typing.Union['Qt.ImageConversionFlags', 'Qt.ImageConversionFlag', int], /) -> 'Qt.ImageConversionFlags': ...
+        def __ror__ (self, other: 'Qt.ImageConversionFlag', /) -> 'Qt.ImageConversionFlags': ...
+        def __rand__(self, other: 'Qt.ImageConversionFlag', /) -> 'Qt.ImageConversionFlags': ...
+        def __rxor__(self, other: 'Qt.ImageConversionFlag', /) -> 'Qt.ImageConversionFlags': ...
 
     class DockWidgetAreas(sip.simplewrapper):
 
@@ -2981,12 +3067,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.DockWidgetAreas': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.DockWidgetAreas', 'Qt.DockWidgetArea', int]) -> 'Qt.DockWidgetAreas': ...
-        def __and__(self, other: typing.Union['Qt.DockWidgetAreas', 'Qt.DockWidgetArea', int]) -> 'Qt.DockWidgetAreas': ...
-        def __xor__(self, other: typing.Union['Qt.DockWidgetAreas', 'Qt.DockWidgetArea', int]) -> 'Qt.DockWidgetAreas': ...
-        def __ror__ (self, other: 'Qt.DockWidgetArea') -> 'Qt.DockWidgetAreas': ...
-        def __rand__(self, other: 'Qt.DockWidgetArea') -> 'Qt.DockWidgetAreas': ...
-        def __rxor__(self, other: 'Qt.DockWidgetArea') -> 'Qt.DockWidgetAreas': ...
+        def __or__ (self, other: typing.Union['Qt.DockWidgetAreas', 'Qt.DockWidgetArea', int], /) -> 'Qt.DockWidgetAreas': ...
+        def __and__(self, other: typing.Union['Qt.DockWidgetAreas', 'Qt.DockWidgetArea', int], /) -> 'Qt.DockWidgetAreas': ...
+        def __xor__(self, other: typing.Union['Qt.DockWidgetAreas', 'Qt.DockWidgetArea', int], /) -> 'Qt.DockWidgetAreas': ...
+        def __ror__ (self, other: 'Qt.DockWidgetArea', /) -> 'Qt.DockWidgetAreas': ...
+        def __rand__(self, other: 'Qt.DockWidgetArea', /) -> 'Qt.DockWidgetAreas': ...
+        def __rxor__(self, other: 'Qt.DockWidgetArea', /) -> 'Qt.DockWidgetAreas': ...
 
     class ToolBarAreas(sip.simplewrapper):
 
@@ -3004,12 +3090,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.ToolBarAreas': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.ToolBarAreas', 'Qt.ToolBarArea', int]) -> 'Qt.ToolBarAreas': ...
-        def __and__(self, other: typing.Union['Qt.ToolBarAreas', 'Qt.ToolBarArea', int]) -> 'Qt.ToolBarAreas': ...
-        def __xor__(self, other: typing.Union['Qt.ToolBarAreas', 'Qt.ToolBarArea', int]) -> 'Qt.ToolBarAreas': ...
-        def __ror__ (self, other: 'Qt.ToolBarArea') -> 'Qt.ToolBarAreas': ...
-        def __rand__(self, other: 'Qt.ToolBarArea') -> 'Qt.ToolBarAreas': ...
-        def __rxor__(self, other: 'Qt.ToolBarArea') -> 'Qt.ToolBarAreas': ...
+        def __or__ (self, other: typing.Union['Qt.ToolBarAreas', 'Qt.ToolBarArea', int], /) -> 'Qt.ToolBarAreas': ...
+        def __and__(self, other: typing.Union['Qt.ToolBarAreas', 'Qt.ToolBarArea', int], /) -> 'Qt.ToolBarAreas': ...
+        def __xor__(self, other: typing.Union['Qt.ToolBarAreas', 'Qt.ToolBarArea', int], /) -> 'Qt.ToolBarAreas': ...
+        def __ror__ (self, other: 'Qt.ToolBarArea', /) -> 'Qt.ToolBarAreas': ...
+        def __rand__(self, other: 'Qt.ToolBarArea', /) -> 'Qt.ToolBarAreas': ...
+        def __rxor__(self, other: 'Qt.ToolBarArea', /) -> 'Qt.ToolBarAreas': ...
 
     class InputMethodQueries(sip.simplewrapper):
 
@@ -3027,12 +3113,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.InputMethodQueries': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.InputMethodQueries', 'Qt.InputMethodQuery', int]) -> 'Qt.InputMethodQueries': ...
-        def __and__(self, other: typing.Union['Qt.InputMethodQueries', 'Qt.InputMethodQuery', int]) -> 'Qt.InputMethodQueries': ...
-        def __xor__(self, other: typing.Union['Qt.InputMethodQueries', 'Qt.InputMethodQuery', int]) -> 'Qt.InputMethodQueries': ...
-        def __ror__ (self, other: 'Qt.InputMethodQuery') -> 'Qt.InputMethodQueries': ...
-        def __rand__(self, other: 'Qt.InputMethodQuery') -> 'Qt.InputMethodQueries': ...
-        def __rxor__(self, other: 'Qt.InputMethodQuery') -> 'Qt.InputMethodQueries': ...
+        def __or__ (self, other: typing.Union['Qt.InputMethodQueries', 'Qt.InputMethodQuery', int], /) -> 'Qt.InputMethodQueries': ...
+        def __and__(self, other: typing.Union['Qt.InputMethodQueries', 'Qt.InputMethodQuery', int], /) -> 'Qt.InputMethodQueries': ...
+        def __xor__(self, other: typing.Union['Qt.InputMethodQueries', 'Qt.InputMethodQuery', int], /) -> 'Qt.InputMethodQueries': ...
+        def __ror__ (self, other: 'Qt.InputMethodQuery', /) -> 'Qt.InputMethodQueries': ...
+        def __rand__(self, other: 'Qt.InputMethodQuery', /) -> 'Qt.InputMethodQueries': ...
+        def __rxor__(self, other: 'Qt.InputMethodQuery', /) -> 'Qt.InputMethodQueries': ...
 
     class DropActions(sip.simplewrapper):
 
@@ -3050,12 +3136,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.DropActions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.DropActions', 'Qt.DropAction', int]) -> 'Qt.DropActions': ...
-        def __and__(self, other: typing.Union['Qt.DropActions', 'Qt.DropAction', int]) -> 'Qt.DropActions': ...
-        def __xor__(self, other: typing.Union['Qt.DropActions', 'Qt.DropAction', int]) -> 'Qt.DropActions': ...
-        def __ror__ (self, other: 'Qt.DropAction') -> 'Qt.DropActions': ...
-        def __rand__(self, other: 'Qt.DropAction') -> 'Qt.DropActions': ...
-        def __rxor__(self, other: 'Qt.DropAction') -> 'Qt.DropActions': ...
+        def __or__ (self, other: typing.Union['Qt.DropActions', 'Qt.DropAction', int], /) -> 'Qt.DropActions': ...
+        def __and__(self, other: typing.Union['Qt.DropActions', 'Qt.DropAction', int], /) -> 'Qt.DropActions': ...
+        def __xor__(self, other: typing.Union['Qt.DropActions', 'Qt.DropAction', int], /) -> 'Qt.DropActions': ...
+        def __ror__ (self, other: 'Qt.DropAction', /) -> 'Qt.DropActions': ...
+        def __rand__(self, other: 'Qt.DropAction', /) -> 'Qt.DropActions': ...
+        def __rxor__(self, other: 'Qt.DropAction', /) -> 'Qt.DropActions': ...
 
     class ItemFlags(sip.simplewrapper):
 
@@ -3073,12 +3159,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.ItemFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.ItemFlags', 'Qt.ItemFlag', int]) -> 'Qt.ItemFlags': ...
-        def __and__(self, other: typing.Union['Qt.ItemFlags', 'Qt.ItemFlag', int]) -> 'Qt.ItemFlags': ...
-        def __xor__(self, other: typing.Union['Qt.ItemFlags', 'Qt.ItemFlag', int]) -> 'Qt.ItemFlags': ...
-        def __ror__ (self, other: 'Qt.ItemFlag') -> 'Qt.ItemFlags': ...
-        def __rand__(self, other: 'Qt.ItemFlag') -> 'Qt.ItemFlags': ...
-        def __rxor__(self, other: 'Qt.ItemFlag') -> 'Qt.ItemFlags': ...
+        def __or__ (self, other: typing.Union['Qt.ItemFlags', 'Qt.ItemFlag', int], /) -> 'Qt.ItemFlags': ...
+        def __and__(self, other: typing.Union['Qt.ItemFlags', 'Qt.ItemFlag', int], /) -> 'Qt.ItemFlags': ...
+        def __xor__(self, other: typing.Union['Qt.ItemFlags', 'Qt.ItemFlag', int], /) -> 'Qt.ItemFlags': ...
+        def __ror__ (self, other: 'Qt.ItemFlag', /) -> 'Qt.ItemFlags': ...
+        def __rand__(self, other: 'Qt.ItemFlag', /) -> 'Qt.ItemFlags': ...
+        def __rxor__(self, other: 'Qt.ItemFlag', /) -> 'Qt.ItemFlags': ...
 
     class MatchFlags(sip.simplewrapper):
 
@@ -3096,12 +3182,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.MatchFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.MatchFlags', 'Qt.MatchFlag', int]) -> 'Qt.MatchFlags': ...
-        def __and__(self, other: typing.Union['Qt.MatchFlags', 'Qt.MatchFlag', int]) -> 'Qt.MatchFlags': ...
-        def __xor__(self, other: typing.Union['Qt.MatchFlags', 'Qt.MatchFlag', int]) -> 'Qt.MatchFlags': ...
-        def __ror__ (self, other: 'Qt.MatchFlag') -> 'Qt.MatchFlags': ...
-        def __rand__(self, other: 'Qt.MatchFlag') -> 'Qt.MatchFlags': ...
-        def __rxor__(self, other: 'Qt.MatchFlag') -> 'Qt.MatchFlags': ...
+        def __or__ (self, other: typing.Union['Qt.MatchFlags', 'Qt.MatchFlag', int], /) -> 'Qt.MatchFlags': ...
+        def __and__(self, other: typing.Union['Qt.MatchFlags', 'Qt.MatchFlag', int], /) -> 'Qt.MatchFlags': ...
+        def __xor__(self, other: typing.Union['Qt.MatchFlags', 'Qt.MatchFlag', int], /) -> 'Qt.MatchFlags': ...
+        def __ror__ (self, other: 'Qt.MatchFlag', /) -> 'Qt.MatchFlags': ...
+        def __rand__(self, other: 'Qt.MatchFlag', /) -> 'Qt.MatchFlags': ...
+        def __rxor__(self, other: 'Qt.MatchFlag', /) -> 'Qt.MatchFlags': ...
 
     class TextInteractionFlags(sip.simplewrapper):
 
@@ -3119,12 +3205,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.TextInteractionFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.TextInteractionFlags', 'Qt.TextInteractionFlag', int]) -> 'Qt.TextInteractionFlags': ...
-        def __and__(self, other: typing.Union['Qt.TextInteractionFlags', 'Qt.TextInteractionFlag', int]) -> 'Qt.TextInteractionFlags': ...
-        def __xor__(self, other: typing.Union['Qt.TextInteractionFlags', 'Qt.TextInteractionFlag', int]) -> 'Qt.TextInteractionFlags': ...
-        def __ror__ (self, other: 'Qt.TextInteractionFlag') -> 'Qt.TextInteractionFlags': ...
-        def __rand__(self, other: 'Qt.TextInteractionFlag') -> 'Qt.TextInteractionFlags': ...
-        def __rxor__(self, other: 'Qt.TextInteractionFlag') -> 'Qt.TextInteractionFlags': ...
+        def __or__ (self, other: typing.Union['Qt.TextInteractionFlags', 'Qt.TextInteractionFlag', int], /) -> 'Qt.TextInteractionFlags': ...
+        def __and__(self, other: typing.Union['Qt.TextInteractionFlags', 'Qt.TextInteractionFlag', int], /) -> 'Qt.TextInteractionFlags': ...
+        def __xor__(self, other: typing.Union['Qt.TextInteractionFlags', 'Qt.TextInteractionFlag', int], /) -> 'Qt.TextInteractionFlags': ...
+        def __ror__ (self, other: 'Qt.TextInteractionFlag', /) -> 'Qt.TextInteractionFlags': ...
+        def __rand__(self, other: 'Qt.TextInteractionFlag', /) -> 'Qt.TextInteractionFlags': ...
+        def __rxor__(self, other: 'Qt.TextInteractionFlag', /) -> 'Qt.TextInteractionFlags': ...
 
     class InputMethodHints(sip.simplewrapper):
 
@@ -3142,12 +3228,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.InputMethodHints': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.InputMethodHints', 'Qt.InputMethodHint', int]) -> 'Qt.InputMethodHints': ...
-        def __and__(self, other: typing.Union['Qt.InputMethodHints', 'Qt.InputMethodHint', int]) -> 'Qt.InputMethodHints': ...
-        def __xor__(self, other: typing.Union['Qt.InputMethodHints', 'Qt.InputMethodHint', int]) -> 'Qt.InputMethodHints': ...
-        def __ror__ (self, other: 'Qt.InputMethodHint') -> 'Qt.InputMethodHints': ...
-        def __rand__(self, other: 'Qt.InputMethodHint') -> 'Qt.InputMethodHints': ...
-        def __rxor__(self, other: 'Qt.InputMethodHint') -> 'Qt.InputMethodHints': ...
+        def __or__ (self, other: typing.Union['Qt.InputMethodHints', 'Qt.InputMethodHint', int], /) -> 'Qt.InputMethodHints': ...
+        def __and__(self, other: typing.Union['Qt.InputMethodHints', 'Qt.InputMethodHint', int], /) -> 'Qt.InputMethodHints': ...
+        def __xor__(self, other: typing.Union['Qt.InputMethodHints', 'Qt.InputMethodHint', int], /) -> 'Qt.InputMethodHints': ...
+        def __ror__ (self, other: 'Qt.InputMethodHint', /) -> 'Qt.InputMethodHints': ...
+        def __rand__(self, other: 'Qt.InputMethodHint', /) -> 'Qt.InputMethodHints': ...
+        def __rxor__(self, other: 'Qt.InputMethodHint', /) -> 'Qt.InputMethodHints': ...
 
     class TouchPointStates(sip.simplewrapper):
 
@@ -3165,12 +3251,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.TouchPointStates': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.TouchPointStates', 'Qt.TouchPointState', int]) -> 'Qt.TouchPointStates': ...
-        def __and__(self, other: typing.Union['Qt.TouchPointStates', 'Qt.TouchPointState', int]) -> 'Qt.TouchPointStates': ...
-        def __xor__(self, other: typing.Union['Qt.TouchPointStates', 'Qt.TouchPointState', int]) -> 'Qt.TouchPointStates': ...
-        def __ror__ (self, other: 'Qt.TouchPointState') -> 'Qt.TouchPointStates': ...
-        def __rand__(self, other: 'Qt.TouchPointState') -> 'Qt.TouchPointStates': ...
-        def __rxor__(self, other: 'Qt.TouchPointState') -> 'Qt.TouchPointStates': ...
+        def __or__ (self, other: typing.Union['Qt.TouchPointStates', 'Qt.TouchPointState', int], /) -> 'Qt.TouchPointStates': ...
+        def __and__(self, other: typing.Union['Qt.TouchPointStates', 'Qt.TouchPointState', int], /) -> 'Qt.TouchPointStates': ...
+        def __xor__(self, other: typing.Union['Qt.TouchPointStates', 'Qt.TouchPointState', int], /) -> 'Qt.TouchPointStates': ...
+        def __ror__ (self, other: 'Qt.TouchPointState', /) -> 'Qt.TouchPointStates': ...
+        def __rand__(self, other: 'Qt.TouchPointState', /) -> 'Qt.TouchPointStates': ...
+        def __rxor__(self, other: 'Qt.TouchPointState', /) -> 'Qt.TouchPointStates': ...
 
     class GestureFlags(sip.simplewrapper):
 
@@ -3188,12 +3274,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.GestureFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.GestureFlags', 'Qt.GestureFlag', int]) -> 'Qt.GestureFlags': ...
-        def __and__(self, other: typing.Union['Qt.GestureFlags', 'Qt.GestureFlag', int]) -> 'Qt.GestureFlags': ...
-        def __xor__(self, other: typing.Union['Qt.GestureFlags', 'Qt.GestureFlag', int]) -> 'Qt.GestureFlags': ...
-        def __ror__ (self, other: 'Qt.GestureFlag') -> 'Qt.GestureFlags': ...
-        def __rand__(self, other: 'Qt.GestureFlag') -> 'Qt.GestureFlags': ...
-        def __rxor__(self, other: 'Qt.GestureFlag') -> 'Qt.GestureFlags': ...
+        def __or__ (self, other: typing.Union['Qt.GestureFlags', 'Qt.GestureFlag', int], /) -> 'Qt.GestureFlags': ...
+        def __and__(self, other: typing.Union['Qt.GestureFlags', 'Qt.GestureFlag', int], /) -> 'Qt.GestureFlags': ...
+        def __xor__(self, other: typing.Union['Qt.GestureFlags', 'Qt.GestureFlag', int], /) -> 'Qt.GestureFlags': ...
+        def __ror__ (self, other: 'Qt.GestureFlag', /) -> 'Qt.GestureFlags': ...
+        def __rand__(self, other: 'Qt.GestureFlag', /) -> 'Qt.GestureFlags': ...
+        def __rxor__(self, other: 'Qt.GestureFlag', /) -> 'Qt.GestureFlags': ...
 
     class ScreenOrientations(sip.simplewrapper):
 
@@ -3211,12 +3297,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.ScreenOrientations': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.ScreenOrientations', 'Qt.ScreenOrientation', int]) -> 'Qt.ScreenOrientations': ...
-        def __and__(self, other: typing.Union['Qt.ScreenOrientations', 'Qt.ScreenOrientation', int]) -> 'Qt.ScreenOrientations': ...
-        def __xor__(self, other: typing.Union['Qt.ScreenOrientations', 'Qt.ScreenOrientation', int]) -> 'Qt.ScreenOrientations': ...
-        def __ror__ (self, other: 'Qt.ScreenOrientation') -> 'Qt.ScreenOrientations': ...
-        def __rand__(self, other: 'Qt.ScreenOrientation') -> 'Qt.ScreenOrientations': ...
-        def __rxor__(self, other: 'Qt.ScreenOrientation') -> 'Qt.ScreenOrientations': ...
+        def __or__ (self, other: typing.Union['Qt.ScreenOrientations', 'Qt.ScreenOrientation', int], /) -> 'Qt.ScreenOrientations': ...
+        def __and__(self, other: typing.Union['Qt.ScreenOrientations', 'Qt.ScreenOrientation', int], /) -> 'Qt.ScreenOrientations': ...
+        def __xor__(self, other: typing.Union['Qt.ScreenOrientations', 'Qt.ScreenOrientation', int], /) -> 'Qt.ScreenOrientations': ...
+        def __ror__ (self, other: 'Qt.ScreenOrientation', /) -> 'Qt.ScreenOrientations': ...
+        def __rand__(self, other: 'Qt.ScreenOrientation', /) -> 'Qt.ScreenOrientations': ...
+        def __rxor__(self, other: 'Qt.ScreenOrientation', /) -> 'Qt.ScreenOrientations': ...
 
     class FindChildOptions(sip.simplewrapper):
 
@@ -3234,12 +3320,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.FindChildOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.FindChildOptions', 'Qt.FindChildOption', int]) -> 'Qt.FindChildOptions': ...
-        def __and__(self, other: typing.Union['Qt.FindChildOptions', 'Qt.FindChildOption', int]) -> 'Qt.FindChildOptions': ...
-        def __xor__(self, other: typing.Union['Qt.FindChildOptions', 'Qt.FindChildOption', int]) -> 'Qt.FindChildOptions': ...
-        def __ror__ (self, other: 'Qt.FindChildOption') -> 'Qt.FindChildOptions': ...
-        def __rand__(self, other: 'Qt.FindChildOption') -> 'Qt.FindChildOptions': ...
-        def __rxor__(self, other: 'Qt.FindChildOption') -> 'Qt.FindChildOptions': ...
+        def __or__ (self, other: typing.Union['Qt.FindChildOptions', 'Qt.FindChildOption', int], /) -> 'Qt.FindChildOptions': ...
+        def __and__(self, other: typing.Union['Qt.FindChildOptions', 'Qt.FindChildOption', int], /) -> 'Qt.FindChildOptions': ...
+        def __xor__(self, other: typing.Union['Qt.FindChildOptions', 'Qt.FindChildOption', int], /) -> 'Qt.FindChildOptions': ...
+        def __ror__ (self, other: 'Qt.FindChildOption', /) -> 'Qt.FindChildOptions': ...
+        def __rand__(self, other: 'Qt.FindChildOption', /) -> 'Qt.FindChildOptions': ...
+        def __rxor__(self, other: 'Qt.FindChildOption', /) -> 'Qt.FindChildOptions': ...
 
     class ApplicationStates(sip.simplewrapper):
 
@@ -3257,12 +3343,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.ApplicationStates': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.ApplicationStates', 'Qt.ApplicationState', int]) -> 'Qt.ApplicationStates': ...
-        def __and__(self, other: typing.Union['Qt.ApplicationStates', 'Qt.ApplicationState', int]) -> 'Qt.ApplicationStates': ...
-        def __xor__(self, other: typing.Union['Qt.ApplicationStates', 'Qt.ApplicationState', int]) -> 'Qt.ApplicationStates': ...
-        def __ror__ (self, other: 'Qt.ApplicationState') -> 'Qt.ApplicationStates': ...
-        def __rand__(self, other: 'Qt.ApplicationState') -> 'Qt.ApplicationStates': ...
-        def __rxor__(self, other: 'Qt.ApplicationState') -> 'Qt.ApplicationStates': ...
+        def __or__ (self, other: typing.Union['Qt.ApplicationStates', 'Qt.ApplicationState', int], /) -> 'Qt.ApplicationStates': ...
+        def __and__(self, other: typing.Union['Qt.ApplicationStates', 'Qt.ApplicationState', int], /) -> 'Qt.ApplicationStates': ...
+        def __xor__(self, other: typing.Union['Qt.ApplicationStates', 'Qt.ApplicationState', int], /) -> 'Qt.ApplicationStates': ...
+        def __ror__ (self, other: 'Qt.ApplicationState', /) -> 'Qt.ApplicationStates': ...
+        def __rand__(self, other: 'Qt.ApplicationState', /) -> 'Qt.ApplicationStates': ...
+        def __rxor__(self, other: 'Qt.ApplicationState', /) -> 'Qt.ApplicationStates': ...
 
     class Edges(sip.simplewrapper):
 
@@ -3280,12 +3366,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.Edges': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.Edges', 'Qt.Edge', int]) -> 'Qt.Edges': ...
-        def __and__(self, other: typing.Union['Qt.Edges', 'Qt.Edge', int]) -> 'Qt.Edges': ...
-        def __xor__(self, other: typing.Union['Qt.Edges', 'Qt.Edge', int]) -> 'Qt.Edges': ...
-        def __ror__ (self, other: 'Qt.Edge') -> 'Qt.Edges': ...
-        def __rand__(self, other: 'Qt.Edge') -> 'Qt.Edges': ...
-        def __rxor__(self, other: 'Qt.Edge') -> 'Qt.Edges': ...
+        def __or__ (self, other: typing.Union['Qt.Edges', 'Qt.Edge', int], /) -> 'Qt.Edges': ...
+        def __and__(self, other: typing.Union['Qt.Edges', 'Qt.Edge', int], /) -> 'Qt.Edges': ...
+        def __xor__(self, other: typing.Union['Qt.Edges', 'Qt.Edge', int], /) -> 'Qt.Edges': ...
+        def __ror__ (self, other: 'Qt.Edge', /) -> 'Qt.Edges': ...
+        def __rand__(self, other: 'Qt.Edge', /) -> 'Qt.Edges': ...
+        def __rxor__(self, other: 'Qt.Edge', /) -> 'Qt.Edges': ...
 
     class MouseEventFlags(sip.simplewrapper):
 
@@ -3303,12 +3389,12 @@ class Qt(sip.simplewrapper):
         def __invert__(self) -> 'Qt.MouseEventFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['Qt.MouseEventFlags', 'Qt.MouseEventFlag', int]) -> 'Qt.MouseEventFlags': ...
-        def __and__(self, other: typing.Union['Qt.MouseEventFlags', 'Qt.MouseEventFlag', int]) -> 'Qt.MouseEventFlags': ...
-        def __xor__(self, other: typing.Union['Qt.MouseEventFlags', 'Qt.MouseEventFlag', int]) -> 'Qt.MouseEventFlags': ...
-        def __ror__ (self, other: 'Qt.MouseEventFlag') -> 'Qt.MouseEventFlags': ...
-        def __rand__(self, other: 'Qt.MouseEventFlag') -> 'Qt.MouseEventFlags': ...
-        def __rxor__(self, other: 'Qt.MouseEventFlag') -> 'Qt.MouseEventFlags': ...
+        def __or__ (self, other: typing.Union['Qt.MouseEventFlags', 'Qt.MouseEventFlag', int], /) -> 'Qt.MouseEventFlags': ...
+        def __and__(self, other: typing.Union['Qt.MouseEventFlags', 'Qt.MouseEventFlag', int], /) -> 'Qt.MouseEventFlags': ...
+        def __xor__(self, other: typing.Union['Qt.MouseEventFlags', 'Qt.MouseEventFlag', int], /) -> 'Qt.MouseEventFlags': ...
+        def __ror__ (self, other: 'Qt.MouseEventFlag', /) -> 'Qt.MouseEventFlags': ...
+        def __rand__(self, other: 'Qt.MouseEventFlag', /) -> 'Qt.MouseEventFlags': ...
+        def __rxor__(self, other: 'Qt.MouseEventFlag', /) -> 'Qt.MouseEventFlags': ...
 
     def convertFromPlainText(self, plain: str, mode: QtCore.Qt.WhiteSpaceMode = ...) -> str: ...
     def mightBeRichText(self, a0: str) -> bool: ...
@@ -3359,19 +3445,19 @@ class QObject(sip.wrapper):
     def setObjectName(self, name: str) -> None: ...
     def objectName(self) -> str: ...
     @typing.overload
-    def findChildren(self, type: typing.Type[QObjectT], name: str = ..., options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List[QObjectT]: ...
+    def findChildren(self, type: typing.Type[_QObjectT], name: str = ..., options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List[_QObjectT]: ...
     @typing.overload
     def findChildren(self, types: typing.Tuple[typing.Type[QObject], ...], name: str = ..., options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List['QObject']: ...
     @typing.overload
-    def findChildren(self, type: typing.Type[QObjectT], regExp: 'QRegExp', options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List[QObjectT]: ...
+    def findChildren(self, type: typing.Type[_QObjectT], regExp: 'QRegExp', options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List[_QObjectT]: ...
     @typing.overload
     def findChildren(self, types: typing.Tuple[typing.Type[QObject], ...], regExp: 'QRegExp', options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List['QObject']: ...
     @typing.overload
-    def findChildren(self, type: typing.Type[QObjectT], re: 'QRegularExpression', options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List[QObjectT]: ...
+    def findChildren(self, type: typing.Type[_QObjectT], re: 'QRegularExpression', options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List[_QObjectT]: ...
     @typing.overload
     def findChildren(self, types: typing.Tuple[typing.Type[QObject], ...], re: 'QRegularExpression', options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.List['QObject']: ...
     @typing.overload
-    def findChild(self, type: typing.Type[QObjectT], name: str = ..., options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.Optional[QObjectT]: ...
+    def findChild(self, type: typing.Type[_QObjectT], name: str = ..., options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> typing.Optional[_QObjectT]: ...
     @typing.overload
     def findChild(self, types: typing.Tuple[typing.Type[QObject], ...], name: str = ..., options: typing.Union[Qt.FindChildOptions, Qt.FindChildOption] = ...) -> 'typing.Optional[QObject]': ...
     def tr(self, sourceText: str, disambiguation: typing.Optional[str] = ..., n: int = ...) -> str: ...
@@ -3383,14 +3469,16 @@ class QObject(sip.wrapper):
 
 class QAbstractAnimation(QObject):
 
-    class DeletionPolicy(int):
+    @typing.final
+    class DeletionPolicy(int, metaclass=sip._enumtype):
         KeepWhenStopped = ... # type: QAbstractAnimation.DeletionPolicy
         DeleteWhenStopped = ... # type: QAbstractAnimation.DeletionPolicy
 
     KeepWhenStopped = ...  # type: QAbstractAnimation.DeletionPolicy
     DeleteWhenStopped = ...  # type: QAbstractAnimation.DeletionPolicy
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         Stopped = ... # type: QAbstractAnimation.State
         Paused = ... # type: QAbstractAnimation.State
         Running = ... # type: QAbstractAnimation.State
@@ -3399,7 +3487,8 @@ class QAbstractAnimation(QObject):
     Paused = ...  # type: QAbstractAnimation.State
     Running = ...  # type: QAbstractAnimation.State
 
-    class Direction(int):
+    @typing.final
+    class Direction(int, metaclass=sip._enumtype):
         Forward = ... # type: QAbstractAnimation.Direction
         Backward = ... # type: QAbstractAnimation.Direction
 
@@ -3503,12 +3592,12 @@ class QModelIndex(sip.simplewrapper):
     def row(self) -> int: ...
     def child(self, arow: int, acolumn: int) -> 'QModelIndex': ...
 
-    def __eq__(self, other: object) -> bool: ...
-    def __ne__(self, other: object) -> bool: ...
-    def __ge__(self, other: 'QModelIndex') -> bool: ...
-    def __gt__(self, other: 'QModelIndex') -> bool: ...
-    def __le__(self, other: 'QModelIndex') -> bool: ...
-    def __lt__(self, other: 'QModelIndex') -> bool: ...
+    def __eq__(self, other: object, /) -> bool: ...
+    def __ne__(self, other: object, /) -> bool: ...
+    def __ge__(self, other: 'QModelIndex', /) -> bool: ...
+    def __gt__(self, other: 'QModelIndex', /) -> bool: ...
+    def __le__(self, other: 'QModelIndex', /) -> bool: ...
+    def __lt__(self, other: 'QModelIndex', /) -> bool: ...
 
 class QPersistentModelIndex(sip.simplewrapper):
 
@@ -3535,20 +3624,21 @@ class QPersistentModelIndex(sip.simplewrapper):
 class QAbstractItemModel(QObject):
 
     class CheckIndexOption(enum.IntEnum):
-        def __or__ (self, other: 'QAbstractItemModel.CheckIndexOption') -> int: ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> int: ...                                     
+        def __or__ (self, other: 'QAbstractItemModel.CheckIndexOption', /) -> int: ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> int: ...
         
-        NoOption = ... # type: QAbstractItemModel.CheckIndexOption
-        IndexIsValid = ... # type: QAbstractItemModel.CheckIndexOption
-        DoNotUseParent = ... # type: QAbstractItemModel.CheckIndexOption
-        ParentIsInvalid = ... # type: QAbstractItemModel.CheckIndexOption
+        NoOption = ...
+        IndexIsValid = ...
+        DoNotUseParent = ...
+        ParentIsInvalid = ...
 
     NoOption = ...  # type: QAbstractItemModel.CheckIndexOption
     IndexIsValid = ...  # type: QAbstractItemModel.CheckIndexOption
     DoNotUseParent = ...  # type: QAbstractItemModel.CheckIndexOption
     ParentIsInvalid = ...  # type: QAbstractItemModel.CheckIndexOption
 
-    class LayoutChangeHint(int):
+    @typing.final
+    class LayoutChangeHint(int, metaclass=sip._enumtype):
         NoLayoutChangeHint = ... # type: QAbstractItemModel.LayoutChangeHint
         VerticalSortHint = ... # type: QAbstractItemModel.LayoutChangeHint
         HorizontalSortHint = ... # type: QAbstractItemModel.LayoutChangeHint
@@ -3573,12 +3663,12 @@ class QAbstractItemModel(QObject):
         def __invert__(self) -> 'QAbstractItemModel.CheckIndexOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QAbstractItemModel.CheckIndexOptions', 'QAbstractItemModel.CheckIndexOption', int]) -> 'QAbstractItemModel.CheckIndexOptions': ...
-        def __and__(self, other: typing.Union['QAbstractItemModel.CheckIndexOptions', 'QAbstractItemModel.CheckIndexOption', int]) -> 'QAbstractItemModel.CheckIndexOptions': ...
-        def __xor__(self, other: typing.Union['QAbstractItemModel.CheckIndexOptions', 'QAbstractItemModel.CheckIndexOption', int]) -> 'QAbstractItemModel.CheckIndexOptions': ...
-        def __ror__ (self, other: 'QAbstractItemModel.CheckIndexOption') -> 'QAbstractItemModel.CheckIndexOptions': ...
-        def __rand__(self, other: 'QAbstractItemModel.CheckIndexOption') -> 'QAbstractItemModel.CheckIndexOptions': ...
-        def __rxor__(self, other: 'QAbstractItemModel.CheckIndexOption') -> 'QAbstractItemModel.CheckIndexOptions': ...
+        def __or__ (self, other: typing.Union['QAbstractItemModel.CheckIndexOptions', 'QAbstractItemModel.CheckIndexOption', int], /) -> 'QAbstractItemModel.CheckIndexOptions': ...
+        def __and__(self, other: typing.Union['QAbstractItemModel.CheckIndexOptions', 'QAbstractItemModel.CheckIndexOption', int], /) -> 'QAbstractItemModel.CheckIndexOptions': ...
+        def __xor__(self, other: typing.Union['QAbstractItemModel.CheckIndexOptions', 'QAbstractItemModel.CheckIndexOption', int], /) -> 'QAbstractItemModel.CheckIndexOptions': ...
+        def __ror__ (self, other: 'QAbstractItemModel.CheckIndexOption', /) -> 'QAbstractItemModel.CheckIndexOptions': ...
+        def __rand__(self, other: 'QAbstractItemModel.CheckIndexOption', /) -> 'QAbstractItemModel.CheckIndexOptions': ...
+        def __rxor__(self, other: 'QAbstractItemModel.CheckIndexOption', /) -> 'QAbstractItemModel.CheckIndexOptions': ...
 
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
 
@@ -3750,7 +3840,8 @@ class QAbstractState(QObject):
 
 class QAbstractTransition(QObject):
 
-    class TransitionType(int):
+    @typing.final
+    class TransitionType(int, metaclass=sip._enumtype):
         ExternalTransition = ... # type: QAbstractTransition.TransitionType
         InternalTransition = ... # type: QAbstractTransition.TransitionType
 
@@ -3825,7 +3916,7 @@ class QBitArray(sip.simplewrapper):
     def swap(self, other: 'QBitArray') -> None: ...
     def __hash__(self) -> int: ...
     def at(self, i: int) -> bool: ...
-    def __getitem__(self, i: int) -> bool: ...
+    def __getitem__(self, i: int, /) -> bool: ...
     def toggleBit(self, i: int) -> bool: ...
     def clearBit(self, i: int) -> None: ...
     @typing.overload
@@ -3855,9 +3946,10 @@ class QBitArray(sip.simplewrapper):
 
 class QIODevice(QObject):
 
-    class OpenModeFlag(int):
-        def __or__ (self, other: 'QIODevice.OpenModeFlag') -> 'QIODevice.OpenMode': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QIODevice.OpenMode': ...                        # type: ignore[override, misc]
+    @typing.final
+    class OpenModeFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QIODevice.OpenModeFlag', /) -> 'QIODevice.OpenMode': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QIODevice.OpenMode': ...                        # type: ignore[override, misc]
         
         NotOpen = ... # type: QIODevice.OpenModeFlag
         ReadOnly = ... # type: QIODevice.OpenModeFlag
@@ -3895,12 +3987,12 @@ class QIODevice(QObject):
         def __invert__(self) -> 'QIODevice.OpenMode': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag', int]) -> 'QIODevice.OpenMode': ...
-        def __and__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag', int]) -> 'QIODevice.OpenMode': ...
-        def __xor__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag', int]) -> 'QIODevice.OpenMode': ...
-        def __ror__ (self, other: 'QIODevice.OpenModeFlag') -> 'QIODevice.OpenMode': ...
-        def __rand__(self, other: 'QIODevice.OpenModeFlag') -> 'QIODevice.OpenMode': ...
-        def __rxor__(self, other: 'QIODevice.OpenModeFlag') -> 'QIODevice.OpenMode': ...
+        def __or__ (self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag', int], /) -> 'QIODevice.OpenMode': ...
+        def __and__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag', int], /) -> 'QIODevice.OpenMode': ...
+        def __xor__(self, other: typing.Union['QIODevice.OpenMode', 'QIODevice.OpenModeFlag', int], /) -> 'QIODevice.OpenMode': ...
+        def __ror__ (self, other: 'QIODevice.OpenModeFlag', /) -> 'QIODevice.OpenMode': ...
+        def __rand__(self, other: 'QIODevice.OpenModeFlag', /) -> 'QIODevice.OpenMode': ...
+        def __rxor__(self, other: 'QIODevice.OpenModeFlag', /) -> 'QIODevice.OpenMode': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -3989,19 +4081,20 @@ class QBuffer(QIODevice):
 class QByteArray(sip.simplewrapper):
 
     class Base64DecodingStatus(enum.IntEnum):
-        Ok = ... # type: QByteArray.Base64DecodingStatus
-        IllegalInputLength = ... # type: QByteArray.Base64DecodingStatus
-        IllegalCharacter = ... # type: QByteArray.Base64DecodingStatus
-        IllegalPadding = ... # type: QByteArray.Base64DecodingStatus
+        Ok = ...
+        IllegalInputLength = ...
+        IllegalCharacter = ...
+        IllegalPadding = ...
 
     Ok = ...  # type: QByteArray.Base64DecodingStatus
     IllegalInputLength = ...  # type: QByteArray.Base64DecodingStatus
     IllegalCharacter = ...  # type: QByteArray.Base64DecodingStatus
     IllegalPadding = ...  # type: QByteArray.Base64DecodingStatus
 
-    class Base64Option(int):
-        def __or__ (self, other: 'QByteArray.Base64Option') -> 'QByteArray.Base64Options': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QByteArray.Base64Options': ...                         # type: ignore[override, misc]
+    @typing.final
+    class Base64Option(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QByteArray.Base64Option', /) -> 'QByteArray.Base64Options': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QByteArray.Base64Options': ...                         # type: ignore[override, misc]
         
         Base64Encoding = ... # type: QByteArray.Base64Option
         Base64UrlEncoding = ... # type: QByteArray.Base64Option
@@ -4033,12 +4126,12 @@ class QByteArray(sip.simplewrapper):
         def __invert__(self) -> 'QByteArray.Base64Options': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option', int]) -> 'QByteArray.Base64Options': ...
-        def __and__(self, other: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option', int]) -> 'QByteArray.Base64Options': ...
-        def __xor__(self, other: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option', int]) -> 'QByteArray.Base64Options': ...
-        def __ror__ (self, other: 'QByteArray.Base64Option') -> 'QByteArray.Base64Options': ...
-        def __rand__(self, other: 'QByteArray.Base64Option') -> 'QByteArray.Base64Options': ...
-        def __rxor__(self, other: 'QByteArray.Base64Option') -> 'QByteArray.Base64Options': ...
+        def __or__ (self, other: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option', int], /) -> 'QByteArray.Base64Options': ...
+        def __and__(self, other: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option', int], /) -> 'QByteArray.Base64Options': ...
+        def __xor__(self, other: typing.Union['QByteArray.Base64Options', 'QByteArray.Base64Option', int], /) -> 'QByteArray.Base64Options': ...
+        def __ror__ (self, other: 'QByteArray.Base64Option', /) -> 'QByteArray.Base64Options': ...
+        def __rand__(self, other: 'QByteArray.Base64Option', /) -> 'QByteArray.Base64Options': ...
+        def __rxor__(self, other: 'QByteArray.Base64Option', /) -> 'QByteArray.Base64Options': ...
 
     class FromBase64Result(sip.simplewrapper):
 
@@ -4096,11 +4189,11 @@ class QByteArray(sip.simplewrapper):
     def __repr__(self) -> str: ...
     def __str__(self) -> str: ...
     def __hash__(self) -> int: ...
-    def __contains__(self, a: typing.Union['QByteArray', bytes, bytearray]) -> int: ...
+    def __contains__(self, a: typing.Union['QByteArray', bytes, bytearray], /) -> int: ...
     @typing.overload
-    def __getitem__(self, i: int) -> bytes: ...
+    def __getitem__(self, i: int, /) -> bytes: ...
     @typing.overload
-    def __getitem__(self, slice: slice) -> 'QByteArray': ...
+    def __getitem__(self, slice: slice, /) -> 'QByteArray': ...
     def at(self, i: int) -> bytes: ...
     def size(self) -> int: ...
     def isNull(self) -> bool: ...
@@ -4211,11 +4304,11 @@ class QByteArrayMatcher(sip.simplewrapper):
 class QCalendar(sip.simplewrapper):
 
     class System(enum.IntEnum):
-        Gregorian = ... # type: QCalendar.System
-        Julian = ... # type: QCalendar.System
-        Milankovic = ... # type: QCalendar.System
-        Jalali = ... # type: QCalendar.System
-        IslamicCivil = ... # type: QCalendar.System
+        Gregorian = ...
+        Julian = ...
+        Milankovic = ...
+        Jalali = ...
+        IslamicCivil = ...
 
     Gregorian = ...  # type: QCalendar.System
     Julian = ...  # type: QCalendar.System
@@ -4281,7 +4374,8 @@ class QCalendar(sip.simplewrapper):
 
 class QCborError(sip.simplewrapper):
 
-    class Code(int):
+    @typing.final
+    class Code(int, metaclass=sip._enumtype):
         UnknownError = ... # type: QCborError.Code
         AdvancePastEnd = ... # type: QCborError.Code
         InputOutputError = ... # type: QCborError.Code
@@ -4362,7 +4456,8 @@ class QCborStreamWriter(sip.simplewrapper):
 
 class QCborStreamReader(sip.simplewrapper):
 
-    class StringResultCode(int):
+    @typing.final
+    class StringResultCode(int, metaclass=sip._enumtype):
         EndOfString = ... # type: QCborStreamReader.StringResultCode
         Ok = ... # type: QCborStreamReader.StringResultCode
         Error = ... # type: QCborStreamReader.StringResultCode
@@ -4371,7 +4466,8 @@ class QCborStreamReader(sip.simplewrapper):
     Ok = ...  # type: QCborStreamReader.StringResultCode
     Error = ...  # type: QCborStreamReader.StringResultCode
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         UnsignedInteger = ... # type: QCborStreamReader.Type
         NegativeInteger = ... # type: QCborStreamReader.Type
         ByteString = ... # type: QCborStreamReader.Type
@@ -4491,9 +4587,10 @@ class QCollator(sip.simplewrapper):
 
 class QCommandLineOption(sip.simplewrapper):
 
-    class Flag(int):
-        def __or__ (self, other: 'QCommandLineOption.Flag') -> 'QCommandLineOption.Flags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QCommandLineOption.Flags': ...                         # type: ignore[override, misc]
+    @typing.final
+    class Flag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QCommandLineOption.Flag', /) -> 'QCommandLineOption.Flags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QCommandLineOption.Flags': ...                         # type: ignore[override, misc]
         
         HiddenFromHelp = ... # type: QCommandLineOption.Flag
         ShortOptionStyle = ... # type: QCommandLineOption.Flag
@@ -4517,12 +4614,12 @@ class QCommandLineOption(sip.simplewrapper):
         def __invert__(self) -> 'QCommandLineOption.Flags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QCommandLineOption.Flags', 'QCommandLineOption.Flag', int]) -> 'QCommandLineOption.Flags': ...
-        def __and__(self, other: typing.Union['QCommandLineOption.Flags', 'QCommandLineOption.Flag', int]) -> 'QCommandLineOption.Flags': ...
-        def __xor__(self, other: typing.Union['QCommandLineOption.Flags', 'QCommandLineOption.Flag', int]) -> 'QCommandLineOption.Flags': ...
-        def __ror__ (self, other: 'QCommandLineOption.Flag') -> 'QCommandLineOption.Flags': ...
-        def __rand__(self, other: 'QCommandLineOption.Flag') -> 'QCommandLineOption.Flags': ...
-        def __rxor__(self, other: 'QCommandLineOption.Flag') -> 'QCommandLineOption.Flags': ...
+        def __or__ (self, other: typing.Union['QCommandLineOption.Flags', 'QCommandLineOption.Flag', int], /) -> 'QCommandLineOption.Flags': ...
+        def __and__(self, other: typing.Union['QCommandLineOption.Flags', 'QCommandLineOption.Flag', int], /) -> 'QCommandLineOption.Flags': ...
+        def __xor__(self, other: typing.Union['QCommandLineOption.Flags', 'QCommandLineOption.Flag', int], /) -> 'QCommandLineOption.Flags': ...
+        def __ror__ (self, other: 'QCommandLineOption.Flag', /) -> 'QCommandLineOption.Flags': ...
+        def __rand__(self, other: 'QCommandLineOption.Flag', /) -> 'QCommandLineOption.Flags': ...
+        def __rxor__(self, other: 'QCommandLineOption.Flag', /) -> 'QCommandLineOption.Flags': ...
 
     @typing.overload
     def __init__(self, name: str) -> None: ...
@@ -4552,14 +4649,16 @@ class QCommandLineOption(sip.simplewrapper):
 
 class QCommandLineParser(sip.simplewrapper):
 
-    class OptionsAfterPositionalArgumentsMode(int):
+    @typing.final
+    class OptionsAfterPositionalArgumentsMode(int, metaclass=sip._enumtype):
         ParseAsOptions = ... # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
         ParseAsPositionalArguments = ... # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
 
     ParseAsOptions = ...  # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
     ParseAsPositionalArguments = ...  # type: QCommandLineParser.OptionsAfterPositionalArgumentsMode
 
-    class SingleDashWordOptionMode(int):
+    @typing.final
+    class SingleDashWordOptionMode(int, metaclass=sip._enumtype):
         ParseAsCompactedShortOptions = ... # type: QCommandLineParser.SingleDashWordOptionMode
         ParseAsLongOptions = ... # type: QCommandLineParser.SingleDashWordOptionMode
 
@@ -4735,7 +4834,8 @@ class QCoreApplication(QObject):
 
 class QEvent(sip.wrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         None_ = ... # type: QEvent.Type
         Timer = ... # type: QEvent.Type
         MouseButtonPress = ... # type: QEvent.Type
@@ -5084,7 +5184,8 @@ class QDynamicPropertyChangeEvent(QEvent):
 
 class QCryptographicHash(sip.simplewrapper):
 
-    class Algorithm(int):
+    @typing.final
+    class Algorithm(int, metaclass=sip._enumtype):
         Md4 = ... # type: QCryptographicHash.Algorithm
         Md5 = ... # type: QCryptographicHash.Algorithm
         Sha1 = ... # type: QCryptographicHash.Algorithm
@@ -5135,14 +5236,16 @@ class QCryptographicHash(sip.simplewrapper):
 
 class QDataStream(sip.simplewrapper):
 
-    class FloatingPointPrecision(int):
+    @typing.final
+    class FloatingPointPrecision(int, metaclass=sip._enumtype):
         SinglePrecision = ... # type: QDataStream.FloatingPointPrecision
         DoublePrecision = ... # type: QDataStream.FloatingPointPrecision
 
     SinglePrecision = ...  # type: QDataStream.FloatingPointPrecision
     DoublePrecision = ...  # type: QDataStream.FloatingPointPrecision
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         Ok = ... # type: QDataStream.Status
         ReadPastEnd = ... # type: QDataStream.Status
         ReadCorruptData = ... # type: QDataStream.Status
@@ -5153,14 +5256,16 @@ class QDataStream(sip.simplewrapper):
     ReadCorruptData = ...  # type: QDataStream.Status
     WriteFailed = ...  # type: QDataStream.Status
 
-    class ByteOrder(int):
+    @typing.final
+    class ByteOrder(int, metaclass=sip._enumtype):
         BigEndian = ... # type: QDataStream.ByteOrder
         LittleEndian = ... # type: QDataStream.ByteOrder
 
     BigEndian = ...  # type: QDataStream.ByteOrder
     LittleEndian = ...  # type: QDataStream.ByteOrder
 
-    class Version(int):
+    @typing.final
+    class Version(int, metaclass=sip._enumtype):
         Qt_1_0 = ... # type: QDataStream.Version
         Qt_2_0 = ... # type: QDataStream.Version
         Qt_2_1 = ... # type: QDataStream.Version
@@ -5299,7 +5404,8 @@ class QDataStream(sip.simplewrapper):
 
 class QDate(sip.simplewrapper):
 
-    class MonthNameType(int):
+    @typing.final
+    class MonthNameType(int, metaclass=sip._enumtype):
         DateFormat = ... # type: QDate.MonthNameType
         StandaloneFormat = ... # type: QDate.MonthNameType
 
@@ -5462,8 +5568,8 @@ class QTime(sip.simplewrapper):
 class QDateTime(sip.simplewrapper):
 
     class YearRange(enum.IntEnum):
-        First = ... # type: QDateTime.YearRange
-        Last = ... # type: QDateTime.YearRange
+        First = ...
+        Last = ...
 
     First = ...  # type: QDateTime.YearRange
     Last = ...  # type: QDateTime.YearRange
@@ -5572,7 +5678,8 @@ class QDateTime(sip.simplewrapper):
 
 class QDeadlineTimer(sip.simplewrapper):
 
-    class ForeverConstant(int):
+    @typing.final
+    class ForeverConstant(int, metaclass=sip._enumtype):
         Forever = ... # type: QDeadlineTimer.ForeverConstant
 
     Forever = ...  # type: QDeadlineTimer.ForeverConstant
@@ -5607,9 +5714,10 @@ class QDeadlineTimer(sip.simplewrapper):
 
 class QDir(sip.simplewrapper):
 
-    class SortFlag(int):
-        def __or__ (self, other: 'QDir.SortFlag') -> 'QDir.SortFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QDir.SortFlags': ...               # type: ignore[override, misc]
+    @typing.final
+    class SortFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QDir.SortFlag', /) -> 'QDir.SortFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QDir.SortFlags': ...               # type: ignore[override, misc]
         
         Name = ... # type: QDir.SortFlag
         Time = ... # type: QDir.SortFlag
@@ -5637,9 +5745,10 @@ class QDir(sip.simplewrapper):
     Type = ...  # type: QDir.SortFlag
     NoSort = ...  # type: QDir.SortFlag
 
-    class Filter(int):
-        def __or__ (self, other: 'QDir.Filter') -> 'QDir.Filters': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QDir.Filters': ...             # type: ignore[override, misc]
+    @typing.final
+    class Filter(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QDir.Filter', /) -> 'QDir.Filters': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QDir.Filters': ...             # type: ignore[override, misc]
         
         Dirs = ... # type: QDir.Filter
         Files = ... # type: QDir.Filter
@@ -5699,12 +5808,12 @@ class QDir(sip.simplewrapper):
         def __invert__(self) -> 'QDir.Filters': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QDir.Filters', 'QDir.Filter', int]) -> 'QDir.Filters': ...
-        def __and__(self, other: typing.Union['QDir.Filters', 'QDir.Filter', int]) -> 'QDir.Filters': ...
-        def __xor__(self, other: typing.Union['QDir.Filters', 'QDir.Filter', int]) -> 'QDir.Filters': ...
-        def __ror__ (self, other: 'QDir.Filter') -> 'QDir.Filters': ...
-        def __rand__(self, other: 'QDir.Filter') -> 'QDir.Filters': ...
-        def __rxor__(self, other: 'QDir.Filter') -> 'QDir.Filters': ...
+        def __or__ (self, other: typing.Union['QDir.Filters', 'QDir.Filter', int], /) -> 'QDir.Filters': ...
+        def __and__(self, other: typing.Union['QDir.Filters', 'QDir.Filter', int], /) -> 'QDir.Filters': ...
+        def __xor__(self, other: typing.Union['QDir.Filters', 'QDir.Filter', int], /) -> 'QDir.Filters': ...
+        def __ror__ (self, other: 'QDir.Filter', /) -> 'QDir.Filters': ...
+        def __rand__(self, other: 'QDir.Filter', /) -> 'QDir.Filters': ...
+        def __rxor__(self, other: 'QDir.Filter', /) -> 'QDir.Filters': ...
 
     class SortFlags(sip.simplewrapper):
 
@@ -5722,12 +5831,12 @@ class QDir(sip.simplewrapper):
         def __invert__(self) -> 'QDir.SortFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QDir.SortFlags', 'QDir.SortFlag', int]) -> 'QDir.SortFlags': ...
-        def __and__(self, other: typing.Union['QDir.SortFlags', 'QDir.SortFlag', int]) -> 'QDir.SortFlags': ...
-        def __xor__(self, other: typing.Union['QDir.SortFlags', 'QDir.SortFlag', int]) -> 'QDir.SortFlags': ...
-        def __ror__ (self, other: 'QDir.SortFlag') -> 'QDir.SortFlags': ...
-        def __rand__(self, other: 'QDir.SortFlag') -> 'QDir.SortFlags': ...
-        def __rxor__(self, other: 'QDir.SortFlag') -> 'QDir.SortFlags': ...
+        def __or__ (self, other: typing.Union['QDir.SortFlags', 'QDir.SortFlag', int], /) -> 'QDir.SortFlags': ...
+        def __and__(self, other: typing.Union['QDir.SortFlags', 'QDir.SortFlag', int], /) -> 'QDir.SortFlags': ...
+        def __xor__(self, other: typing.Union['QDir.SortFlags', 'QDir.SortFlag', int], /) -> 'QDir.SortFlags': ...
+        def __ror__ (self, other: 'QDir.SortFlag', /) -> 'QDir.SortFlags': ...
+        def __rand__(self, other: 'QDir.SortFlag', /) -> 'QDir.SortFlags': ...
+        def __rxor__(self, other: 'QDir.SortFlag', /) -> 'QDir.SortFlags': ...
 
     @typing.overload
     def __init__(self, a0: 'QDir') -> None: ...
@@ -5811,11 +5920,11 @@ class QDir(sip.simplewrapper):
     def entryList(self, nameFilters: typing.Iterable[str], filters: typing.Union['QDir.Filters', 'QDir.Filter'] = ..., sort: typing.Union['QDir.SortFlags', 'QDir.SortFlag'] = ...) -> typing.List[str]: ...
     @staticmethod
     def nameFiltersFromString(nameFilter: str) -> typing.List[str]: ...
-    def __contains__(self, a0: str) -> int: ...
+    def __contains__(self, a0: str, /) -> int: ...
     @typing.overload
-    def __getitem__(self, a0: int) -> str: ...
+    def __getitem__(self, a0: int, /) -> str: ...
     @typing.overload
-    def __getitem__(self, a0: slice) -> typing.List[str]: ...
+    def __getitem__(self, a0: slice, /) -> typing.List[str]: ...
     def __len__(self) -> int: ...
     def count(self) -> int: ...
     def setSorting(self, sort: typing.Union['QDir.SortFlags', 'QDir.SortFlag']) -> None: ...
@@ -5838,9 +5947,10 @@ class QDir(sip.simplewrapper):
 
 class QDirIterator(sip.simplewrapper):
 
-    class IteratorFlag(int):
-        def __or__ (self, other: 'QDirIterator.IteratorFlag') -> 'QDirIterator.IteratorFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QDirIterator.IteratorFlags': ...                           # type: ignore[override, misc]
+    @typing.final
+    class IteratorFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QDirIterator.IteratorFlag', /) -> 'QDirIterator.IteratorFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QDirIterator.IteratorFlags': ...                           # type: ignore[override, misc]
         
         NoIteratorFlags = ... # type: QDirIterator.IteratorFlag
         FollowSymlinks = ... # type: QDirIterator.IteratorFlag
@@ -5866,12 +5976,12 @@ class QDirIterator(sip.simplewrapper):
         def __invert__(self) -> 'QDirIterator.IteratorFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QDirIterator.IteratorFlags', 'QDirIterator.IteratorFlag', int]) -> 'QDirIterator.IteratorFlags': ...
-        def __and__(self, other: typing.Union['QDirIterator.IteratorFlags', 'QDirIterator.IteratorFlag', int]) -> 'QDirIterator.IteratorFlags': ...
-        def __xor__(self, other: typing.Union['QDirIterator.IteratorFlags', 'QDirIterator.IteratorFlag', int]) -> 'QDirIterator.IteratorFlags': ...
-        def __ror__ (self, other: 'QDirIterator.IteratorFlag') -> 'QDirIterator.IteratorFlags': ...
-        def __rand__(self, other: 'QDirIterator.IteratorFlag') -> 'QDirIterator.IteratorFlags': ...
-        def __rxor__(self, other: 'QDirIterator.IteratorFlag') -> 'QDirIterator.IteratorFlags': ...
+        def __or__ (self, other: typing.Union['QDirIterator.IteratorFlags', 'QDirIterator.IteratorFlag', int], /) -> 'QDirIterator.IteratorFlags': ...
+        def __and__(self, other: typing.Union['QDirIterator.IteratorFlags', 'QDirIterator.IteratorFlag', int], /) -> 'QDirIterator.IteratorFlags': ...
+        def __xor__(self, other: typing.Union['QDirIterator.IteratorFlags', 'QDirIterator.IteratorFlag', int], /) -> 'QDirIterator.IteratorFlags': ...
+        def __ror__ (self, other: 'QDirIterator.IteratorFlag', /) -> 'QDirIterator.IteratorFlags': ...
+        def __rand__(self, other: 'QDirIterator.IteratorFlag', /) -> 'QDirIterator.IteratorFlags': ...
+        def __rxor__(self, other: 'QDirIterator.IteratorFlag', /) -> 'QDirIterator.IteratorFlags': ...
 
     @typing.overload
     def __init__(self, dir: QDir, flags: 'QDirIterator.IteratorFlags' = ...) -> None: ...
@@ -5892,7 +6002,8 @@ class QDirIterator(sip.simplewrapper):
 
 class QEasingCurve(sip.simplewrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         Linear = ... # type: QEasingCurve.Type
         InQuad = ... # type: QEasingCurve.Type
         OutQuad = ... # type: QEasingCurve.Type
@@ -6015,7 +6126,8 @@ class QEasingCurve(sip.simplewrapper):
 
 class QElapsedTimer(sip.simplewrapper):
 
-    class ClockType(int):
+    @typing.final
+    class ClockType(int, metaclass=sip._enumtype):
         SystemTime = ... # type: QElapsedTimer.ClockType
         MonotonicClock = ... # type: QElapsedTimer.ClockType
         TickCounter = ... # type: QElapsedTimer.ClockType
@@ -6051,9 +6163,10 @@ class QElapsedTimer(sip.simplewrapper):
 
 class QEventLoop(QObject):
 
-    class ProcessEventsFlag(int):
-        def __or__ (self, other: 'QEventLoop.ProcessEventsFlag') -> 'QEventLoop.ProcessEventsFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QEventLoop.ProcessEventsFlags': ...                              # type: ignore[override, misc]
+    @typing.final
+    class ProcessEventsFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QEventLoop.ProcessEventsFlag', /) -> 'QEventLoop.ProcessEventsFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QEventLoop.ProcessEventsFlags': ...                              # type: ignore[override, misc]
         
         AllEvents = ... # type: QEventLoop.ProcessEventsFlag
         ExcludeUserInputEvents = ... # type: QEventLoop.ProcessEventsFlag
@@ -6083,12 +6196,12 @@ class QEventLoop(QObject):
         def __invert__(self) -> 'QEventLoop.ProcessEventsFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QEventLoop.ProcessEventsFlags', 'QEventLoop.ProcessEventsFlag', int]) -> 'QEventLoop.ProcessEventsFlags': ...
-        def __and__(self, other: typing.Union['QEventLoop.ProcessEventsFlags', 'QEventLoop.ProcessEventsFlag', int]) -> 'QEventLoop.ProcessEventsFlags': ...
-        def __xor__(self, other: typing.Union['QEventLoop.ProcessEventsFlags', 'QEventLoop.ProcessEventsFlag', int]) -> 'QEventLoop.ProcessEventsFlags': ...
-        def __ror__ (self, other: 'QEventLoop.ProcessEventsFlag') -> 'QEventLoop.ProcessEventsFlags': ...
-        def __rand__(self, other: 'QEventLoop.ProcessEventsFlag') -> 'QEventLoop.ProcessEventsFlags': ...
-        def __rxor__(self, other: 'QEventLoop.ProcessEventsFlag') -> 'QEventLoop.ProcessEventsFlags': ...
+        def __or__ (self, other: typing.Union['QEventLoop.ProcessEventsFlags', 'QEventLoop.ProcessEventsFlag', int], /) -> 'QEventLoop.ProcessEventsFlags': ...
+        def __and__(self, other: typing.Union['QEventLoop.ProcessEventsFlags', 'QEventLoop.ProcessEventsFlag', int], /) -> 'QEventLoop.ProcessEventsFlags': ...
+        def __xor__(self, other: typing.Union['QEventLoop.ProcessEventsFlags', 'QEventLoop.ProcessEventsFlag', int], /) -> 'QEventLoop.ProcessEventsFlags': ...
+        def __ror__ (self, other: 'QEventLoop.ProcessEventsFlag', /) -> 'QEventLoop.ProcessEventsFlags': ...
+        def __rand__(self, other: 'QEventLoop.ProcessEventsFlag', /) -> 'QEventLoop.ProcessEventsFlags': ...
+        def __rxor__(self, other: 'QEventLoop.ProcessEventsFlag', /) -> 'QEventLoop.ProcessEventsFlags': ...
 
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
 
@@ -6133,7 +6246,8 @@ class QEventTransition(QAbstractTransition):
 
 class QFileDevice(QIODevice):
 
-    class FileTime(int):
+    @typing.final
+    class FileTime(int, metaclass=sip._enumtype):
         FileAccessTime = ... # type: QFileDevice.FileTime
         FileBirthTime = ... # type: QFileDevice.FileTime
         FileMetadataChangeTime = ... # type: QFileDevice.FileTime
@@ -6144,23 +6258,26 @@ class QFileDevice(QIODevice):
     FileMetadataChangeTime = ...  # type: QFileDevice.FileTime
     FileModificationTime = ...  # type: QFileDevice.FileTime
 
-    class MemoryMapFlags(int):
+    @typing.final
+    class MemoryMapFlags(int, metaclass=sip._enumtype):
         NoOptions = ... # type: QFileDevice.MemoryMapFlags
         MapPrivateOption = ... # type: QFileDevice.MemoryMapFlags
 
     NoOptions = ...  # type: QFileDevice.MemoryMapFlags
     MapPrivateOption = ...  # type: QFileDevice.MemoryMapFlags
 
-    class FileHandleFlag(int):
+    @typing.final
+    class FileHandleFlag(int, metaclass=sip._enumtype):
         AutoCloseHandle = ... # type: QFileDevice.FileHandleFlag
         DontCloseHandle = ... # type: QFileDevice.FileHandleFlag
 
     AutoCloseHandle = ...  # type: QFileDevice.FileHandleFlag
     DontCloseHandle = ...  # type: QFileDevice.FileHandleFlag
 
-    class Permission(int):
-        def __or__ (self, other: 'QFileDevice.Permission') -> 'QFileDevice.Permissions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QFileDevice.Permissions': ...                        # type: ignore[override, misc]
+    @typing.final
+    class Permission(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QFileDevice.Permission', /) -> 'QFileDevice.Permissions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QFileDevice.Permissions': ...                        # type: ignore[override, misc]
         
         ReadOwner = ... # type: QFileDevice.Permission
         WriteOwner = ... # type: QFileDevice.Permission
@@ -6188,7 +6305,8 @@ class QFileDevice(QIODevice):
     WriteOther = ...  # type: QFileDevice.Permission
     ExeOther = ...  # type: QFileDevice.Permission
 
-    class FileError(int):
+    @typing.final
+    class FileError(int, metaclass=sip._enumtype):
         NoError = ... # type: QFileDevice.FileError
         ReadError = ... # type: QFileDevice.FileError
         WriteError = ... # type: QFileDevice.FileError
@@ -6237,12 +6355,12 @@ class QFileDevice(QIODevice):
         def __invert__(self) -> 'QFileDevice.Permissions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QFileDevice.Permissions', 'QFileDevice.Permission', int]) -> 'QFileDevice.Permissions': ...
-        def __and__(self, other: typing.Union['QFileDevice.Permissions', 'QFileDevice.Permission', int]) -> 'QFileDevice.Permissions': ...
-        def __xor__(self, other: typing.Union['QFileDevice.Permissions', 'QFileDevice.Permission', int]) -> 'QFileDevice.Permissions': ...
-        def __ror__ (self, other: 'QFileDevice.Permission') -> 'QFileDevice.Permissions': ...
-        def __rand__(self, other: 'QFileDevice.Permission') -> 'QFileDevice.Permissions': ...
-        def __rxor__(self, other: 'QFileDevice.Permission') -> 'QFileDevice.Permissions': ...
+        def __or__ (self, other: typing.Union['QFileDevice.Permissions', 'QFileDevice.Permission', int], /) -> 'QFileDevice.Permissions': ...
+        def __and__(self, other: typing.Union['QFileDevice.Permissions', 'QFileDevice.Permission', int], /) -> 'QFileDevice.Permissions': ...
+        def __xor__(self, other: typing.Union['QFileDevice.Permissions', 'QFileDevice.Permission', int], /) -> 'QFileDevice.Permissions': ...
+        def __ror__ (self, other: 'QFileDevice.Permission', /) -> 'QFileDevice.Permissions': ...
+        def __rand__(self, other: 'QFileDevice.Permission', /) -> 'QFileDevice.Permissions': ...
+        def __rxor__(self, other: 'QFileDevice.Permission', /) -> 'QFileDevice.Permissions': ...
 
     class FileHandleFlags(sip.simplewrapper):
 
@@ -6260,12 +6378,12 @@ class QFileDevice(QIODevice):
         def __invert__(self) -> 'QFileDevice.FileHandleFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QFileDevice.FileHandleFlags', 'QFileDevice.FileHandleFlag', int]) -> 'QFileDevice.FileHandleFlags': ...
-        def __and__(self, other: typing.Union['QFileDevice.FileHandleFlags', 'QFileDevice.FileHandleFlag', int]) -> 'QFileDevice.FileHandleFlags': ...
-        def __xor__(self, other: typing.Union['QFileDevice.FileHandleFlags', 'QFileDevice.FileHandleFlag', int]) -> 'QFileDevice.FileHandleFlags': ...
-        def __ror__ (self, other: 'QFileDevice.FileHandleFlag') -> 'QFileDevice.FileHandleFlags': ...
-        def __rand__(self, other: 'QFileDevice.FileHandleFlag') -> 'QFileDevice.FileHandleFlags': ...
-        def __rxor__(self, other: 'QFileDevice.FileHandleFlag') -> 'QFileDevice.FileHandleFlags': ...
+        def __or__ (self, other: typing.Union['QFileDevice.FileHandleFlags', 'QFileDevice.FileHandleFlag', int], /) -> 'QFileDevice.FileHandleFlags': ...
+        def __and__(self, other: typing.Union['QFileDevice.FileHandleFlags', 'QFileDevice.FileHandleFlag', int], /) -> 'QFileDevice.FileHandleFlags': ...
+        def __xor__(self, other: typing.Union['QFileDevice.FileHandleFlags', 'QFileDevice.FileHandleFlag', int], /) -> 'QFileDevice.FileHandleFlags': ...
+        def __ror__ (self, other: 'QFileDevice.FileHandleFlag', /) -> 'QFileDevice.FileHandleFlags': ...
+        def __rand__(self, other: 'QFileDevice.FileHandleFlag', /) -> 'QFileDevice.FileHandleFlags': ...
+        def __rxor__(self, other: 'QFileDevice.FileHandleFlag', /) -> 'QFileDevice.FileHandleFlags': ...
 
     def setFileTime(self, newDate: typing.Union[QDateTime, datetime.datetime], fileTime: 'QFileDevice.FileTime') -> bool: ...
     def fileTime(self, time: 'QFileDevice.FileTime') -> QDateTime: ...
@@ -6484,7 +6602,8 @@ class QFinalState(QAbstractState):
 
 class QHistoryState(QAbstractState):
 
-    class HistoryType(int):
+    @typing.final
+    class HistoryType(int, metaclass=sip._enumtype):
         ShallowHistory = ... # type: QHistoryState.HistoryType
         DeepHistory = ... # type: QHistoryState.HistoryType
 
@@ -6571,9 +6690,10 @@ class QItemSelectionRange(sip.simplewrapper):
 
 class QItemSelectionModel(QObject):
 
-    class SelectionFlag(int):
-        def __or__ (self, other: 'QItemSelectionModel.SelectionFlag') -> 'QItemSelectionModel.SelectionFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QItemSelectionModel.SelectionFlags': ...                                   # type: ignore[override, misc]
+    @typing.final
+    class SelectionFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QItemSelectionModel.SelectionFlag', /) -> 'QItemSelectionModel.SelectionFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QItemSelectionModel.SelectionFlags': ...                                   # type: ignore[override, misc]
         
         NoUpdate = ... # type: QItemSelectionModel.SelectionFlag
         Clear = ... # type: QItemSelectionModel.SelectionFlag
@@ -6615,12 +6735,12 @@ class QItemSelectionModel(QObject):
         def __invert__(self) -> 'QItemSelectionModel.SelectionFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QItemSelectionModel.SelectionFlags', 'QItemSelectionModel.SelectionFlag', int]) -> 'QItemSelectionModel.SelectionFlags': ...
-        def __and__(self, other: typing.Union['QItemSelectionModel.SelectionFlags', 'QItemSelectionModel.SelectionFlag', int]) -> 'QItemSelectionModel.SelectionFlags': ...
-        def __xor__(self, other: typing.Union['QItemSelectionModel.SelectionFlags', 'QItemSelectionModel.SelectionFlag', int]) -> 'QItemSelectionModel.SelectionFlags': ...
-        def __ror__ (self, other: 'QItemSelectionModel.SelectionFlag') -> 'QItemSelectionModel.SelectionFlags': ...
-        def __rand__(self, other: 'QItemSelectionModel.SelectionFlag') -> 'QItemSelectionModel.SelectionFlags': ...
-        def __rxor__(self, other: 'QItemSelectionModel.SelectionFlag') -> 'QItemSelectionModel.SelectionFlags': ...
+        def __or__ (self, other: typing.Union['QItemSelectionModel.SelectionFlags', 'QItemSelectionModel.SelectionFlag', int], /) -> 'QItemSelectionModel.SelectionFlags': ...
+        def __and__(self, other: typing.Union['QItemSelectionModel.SelectionFlags', 'QItemSelectionModel.SelectionFlag', int], /) -> 'QItemSelectionModel.SelectionFlags': ...
+        def __xor__(self, other: typing.Union['QItemSelectionModel.SelectionFlags', 'QItemSelectionModel.SelectionFlag', int], /) -> 'QItemSelectionModel.SelectionFlags': ...
+        def __ror__ (self, other: 'QItemSelectionModel.SelectionFlag', /) -> 'QItemSelectionModel.SelectionFlags': ...
+        def __rand__(self, other: 'QItemSelectionModel.SelectionFlag', /) -> 'QItemSelectionModel.SelectionFlags': ...
+        def __rxor__(self, other: 'QItemSelectionModel.SelectionFlag', /) -> 'QItemSelectionModel.SelectionFlags': ...
 
     @typing.overload
     def __init__(self, model: typing.Optional[QAbstractItemModel] = ...) -> None: ...
@@ -6689,29 +6809,30 @@ class QItemSelection(sip.simplewrapper):
     def isEmpty(self) -> bool: ...
     def clear(self) -> None: ...
     @typing.overload
-    def __getitem__(self, i: int) -> QItemSelectionRange: ...
+    def __getitem__(self, i: int, /) -> QItemSelectionRange: ...
     @typing.overload
-    def __getitem__(self, slice: slice) -> 'QItemSelection': ...
+    def __getitem__(self, slice: slice, /) -> 'QItemSelection': ...
     @typing.overload
-    def __delitem__(self, i: int) -> None: ...
+    def __delitem__(self, i: int, /) -> None: ...
     @typing.overload
-    def __delitem__(self, slice: slice) -> None: ...
+    def __delitem__(self, slice: slice, /) -> None: ...
     @typing.overload
-    def __setitem__(self, i: int, range: QItemSelectionRange) -> None: ...
+    def __setitem__(self, i: int, range: QItemSelectionRange, /) -> None: ...
     @typing.overload
-    def __setitem__(self, slice: slice, list: 'QItemSelection') -> None: ...
+    def __setitem__(self, slice: slice, list: 'QItemSelection', /) -> None: ...
     @staticmethod
     def split(range: QItemSelectionRange, other: QItemSelectionRange, result: 'QItemSelection') -> None: ...
     def merge(self, other: 'QItemSelection', command: typing.Union[QItemSelectionModel.SelectionFlags, QItemSelectionModel.SelectionFlag]) -> None: ...
     def indexes(self) -> typing.List[QModelIndex]: ...
-    def __contains__(self, index: QModelIndex) -> int: ...
+    def __contains__(self, index: QModelIndex, /) -> int: ...
     def contains(self, index: QModelIndex) -> bool: ...
     def select(self, topLeft: QModelIndex, bottomRight: QModelIndex) -> None: ...
 
 
 class QJsonParseError(sip.simplewrapper):
 
-    class ParseError(int):
+    @typing.final
+    class ParseError(int, metaclass=sip._enumtype):
         NoError = ... # type: QJsonParseError.ParseError
         UnterminatedObject = ... # type: QJsonParseError.ParseError
         MissingNameSeparator = ... # type: QJsonParseError.ParseError
@@ -6757,14 +6878,16 @@ class QJsonParseError(sip.simplewrapper):
 
 class QJsonDocument(sip.simplewrapper):
 
-    class JsonFormat(int):
+    @typing.final
+    class JsonFormat(int, metaclass=sip._enumtype):
         Indented = ... # type: QJsonDocument.JsonFormat
         Compact = ... # type: QJsonDocument.JsonFormat
 
     Indented = ...  # type: QJsonDocument.JsonFormat
     Compact = ...  # type: QJsonDocument.JsonFormat
 
-    class DataValidation(int):
+    @typing.final
+    class DataValidation(int, metaclass=sip._enumtype):
         Validate = ... # type: QJsonDocument.DataValidation
         BypassValidation = ... # type: QJsonDocument.DataValidation
 
@@ -6781,9 +6904,9 @@ class QJsonDocument(sip.simplewrapper):
     def __init__(self, other: 'QJsonDocument') -> None: ...
 
     @typing.overload
-    def __getitem__(self, key: str) -> 'QJsonValue': ...
+    def __getitem__(self, key: str, /) -> 'QJsonValue': ...
     @typing.overload
-    def __getitem__(self, i: int) -> 'QJsonValue': ...
+    def __getitem__(self, i: int, /) -> 'QJsonValue': ...
     def swap(self, other: 'QJsonDocument') -> None: ...
     def isNull(self) -> bool: ...
     def setArray(self, array: typing.Iterable[typing.Union['QJsonValue', 'QJsonValue.Type', typing.Dict[str, 'QJsonValue'], bool, int, float, str]]) -> None: ...  # Keep primitive types
@@ -6812,7 +6935,8 @@ class QJsonDocument(sip.simplewrapper):
 
 class QJsonValue(sip.simplewrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         Null = ... # type: QJsonValue.Type
         Bool = ... # type: QJsonValue.Type
         Double = ... # type: QJsonValue.Type
@@ -6836,9 +6960,9 @@ class QJsonValue(sip.simplewrapper):
 
     def __hash__(self) -> int: ...
     @typing.overload
-    def __getitem__(self, key: str) -> 'QJsonValue': ...
+    def __getitem__(self, key: str, /) -> 'QJsonValue': ...
     @typing.overload
-    def __getitem__(self, i: int) -> 'QJsonValue': ...
+    def __getitem__(self, i: int, /) -> 'QJsonValue': ...
     def swap(self, other: 'QJsonValue') -> None: ...
     @typing.overload
     def toString(self) -> str: ...
@@ -6870,9 +6994,10 @@ class QJsonValue(sip.simplewrapper):
 
 class QLibrary(QObject):
 
-    class LoadHint(int):
-        def __or__ (self, other: 'QLibrary.LoadHint') -> 'QLibrary.LoadHints': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QLibrary.LoadHints': ...                   # type: ignore[override, misc]
+    @typing.final
+    class LoadHint(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QLibrary.LoadHint', /) -> 'QLibrary.LoadHints': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QLibrary.LoadHints': ...                   # type: ignore[override, misc]
         
         ResolveAllSymbolsHint = ... # type: QLibrary.LoadHint
         ExportExternalSymbolsHint = ... # type: QLibrary.LoadHint
@@ -6902,12 +7027,12 @@ class QLibrary(QObject):
         def __invert__(self) -> 'QLibrary.LoadHints': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QLibrary.LoadHints', 'QLibrary.LoadHint', int]) -> 'QLibrary.LoadHints': ...
-        def __and__(self, other: typing.Union['QLibrary.LoadHints', 'QLibrary.LoadHint', int]) -> 'QLibrary.LoadHints': ...
-        def __xor__(self, other: typing.Union['QLibrary.LoadHints', 'QLibrary.LoadHint', int]) -> 'QLibrary.LoadHints': ...
-        def __ror__ (self, other: 'QLibrary.LoadHint') -> 'QLibrary.LoadHints': ...
-        def __rand__(self, other: 'QLibrary.LoadHint') -> 'QLibrary.LoadHints': ...
-        def __rxor__(self, other: 'QLibrary.LoadHint') -> 'QLibrary.LoadHints': ...
+        def __or__ (self, other: typing.Union['QLibrary.LoadHints', 'QLibrary.LoadHint', int], /) -> 'QLibrary.LoadHints': ...
+        def __and__(self, other: typing.Union['QLibrary.LoadHints', 'QLibrary.LoadHint', int], /) -> 'QLibrary.LoadHints': ...
+        def __xor__(self, other: typing.Union['QLibrary.LoadHints', 'QLibrary.LoadHint', int], /) -> 'QLibrary.LoadHints': ...
+        def __ror__ (self, other: 'QLibrary.LoadHint', /) -> 'QLibrary.LoadHints': ...
+        def __rand__(self, other: 'QLibrary.LoadHint', /) -> 'QLibrary.LoadHints': ...
+        def __rxor__(self, other: 'QLibrary.LoadHint', /) -> 'QLibrary.LoadHints': ...
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QObject] = ...) -> None: ...
@@ -6947,7 +7072,8 @@ class QLibrary(QObject):
 
 class QLibraryInfo(sip.simplewrapper):
 
-    class LibraryLocation(int):
+    @typing.final
+    class LibraryLocation(int, metaclass=sip._enumtype):
         PrefixPath = ... # type: QLibraryInfo.LibraryLocation
         DocumentationPath = ... # type: QLibraryInfo.LibraryLocation
         HeadersPath = ... # type: QLibraryInfo.LibraryLocation
@@ -7035,7 +7161,8 @@ class QLine(sip.simplewrapper):
 
 class QLineF(sip.simplewrapper):
 
-    class IntersectType(int):
+    @typing.final
+    class IntersectType(int, metaclass=sip._enumtype):
         NoIntersection = ... # type: QLineF.IntersectType
         BoundedIntersection = ... # type: QLineF.IntersectType
         UnboundedIntersection = ... # type: QLineF.IntersectType
@@ -7096,7 +7223,8 @@ class QLineF(sip.simplewrapper):
 
 class QLocale(sip.simplewrapper):
 
-    class DataSizeFormat(int):
+    @typing.final
+    class DataSizeFormat(int, metaclass=sip._enumtype):
         DataSizeIecFormat = ... # type: QLocale.DataSizeFormat
         DataSizeTraditionalFormat = ... # type: QLocale.DataSizeFormat
         DataSizeSIFormat = ... # type: QLocale.DataSizeFormat
@@ -7105,19 +7233,22 @@ class QLocale(sip.simplewrapper):
     DataSizeTraditionalFormat = ...  # type: QLocale.DataSizeFormat
     DataSizeSIFormat = ...  # type: QLocale.DataSizeFormat
 
-    class FloatingPointPrecisionOption(int):
+    @typing.final
+    class FloatingPointPrecisionOption(int, metaclass=sip._enumtype):
         FloatingPointShortest = ... # type: QLocale.FloatingPointPrecisionOption
 
     FloatingPointShortest = ...  # type: QLocale.FloatingPointPrecisionOption
 
-    class QuotationStyle(int):
+    @typing.final
+    class QuotationStyle(int, metaclass=sip._enumtype):
         StandardQuotation = ... # type: QLocale.QuotationStyle
         AlternateQuotation = ... # type: QLocale.QuotationStyle
 
     StandardQuotation = ...  # type: QLocale.QuotationStyle
     AlternateQuotation = ...  # type: QLocale.QuotationStyle
 
-    class CurrencySymbolFormat(int):
+    @typing.final
+    class CurrencySymbolFormat(int, metaclass=sip._enumtype):
         CurrencyIsoCode = ... # type: QLocale.CurrencySymbolFormat
         CurrencySymbol = ... # type: QLocale.CurrencySymbolFormat
         CurrencyDisplayName = ... # type: QLocale.CurrencySymbolFormat
@@ -7126,7 +7257,8 @@ class QLocale(sip.simplewrapper):
     CurrencySymbol = ...  # type: QLocale.CurrencySymbolFormat
     CurrencyDisplayName = ...  # type: QLocale.CurrencySymbolFormat
 
-    class Script(int):
+    @typing.final
+    class Script(int, metaclass=sip._enumtype):
         AnyScript = ... # type: QLocale.Script
         ArabicScript = ... # type: QLocale.Script
         CyrillicScript = ... # type: QLocale.Script
@@ -7417,7 +7549,8 @@ class QLocale(sip.simplewrapper):
     HanWithBopomofoScript = ...  # type: QLocale.Script
     JamoScript = ...  # type: QLocale.Script
 
-    class MeasurementSystem(int):
+    @typing.final
+    class MeasurementSystem(int, metaclass=sip._enumtype):
         MetricSystem = ... # type: QLocale.MeasurementSystem
         ImperialSystem = ... # type: QLocale.MeasurementSystem
         ImperialUSSystem = ... # type: QLocale.MeasurementSystem
@@ -7428,7 +7561,8 @@ class QLocale(sip.simplewrapper):
     ImperialUSSystem = ...  # type: QLocale.MeasurementSystem
     ImperialUKSystem = ...  # type: QLocale.MeasurementSystem
 
-    class FormatType(int):
+    @typing.final
+    class FormatType(int, metaclass=sip._enumtype):
         LongFormat = ... # type: QLocale.FormatType
         ShortFormat = ... # type: QLocale.FormatType
         NarrowFormat = ... # type: QLocale.FormatType
@@ -7437,9 +7571,10 @@ class QLocale(sip.simplewrapper):
     ShortFormat = ...  # type: QLocale.FormatType
     NarrowFormat = ...  # type: QLocale.FormatType
 
-    class NumberOption(int):
-        def __or__ (self, other: 'QLocale.NumberOption') -> 'QLocale.NumberOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QLocale.NumberOptions': ...                      # type: ignore[override, misc]
+    @typing.final
+    class NumberOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QLocale.NumberOption', /) -> 'QLocale.NumberOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QLocale.NumberOptions': ...                      # type: ignore[override, misc]
         
         OmitGroupSeparator = ... # type: QLocale.NumberOption
         RejectGroupSeparator = ... # type: QLocale.NumberOption
@@ -7457,7 +7592,8 @@ class QLocale(sip.simplewrapper):
     IncludeTrailingZeroesAfterDot = ...  # type: QLocale.NumberOption
     RejectTrailingZeroesAfterDot = ...  # type: QLocale.NumberOption
 
-    class Country(int):
+    @typing.final
+    class Country(int, metaclass=sip._enumtype):
         AnyCountry = ... # type: QLocale.Country
         Afghanistan = ... # type: QLocale.Country
         Albania = ... # type: QLocale.Country
@@ -8004,7 +8140,8 @@ class QLocale(sip.simplewrapper):
     World = ...  # type: QLocale.Country
     Europe = ...  # type: QLocale.Country
 
-    class Language(int):
+    @typing.final
+    class Language(int, metaclass=sip._enumtype):
         C = ... # type: QLocale.Language
         Abkhazian = ... # type: QLocale.Language
         Afan = ... # type: QLocale.Language
@@ -8793,12 +8930,12 @@ class QLocale(sip.simplewrapper):
         def __invert__(self) -> 'QLocale.NumberOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QLocale.NumberOptions', 'QLocale.NumberOption', int]) -> 'QLocale.NumberOptions': ...
-        def __and__(self, other: typing.Union['QLocale.NumberOptions', 'QLocale.NumberOption', int]) -> 'QLocale.NumberOptions': ...
-        def __xor__(self, other: typing.Union['QLocale.NumberOptions', 'QLocale.NumberOption', int]) -> 'QLocale.NumberOptions': ...
-        def __ror__ (self, other: 'QLocale.NumberOption') -> 'QLocale.NumberOptions': ...
-        def __rand__(self, other: 'QLocale.NumberOption') -> 'QLocale.NumberOptions': ...
-        def __rxor__(self, other: 'QLocale.NumberOption') -> 'QLocale.NumberOptions': ...
+        def __or__ (self, other: typing.Union['QLocale.NumberOptions', 'QLocale.NumberOption', int], /) -> 'QLocale.NumberOptions': ...
+        def __and__(self, other: typing.Union['QLocale.NumberOptions', 'QLocale.NumberOption', int], /) -> 'QLocale.NumberOptions': ...
+        def __xor__(self, other: typing.Union['QLocale.NumberOptions', 'QLocale.NumberOption', int], /) -> 'QLocale.NumberOptions': ...
+        def __ror__ (self, other: 'QLocale.NumberOption', /) -> 'QLocale.NumberOptions': ...
+        def __rand__(self, other: 'QLocale.NumberOption', /) -> 'QLocale.NumberOptions': ...
+        def __rxor__(self, other: 'QLocale.NumberOption', /) -> 'QLocale.NumberOptions': ...
 
     class DataSizeFormats(sip.simplewrapper):
 
@@ -8816,12 +8953,12 @@ class QLocale(sip.simplewrapper):
         def __invert__(self) -> 'QLocale.DataSizeFormats': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QLocale.DataSizeFormats', 'QLocale.DataSizeFormat', int]) -> 'QLocale.DataSizeFormats': ...
-        def __and__(self, other: typing.Union['QLocale.DataSizeFormats', 'QLocale.DataSizeFormat', int]) -> 'QLocale.DataSizeFormats': ...
-        def __xor__(self, other: typing.Union['QLocale.DataSizeFormats', 'QLocale.DataSizeFormat', int]) -> 'QLocale.DataSizeFormats': ...
-        def __ror__ (self, other: 'QLocale.DataSizeFormat') -> 'QLocale.DataSizeFormats': ...
-        def __rand__(self, other: 'QLocale.DataSizeFormat') -> 'QLocale.DataSizeFormats': ...
-        def __rxor__(self, other: 'QLocale.DataSizeFormat') -> 'QLocale.DataSizeFormats': ...
+        def __or__ (self, other: typing.Union['QLocale.DataSizeFormats', 'QLocale.DataSizeFormat', int], /) -> 'QLocale.DataSizeFormats': ...
+        def __and__(self, other: typing.Union['QLocale.DataSizeFormats', 'QLocale.DataSizeFormat', int], /) -> 'QLocale.DataSizeFormats': ...
+        def __xor__(self, other: typing.Union['QLocale.DataSizeFormats', 'QLocale.DataSizeFormat', int], /) -> 'QLocale.DataSizeFormats': ...
+        def __ror__ (self, other: 'QLocale.DataSizeFormat', /) -> 'QLocale.DataSizeFormats': ...
+        def __rand__(self, other: 'QLocale.DataSizeFormat', /) -> 'QLocale.DataSizeFormats': ...
+        def __rxor__(self, other: 'QLocale.DataSizeFormat', /) -> 'QLocale.DataSizeFormats': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8955,7 +9092,8 @@ class QLocale(sip.simplewrapper):
 
 class QLockFile(sip.simplewrapper):
 
-    class LockError(int):
+    @typing.final
+    class LockError(int, metaclass=sip._enumtype):
         NoError = ... # type: QLockFile.LockError
         LockFailedError = ... # type: QLockFile.LockError
         PermissionError = ... # type: QLockFile.LockError
@@ -9090,7 +9228,8 @@ class QMessageAuthenticationCode(sip.simplewrapper):
 
 class QMetaMethod(sip.simplewrapper):
 
-    class MethodType(int):
+    @typing.final
+    class MethodType(int, metaclass=sip._enumtype):
         Method = ... # type: QMetaMethod.MethodType
         Signal = ... # type: QMetaMethod.MethodType
         Slot = ... # type: QMetaMethod.MethodType
@@ -9101,7 +9240,8 @@ class QMetaMethod(sip.simplewrapper):
     Slot = ...  # type: QMetaMethod.MethodType
     Constructor = ...  # type: QMetaMethod.MethodType
 
-    class Access(int):
+    @typing.final
+    class Access(int, metaclass=sip._enumtype):
         Private = ... # type: QMetaMethod.Access
         Protected = ... # type: QMetaMethod.Access
         Public = ... # type: QMetaMethod.Access
@@ -9209,9 +9349,10 @@ class QMetaClassInfo(sip.simplewrapper):
 
 class QMetaType(sip.simplewrapper):
 
-    class TypeFlag(int):
-        def __or__ (self, other: 'QMetaType.TypeFlag') -> 'QMetaType.TypeFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QMetaType.TypeFlags': ...                    # type: ignore[override, misc]
+    @typing.final
+    class TypeFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QMetaType.TypeFlag', /) -> 'QMetaType.TypeFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QMetaType.TypeFlags': ...                    # type: ignore[override, misc]
         
         NeedsConstruction = ... # type: QMetaType.TypeFlag
         NeedsDestruction = ... # type: QMetaType.TypeFlag
@@ -9225,7 +9366,8 @@ class QMetaType(sip.simplewrapper):
     PointerToQObject = ...  # type: QMetaType.TypeFlag
     IsEnumeration = ...  # type: QMetaType.TypeFlag
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         UnknownType = ... # type: QMetaType.Type
         Void = ... # type: QMetaType.Type
         Bool = ... # type: QMetaType.Type
@@ -9410,12 +9552,12 @@ class QMetaType(sip.simplewrapper):
         def __invert__(self) -> 'QMetaType.TypeFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QMetaType.TypeFlags', 'QMetaType.TypeFlag', int]) -> 'QMetaType.TypeFlags': ...
-        def __and__(self, other: typing.Union['QMetaType.TypeFlags', 'QMetaType.TypeFlag', int]) -> 'QMetaType.TypeFlags': ...
-        def __xor__(self, other: typing.Union['QMetaType.TypeFlags', 'QMetaType.TypeFlag', int]) -> 'QMetaType.TypeFlags': ...
-        def __ror__ (self, other: 'QMetaType.TypeFlag') -> 'QMetaType.TypeFlags': ...
-        def __rand__(self, other: 'QMetaType.TypeFlag') -> 'QMetaType.TypeFlags': ...
-        def __rxor__(self, other: 'QMetaType.TypeFlag') -> 'QMetaType.TypeFlags': ...
+        def __or__ (self, other: typing.Union['QMetaType.TypeFlags', 'QMetaType.TypeFlag', int], /) -> 'QMetaType.TypeFlags': ...
+        def __and__(self, other: typing.Union['QMetaType.TypeFlags', 'QMetaType.TypeFlag', int], /) -> 'QMetaType.TypeFlags': ...
+        def __xor__(self, other: typing.Union['QMetaType.TypeFlags', 'QMetaType.TypeFlag', int], /) -> 'QMetaType.TypeFlags': ...
+        def __ror__ (self, other: 'QMetaType.TypeFlag', /) -> 'QMetaType.TypeFlags': ...
+        def __rand__(self, other: 'QMetaType.TypeFlag', /) -> 'QMetaType.TypeFlags': ...
+        def __rxor__(self, other: 'QMetaType.TypeFlag', /) -> 'QMetaType.TypeFlags': ...
 
     def __init__(self, type: int = ...) -> None: ...
 
@@ -9470,7 +9612,8 @@ class QMimeData(QObject):
 
 class QMimeDatabase(sip.simplewrapper):
 
-    class MatchMode(int):
+    @typing.final
+    class MatchMode(int, metaclass=sip._enumtype):
         MatchDefault = ... # type: QMimeDatabase.MatchMode
         MatchExtension = ... # type: QMimeDatabase.MatchMode
         MatchContent = ... # type: QMimeDatabase.MatchMode
@@ -9541,7 +9684,8 @@ class QMutexLocker(sip.simplewrapper):
 
 class QMutex(sip.simplewrapper):
 
-    class RecursionMode(int):
+    @typing.final
+    class RecursionMode(int, metaclass=sip._enumtype):
         NonRecursive = ... # type: QMutex.RecursionMode
         Recursive = ... # type: QMutex.RecursionMode
 
@@ -9654,7 +9798,8 @@ class QGenericReturnArgument(sip.simplewrapper): ...
 
 class QOperatingSystemVersion(sip.simplewrapper):
 
-    class OSType(int):
+    @typing.final
+    class OSType(int, metaclass=sip._enumtype):
         Unknown = ... # type: QOperatingSystemVersion.OSType
         Windows = ... # type: QOperatingSystemVersion.OSType
         MacOS = ... # type: QOperatingSystemVersion.OSType
@@ -9806,10 +9951,13 @@ class QPoint(sip.simplewrapper):
 
     def __neg__(self) -> 'QPoint': ...
     def __pos__(self) -> 'QPoint': ...
-    def __add__(self, point: 'QPoint') -> 'QPoint': ...
-    def __sub__(self, point: 'QPoint') -> 'QPoint': ...
-    def __mul__(self, factor: float) -> 'QPoint': ...
-    def __truediv__(self, divisor: float) -> 'QPoint': ...
+    def __add__(self, point: 'QPoint', /) -> 'QPoint': ...
+    def __radd__(self, point: 'QPoint', /) -> 'QPoint': ...
+    def __sub__(self, point: 'QPoint', /) -> 'QPoint': ...
+    def __rsub__(self, point: 'QPoint', /) -> 'QPoint': ...
+    def __mul__(self, factor: float, /) -> 'QPoint': ...
+    def __rmul__(self, factor: float, /) -> 'QPoint': ...
+    def __truediv__(self, divisor: float, /) -> 'QPoint': ...
     def transposed(self) -> 'QPoint': ...
     @staticmethod
     def dotProduct(p1: 'QPoint', p2: 'QPoint') -> int: ...
@@ -9836,10 +9984,13 @@ class QPointF(sip.simplewrapper):
 
     def __neg__(self) -> 'QPointF': ...
     def __pos__(self) -> 'QPointF': ...
-    def __add__(self, point: 'QPointF') -> 'QPointF': ...
-    def __sub__(self, point: 'QPointF') -> 'QPointF': ...
-    def __mul__(self, factor: float) -> 'QPointF': ...
-    def __truediv__(self, divisor: float) -> 'QPointF': ...
+    def __add__(self, point: 'QPointF', /) -> 'QPointF': ...
+    def __radd__(self, point: 'QPointF', /) -> 'QPointF': ...
+    def __sub__(self, point: 'QPointF', /) -> 'QPointF': ...
+    def __rsub__(self, point: 'QPointF', /) -> 'QPointF': ...
+    def __mul__(self, factor: float, /) -> 'QPointF': ...
+    def __rmul__(self, factor: float, /) -> 'QPointF': ...
+    def __truediv__(self, divisor: float, /) -> 'QPointF': ...
     def transposed(self) -> 'QPointF': ...
     @staticmethod
     def dotProduct(p1: typing.Union['QPointF', QPoint], p2: typing.Union['QPointF', QPoint]) -> float: ...
@@ -9856,14 +10007,16 @@ class QPointF(sip.simplewrapper):
 
 class QProcess(QIODevice):
 
-    class InputChannelMode(int):
+    @typing.final
+    class InputChannelMode(int, metaclass=sip._enumtype):
         ManagedInputChannel = ... # type: QProcess.InputChannelMode
         ForwardedInputChannel = ... # type: QProcess.InputChannelMode
 
     ManagedInputChannel = ...  # type: QProcess.InputChannelMode
     ForwardedInputChannel = ...  # type: QProcess.InputChannelMode
 
-    class ProcessChannelMode(int):
+    @typing.final
+    class ProcessChannelMode(int, metaclass=sip._enumtype):
         SeparateChannels = ... # type: QProcess.ProcessChannelMode
         MergedChannels = ... # type: QProcess.ProcessChannelMode
         ForwardedChannels = ... # type: QProcess.ProcessChannelMode
@@ -9876,14 +10029,16 @@ class QProcess(QIODevice):
     ForwardedOutputChannel = ...  # type: QProcess.ProcessChannelMode
     ForwardedErrorChannel = ...  # type: QProcess.ProcessChannelMode
 
-    class ProcessChannel(int):
+    @typing.final
+    class ProcessChannel(int, metaclass=sip._enumtype):
         StandardOutput = ... # type: QProcess.ProcessChannel
         StandardError = ... # type: QProcess.ProcessChannel
 
     StandardOutput = ...  # type: QProcess.ProcessChannel
     StandardError = ...  # type: QProcess.ProcessChannel
 
-    class ProcessState(int):
+    @typing.final
+    class ProcessState(int, metaclass=sip._enumtype):
         NotRunning = ... # type: QProcess.ProcessState
         Starting = ... # type: QProcess.ProcessState
         Running = ... # type: QProcess.ProcessState
@@ -9892,7 +10047,8 @@ class QProcess(QIODevice):
     Starting = ...  # type: QProcess.ProcessState
     Running = ...  # type: QProcess.ProcessState
 
-    class ProcessError(int):
+    @typing.final
+    class ProcessError(int, metaclass=sip._enumtype):
         FailedToStart = ... # type: QProcess.ProcessError
         Crashed = ... # type: QProcess.ProcessError
         Timedout = ... # type: QProcess.ProcessError
@@ -9907,7 +10063,8 @@ class QProcess(QIODevice):
     WriteError = ...  # type: QProcess.ProcessError
     UnknownError = ...  # type: QProcess.ProcessError
 
-    class ExitStatus(int):
+    @typing.final
+    class ExitStatus(int, metaclass=sip._enumtype):
         NormalExit = ... # type: QProcess.ExitStatus
         CrashExit = ... # type: QProcess.ExitStatus
 
@@ -10042,7 +10199,7 @@ class QRandomGenerator(sip.simplewrapper):
     @typing.overload
     def bounded(self, highest: float) -> float: ...
     @typing.overload
-    def bounded(self, highest: int) -> int: ...  # type: ignore[misc]
+    def bounded(self, highest: int) -> int: ...  # type: ignore[overload-cannot-match]
     @typing.overload
     def bounded(self, lowest: int, highest: int) -> int: ...
     def generateDouble(self) -> float: ...
@@ -10052,7 +10209,8 @@ class QRandomGenerator(sip.simplewrapper):
 
 class QReadWriteLock(sip.simplewrapper):
 
-    class RecursionMode(int):
+    @typing.final
+    class RecursionMode(int, metaclass=sip._enumtype):
         NonRecursive = ... # type: QReadWriteLock.RecursionMode
         Recursive = ... # type: QReadWriteLock.RecursionMode
 
@@ -10174,9 +10332,9 @@ class QRect(sip.simplewrapper):
     def __repr__(self) -> str: ...
     def intersects(self, r: 'QRect') -> bool: ...
     @typing.overload
-    def __contains__(self, p: QPoint) -> int: ...
+    def __contains__(self, p: QPoint, /) -> int: ...
     @typing.overload
-    def __contains__(self, r: 'QRect') -> int: ...
+    def __contains__(self, r: 'QRect', /) -> int: ...
     @typing.overload
     def contains(self, point: QPoint, proper: bool = ...) -> bool: ...
     @typing.overload
@@ -10261,9 +10419,9 @@ class QRectF(sip.simplewrapper):
     def isNull(self) -> bool: ...
     def intersects(self, r: 'QRectF') -> bool: ...
     @typing.overload
-    def __contains__(self, p: typing.Union[QPointF, QPoint]) -> int: ...
+    def __contains__(self, p: typing.Union[QPointF, QPoint], /) -> int: ...
     @typing.overload
-    def __contains__(self, r: 'QRectF') -> int: ...
+    def __contains__(self, r: 'QRectF', /) -> int: ...
     @typing.overload
     def contains(self, p: typing.Union[QPointF, QPoint]) -> bool: ...
     @typing.overload
@@ -10286,7 +10444,8 @@ class QRectF(sip.simplewrapper):
 
 class QRegExp(sip.simplewrapper):
 
-    class CaretMode(int):
+    @typing.final
+    class CaretMode(int, metaclass=sip._enumtype):
         CaretAtZero = ... # type: QRegExp.CaretMode
         CaretAtOffset = ... # type: QRegExp.CaretMode
         CaretWontMatch = ... # type: QRegExp.CaretMode
@@ -10295,7 +10454,8 @@ class QRegExp(sip.simplewrapper):
     CaretAtOffset = ...  # type: QRegExp.CaretMode
     CaretWontMatch = ...  # type: QRegExp.CaretMode
 
-    class PatternSyntax(int):
+    @typing.final
+    class PatternSyntax(int, metaclass=sip._enumtype):
         RegExp = ... # type: QRegExp.PatternSyntax
         RegExp2 = ... # type: QRegExp.PatternSyntax
         Wildcard = ... # type: QRegExp.PatternSyntax
@@ -10345,9 +10505,10 @@ class QRegExp(sip.simplewrapper):
 
 class QRegularExpression(sip.simplewrapper):
 
-    class MatchOption(int):
-        def __or__ (self, other: 'QRegularExpression.MatchOption') -> 'QRegularExpression.MatchOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QRegularExpression.MatchOptions': ...                                # type: ignore[override, misc]
+    @typing.final
+    class MatchOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QRegularExpression.MatchOption', /) -> 'QRegularExpression.MatchOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QRegularExpression.MatchOptions': ...                                # type: ignore[override, misc]
         
         NoMatchOption = ... # type: QRegularExpression.MatchOption
         AnchoredMatchOption = ... # type: QRegularExpression.MatchOption
@@ -10357,7 +10518,8 @@ class QRegularExpression(sip.simplewrapper):
     AnchoredMatchOption = ...  # type: QRegularExpression.MatchOption
     DontCheckSubjectStringMatchOption = ...  # type: QRegularExpression.MatchOption
 
-    class MatchType(int):
+    @typing.final
+    class MatchType(int, metaclass=sip._enumtype):
         NormalMatch = ... # type: QRegularExpression.MatchType
         PartialPreferCompleteMatch = ... # type: QRegularExpression.MatchType
         PartialPreferFirstMatch = ... # type: QRegularExpression.MatchType
@@ -10368,9 +10530,10 @@ class QRegularExpression(sip.simplewrapper):
     PartialPreferFirstMatch = ...  # type: QRegularExpression.MatchType
     NoMatch = ...  # type: QRegularExpression.MatchType
 
-    class PatternOption(int):
-        def __or__ (self, other: 'QRegularExpression.PatternOption') -> 'QRegularExpression.PatternOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QRegularExpression.PatternOptions': ...                                  # type: ignore[override, misc]
+    @typing.final
+    class PatternOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QRegularExpression.PatternOption', /) -> 'QRegularExpression.PatternOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QRegularExpression.PatternOptions': ...                                  # type: ignore[override, misc]
         
         NoPatternOption = ... # type: QRegularExpression.PatternOption
         CaseInsensitiveOption = ... # type: QRegularExpression.PatternOption
@@ -10410,12 +10573,12 @@ class QRegularExpression(sip.simplewrapper):
         def __invert__(self) -> 'QRegularExpression.PatternOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QRegularExpression.PatternOptions', 'QRegularExpression.PatternOption', int]) -> 'QRegularExpression.PatternOptions': ...
-        def __and__(self, other: typing.Union['QRegularExpression.PatternOptions', 'QRegularExpression.PatternOption', int]) -> 'QRegularExpression.PatternOptions': ...
-        def __xor__(self, other: typing.Union['QRegularExpression.PatternOptions', 'QRegularExpression.PatternOption', int]) -> 'QRegularExpression.PatternOptions': ...
-        def __ror__ (self, other: 'QRegularExpression.PatternOption') -> 'QRegularExpression.PatternOptions': ...
-        def __rand__(self, other: 'QRegularExpression.PatternOption') -> 'QRegularExpression.PatternOptions': ...
-        def __rxor__(self, other: 'QRegularExpression.PatternOption') -> 'QRegularExpression.PatternOptions': ...
+        def __or__ (self, other: typing.Union['QRegularExpression.PatternOptions', 'QRegularExpression.PatternOption', int], /) -> 'QRegularExpression.PatternOptions': ...
+        def __and__(self, other: typing.Union['QRegularExpression.PatternOptions', 'QRegularExpression.PatternOption', int], /) -> 'QRegularExpression.PatternOptions': ...
+        def __xor__(self, other: typing.Union['QRegularExpression.PatternOptions', 'QRegularExpression.PatternOption', int], /) -> 'QRegularExpression.PatternOptions': ...
+        def __ror__ (self, other: 'QRegularExpression.PatternOption', /) -> 'QRegularExpression.PatternOptions': ...
+        def __rand__(self, other: 'QRegularExpression.PatternOption', /) -> 'QRegularExpression.PatternOptions': ...
+        def __rxor__(self, other: 'QRegularExpression.PatternOption', /) -> 'QRegularExpression.PatternOptions': ...
 
     class MatchOptions(sip.simplewrapper):
 
@@ -10433,12 +10596,12 @@ class QRegularExpression(sip.simplewrapper):
         def __invert__(self) -> 'QRegularExpression.MatchOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QRegularExpression.MatchOptions', 'QRegularExpression.MatchOption', int]) -> 'QRegularExpression.MatchOptions': ...
-        def __and__(self, other: typing.Union['QRegularExpression.MatchOptions', 'QRegularExpression.MatchOption', int]) -> 'QRegularExpression.MatchOptions': ...
-        def __xor__(self, other: typing.Union['QRegularExpression.MatchOptions', 'QRegularExpression.MatchOption', int]) -> 'QRegularExpression.MatchOptions': ...
-        def __ror__ (self, other: 'QRegularExpression.MatchOption') -> 'QRegularExpression.MatchOptions': ...
-        def __rand__(self, other: 'QRegularExpression.MatchOption') -> 'QRegularExpression.MatchOptions': ...
-        def __rxor__(self, other: 'QRegularExpression.MatchOption') -> 'QRegularExpression.MatchOptions': ...
+        def __or__ (self, other: typing.Union['QRegularExpression.MatchOptions', 'QRegularExpression.MatchOption', int], /) -> 'QRegularExpression.MatchOptions': ...
+        def __and__(self, other: typing.Union['QRegularExpression.MatchOptions', 'QRegularExpression.MatchOption', int], /) -> 'QRegularExpression.MatchOptions': ...
+        def __xor__(self, other: typing.Union['QRegularExpression.MatchOptions', 'QRegularExpression.MatchOption', int], /) -> 'QRegularExpression.MatchOptions': ...
+        def __ror__ (self, other: 'QRegularExpression.MatchOption', /) -> 'QRegularExpression.MatchOptions': ...
+        def __rand__(self, other: 'QRegularExpression.MatchOption', /) -> 'QRegularExpression.MatchOptions': ...
+        def __rxor__(self, other: 'QRegularExpression.MatchOption', /) -> 'QRegularExpression.MatchOptions': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -10523,7 +10686,8 @@ class QRegularExpressionMatchIterator(sip.simplewrapper):
 
 class QResource(sip.simplewrapper):
 
-    class Compression(int):
+    @typing.final
+    class Compression(int, metaclass=sip._enumtype):
         NoCompression = ... # type: QResource.Compression
         ZlibCompression = ... # type: QResource.Compression
         ZstdCompression = ... # type: QResource.Compression
@@ -10635,14 +10799,16 @@ class QSequentialAnimationGroup(QAnimationGroup):
 
 class QSettings(QObject):
 
-    class Scope(int):
+    @typing.final
+    class Scope(int, metaclass=sip._enumtype):
         UserScope = ... # type: QSettings.Scope
         SystemScope = ... # type: QSettings.Scope
 
     UserScope = ...  # type: QSettings.Scope
     SystemScope = ...  # type: QSettings.Scope
 
-    class Format(int):
+    @typing.final
+    class Format(int, metaclass=sip._enumtype):
         NativeFormat = ... # type: QSettings.Format
         IniFormat = ... # type: QSettings.Format
         InvalidFormat = ... # type: QSettings.Format
@@ -10651,7 +10817,8 @@ class QSettings(QObject):
     IniFormat = ...  # type: QSettings.Format
     InvalidFormat = ...  # type: QSettings.Format
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         NoError = ... # type: QSettings.Status
         AccessError = ... # type: QSettings.Status
         FormatError = ... # type: QSettings.Status
@@ -10716,7 +10883,8 @@ class QSettings(QObject):
 
 class QSharedMemory(QObject):
 
-    class SharedMemoryError(int):
+    @typing.final
+    class SharedMemoryError(int, metaclass=sip._enumtype):
         NoError = ... # type: QSharedMemory.SharedMemoryError
         PermissionDenied = ... # type: QSharedMemory.SharedMemoryError
         InvalidSize = ... # type: QSharedMemory.SharedMemoryError
@@ -10737,7 +10905,8 @@ class QSharedMemory(QObject):
     OutOfResources = ...  # type: QSharedMemory.SharedMemoryError
     UnknownError = ...  # type: QSharedMemory.SharedMemoryError
 
-    class AccessMode(int):
+    @typing.final
+    class AccessMode(int, metaclass=sip._enumtype):
         ReadOnly = ... # type: QSharedMemory.AccessMode
         ReadWrite = ... # type: QSharedMemory.AccessMode
 
@@ -10825,17 +10994,19 @@ class QSize(sip.simplewrapper):
     @typing.overload
     def __init__(self, a0: 'QSize') -> None: ...
 
-    def __eq__(self, value: object) -> bool: ...
-    def __ne__(self, value: object) -> bool: ...
-    def __add__(self, value: 'QSize') -> 'QSize': ...
-    def __iadd__(self, value: 'QSize') -> 'QSize': ...
-    def __sub__(self, value: 'QSize') -> 'QSize': ...
-    def __isub__(self, value: 'QSize') -> 'QSize': ...
-    def __mul__(self, value: float) -> 'QSize': ...
-    def __rmul__(self, value: float) -> 'QSize': ...
-    def __imul__(self, value: float) -> 'QSize': ...
-    def __truediv__(self, value: float) -> 'QSize': ...
-    def __itruediv__(self, value: float) -> 'QSize': ...
+    def __eq__(self, value: object, /) -> bool: ...
+    def __ne__(self, value: object, /) -> bool: ...
+    def __add__(self, value: 'QSize', /) -> 'QSize': ...
+    def __radd__(self, value: 'QSize', /) -> 'QSize': ...
+    def __iadd__(self, value: 'QSize', /) -> 'QSize': ...
+    def __sub__(self, value: 'QSize', /) -> 'QSize': ...
+    def __rsub__(self, value: 'QSize', /) -> 'QSize': ...
+    def __isub__(self, value: 'QSize', /) -> 'QSize': ...
+    def __mul__(self, value: float, /) -> 'QSize': ...
+    def __rmul__(self, value: float, /) -> 'QSize': ...
+    def __imul__(self, value: float, /) -> 'QSize': ...
+    def __truediv__(self, value: float, /) -> 'QSize': ...
+    def __itruediv__(self, value: float, /) -> 'QSize': ...
 
     def shrunkBy(self, m: QMargins) -> 'QSize': ...
     def grownBy(self, m: QMargins) -> 'QSize': ...
@@ -10873,17 +11044,19 @@ class QSizeF(sip.simplewrapper):
     @typing.overload
     def __init__(self, a0: 'QSizeF') -> None: ...
 
-    def __eq__(self, value: object) -> bool: ...
-    def __ne__(self, value: object) -> bool: ...
-    def __add__(self, value: 'QSizeF') -> 'QSizeF': ...
-    def __iadd__(self, value: 'QSizeF') -> 'QSizeF': ...
-    def __sub__(self, value: 'QSizeF') -> 'QSizeF': ...
-    def __isub__(self, value: 'QSizeF') -> 'QSizeF': ...
-    def __mul__(self, value: float) -> 'QSizeF': ...
-    def __rmul__(self, value: float) -> 'QSizeF': ...
-    def __imul__(self, value: float) -> 'QSizeF': ...
-    def __truediv__(self, value: float) -> 'QSizeF': ...
-    def __itruediv__(self, value: float) -> 'QSizeF': ...
+    def __eq__(self, value: object, /) -> bool: ...
+    def __ne__(self, value: object, /) -> bool: ...
+    def __add__(self, value: 'QSizeF', /) -> 'QSizeF': ...
+    def __radd__(self, value: 'QSizeF', /) -> 'QSizeF': ...
+    def __iadd__(self, value: 'QSizeF', /) -> 'QSizeF': ...
+    def __sub__(self, value: 'QSizeF', /) -> 'QSizeF': ...
+    def __rsub__(self, value: 'QSizeF', /) -> 'QSizeF': ...
+    def __isub__(self, value: 'QSizeF', /) -> 'QSizeF': ...
+    def __mul__(self, value: float, /) -> 'QSizeF': ...
+    def __rmul__(self, value: float, /) -> 'QSizeF': ...
+    def __imul__(self, value: float, /) -> 'QSizeF': ...
+    def __truediv__(self, value: float, /) -> 'QSizeF': ...
+    def __itruediv__(self, value: float, /) -> 'QSizeF': ...
 
     def shrunkBy(self, m: QMarginsF) -> 'QSizeF': ...
     def grownBy(self, m: QMarginsF) -> 'QSizeF': ...
@@ -10913,7 +11086,8 @@ class QSizeF(sip.simplewrapper):
 
 class QSocketNotifier(QObject):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         Read = ... # type: QSocketNotifier.Type
         Write = ... # type: QSocketNotifier.Type
         Exception = ... # type: QSocketNotifier.Type
@@ -11015,9 +11189,10 @@ class QSortFilterProxyModel(QAbstractProxyModel):
 
 class QStandardPaths(sip.simplewrapper):
 
-    class LocateOption(int):
-        def __or__ (self, other: 'QStandardPaths.LocateOption') -> 'QStandardPaths.LocateOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QStandardPaths.LocateOptions': ...                             # type: ignore[override, misc]
+    @typing.final
+    class LocateOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QStandardPaths.LocateOption', /) -> 'QStandardPaths.LocateOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QStandardPaths.LocateOptions': ...                             # type: ignore[override, misc]
         
         LocateFile = ... # type: QStandardPaths.LocateOption
         LocateDirectory = ... # type: QStandardPaths.LocateOption
@@ -11025,7 +11200,8 @@ class QStandardPaths(sip.simplewrapper):
     LocateFile = ...  # type: QStandardPaths.LocateOption
     LocateDirectory = ...  # type: QStandardPaths.LocateOption
 
-    class StandardLocation(int):
+    @typing.final
+    class StandardLocation(int, metaclass=sip._enumtype):
         DesktopLocation = ... # type: QStandardPaths.StandardLocation
         DocumentsLocation = ... # type: QStandardPaths.StandardLocation
         FontsLocation = ... # type: QStandardPaths.StandardLocation
@@ -11084,12 +11260,12 @@ class QStandardPaths(sip.simplewrapper):
         def __invert__(self) -> 'QStandardPaths.LocateOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QStandardPaths.LocateOptions', 'QStandardPaths.LocateOption', int]) -> 'QStandardPaths.LocateOptions': ...
-        def __and__(self, other: typing.Union['QStandardPaths.LocateOptions', 'QStandardPaths.LocateOption', int]) -> 'QStandardPaths.LocateOptions': ...
-        def __xor__(self, other: typing.Union['QStandardPaths.LocateOptions', 'QStandardPaths.LocateOption', int]) -> 'QStandardPaths.LocateOptions': ...
-        def __ror__ (self, other: 'QStandardPaths.LocateOption') -> 'QStandardPaths.LocateOptions': ...
-        def __rand__(self, other: 'QStandardPaths.LocateOption') -> 'QStandardPaths.LocateOptions': ...
-        def __rxor__(self, other: 'QStandardPaths.LocateOption') -> 'QStandardPaths.LocateOptions': ...
+        def __or__ (self, other: typing.Union['QStandardPaths.LocateOptions', 'QStandardPaths.LocateOption', int], /) -> 'QStandardPaths.LocateOptions': ...
+        def __and__(self, other: typing.Union['QStandardPaths.LocateOptions', 'QStandardPaths.LocateOption', int], /) -> 'QStandardPaths.LocateOptions': ...
+        def __xor__(self, other: typing.Union['QStandardPaths.LocateOptions', 'QStandardPaths.LocateOption', int], /) -> 'QStandardPaths.LocateOptions': ...
+        def __ror__ (self, other: 'QStandardPaths.LocateOption', /) -> 'QStandardPaths.LocateOptions': ...
+        def __rand__(self, other: 'QStandardPaths.LocateOption', /) -> 'QStandardPaths.LocateOptions': ...
+        def __rxor__(self, other: 'QStandardPaths.LocateOption', /) -> 'QStandardPaths.LocateOptions': ...
 
     def __init__(self, a0: 'QStandardPaths') -> None: ...
 
@@ -11113,14 +11289,16 @@ class QStandardPaths(sip.simplewrapper):
 
 class QState(QAbstractState):
 
-    class RestorePolicy(int):
+    @typing.final
+    class RestorePolicy(int, metaclass=sip._enumtype):
         DontRestoreProperties = ... # type: QState.RestorePolicy
         RestoreProperties = ... # type: QState.RestorePolicy
 
     DontRestoreProperties = ...  # type: QState.RestorePolicy
     RestoreProperties = ...  # type: QState.RestorePolicy
 
-    class ChildMode(int):
+    @typing.final
+    class ChildMode(int, metaclass=sip._enumtype):
         ExclusiveStates = ... # type: QState.ChildMode
         ParallelStates = ... # type: QState.ChildMode
 
@@ -11159,7 +11337,8 @@ class QState(QAbstractState):
 
 class QStateMachine(QState):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QStateMachine.Error
         NoInitialStateError = ... # type: QStateMachine.Error
         NoDefaultStateInHistoryStateError = ... # type: QStateMachine.Error
@@ -11172,7 +11351,8 @@ class QStateMachine(QState):
     NoCommonAncestorForTransitionError = ...  # type: QStateMachine.Error
     StateMachineChildModeSetToParallelError = ...  # type: QStateMachine.Error
 
-    class EventPriority(int):
+    @typing.final
+    class EventPriority(int, metaclass=sip._enumtype):
         NormalPriority = ... # type: QStateMachine.EventPriority
         HighPriority = ... # type: QStateMachine.EventPriority
 
@@ -11283,7 +11463,8 @@ class QStringListModel(QAbstractListModel):
 
 class QSystemSemaphore(sip.simplewrapper):
 
-    class SystemSemaphoreError(int):
+    @typing.final
+    class SystemSemaphoreError(int, metaclass=sip._enumtype):
         NoError = ... # type: QSystemSemaphore.SystemSemaphoreError
         PermissionDenied = ... # type: QSystemSemaphore.SystemSemaphoreError
         KeyError = ... # type: QSystemSemaphore.SystemSemaphoreError
@@ -11300,7 +11481,8 @@ class QSystemSemaphore(sip.simplewrapper):
     OutOfResources = ...  # type: QSystemSemaphore.SystemSemaphoreError
     UnknownError = ...  # type: QSystemSemaphore.SystemSemaphoreError
 
-    class AccessMode(int):
+    @typing.final
+    class AccessMode(int, metaclass=sip._enumtype):
         Open = ... # type: QSystemSemaphore.AccessMode
         Create = ... # type: QSystemSemaphore.AccessMode
 
@@ -11364,7 +11546,8 @@ class QTemporaryFile(QFile):
 
 class QTextBoundaryFinder(sip.simplewrapper):
 
-    class BoundaryType(int):
+    @typing.final
+    class BoundaryType(int, metaclass=sip._enumtype):
         Grapheme = ... # type: QTextBoundaryFinder.BoundaryType
         Word = ... # type: QTextBoundaryFinder.BoundaryType
         Line = ... # type: QTextBoundaryFinder.BoundaryType
@@ -11375,9 +11558,10 @@ class QTextBoundaryFinder(sip.simplewrapper):
     Line = ...  # type: QTextBoundaryFinder.BoundaryType
     Sentence = ...  # type: QTextBoundaryFinder.BoundaryType
 
-    class BoundaryReason(int):
-        def __or__ (self, other: 'QTextBoundaryFinder.BoundaryReason') -> 'QTextBoundaryFinder.BoundaryReasons': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextBoundaryFinder.BoundaryReasons': ...                                    # type: ignore[override, misc]
+    @typing.final
+    class BoundaryReason(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextBoundaryFinder.BoundaryReason', /) -> 'QTextBoundaryFinder.BoundaryReasons': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextBoundaryFinder.BoundaryReasons': ...                                    # type: ignore[override, misc]
         
         NotAtBoundary = ... # type: QTextBoundaryFinder.BoundaryReason
         SoftHyphen = ... # type: QTextBoundaryFinder.BoundaryReason
@@ -11409,12 +11593,12 @@ class QTextBoundaryFinder(sip.simplewrapper):
         def __invert__(self) -> 'QTextBoundaryFinder.BoundaryReasons': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextBoundaryFinder.BoundaryReasons', 'QTextBoundaryFinder.BoundaryReason', int]) -> 'QTextBoundaryFinder.BoundaryReasons': ...
-        def __and__(self, other: typing.Union['QTextBoundaryFinder.BoundaryReasons', 'QTextBoundaryFinder.BoundaryReason', int]) -> 'QTextBoundaryFinder.BoundaryReasons': ...
-        def __xor__(self, other: typing.Union['QTextBoundaryFinder.BoundaryReasons', 'QTextBoundaryFinder.BoundaryReason', int]) -> 'QTextBoundaryFinder.BoundaryReasons': ...
-        def __ror__ (self, other: 'QTextBoundaryFinder.BoundaryReason') -> 'QTextBoundaryFinder.BoundaryReasons': ...
-        def __rand__(self, other: 'QTextBoundaryFinder.BoundaryReason') -> 'QTextBoundaryFinder.BoundaryReasons': ...
-        def __rxor__(self, other: 'QTextBoundaryFinder.BoundaryReason') -> 'QTextBoundaryFinder.BoundaryReasons': ...
+        def __or__ (self, other: typing.Union['QTextBoundaryFinder.BoundaryReasons', 'QTextBoundaryFinder.BoundaryReason', int], /) -> 'QTextBoundaryFinder.BoundaryReasons': ...
+        def __and__(self, other: typing.Union['QTextBoundaryFinder.BoundaryReasons', 'QTextBoundaryFinder.BoundaryReason', int], /) -> 'QTextBoundaryFinder.BoundaryReasons': ...
+        def __xor__(self, other: typing.Union['QTextBoundaryFinder.BoundaryReasons', 'QTextBoundaryFinder.BoundaryReason', int], /) -> 'QTextBoundaryFinder.BoundaryReasons': ...
+        def __ror__ (self, other: 'QTextBoundaryFinder.BoundaryReason', /) -> 'QTextBoundaryFinder.BoundaryReasons': ...
+        def __rand__(self, other: 'QTextBoundaryFinder.BoundaryReason', /) -> 'QTextBoundaryFinder.BoundaryReasons': ...
+        def __rxor__(self, other: 'QTextBoundaryFinder.BoundaryReason', /) -> 'QTextBoundaryFinder.BoundaryReasons': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -11438,9 +11622,10 @@ class QTextBoundaryFinder(sip.simplewrapper):
 
 class QTextCodec(sip.wrapper):
 
-    class ConversionFlag(int):
-        def __or__ (self, other: 'QTextCodec.ConversionFlag') -> 'QTextCodec.ConversionFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextCodec.ConversionFlags': ...                           # type: ignore[override, misc]
+    @typing.final
+    class ConversionFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextCodec.ConversionFlag', /) -> 'QTextCodec.ConversionFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextCodec.ConversionFlags': ...                           # type: ignore[override, misc]
         
         DefaultConversion = ... # type: QTextCodec.ConversionFlag
         ConvertInvalidToNull = ... # type: QTextCodec.ConversionFlag
@@ -11466,12 +11651,12 @@ class QTextCodec(sip.wrapper):
         def __invert__(self) -> 'QTextCodec.ConversionFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag', int]) -> 'QTextCodec.ConversionFlags': ...
-        def __and__(self, other: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag', int]) -> 'QTextCodec.ConversionFlags': ...
-        def __xor__(self, other: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag', int]) -> 'QTextCodec.ConversionFlags': ...
-        def __ror__ (self, other: 'QTextCodec.ConversionFlag') -> 'QTextCodec.ConversionFlags': ...
-        def __rand__(self, other: 'QTextCodec.ConversionFlag') -> 'QTextCodec.ConversionFlags': ...
-        def __rxor__(self, other: 'QTextCodec.ConversionFlag') -> 'QTextCodec.ConversionFlags': ...
+        def __or__ (self, other: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag', int], /) -> 'QTextCodec.ConversionFlags': ...
+        def __and__(self, other: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag', int], /) -> 'QTextCodec.ConversionFlags': ...
+        def __xor__(self, other: typing.Union['QTextCodec.ConversionFlags', 'QTextCodec.ConversionFlag', int], /) -> 'QTextCodec.ConversionFlags': ...
+        def __ror__ (self, other: 'QTextCodec.ConversionFlag', /) -> 'QTextCodec.ConversionFlags': ...
+        def __rand__(self, other: 'QTextCodec.ConversionFlag', /) -> 'QTextCodec.ConversionFlags': ...
+        def __rxor__(self, other: 'QTextCodec.ConversionFlag', /) -> 'QTextCodec.ConversionFlags': ...
 
     class ConverterState(sip.simplewrapper):
 
@@ -11547,7 +11732,8 @@ class QTextDecoder(sip.wrapper):
 
 class QTextStream(sip.simplewrapper):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         Ok = ... # type: QTextStream.Status
         ReadPastEnd = ... # type: QTextStream.Status
         ReadCorruptData = ... # type: QTextStream.Status
@@ -11558,9 +11744,10 @@ class QTextStream(sip.simplewrapper):
     ReadCorruptData = ...  # type: QTextStream.Status
     WriteFailed = ...  # type: QTextStream.Status
 
-    class NumberFlag(int):
-        def __or__ (self, other: 'QTextStream.NumberFlag') -> 'QTextStream.NumberFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextStream.NumberFlags': ...                        # type: ignore[override, misc]
+    @typing.final
+    class NumberFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextStream.NumberFlag', /) -> 'QTextStream.NumberFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextStream.NumberFlags': ...                        # type: ignore[override, misc]
         
         ShowBase = ... # type: QTextStream.NumberFlag
         ForcePoint = ... # type: QTextStream.NumberFlag
@@ -11574,7 +11761,8 @@ class QTextStream(sip.simplewrapper):
     UppercaseBase = ...  # type: QTextStream.NumberFlag
     UppercaseDigits = ...  # type: QTextStream.NumberFlag
 
-    class FieldAlignment(int):
+    @typing.final
+    class FieldAlignment(int, metaclass=sip._enumtype):
         AlignLeft = ... # type: QTextStream.FieldAlignment
         AlignRight = ... # type: QTextStream.FieldAlignment
         AlignCenter = ... # type: QTextStream.FieldAlignment
@@ -11585,7 +11773,8 @@ class QTextStream(sip.simplewrapper):
     AlignCenter = ...  # type: QTextStream.FieldAlignment
     AlignAccountingStyle = ...  # type: QTextStream.FieldAlignment
 
-    class RealNumberNotation(int):
+    @typing.final
+    class RealNumberNotation(int, metaclass=sip._enumtype):
         SmartNotation = ... # type: QTextStream.RealNumberNotation
         FixedNotation = ... # type: QTextStream.RealNumberNotation
         ScientificNotation = ... # type: QTextStream.RealNumberNotation
@@ -11610,12 +11799,12 @@ class QTextStream(sip.simplewrapper):
         def __invert__(self) -> 'QTextStream.NumberFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextStream.NumberFlags', 'QTextStream.NumberFlag', int]) -> 'QTextStream.NumberFlags': ...
-        def __and__(self, other: typing.Union['QTextStream.NumberFlags', 'QTextStream.NumberFlag', int]) -> 'QTextStream.NumberFlags': ...
-        def __xor__(self, other: typing.Union['QTextStream.NumberFlags', 'QTextStream.NumberFlag', int]) -> 'QTextStream.NumberFlags': ...
-        def __ror__ (self, other: 'QTextStream.NumberFlag') -> 'QTextStream.NumberFlags': ...
-        def __rand__(self, other: 'QTextStream.NumberFlag') -> 'QTextStream.NumberFlags': ...
-        def __rxor__(self, other: 'QTextStream.NumberFlag') -> 'QTextStream.NumberFlags': ...
+        def __or__ (self, other: typing.Union['QTextStream.NumberFlags', 'QTextStream.NumberFlag', int], /) -> 'QTextStream.NumberFlags': ...
+        def __and__(self, other: typing.Union['QTextStream.NumberFlags', 'QTextStream.NumberFlag', int], /) -> 'QTextStream.NumberFlags': ...
+        def __xor__(self, other: typing.Union['QTextStream.NumberFlags', 'QTextStream.NumberFlag', int], /) -> 'QTextStream.NumberFlags': ...
+        def __ror__ (self, other: 'QTextStream.NumberFlag', /) -> 'QTextStream.NumberFlags': ...
+        def __rand__(self, other: 'QTextStream.NumberFlag', /) -> 'QTextStream.NumberFlags': ...
+        def __rxor__(self, other: 'QTextStream.NumberFlag', /) -> 'QTextStream.NumberFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -11670,7 +11859,8 @@ class QTextStreamManipulator(sip.simplewrapper): ...
 
 class QThread(QObject):
 
-    class Priority(int):
+    @typing.final
+    class Priority(int, metaclass=sip._enumtype):
         IdlePriority = ... # type: QThread.Priority
         LowestPriority = ... # type: QThread.Priority
         LowPriority = ... # type: QThread.Priority
@@ -11765,7 +11955,8 @@ class QThreadPool(QObject):
 
 class QTimeLine(QObject):
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         NotRunning = ... # type: QTimeLine.State
         Paused = ... # type: QTimeLine.State
         Running = ... # type: QTimeLine.State
@@ -11774,14 +11965,16 @@ class QTimeLine(QObject):
     Paused = ...  # type: QTimeLine.State
     Running = ...  # type: QTimeLine.State
 
-    class Direction(int):
+    @typing.final
+    class Direction(int, metaclass=sip._enumtype):
         Forward = ... # type: QTimeLine.Direction
         Backward = ... # type: QTimeLine.Direction
 
     Forward = ...  # type: QTimeLine.Direction
     Backward = ...  # type: QTimeLine.Direction
 
-    class CurveShape(int):
+    @typing.final
+    class CurveShape(int, metaclass=sip._enumtype):
         EaseInCurve = ... # type: QTimeLine.CurveShape
         EaseOutCurve = ... # type: QTimeLine.CurveShape
         EaseInOutCurve = ... # type: QTimeLine.CurveShape
@@ -11850,10 +12043,10 @@ class QTimer(QObject):
     def start(self) -> None: ...
     @typing.overload
     @staticmethod
-    def singleShot(msec: int, slot: PYQT_SLOT) -> None: ...
+    def singleShot(msec: int, slot: _PYQT_SLOT) -> None: ...
     @typing.overload
     @staticmethod
-    def singleShot(msec: int, timerType: Qt.TimerType, slot: PYQT_SLOT) -> None: ...
+    def singleShot(msec: int, timerType: Qt.TimerType, slot: _PYQT_SLOT) -> None: ...
     def setSingleShot(self, asingleShot: bool) -> None: ...
     def isSingleShot(self) -> bool: ...
     def interval(self) -> int: ...
@@ -11864,7 +12057,8 @@ class QTimer(QObject):
 
 class QTimeZone(sip.simplewrapper):
 
-    class NameType(int):
+    @typing.final
+    class NameType(int, metaclass=sip._enumtype):
         DefaultName = ... # type: QTimeZone.NameType
         LongName = ... # type: QTimeZone.NameType
         ShortName = ... # type: QTimeZone.NameType
@@ -11875,7 +12069,8 @@ class QTimeZone(sip.simplewrapper):
     ShortName = ...  # type: QTimeZone.NameType
     OffsetName = ...  # type: QTimeZone.NameType
 
-    class TimeType(int):
+    @typing.final
+    class TimeType(int, metaclass=sip._enumtype):
         StandardTime = ... # type: QTimeZone.TimeType
         DaylightTime = ... # type: QTimeZone.TimeType
         GenericTime = ... # type: QTimeZone.TimeType
@@ -12003,16 +12198,18 @@ class QTransposeProxyModel(QAbstractProxyModel):
 
 class QUrl(sip.simplewrapper):
 
-    class UserInputResolutionOption(int):
+    @typing.final
+    class UserInputResolutionOption(int, metaclass=sip._enumtype):
         DefaultResolution = ... # type: QUrl.UserInputResolutionOption
         AssumeLocalFile = ... # type: QUrl.UserInputResolutionOption
 
     DefaultResolution = ...  # type: QUrl.UserInputResolutionOption
     AssumeLocalFile = ...  # type: QUrl.UserInputResolutionOption
 
-    class ComponentFormattingOption(int):
-        def __or__ (self, other: 'QUrl.ComponentFormattingOption') -> 'QUrl.ComponentFormattingOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QUrl.ComponentFormattingOptions': ...                                # type: ignore[override, misc]
+    @typing.final
+    class ComponentFormattingOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QUrl.ComponentFormattingOption', /) -> 'QUrl.ComponentFormattingOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QUrl.ComponentFormattingOptions': ...                                # type: ignore[override, misc]
         
         PrettyDecoded = ... # type: QUrl.ComponentFormattingOption
         EncodeSpaces = ... # type: QUrl.ComponentFormattingOption
@@ -12032,9 +12229,10 @@ class QUrl(sip.simplewrapper):
     FullyEncoded = ...  # type: QUrl.ComponentFormattingOption
     FullyDecoded = ...  # type: QUrl.ComponentFormattingOption
 
-    class UrlFormattingOption(int):
-        def __or__(self, other: 'QUrl.UrlFormattingOption') -> 'QUrl.FormattingOptions': ...  # type: ignore[override]
-        def __ror__(self, other: int) -> 'QUrl.FormattingOptions': ...  # type: ignore[override, misc]
+    @typing.final
+    class UrlFormattingOption(int, metaclass=sip._enumtype):
+        def __or__(self, other: 'QUrl.UrlFormattingOption', /) -> 'QUrl.FormattingOptions': ...  # type: ignore[override]
+        def __ror__(self, other: int, /) -> 'QUrl.FormattingOptions': ...  # type: ignore[override, misc]
 
         None_ = ... # type: QUrl.UrlFormattingOption
         RemoveScheme = ... # type: QUrl.UrlFormattingOption
@@ -12064,7 +12262,8 @@ class QUrl(sip.simplewrapper):
     RemoveFilename = ...  # type: QUrl.UrlFormattingOption
     NormalizePathSegments = ...  # type: QUrl.UrlFormattingOption
 
-    class ParsingMode(int):
+    @typing.final
+    class ParsingMode(int, metaclass=sip._enumtype):
         TolerantMode = ... # type: QUrl.ParsingMode
         StrictMode = ... # type: QUrl.ParsingMode
         DecodedMode = ... # type: QUrl.ParsingMode
@@ -12094,12 +12293,12 @@ class QUrl(sip.simplewrapper):
         def __invert__(self) -> 'QUrl.ComponentFormattingOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QUrl.ComponentFormattingOptions', 'QUrl.ComponentFormattingOption', int]) -> 'QUrl.ComponentFormattingOptions': ...
-        def __and__(self, other: typing.Union['QUrl.ComponentFormattingOptions', 'QUrl.ComponentFormattingOption', int]) -> 'QUrl.ComponentFormattingOptions': ...
-        def __xor__(self, other: typing.Union['QUrl.ComponentFormattingOptions', 'QUrl.ComponentFormattingOption', int]) -> 'QUrl.ComponentFormattingOptions': ...
-        def __ror__ (self, other: 'QUrl.ComponentFormattingOption') -> 'QUrl.ComponentFormattingOptions': ...
-        def __rand__(self, other: 'QUrl.ComponentFormattingOption') -> 'QUrl.ComponentFormattingOptions': ...
-        def __rxor__(self, other: 'QUrl.ComponentFormattingOption') -> 'QUrl.ComponentFormattingOptions': ...
+        def __or__ (self, other: typing.Union['QUrl.ComponentFormattingOptions', 'QUrl.ComponentFormattingOption', int], /) -> 'QUrl.ComponentFormattingOptions': ...
+        def __and__(self, other: typing.Union['QUrl.ComponentFormattingOptions', 'QUrl.ComponentFormattingOption', int], /) -> 'QUrl.ComponentFormattingOptions': ...
+        def __xor__(self, other: typing.Union['QUrl.ComponentFormattingOptions', 'QUrl.ComponentFormattingOption', int], /) -> 'QUrl.ComponentFormattingOptions': ...
+        def __ror__ (self, other: 'QUrl.ComponentFormattingOption', /) -> 'QUrl.ComponentFormattingOptions': ...
+        def __rand__(self, other: 'QUrl.ComponentFormattingOption', /) -> 'QUrl.ComponentFormattingOptions': ...
+        def __rxor__(self, other: 'QUrl.ComponentFormattingOption', /) -> 'QUrl.ComponentFormattingOptions': ...
 
     class UserInputResolutionOptions(sip.simplewrapper):
 
@@ -12117,12 +12316,12 @@ class QUrl(sip.simplewrapper):
         def __invert__(self) -> 'QUrl.UserInputResolutionOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QUrl.UserInputResolutionOptions', 'QUrl.UserInputResolutionOption', int]) -> 'QUrl.UserInputResolutionOptions': ...
-        def __and__(self, other: typing.Union['QUrl.UserInputResolutionOptions', 'QUrl.UserInputResolutionOption', int]) -> 'QUrl.UserInputResolutionOptions': ...
-        def __xor__(self, other: typing.Union['QUrl.UserInputResolutionOptions', 'QUrl.UserInputResolutionOption', int]) -> 'QUrl.UserInputResolutionOptions': ...
-        def __ror__ (self, other: 'QUrl.UserInputResolutionOption') -> 'QUrl.UserInputResolutionOptions': ...
-        def __rand__(self, other: 'QUrl.UserInputResolutionOption') -> 'QUrl.UserInputResolutionOptions': ...
-        def __rxor__(self, other: 'QUrl.UserInputResolutionOption') -> 'QUrl.UserInputResolutionOptions': ...
+        def __or__ (self, other: typing.Union['QUrl.UserInputResolutionOptions', 'QUrl.UserInputResolutionOption', int], /) -> 'QUrl.UserInputResolutionOptions': ...
+        def __and__(self, other: typing.Union['QUrl.UserInputResolutionOptions', 'QUrl.UserInputResolutionOption', int], /) -> 'QUrl.UserInputResolutionOptions': ...
+        def __xor__(self, other: typing.Union['QUrl.UserInputResolutionOptions', 'QUrl.UserInputResolutionOption', int], /) -> 'QUrl.UserInputResolutionOptions': ...
+        def __ror__ (self, other: 'QUrl.UserInputResolutionOption', /) -> 'QUrl.UserInputResolutionOptions': ...
+        def __rand__(self, other: 'QUrl.UserInputResolutionOption', /) -> 'QUrl.UserInputResolutionOptions': ...
+        def __rxor__(self, other: 'QUrl.UserInputResolutionOption', /) -> 'QUrl.UserInputResolutionOptions': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -12245,7 +12444,8 @@ class QUrlQuery(sip.simplewrapper):
 
 class QUuid(sip.simplewrapper):
 
-    class StringFormat(int):
+    @typing.final
+    class StringFormat(int, metaclass=sip._enumtype):
         WithBraces = ... # type: QUuid.StringFormat
         WithoutBraces = ... # type: QUuid.StringFormat
         Id128 = ... # type: QUuid.StringFormat
@@ -12254,7 +12454,8 @@ class QUuid(sip.simplewrapper):
     WithoutBraces = ...  # type: QUuid.StringFormat
     Id128 = ...  # type: QUuid.StringFormat
 
-    class Version(int):
+    @typing.final
+    class Version(int, metaclass=sip._enumtype):
         VerUnknown = ... # type: QUuid.Version
         Time = ... # type: QUuid.Version
         EmbeddedPOSIX = ... # type: QUuid.Version
@@ -12271,7 +12472,8 @@ class QUuid(sip.simplewrapper):
     Random = ...  # type: QUuid.Version
     Sha1 = ...  # type: QUuid.Version
 
-    class Variant(int):
+    @typing.final
+    class Variant(int, metaclass=sip._enumtype):
         VarUnknown = ... # type: QUuid.Variant
         NCS = ... # type: QUuid.Variant
         DCE = ... # type: QUuid.Variant
@@ -12329,7 +12531,8 @@ class QUuid(sip.simplewrapper):
 
 class QVariant(sip.simplewrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         Invalid = ... # type: QVariant.Type
         Bool = ... # type: QVariant.Type
         Int = ... # type: QVariant.Type
@@ -12554,19 +12757,19 @@ class QXmlStreamAttributes(sip.simplewrapper):
     @typing.overload
     def __init__(self, a0: 'QXmlStreamAttributes') -> None: ...
 
-    def __contains__(self, value: QXmlStreamAttribute) -> int: ...
+    def __contains__(self, value: QXmlStreamAttribute, /) -> int: ...
     @typing.overload
-    def __delitem__(self, i: int) -> None: ...
+    def __delitem__(self, i: int, /) -> None: ...
     @typing.overload
-    def __delitem__(self, slice: slice) -> None: ...
+    def __delitem__(self, slice: slice, /) -> None: ...
     @typing.overload
-    def __setitem__(self, i: int, value: QXmlStreamAttribute) -> None: ...
+    def __setitem__(self, i: int, value: QXmlStreamAttribute, /) -> None: ...
     @typing.overload
-    def __setitem__(self, slice: slice, list: 'QXmlStreamAttributes') -> None: ...
+    def __setitem__(self, slice: slice, list: 'QXmlStreamAttributes', /) -> None: ...
     @typing.overload
-    def __getitem__(self, i: int) -> QXmlStreamAttribute: ...
+    def __getitem__(self, i: int, /) -> QXmlStreamAttribute: ...
     @typing.overload
-    def __getitem__(self, slice: slice) -> 'QXmlStreamAttributes': ...
+    def __getitem__(self, slice: slice, /) -> 'QXmlStreamAttributes': ...
     def size(self) -> int: ...
     def replace(self, i: int, value: QXmlStreamAttribute) -> None: ...
     @typing.overload
@@ -12657,7 +12860,8 @@ class QXmlStreamEntityResolver(sip.simplewrapper):
 
 class QXmlStreamReader(sip.simplewrapper):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QXmlStreamReader.Error
         UnexpectedElementError = ... # type: QXmlStreamReader.Error
         CustomError = ... # type: QXmlStreamReader.Error
@@ -12670,7 +12874,8 @@ class QXmlStreamReader(sip.simplewrapper):
     NotWellFormedError = ...  # type: QXmlStreamReader.Error
     PrematureEndOfDocumentError = ...  # type: QXmlStreamReader.Error
 
-    class ReadElementTextBehaviour(int):
+    @typing.final
+    class ReadElementTextBehaviour(int, metaclass=sip._enumtype):
         ErrorOnUnexpectedElement = ... # type: QXmlStreamReader.ReadElementTextBehaviour
         IncludeChildElements = ... # type: QXmlStreamReader.ReadElementTextBehaviour
         SkipChildElements = ... # type: QXmlStreamReader.ReadElementTextBehaviour
@@ -12679,7 +12884,8 @@ class QXmlStreamReader(sip.simplewrapper):
     IncludeChildElements = ...  # type: QXmlStreamReader.ReadElementTextBehaviour
     SkipChildElements = ...  # type: QXmlStreamReader.ReadElementTextBehaviour
 
-    class TokenType(int):
+    @typing.final
+    class TokenType(int, metaclass=sip._enumtype):
         NoToken = ... # type: QXmlStreamReader.TokenType
         Invalid = ... # type: QXmlStreamReader.TokenType
         StartDocument = ... # type: QXmlStreamReader.TokenType
@@ -12833,7 +13039,8 @@ class QXmlStreamWriter(sip.simplewrapper):
 
 class QSysInfo(sip.simplewrapper):
 
-    class Endian(int):
+    @typing.final
+    class Endian(int, metaclass=sip._enumtype):
         BigEndian = ... # type: QSysInfo.Endian
         LittleEndian = ... # type: QSysInfo.Endian
         ByteOrder = ... # type: QSysInfo.Endian
@@ -12842,13 +13049,15 @@ class QSysInfo(sip.simplewrapper):
     LittleEndian = ...  # type: QSysInfo.Endian
     ByteOrder = ...  # type: QSysInfo.Endian
 
-    class Sizes(int):
+    @typing.final
+    class Sizes(int, metaclass=sip._enumtype):
         WordSize = ... # type: QSysInfo.Sizes
 
     WordSize = ...  # type: QSysInfo.Sizes
 
     if sys.platform == "win32":
-        class WinVersion(int):
+        @typing.final
+        class WinVersion(int, metaclass=sip._enumtype):
             WV_10_0 = ...   # type: 'QSysInfo.WinVersion'
             WV_2000 = ...   # type: 'QSysInfo.WinVersion'
             WV_2003 = ...   # type: 'QSysInfo.WinVersion'
@@ -12915,7 +13124,8 @@ class QSysInfo(sip.simplewrapper):
         def windowsVersion() -> 'QSysInfo.WinVersion': ...
 
     if sys.platform == "darwin":
-        class MacVersion(int):
+        @typing.final
+        class MacVersion(int, metaclass=sip._enumtype):
             MV_10_0 = ...  # type: 'QSysInfo.MacVersion'
             MV_10_1 = ...  # type: 'QSysInfo.MacVersion'
             MV_10_10 = ...  # type: 'QSysInfo.MacVersion'
@@ -13083,8 +13293,8 @@ QT_VERSION = ... # type: int
 QT_VERSION_STR = ... # type: str
 
 
-T = typing.TypeVar("T")
-FuncT = typing.Callable[..., T]
+_T = typing.TypeVar("_T")
+_FuncT = typing.Callable[..., _T]
 
 
 def qSetRealNumberPrecision(precision: int) -> QTextStreamManipulator: ...
@@ -13117,29 +13327,29 @@ def bin_(s: QTextStream) -> QTextStream: ...
 def Q_RETURN_ARG(type: typing.Any) -> QGenericReturnArgument: ...
 def Q_ARG(type: typing.Any, data: typing.Any) -> QGenericArgument: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, name: str) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, name: str) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, result: typing.Type[T]) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, result: typing.Type[_T]) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, result: str) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, result: str) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, revision: int) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, revision: int) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, name: str, result: typing.Type[T]) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, name: str, result: typing.Type[_T]) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, name: str, result: str) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, name: str, result: str) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, name: str, revision: int) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, name: str, revision: int) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, result: typing.Type[T], revision: int) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, result: typing.Type[_T], revision: int) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, result: str, revision: int) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, result: str, revision: int) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, name: str, result: typing.Type[T], revision: int) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, name: str, result: typing.Type[_T], revision: int) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 @typing.overload
-def pyqtSlot(*types: typing.Any, name: str, result: str, revision: int) -> typing.Callable[[FuncT[T]], FuncT[T]]: ...
+def pyqtSlot(*types: typing.Any, name: str, result: str, revision: int) -> typing.Callable[[_FuncT[_T]], _FuncT[_T]]: ...
 def QT_TRANSLATE_NOOP(a0: str, a1: str) -> str: ...
 def QT_TR_NOOP_UTF8(a0: str) -> str: ...
 def QT_TR_NOOP(a0: str) -> str: ...

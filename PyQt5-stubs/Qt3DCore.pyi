@@ -30,18 +30,19 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
-class ChangeFlag(int):
-    def __or__ (self, other: 'ChangeFlag') -> 'ChangeFlags': ...    # type: ignore[override]
-    def __ror__ (self, other: int) -> 'ChangeFlags': ...            # type: ignore[override, misc]
+@typing.final
+class ChangeFlag(int, metaclass=sip._enumtype):
+    def __or__ (self, other: 'ChangeFlag', /) -> 'ChangeFlags': ...    # type: ignore[override]
+    def __ror__ (self, other: int, /) -> 'ChangeFlags': ...            # type: ignore[override, misc]
     
     NodeCreated = ... # type: ChangeFlag
     NodeDeleted = ... # type: ChangeFlag
@@ -78,7 +79,8 @@ class QAbstractAspect(QtCore.QObject):
 
 class QAspectEngine(QtCore.QObject):
 
-    class RunMode(int):
+    @typing.final
+    class RunMode(int, metaclass=sip._enumtype):
         Manual = ... # type: QAspectEngine.RunMode
         Automatic = ... # type: QAspectEngine.RunMode
 
@@ -105,7 +107,8 @@ class QAspectEngine(QtCore.QObject):
 
 class QNode(QtCore.QObject):
 
-    class PropertyTrackingMode(int):
+    @typing.final
+    class PropertyTrackingMode(int, metaclass=sip._enumtype):
         TrackFinalValues = ... # type: QNode.PropertyTrackingMode
         DontTrackValues = ... # type: QNode.PropertyTrackingMode
         TrackAllValues = ... # type: QNode.PropertyTrackingMode
@@ -177,7 +180,8 @@ class QBackendNodeMapper(sip.simplewrapper):
 
 class QBackendNode(sip.simplewrapper):
 
-    class Mode(int):
+    @typing.final
+    class Mode(int, metaclass=sip._enumtype):
         ReadOnly = ... # type: QBackendNode.Mode
         ReadWrite = ... # type: QBackendNode.Mode
 
@@ -197,9 +201,10 @@ class QBackendNode(sip.simplewrapper):
 
 class QSceneChange(sip.simplewrapper):
 
-    class DeliveryFlag(int):
-        def __or__ (self, other: 'QSceneChange.DeliveryFlag') -> 'QSceneChange.DeliveryFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QSceneChange.DeliveryFlags': ...                           # type: ignore[override, misc]
+    @typing.final
+    class DeliveryFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QSceneChange.DeliveryFlag', /) -> 'QSceneChange.DeliveryFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QSceneChange.DeliveryFlags': ...                           # type: ignore[override, misc]
         
         BackendNodes = ... # type: QSceneChange.DeliveryFlag
         Nodes = ... # type: QSceneChange.DeliveryFlag
@@ -225,12 +230,12 @@ class QSceneChange(sip.simplewrapper):
         def __invert__(self) -> 'QSceneChange.DeliveryFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSceneChange.DeliveryFlags', 'QSceneChange.DeliveryFlag', int]) -> 'QSceneChange.DeliveryFlags': ...
-        def __and__(self, other: typing.Union['QSceneChange.DeliveryFlags', 'QSceneChange.DeliveryFlag', int]) -> 'QSceneChange.DeliveryFlags': ...
-        def __xor__(self, other: typing.Union['QSceneChange.DeliveryFlags', 'QSceneChange.DeliveryFlag', int]) -> 'QSceneChange.DeliveryFlags': ...
-        def __ror__ (self, other: 'QSceneChange.DeliveryFlag') -> 'QSceneChange.DeliveryFlags': ...
-        def __rand__(self, other: 'QSceneChange.DeliveryFlag') -> 'QSceneChange.DeliveryFlags': ...
-        def __rxor__(self, other: 'QSceneChange.DeliveryFlag') -> 'QSceneChange.DeliveryFlags': ...
+        def __or__ (self, other: typing.Union['QSceneChange.DeliveryFlags', 'QSceneChange.DeliveryFlag', int], /) -> 'QSceneChange.DeliveryFlags': ...
+        def __and__(self, other: typing.Union['QSceneChange.DeliveryFlags', 'QSceneChange.DeliveryFlag', int], /) -> 'QSceneChange.DeliveryFlags': ...
+        def __xor__(self, other: typing.Union['QSceneChange.DeliveryFlags', 'QSceneChange.DeliveryFlag', int], /) -> 'QSceneChange.DeliveryFlags': ...
+        def __ror__ (self, other: 'QSceneChange.DeliveryFlag', /) -> 'QSceneChange.DeliveryFlags': ...
+        def __rand__(self, other: 'QSceneChange.DeliveryFlag', /) -> 'QSceneChange.DeliveryFlags': ...
+        def __rxor__(self, other: 'QSceneChange.DeliveryFlag', /) -> 'QSceneChange.DeliveryFlags': ...
 
     def __init__(self, type: 'ChangeFlag', subjectId: 'QNodeId') -> None: ...
 
@@ -448,12 +453,12 @@ class ChangeFlags(sip.simplewrapper):
     def __invert__(self) -> 'ChangeFlags': ...
     def __index__(self) -> int: ...
     def __int__(self) -> int: ...
-    def __or__ (self, other: typing.Union['ChangeFlags', 'ChangeFlag', int]) -> 'ChangeFlags': ...
-    def __and__(self, other: typing.Union['ChangeFlags', 'ChangeFlag', int]) -> 'ChangeFlags': ...
-    def __xor__(self, other: typing.Union['ChangeFlags', 'ChangeFlag', int]) -> 'ChangeFlags': ...
-    def __ror__ (self, other: 'ChangeFlag') -> 'ChangeFlags': ...
-    def __rand__(self, other: 'ChangeFlag') -> 'ChangeFlags': ...
-    def __rxor__(self, other: 'ChangeFlag') -> 'ChangeFlags': ...
+    def __or__ (self, other: typing.Union['ChangeFlags', 'ChangeFlag', int], /) -> 'ChangeFlags': ...
+    def __and__(self, other: typing.Union['ChangeFlags', 'ChangeFlag', int], /) -> 'ChangeFlags': ...
+    def __xor__(self, other: typing.Union['ChangeFlags', 'ChangeFlag', int], /) -> 'ChangeFlags': ...
+    def __ror__ (self, other: 'ChangeFlag', /) -> 'ChangeFlags': ...
+    def __rand__(self, other: 'ChangeFlag', /) -> 'ChangeFlags': ...
+    def __rxor__(self, other: 'ChangeFlag', /) -> 'ChangeFlags': ...
 
 class QSkeleton('QAbstractSkeleton'):
 
@@ -465,7 +470,8 @@ class QSkeleton('QAbstractSkeleton'):
 
 class QSkeletonLoader('QAbstractSkeleton'):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         NotReady = ... # type: QSkeletonLoader.Status
         Ready = ... # type: QSkeletonLoader.Status
         Error = ... # type: QSkeletonLoader.Status

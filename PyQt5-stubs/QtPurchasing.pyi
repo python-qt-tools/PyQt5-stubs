@@ -29,12 +29,13 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QInAppProduct(QtCore.QObject):
 
-    class ProductType(int):
+    @typing.final
+    class ProductType(int, metaclass=sip._enumtype):
         Consumable = ... # type: QInAppProduct.ProductType
         Unlockable = ... # type: QInAppProduct.ProductType
 
@@ -64,7 +65,8 @@ class QInAppStore(QtCore.QObject):
 
 class QInAppTransaction(QtCore.QObject):
 
-    class FailureReason(int):
+    @typing.final
+    class FailureReason(int, metaclass=sip._enumtype):
         NoFailure = ... # type: QInAppTransaction.FailureReason
         CanceledByUser = ... # type: QInAppTransaction.FailureReason
         ErrorOccurred = ... # type: QInAppTransaction.FailureReason
@@ -73,7 +75,8 @@ class QInAppTransaction(QtCore.QObject):
     CanceledByUser = ...  # type: QInAppTransaction.FailureReason
     ErrorOccurred = ...  # type: QInAppTransaction.FailureReason
 
-    class TransactionStatus(int):
+    @typing.final
+    class TransactionStatus(int, metaclass=sip._enumtype):
         Unknown = ... # type: QInAppTransaction.TransactionStatus
         PurchaseApproved = ... # type: QInAppTransaction.TransactionStatus
         PurchaseFailed = ... # type: QInAppTransaction.TransactionStatus

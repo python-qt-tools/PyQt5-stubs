@@ -31,17 +31,18 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float], sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float], sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QMacPasteboardMime(sip.simplewrapper):
 
-    class QMacPasteboardMimeType(int):
+    @typing.final
+    class QMacPasteboardMimeType(int, metaclass=sip._enumtype):
         MIME_DND = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
         MIME_CLIP = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
         MIME_QT_CONVERTOR = ... # type: QMacPasteboardMime.QMacPasteboardMimeType
@@ -95,7 +96,8 @@ class NSToolbarItem(sip.simplewrapper): ...
 
 class QMacToolBarItem(QtCore.QObject):
 
-    class StandardItem(int):
+    @typing.final
+    class StandardItem(int, metaclass=sip._enumtype):
         NoStandardItem = ... # type: QMacToolBarItem.StandardItem
         Space = ... # type: QMacToolBarItem.StandardItem
         FlexibleSpace = ... # type: QMacToolBarItem.StandardItem

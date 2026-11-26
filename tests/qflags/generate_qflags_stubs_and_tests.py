@@ -988,13 +988,13 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
         or_behavior = (self.or_converts_to_multi, self.or_int_converts_to_multi, self.int_or_converts_to_multi)
         if or_behavior == (True, False, True):
             new_methods_parts = (
-                ("def __or__ (self, other: '{enum}') -> '{qflag}': ...", "# type: ignore[override]\n"),
-                ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+                ("def __or__ (self, other: '{enum}', /) -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __ror__ (self, other: int, /) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
             )
         elif or_behavior == (True, True, True):
             new_methods_parts = (
-                ("def __or__ (self, other: typing.Union[int, '{enum}']) -> '{qflag}': ...", "# type: ignore[override]\n"),
-                ("def __ror__ (self, other: int) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
+                ("def __or__ (self, other: typing.Union[int, '{enum}'], /) -> '{qflag}': ...", "# type: ignore[override]\n"),
+                ("def __ror__ (self, other: int, /) -> '{qflag}': ...", "# type: ignore[override, misc]\n\n")
             )
         elif or_behavior == (False, False, False):
             # no changes needed
@@ -1065,12 +1065,12 @@ class QFlagAndEnumUpdater(cst.CSTTransformer):
                                              )
 
         new_methods = (
-            "def __or__ (self, other: typing.Union['{qflag}', '{enum}', int]) -> '{qflag}': ...",
-            "def __and__(self, other: typing.Union['{qflag}', '{enum}', int]) -> '{qflag}': ...",
-            "def __xor__(self, other: typing.Union['{qflag}', '{enum}', int]) -> '{qflag}': ...",
-            "def __ror__ (self, other: '{enum}') -> '{qflag}': ...",
-            "def __rand__(self, other: '{enum}') -> '{qflag}': ...",
-            "def __rxor__(self, other: '{enum}') -> '{qflag}': ...",
+            "def __or__ (self, other: typing.Union['{qflag}', '{enum}', int], /) -> '{qflag}': ...",
+            "def __and__(self, other: typing.Union['{qflag}', '{enum}', int], /) -> '{qflag}': ...",
+            "def __xor__(self, other: typing.Union['{qflag}', '{enum}', int], /) -> '{qflag}': ...",
+            "def __ror__ (self, other: '{enum}', /) -> '{qflag}': ...",
+            "def __rand__(self, other: '{enum}', /) -> '{qflag}': ...",
+            "def __rxor__(self, other: '{enum}', /) -> '{qflag}': ...",
         )
         new_methods_cst = tuple(
             cst.parse_statement(s.format(enum=self.enum_full_name, qflag=self.qflag_full_name))

@@ -33,21 +33,21 @@ import datetime
 import enum
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstractItemModelTester(QtCore.QObject):
 
     class FailureReportingMode(enum.IntEnum):
-        QtTest = ... # type: QAbstractItemModelTester.FailureReportingMode
-        Warning = ... # type: QAbstractItemModelTester.FailureReportingMode
-        Fatal = ... # type: QAbstractItemModelTester.FailureReportingMode
+        QtTest = ...
+        Warning = ...
+        Fatal = ...
 
     QtTest = ...  # type: QAbstractItemModelTester.FailureReportingMode
     Warning = ...  # type: QAbstractItemModelTester.FailureReportingMode
@@ -69,9 +69,9 @@ class QSignalSpy(QtCore.QObject):
     @typing.overload
     def __init__(self, obj: QtCore.QObject, signal: QtCore.QMetaMethod) -> None: ...
 
-    def __delitem__(self, i: int) -> None: ...
-    def __setitem__(self, i: int, value: typing.Iterable[typing.Any]) -> None: ...
-    def __getitem__(self, i: int) -> typing.List[typing.Any]: ...
+    def __delitem__(self, i: int, /) -> None: ...
+    def __setitem__(self, i: int, value: typing.Iterable[typing.Any], /) -> None: ...
+    def __getitem__(self, i: int, /) -> typing.List[typing.Any]: ...
     def __len__(self) -> int: ...
     def wait(self, timeout: int = ...) -> bool: ...
     def signal(self) -> QtCore.QByteArray: ...
@@ -80,7 +80,8 @@ class QSignalSpy(QtCore.QObject):
 
 class QTest(sip.simplewrapper):
 
-    class KeyAction(int):
+    @typing.final
+    class KeyAction(int, metaclass=sip._enumtype):
         Press = ... # type: QTest.KeyAction
         Release = ... # type: QTest.KeyAction
         Click = ... # type: QTest.KeyAction

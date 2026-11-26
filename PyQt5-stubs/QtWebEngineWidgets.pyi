@@ -36,18 +36,19 @@ import datetime
 import enum
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QWebEngineCertificateError(sip.simplewrapper):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         SslPinnedKeyNotInCertificateChain = ... # type: QWebEngineCertificateError.Error
         CertificateCommonNameInvalid = ... # type: QWebEngineCertificateError.Error
         CertificateDateInvalid = ... # type: QWebEngineCertificateError.Error
@@ -108,9 +109,10 @@ class QWebEngineClientCertificateSelection(sip.simplewrapper):
 
 class QWebEngineContextMenuData(sip.simplewrapper):
 
-    class EditFlag(int):
-        def __or__ (self, other: 'QWebEngineContextMenuData.EditFlag') -> 'QWebEngineContextMenuData.EditFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QWebEngineContextMenuData.EditFlags': ...                                    # type: ignore[override, misc]
+    @typing.final
+    class EditFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QWebEngineContextMenuData.EditFlag', /) -> 'QWebEngineContextMenuData.EditFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QWebEngineContextMenuData.EditFlags': ...                                    # type: ignore[override, misc]
         
         CanUndo = ... # type: QWebEngineContextMenuData.EditFlag
         CanRedo = ... # type: QWebEngineContextMenuData.EditFlag
@@ -132,9 +134,10 @@ class QWebEngineContextMenuData(sip.simplewrapper):
     CanTranslate = ...  # type: QWebEngineContextMenuData.EditFlag
     CanEditRichly = ...  # type: QWebEngineContextMenuData.EditFlag
 
-    class MediaFlag(int):
-        def __or__ (self, other: 'QWebEngineContextMenuData.MediaFlag') -> 'QWebEngineContextMenuData.MediaFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QWebEngineContextMenuData.MediaFlags': ...                                     # type: ignore[override, misc]
+    @typing.final
+    class MediaFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QWebEngineContextMenuData.MediaFlag', /) -> 'QWebEngineContextMenuData.MediaFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QWebEngineContextMenuData.MediaFlags': ...                                     # type: ignore[override, misc]
         
         MediaInError = ... # type: QWebEngineContextMenuData.MediaFlag
         MediaPaused = ... # type: QWebEngineContextMenuData.MediaFlag
@@ -158,7 +161,8 @@ class QWebEngineContextMenuData(sip.simplewrapper):
     MediaCanPrint = ...  # type: QWebEngineContextMenuData.MediaFlag
     MediaCanRotate = ...  # type: QWebEngineContextMenuData.MediaFlag
 
-    class MediaType(int):
+    @typing.final
+    class MediaType(int, metaclass=sip._enumtype):
         MediaTypeNone = ... # type: QWebEngineContextMenuData.MediaType
         MediaTypeImage = ... # type: QWebEngineContextMenuData.MediaType
         MediaTypeVideo = ... # type: QWebEngineContextMenuData.MediaType
@@ -191,12 +195,12 @@ class QWebEngineContextMenuData(sip.simplewrapper):
         def __invert__(self) -> 'QWebEngineContextMenuData.MediaFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QWebEngineContextMenuData.MediaFlags', 'QWebEngineContextMenuData.MediaFlag', int]) -> 'QWebEngineContextMenuData.MediaFlags': ...
-        def __and__(self, other: typing.Union['QWebEngineContextMenuData.MediaFlags', 'QWebEngineContextMenuData.MediaFlag', int]) -> 'QWebEngineContextMenuData.MediaFlags': ...
-        def __xor__(self, other: typing.Union['QWebEngineContextMenuData.MediaFlags', 'QWebEngineContextMenuData.MediaFlag', int]) -> 'QWebEngineContextMenuData.MediaFlags': ...
-        def __ror__ (self, other: 'QWebEngineContextMenuData.MediaFlag') -> 'QWebEngineContextMenuData.MediaFlags': ...
-        def __rand__(self, other: 'QWebEngineContextMenuData.MediaFlag') -> 'QWebEngineContextMenuData.MediaFlags': ...
-        def __rxor__(self, other: 'QWebEngineContextMenuData.MediaFlag') -> 'QWebEngineContextMenuData.MediaFlags': ...
+        def __or__ (self, other: typing.Union['QWebEngineContextMenuData.MediaFlags', 'QWebEngineContextMenuData.MediaFlag', int], /) -> 'QWebEngineContextMenuData.MediaFlags': ...
+        def __and__(self, other: typing.Union['QWebEngineContextMenuData.MediaFlags', 'QWebEngineContextMenuData.MediaFlag', int], /) -> 'QWebEngineContextMenuData.MediaFlags': ...
+        def __xor__(self, other: typing.Union['QWebEngineContextMenuData.MediaFlags', 'QWebEngineContextMenuData.MediaFlag', int], /) -> 'QWebEngineContextMenuData.MediaFlags': ...
+        def __ror__ (self, other: 'QWebEngineContextMenuData.MediaFlag', /) -> 'QWebEngineContextMenuData.MediaFlags': ...
+        def __rand__(self, other: 'QWebEngineContextMenuData.MediaFlag', /) -> 'QWebEngineContextMenuData.MediaFlags': ...
+        def __rxor__(self, other: 'QWebEngineContextMenuData.MediaFlag', /) -> 'QWebEngineContextMenuData.MediaFlags': ...
 
     class EditFlags(sip.simplewrapper):
 
@@ -214,12 +218,12 @@ class QWebEngineContextMenuData(sip.simplewrapper):
         def __invert__(self) -> 'QWebEngineContextMenuData.EditFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QWebEngineContextMenuData.EditFlags', 'QWebEngineContextMenuData.EditFlag', int]) -> 'QWebEngineContextMenuData.EditFlags': ...
-        def __and__(self, other: typing.Union['QWebEngineContextMenuData.EditFlags', 'QWebEngineContextMenuData.EditFlag', int]) -> 'QWebEngineContextMenuData.EditFlags': ...
-        def __xor__(self, other: typing.Union['QWebEngineContextMenuData.EditFlags', 'QWebEngineContextMenuData.EditFlag', int]) -> 'QWebEngineContextMenuData.EditFlags': ...
-        def __ror__ (self, other: 'QWebEngineContextMenuData.EditFlag') -> 'QWebEngineContextMenuData.EditFlags': ...
-        def __rand__(self, other: 'QWebEngineContextMenuData.EditFlag') -> 'QWebEngineContextMenuData.EditFlags': ...
-        def __rxor__(self, other: 'QWebEngineContextMenuData.EditFlag') -> 'QWebEngineContextMenuData.EditFlags': ...
+        def __or__ (self, other: typing.Union['QWebEngineContextMenuData.EditFlags', 'QWebEngineContextMenuData.EditFlag', int], /) -> 'QWebEngineContextMenuData.EditFlags': ...
+        def __and__(self, other: typing.Union['QWebEngineContextMenuData.EditFlags', 'QWebEngineContextMenuData.EditFlag', int], /) -> 'QWebEngineContextMenuData.EditFlags': ...
+        def __xor__(self, other: typing.Union['QWebEngineContextMenuData.EditFlags', 'QWebEngineContextMenuData.EditFlag', int], /) -> 'QWebEngineContextMenuData.EditFlags': ...
+        def __ror__ (self, other: 'QWebEngineContextMenuData.EditFlag', /) -> 'QWebEngineContextMenuData.EditFlags': ...
+        def __rand__(self, other: 'QWebEngineContextMenuData.EditFlag', /) -> 'QWebEngineContextMenuData.EditFlags': ...
+        def __rxor__(self, other: 'QWebEngineContextMenuData.EditFlag', /) -> 'QWebEngineContextMenuData.EditFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -242,7 +246,8 @@ class QWebEngineContextMenuData(sip.simplewrapper):
 
 class QWebEngineDownloadItem(QtCore.QObject):
 
-    class DownloadInterruptReason(int):
+    @typing.final
+    class DownloadInterruptReason(int, metaclass=sip._enumtype):
         NoReason = ... # type: QWebEngineDownloadItem.DownloadInterruptReason
         FileFailed = ... # type: QWebEngineDownloadItem.DownloadInterruptReason
         FileAccessDenied = ... # type: QWebEngineDownloadItem.DownloadInterruptReason
@@ -293,7 +298,8 @@ class QWebEngineDownloadItem(QtCore.QObject):
     ServerUnreachable = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
     UserCanceled = ...  # type: QWebEngineDownloadItem.DownloadInterruptReason
 
-    class DownloadType(int):
+    @typing.final
+    class DownloadType(int, metaclass=sip._enumtype):
         Attachment = ... # type: QWebEngineDownloadItem.DownloadType
         DownloadAttribute = ... # type: QWebEngineDownloadItem.DownloadType
         UserRequested = ... # type: QWebEngineDownloadItem.DownloadType
@@ -304,7 +310,8 @@ class QWebEngineDownloadItem(QtCore.QObject):
     UserRequested = ...  # type: QWebEngineDownloadItem.DownloadType
     SavePage = ...  # type: QWebEngineDownloadItem.DownloadType
 
-    class SavePageFormat(int):
+    @typing.final
+    class SavePageFormat(int, metaclass=sip._enumtype):
         UnknownSaveFormat = ... # type: QWebEngineDownloadItem.SavePageFormat
         SingleHtmlSaveFormat = ... # type: QWebEngineDownloadItem.SavePageFormat
         CompleteHtmlSaveFormat = ... # type: QWebEngineDownloadItem.SavePageFormat
@@ -315,7 +322,8 @@ class QWebEngineDownloadItem(QtCore.QObject):
     CompleteHtmlSaveFormat = ...  # type: QWebEngineDownloadItem.SavePageFormat
     MimeHtmlSaveFormat = ...  # type: QWebEngineDownloadItem.SavePageFormat
 
-    class DownloadState(int):
+    @typing.final
+    class DownloadState(int, metaclass=sip._enumtype):
         DownloadRequested = ... # type: QWebEngineDownloadItem.DownloadState
         DownloadInProgress = ... # type: QWebEngineDownloadItem.DownloadState
         DownloadCompleted = ... # type: QWebEngineDownloadItem.DownloadState
@@ -404,15 +412,16 @@ class QWebEngineHistory(sip.simplewrapper):
 class QWebEnginePage(QtCore.QObject):
 
     class LifecycleState(enum.IntEnum):
-        Active = ... # type: QWebEnginePage.LifecycleState
-        Frozen = ... # type: QWebEnginePage.LifecycleState
-        Discarded = ... # type: QWebEnginePage.LifecycleState
+        Active = ...
+        Frozen = ...
+        Discarded = ...
 
     Active = ...  # type: QWebEnginePage.LifecycleState
     Frozen = ...  # type: QWebEnginePage.LifecycleState
     Discarded = ...  # type: QWebEnginePage.LifecycleState
 
-    class RenderProcessTerminationStatus(int):
+    @typing.final
+    class RenderProcessTerminationStatus(int, metaclass=sip._enumtype):
         NormalTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
         AbnormalTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
         CrashedTerminationStatus = ... # type: QWebEnginePage.RenderProcessTerminationStatus
@@ -423,7 +432,8 @@ class QWebEnginePage(QtCore.QObject):
     CrashedTerminationStatus = ...  # type: QWebEnginePage.RenderProcessTerminationStatus
     KilledTerminationStatus = ...  # type: QWebEnginePage.RenderProcessTerminationStatus
 
-    class NavigationType(int):
+    @typing.final
+    class NavigationType(int, metaclass=sip._enumtype):
         NavigationTypeLinkClicked = ... # type: QWebEnginePage.NavigationType
         NavigationTypeTyped = ... # type: QWebEnginePage.NavigationType
         NavigationTypeFormSubmitted = ... # type: QWebEnginePage.NavigationType
@@ -440,7 +450,8 @@ class QWebEnginePage(QtCore.QObject):
     NavigationTypeRedirect = ...  # type: QWebEnginePage.NavigationType
     NavigationTypeOther = ...  # type: QWebEnginePage.NavigationType
 
-    class JavaScriptConsoleMessageLevel(int):
+    @typing.final
+    class JavaScriptConsoleMessageLevel(int, metaclass=sip._enumtype):
         InfoMessageLevel = ... # type: QWebEnginePage.JavaScriptConsoleMessageLevel
         WarningMessageLevel = ... # type: QWebEnginePage.JavaScriptConsoleMessageLevel
         ErrorMessageLevel = ... # type: QWebEnginePage.JavaScriptConsoleMessageLevel
@@ -449,14 +460,16 @@ class QWebEnginePage(QtCore.QObject):
     WarningMessageLevel = ...  # type: QWebEnginePage.JavaScriptConsoleMessageLevel
     ErrorMessageLevel = ...  # type: QWebEnginePage.JavaScriptConsoleMessageLevel
 
-    class FileSelectionMode(int):
+    @typing.final
+    class FileSelectionMode(int, metaclass=sip._enumtype):
         FileSelectOpen = ... # type: QWebEnginePage.FileSelectionMode
         FileSelectOpenMultiple = ... # type: QWebEnginePage.FileSelectionMode
 
     FileSelectOpen = ...  # type: QWebEnginePage.FileSelectionMode
     FileSelectOpenMultiple = ...  # type: QWebEnginePage.FileSelectionMode
 
-    class Feature(int):
+    @typing.final
+    class Feature(int, metaclass=sip._enumtype):
         Notifications = ... # type: QWebEnginePage.Feature
         Geolocation = ... # type: QWebEnginePage.Feature
         MediaAudioCapture = ... # type: QWebEnginePage.Feature
@@ -475,7 +488,8 @@ class QWebEnginePage(QtCore.QObject):
     DesktopVideoCapture = ...  # type: QWebEnginePage.Feature
     DesktopAudioVideoCapture = ...  # type: QWebEnginePage.Feature
 
-    class PermissionPolicy(int):
+    @typing.final
+    class PermissionPolicy(int, metaclass=sip._enumtype):
         PermissionUnknown = ... # type: QWebEnginePage.PermissionPolicy
         PermissionGrantedByUser = ... # type: QWebEnginePage.PermissionPolicy
         PermissionDeniedByUser = ... # type: QWebEnginePage.PermissionPolicy
@@ -484,7 +498,8 @@ class QWebEnginePage(QtCore.QObject):
     PermissionGrantedByUser = ...  # type: QWebEnginePage.PermissionPolicy
     PermissionDeniedByUser = ...  # type: QWebEnginePage.PermissionPolicy
 
-    class WebWindowType(int):
+    @typing.final
+    class WebWindowType(int, metaclass=sip._enumtype):
         WebBrowserWindow = ... # type: QWebEnginePage.WebWindowType
         WebBrowserTab = ... # type: QWebEnginePage.WebWindowType
         WebDialog = ... # type: QWebEnginePage.WebWindowType
@@ -495,9 +510,10 @@ class QWebEnginePage(QtCore.QObject):
     WebDialog = ...  # type: QWebEnginePage.WebWindowType
     WebBrowserBackgroundTab = ...  # type: QWebEnginePage.WebWindowType
 
-    class FindFlag(int):
-        def __or__ (self, other: 'QWebEnginePage.FindFlag') -> 'QWebEnginePage.FindFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QWebEnginePage.FindFlags': ...                         # type: ignore[override, misc]
+    @typing.final
+    class FindFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QWebEnginePage.FindFlag', /) -> 'QWebEnginePage.FindFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QWebEnginePage.FindFlags': ...                         # type: ignore[override, misc]
         
         FindBackward = ... # type: QWebEnginePage.FindFlag
         FindCaseSensitively = ... # type: QWebEnginePage.FindFlag
@@ -505,7 +521,8 @@ class QWebEnginePage(QtCore.QObject):
     FindBackward = ...  # type: QWebEnginePage.FindFlag
     FindCaseSensitively = ...  # type: QWebEnginePage.FindFlag
 
-    class WebAction(int):
+    @typing.final
+    class WebAction(int, metaclass=sip._enumtype):
         NoWebAction = ... # type: QWebEnginePage.WebAction
         Back = ... # type: QWebEnginePage.WebAction
         Forward = ... # type: QWebEnginePage.WebAction
@@ -616,12 +633,12 @@ class QWebEnginePage(QtCore.QObject):
         def __invert__(self) -> 'QWebEnginePage.FindFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QWebEnginePage.FindFlags', 'QWebEnginePage.FindFlag', int]) -> 'QWebEnginePage.FindFlags': ...
-        def __and__(self, other: typing.Union['QWebEnginePage.FindFlags', 'QWebEnginePage.FindFlag', int]) -> 'QWebEnginePage.FindFlags': ...
-        def __xor__(self, other: typing.Union['QWebEnginePage.FindFlags', 'QWebEnginePage.FindFlag', int]) -> 'QWebEnginePage.FindFlags': ...
-        def __ror__ (self, other: 'QWebEnginePage.FindFlag') -> 'QWebEnginePage.FindFlags': ...
-        def __rand__(self, other: 'QWebEnginePage.FindFlag') -> 'QWebEnginePage.FindFlags': ...
-        def __rxor__(self, other: 'QWebEnginePage.FindFlag') -> 'QWebEnginePage.FindFlags': ...
+        def __or__ (self, other: typing.Union['QWebEnginePage.FindFlags', 'QWebEnginePage.FindFlag', int], /) -> 'QWebEnginePage.FindFlags': ...
+        def __and__(self, other: typing.Union['QWebEnginePage.FindFlags', 'QWebEnginePage.FindFlag', int], /) -> 'QWebEnginePage.FindFlags': ...
+        def __xor__(self, other: typing.Union['QWebEnginePage.FindFlags', 'QWebEnginePage.FindFlag', int], /) -> 'QWebEnginePage.FindFlags': ...
+        def __ror__ (self, other: 'QWebEnginePage.FindFlag', /) -> 'QWebEnginePage.FindFlags': ...
+        def __rand__(self, other: 'QWebEnginePage.FindFlag', /) -> 'QWebEnginePage.FindFlags': ...
+        def __rxor__(self, other: 'QWebEnginePage.FindFlag', /) -> 'QWebEnginePage.FindFlags': ...
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -741,7 +758,8 @@ class QWebEnginePage(QtCore.QObject):
 
 class QWebEngineProfile(QtCore.QObject):
 
-    class PersistentCookiesPolicy(int):
+    @typing.final
+    class PersistentCookiesPolicy(int, metaclass=sip._enumtype):
         NoPersistentCookies = ... # type: QWebEngineProfile.PersistentCookiesPolicy
         AllowPersistentCookies = ... # type: QWebEngineProfile.PersistentCookiesPolicy
         ForcePersistentCookies = ... # type: QWebEngineProfile.PersistentCookiesPolicy
@@ -750,7 +768,8 @@ class QWebEngineProfile(QtCore.QObject):
     AllowPersistentCookies = ...  # type: QWebEngineProfile.PersistentCookiesPolicy
     ForcePersistentCookies = ...  # type: QWebEngineProfile.PersistentCookiesPolicy
 
-    class HttpCacheType(int):
+    @typing.final
+    class HttpCacheType(int, metaclass=sip._enumtype):
         MemoryHttpCache = ... # type: QWebEngineProfile.HttpCacheType
         DiskHttpCache = ... # type: QWebEngineProfile.HttpCacheType
         NoCache = ... # type: QWebEngineProfile.HttpCacheType
@@ -811,7 +830,8 @@ class QWebEngineProfile(QtCore.QObject):
 
 class QWebEngineScript(sip.simplewrapper):
 
-    class ScriptWorldId(int):
+    @typing.final
+    class ScriptWorldId(int, metaclass=sip._enumtype):
         MainWorld = ... # type: QWebEngineScript.ScriptWorldId
         ApplicationWorld = ... # type: QWebEngineScript.ScriptWorldId
         UserWorld = ... # type: QWebEngineScript.ScriptWorldId
@@ -820,7 +840,8 @@ class QWebEngineScript(sip.simplewrapper):
     ApplicationWorld = ...  # type: QWebEngineScript.ScriptWorldId
     UserWorld = ...  # type: QWebEngineScript.ScriptWorldId
 
-    class InjectionPoint(int):
+    @typing.final
+    class InjectionPoint(int, metaclass=sip._enumtype):
         Deferred = ... # type: QWebEngineScript.InjectionPoint
         DocumentReady = ... # type: QWebEngineScript.InjectionPoint
         DocumentCreation = ... # type: QWebEngineScript.InjectionPoint
@@ -867,7 +888,8 @@ class QWebEngineScriptCollection(sip.simplewrapper):
 
 class QWebEngineSettings(sip.simplewrapper):
 
-    class UnknownUrlSchemePolicy(int):
+    @typing.final
+    class UnknownUrlSchemePolicy(int, metaclass=sip._enumtype):
         DisallowUnknownUrlSchemes = ... # type: QWebEngineSettings.UnknownUrlSchemePolicy
         AllowUnknownUrlSchemesFromUserInteraction = ... # type: QWebEngineSettings.UnknownUrlSchemePolicy
         AllowAllUnknownUrlSchemes = ... # type: QWebEngineSettings.UnknownUrlSchemePolicy
@@ -876,7 +898,8 @@ class QWebEngineSettings(sip.simplewrapper):
     AllowUnknownUrlSchemesFromUserInteraction = ...  # type: QWebEngineSettings.UnknownUrlSchemePolicy
     AllowAllUnknownUrlSchemes = ...  # type: QWebEngineSettings.UnknownUrlSchemePolicy
 
-    class FontSize(int):
+    @typing.final
+    class FontSize(int, metaclass=sip._enumtype):
         MinimumFontSize = ... # type: QWebEngineSettings.FontSize
         MinimumLogicalFontSize = ... # type: QWebEngineSettings.FontSize
         DefaultFontSize = ... # type: QWebEngineSettings.FontSize
@@ -887,7 +910,8 @@ class QWebEngineSettings(sip.simplewrapper):
     DefaultFontSize = ...  # type: QWebEngineSettings.FontSize
     DefaultFixedFontSize = ...  # type: QWebEngineSettings.FontSize
 
-    class WebAttribute(int):
+    @typing.final
+    class WebAttribute(int, metaclass=sip._enumtype):
         AutoLoadImages = ... # type: QWebEngineSettings.WebAttribute
         JavascriptEnabled = ... # type: QWebEngineSettings.WebAttribute
         JavascriptCanOpenWindows = ... # type: QWebEngineSettings.WebAttribute
@@ -952,7 +976,8 @@ class QWebEngineSettings(sip.simplewrapper):
     DnsPrefetchEnabled = ...  # type: QWebEngineSettings.WebAttribute
     PdfViewerEnabled = ...  # type: QWebEngineSettings.WebAttribute
 
-    class FontFamily(int):
+    @typing.final
+    class FontFamily(int, metaclass=sip._enumtype):
         StandardFont = ... # type: QWebEngineSettings.FontFamily
         FixedFont = ... # type: QWebEngineSettings.FontFamily
         SerifFont = ... # type: QWebEngineSettings.FontFamily

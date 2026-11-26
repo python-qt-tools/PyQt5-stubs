@@ -29,7 +29,7 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QAbstractItemModelReplica(QtCore.QAbstractItemModel):
@@ -55,7 +55,8 @@ class QAbstractItemModelReplica(QtCore.QAbstractItemModel):
 
 class QRemoteObjectReplica(QtCore.QObject):
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         Uninitialized = ... # type: QRemoteObjectReplica.State
         Default = ... # type: QRemoteObjectReplica.State
         Valid = ... # type: QRemoteObjectReplica.State
@@ -92,7 +93,8 @@ class QRemoteObjectAbstractPersistedStore(QtCore.QObject):
 
 class QRemoteObjectNode(QtCore.QObject):
 
-    class ErrorCode(int):
+    @typing.final
+    class ErrorCode(int, metaclass=sip._enumtype):
         NoError = ... # type: QRemoteObjectNode.ErrorCode
         RegistryNotAcquired = ... # type: QRemoteObjectNode.ErrorCode
         RegistryAlreadyHosted = ... # type: QRemoteObjectNode.ErrorCode
@@ -148,7 +150,8 @@ class QRemoteObjectNode(QtCore.QObject):
 
 class QRemoteObjectHostBase(QRemoteObjectNode):
 
-    class AllowedSchemas(int):
+    @typing.final
+    class AllowedSchemas(int, metaclass=sip._enumtype):
         BuiltInSchemasOnly = ... # type: QRemoteObjectHostBase.AllowedSchemas
         AllowExternalRegistration = ... # type: QRemoteObjectHostBase.AllowedSchemas
 
@@ -209,7 +212,8 @@ class QRemoteObjectSourceLocationInfo(sip.simplewrapper):
 
 class QtRemoteObjects(sip.simplewrapper):
 
-    class InitialAction(int):
+    @typing.final
+    class InitialAction(int, metaclass=sip._enumtype):
         FetchRootSize = ... # type: QtRemoteObjects.InitialAction
         PrefetchData = ... # type: QtRemoteObjects.InitialAction
 
