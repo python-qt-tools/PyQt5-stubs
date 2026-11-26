@@ -33,18 +33,19 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QQuickWidget(QtWidgets.QWidget):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         Null = ... # type: QQuickWidget.Status
         Ready = ... # type: QQuickWidget.Status
         Loading = ... # type: QQuickWidget.Status
@@ -55,7 +56,8 @@ class QQuickWidget(QtWidgets.QWidget):
     Loading = ...  # type: QQuickWidget.Status
     Error = ...  # type: QQuickWidget.Status
 
-    class ResizeMode(int):
+    @typing.final
+    class ResizeMode(int, metaclass=sip._enumtype):
         SizeViewToRootObject = ... # type: QQuickWidget.ResizeMode
         SizeRootObjectToView = ... # type: QQuickWidget.ResizeMode
 

@@ -32,18 +32,19 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstractVideoBuffer(sip.simplewrapper):
 
-    class MapMode(int):
+    @typing.final
+    class MapMode(int, metaclass=sip._enumtype):
         NotMapped = ... # type: QAbstractVideoBuffer.MapMode
         ReadOnly = ... # type: QAbstractVideoBuffer.MapMode
         WriteOnly = ... # type: QAbstractVideoBuffer.MapMode
@@ -54,7 +55,8 @@ class QAbstractVideoBuffer(sip.simplewrapper):
     WriteOnly = ...  # type: QAbstractVideoBuffer.MapMode
     ReadWrite = ...  # type: QAbstractVideoBuffer.MapMode
 
-    class HandleType(int):
+    @typing.final
+    class HandleType(int, metaclass=sip._enumtype):
         NoHandle = ... # type: QAbstractVideoBuffer.HandleType
         GLTextureHandle = ... # type: QAbstractVideoBuffer.HandleType
         XvShmImageHandle = ... # type: QAbstractVideoBuffer.HandleType
@@ -83,9 +85,10 @@ class QAbstractVideoBuffer(sip.simplewrapper):
 
 class QVideoFilterRunnable(sip.simplewrapper):
 
-    class RunFlag(int):
-        def __or__ (self, other: 'QVideoFilterRunnable.RunFlag') -> 'QVideoFilterRunnable.RunFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QVideoFilterRunnable.RunFlags': ...                              # type: ignore[override, misc]
+    @typing.final
+    class RunFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QVideoFilterRunnable.RunFlag', /) -> 'QVideoFilterRunnable.RunFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QVideoFilterRunnable.RunFlags': ...                              # type: ignore[override, misc]
         
         LastInChain = ... # type: QVideoFilterRunnable.RunFlag
 
@@ -107,12 +110,12 @@ class QVideoFilterRunnable(sip.simplewrapper):
         def __invert__(self) -> 'QVideoFilterRunnable.RunFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QVideoFilterRunnable.RunFlags', 'QVideoFilterRunnable.RunFlag', int]) -> 'QVideoFilterRunnable.RunFlags': ...
-        def __and__(self, other: typing.Union['QVideoFilterRunnable.RunFlags', 'QVideoFilterRunnable.RunFlag', int]) -> 'QVideoFilterRunnable.RunFlags': ...
-        def __xor__(self, other: typing.Union['QVideoFilterRunnable.RunFlags', 'QVideoFilterRunnable.RunFlag', int]) -> 'QVideoFilterRunnable.RunFlags': ...
-        def __ror__ (self, other: 'QVideoFilterRunnable.RunFlag') -> 'QVideoFilterRunnable.RunFlags': ...
-        def __rand__(self, other: 'QVideoFilterRunnable.RunFlag') -> 'QVideoFilterRunnable.RunFlags': ...
-        def __rxor__(self, other: 'QVideoFilterRunnable.RunFlag') -> 'QVideoFilterRunnable.RunFlags': ...
+        def __or__ (self, other: typing.Union['QVideoFilterRunnable.RunFlags', 'QVideoFilterRunnable.RunFlag', int], /) -> 'QVideoFilterRunnable.RunFlags': ...
+        def __and__(self, other: typing.Union['QVideoFilterRunnable.RunFlags', 'QVideoFilterRunnable.RunFlag', int], /) -> 'QVideoFilterRunnable.RunFlags': ...
+        def __xor__(self, other: typing.Union['QVideoFilterRunnable.RunFlags', 'QVideoFilterRunnable.RunFlag', int], /) -> 'QVideoFilterRunnable.RunFlags': ...
+        def __ror__ (self, other: 'QVideoFilterRunnable.RunFlag', /) -> 'QVideoFilterRunnable.RunFlags': ...
+        def __rand__(self, other: 'QVideoFilterRunnable.RunFlag', /) -> 'QVideoFilterRunnable.RunFlags': ...
+        def __rxor__(self, other: 'QVideoFilterRunnable.RunFlag', /) -> 'QVideoFilterRunnable.RunFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -133,7 +136,8 @@ class QAbstractVideoFilter(QtCore.QObject):
 
 class QAbstractVideoSurface(QtCore.QObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QAbstractVideoSurface.Error
         UnsupportedFormatError = ... # type: QAbstractVideoSurface.Error
         IncorrectFormatError = ... # type: QAbstractVideoSurface.Error
@@ -168,7 +172,8 @@ class QAbstractVideoSurface(QtCore.QObject):
 
 class QAudio(sip.simplewrapper):
 
-    class VolumeScale(int):
+    @typing.final
+    class VolumeScale(int, metaclass=sip._enumtype):
         LinearVolumeScale = ... # type: QAudio.VolumeScale
         CubicVolumeScale = ... # type: QAudio.VolumeScale
         LogarithmicVolumeScale = ... # type: QAudio.VolumeScale
@@ -179,7 +184,8 @@ class QAudio(sip.simplewrapper):
     LogarithmicVolumeScale = ...  # type: QAudio.VolumeScale
     DecibelVolumeScale = ...  # type: QAudio.VolumeScale
 
-    class Role(int):
+    @typing.final
+    class Role(int, metaclass=sip._enumtype):
         UnknownRole = ... # type: QAudio.Role
         MusicRole = ... # type: QAudio.Role
         VideoRole = ... # type: QAudio.Role
@@ -204,14 +210,16 @@ class QAudio(sip.simplewrapper):
     GameRole = ...  # type: QAudio.Role
     CustomRole = ...  # type: QAudio.Role
 
-    class Mode(int):
+    @typing.final
+    class Mode(int, metaclass=sip._enumtype):
         AudioInput = ... # type: QAudio.Mode
         AudioOutput = ... # type: QAudio.Mode
 
     AudioInput = ...  # type: QAudio.Mode
     AudioOutput = ...  # type: QAudio.Mode
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         ActiveState = ... # type: QAudio.State
         SuspendedState = ... # type: QAudio.State
         StoppedState = ... # type: QAudio.State
@@ -224,7 +232,8 @@ class QAudio(sip.simplewrapper):
     IdleState = ...  # type: QAudio.State
     InterruptedState = ...  # type: QAudio.State
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QAudio.Error
         OpenError = ... # type: QAudio.Error
         IOError = ... # type: QAudio.Error
@@ -286,7 +295,8 @@ class QMediaObject(QtCore.QObject):
 
 class QAudioDecoder(QMediaObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QAudioDecoder.Error
         ResourceError = ... # type: QAudioDecoder.Error
         FormatError = ... # type: QAudioDecoder.Error
@@ -299,7 +309,8 @@ class QAudioDecoder(QMediaObject):
     AccessDeniedError = ...  # type: QAudioDecoder.Error
     ServiceMissingError = ...  # type: QAudioDecoder.Error
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         StoppedState = ... # type: QAudioDecoder.State
         DecodingState = ... # type: QAudioDecoder.State
 
@@ -410,14 +421,16 @@ class QAudioEncoderSettingsControl(QMediaControl):
 
 class QAudioFormat(sip.simplewrapper):
 
-    class Endian(int):
+    @typing.final
+    class Endian(int, metaclass=sip._enumtype):
         BigEndian = ... # type: QAudioFormat.Endian
         LittleEndian = ... # type: QAudioFormat.Endian
 
     BigEndian = ...  # type: QAudioFormat.Endian
     LittleEndian = ...  # type: QAudioFormat.Endian
 
-    class SampleType(int):
+    @typing.final
+    class SampleType(int, metaclass=sip._enumtype):
         Unknown = ... # type: QAudioFormat.SampleType
         SignedInt = ... # type: QAudioFormat.SampleType
         UnSignedInt = ... # type: QAudioFormat.SampleType
@@ -573,7 +586,8 @@ class QMediaBindableInterface(sip.simplewrapper):
 
 class QMediaRecorder(QtCore.QObject, QMediaBindableInterface):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QMediaRecorder.Error
         ResourceError = ... # type: QMediaRecorder.Error
         FormatError = ... # type: QMediaRecorder.Error
@@ -584,7 +598,8 @@ class QMediaRecorder(QtCore.QObject, QMediaBindableInterface):
     FormatError = ...  # type: QMediaRecorder.Error
     OutOfSpaceError = ...  # type: QMediaRecorder.Error
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         UnavailableStatus = ... # type: QMediaRecorder.Status
         UnloadedStatus = ... # type: QMediaRecorder.Status
         LoadingStatus = ... # type: QMediaRecorder.Status
@@ -603,7 +618,8 @@ class QMediaRecorder(QtCore.QObject, QMediaBindableInterface):
     PausedStatus = ...  # type: QMediaRecorder.Status
     FinalizingStatus = ...  # type: QMediaRecorder.Status
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         StoppedState = ... # type: QMediaRecorder.State
         RecordingState = ... # type: QMediaRecorder.State
         PausedState = ... # type: QMediaRecorder.State
@@ -691,7 +707,8 @@ class QAudioRoleControl(QMediaControl):
 
 class QCamera(QMediaObject):
 
-    class Position(int):
+    @typing.final
+    class Position(int, metaclass=sip._enumtype):
         UnspecifiedPosition = ... # type: QCamera.Position
         BackFace = ... # type: QCamera.Position
         FrontFace = ... # type: QCamera.Position
@@ -700,9 +717,10 @@ class QCamera(QMediaObject):
     BackFace = ...  # type: QCamera.Position
     FrontFace = ...  # type: QCamera.Position
 
-    class LockType(int):
-        def __or__ (self, other: 'QCamera.LockType') -> 'QCamera.LockTypes': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QCamera.LockTypes': ...                  # type: ignore[override, misc]
+    @typing.final
+    class LockType(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QCamera.LockType', /) -> 'QCamera.LockTypes': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QCamera.LockTypes': ...                  # type: ignore[override, misc]
         
         NoLock = ... # type: QCamera.LockType
         LockExposure = ... # type: QCamera.LockType
@@ -714,7 +732,8 @@ class QCamera(QMediaObject):
     LockWhiteBalance = ...  # type: QCamera.LockType
     LockFocus = ...  # type: QCamera.LockType
 
-    class LockChangeReason(int):
+    @typing.final
+    class LockChangeReason(int, metaclass=sip._enumtype):
         UserRequest = ... # type: QCamera.LockChangeReason
         LockAcquired = ... # type: QCamera.LockChangeReason
         LockFailed = ... # type: QCamera.LockChangeReason
@@ -727,7 +746,8 @@ class QCamera(QMediaObject):
     LockLost = ...  # type: QCamera.LockChangeReason
     LockTemporaryLost = ...  # type: QCamera.LockChangeReason
 
-    class LockStatus(int):
+    @typing.final
+    class LockStatus(int, metaclass=sip._enumtype):
         Unlocked = ... # type: QCamera.LockStatus
         Searching = ... # type: QCamera.LockStatus
         Locked = ... # type: QCamera.LockStatus
@@ -736,7 +756,8 @@ class QCamera(QMediaObject):
     Searching = ...  # type: QCamera.LockStatus
     Locked = ...  # type: QCamera.LockStatus
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QCamera.Error
         CameraError = ... # type: QCamera.Error
         InvalidRequestError = ... # type: QCamera.Error
@@ -749,7 +770,8 @@ class QCamera(QMediaObject):
     ServiceMissingError = ...  # type: QCamera.Error
     NotSupportedFeatureError = ...  # type: QCamera.Error
 
-    class CaptureMode(int):
+    @typing.final
+    class CaptureMode(int, metaclass=sip._enumtype):
         CaptureViewfinder = ... # type: QCamera.CaptureMode
         CaptureStillImage = ... # type: QCamera.CaptureMode
         CaptureVideo = ... # type: QCamera.CaptureMode
@@ -758,7 +780,8 @@ class QCamera(QMediaObject):
     CaptureStillImage = ...  # type: QCamera.CaptureMode
     CaptureVideo = ...  # type: QCamera.CaptureMode
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         UnloadedState = ... # type: QCamera.State
         LoadedState = ... # type: QCamera.State
         ActiveState = ... # type: QCamera.State
@@ -767,7 +790,8 @@ class QCamera(QMediaObject):
     LoadedState = ...  # type: QCamera.State
     ActiveState = ...  # type: QCamera.State
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         UnavailableStatus = ... # type: QCamera.Status
         UnloadedStatus = ... # type: QCamera.Status
         LoadingStatus = ... # type: QCamera.Status
@@ -804,12 +828,12 @@ class QCamera(QMediaObject):
         def __invert__(self) -> 'QCamera.CaptureModes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QCamera.CaptureModes', 'QCamera.CaptureMode', int]) -> 'QCamera.CaptureModes': ...
-        def __and__(self, other: typing.Union['QCamera.CaptureModes', 'QCamera.CaptureMode', int]) -> 'QCamera.CaptureModes': ...
-        def __xor__(self, other: typing.Union['QCamera.CaptureModes', 'QCamera.CaptureMode', int]) -> 'QCamera.CaptureModes': ...
-        def __ror__ (self, other: 'QCamera.CaptureMode') -> 'QCamera.CaptureModes': ...
-        def __rand__(self, other: 'QCamera.CaptureMode') -> 'QCamera.CaptureModes': ...
-        def __rxor__(self, other: 'QCamera.CaptureMode') -> 'QCamera.CaptureModes': ...
+        def __or__ (self, other: typing.Union['QCamera.CaptureModes', 'QCamera.CaptureMode', int], /) -> 'QCamera.CaptureModes': ...
+        def __and__(self, other: typing.Union['QCamera.CaptureModes', 'QCamera.CaptureMode', int], /) -> 'QCamera.CaptureModes': ...
+        def __xor__(self, other: typing.Union['QCamera.CaptureModes', 'QCamera.CaptureMode', int], /) -> 'QCamera.CaptureModes': ...
+        def __ror__ (self, other: 'QCamera.CaptureMode', /) -> 'QCamera.CaptureModes': ...
+        def __rand__(self, other: 'QCamera.CaptureMode', /) -> 'QCamera.CaptureModes': ...
+        def __rxor__(self, other: 'QCamera.CaptureMode', /) -> 'QCamera.CaptureModes': ...
 
     class LockTypes(sip.simplewrapper):
 
@@ -827,12 +851,12 @@ class QCamera(QMediaObject):
         def __invert__(self) -> 'QCamera.LockTypes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QCamera.LockTypes', 'QCamera.LockType', int]) -> 'QCamera.LockTypes': ...
-        def __and__(self, other: typing.Union['QCamera.LockTypes', 'QCamera.LockType', int]) -> 'QCamera.LockTypes': ...
-        def __xor__(self, other: typing.Union['QCamera.LockTypes', 'QCamera.LockType', int]) -> 'QCamera.LockTypes': ...
-        def __ror__ (self, other: 'QCamera.LockType') -> 'QCamera.LockTypes': ...
-        def __rand__(self, other: 'QCamera.LockType') -> 'QCamera.LockTypes': ...
-        def __rxor__(self, other: 'QCamera.LockType') -> 'QCamera.LockTypes': ...
+        def __or__ (self, other: typing.Union['QCamera.LockTypes', 'QCamera.LockType', int], /) -> 'QCamera.LockTypes': ...
+        def __and__(self, other: typing.Union['QCamera.LockTypes', 'QCamera.LockType', int], /) -> 'QCamera.LockTypes': ...
+        def __xor__(self, other: typing.Union['QCamera.LockTypes', 'QCamera.LockType', int], /) -> 'QCamera.LockTypes': ...
+        def __ror__ (self, other: 'QCamera.LockType', /) -> 'QCamera.LockTypes': ...
+        def __rand__(self, other: 'QCamera.LockType', /) -> 'QCamera.LockTypes': ...
+        def __rxor__(self, other: 'QCamera.LockType', /) -> 'QCamera.LockTypes': ...
 
     class FrameRateRange(sip.simplewrapper):
 
@@ -931,7 +955,8 @@ class QCameraCaptureDestinationControl(QMediaControl):
 
 class QCameraControl(QMediaControl):
 
-    class PropertyChangeType(int):
+    @typing.final
+    class PropertyChangeType(int, metaclass=sip._enumtype):
         CaptureMode = ... # type: QCameraControl.PropertyChangeType
         ImageEncodingSettings = ... # type: QCameraControl.PropertyChangeType
         VideoEncodingSettings = ... # type: QCameraControl.PropertyChangeType
@@ -961,7 +986,8 @@ class QCameraControl(QMediaControl):
 
 class QCameraExposure(QtCore.QObject):
 
-    class MeteringMode(int):
+    @typing.final
+    class MeteringMode(int, metaclass=sip._enumtype):
         MeteringMatrix = ... # type: QCameraExposure.MeteringMode
         MeteringAverage = ... # type: QCameraExposure.MeteringMode
         MeteringSpot = ... # type: QCameraExposure.MeteringMode
@@ -970,7 +996,8 @@ class QCameraExposure(QtCore.QObject):
     MeteringAverage = ...  # type: QCameraExposure.MeteringMode
     MeteringSpot = ...  # type: QCameraExposure.MeteringMode
 
-    class ExposureMode(int):
+    @typing.final
+    class ExposureMode(int, metaclass=sip._enumtype):
         ExposureAuto = ... # type: QCameraExposure.ExposureMode
         ExposureManual = ... # type: QCameraExposure.ExposureMode
         ExposurePortrait = ... # type: QCameraExposure.ExposureMode
@@ -1017,9 +1044,10 @@ class QCameraExposure(QtCore.QObject):
     ExposureBarcode = ...  # type: QCameraExposure.ExposureMode
     ExposureModeVendor = ...  # type: QCameraExposure.ExposureMode
 
-    class FlashMode(int):
-        def __or__ (self, other: 'QCameraExposure.FlashMode') -> 'QCameraExposure.FlashModes': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QCameraExposure.FlashModes': ...                           # type: ignore[override, misc]
+    @typing.final
+    class FlashMode(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QCameraExposure.FlashMode', /) -> 'QCameraExposure.FlashModes': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QCameraExposure.FlashModes': ...                           # type: ignore[override, misc]
         
         FlashAuto = ... # type: QCameraExposure.FlashMode
         FlashOff = ... # type: QCameraExposure.FlashMode
@@ -1059,12 +1087,12 @@ class QCameraExposure(QtCore.QObject):
         def __invert__(self) -> 'QCameraExposure.FlashModes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QCameraExposure.FlashModes', 'QCameraExposure.FlashMode', int]) -> 'QCameraExposure.FlashModes': ...
-        def __and__(self, other: typing.Union['QCameraExposure.FlashModes', 'QCameraExposure.FlashMode', int]) -> 'QCameraExposure.FlashModes': ...
-        def __xor__(self, other: typing.Union['QCameraExposure.FlashModes', 'QCameraExposure.FlashMode', int]) -> 'QCameraExposure.FlashModes': ...
-        def __ror__ (self, other: 'QCameraExposure.FlashMode') -> 'QCameraExposure.FlashModes': ...
-        def __rand__(self, other: 'QCameraExposure.FlashMode') -> 'QCameraExposure.FlashModes': ...
-        def __rxor__(self, other: 'QCameraExposure.FlashMode') -> 'QCameraExposure.FlashModes': ...
+        def __or__ (self, other: typing.Union['QCameraExposure.FlashModes', 'QCameraExposure.FlashMode', int], /) -> 'QCameraExposure.FlashModes': ...
+        def __and__(self, other: typing.Union['QCameraExposure.FlashModes', 'QCameraExposure.FlashMode', int], /) -> 'QCameraExposure.FlashModes': ...
+        def __xor__(self, other: typing.Union['QCameraExposure.FlashModes', 'QCameraExposure.FlashMode', int], /) -> 'QCameraExposure.FlashModes': ...
+        def __ror__ (self, other: 'QCameraExposure.FlashMode', /) -> 'QCameraExposure.FlashModes': ...
+        def __rand__(self, other: 'QCameraExposure.FlashMode', /) -> 'QCameraExposure.FlashModes': ...
+        def __rxor__(self, other: 'QCameraExposure.FlashMode', /) -> 'QCameraExposure.FlashModes': ...
 
     exposureCompensationChanged: typing.ClassVar[QtCore.pyqtSignal]
     isoSensitivityChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -1107,7 +1135,8 @@ class QCameraExposure(QtCore.QObject):
 
 class QCameraExposureControl(QMediaControl):
 
-    class ExposureParameter(int):
+    @typing.final
+    class ExposureParameter(int, metaclass=sip._enumtype):
         ISO = ... # type: QCameraExposureControl.ExposureParameter
         Aperture = ... # type: QCameraExposureControl.ExposureParameter
         ShutterSpeed = ... # type: QCameraExposureControl.ExposureParameter
@@ -1146,7 +1175,8 @@ class QCameraExposureControl(QMediaControl):
 
 class QCameraFeedbackControl(QMediaControl):
 
-    class EventType(int):
+    @typing.final
+    class EventType(int, metaclass=sip._enumtype):
         ViewfinderStarted = ... # type: QCameraFeedbackControl.EventType
         ViewfinderStopped = ... # type: QCameraFeedbackControl.EventType
         ImageCaptured = ... # type: QCameraFeedbackControl.EventType
@@ -1193,7 +1223,8 @@ class QCameraFlashControl(QMediaControl):
 
 class QCameraFocusZone(sip.simplewrapper):
 
-    class FocusZoneStatus(int):
+    @typing.final
+    class FocusZoneStatus(int, metaclass=sip._enumtype):
         Invalid = ... # type: QCameraFocusZone.FocusZoneStatus
         Unused = ... # type: QCameraFocusZone.FocusZoneStatus
         Selected = ... # type: QCameraFocusZone.FocusZoneStatus
@@ -1213,7 +1244,8 @@ class QCameraFocusZone(sip.simplewrapper):
 
 class QCameraFocus(QtCore.QObject):
 
-    class FocusPointMode(int):
+    @typing.final
+    class FocusPointMode(int, metaclass=sip._enumtype):
         FocusPointAuto = ... # type: QCameraFocus.FocusPointMode
         FocusPointCenter = ... # type: QCameraFocus.FocusPointMode
         FocusPointFaceDetection = ... # type: QCameraFocus.FocusPointMode
@@ -1224,9 +1256,10 @@ class QCameraFocus(QtCore.QObject):
     FocusPointFaceDetection = ...  # type: QCameraFocus.FocusPointMode
     FocusPointCustom = ...  # type: QCameraFocus.FocusPointMode
 
-    class FocusMode(int):
-        def __or__ (self, other: 'QCameraFocus.FocusMode') -> 'QCameraFocus.FocusModes': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QCameraFocus.FocusModes': ...                        # type: ignore[override, misc]
+    @typing.final
+    class FocusMode(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QCameraFocus.FocusMode', /) -> 'QCameraFocus.FocusModes': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QCameraFocus.FocusModes': ...                        # type: ignore[override, misc]
         
         ManualFocus = ... # type: QCameraFocus.FocusMode
         HyperfocalFocus = ... # type: QCameraFocus.FocusMode
@@ -1258,12 +1291,12 @@ class QCameraFocus(QtCore.QObject):
         def __invert__(self) -> 'QCameraFocus.FocusModes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QCameraFocus.FocusModes', 'QCameraFocus.FocusMode', int]) -> 'QCameraFocus.FocusModes': ...
-        def __and__(self, other: typing.Union['QCameraFocus.FocusModes', 'QCameraFocus.FocusMode', int]) -> 'QCameraFocus.FocusModes': ...
-        def __xor__(self, other: typing.Union['QCameraFocus.FocusModes', 'QCameraFocus.FocusMode', int]) -> 'QCameraFocus.FocusModes': ...
-        def __ror__ (self, other: 'QCameraFocus.FocusMode') -> 'QCameraFocus.FocusModes': ...
-        def __rand__(self, other: 'QCameraFocus.FocusMode') -> 'QCameraFocus.FocusModes': ...
-        def __rxor__(self, other: 'QCameraFocus.FocusMode') -> 'QCameraFocus.FocusModes': ...
+        def __or__ (self, other: typing.Union['QCameraFocus.FocusModes', 'QCameraFocus.FocusMode', int], /) -> 'QCameraFocus.FocusModes': ...
+        def __and__(self, other: typing.Union['QCameraFocus.FocusModes', 'QCameraFocus.FocusMode', int], /) -> 'QCameraFocus.FocusModes': ...
+        def __xor__(self, other: typing.Union['QCameraFocus.FocusModes', 'QCameraFocus.FocusMode', int], /) -> 'QCameraFocus.FocusModes': ...
+        def __ror__ (self, other: 'QCameraFocus.FocusMode', /) -> 'QCameraFocus.FocusModes': ...
+        def __rand__(self, other: 'QCameraFocus.FocusMode', /) -> 'QCameraFocus.FocusModes': ...
+        def __rxor__(self, other: 'QCameraFocus.FocusMode', /) -> 'QCameraFocus.FocusModes': ...
 
     maximumDigitalZoomChanged: typing.ClassVar[QtCore.pyqtSignal]
     maximumOpticalZoomChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -1308,9 +1341,10 @@ class QCameraFocusControl(QMediaControl):
 
 class QCameraImageCapture(QtCore.QObject, QMediaBindableInterface):
 
-    class CaptureDestination(int):
-        def __or__ (self, other: 'QCameraImageCapture.CaptureDestination') -> 'QCameraImageCapture.CaptureDestinations': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QCameraImageCapture.CaptureDestinations': ...                                        # type: ignore[override, misc]
+    @typing.final
+    class CaptureDestination(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QCameraImageCapture.CaptureDestination', /) -> 'QCameraImageCapture.CaptureDestinations': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QCameraImageCapture.CaptureDestinations': ...                                        # type: ignore[override, misc]
         
         CaptureToFile = ... # type: QCameraImageCapture.CaptureDestination
         CaptureToBuffer = ... # type: QCameraImageCapture.CaptureDestination
@@ -1318,12 +1352,14 @@ class QCameraImageCapture(QtCore.QObject, QMediaBindableInterface):
     CaptureToFile = ...  # type: QCameraImageCapture.CaptureDestination
     CaptureToBuffer = ...  # type: QCameraImageCapture.CaptureDestination
 
-    class DriveMode(int):
+    @typing.final
+    class DriveMode(int, metaclass=sip._enumtype):
         SingleImageCapture = ... # type: QCameraImageCapture.DriveMode
 
     SingleImageCapture = ...  # type: QCameraImageCapture.DriveMode
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QCameraImageCapture.Error
         NotReadyError = ... # type: QCameraImageCapture.Error
         ResourceError = ... # type: QCameraImageCapture.Error
@@ -1354,12 +1390,12 @@ class QCameraImageCapture(QtCore.QObject, QMediaBindableInterface):
         def __invert__(self) -> 'QCameraImageCapture.CaptureDestinations': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QCameraImageCapture.CaptureDestinations', 'QCameraImageCapture.CaptureDestination', int]) -> 'QCameraImageCapture.CaptureDestinations': ...
-        def __and__(self, other: typing.Union['QCameraImageCapture.CaptureDestinations', 'QCameraImageCapture.CaptureDestination', int]) -> 'QCameraImageCapture.CaptureDestinations': ...
-        def __xor__(self, other: typing.Union['QCameraImageCapture.CaptureDestinations', 'QCameraImageCapture.CaptureDestination', int]) -> 'QCameraImageCapture.CaptureDestinations': ...
-        def __ror__ (self, other: 'QCameraImageCapture.CaptureDestination') -> 'QCameraImageCapture.CaptureDestinations': ...
-        def __rand__(self, other: 'QCameraImageCapture.CaptureDestination') -> 'QCameraImageCapture.CaptureDestinations': ...
-        def __rxor__(self, other: 'QCameraImageCapture.CaptureDestination') -> 'QCameraImageCapture.CaptureDestinations': ...
+        def __or__ (self, other: typing.Union['QCameraImageCapture.CaptureDestinations', 'QCameraImageCapture.CaptureDestination', int], /) -> 'QCameraImageCapture.CaptureDestinations': ...
+        def __and__(self, other: typing.Union['QCameraImageCapture.CaptureDestinations', 'QCameraImageCapture.CaptureDestination', int], /) -> 'QCameraImageCapture.CaptureDestinations': ...
+        def __xor__(self, other: typing.Union['QCameraImageCapture.CaptureDestinations', 'QCameraImageCapture.CaptureDestination', int], /) -> 'QCameraImageCapture.CaptureDestinations': ...
+        def __ror__ (self, other: 'QCameraImageCapture.CaptureDestination', /) -> 'QCameraImageCapture.CaptureDestinations': ...
+        def __rand__(self, other: 'QCameraImageCapture.CaptureDestination', /) -> 'QCameraImageCapture.CaptureDestinations': ...
+        def __rxor__(self, other: 'QCameraImageCapture.CaptureDestination', /) -> 'QCameraImageCapture.CaptureDestinations': ...
 
     def __init__(self, mediaObject: QMediaObject, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1413,7 +1449,8 @@ class QCameraImageCaptureControl(QMediaControl):
 
 class QCameraImageProcessing(QtCore.QObject):
 
-    class ColorFilter(int):
+    @typing.final
+    class ColorFilter(int, metaclass=sip._enumtype):
         ColorFilterNone = ... # type: QCameraImageProcessing.ColorFilter
         ColorFilterGrayscale = ... # type: QCameraImageProcessing.ColorFilter
         ColorFilterNegative = ... # type: QCameraImageProcessing.ColorFilter
@@ -1436,7 +1473,8 @@ class QCameraImageProcessing(QtCore.QObject):
     ColorFilterAqua = ...  # type: QCameraImageProcessing.ColorFilter
     ColorFilterVendor = ...  # type: QCameraImageProcessing.ColorFilter
 
-    class WhiteBalanceMode(int):
+    @typing.final
+    class WhiteBalanceMode(int, metaclass=sip._enumtype):
         WhiteBalanceAuto = ... # type: QCameraImageProcessing.WhiteBalanceMode
         WhiteBalanceManual = ... # type: QCameraImageProcessing.WhiteBalanceMode
         WhiteBalanceSunlight = ... # type: QCameraImageProcessing.WhiteBalanceMode
@@ -1482,7 +1520,8 @@ class QCameraImageProcessing(QtCore.QObject):
 
 class QCameraImageProcessingControl(QMediaControl):
 
-    class ProcessingParameter(int):
+    @typing.final
+    class ProcessingParameter(int, metaclass=sip._enumtype):
         WhiteBalancePreset = ... # type: QCameraImageProcessingControl.ProcessingParameter
         ColorTemperature = ... # type: QCameraImageProcessingControl.ProcessingParameter
         Contrast = ... # type: QCameraImageProcessingControl.ProcessingParameter
@@ -1589,7 +1628,8 @@ class QCameraViewfinderSettings(sip.simplewrapper):
 
 class QCameraViewfinderSettingsControl(QMediaControl):
 
-    class ViewfinderParameter(int):
+    @typing.final
+    class ViewfinderParameter(int, metaclass=sip._enumtype):
         Resolution = ... # type: QCameraViewfinderSettingsControl.ViewfinderParameter
         PixelAspectRatio = ... # type: QCameraViewfinderSettingsControl.ViewfinderParameter
         MinimumFrameRate = ... # type: QCameraViewfinderSettingsControl.ViewfinderParameter
@@ -1910,7 +1950,8 @@ class QMediaNetworkAccessControl(QMediaControl):
 
 class QMediaPlayer(QMediaObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QMediaPlayer.Error
         ResourceError = ... # type: QMediaPlayer.Error
         FormatError = ... # type: QMediaPlayer.Error
@@ -1925,7 +1966,8 @@ class QMediaPlayer(QMediaObject):
     AccessDeniedError = ...  # type: QMediaPlayer.Error
     ServiceMissingError = ...  # type: QMediaPlayer.Error
 
-    class Flag(int):
+    @typing.final
+    class Flag(int, metaclass=sip._enumtype):
         LowLatency = ... # type: QMediaPlayer.Flag
         StreamPlayback = ... # type: QMediaPlayer.Flag
         VideoSurface = ... # type: QMediaPlayer.Flag
@@ -1934,7 +1976,8 @@ class QMediaPlayer(QMediaObject):
     StreamPlayback = ...  # type: QMediaPlayer.Flag
     VideoSurface = ...  # type: QMediaPlayer.Flag
 
-    class MediaStatus(int):
+    @typing.final
+    class MediaStatus(int, metaclass=sip._enumtype):
         UnknownMediaStatus = ... # type: QMediaPlayer.MediaStatus
         NoMedia = ... # type: QMediaPlayer.MediaStatus
         LoadingMedia = ... # type: QMediaPlayer.MediaStatus
@@ -1955,7 +1998,8 @@ class QMediaPlayer(QMediaObject):
     EndOfMedia = ...  # type: QMediaPlayer.MediaStatus
     InvalidMedia = ...  # type: QMediaPlayer.MediaStatus
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         StoppedState = ... # type: QMediaPlayer.State
         PlayingState = ... # type: QMediaPlayer.State
         PausedState = ... # type: QMediaPlayer.State
@@ -1980,12 +2024,12 @@ class QMediaPlayer(QMediaObject):
         def __invert__(self) -> 'QMediaPlayer.Flags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag', int]) -> 'QMediaPlayer.Flags': ...
-        def __and__(self, other: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag', int]) -> 'QMediaPlayer.Flags': ...
-        def __xor__(self, other: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag', int]) -> 'QMediaPlayer.Flags': ...
-        def __ror__ (self, other: 'QMediaPlayer.Flag') -> 'QMediaPlayer.Flags': ...
-        def __rand__(self, other: 'QMediaPlayer.Flag') -> 'QMediaPlayer.Flags': ...
-        def __rxor__(self, other: 'QMediaPlayer.Flag') -> 'QMediaPlayer.Flags': ...
+        def __or__ (self, other: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag', int], /) -> 'QMediaPlayer.Flags': ...
+        def __and__(self, other: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag', int], /) -> 'QMediaPlayer.Flags': ...
+        def __xor__(self, other: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag', int], /) -> 'QMediaPlayer.Flags': ...
+        def __ror__ (self, other: 'QMediaPlayer.Flag', /) -> 'QMediaPlayer.Flags': ...
+        def __rand__(self, other: 'QMediaPlayer.Flag', /) -> 'QMediaPlayer.Flags': ...
+        def __rxor__(self, other: 'QMediaPlayer.Flag', /) -> 'QMediaPlayer.Flags': ...
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ..., flags: typing.Union['QMediaPlayer.Flags', 'QMediaPlayer.Flag'] = ...) -> None: ...
 
@@ -2100,7 +2144,8 @@ class QMediaPlayerControl(QMediaControl):
 
 class QMediaPlaylist(QtCore.QObject, QMediaBindableInterface):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QMediaPlaylist.Error
         FormatError = ... # type: QMediaPlaylist.Error
         FormatNotSupportedError = ... # type: QMediaPlaylist.Error
@@ -2113,7 +2158,8 @@ class QMediaPlaylist(QtCore.QObject, QMediaBindableInterface):
     NetworkError = ...  # type: QMediaPlaylist.Error
     AccessDeniedError = ...  # type: QMediaPlaylist.Error
 
-    class PlaybackMode(int):
+    @typing.final
+    class PlaybackMode(int, metaclass=sip._enumtype):
         CurrentItemOnce = ... # type: QMediaPlaylist.PlaybackMode
         CurrentItemInLoop = ... # type: QMediaPlaylist.PlaybackMode
         Sequential = ... # type: QMediaPlaylist.PlaybackMode
@@ -2254,7 +2300,8 @@ class QMediaService(QtCore.QObject):
 
 class QMediaStreamsControl(QMediaControl):
 
-    class StreamType(int):
+    @typing.final
+    class StreamType(int, metaclass=sip._enumtype):
         UnknownStream = ... # type: QMediaStreamsControl.StreamType
         VideoStream = ... # type: QMediaStreamsControl.StreamType
         AudioStream = ... # type: QMediaStreamsControl.StreamType
@@ -2360,7 +2407,8 @@ class QMetaDataWriterControl(QMediaControl):
 
 class QMultimedia(sip.simplewrapper):
 
-    class AvailabilityStatus(int):
+    @typing.final
+    class AvailabilityStatus(int, metaclass=sip._enumtype):
         Available = ... # type: QMultimedia.AvailabilityStatus
         ServiceMissing = ... # type: QMultimedia.AvailabilityStatus
         Busy = ... # type: QMultimedia.AvailabilityStatus
@@ -2371,7 +2419,8 @@ class QMultimedia(sip.simplewrapper):
     Busy = ...  # type: QMultimedia.AvailabilityStatus
     ResourceError = ...  # type: QMultimedia.AvailabilityStatus
 
-    class EncodingMode(int):
+    @typing.final
+    class EncodingMode(int, metaclass=sip._enumtype):
         ConstantQualityEncoding = ... # type: QMultimedia.EncodingMode
         ConstantBitRateEncoding = ... # type: QMultimedia.EncodingMode
         AverageBitRateEncoding = ... # type: QMultimedia.EncodingMode
@@ -2382,7 +2431,8 @@ class QMultimedia(sip.simplewrapper):
     AverageBitRateEncoding = ...  # type: QMultimedia.EncodingMode
     TwoPassEncoding = ...  # type: QMultimedia.EncodingMode
 
-    class EncodingQuality(int):
+    @typing.final
+    class EncodingQuality(int, metaclass=sip._enumtype):
         VeryLowQuality = ... # type: QMultimedia.EncodingQuality
         LowQuality = ... # type: QMultimedia.EncodingQuality
         NormalQuality = ... # type: QMultimedia.EncodingQuality
@@ -2395,7 +2445,8 @@ class QMultimedia(sip.simplewrapper):
     HighQuality = ...  # type: QMultimedia.EncodingQuality
     VeryHighQuality = ...  # type: QMultimedia.EncodingQuality
 
-    class SupportEstimate(int):
+    @typing.final
+    class SupportEstimate(int, metaclass=sip._enumtype):
         NotSupported = ... # type: QMultimedia.SupportEstimate
         MaybeSupported = ... # type: QMultimedia.SupportEstimate
         ProbablySupported = ... # type: QMultimedia.SupportEstimate
@@ -2409,7 +2460,8 @@ class QMultimedia(sip.simplewrapper):
 
 class QRadioData(QtCore.QObject, QMediaBindableInterface):
 
-    class ProgramType(int):
+    @typing.final
+    class ProgramType(int, metaclass=sip._enumtype):
         Undefined = ... # type: QRadioData.ProgramType
         News = ... # type: QRadioData.ProgramType
         CurrentAffairs = ... # type: QRadioData.ProgramType
@@ -2508,7 +2560,8 @@ class QRadioData(QtCore.QObject, QMediaBindableInterface):
     Public = ...  # type: QRadioData.ProgramType
     College = ...  # type: QRadioData.ProgramType
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QRadioData.Error
         ResourceError = ... # type: QRadioData.Error
         OpenError = ... # type: QRadioData.Error
@@ -2564,14 +2617,16 @@ class QRadioDataControl(QMediaControl):
 
 class QRadioTuner(QMediaObject):
 
-    class SearchMode(int):
+    @typing.final
+    class SearchMode(int, metaclass=sip._enumtype):
         SearchFast = ... # type: QRadioTuner.SearchMode
         SearchGetStationId = ... # type: QRadioTuner.SearchMode
 
     SearchFast = ...  # type: QRadioTuner.SearchMode
     SearchGetStationId = ...  # type: QRadioTuner.SearchMode
 
-    class StereoMode(int):
+    @typing.final
+    class StereoMode(int, metaclass=sip._enumtype):
         ForceStereo = ... # type: QRadioTuner.StereoMode
         ForceMono = ... # type: QRadioTuner.StereoMode
         Auto = ... # type: QRadioTuner.StereoMode
@@ -2580,7 +2635,8 @@ class QRadioTuner(QMediaObject):
     ForceMono = ...  # type: QRadioTuner.StereoMode
     Auto = ...  # type: QRadioTuner.StereoMode
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QRadioTuner.Error
         ResourceError = ... # type: QRadioTuner.Error
         OpenError = ... # type: QRadioTuner.Error
@@ -2591,7 +2647,8 @@ class QRadioTuner(QMediaObject):
     OpenError = ...  # type: QRadioTuner.Error
     OutOfRangeError = ...  # type: QRadioTuner.Error
 
-    class Band(int):
+    @typing.final
+    class Band(int, metaclass=sip._enumtype):
         AM = ... # type: QRadioTuner.Band
         FM = ... # type: QRadioTuner.Band
         SW = ... # type: QRadioTuner.Band
@@ -2604,7 +2661,8 @@ class QRadioTuner(QMediaObject):
     LW = ...  # type: QRadioTuner.Band
     FM2 = ...  # type: QRadioTuner.Band
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         ActiveState = ... # type: QRadioTuner.State
         StoppedState = ... # type: QRadioTuner.State
 
@@ -2697,7 +2755,8 @@ class QRadioTunerControl(QMediaControl):
 
 class QSound(QtCore.QObject):
 
-    class Loop(int):
+    @typing.final
+    class Loop(int, metaclass=sip._enumtype):
         Infinite = ... # type: QSound.Loop
 
     Infinite = ...  # type: QSound.Loop
@@ -2719,7 +2778,8 @@ class QSound(QtCore.QObject):
 
 class QSoundEffect(QtCore.QObject):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         Null = ... # type: QSoundEffect.Status
         Loading = ... # type: QSoundEffect.Status
         Ready = ... # type: QSoundEffect.Status
@@ -2730,7 +2790,8 @@ class QSoundEffect(QtCore.QObject):
     Ready = ...  # type: QSoundEffect.Status
     Error = ...  # type: QSoundEffect.Status
 
-    class Loop(int):
+    @typing.final
+    class Loop(int, metaclass=sip._enumtype):
         Infinite = ... # type: QSoundEffect.Loop
 
     Infinite = ...  # type: QSoundEffect.Loop
@@ -2797,7 +2858,8 @@ class QVideoEncoderSettingsControl(QMediaControl):
 
 class QVideoFrame(sip.simplewrapper):
 
-    class PixelFormat(int):
+    @typing.final
+    class PixelFormat(int, metaclass=sip._enumtype):
         Format_Invalid = ... # type: QVideoFrame.PixelFormat
         Format_ARGB32 = ... # type: QVideoFrame.PixelFormat
         Format_ARGB32_Premultiplied = ... # type: QVideoFrame.PixelFormat
@@ -2872,7 +2934,8 @@ class QVideoFrame(sip.simplewrapper):
     Format_YUV422P = ...  # type: QVideoFrame.PixelFormat
     Format_User = ...  # type: QVideoFrame.PixelFormat
 
-    class FieldType(int):
+    @typing.final
+    class FieldType(int, metaclass=sip._enumtype):
         ProgressiveFrame = ... # type: QVideoFrame.FieldType
         TopField = ... # type: QVideoFrame.FieldType
         BottomField = ... # type: QVideoFrame.FieldType
@@ -2957,7 +3020,8 @@ class QVideoRendererControl(QMediaControl):
 
 class QVideoSurfaceFormat(sip.simplewrapper):
 
-    class YCbCrColorSpace(int):
+    @typing.final
+    class YCbCrColorSpace(int, metaclass=sip._enumtype):
         YCbCr_Undefined = ... # type: QVideoSurfaceFormat.YCbCrColorSpace
         YCbCr_BT601 = ... # type: QVideoSurfaceFormat.YCbCrColorSpace
         YCbCr_BT709 = ... # type: QVideoSurfaceFormat.YCbCrColorSpace
@@ -2972,7 +3036,8 @@ class QVideoSurfaceFormat(sip.simplewrapper):
     YCbCr_xvYCC709 = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
     YCbCr_JPEG = ...  # type: QVideoSurfaceFormat.YCbCrColorSpace
 
-    class Direction(int):
+    @typing.final
+    class Direction(int, metaclass=sip._enumtype):
         TopToBottom = ... # type: QVideoSurfaceFormat.Direction
         BottomToTop = ... # type: QVideoSurfaceFormat.Direction
 

@@ -33,13 +33,13 @@ import datetime
 import enum
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_SHADER_ATTRIBUTE_ARRAY = typing.Union[typing.Sequence['QVector2D'],
+_PYQT_SHADER_ATTRIBUTE_ARRAY = typing.Union[typing.Sequence['QVector2D'],
         typing.Sequence['QVector3D'], typing.Sequence['QVector4D'],
         typing.Sequence[typing.Sequence[float]]]
-PYQT_SHADER_UNIFORM_VALUE_ARRAY = typing.Union[typing.Sequence['QVector2D'],
+_PYQT_SHADER_UNIFORM_VALUE_ARRAY = typing.Union[typing.Sequence['QVector2D'],
         typing.Sequence['QVector3D'], typing.Sequence['QVector4D'],
         typing.Sequence['QMatrix2x2'], typing.Sequence['QMatrix2x3'],
         typing.Sequence['QMatrix2x4'], typing.Sequence['QMatrix3x2'],
@@ -131,7 +131,8 @@ class QBackingStore(sip.simplewrapper):
 
 class QPaintDevice(sip.simplewrapper):
 
-    class PaintDeviceMetric(int):
+    @typing.final
+    class PaintDeviceMetric(int, metaclass=sip._enumtype):
         PdmWidth = ... # type: QPaintDevice.PaintDeviceMetric
         PdmHeight = ... # type: QPaintDevice.PaintDeviceMetric
         PdmWidthMM = ... # type: QPaintDevice.PaintDeviceMetric
@@ -282,14 +283,16 @@ class QBitmap(QPixmap):
 
 class QColor(sip.simplewrapper):
 
-    class NameFormat(int):
+    @typing.final
+    class NameFormat(int, metaclass=sip._enumtype):
         HexRgb = ... # type: QColor.NameFormat
         HexArgb = ... # type: QColor.NameFormat
 
     HexRgb = ...  # type: QColor.NameFormat
     HexArgb = ...  # type: QColor.NameFormat
 
-    class Spec(int):
+    @typing.final
+    class Spec(int, metaclass=sip._enumtype):
         Invalid = ... # type: QColor.Spec
         Rgb = ... # type: QColor.Spec
         Hsv = ... # type: QColor.Spec
@@ -647,7 +650,8 @@ class QBrush(sip.simplewrapper):
 
 class QGradient(sip.simplewrapper):
 
-    class Preset(int):
+    @typing.final
+    class Preset(int, metaclass=sip._enumtype):
         WarmFlame = ... # type: QGradient.Preset
         NightFade = ... # type: QGradient.Preset
         SpringWarmth = ... # type: QGradient.Preset
@@ -988,7 +992,8 @@ class QGradient(sip.simplewrapper):
     PerfectBlue = ...  # type: QGradient.Preset
     NumPresets = ...  # type: QGradient.Preset
 
-    class Spread(int):
+    @typing.final
+    class Spread(int, metaclass=sip._enumtype):
         PadSpread = ... # type: QGradient.Spread
         ReflectSpread = ... # type: QGradient.Spread
         RepeatSpread = ... # type: QGradient.Spread
@@ -997,7 +1002,8 @@ class QGradient(sip.simplewrapper):
     ReflectSpread = ...  # type: QGradient.Spread
     RepeatSpread = ...  # type: QGradient.Spread
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         LinearGradient = ... # type: QGradient.Type
         RadialGradient = ... # type: QGradient.Type
         ConicalGradient = ... # type: QGradient.Type
@@ -1008,7 +1014,8 @@ class QGradient(sip.simplewrapper):
     ConicalGradient = ...  # type: QGradient.Type
     NoGradient = ...  # type: QGradient.Type
 
-    class CoordinateMode(int):
+    @typing.final
+    class CoordinateMode(int, metaclass=sip._enumtype):
         LogicalMode = ... # type: QGradient.CoordinateMode
         StretchToDeviceMode = ... # type: QGradient.CoordinateMode
         ObjectBoundingMode = ... # type: QGradient.CoordinateMode
@@ -1118,7 +1125,8 @@ class QConicalGradient(QGradient):
 
 class QClipboard(QtCore.QObject):
 
-    class Mode(int):
+    @typing.final
+    class Mode(int, metaclass=sip._enumtype):
         Clipboard = ... # type: QClipboard.Mode
         Selection = ... # type: QClipboard.Mode
         FindBuffer = ... # type: QClipboard.Mode
@@ -1166,7 +1174,8 @@ class QColorSpace(sip.simplewrapper):
         DciP3D65 = ...
         ProPhotoRgb = ...
 
-    class NamedColorSpace(int):
+    @typing.final
+    class NamedColorSpace(int, metaclass=sip._enumtype):
         SRgb = ... # type: QColorSpace.NamedColorSpace
         SRgbLinear = ... # type: QColorSpace.NamedColorSpace
         AdobeRgb = ... # type: QColorSpace.NamedColorSpace
@@ -1399,7 +1408,8 @@ class QWheelEvent(QInputEvent):
 
 class QTabletEvent(QInputEvent):
 
-    class PointerType(int):
+    @typing.final
+    class PointerType(int, metaclass=sip._enumtype):
         UnknownPointer = ... # type: QTabletEvent.PointerType
         Pen = ... # type: QTabletEvent.PointerType
         Cursor = ... # type: QTabletEvent.PointerType
@@ -1410,7 +1420,8 @@ class QTabletEvent(QInputEvent):
     Cursor = ...  # type: QTabletEvent.PointerType
     Eraser = ...  # type: QTabletEvent.PointerType
 
-    class TabletDevice(int):
+    @typing.final
+    class TabletDevice(int, metaclass=sip._enumtype):
         NoDevice = ... # type: QTabletEvent.TabletDevice
         Puck = ... # type: QTabletEvent.TabletDevice
         Stylus = ... # type: QTabletEvent.TabletDevice
@@ -1560,7 +1571,8 @@ class QHideEvent(QtCore.QEvent):
 
 class QContextMenuEvent(QInputEvent):
 
-    class Reason(int):
+    @typing.final
+    class Reason(int, metaclass=sip._enumtype):
         Mouse = ... # type: QContextMenuEvent.Reason
         Keyboard = ... # type: QContextMenuEvent.Reason
         Other = ... # type: QContextMenuEvent.Reason
@@ -1589,7 +1601,8 @@ class QContextMenuEvent(QInputEvent):
 
 class QInputMethodEvent(QtCore.QEvent):
 
-    class AttributeType(int):
+    @typing.final
+    class AttributeType(int, metaclass=sip._enumtype):
         TextFormat = ... # type: QInputMethodEvent.AttributeType
         Cursor = ... # type: QInputMethodEvent.AttributeType
         Language = ... # type: QInputMethodEvent.AttributeType
@@ -1771,9 +1784,10 @@ class QTouchEvent(QInputEvent):
 
     class TouchPoint(sip.simplewrapper):
 
-        class InfoFlag(int):
-            def __or__ (self, other: typing.Union[int, 'QTouchEvent.TouchPoint.InfoFlag']) -> 'QTouchEvent.TouchPoint.InfoFlags': ...    # type: ignore[override]
-            def __ror__ (self, other: int) -> 'QTouchEvent.TouchPoint.InfoFlags': ...                                                    # type: ignore[override, misc]
+        @typing.final
+        class InfoFlag(int, metaclass=sip._enumtype):
+            def __or__ (self, other: typing.Union[int, 'QTouchEvent.TouchPoint.InfoFlag'], /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...    # type: ignore[override]
+            def __ror__ (self, other: int, /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...                                                    # type: ignore[override, misc]
             
             Pen = ... # type: QTouchEvent.TouchPoint.InfoFlag
             Token = ... # type: QTouchEvent.TouchPoint.InfoFlag
@@ -1797,12 +1811,12 @@ class QTouchEvent(QInputEvent):
             def __invert__(self) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
             def __index__(self) -> int: ...
             def __int__(self) -> int: ...
-            def __or__ (self, other: typing.Union['QTouchEvent.TouchPoint.InfoFlags', 'QTouchEvent.TouchPoint.InfoFlag', int]) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
-            def __and__(self, other: typing.Union['QTouchEvent.TouchPoint.InfoFlags', 'QTouchEvent.TouchPoint.InfoFlag', int]) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
-            def __xor__(self, other: typing.Union['QTouchEvent.TouchPoint.InfoFlags', 'QTouchEvent.TouchPoint.InfoFlag', int]) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
-            def __ror__ (self, other: 'QTouchEvent.TouchPoint.InfoFlag') -> 'QTouchEvent.TouchPoint.InfoFlags': ...
-            def __rand__(self, other: 'QTouchEvent.TouchPoint.InfoFlag') -> 'QTouchEvent.TouchPoint.InfoFlags': ...
-            def __rxor__(self, other: 'QTouchEvent.TouchPoint.InfoFlag') -> 'QTouchEvent.TouchPoint.InfoFlags': ...
+            def __or__ (self, other: typing.Union['QTouchEvent.TouchPoint.InfoFlags', 'QTouchEvent.TouchPoint.InfoFlag', int], /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
+            def __and__(self, other: typing.Union['QTouchEvent.TouchPoint.InfoFlags', 'QTouchEvent.TouchPoint.InfoFlag', int], /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
+            def __xor__(self, other: typing.Union['QTouchEvent.TouchPoint.InfoFlags', 'QTouchEvent.TouchPoint.InfoFlag', int], /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
+            def __ror__ (self, other: 'QTouchEvent.TouchPoint.InfoFlag', /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
+            def __rand__(self, other: 'QTouchEvent.TouchPoint.InfoFlag', /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
+            def __rxor__(self, other: 'QTouchEvent.TouchPoint.InfoFlag', /) -> 'QTouchEvent.TouchPoint.InfoFlags': ...
 
         def ellipseDiameters(self) -> QtCore.QSizeF: ...
         def rotation(self) -> float: ...
@@ -1870,7 +1884,8 @@ class QScrollPrepareEvent(QtCore.QEvent):
 
 class QScrollEvent(QtCore.QEvent):
 
-    class ScrollState(int):
+    @typing.final
+    class ScrollState(int, metaclass=sip._enumtype):
         ScrollStarted = ... # type: QScrollEvent.ScrollState
         ScrollUpdated = ... # type: QScrollEvent.ScrollState
         ScrollFinished = ... # type: QScrollEvent.ScrollState
@@ -1928,7 +1943,8 @@ class QNativeGestureEvent(QInputEvent):
 
 class QPlatformSurfaceEvent(QtCore.QEvent):
 
-    class SurfaceEventType(int):
+    @typing.final
+    class SurfaceEventType(int, metaclass=sip._enumtype):
         SurfaceCreated = ... # type: QPlatformSurfaceEvent.SurfaceEventType
         SurfaceAboutToBeDestroyed = ... # type: QPlatformSurfaceEvent.SurfaceEventType
 
@@ -1959,7 +1975,8 @@ class QPointingDeviceUniqueId(sip.simplewrapper):
 
 class QFont(sip.simplewrapper):
 
-    class HintingPreference(int):
+    @typing.final
+    class HintingPreference(int, metaclass=sip._enumtype):
         PreferDefaultHinting = ... # type: QFont.HintingPreference
         PreferNoHinting = ... # type: QFont.HintingPreference
         PreferVerticalHinting = ... # type: QFont.HintingPreference
@@ -1970,14 +1987,16 @@ class QFont(sip.simplewrapper):
     PreferVerticalHinting = ...  # type: QFont.HintingPreference
     PreferFullHinting = ...  # type: QFont.HintingPreference
 
-    class SpacingType(int):
+    @typing.final
+    class SpacingType(int, metaclass=sip._enumtype):
         PercentageSpacing = ... # type: QFont.SpacingType
         AbsoluteSpacing = ... # type: QFont.SpacingType
 
     PercentageSpacing = ...  # type: QFont.SpacingType
     AbsoluteSpacing = ...  # type: QFont.SpacingType
 
-    class Capitalization(int):
+    @typing.final
+    class Capitalization(int, metaclass=sip._enumtype):
         MixedCase = ... # type: QFont.Capitalization
         AllUppercase = ... # type: QFont.Capitalization
         AllLowercase = ... # type: QFont.Capitalization
@@ -1990,7 +2009,8 @@ class QFont(sip.simplewrapper):
     SmallCaps = ...  # type: QFont.Capitalization
     Capitalize = ...  # type: QFont.Capitalization
 
-    class Stretch(int):
+    @typing.final
+    class Stretch(int, metaclass=sip._enumtype):
         AnyStretch = ... # type: QFont.Stretch
         UltraCondensed = ... # type: QFont.Stretch
         ExtraCondensed = ... # type: QFont.Stretch
@@ -2013,7 +2033,8 @@ class QFont(sip.simplewrapper):
     ExtraExpanded = ...  # type: QFont.Stretch
     UltraExpanded = ...  # type: QFont.Stretch
 
-    class Style(int):
+    @typing.final
+    class Style(int, metaclass=sip._enumtype):
         StyleNormal = ... # type: QFont.Style
         StyleItalic = ... # type: QFont.Style
         StyleOblique = ... # type: QFont.Style
@@ -2022,7 +2043,8 @@ class QFont(sip.simplewrapper):
     StyleItalic = ...  # type: QFont.Style
     StyleOblique = ...  # type: QFont.Style
 
-    class Weight(int):
+    @typing.final
+    class Weight(int, metaclass=sip._enumtype):
         Thin = ... # type: QFont.Weight
         ExtraLight = ... # type: QFont.Weight
         Light = ... # type: QFont.Weight
@@ -2043,7 +2065,8 @@ class QFont(sip.simplewrapper):
     ExtraBold = ...  # type: QFont.Weight
     Black = ...  # type: QFont.Weight
 
-    class StyleStrategy(int):
+    @typing.final
+    class StyleStrategy(int, metaclass=sip._enumtype):
         PreferDefault = ... # type: QFont.StyleStrategy
         PreferBitmap = ... # type: QFont.StyleStrategy
         PreferDevice = ... # type: QFont.StyleStrategy
@@ -2074,7 +2097,8 @@ class QFont(sip.simplewrapper):
     ForceIntegerMetrics = ...  # type: QFont.StyleStrategy
     PreferNoShaping = ...  # type: QFont.StyleStrategy
 
-    class StyleHint(int):
+    @typing.final
+    class StyleHint(int, metaclass=sip._enumtype):
         Helvetica = ... # type: QFont.StyleHint
         SansSerif = ... # type: QFont.StyleHint
         Times = ... # type: QFont.StyleHint
@@ -2196,7 +2220,8 @@ class QFont(sip.simplewrapper):
 
 class QFontDatabase(sip.simplewrapper):
 
-    class SystemFont(int):
+    @typing.final
+    class SystemFont(int, metaclass=sip._enumtype):
         GeneralFont = ... # type: QFontDatabase.SystemFont
         FixedFont = ... # type: QFontDatabase.SystemFont
         TitleFont = ... # type: QFontDatabase.SystemFont
@@ -2207,7 +2232,8 @@ class QFontDatabase(sip.simplewrapper):
     TitleFont = ...  # type: QFontDatabase.SystemFont
     SmallestReadableFont = ...  # type: QFontDatabase.SystemFont
 
-    class WritingSystem(int):
+    @typing.final
+    class WritingSystem(int, metaclass=sip._enumtype):
         Any = ... # type: QFontDatabase.WritingSystem
         Latin = ... # type: QFontDatabase.WritingSystem
         Greek = ... # type: QFontDatabase.WritingSystem
@@ -2454,8 +2480,8 @@ class QMatrix4x3(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2474,8 +2500,8 @@ class QMatrix4x2(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2494,8 +2520,8 @@ class QMatrix3x4(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2514,8 +2540,8 @@ class QMatrix3x3(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2534,8 +2560,8 @@ class QMatrix3x2(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2554,8 +2580,8 @@ class QMatrix2x4(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2574,8 +2600,8 @@ class QMatrix2x3(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2594,8 +2620,8 @@ class QMatrix2x2(sip.simplewrapper):
     def fill(self, value: float) -> None: ...
     def setToIdentity(self) -> None: ...
     def isIdentity(self) -> bool: ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def copyDataTo(self) -> typing.List[float]: ...
     def data(self) -> typing.List[float]: ...
     def __repr__(self) -> str: ...
@@ -2603,7 +2629,8 @@ class QMatrix2x2(sip.simplewrapper):
 
 class QGlyphRun(sip.simplewrapper):
 
-    class GlyphRunFlag(int):
+    @typing.final
+    class GlyphRunFlag(int, metaclass=sip._enumtype):
         Overline = ... # type: QGlyphRun.GlyphRunFlag
         Underline = ... # type: QGlyphRun.GlyphRunFlag
         StrikeOut = ... # type: QGlyphRun.GlyphRunFlag
@@ -2632,12 +2659,12 @@ class QGlyphRun(sip.simplewrapper):
         def __invert__(self) -> 'QGlyphRun.GlyphRunFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QGlyphRun.GlyphRunFlags', 'QGlyphRun.GlyphRunFlag', int]) -> 'QGlyphRun.GlyphRunFlags': ...
-        def __and__(self, other: typing.Union['QGlyphRun.GlyphRunFlags', 'QGlyphRun.GlyphRunFlag', int]) -> 'QGlyphRun.GlyphRunFlags': ...
-        def __xor__(self, other: typing.Union['QGlyphRun.GlyphRunFlags', 'QGlyphRun.GlyphRunFlag', int]) -> 'QGlyphRun.GlyphRunFlags': ...
-        def __ror__ (self, other: 'QGlyphRun.GlyphRunFlag') -> 'QGlyphRun.GlyphRunFlags': ...
-        def __rand__(self, other: 'QGlyphRun.GlyphRunFlag') -> 'QGlyphRun.GlyphRunFlags': ...
-        def __rxor__(self, other: 'QGlyphRun.GlyphRunFlag') -> 'QGlyphRun.GlyphRunFlags': ...
+        def __or__ (self, other: typing.Union['QGlyphRun.GlyphRunFlags', 'QGlyphRun.GlyphRunFlag', int], /) -> 'QGlyphRun.GlyphRunFlags': ...
+        def __and__(self, other: typing.Union['QGlyphRun.GlyphRunFlags', 'QGlyphRun.GlyphRunFlag', int], /) -> 'QGlyphRun.GlyphRunFlags': ...
+        def __xor__(self, other: typing.Union['QGlyphRun.GlyphRunFlags', 'QGlyphRun.GlyphRunFlag', int], /) -> 'QGlyphRun.GlyphRunFlags': ...
+        def __ror__ (self, other: 'QGlyphRun.GlyphRunFlag', /) -> 'QGlyphRun.GlyphRunFlags': ...
+        def __rand__(self, other: 'QGlyphRun.GlyphRunFlag', /) -> 'QGlyphRun.GlyphRunFlags': ...
+        def __rxor__(self, other: 'QGlyphRun.GlyphRunFlag', /) -> 'QGlyphRun.GlyphRunFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -2789,14 +2816,16 @@ class QGuiApplication(QtCore.QCoreApplication):
 
 class QIcon(sip.wrapper):
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         On = ... # type: QIcon.State
         Off = ... # type: QIcon.State
 
     On = ...  # type: QIcon.State
     Off = ...  # type: QIcon.State
 
-    class Mode(int):
+    @typing.final
+    class Mode(int, metaclass=sip._enumtype):
         Normal = ... # type: QIcon.Mode
         Disabled = ... # type: QIcon.Mode
         Active = ... # type: QIcon.Mode
@@ -2874,7 +2903,8 @@ class QIcon(sip.wrapper):
 
 class QIconEngine(sip.wrapper):
 
-    class IconEngineHook(int):
+    @typing.final
+    class IconEngineHook(int, metaclass=sip._enumtype):
         AvailableSizesHook = ... # type: QIconEngine.IconEngineHook
         IconNameHook = ... # type: QIconEngine.IconEngineHook
         IsNullHook = ... # type: QIconEngine.IconEngineHook
@@ -2931,7 +2961,8 @@ class QIconEngine(sip.wrapper):
 
 class QImage(QPaintDevice):
 
-    class Format(int):
+    @typing.final
+    class Format(int, metaclass=sip._enumtype):
         Format_Invalid = ... # type: QImage.Format
         Format_Mono = ... # type: QImage.Format
         Format_MonoLSB = ... # type: QImage.Format
@@ -2994,7 +3025,8 @@ class QImage(QPaintDevice):
     Format_Grayscale16 = ...  # type: QImage.Format
     Format_BGR888 = ...  # type: QImage.Format
 
-    class InvertMode(int):
+    @typing.final
+    class InvertMode(int, metaclass=sip._enumtype):
         InvertRgb = ... # type: QImage.InvertMode
         InvertRgba = ... # type: QImage.InvertMode
 
@@ -3155,7 +3187,8 @@ class QImage(QPaintDevice):
 
 class QImageIOHandler(sip.simplewrapper):
 
-    class Transformation(int):
+    @typing.final
+    class Transformation(int, metaclass=sip._enumtype):
         TransformationNone = ... # type: QImageIOHandler.Transformation
         TransformationMirror = ... # type: QImageIOHandler.Transformation
         TransformationFlip = ... # type: QImageIOHandler.Transformation
@@ -3174,7 +3207,8 @@ class QImageIOHandler(sip.simplewrapper):
     TransformationFlipAndRotate90 = ...  # type: QImageIOHandler.Transformation
     TransformationRotate270 = ...  # type: QImageIOHandler.Transformation
 
-    class ImageOption(int):
+    @typing.final
+    class ImageOption(int, metaclass=sip._enumtype):
         Size = ... # type: QImageIOHandler.ImageOption
         ClipRect = ... # type: QImageIOHandler.ImageOption
         Description = ... # type: QImageIOHandler.ImageOption
@@ -3231,12 +3265,12 @@ class QImageIOHandler(sip.simplewrapper):
         def __invert__(self) -> 'QImageIOHandler.Transformations': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QImageIOHandler.Transformations', 'QImageIOHandler.Transformation', int]) -> 'QImageIOHandler.Transformations': ...
-        def __and__(self, other: typing.Union['QImageIOHandler.Transformations', 'QImageIOHandler.Transformation', int]) -> 'QImageIOHandler.Transformations': ...
-        def __xor__(self, other: typing.Union['QImageIOHandler.Transformations', 'QImageIOHandler.Transformation', int]) -> 'QImageIOHandler.Transformations': ...
-        def __ror__ (self, other: 'QImageIOHandler.Transformation') -> 'QImageIOHandler.Transformations': ...
-        def __rand__(self, other: 'QImageIOHandler.Transformation') -> 'QImageIOHandler.Transformations': ...
-        def __rxor__(self, other: 'QImageIOHandler.Transformation') -> 'QImageIOHandler.Transformations': ...
+        def __or__ (self, other: typing.Union['QImageIOHandler.Transformations', 'QImageIOHandler.Transformation', int], /) -> 'QImageIOHandler.Transformations': ...
+        def __and__(self, other: typing.Union['QImageIOHandler.Transformations', 'QImageIOHandler.Transformation', int], /) -> 'QImageIOHandler.Transformations': ...
+        def __xor__(self, other: typing.Union['QImageIOHandler.Transformations', 'QImageIOHandler.Transformation', int], /) -> 'QImageIOHandler.Transformations': ...
+        def __ror__ (self, other: 'QImageIOHandler.Transformation', /) -> 'QImageIOHandler.Transformations': ...
+        def __rand__(self, other: 'QImageIOHandler.Transformation', /) -> 'QImageIOHandler.Transformations': ...
+        def __rxor__(self, other: 'QImageIOHandler.Transformation', /) -> 'QImageIOHandler.Transformations': ...
 
     def __init__(self) -> None: ...
 
@@ -3261,7 +3295,8 @@ class QImageIOHandler(sip.simplewrapper):
 
 class QImageReader(sip.simplewrapper):
 
-    class ImageReaderError(int):
+    @typing.final
+    class ImageReaderError(int, metaclass=sip._enumtype):
         UnknownError = ... # type: QImageReader.ImageReaderError
         FileNotFoundError = ... # type: QImageReader.ImageReaderError
         DeviceError = ... # type: QImageReader.ImageReaderError
@@ -3345,7 +3380,8 @@ class QImageReader(sip.simplewrapper):
 
 class QImageWriter(sip.simplewrapper):
 
-    class ImageWriterError(int):
+    @typing.final
+    class ImageWriterError(int, metaclass=sip._enumtype):
         UnknownError = ... # type: QImageWriter.ImageWriterError
         DeviceError = ... # type: QImageWriter.ImageWriterError
         UnsupportedFormatError = ... # type: QImageWriter.ImageWriterError
@@ -3400,7 +3436,8 @@ class QImageWriter(sip.simplewrapper):
 
 class QInputMethod(QtCore.QObject):
 
-    class Action(int):
+    @typing.final
+    class Action(int, metaclass=sip._enumtype):
         Click = ... # type: QInputMethod.Action
         ContextMenu = ... # type: QInputMethod.Action
 
@@ -3440,7 +3477,8 @@ class QInputMethod(QtCore.QObject):
 
 class QKeySequence(sip.simplewrapper):
 
-    class StandardKey(int):
+    @typing.final
+    class StandardKey(int, metaclass=sip._enumtype):
         UnknownKey = ... # type: QKeySequence.StandardKey
         HelpContents = ... # type: QKeySequence.StandardKey
         WhatsThis = ... # type: QKeySequence.StandardKey
@@ -3585,7 +3623,8 @@ class QKeySequence(sip.simplewrapper):
     Backspace = ...  # type: QKeySequence.StandardKey
     Cancel = ...  # type: QKeySequence.StandardKey
 
-    class SequenceMatch(int):
+    @typing.final
+    class SequenceMatch(int, metaclass=sip._enumtype):
         NoMatch = ... # type: QKeySequence.SequenceMatch
         PartialMatch = ... # type: QKeySequence.SequenceMatch
         ExactMatch = ... # type: QKeySequence.SequenceMatch
@@ -3594,7 +3633,8 @@ class QKeySequence(sip.simplewrapper):
     PartialMatch = ...  # type: QKeySequence.SequenceMatch
     ExactMatch = ...  # type: QKeySequence.SequenceMatch
 
-    class SequenceFormat(int):
+    @typing.final
+    class SequenceFormat(int, metaclass=sip._enumtype):
         NativeText = ... # type: QKeySequence.SequenceFormat
         PortableText = ... # type: QKeySequence.SequenceFormat
 
@@ -3624,7 +3664,7 @@ class QKeySequence(sip.simplewrapper):
     def toString(self, format: 'QKeySequence.SequenceFormat' = ...) -> str: ...
     def swap(self, other: 'QKeySequence') -> None: ...
     def isDetached(self) -> bool: ...
-    def __getitem__(self, i: int) -> int: ...
+    def __getitem__(self, i: int, /) -> int: ...
     @staticmethod
     def mnemonic(text: str) -> 'QKeySequence': ...
     def matches(self, seq: typing.Union['QKeySequence', 'QKeySequence.StandardKey', str, int]) -> 'QKeySequence.SequenceMatch': ...
@@ -3668,8 +3708,8 @@ class QMatrix4x4(sip.simplewrapper):
     def row(self, index: int) -> 'QVector4D': ...
     def setColumn(self, index: int, value: 'QVector4D') -> None: ...
     def column(self, index: int) -> 'QVector4D': ...
-    def __setitem__(self, a0: typing.Any, a1: float) -> None: ...
-    def __getitem__(self, a0: typing.Any) -> typing.Any: ...
+    def __setitem__(self, a0: typing.Any, a1: float, /) -> None: ...
+    def __getitem__(self, a0: typing.Any, /) -> typing.Any: ...
     def optimize(self) -> None: ...
     def data(self) -> typing.List[float]: ...
     @typing.overload
@@ -3719,14 +3759,16 @@ class QMatrix4x4(sip.simplewrapper):
 
 class QMovie(QtCore.QObject):
 
-    class CacheMode(int):
+    @typing.final
+    class CacheMode(int, metaclass=sip._enumtype):
         CacheNone = ... # type: QMovie.CacheMode
         CacheAll = ... # type: QMovie.CacheMode
 
     CacheNone = ...  # type: QMovie.CacheMode
     CacheAll = ...  # type: QMovie.CacheMode
 
-    class MovieState(int):
+    @typing.final
+    class MovieState(int, metaclass=sip._enumtype):
         NotRunning = ... # type: QMovie.MovieState
         Paused = ... # type: QMovie.MovieState
         Running = ... # type: QMovie.MovieState
@@ -3785,7 +3827,8 @@ class QMovie(QtCore.QObject):
 
 class QSurface(sip.simplewrapper):
 
-    class SurfaceType(int):
+    @typing.final
+    class SurfaceType(int, metaclass=sip._enumtype):
         RasterSurface = ... # type: QSurface.SurfaceType
         OpenGLSurface = ... # type: QSurface.SurfaceType
         RasterGLSurface = ... # type: QSurface.SurfaceType
@@ -3800,7 +3843,8 @@ class QSurface(sip.simplewrapper):
     VulkanSurface = ...  # type: QSurface.SurfaceType
     MetalSurface = ...  # type: QSurface.SurfaceType
 
-    class SurfaceClass(int):
+    @typing.final
+    class SurfaceClass(int, metaclass=sip._enumtype):
         Window = ... # type: QSurface.SurfaceClass
         Offscreen = ... # type: QSurface.SurfaceClass
 
@@ -3843,9 +3887,10 @@ class QOffscreenSurface(QtCore.QObject, QSurface):
 
 class QOpenGLBuffer(sip.simplewrapper):
 
-    class RangeAccessFlag(int):
-        def __or__ (self, other: 'QOpenGLBuffer.RangeAccessFlag') -> 'QOpenGLBuffer.RangeAccessFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QOpenGLBuffer.RangeAccessFlags': ...                               # type: ignore[override, misc]
+    @typing.final
+    class RangeAccessFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QOpenGLBuffer.RangeAccessFlag', /) -> 'QOpenGLBuffer.RangeAccessFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QOpenGLBuffer.RangeAccessFlags': ...                               # type: ignore[override, misc]
         
         RangeRead = ... # type: QOpenGLBuffer.RangeAccessFlag
         RangeWrite = ... # type: QOpenGLBuffer.RangeAccessFlag
@@ -3861,7 +3906,8 @@ class QOpenGLBuffer(sip.simplewrapper):
     RangeFlushExplicit = ...  # type: QOpenGLBuffer.RangeAccessFlag
     RangeUnsynchronized = ...  # type: QOpenGLBuffer.RangeAccessFlag
 
-    class Access(int):
+    @typing.final
+    class Access(int, metaclass=sip._enumtype):
         ReadOnly = ... # type: QOpenGLBuffer.Access
         WriteOnly = ... # type: QOpenGLBuffer.Access
         ReadWrite = ... # type: QOpenGLBuffer.Access
@@ -3870,7 +3916,8 @@ class QOpenGLBuffer(sip.simplewrapper):
     WriteOnly = ...  # type: QOpenGLBuffer.Access
     ReadWrite = ...  # type: QOpenGLBuffer.Access
 
-    class UsagePattern(int):
+    @typing.final
+    class UsagePattern(int, metaclass=sip._enumtype):
         StreamDraw = ... # type: QOpenGLBuffer.UsagePattern
         StreamRead = ... # type: QOpenGLBuffer.UsagePattern
         StreamCopy = ... # type: QOpenGLBuffer.UsagePattern
@@ -3891,7 +3938,8 @@ class QOpenGLBuffer(sip.simplewrapper):
     DynamicRead = ...  # type: QOpenGLBuffer.UsagePattern
     DynamicCopy = ...  # type: QOpenGLBuffer.UsagePattern
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         VertexBuffer = ... # type: QOpenGLBuffer.Type
         IndexBuffer = ... # type: QOpenGLBuffer.Type
         PixelPackBuffer = ... # type: QOpenGLBuffer.Type
@@ -3918,12 +3966,12 @@ class QOpenGLBuffer(sip.simplewrapper):
         def __invert__(self) -> 'QOpenGLBuffer.RangeAccessFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QOpenGLBuffer.RangeAccessFlags', 'QOpenGLBuffer.RangeAccessFlag', int]) -> 'QOpenGLBuffer.RangeAccessFlags': ...
-        def __and__(self, other: typing.Union['QOpenGLBuffer.RangeAccessFlags', 'QOpenGLBuffer.RangeAccessFlag', int]) -> 'QOpenGLBuffer.RangeAccessFlags': ...
-        def __xor__(self, other: typing.Union['QOpenGLBuffer.RangeAccessFlags', 'QOpenGLBuffer.RangeAccessFlag', int]) -> 'QOpenGLBuffer.RangeAccessFlags': ...
-        def __ror__ (self, other: 'QOpenGLBuffer.RangeAccessFlag') -> 'QOpenGLBuffer.RangeAccessFlags': ...
-        def __rand__(self, other: 'QOpenGLBuffer.RangeAccessFlag') -> 'QOpenGLBuffer.RangeAccessFlags': ...
-        def __rxor__(self, other: 'QOpenGLBuffer.RangeAccessFlag') -> 'QOpenGLBuffer.RangeAccessFlags': ...
+        def __or__ (self, other: typing.Union['QOpenGLBuffer.RangeAccessFlags', 'QOpenGLBuffer.RangeAccessFlag', int], /) -> 'QOpenGLBuffer.RangeAccessFlags': ...
+        def __and__(self, other: typing.Union['QOpenGLBuffer.RangeAccessFlags', 'QOpenGLBuffer.RangeAccessFlag', int], /) -> 'QOpenGLBuffer.RangeAccessFlags': ...
+        def __xor__(self, other: typing.Union['QOpenGLBuffer.RangeAccessFlags', 'QOpenGLBuffer.RangeAccessFlag', int], /) -> 'QOpenGLBuffer.RangeAccessFlags': ...
+        def __ror__ (self, other: 'QOpenGLBuffer.RangeAccessFlag', /) -> 'QOpenGLBuffer.RangeAccessFlags': ...
+        def __rand__(self, other: 'QOpenGLBuffer.RangeAccessFlag', /) -> 'QOpenGLBuffer.RangeAccessFlags': ...
+        def __rxor__(self, other: 'QOpenGLBuffer.RangeAccessFlag', /) -> 'QOpenGLBuffer.RangeAccessFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -3967,7 +4015,8 @@ class QOpenGLContextGroup(QtCore.QObject):
 
 class QOpenGLContext(QtCore.QObject):
 
-    class OpenGLModuleType(int):
+    @typing.final
+    class OpenGLModuleType(int, metaclass=sip._enumtype):
         LibGL = ... # type: QOpenGLContext.OpenGLModuleType
         LibGLES = ... # type: QOpenGLContext.OpenGLModuleType
 
@@ -4032,9 +4081,10 @@ class QOpenGLVersionProfile(sip.simplewrapper):
 
 class QOpenGLDebugMessage(sip.simplewrapper):
 
-    class Severity(int):
-        def __or__ (self, other: 'QOpenGLDebugMessage.Severity') -> 'QOpenGLDebugMessage.Severities': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QOpenGLDebugMessage.Severities': ...                              # type: ignore[override, misc]
+    @typing.final
+    class Severity(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QOpenGLDebugMessage.Severity', /) -> 'QOpenGLDebugMessage.Severities': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QOpenGLDebugMessage.Severities': ...                              # type: ignore[override, misc]
         
         InvalidSeverity = ... # type: QOpenGLDebugMessage.Severity
         HighSeverity = ... # type: QOpenGLDebugMessage.Severity
@@ -4050,9 +4100,10 @@ class QOpenGLDebugMessage(sip.simplewrapper):
     NotificationSeverity = ...  # type: QOpenGLDebugMessage.Severity
     AnySeverity = ...  # type: QOpenGLDebugMessage.Severity
 
-    class Type(int):
-        def __or__ (self, other: 'QOpenGLDebugMessage.Type') -> 'QOpenGLDebugMessage.Types': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QOpenGLDebugMessage.Types': ...                          # type: ignore[override, misc]
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QOpenGLDebugMessage.Type', /) -> 'QOpenGLDebugMessage.Types': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QOpenGLDebugMessage.Types': ...                          # type: ignore[override, misc]
         
         InvalidType = ... # type: QOpenGLDebugMessage.Type
         ErrorType = ... # type: QOpenGLDebugMessage.Type
@@ -4078,9 +4129,10 @@ class QOpenGLDebugMessage(sip.simplewrapper):
     GroupPopType = ...  # type: QOpenGLDebugMessage.Type
     AnyType = ...  # type: QOpenGLDebugMessage.Type
 
-    class Source(int):
-        def __or__ (self, other: 'QOpenGLDebugMessage.Source') -> 'QOpenGLDebugMessage.Sources': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QOpenGLDebugMessage.Sources': ...                            # type: ignore[override, misc]
+    @typing.final
+    class Source(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QOpenGLDebugMessage.Source', /) -> 'QOpenGLDebugMessage.Sources': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QOpenGLDebugMessage.Sources': ...                            # type: ignore[override, misc]
         
         InvalidSource = ... # type: QOpenGLDebugMessage.Source
         APISource = ... # type: QOpenGLDebugMessage.Source
@@ -4116,12 +4168,12 @@ class QOpenGLDebugMessage(sip.simplewrapper):
         def __invert__(self) -> 'QOpenGLDebugMessage.Sources': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QOpenGLDebugMessage.Sources', 'QOpenGLDebugMessage.Source', int]) -> 'QOpenGLDebugMessage.Sources': ...
-        def __and__(self, other: typing.Union['QOpenGLDebugMessage.Sources', 'QOpenGLDebugMessage.Source', int]) -> 'QOpenGLDebugMessage.Sources': ...
-        def __xor__(self, other: typing.Union['QOpenGLDebugMessage.Sources', 'QOpenGLDebugMessage.Source', int]) -> 'QOpenGLDebugMessage.Sources': ...
-        def __ror__ (self, other: 'QOpenGLDebugMessage.Source') -> 'QOpenGLDebugMessage.Sources': ...
-        def __rand__(self, other: 'QOpenGLDebugMessage.Source') -> 'QOpenGLDebugMessage.Sources': ...
-        def __rxor__(self, other: 'QOpenGLDebugMessage.Source') -> 'QOpenGLDebugMessage.Sources': ...
+        def __or__ (self, other: typing.Union['QOpenGLDebugMessage.Sources', 'QOpenGLDebugMessage.Source', int], /) -> 'QOpenGLDebugMessage.Sources': ...
+        def __and__(self, other: typing.Union['QOpenGLDebugMessage.Sources', 'QOpenGLDebugMessage.Source', int], /) -> 'QOpenGLDebugMessage.Sources': ...
+        def __xor__(self, other: typing.Union['QOpenGLDebugMessage.Sources', 'QOpenGLDebugMessage.Source', int], /) -> 'QOpenGLDebugMessage.Sources': ...
+        def __ror__ (self, other: 'QOpenGLDebugMessage.Source', /) -> 'QOpenGLDebugMessage.Sources': ...
+        def __rand__(self, other: 'QOpenGLDebugMessage.Source', /) -> 'QOpenGLDebugMessage.Sources': ...
+        def __rxor__(self, other: 'QOpenGLDebugMessage.Source', /) -> 'QOpenGLDebugMessage.Sources': ...
 
     class Types(sip.simplewrapper):
 
@@ -4139,12 +4191,12 @@ class QOpenGLDebugMessage(sip.simplewrapper):
         def __invert__(self) -> 'QOpenGLDebugMessage.Types': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QOpenGLDebugMessage.Types', 'QOpenGLDebugMessage.Type', int]) -> 'QOpenGLDebugMessage.Types': ...
-        def __and__(self, other: typing.Union['QOpenGLDebugMessage.Types', 'QOpenGLDebugMessage.Type', int]) -> 'QOpenGLDebugMessage.Types': ...
-        def __xor__(self, other: typing.Union['QOpenGLDebugMessage.Types', 'QOpenGLDebugMessage.Type', int]) -> 'QOpenGLDebugMessage.Types': ...
-        def __ror__ (self, other: 'QOpenGLDebugMessage.Type') -> 'QOpenGLDebugMessage.Types': ...
-        def __rand__(self, other: 'QOpenGLDebugMessage.Type') -> 'QOpenGLDebugMessage.Types': ...
-        def __rxor__(self, other: 'QOpenGLDebugMessage.Type') -> 'QOpenGLDebugMessage.Types': ...
+        def __or__ (self, other: typing.Union['QOpenGLDebugMessage.Types', 'QOpenGLDebugMessage.Type', int], /) -> 'QOpenGLDebugMessage.Types': ...
+        def __and__(self, other: typing.Union['QOpenGLDebugMessage.Types', 'QOpenGLDebugMessage.Type', int], /) -> 'QOpenGLDebugMessage.Types': ...
+        def __xor__(self, other: typing.Union['QOpenGLDebugMessage.Types', 'QOpenGLDebugMessage.Type', int], /) -> 'QOpenGLDebugMessage.Types': ...
+        def __ror__ (self, other: 'QOpenGLDebugMessage.Type', /) -> 'QOpenGLDebugMessage.Types': ...
+        def __rand__(self, other: 'QOpenGLDebugMessage.Type', /) -> 'QOpenGLDebugMessage.Types': ...
+        def __rxor__(self, other: 'QOpenGLDebugMessage.Type', /) -> 'QOpenGLDebugMessage.Types': ...
 
     class Severities(sip.simplewrapper):
 
@@ -4162,12 +4214,12 @@ class QOpenGLDebugMessage(sip.simplewrapper):
         def __invert__(self) -> 'QOpenGLDebugMessage.Severities': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QOpenGLDebugMessage.Severities', 'QOpenGLDebugMessage.Severity', int]) -> 'QOpenGLDebugMessage.Severities': ...
-        def __and__(self, other: typing.Union['QOpenGLDebugMessage.Severities', 'QOpenGLDebugMessage.Severity', int]) -> 'QOpenGLDebugMessage.Severities': ...
-        def __xor__(self, other: typing.Union['QOpenGLDebugMessage.Severities', 'QOpenGLDebugMessage.Severity', int]) -> 'QOpenGLDebugMessage.Severities': ...
-        def __ror__ (self, other: 'QOpenGLDebugMessage.Severity') -> 'QOpenGLDebugMessage.Severities': ...
-        def __rand__(self, other: 'QOpenGLDebugMessage.Severity') -> 'QOpenGLDebugMessage.Severities': ...
-        def __rxor__(self, other: 'QOpenGLDebugMessage.Severity') -> 'QOpenGLDebugMessage.Severities': ...
+        def __or__ (self, other: typing.Union['QOpenGLDebugMessage.Severities', 'QOpenGLDebugMessage.Severity', int], /) -> 'QOpenGLDebugMessage.Severities': ...
+        def __and__(self, other: typing.Union['QOpenGLDebugMessage.Severities', 'QOpenGLDebugMessage.Severity', int], /) -> 'QOpenGLDebugMessage.Severities': ...
+        def __xor__(self, other: typing.Union['QOpenGLDebugMessage.Severities', 'QOpenGLDebugMessage.Severity', int], /) -> 'QOpenGLDebugMessage.Severities': ...
+        def __ror__ (self, other: 'QOpenGLDebugMessage.Severity', /) -> 'QOpenGLDebugMessage.Severities': ...
+        def __rand__(self, other: 'QOpenGLDebugMessage.Severity', /) -> 'QOpenGLDebugMessage.Severities': ...
+        def __rxor__(self, other: 'QOpenGLDebugMessage.Severity', /) -> 'QOpenGLDebugMessage.Severities': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -4188,7 +4240,8 @@ class QOpenGLDebugMessage(sip.simplewrapper):
 
 class QOpenGLDebugLogger(QtCore.QObject):
 
-    class LoggingMode(int):
+    @typing.final
+    class LoggingMode(int, metaclass=sip._enumtype):
         AsynchronousLogging = ... # type: QOpenGLDebugLogger.LoggingMode
         SynchronousLogging = ... # type: QOpenGLDebugLogger.LoggingMode
 
@@ -4220,7 +4273,8 @@ class QOpenGLDebugLogger(QtCore.QObject):
 
 class QOpenGLFramebufferObject(sip.simplewrapper):
 
-    class FramebufferRestorePolicy(int):
+    @typing.final
+    class FramebufferRestorePolicy(int, metaclass=sip._enumtype):
         DontRestoreFramebufferBinding = ... # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
         RestoreFramebufferBindingToDefault = ... # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
         RestoreFrameBufferBinding = ... # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
@@ -4229,7 +4283,8 @@ class QOpenGLFramebufferObject(sip.simplewrapper):
     RestoreFramebufferBindingToDefault = ...  # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
     RestoreFrameBufferBinding = ...  # type: QOpenGLFramebufferObject.FramebufferRestorePolicy
 
-    class Attachment(int):
+    @typing.final
+    class Attachment(int, metaclass=sip._enumtype):
         NoAttachment = ... # type: QOpenGLFramebufferObject.Attachment
         CombinedDepthStencil = ... # type: QOpenGLFramebufferObject.Attachment
         Depth = ... # type: QOpenGLFramebufferObject.Attachment
@@ -4370,9 +4425,10 @@ class QOpenGLPixelTransferOptions(sip.simplewrapper):
 
 class QOpenGLShader(QtCore.QObject):
 
-    class ShaderTypeBit(int):
-        def __or__ (self, other: 'QOpenGLShader.ShaderTypeBit') -> 'QOpenGLShader.ShaderType': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QOpenGLShader.ShaderType': ...                             # type: ignore[override, misc]
+    @typing.final
+    class ShaderTypeBit(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QOpenGLShader.ShaderTypeBit', /) -> 'QOpenGLShader.ShaderType': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QOpenGLShader.ShaderType': ...                             # type: ignore[override, misc]
         
         Vertex = ... # type: QOpenGLShader.ShaderTypeBit
         Fragment = ... # type: QOpenGLShader.ShaderTypeBit
@@ -4404,12 +4460,12 @@ class QOpenGLShader(QtCore.QObject):
         def __invert__(self) -> 'QOpenGLShader.ShaderType': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit', int]) -> 'QOpenGLShader.ShaderType': ...
-        def __and__(self, other: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit', int]) -> 'QOpenGLShader.ShaderType': ...
-        def __xor__(self, other: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit', int]) -> 'QOpenGLShader.ShaderType': ...
-        def __ror__ (self, other: 'QOpenGLShader.ShaderTypeBit') -> 'QOpenGLShader.ShaderType': ...
-        def __rand__(self, other: 'QOpenGLShader.ShaderTypeBit') -> 'QOpenGLShader.ShaderType': ...
-        def __rxor__(self, other: 'QOpenGLShader.ShaderTypeBit') -> 'QOpenGLShader.ShaderType': ...
+        def __or__ (self, other: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit', int], /) -> 'QOpenGLShader.ShaderType': ...
+        def __and__(self, other: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit', int], /) -> 'QOpenGLShader.ShaderType': ...
+        def __xor__(self, other: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit', int], /) -> 'QOpenGLShader.ShaderType': ...
+        def __ror__ (self, other: 'QOpenGLShader.ShaderTypeBit', /) -> 'QOpenGLShader.ShaderType': ...
+        def __rand__(self, other: 'QOpenGLShader.ShaderTypeBit', /) -> 'QOpenGLShader.ShaderType': ...
+        def __rxor__(self, other: 'QOpenGLShader.ShaderTypeBit', /) -> 'QOpenGLShader.ShaderType': ...
 
     def __init__(self, type: typing.Union['QOpenGLShader.ShaderType', 'QOpenGLShader.ShaderTypeBit'], parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -4447,9 +4503,9 @@ class QOpenGLShaderProgram(QtCore.QObject):
     @staticmethod
     def hasOpenGLShaderPrograms(context: typing.Optional[QOpenGLContext] = ...) -> bool: ...
     @typing.overload
-    def setUniformValueArray(self, location: int, values: PYQT_SHADER_UNIFORM_VALUE_ARRAY) -> None: ...
+    def setUniformValueArray(self, location: int, values: _PYQT_SHADER_UNIFORM_VALUE_ARRAY) -> None: ...
     @typing.overload
-    def setUniformValueArray(self, name: str, values: PYQT_SHADER_UNIFORM_VALUE_ARRAY) -> None: ...
+    def setUniformValueArray(self, name: str, values: _PYQT_SHADER_UNIFORM_VALUE_ARRAY) -> None: ...
     @typing.overload
     def setUniformValue(self, location: int, value: int) -> None: ...
     @typing.overload
@@ -4559,9 +4615,9 @@ class QOpenGLShaderProgram(QtCore.QObject):
     @typing.overload
     def setAttributeBuffer(self, name: str, type: int, offset: int, tupleSize: int, stride: int = ...) -> None: ...
     @typing.overload
-    def setAttributeArray(self, location: int, values: PYQT_SHADER_ATTRIBUTE_ARRAY) -> None: ...
+    def setAttributeArray(self, location: int, values: _PYQT_SHADER_ATTRIBUTE_ARRAY) -> None: ...
     @typing.overload
-    def setAttributeArray(self, name: str, values: PYQT_SHADER_ATTRIBUTE_ARRAY) -> None: ...
+    def setAttributeArray(self, name: str, values: _PYQT_SHADER_ATTRIBUTE_ARRAY) -> None: ...
     @typing.overload
     def setAttributeValue(self, location: int, value: float) -> None: ...
     @typing.overload
@@ -4621,14 +4677,16 @@ class QOpenGLShaderProgram(QtCore.QObject):
 
 class QOpenGLTexture(sip.simplewrapper):
 
-    class ComparisonMode(int):
+    @typing.final
+    class ComparisonMode(int, metaclass=sip._enumtype):
         CompareRefToTexture = ... # type: QOpenGLTexture.ComparisonMode
         CompareNone = ... # type: QOpenGLTexture.ComparisonMode
 
     CompareRefToTexture = ...  # type: QOpenGLTexture.ComparisonMode
     CompareNone = ...  # type: QOpenGLTexture.ComparisonMode
 
-    class ComparisonFunction(int):
+    @typing.final
+    class ComparisonFunction(int, metaclass=sip._enumtype):
         CompareLessEqual = ... # type: QOpenGLTexture.ComparisonFunction
         CompareGreaterEqual = ... # type: QOpenGLTexture.ComparisonFunction
         CompareLess = ... # type: QOpenGLTexture.ComparisonFunction
@@ -4647,7 +4705,8 @@ class QOpenGLTexture(sip.simplewrapper):
     CompareAlways = ...  # type: QOpenGLTexture.ComparisonFunction
     CompareNever = ...  # type: QOpenGLTexture.ComparisonFunction
 
-    class CoordinateDirection(int):
+    @typing.final
+    class CoordinateDirection(int, metaclass=sip._enumtype):
         DirectionS = ... # type: QOpenGLTexture.CoordinateDirection
         DirectionT = ... # type: QOpenGLTexture.CoordinateDirection
         DirectionR = ... # type: QOpenGLTexture.CoordinateDirection
@@ -4656,7 +4715,8 @@ class QOpenGLTexture(sip.simplewrapper):
     DirectionT = ...  # type: QOpenGLTexture.CoordinateDirection
     DirectionR = ...  # type: QOpenGLTexture.CoordinateDirection
 
-    class WrapMode(int):
+    @typing.final
+    class WrapMode(int, metaclass=sip._enumtype):
         Repeat = ... # type: QOpenGLTexture.WrapMode
         MirroredRepeat = ... # type: QOpenGLTexture.WrapMode
         ClampToEdge = ... # type: QOpenGLTexture.WrapMode
@@ -4667,7 +4727,8 @@ class QOpenGLTexture(sip.simplewrapper):
     ClampToEdge = ...  # type: QOpenGLTexture.WrapMode
     ClampToBorder = ...  # type: QOpenGLTexture.WrapMode
 
-    class Filter(int):
+    @typing.final
+    class Filter(int, metaclass=sip._enumtype):
         Nearest = ... # type: QOpenGLTexture.Filter
         Linear = ... # type: QOpenGLTexture.Filter
         NearestMipMapNearest = ... # type: QOpenGLTexture.Filter
@@ -4682,14 +4743,16 @@ class QOpenGLTexture(sip.simplewrapper):
     LinearMipMapNearest = ...  # type: QOpenGLTexture.Filter
     LinearMipMapLinear = ...  # type: QOpenGLTexture.Filter
 
-    class DepthStencilMode(int):
+    @typing.final
+    class DepthStencilMode(int, metaclass=sip._enumtype):
         DepthMode = ... # type: QOpenGLTexture.DepthStencilMode
         StencilMode = ... # type: QOpenGLTexture.DepthStencilMode
 
     DepthMode = ...  # type: QOpenGLTexture.DepthStencilMode
     StencilMode = ...  # type: QOpenGLTexture.DepthStencilMode
 
-    class SwizzleValue(int):
+    @typing.final
+    class SwizzleValue(int, metaclass=sip._enumtype):
         RedValue = ... # type: QOpenGLTexture.SwizzleValue
         GreenValue = ... # type: QOpenGLTexture.SwizzleValue
         BlueValue = ... # type: QOpenGLTexture.SwizzleValue
@@ -4704,7 +4767,8 @@ class QOpenGLTexture(sip.simplewrapper):
     ZeroValue = ...  # type: QOpenGLTexture.SwizzleValue
     OneValue = ...  # type: QOpenGLTexture.SwizzleValue
 
-    class SwizzleComponent(int):
+    @typing.final
+    class SwizzleComponent(int, metaclass=sip._enumtype):
         SwizzleRed = ... # type: QOpenGLTexture.SwizzleComponent
         SwizzleGreen = ... # type: QOpenGLTexture.SwizzleComponent
         SwizzleBlue = ... # type: QOpenGLTexture.SwizzleComponent
@@ -4715,9 +4779,10 @@ class QOpenGLTexture(sip.simplewrapper):
     SwizzleBlue = ...  # type: QOpenGLTexture.SwizzleComponent
     SwizzleAlpha = ...  # type: QOpenGLTexture.SwizzleComponent
 
-    class Feature(int):
-        def __or__ (self, other: 'QOpenGLTexture.Feature') -> 'QOpenGLTexture.Features': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QOpenGLTexture.Features': ...                        # type: ignore[override, misc]
+    @typing.final
+    class Feature(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QOpenGLTexture.Feature', /) -> 'QOpenGLTexture.Features': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QOpenGLTexture.Features': ...                        # type: ignore[override, misc]
         
         ImmutableStorage = ... # type: QOpenGLTexture.Feature
         ImmutableMultisampleStorage = ... # type: QOpenGLTexture.Feature
@@ -4753,7 +4818,8 @@ class QOpenGLTexture(sip.simplewrapper):
     TextureComparisonOperators = ...  # type: QOpenGLTexture.Feature
     TextureMipMapLevel = ...  # type: QOpenGLTexture.Feature
 
-    class PixelType(int):
+    @typing.final
+    class PixelType(int, metaclass=sip._enumtype):
         NoPixelType = ... # type: QOpenGLTexture.PixelType
         Int8 = ... # type: QOpenGLTexture.PixelType
         UInt8 = ... # type: QOpenGLTexture.PixelType
@@ -4808,7 +4874,8 @@ class QOpenGLTexture(sip.simplewrapper):
     UInt32_D24S8 = ...  # type: QOpenGLTexture.PixelType
     Float32_D32_UInt32_S8_X24 = ...  # type: QOpenGLTexture.PixelType
 
-    class PixelFormat(int):
+    @typing.final
+    class PixelFormat(int, metaclass=sip._enumtype):
         NoSourceFormat = ... # type: QOpenGLTexture.PixelFormat
         Red = ... # type: QOpenGLTexture.PixelFormat
         RG = ... # type: QOpenGLTexture.PixelFormat
@@ -4849,7 +4916,8 @@ class QOpenGLTexture(sip.simplewrapper):
     LuminanceAlpha = ...  # type: QOpenGLTexture.PixelFormat
     Stencil = ...  # type: QOpenGLTexture.PixelFormat
 
-    class CubeMapFace(int):
+    @typing.final
+    class CubeMapFace(int, metaclass=sip._enumtype):
         CubeMapPositiveX = ... # type: QOpenGLTexture.CubeMapFace
         CubeMapNegativeX = ... # type: QOpenGLTexture.CubeMapFace
         CubeMapPositiveY = ... # type: QOpenGLTexture.CubeMapFace
@@ -4864,7 +4932,8 @@ class QOpenGLTexture(sip.simplewrapper):
     CubeMapPositiveZ = ...  # type: QOpenGLTexture.CubeMapFace
     CubeMapNegativeZ = ...  # type: QOpenGLTexture.CubeMapFace
 
-    class TextureFormat(int):
+    @typing.final
+    class TextureFormat(int, metaclass=sip._enumtype):
         NoFormat = ... # type: QOpenGLTexture.TextureFormat
         R8_UNorm = ... # type: QOpenGLTexture.TextureFormat
         RG8_UNorm = ... # type: QOpenGLTexture.TextureFormat
@@ -5119,21 +5188,24 @@ class QOpenGLTexture(sip.simplewrapper):
     SRGB8_Alpha8_ASTC_12x10 = ...  # type: QOpenGLTexture.TextureFormat
     SRGB8_Alpha8_ASTC_12x12 = ...  # type: QOpenGLTexture.TextureFormat
 
-    class TextureUnitReset(int):
+    @typing.final
+    class TextureUnitReset(int, metaclass=sip._enumtype):
         ResetTextureUnit = ... # type: QOpenGLTexture.TextureUnitReset
         DontResetTextureUnit = ... # type: QOpenGLTexture.TextureUnitReset
 
     ResetTextureUnit = ...  # type: QOpenGLTexture.TextureUnitReset
     DontResetTextureUnit = ...  # type: QOpenGLTexture.TextureUnitReset
 
-    class MipMapGeneration(int):
+    @typing.final
+    class MipMapGeneration(int, metaclass=sip._enumtype):
         GenerateMipMaps = ... # type: QOpenGLTexture.MipMapGeneration
         DontGenerateMipMaps = ... # type: QOpenGLTexture.MipMapGeneration
 
     GenerateMipMaps = ...  # type: QOpenGLTexture.MipMapGeneration
     DontGenerateMipMaps = ...  # type: QOpenGLTexture.MipMapGeneration
 
-    class BindingTarget(int):
+    @typing.final
+    class BindingTarget(int, metaclass=sip._enumtype):
         BindingTarget1D = ... # type: QOpenGLTexture.BindingTarget
         BindingTarget1DArray = ... # type: QOpenGLTexture.BindingTarget
         BindingTarget2D = ... # type: QOpenGLTexture.BindingTarget
@@ -5158,7 +5230,8 @@ class QOpenGLTexture(sip.simplewrapper):
     BindingTargetRectangle = ...  # type: QOpenGLTexture.BindingTarget
     BindingTargetBuffer = ...  # type: QOpenGLTexture.BindingTarget
 
-    class Target(int):
+    @typing.final
+    class Target(int, metaclass=sip._enumtype):
         Target1D = ... # type: QOpenGLTexture.Target
         Target1DArray = ... # type: QOpenGLTexture.Target
         Target2D = ... # type: QOpenGLTexture.Target
@@ -5199,12 +5272,12 @@ class QOpenGLTexture(sip.simplewrapper):
         def __invert__(self) -> 'QOpenGLTexture.Features': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QOpenGLTexture.Features', 'QOpenGLTexture.Feature', int]) -> 'QOpenGLTexture.Features': ...
-        def __and__(self, other: typing.Union['QOpenGLTexture.Features', 'QOpenGLTexture.Feature', int]) -> 'QOpenGLTexture.Features': ...
-        def __xor__(self, other: typing.Union['QOpenGLTexture.Features', 'QOpenGLTexture.Feature', int]) -> 'QOpenGLTexture.Features': ...
-        def __ror__ (self, other: 'QOpenGLTexture.Feature') -> 'QOpenGLTexture.Features': ...
-        def __rand__(self, other: 'QOpenGLTexture.Feature') -> 'QOpenGLTexture.Features': ...
-        def __rxor__(self, other: 'QOpenGLTexture.Feature') -> 'QOpenGLTexture.Features': ...
+        def __or__ (self, other: typing.Union['QOpenGLTexture.Features', 'QOpenGLTexture.Feature', int], /) -> 'QOpenGLTexture.Features': ...
+        def __and__(self, other: typing.Union['QOpenGLTexture.Features', 'QOpenGLTexture.Feature', int], /) -> 'QOpenGLTexture.Features': ...
+        def __xor__(self, other: typing.Union['QOpenGLTexture.Features', 'QOpenGLTexture.Feature', int], /) -> 'QOpenGLTexture.Features': ...
+        def __ror__ (self, other: 'QOpenGLTexture.Feature', /) -> 'QOpenGLTexture.Features': ...
+        def __rand__(self, other: 'QOpenGLTexture.Feature', /) -> 'QOpenGLTexture.Features': ...
+        def __rxor__(self, other: 'QOpenGLTexture.Feature', /) -> 'QOpenGLTexture.Features': ...
 
     @typing.overload
     def __init__(self, target: 'QOpenGLTexture.Target') -> None: ...
@@ -5341,7 +5414,8 @@ class QOpenGLTexture(sip.simplewrapper):
 
 class QOpenGLTextureBlitter(sip.simplewrapper):
 
-    class Origin(int):
+    @typing.final
+    class Origin(int, metaclass=sip._enumtype):
         OriginBottomLeft = ... # type: QOpenGLTextureBlitter.Origin
         OriginTopLeft = ... # type: QOpenGLTextureBlitter.Origin
 
@@ -5427,7 +5501,8 @@ class QOpenGLVertexArrayObject(QtCore.QObject):
 
 class QWindow(QtCore.QObject, QSurface):
 
-    class Visibility(int):
+    @typing.final
+    class Visibility(int, metaclass=sip._enumtype):
         Hidden = ... # type: QWindow.Visibility
         AutomaticVisibility = ... # type: QWindow.Visibility
         Windowed = ... # type: QWindow.Visibility
@@ -5442,7 +5517,8 @@ class QWindow(QtCore.QObject, QSurface):
     Maximized = ...  # type: QWindow.Visibility
     FullScreen = ...  # type: QWindow.Visibility
 
-    class AncestorMode(int):
+    @typing.final
+    class AncestorMode(int, metaclass=sip._enumtype):
         ExcludeTransients = ... # type: QWindow.AncestorMode
         IncludeTransients = ... # type: QWindow.AncestorMode
 
@@ -5623,7 +5699,8 @@ class QPaintDeviceWindow(QWindow, QPaintDevice):  # type: ignore[misc]
 
 class QOpenGLWindow(QPaintDeviceWindow):
 
-    class UpdateBehavior(int):
+    @typing.final
+    class UpdateBehavior(int, metaclass=sip._enumtype):
         NoPartialUpdate = ... # type: QOpenGLWindow.UpdateBehavior
         PartialUpdateBlit = ... # type: QOpenGLWindow.UpdateBehavior
         PartialUpdateBlend = ... # type: QOpenGLWindow.UpdateBehavior
@@ -5658,7 +5735,8 @@ class QOpenGLWindow(QPaintDeviceWindow):
 
 class QPagedPaintDevice(QPaintDevice):
 
-    class PdfVersion(int):
+    @typing.final
+    class PdfVersion(int, metaclass=sip._enumtype):
         PdfVersion_1_4 = ... # type: QPagedPaintDevice.PdfVersion
         PdfVersion_A1b = ... # type: QPagedPaintDevice.PdfVersion
         PdfVersion_1_6 = ... # type: QPagedPaintDevice.PdfVersion
@@ -5667,7 +5745,8 @@ class QPagedPaintDevice(QPaintDevice):
     PdfVersion_A1b = ...  # type: QPagedPaintDevice.PdfVersion
     PdfVersion_1_6 = ...  # type: QPagedPaintDevice.PdfVersion
 
-    class PageSize(int):
+    @typing.final
+    class PageSize(int, metaclass=sip._enumtype):
         A4 = ... # type: QPagedPaintDevice.PageSize
         B5 = ... # type: QPagedPaintDevice.PageSize
         Letter = ... # type: QPagedPaintDevice.PageSize
@@ -5957,21 +6036,24 @@ class QPagedPaintDevice(QPaintDevice):
 
 class QPageLayout(sip.simplewrapper):
 
-    class Mode(int):
+    @typing.final
+    class Mode(int, metaclass=sip._enumtype):
         StandardMode = ... # type: QPageLayout.Mode
         FullPageMode = ... # type: QPageLayout.Mode
 
     StandardMode = ...  # type: QPageLayout.Mode
     FullPageMode = ...  # type: QPageLayout.Mode
 
-    class Orientation(int):
+    @typing.final
+    class Orientation(int, metaclass=sip._enumtype):
         Portrait = ... # type: QPageLayout.Orientation
         Landscape = ... # type: QPageLayout.Orientation
 
     Portrait = ...  # type: QPageLayout.Orientation
     Landscape = ...  # type: QPageLayout.Orientation
 
-    class Unit(int):
+    @typing.final
+    class Unit(int, metaclass=sip._enumtype):
         Millimeter = ... # type: QPageLayout.Unit
         Point = ... # type: QPageLayout.Unit
         Inch = ... # type: QPageLayout.Unit
@@ -6034,7 +6116,8 @@ class QPageLayout(sip.simplewrapper):
 
 class QPageSize(sip.simplewrapper):
 
-    class SizeMatchPolicy(int):
+    @typing.final
+    class SizeMatchPolicy(int, metaclass=sip._enumtype):
         FuzzyMatch = ... # type: QPageSize.SizeMatchPolicy
         FuzzyOrientationMatch = ... # type: QPageSize.SizeMatchPolicy
         ExactMatch = ... # type: QPageSize.SizeMatchPolicy
@@ -6043,7 +6126,8 @@ class QPageSize(sip.simplewrapper):
     FuzzyOrientationMatch = ...  # type: QPageSize.SizeMatchPolicy
     ExactMatch = ...  # type: QPageSize.SizeMatchPolicy
 
-    class Unit(int):
+    @typing.final
+    class Unit(int, metaclass=sip._enumtype):
         Millimeter = ... # type: QPageSize.Unit
         Point = ... # type: QPageSize.Unit
         Inch = ... # type: QPageSize.Unit
@@ -6058,7 +6142,8 @@ class QPageSize(sip.simplewrapper):
     Didot = ...  # type: QPageSize.Unit
     Cicero = ...  # type: QPageSize.Unit
 
-    class PageSizeId(int):
+    @typing.final
+    class PageSizeId(int, metaclass=sip._enumtype):
         A4 = ... # type: QPageSize.PageSizeId
         B5 = ... # type: QPageSize.PageSizeId
         Letter = ... # type: QPageSize.PageSizeId
@@ -6387,12 +6472,14 @@ class QPageSize(sip.simplewrapper):
 
 class QPainter(sip.simplewrapper):
 
-    class PixmapFragmentHint(int):
+    @typing.final
+    class PixmapFragmentHint(int, metaclass=sip._enumtype):
         OpaqueHint = ... # type: QPainter.PixmapFragmentHint
 
     OpaqueHint = ...  # type: QPainter.PixmapFragmentHint
 
-    class CompositionMode(int):
+    @typing.final
+    class CompositionMode(int, metaclass=sip._enumtype):
         CompositionMode_SourceOver = ... # type: QPainter.CompositionMode
         CompositionMode_DestinationOver = ... # type: QPainter.CompositionMode
         CompositionMode_Clear = ... # type: QPainter.CompositionMode
@@ -6471,9 +6558,10 @@ class QPainter(sip.simplewrapper):
     RasterOp_SetDestination = ...  # type: QPainter.CompositionMode
     RasterOp_NotDestination = ...  # type: QPainter.CompositionMode
 
-    class RenderHint(int):
-        def __or__ (self, other: 'QPainter.RenderHint') -> 'QPainter.RenderHints': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QPainter.RenderHints': ...                     # type: ignore[override, misc]
+    @typing.final
+    class RenderHint(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QPainter.RenderHint', /) -> 'QPainter.RenderHints': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QPainter.RenderHints': ...                     # type: ignore[override, misc]
         
         Antialiasing = ... # type: QPainter.RenderHint
         TextAntialiasing = ... # type: QPainter.RenderHint
@@ -6507,12 +6595,12 @@ class QPainter(sip.simplewrapper):
         def __invert__(self) -> 'QPainter.RenderHints': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QPainter.RenderHints', 'QPainter.RenderHint', int]) -> 'QPainter.RenderHints': ...
-        def __and__(self, other: typing.Union['QPainter.RenderHints', 'QPainter.RenderHint', int]) -> 'QPainter.RenderHints': ...
-        def __xor__(self, other: typing.Union['QPainter.RenderHints', 'QPainter.RenderHint', int]) -> 'QPainter.RenderHints': ...
-        def __ror__ (self, other: 'QPainter.RenderHint') -> 'QPainter.RenderHints': ...
-        def __rand__(self, other: 'QPainter.RenderHint') -> 'QPainter.RenderHints': ...
-        def __rxor__(self, other: 'QPainter.RenderHint') -> 'QPainter.RenderHints': ...
+        def __or__ (self, other: typing.Union['QPainter.RenderHints', 'QPainter.RenderHint', int], /) -> 'QPainter.RenderHints': ...
+        def __and__(self, other: typing.Union['QPainter.RenderHints', 'QPainter.RenderHint', int], /) -> 'QPainter.RenderHints': ...
+        def __xor__(self, other: typing.Union['QPainter.RenderHints', 'QPainter.RenderHint', int], /) -> 'QPainter.RenderHints': ...
+        def __ror__ (self, other: 'QPainter.RenderHint', /) -> 'QPainter.RenderHints': ...
+        def __rand__(self, other: 'QPainter.RenderHint', /) -> 'QPainter.RenderHints': ...
+        def __rxor__(self, other: 'QPainter.RenderHint', /) -> 'QPainter.RenderHints': ...
 
     class PixmapFragment(sip.simplewrapper):
 
@@ -6551,12 +6639,12 @@ class QPainter(sip.simplewrapper):
         def __invert__(self) -> 'QPainter.PixmapFragmentHints': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QPainter.PixmapFragmentHints', 'QPainter.PixmapFragmentHint', int]) -> 'QPainter.PixmapFragmentHints': ...
-        def __and__(self, other: typing.Union['QPainter.PixmapFragmentHints', 'QPainter.PixmapFragmentHint', int]) -> 'QPainter.PixmapFragmentHints': ...
-        def __xor__(self, other: typing.Union['QPainter.PixmapFragmentHints', 'QPainter.PixmapFragmentHint', int]) -> 'QPainter.PixmapFragmentHints': ...
-        def __ror__ (self, other: 'QPainter.PixmapFragmentHint') -> 'QPainter.PixmapFragmentHints': ...
-        def __rand__(self, other: 'QPainter.PixmapFragmentHint') -> 'QPainter.PixmapFragmentHints': ...
-        def __rxor__(self, other: 'QPainter.PixmapFragmentHint') -> 'QPainter.PixmapFragmentHints': ...
+        def __or__ (self, other: typing.Union['QPainter.PixmapFragmentHints', 'QPainter.PixmapFragmentHint', int], /) -> 'QPainter.PixmapFragmentHints': ...
+        def __and__(self, other: typing.Union['QPainter.PixmapFragmentHints', 'QPainter.PixmapFragmentHint', int], /) -> 'QPainter.PixmapFragmentHints': ...
+        def __xor__(self, other: typing.Union['QPainter.PixmapFragmentHints', 'QPainter.PixmapFragmentHint', int], /) -> 'QPainter.PixmapFragmentHints': ...
+        def __ror__ (self, other: 'QPainter.PixmapFragmentHint', /) -> 'QPainter.PixmapFragmentHints': ...
+        def __rand__(self, other: 'QPainter.PixmapFragmentHint', /) -> 'QPainter.PixmapFragmentHints': ...
+        def __rxor__(self, other: 'QPainter.PixmapFragmentHint', /) -> 'QPainter.PixmapFragmentHints': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6891,9 +6979,10 @@ class QPainter(sip.simplewrapper):
 
 class QTextItem(sip.simplewrapper):
 
-    class RenderFlag(int):
-        def __or__ (self, other: 'QTextItem.RenderFlag') -> 'QTextItem.RenderFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextItem.RenderFlags': ...                      # type: ignore[override, misc]
+    @typing.final
+    class RenderFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextItem.RenderFlag', /) -> 'QTextItem.RenderFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextItem.RenderFlags': ...                      # type: ignore[override, misc]
         
         RightToLeft = ... # type: QTextItem.RenderFlag
         Overline = ... # type: QTextItem.RenderFlag
@@ -6921,12 +7010,12 @@ class QTextItem(sip.simplewrapper):
         def __invert__(self) -> 'QTextItem.RenderFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextItem.RenderFlags', 'QTextItem.RenderFlag', int]) -> 'QTextItem.RenderFlags': ...
-        def __and__(self, other: typing.Union['QTextItem.RenderFlags', 'QTextItem.RenderFlag', int]) -> 'QTextItem.RenderFlags': ...
-        def __xor__(self, other: typing.Union['QTextItem.RenderFlags', 'QTextItem.RenderFlag', int]) -> 'QTextItem.RenderFlags': ...
-        def __ror__ (self, other: 'QTextItem.RenderFlag') -> 'QTextItem.RenderFlags': ...
-        def __rand__(self, other: 'QTextItem.RenderFlag') -> 'QTextItem.RenderFlags': ...
-        def __rxor__(self, other: 'QTextItem.RenderFlag') -> 'QTextItem.RenderFlags': ...
+        def __or__ (self, other: typing.Union['QTextItem.RenderFlags', 'QTextItem.RenderFlag', int], /) -> 'QTextItem.RenderFlags': ...
+        def __and__(self, other: typing.Union['QTextItem.RenderFlags', 'QTextItem.RenderFlag', int], /) -> 'QTextItem.RenderFlags': ...
+        def __xor__(self, other: typing.Union['QTextItem.RenderFlags', 'QTextItem.RenderFlag', int], /) -> 'QTextItem.RenderFlags': ...
+        def __ror__ (self, other: 'QTextItem.RenderFlag', /) -> 'QTextItem.RenderFlags': ...
+        def __rand__(self, other: 'QTextItem.RenderFlag', /) -> 'QTextItem.RenderFlags': ...
+        def __rxor__(self, other: 'QTextItem.RenderFlag', /) -> 'QTextItem.RenderFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -6943,7 +7032,8 @@ class QTextItem(sip.simplewrapper):
 
 class QPaintEngine(sip.simplewrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         X11 = ... # type: QPaintEngine.Type
         Windows = ... # type: QPaintEngine.Type
         QuickDraw = ... # type: QPaintEngine.Type
@@ -6986,7 +7076,8 @@ class QPaintEngine(sip.simplewrapper):
     User = ...  # type: QPaintEngine.Type
     MaxUser = ...  # type: QPaintEngine.Type
 
-    class PolygonDrawMode(int):
+    @typing.final
+    class PolygonDrawMode(int, metaclass=sip._enumtype):
         OddEvenMode = ... # type: QPaintEngine.PolygonDrawMode
         WindingMode = ... # type: QPaintEngine.PolygonDrawMode
         ConvexMode = ... # type: QPaintEngine.PolygonDrawMode
@@ -6997,7 +7088,8 @@ class QPaintEngine(sip.simplewrapper):
     ConvexMode = ...  # type: QPaintEngine.PolygonDrawMode
     PolylineMode = ...  # type: QPaintEngine.PolygonDrawMode
 
-    class DirtyFlag(int):
+    @typing.final
+    class DirtyFlag(int, metaclass=sip._enumtype):
         DirtyPen = ... # type: QPaintEngine.DirtyFlag
         DirtyBrush = ... # type: QPaintEngine.DirtyFlag
         DirtyBrushOrigin = ... # type: QPaintEngine.DirtyFlag
@@ -7028,9 +7120,10 @@ class QPaintEngine(sip.simplewrapper):
     DirtyOpacity = ...  # type: QPaintEngine.DirtyFlag
     AllDirty = ...  # type: QPaintEngine.DirtyFlag
 
-    class PaintEngineFeature(int):
-        def __or__ (self, other: 'QPaintEngine.PaintEngineFeature') -> 'QPaintEngine.PaintEngineFeatures': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QPaintEngine.PaintEngineFeatures': ...                                 # type: ignore[override, misc]
+    @typing.final
+    class PaintEngineFeature(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QPaintEngine.PaintEngineFeature', /) -> 'QPaintEngine.PaintEngineFeatures': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QPaintEngine.PaintEngineFeatures': ...                                 # type: ignore[override, misc]
         
         PrimitiveTransform = ... # type: QPaintEngine.PaintEngineFeature
         PatternTransform = ... # type: QPaintEngine.PaintEngineFeature
@@ -7090,12 +7183,12 @@ class QPaintEngine(sip.simplewrapper):
         def __invert__(self) -> 'QPaintEngine.PaintEngineFeatures': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature', int]) -> 'QPaintEngine.PaintEngineFeatures': ...
-        def __and__(self, other: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature', int]) -> 'QPaintEngine.PaintEngineFeatures': ...
-        def __xor__(self, other: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature', int]) -> 'QPaintEngine.PaintEngineFeatures': ...
-        def __ror__ (self, other: 'QPaintEngine.PaintEngineFeature') -> 'QPaintEngine.PaintEngineFeatures': ...
-        def __rand__(self, other: 'QPaintEngine.PaintEngineFeature') -> 'QPaintEngine.PaintEngineFeatures': ...
-        def __rxor__(self, other: 'QPaintEngine.PaintEngineFeature') -> 'QPaintEngine.PaintEngineFeatures': ...
+        def __or__ (self, other: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature', int], /) -> 'QPaintEngine.PaintEngineFeatures': ...
+        def __and__(self, other: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature', int], /) -> 'QPaintEngine.PaintEngineFeatures': ...
+        def __xor__(self, other: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature', int], /) -> 'QPaintEngine.PaintEngineFeatures': ...
+        def __ror__ (self, other: 'QPaintEngine.PaintEngineFeature', /) -> 'QPaintEngine.PaintEngineFeatures': ...
+        def __rand__(self, other: 'QPaintEngine.PaintEngineFeature', /) -> 'QPaintEngine.PaintEngineFeatures': ...
+        def __rxor__(self, other: 'QPaintEngine.PaintEngineFeature', /) -> 'QPaintEngine.PaintEngineFeatures': ...
 
     class DirtyFlags(sip.simplewrapper):
 
@@ -7113,12 +7206,12 @@ class QPaintEngine(sip.simplewrapper):
         def __invert__(self) -> 'QPaintEngine.DirtyFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QPaintEngine.DirtyFlags', 'QPaintEngine.DirtyFlag', int]) -> 'QPaintEngine.DirtyFlags': ...
-        def __and__(self, other: typing.Union['QPaintEngine.DirtyFlags', 'QPaintEngine.DirtyFlag', int]) -> 'QPaintEngine.DirtyFlags': ...
-        def __xor__(self, other: typing.Union['QPaintEngine.DirtyFlags', 'QPaintEngine.DirtyFlag', int]) -> 'QPaintEngine.DirtyFlags': ...
-        def __ror__ (self, other: 'QPaintEngine.DirtyFlag') -> 'QPaintEngine.DirtyFlags': ...
-        def __rand__(self, other: 'QPaintEngine.DirtyFlag') -> 'QPaintEngine.DirtyFlags': ...
-        def __rxor__(self, other: 'QPaintEngine.DirtyFlag') -> 'QPaintEngine.DirtyFlags': ...
+        def __or__ (self, other: typing.Union['QPaintEngine.DirtyFlags', 'QPaintEngine.DirtyFlag', int], /) -> 'QPaintEngine.DirtyFlags': ...
+        def __and__(self, other: typing.Union['QPaintEngine.DirtyFlags', 'QPaintEngine.DirtyFlag', int], /) -> 'QPaintEngine.DirtyFlags': ...
+        def __xor__(self, other: typing.Union['QPaintEngine.DirtyFlags', 'QPaintEngine.DirtyFlag', int], /) -> 'QPaintEngine.DirtyFlags': ...
+        def __ror__ (self, other: 'QPaintEngine.DirtyFlag', /) -> 'QPaintEngine.DirtyFlags': ...
+        def __rand__(self, other: 'QPaintEngine.DirtyFlag', /) -> 'QPaintEngine.DirtyFlags': ...
+        def __rxor__(self, other: 'QPaintEngine.DirtyFlag', /) -> 'QPaintEngine.DirtyFlags': ...
 
     def __init__(self, features: typing.Union['QPaintEngine.PaintEngineFeatures', 'QPaintEngine.PaintEngineFeature'] = ...) -> None: ...
 
@@ -7188,7 +7281,8 @@ class QPaintEngineState(sip.simplewrapper):
 
 class QPainterPath(sip.simplewrapper):
 
-    class ElementType(int):
+    @typing.final
+    class ElementType(int, metaclass=sip._enumtype):
         MoveToElement = ... # type: QPainterPath.ElementType
         LineToElement = ... # type: QPainterPath.ElementType
         CurveToElement = ... # type: QPainterPath.ElementType
@@ -7352,7 +7446,8 @@ class QPainterPathStroker(sip.simplewrapper):
 
 class QPalette(sip.simplewrapper):
 
-    class ColorRole(int):
+    @typing.final
+    class ColorRole(int, metaclass=sip._enumtype):
         WindowText = ... # type: QPalette.ColorRole
         Foreground = ... # type: QPalette.ColorRole
         Button = ... # type: QPalette.ColorRole
@@ -7403,7 +7498,8 @@ class QPalette(sip.simplewrapper):
     NoRole = ...  # type: QPalette.ColorRole
     NColorRoles = ...  # type: QPalette.ColorRole
 
-    class ColorGroup(int):
+    @typing.final
+    class ColorGroup(int, metaclass=sip._enumtype):
         Active = ... # type: QPalette.ColorGroup
         Disabled = ... # type: QPalette.ColorGroup
         Inactive = ... # type: QPalette.ColorGroup
@@ -7630,7 +7726,8 @@ class QPictureIO(sip.simplewrapper):
 
 class QPixelFormat(sip.simplewrapper):
 
-    class ByteOrder(int):
+    @typing.final
+    class ByteOrder(int, metaclass=sip._enumtype):
         LittleEndian = ... # type: QPixelFormat.ByteOrder
         BigEndian = ... # type: QPixelFormat.ByteOrder
         CurrentSystemEndian = ... # type: QPixelFormat.ByteOrder
@@ -7639,7 +7736,8 @@ class QPixelFormat(sip.simplewrapper):
     BigEndian = ...  # type: QPixelFormat.ByteOrder
     CurrentSystemEndian = ...  # type: QPixelFormat.ByteOrder
 
-    class YUVLayout(int):
+    @typing.final
+    class YUVLayout(int, metaclass=sip._enumtype):
         YUV444 = ... # type: QPixelFormat.YUVLayout
         YUV422 = ... # type: QPixelFormat.YUVLayout
         YUV411 = ... # type: QPixelFormat.YUVLayout
@@ -7674,7 +7772,8 @@ class QPixelFormat(sip.simplewrapper):
     Y8 = ...  # type: QPixelFormat.YUVLayout
     Y16 = ...  # type: QPixelFormat.YUVLayout
 
-    class TypeInterpretation(int):
+    @typing.final
+    class TypeInterpretation(int, metaclass=sip._enumtype):
         UnsignedInteger = ... # type: QPixelFormat.TypeInterpretation
         UnsignedShort = ... # type: QPixelFormat.TypeInterpretation
         UnsignedByte = ... # type: QPixelFormat.TypeInterpretation
@@ -7685,28 +7784,32 @@ class QPixelFormat(sip.simplewrapper):
     UnsignedByte = ...  # type: QPixelFormat.TypeInterpretation
     FloatingPoint = ...  # type: QPixelFormat.TypeInterpretation
 
-    class AlphaPremultiplied(int):
+    @typing.final
+    class AlphaPremultiplied(int, metaclass=sip._enumtype):
         NotPremultiplied = ... # type: QPixelFormat.AlphaPremultiplied
         Premultiplied = ... # type: QPixelFormat.AlphaPremultiplied
 
     NotPremultiplied = ...  # type: QPixelFormat.AlphaPremultiplied
     Premultiplied = ...  # type: QPixelFormat.AlphaPremultiplied
 
-    class AlphaPosition(int):
+    @typing.final
+    class AlphaPosition(int, metaclass=sip._enumtype):
         AtBeginning = ... # type: QPixelFormat.AlphaPosition
         AtEnd = ... # type: QPixelFormat.AlphaPosition
 
     AtBeginning = ...  # type: QPixelFormat.AlphaPosition
     AtEnd = ...  # type: QPixelFormat.AlphaPosition
 
-    class AlphaUsage(int):
+    @typing.final
+    class AlphaUsage(int, metaclass=sip._enumtype):
         UsesAlpha = ... # type: QPixelFormat.AlphaUsage
         IgnoresAlpha = ... # type: QPixelFormat.AlphaUsage
 
     UsesAlpha = ...  # type: QPixelFormat.AlphaUsage
     IgnoresAlpha = ...  # type: QPixelFormat.AlphaUsage
 
-    class ColorModel(int):
+    @typing.final
+    class ColorModel(int, metaclass=sip._enumtype):
         RGB = ... # type: QPixelFormat.ColorModel
         BGR = ... # type: QPixelFormat.ColorModel
         Indexed = ... # type: QPixelFormat.ColorModel
@@ -7822,19 +7925,19 @@ class QPolygon(sip.simplewrapper):
 
     def intersects(self, r: 'QPolygon') -> bool: ...
     def swap(self, other: 'QPolygon') -> None: ...
-    def __contains__(self, value: QtCore.QPoint) -> int: ...
+    def __contains__(self, value: QtCore.QPoint, /) -> int: ...
     @typing.overload
-    def __delitem__(self, i: int) -> None: ...
+    def __delitem__(self, i: int, /) -> None: ...
     @typing.overload
-    def __delitem__(self, slice: slice) -> None: ...
+    def __delitem__(self, slice: slice, /) -> None: ...
     @typing.overload
-    def __setitem__(self, i: int, value: QtCore.QPoint) -> None: ...
+    def __setitem__(self, i: int, value: QtCore.QPoint, /) -> None: ...
     @typing.overload
-    def __setitem__(self, slice: slice, list: 'QPolygon') -> None: ...
+    def __setitem__(self, slice: slice, list: 'QPolygon', /) -> None: ...
     @typing.overload
-    def __getitem__(self, i: int) -> QtCore.QPoint: ...
+    def __getitem__(self, i: int, /) -> QtCore.QPoint: ...
     @typing.overload
-    def __getitem__(self, slice: slice) -> 'QPolygon': ...
+    def __getitem__(self, slice: slice, /) -> 'QPolygon': ...
     @typing.overload
     def value(self, i: int) -> QtCore.QPoint: ...
     @typing.overload
@@ -7909,19 +8012,19 @@ class QPolygonF(sip.simplewrapper):
 
     def intersects(self, r: 'QPolygonF') -> bool: ...
     def swap(self, other: 'QPolygonF') -> None: ...
-    def __contains__(self, value: typing.Union[QtCore.QPointF, QtCore.QPoint]) -> int: ...
+    def __contains__(self, value: typing.Union[QtCore.QPointF, QtCore.QPoint], /) -> int: ...
     @typing.overload
-    def __delitem__(self, i: int) -> None: ...
+    def __delitem__(self, i: int, /) -> None: ...
     @typing.overload
-    def __delitem__(self, slice: slice) -> None: ...
+    def __delitem__(self, slice: slice, /) -> None: ...
     @typing.overload
-    def __setitem__(self, i: int, value: typing.Union[QtCore.QPointF, QtCore.QPoint]) -> None: ...
+    def __setitem__(self, i: int, value: typing.Union[QtCore.QPointF, QtCore.QPoint], /) -> None: ...
     @typing.overload
-    def __setitem__(self, slice: slice, list: 'QPolygonF') -> None: ...
+    def __setitem__(self, slice: slice, list: 'QPolygonF', /) -> None: ...
     @typing.overload
-    def __getitem__(self, i: int) -> QtCore.QPointF: ...
+    def __getitem__(self, i: int, /) -> QtCore.QPointF: ...
     @typing.overload
-    def __getitem__(self, slice: slice) -> 'QPolygonF': ...
+    def __getitem__(self, slice: slice, /) -> 'QPolygonF': ...
     @typing.overload
     def value(self, i: int) -> QtCore.QPointF: ...
     @typing.overload
@@ -8049,9 +8152,10 @@ class QRasterWindow(QPaintDeviceWindow):
 
 class QRawFont(sip.simplewrapper):
 
-    class LayoutFlag(int):
-        def __or__ (self, other: 'QRawFont.LayoutFlag') -> 'QRawFont.LayoutFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QRawFont.LayoutFlags': ...                     # type: ignore[override, misc]
+    @typing.final
+    class LayoutFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QRawFont.LayoutFlag', /) -> 'QRawFont.LayoutFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QRawFont.LayoutFlags': ...                     # type: ignore[override, misc]
         
         SeparateAdvances = ... # type: QRawFont.LayoutFlag
         KernedAdvances = ... # type: QRawFont.LayoutFlag
@@ -8061,7 +8165,8 @@ class QRawFont(sip.simplewrapper):
     KernedAdvances = ...  # type: QRawFont.LayoutFlag
     UseDesignMetrics = ...  # type: QRawFont.LayoutFlag
 
-    class AntialiasingType(int):
+    @typing.final
+    class AntialiasingType(int, metaclass=sip._enumtype):
         PixelAntialiasing = ... # type: QRawFont.AntialiasingType
         SubPixelAntialiasing = ... # type: QRawFont.AntialiasingType
 
@@ -8084,12 +8189,12 @@ class QRawFont(sip.simplewrapper):
         def __invert__(self) -> 'QRawFont.LayoutFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QRawFont.LayoutFlags', 'QRawFont.LayoutFlag', int]) -> 'QRawFont.LayoutFlags': ...
-        def __and__(self, other: typing.Union['QRawFont.LayoutFlags', 'QRawFont.LayoutFlag', int]) -> 'QRawFont.LayoutFlags': ...
-        def __xor__(self, other: typing.Union['QRawFont.LayoutFlags', 'QRawFont.LayoutFlag', int]) -> 'QRawFont.LayoutFlags': ...
-        def __ror__ (self, other: 'QRawFont.LayoutFlag') -> 'QRawFont.LayoutFlags': ...
-        def __rand__(self, other: 'QRawFont.LayoutFlag') -> 'QRawFont.LayoutFlags': ...
-        def __rxor__(self, other: 'QRawFont.LayoutFlag') -> 'QRawFont.LayoutFlags': ...
+        def __or__ (self, other: typing.Union['QRawFont.LayoutFlags', 'QRawFont.LayoutFlag', int], /) -> 'QRawFont.LayoutFlags': ...
+        def __and__(self, other: typing.Union['QRawFont.LayoutFlags', 'QRawFont.LayoutFlag', int], /) -> 'QRawFont.LayoutFlags': ...
+        def __xor__(self, other: typing.Union['QRawFont.LayoutFlags', 'QRawFont.LayoutFlag', int], /) -> 'QRawFont.LayoutFlags': ...
+        def __ror__ (self, other: 'QRawFont.LayoutFlag', /) -> 'QRawFont.LayoutFlags': ...
+        def __rand__(self, other: 'QRawFont.LayoutFlag', /) -> 'QRawFont.LayoutFlags': ...
+        def __rxor__(self, other: 'QRawFont.LayoutFlag', /) -> 'QRawFont.LayoutFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8142,7 +8247,8 @@ class QRawFont(sip.simplewrapper):
 
 class QRegion(sip.simplewrapper):
 
-    class RegionType(int):
+    @typing.final
+    class RegionType(int, metaclass=sip._enumtype):
         Rectangle = ... # type: QRegion.RegionType
         Ellipse = ... # type: QRegion.RegionType
 
@@ -8193,9 +8299,9 @@ class QRegion(sip.simplewrapper):
     @typing.overload
     def translate(self, p: QtCore.QPoint) -> None: ...
     @typing.overload
-    def __contains__(self, p: QtCore.QPoint) -> int: ...
+    def __contains__(self, p: QtCore.QPoint, /) -> int: ...
     @typing.overload
-    def __contains__(self, r: QtCore.QRect) -> int: ...
+    def __contains__(self, r: QtCore.QRect, /) -> int: ...
     @typing.overload
     def contains(self, p: QtCore.QPoint) -> bool: ...
     @typing.overload
@@ -8292,7 +8398,8 @@ class QScreen(QtCore.QObject):
 
 class QSessionManager(QtCore.QObject):
 
-    class RestartHint(int):
+    @typing.final
+    class RestartHint(int, metaclass=sip._enumtype):
         RestartIfRunning = ... # type: QSessionManager.RestartHint
         RestartAnyway = ... # type: QSessionManager.RestartHint
         RestartImmediately = ... # type: QSessionManager.RestartHint
@@ -8404,7 +8511,8 @@ class QStandardItemModel(QtCore.QAbstractItemModel):
 
 class QStandardItem(sip.wrapper):
 
-    class ItemType(int):
+    @typing.final
+    class ItemType(int, metaclass=sip._enumtype):
         Type = ... # type: QStandardItem.ItemType
         UserType = ... # type: QStandardItem.ItemType
 
@@ -8519,7 +8627,8 @@ class QStandardItem(sip.wrapper):
 
 class QStaticText(sip.simplewrapper):
 
-    class PerformanceHint(int):
+    @typing.final
+    class PerformanceHint(int, metaclass=sip._enumtype):
         ModerateCaching = ... # type: QStaticText.PerformanceHint
         AggressiveCaching = ... # type: QStaticText.PerformanceHint
 
@@ -8590,14 +8699,16 @@ class QStyleHints(QtCore.QObject):
 
 class QSurfaceFormat(sip.simplewrapper):
 
-    class ColorSpace(int):
+    @typing.final
+    class ColorSpace(int, metaclass=sip._enumtype):
         DefaultColorSpace = ... # type: QSurfaceFormat.ColorSpace
         sRGBColorSpace = ... # type: QSurfaceFormat.ColorSpace
 
     DefaultColorSpace = ...  # type: QSurfaceFormat.ColorSpace
     sRGBColorSpace = ...  # type: QSurfaceFormat.ColorSpace
 
-    class OpenGLContextProfile(int):
+    @typing.final
+    class OpenGLContextProfile(int, metaclass=sip._enumtype):
         NoProfile = ... # type: QSurfaceFormat.OpenGLContextProfile
         CoreProfile = ... # type: QSurfaceFormat.OpenGLContextProfile
         CompatibilityProfile = ... # type: QSurfaceFormat.OpenGLContextProfile
@@ -8606,7 +8717,8 @@ class QSurfaceFormat(sip.simplewrapper):
     CoreProfile = ...  # type: QSurfaceFormat.OpenGLContextProfile
     CompatibilityProfile = ...  # type: QSurfaceFormat.OpenGLContextProfile
 
-    class RenderableType(int):
+    @typing.final
+    class RenderableType(int, metaclass=sip._enumtype):
         DefaultRenderableType = ... # type: QSurfaceFormat.RenderableType
         OpenGL = ... # type: QSurfaceFormat.RenderableType
         OpenGLES = ... # type: QSurfaceFormat.RenderableType
@@ -8617,7 +8729,8 @@ class QSurfaceFormat(sip.simplewrapper):
     OpenGLES = ...  # type: QSurfaceFormat.RenderableType
     OpenVG = ...  # type: QSurfaceFormat.RenderableType
 
-    class SwapBehavior(int):
+    @typing.final
+    class SwapBehavior(int, metaclass=sip._enumtype):
         DefaultSwapBehavior = ... # type: QSurfaceFormat.SwapBehavior
         SingleBuffer = ... # type: QSurfaceFormat.SwapBehavior
         DoubleBuffer = ... # type: QSurfaceFormat.SwapBehavior
@@ -8628,9 +8741,10 @@ class QSurfaceFormat(sip.simplewrapper):
     DoubleBuffer = ...  # type: QSurfaceFormat.SwapBehavior
     TripleBuffer = ...  # type: QSurfaceFormat.SwapBehavior
 
-    class FormatOption(int):
-        def __or__ (self, other: 'QSurfaceFormat.FormatOption') -> 'QSurfaceFormat.FormatOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QSurfaceFormat.FormatOptions': ...                             # type: ignore[override, misc]
+    @typing.final
+    class FormatOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QSurfaceFormat.FormatOption', /) -> 'QSurfaceFormat.FormatOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QSurfaceFormat.FormatOptions': ...                             # type: ignore[override, misc]
         
         StereoBuffers = ... # type: QSurfaceFormat.FormatOption
         DebugContext = ... # type: QSurfaceFormat.FormatOption
@@ -8658,12 +8772,12 @@ class QSurfaceFormat(sip.simplewrapper):
         def __invert__(self) -> 'QSurfaceFormat.FormatOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSurfaceFormat.FormatOptions', 'QSurfaceFormat.FormatOption', int]) -> 'QSurfaceFormat.FormatOptions': ...
-        def __and__(self, other: typing.Union['QSurfaceFormat.FormatOptions', 'QSurfaceFormat.FormatOption', int]) -> 'QSurfaceFormat.FormatOptions': ...
-        def __xor__(self, other: typing.Union['QSurfaceFormat.FormatOptions', 'QSurfaceFormat.FormatOption', int]) -> 'QSurfaceFormat.FormatOptions': ...
-        def __ror__ (self, other: 'QSurfaceFormat.FormatOption') -> 'QSurfaceFormat.FormatOptions': ...
-        def __rand__(self, other: 'QSurfaceFormat.FormatOption') -> 'QSurfaceFormat.FormatOptions': ...
-        def __rxor__(self, other: 'QSurfaceFormat.FormatOption') -> 'QSurfaceFormat.FormatOptions': ...
+        def __or__ (self, other: typing.Union['QSurfaceFormat.FormatOptions', 'QSurfaceFormat.FormatOption', int], /) -> 'QSurfaceFormat.FormatOptions': ...
+        def __and__(self, other: typing.Union['QSurfaceFormat.FormatOptions', 'QSurfaceFormat.FormatOption', int], /) -> 'QSurfaceFormat.FormatOptions': ...
+        def __xor__(self, other: typing.Union['QSurfaceFormat.FormatOptions', 'QSurfaceFormat.FormatOption', int], /) -> 'QSurfaceFormat.FormatOptions': ...
+        def __ror__ (self, other: 'QSurfaceFormat.FormatOption', /) -> 'QSurfaceFormat.FormatOptions': ...
+        def __rand__(self, other: 'QSurfaceFormat.FormatOption', /) -> 'QSurfaceFormat.FormatOptions': ...
+        def __rxor__(self, other: 'QSurfaceFormat.FormatOption', /) -> 'QSurfaceFormat.FormatOptions': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -8750,7 +8864,8 @@ class QSyntaxHighlighter(QtCore.QObject):
 
 class QTextCursor(sip.simplewrapper):
 
-    class SelectionType(int):
+    @typing.final
+    class SelectionType(int, metaclass=sip._enumtype):
         WordUnderCursor = ... # type: QTextCursor.SelectionType
         LineUnderCursor = ... # type: QTextCursor.SelectionType
         BlockUnderCursor = ... # type: QTextCursor.SelectionType
@@ -8761,7 +8876,8 @@ class QTextCursor(sip.simplewrapper):
     BlockUnderCursor = ...  # type: QTextCursor.SelectionType
     Document = ...  # type: QTextCursor.SelectionType
 
-    class MoveOperation(int):
+    @typing.final
+    class MoveOperation(int, metaclass=sip._enumtype):
         NoMove = ... # type: QTextCursor.MoveOperation
         Start = ... # type: QTextCursor.MoveOperation
         Up = ... # type: QTextCursor.MoveOperation
@@ -8814,7 +8930,8 @@ class QTextCursor(sip.simplewrapper):
     NextRow = ...  # type: QTextCursor.MoveOperation
     PreviousRow = ...  # type: QTextCursor.MoveOperation
 
-    class MoveMode(int):
+    @typing.final
+    class MoveMode(int, metaclass=sip._enumtype):
         MoveAnchor = ... # type: QTextCursor.MoveMode
         KeepAnchor = ... # type: QTextCursor.MoveMode
 
@@ -8918,7 +9035,8 @@ class QTextCursor(sip.simplewrapper):
 
 class QTextDocument(QtCore.QObject):
 
-    class MarkdownFeature(int):
+    @typing.final
+    class MarkdownFeature(int, metaclass=sip._enumtype):
         MarkdownNoHTML = ... # type: QTextDocument.MarkdownFeature
         MarkdownDialectCommonMark = ... # type: QTextDocument.MarkdownFeature
         MarkdownDialectGitHub = ... # type: QTextDocument.MarkdownFeature
@@ -8927,7 +9045,8 @@ class QTextDocument(QtCore.QObject):
     MarkdownDialectCommonMark = ...  # type: QTextDocument.MarkdownFeature
     MarkdownDialectGitHub = ...  # type: QTextDocument.MarkdownFeature
 
-    class Stacks(int):
+    @typing.final
+    class Stacks(int, metaclass=sip._enumtype):
         UndoStack = ... # type: QTextDocument.Stacks
         RedoStack = ... # type: QTextDocument.Stacks
         UndoAndRedoStacks = ... # type: QTextDocument.Stacks
@@ -8936,7 +9055,8 @@ class QTextDocument(QtCore.QObject):
     RedoStack = ...  # type: QTextDocument.Stacks
     UndoAndRedoStacks = ...  # type: QTextDocument.Stacks
 
-    class ResourceType(int):
+    @typing.final
+    class ResourceType(int, metaclass=sip._enumtype):
         UnknownResource = ... # type: QTextDocument.ResourceType
         HtmlResource = ... # type: QTextDocument.ResourceType
         ImageResource = ... # type: QTextDocument.ResourceType
@@ -8951,9 +9071,10 @@ class QTextDocument(QtCore.QObject):
     MarkdownResource = ...  # type: QTextDocument.ResourceType
     UserResource = ...  # type: QTextDocument.ResourceType
 
-    class FindFlag(int):
-        def __or__ (self, other: 'QTextDocument.FindFlag') -> 'QTextDocument.FindFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextDocument.FindFlags': ...                        # type: ignore[override, misc]
+    @typing.final
+    class FindFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextDocument.FindFlag', /) -> 'QTextDocument.FindFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextDocument.FindFlags': ...                        # type: ignore[override, misc]
         
         FindBackward = ... # type: QTextDocument.FindFlag
         FindCaseSensitively = ... # type: QTextDocument.FindFlag
@@ -8963,7 +9084,8 @@ class QTextDocument(QtCore.QObject):
     FindCaseSensitively = ...  # type: QTextDocument.FindFlag
     FindWholeWords = ...  # type: QTextDocument.FindFlag
 
-    class MetaInformation(int):
+    @typing.final
+    class MetaInformation(int, metaclass=sip._enumtype):
         DocumentTitle = ... # type: QTextDocument.MetaInformation
         DocumentUrl = ... # type: QTextDocument.MetaInformation
 
@@ -8986,12 +9108,12 @@ class QTextDocument(QtCore.QObject):
         def __invert__(self) -> 'QTextDocument.FindFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextDocument.FindFlags', 'QTextDocument.FindFlag', int]) -> 'QTextDocument.FindFlags': ...
-        def __and__(self, other: typing.Union['QTextDocument.FindFlags', 'QTextDocument.FindFlag', int]) -> 'QTextDocument.FindFlags': ...
-        def __xor__(self, other: typing.Union['QTextDocument.FindFlags', 'QTextDocument.FindFlag', int]) -> 'QTextDocument.FindFlags': ...
-        def __ror__ (self, other: 'QTextDocument.FindFlag') -> 'QTextDocument.FindFlags': ...
-        def __rand__(self, other: 'QTextDocument.FindFlag') -> 'QTextDocument.FindFlags': ...
-        def __rxor__(self, other: 'QTextDocument.FindFlag') -> 'QTextDocument.FindFlags': ...
+        def __or__ (self, other: typing.Union['QTextDocument.FindFlags', 'QTextDocument.FindFlag', int], /) -> 'QTextDocument.FindFlags': ...
+        def __and__(self, other: typing.Union['QTextDocument.FindFlags', 'QTextDocument.FindFlag', int], /) -> 'QTextDocument.FindFlags': ...
+        def __xor__(self, other: typing.Union['QTextDocument.FindFlags', 'QTextDocument.FindFlag', int], /) -> 'QTextDocument.FindFlags': ...
+        def __ror__ (self, other: 'QTextDocument.FindFlag', /) -> 'QTextDocument.FindFlags': ...
+        def __rand__(self, other: 'QTextDocument.FindFlag', /) -> 'QTextDocument.FindFlags': ...
+        def __rxor__(self, other: 'QTextDocument.FindFlag', /) -> 'QTextDocument.FindFlags': ...
 
     class MarkdownFeatures(sip.simplewrapper):
 
@@ -9009,12 +9131,12 @@ class QTextDocument(QtCore.QObject):
         def __invert__(self) -> 'QTextDocument.MarkdownFeatures': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextDocument.MarkdownFeatures', 'QTextDocument.MarkdownFeature', int]) -> 'QTextDocument.MarkdownFeatures': ...
-        def __and__(self, other: typing.Union['QTextDocument.MarkdownFeatures', 'QTextDocument.MarkdownFeature', int]) -> 'QTextDocument.MarkdownFeatures': ...
-        def __xor__(self, other: typing.Union['QTextDocument.MarkdownFeatures', 'QTextDocument.MarkdownFeature', int]) -> 'QTextDocument.MarkdownFeatures': ...
-        def __ror__ (self, other: 'QTextDocument.MarkdownFeature') -> 'QTextDocument.MarkdownFeatures': ...
-        def __rand__(self, other: 'QTextDocument.MarkdownFeature') -> 'QTextDocument.MarkdownFeatures': ...
-        def __rxor__(self, other: 'QTextDocument.MarkdownFeature') -> 'QTextDocument.MarkdownFeatures': ...
+        def __or__ (self, other: typing.Union['QTextDocument.MarkdownFeatures', 'QTextDocument.MarkdownFeature', int], /) -> 'QTextDocument.MarkdownFeatures': ...
+        def __and__(self, other: typing.Union['QTextDocument.MarkdownFeatures', 'QTextDocument.MarkdownFeature', int], /) -> 'QTextDocument.MarkdownFeatures': ...
+        def __xor__(self, other: typing.Union['QTextDocument.MarkdownFeatures', 'QTextDocument.MarkdownFeature', int], /) -> 'QTextDocument.MarkdownFeatures': ...
+        def __ror__ (self, other: 'QTextDocument.MarkdownFeature', /) -> 'QTextDocument.MarkdownFeatures': ...
+        def __rand__(self, other: 'QTextDocument.MarkdownFeature', /) -> 'QTextDocument.MarkdownFeatures': ...
+        def __rxor__(self, other: 'QTextDocument.MarkdownFeature', /) -> 'QTextDocument.MarkdownFeatures': ...
 
     @typing.overload
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
@@ -9177,7 +9299,8 @@ class QTextDocumentWriter(sip.simplewrapper):
 
 class QTextLength(sip.simplewrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         VariableLength = ... # type: QTextLength.Type
         FixedLength = ... # type: QTextLength.Type
         PercentageLength = ... # type: QTextLength.Type
@@ -9202,7 +9325,8 @@ class QTextLength(sip.simplewrapper):
 
 class QTextFormat(sip.simplewrapper):
 
-    class Property(int):
+    @typing.final
+    class Property(int, metaclass=sip._enumtype):
         ObjectIndex = ... # type: QTextFormat.Property
         CssFloat = ... # type: QTextFormat.Property
         LayoutDirection = ... # type: QTextFormat.Property
@@ -9415,9 +9539,10 @@ class QTextFormat(sip.simplewrapper):
     ImageAltText = ...  # type: QTextFormat.Property
     UserProperty = ...  # type: QTextFormat.Property
 
-    class PageBreakFlag(int):
-        def __or__ (self, other: 'QTextFormat.PageBreakFlag') -> 'QTextFormat.PageBreakFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextFormat.PageBreakFlags': ...                           # type: ignore[override, misc]
+    @typing.final
+    class PageBreakFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextFormat.PageBreakFlag', /) -> 'QTextFormat.PageBreakFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextFormat.PageBreakFlags': ...                           # type: ignore[override, misc]
         
         PageBreak_Auto = ... # type: QTextFormat.PageBreakFlag
         PageBreak_AlwaysBefore = ... # type: QTextFormat.PageBreakFlag
@@ -9427,7 +9552,8 @@ class QTextFormat(sip.simplewrapper):
     PageBreak_AlwaysBefore = ...  # type: QTextFormat.PageBreakFlag
     PageBreak_AlwaysAfter = ...  # type: QTextFormat.PageBreakFlag
 
-    class ObjectTypes(int):
+    @typing.final
+    class ObjectTypes(int, metaclass=sip._enumtype):
         NoObject = ... # type: QTextFormat.ObjectTypes
         ImageObject = ... # type: QTextFormat.ObjectTypes
         TableObject = ... # type: QTextFormat.ObjectTypes
@@ -9440,7 +9566,8 @@ class QTextFormat(sip.simplewrapper):
     TableCellObject = ...  # type: QTextFormat.ObjectTypes
     UserObject = ...  # type: QTextFormat.ObjectTypes
 
-    class FormatType(int):
+    @typing.final
+    class FormatType(int, metaclass=sip._enumtype):
         InvalidFormat = ... # type: QTextFormat.FormatType
         BlockFormat = ... # type: QTextFormat.FormatType
         CharFormat = ... # type: QTextFormat.FormatType
@@ -9473,12 +9600,12 @@ class QTextFormat(sip.simplewrapper):
         def __invert__(self) -> 'QTextFormat.PageBreakFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextFormat.PageBreakFlags', 'QTextFormat.PageBreakFlag', int]) -> 'QTextFormat.PageBreakFlags': ...
-        def __and__(self, other: typing.Union['QTextFormat.PageBreakFlags', 'QTextFormat.PageBreakFlag', int]) -> 'QTextFormat.PageBreakFlags': ...
-        def __xor__(self, other: typing.Union['QTextFormat.PageBreakFlags', 'QTextFormat.PageBreakFlag', int]) -> 'QTextFormat.PageBreakFlags': ...
-        def __ror__ (self, other: 'QTextFormat.PageBreakFlag') -> 'QTextFormat.PageBreakFlags': ...
-        def __rand__(self, other: 'QTextFormat.PageBreakFlag') -> 'QTextFormat.PageBreakFlags': ...
-        def __rxor__(self, other: 'QTextFormat.PageBreakFlag') -> 'QTextFormat.PageBreakFlags': ...
+        def __or__ (self, other: typing.Union['QTextFormat.PageBreakFlags', 'QTextFormat.PageBreakFlag', int], /) -> 'QTextFormat.PageBreakFlags': ...
+        def __and__(self, other: typing.Union['QTextFormat.PageBreakFlags', 'QTextFormat.PageBreakFlag', int], /) -> 'QTextFormat.PageBreakFlags': ...
+        def __xor__(self, other: typing.Union['QTextFormat.PageBreakFlags', 'QTextFormat.PageBreakFlag', int], /) -> 'QTextFormat.PageBreakFlags': ...
+        def __ror__ (self, other: 'QTextFormat.PageBreakFlag', /) -> 'QTextFormat.PageBreakFlags': ...
+        def __rand__(self, other: 'QTextFormat.PageBreakFlag', /) -> 'QTextFormat.PageBreakFlags': ...
+        def __rxor__(self, other: 'QTextFormat.PageBreakFlag', /) -> 'QTextFormat.PageBreakFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -9542,14 +9669,16 @@ class QTextFormat(sip.simplewrapper):
 
 class QTextCharFormat(QTextFormat):
 
-    class FontPropertiesInheritanceBehavior(int):
+    @typing.final
+    class FontPropertiesInheritanceBehavior(int, metaclass=sip._enumtype):
         FontPropertiesSpecifiedOnly = ... # type: QTextCharFormat.FontPropertiesInheritanceBehavior
         FontPropertiesAll = ... # type: QTextCharFormat.FontPropertiesInheritanceBehavior
 
     FontPropertiesSpecifiedOnly = ...  # type: QTextCharFormat.FontPropertiesInheritanceBehavior
     FontPropertiesAll = ...  # type: QTextCharFormat.FontPropertiesInheritanceBehavior
 
-    class UnderlineStyle(int):
+    @typing.final
+    class UnderlineStyle(int, metaclass=sip._enumtype):
         NoUnderline = ... # type: QTextCharFormat.UnderlineStyle
         SingleUnderline = ... # type: QTextCharFormat.UnderlineStyle
         DashUnderline = ... # type: QTextCharFormat.UnderlineStyle
@@ -9568,7 +9697,8 @@ class QTextCharFormat(QTextFormat):
     WaveUnderline = ...  # type: QTextCharFormat.UnderlineStyle
     SpellCheckUnderline = ...  # type: QTextCharFormat.UnderlineStyle
 
-    class VerticalAlignment(int):
+    @typing.final
+    class VerticalAlignment(int, metaclass=sip._enumtype):
         AlignNormal = ... # type: QTextCharFormat.VerticalAlignment
         AlignSuperScript = ... # type: QTextCharFormat.VerticalAlignment
         AlignSubScript = ... # type: QTextCharFormat.VerticalAlignment
@@ -9667,7 +9797,8 @@ class QTextBlockFormat(QTextFormat):
     Unchecked = ...  # type: QTextBlockFormat.MarkerType
     Checked = ...  # type: QTextBlockFormat.MarkerType
 
-    class LineHeightTypes(int):
+    @typing.final
+    class LineHeightTypes(int, metaclass=sip._enumtype):
         SingleHeight = ... # type: QTextBlockFormat.LineHeightTypes
         ProportionalHeight = ... # type: QTextBlockFormat.LineHeightTypes
         FixedHeight = ... # type: QTextBlockFormat.LineHeightTypes
@@ -9720,7 +9851,8 @@ class QTextBlockFormat(QTextFormat):
 
 class QTextListFormat(QTextFormat):
 
-    class Style(int):
+    @typing.final
+    class Style(int, metaclass=sip._enumtype):
         ListDisc = ... # type: QTextListFormat.Style
         ListCircle = ... # type: QTextListFormat.Style
         ListSquare = ... # type: QTextListFormat.Style
@@ -9775,7 +9907,8 @@ class QTextImageFormat(QTextCharFormat):
 
 class QTextFrameFormat(QTextFormat):
 
-    class BorderStyle(int):
+    @typing.final
+    class BorderStyle(int, metaclass=sip._enumtype):
         BorderStyle_None = ... # type: QTextFrameFormat.BorderStyle
         BorderStyle_Dotted = ... # type: QTextFrameFormat.BorderStyle
         BorderStyle_Dashed = ... # type: QTextFrameFormat.BorderStyle
@@ -9800,7 +9933,8 @@ class QTextFrameFormat(QTextFormat):
     BorderStyle_Inset = ...  # type: QTextFrameFormat.BorderStyle
     BorderStyle_Outset = ...  # type: QTextFrameFormat.BorderStyle
 
-    class Position(int):
+    @typing.final
+    class Position(int, metaclass=sip._enumtype):
         InFlow = ... # type: QTextFrameFormat.Position
         FloatLeft = ... # type: QTextFrameFormat.Position
         FloatRight = ... # type: QTextFrameFormat.Position
@@ -9944,7 +10078,8 @@ class QTextInlineObject(sip.simplewrapper):
 
 class QTextLayout(sip.simplewrapper):
 
-    class CursorMode(int):
+    @typing.final
+    class CursorMode(int, metaclass=sip._enumtype):
         SkipCharacters = ... # type: QTextLayout.CursorMode
         SkipWords = ... # type: QTextLayout.CursorMode
 
@@ -10017,14 +10152,16 @@ class QTextLayout(sip.simplewrapper):
 
 class QTextLine(sip.simplewrapper):
 
-    class CursorPosition(int):
+    @typing.final
+    class CursorPosition(int, metaclass=sip._enumtype):
         CursorBetweenCharacters = ... # type: QTextLine.CursorPosition
         CursorOnCharacter = ... # type: QTextLine.CursorPosition
 
     CursorBetweenCharacters = ...  # type: QTextLine.CursorPosition
     CursorOnCharacter = ...  # type: QTextLine.CursorPosition
 
-    class Edge(int):
+    @typing.final
+    class Edge(int, metaclass=sip._enumtype):
         Leading = ... # type: QTextLine.Edge
         Trailing = ... # type: QTextLine.Edge
 
@@ -10208,7 +10345,8 @@ class QTextBlockUserData(sip.wrapper):
 
 class QTextOption(sip.simplewrapper):
 
-    class TabType(int):
+    @typing.final
+    class TabType(int, metaclass=sip._enumtype):
         LeftTab = ... # type: QTextOption.TabType
         RightTab = ... # type: QTextOption.TabType
         CenterTab = ... # type: QTextOption.TabType
@@ -10219,9 +10357,10 @@ class QTextOption(sip.simplewrapper):
     CenterTab = ...  # type: QTextOption.TabType
     DelimiterTab = ...  # type: QTextOption.TabType
 
-    class Flag(int):
-        def __or__ (self, other: 'QTextOption.Flag') -> 'QTextOption.Flags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTextOption.Flags': ...                  # type: ignore[override, misc]
+    @typing.final
+    class Flag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTextOption.Flag', /) -> 'QTextOption.Flags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTextOption.Flags': ...                  # type: ignore[override, misc]
         
         IncludeTrailingSpaces = ... # type: QTextOption.Flag
         ShowTabsAndSpaces = ... # type: QTextOption.Flag
@@ -10237,7 +10376,8 @@ class QTextOption(sip.simplewrapper):
     SuppressColors = ...  # type: QTextOption.Flag
     ShowDocumentTerminator = ...  # type: QTextOption.Flag
 
-    class WrapMode(int):
+    @typing.final
+    class WrapMode(int, metaclass=sip._enumtype):
         NoWrap = ... # type: QTextOption.WrapMode
         WordWrap = ... # type: QTextOption.WrapMode
         ManualWrap = ... # type: QTextOption.WrapMode
@@ -10266,12 +10406,12 @@ class QTextOption(sip.simplewrapper):
         def __invert__(self) -> 'QTextOption.Flags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTextOption.Flags', 'QTextOption.Flag', int]) -> 'QTextOption.Flags': ...
-        def __and__(self, other: typing.Union['QTextOption.Flags', 'QTextOption.Flag', int]) -> 'QTextOption.Flags': ...
-        def __xor__(self, other: typing.Union['QTextOption.Flags', 'QTextOption.Flag', int]) -> 'QTextOption.Flags': ...
-        def __ror__ (self, other: 'QTextOption.Flag') -> 'QTextOption.Flags': ...
-        def __rand__(self, other: 'QTextOption.Flag') -> 'QTextOption.Flags': ...
-        def __rxor__(self, other: 'QTextOption.Flag') -> 'QTextOption.Flags': ...
+        def __or__ (self, other: typing.Union['QTextOption.Flags', 'QTextOption.Flag', int], /) -> 'QTextOption.Flags': ...
+        def __and__(self, other: typing.Union['QTextOption.Flags', 'QTextOption.Flag', int], /) -> 'QTextOption.Flags': ...
+        def __xor__(self, other: typing.Union['QTextOption.Flags', 'QTextOption.Flag', int], /) -> 'QTextOption.Flags': ...
+        def __ror__ (self, other: 'QTextOption.Flag', /) -> 'QTextOption.Flags': ...
+        def __rand__(self, other: 'QTextOption.Flag', /) -> 'QTextOption.Flags': ...
+        def __rxor__(self, other: 'QTextOption.Flag', /) -> 'QTextOption.Flags': ...
 
     class Tab(sip.simplewrapper):
 
@@ -10364,9 +10504,10 @@ class QTextTable(QTextFrame):
 
 class QTouchDevice(sip.simplewrapper):
 
-    class CapabilityFlag(int):
-        def __or__ (self, other: 'QTouchDevice.CapabilityFlag') -> 'QTouchDevice.Capabilities': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QTouchDevice.Capabilities': ...                             # type: ignore[override, misc]
+    @typing.final
+    class CapabilityFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QTouchDevice.CapabilityFlag', /) -> 'QTouchDevice.Capabilities': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QTouchDevice.Capabilities': ...                             # type: ignore[override, misc]
         
         Position = ... # type: QTouchDevice.CapabilityFlag
         Area = ... # type: QTouchDevice.CapabilityFlag
@@ -10384,7 +10525,8 @@ class QTouchDevice(sip.simplewrapper):
     NormalizedPosition = ...  # type: QTouchDevice.CapabilityFlag
     MouseEmulation = ...  # type: QTouchDevice.CapabilityFlag
 
-    class DeviceType(int):
+    @typing.final
+    class DeviceType(int, metaclass=sip._enumtype):
         TouchScreen = ... # type: QTouchDevice.DeviceType
         TouchPad = ... # type: QTouchDevice.DeviceType
 
@@ -10407,12 +10549,12 @@ class QTouchDevice(sip.simplewrapper):
         def __invert__(self) -> 'QTouchDevice.Capabilities': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QTouchDevice.Capabilities', 'QTouchDevice.CapabilityFlag', int]) -> 'QTouchDevice.Capabilities': ...
-        def __and__(self, other: typing.Union['QTouchDevice.Capabilities', 'QTouchDevice.CapabilityFlag', int]) -> 'QTouchDevice.Capabilities': ...
-        def __xor__(self, other: typing.Union['QTouchDevice.Capabilities', 'QTouchDevice.CapabilityFlag', int]) -> 'QTouchDevice.Capabilities': ...
-        def __ror__ (self, other: 'QTouchDevice.CapabilityFlag') -> 'QTouchDevice.Capabilities': ...
-        def __rand__(self, other: 'QTouchDevice.CapabilityFlag') -> 'QTouchDevice.Capabilities': ...
-        def __rxor__(self, other: 'QTouchDevice.CapabilityFlag') -> 'QTouchDevice.Capabilities': ...
+        def __or__ (self, other: typing.Union['QTouchDevice.Capabilities', 'QTouchDevice.CapabilityFlag', int], /) -> 'QTouchDevice.Capabilities': ...
+        def __and__(self, other: typing.Union['QTouchDevice.Capabilities', 'QTouchDevice.CapabilityFlag', int], /) -> 'QTouchDevice.Capabilities': ...
+        def __xor__(self, other: typing.Union['QTouchDevice.Capabilities', 'QTouchDevice.CapabilityFlag', int], /) -> 'QTouchDevice.Capabilities': ...
+        def __ror__ (self, other: 'QTouchDevice.CapabilityFlag', /) -> 'QTouchDevice.Capabilities': ...
+        def __rand__(self, other: 'QTouchDevice.CapabilityFlag', /) -> 'QTouchDevice.Capabilities': ...
+        def __rxor__(self, other: 'QTouchDevice.CapabilityFlag', /) -> 'QTouchDevice.Capabilities': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -10433,7 +10575,8 @@ class QTouchDevice(sip.simplewrapper):
 
 class QTransform(sip.simplewrapper):
 
-    class TransformationType(int):
+    @typing.final
+    class TransformationType(int, metaclass=sip._enumtype):
         TxNone = ... # type: QTransform.TransformationType
         TxTranslate = ... # type: QTransform.TransformationType
         TxScale = ... # type: QTransform.TransformationType
@@ -10526,7 +10669,8 @@ class QTransform(sip.simplewrapper):
 
 class QValidator(QtCore.QObject):
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         Invalid = ... # type: QValidator.State
         Intermediate = ... # type: QValidator.State
         Acceptable = ... # type: QValidator.State
@@ -10562,7 +10706,8 @@ class QIntValidator(QValidator):
 
 class QDoubleValidator(QValidator):
 
-    class Notation(int):
+    @typing.final
+    class Notation(int, metaclass=sip._enumtype):
         StandardNotation = ... # type: QDoubleValidator.Notation
         ScientificNotation = ... # type: QDoubleValidator.Notation
 
@@ -10628,7 +10773,7 @@ class QVector2D(sip.simplewrapper):
     def __init__(self, a0: 'QVector2D') -> None: ...
 
     def __neg__(self) -> 'QVector2D': ...
-    def __getitem__(self, i: int) -> float: ...
+    def __getitem__(self, i: int, /) -> float: ...
     def distanceToLine(self, point: 'QVector2D', direction: 'QVector2D') -> float: ...
     def distanceToPoint(self, point: 'QVector2D') -> float: ...
     def toPointF(self) -> QtCore.QPointF: ...
@@ -10671,7 +10816,7 @@ class QVector3D(sip.simplewrapper):
     def __neg__(self) -> 'QVector3D': ...
     def unproject(self, modelView: QMatrix4x4, projection: QMatrix4x4, viewport: QtCore.QRect) -> 'QVector3D': ...
     def project(self, modelView: QMatrix4x4, projection: QMatrix4x4, viewport: QtCore.QRect) -> 'QVector3D': ...
-    def __getitem__(self, i: int) -> float: ...
+    def __getitem__(self, i: int, /) -> float: ...
     def distanceToPoint(self, point: 'QVector3D') -> float: ...
     def toPointF(self) -> QtCore.QPointF: ...
     def toPoint(self) -> QtCore.QPoint: ...
@@ -10728,7 +10873,7 @@ class QVector4D(sip.simplewrapper):
     def __init__(self, a0: 'QVector4D') -> None: ...
 
     def __neg__(self) -> 'QVector4D': ...
-    def __getitem__(self, i: int) -> float: ...
+    def __getitem__(self, i: int, /) -> float: ...
     def toPointF(self) -> QtCore.QPointF: ...
     def toPoint(self) -> QtCore.QPoint: ...
     def setW(self, aW: float) -> None: ...

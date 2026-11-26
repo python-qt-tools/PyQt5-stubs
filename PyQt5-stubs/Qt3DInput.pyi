@@ -31,13 +31,13 @@ from PyQt5 import Qt3DCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstractActionInput(Qt3DCore.QNode): ...
@@ -105,7 +105,8 @@ class QAxis(Qt3DCore.QNode):
 
 class QAxisAccumulator(Qt3DCore.QComponent):
 
-    class SourceAxisType(int):
+    @typing.final
+    class SourceAxisType(int, metaclass=sip._enumtype):
         Velocity = ... # type: QAxisAccumulator.SourceAxisType
         Acceleration = ... # type: QAxisAccumulator.SourceAxisType
 
@@ -297,7 +298,8 @@ class QLogicalDevice(Qt3DCore.QComponent):
 
 class QMouseDevice('QAbstractPhysicalDevice'):
 
-    class Axis(int):
+    @typing.final
+    class Axis(int, metaclass=sip._enumtype):
         X = ... # type: QMouseDevice.Axis
         Y = ... # type: QMouseDevice.Axis
         WheelX = ... # type: QMouseDevice.Axis
@@ -326,7 +328,8 @@ class QMouseDevice('QAbstractPhysicalDevice'):
 
 class QMouseEvent(QtCore.QObject):
 
-    class Modifiers(int):
+    @typing.final
+    class Modifiers(int, metaclass=sip._enumtype):
         NoModifier = ... # type: QMouseEvent.Modifiers
         ShiftModifier = ... # type: QMouseEvent.Modifiers
         ControlModifier = ... # type: QMouseEvent.Modifiers
@@ -341,7 +344,8 @@ class QMouseEvent(QtCore.QObject):
     MetaModifier = ...  # type: QMouseEvent.Modifiers
     KeypadModifier = ...  # type: QMouseEvent.Modifiers
 
-    class Buttons(int):
+    @typing.final
+    class Buttons(int, metaclass=sip._enumtype):
         LeftButton = ... # type: QMouseEvent.Buttons
         RightButton = ... # type: QMouseEvent.Buttons
         MiddleButton = ... # type: QMouseEvent.Buttons
@@ -368,7 +372,8 @@ class QMouseEvent(QtCore.QObject):
 
 class QWheelEvent(QtCore.QObject):
 
-    class Modifiers(int):
+    @typing.final
+    class Modifiers(int, metaclass=sip._enumtype):
         NoModifier = ... # type: QWheelEvent.Modifiers
         ShiftModifier = ... # type: QWheelEvent.Modifiers
         ControlModifier = ... # type: QWheelEvent.Modifiers
@@ -383,7 +388,8 @@ class QWheelEvent(QtCore.QObject):
     MetaModifier = ...  # type: QWheelEvent.Modifiers
     KeypadModifier = ...  # type: QWheelEvent.Modifiers
 
-    class Buttons(int):
+    @typing.final
+    class Buttons(int, metaclass=sip._enumtype):
         LeftButton = ... # type: QWheelEvent.Buttons
         RightButton = ... # type: QWheelEvent.Buttons
         MiddleButton = ... # type: QWheelEvent.Buttons

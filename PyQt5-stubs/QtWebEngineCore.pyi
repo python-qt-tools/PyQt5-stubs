@@ -32,13 +32,13 @@ import datetime
 import enum
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QWebEngineClientCertificateStore(sip.simplewrapper):
@@ -85,7 +85,8 @@ class QWebEngineFindTextResult(sip.simplewrapper):
 
 class QWebEngineHttpRequest(sip.simplewrapper):
 
-    class Method(int):
+    @typing.final
+    class Method(int, metaclass=sip._enumtype):
         Get = ... # type: QWebEngineHttpRequest.Method
         Post = ... # type: QWebEngineHttpRequest.Method
 
@@ -157,7 +158,8 @@ class QWebEngineRegisterProtocolHandlerRequest(sip.simplewrapper):
 
 class QWebEngineUrlRequestInfo(sip.simplewrapper):
 
-    class NavigationType(int):
+    @typing.final
+    class NavigationType(int, metaclass=sip._enumtype):
         NavigationTypeLink = ... # type: QWebEngineUrlRequestInfo.NavigationType
         NavigationTypeTyped = ... # type: QWebEngineUrlRequestInfo.NavigationType
         NavigationTypeFormSubmitted = ... # type: QWebEngineUrlRequestInfo.NavigationType
@@ -174,7 +176,8 @@ class QWebEngineUrlRequestInfo(sip.simplewrapper):
     NavigationTypeRedirect = ...  # type: QWebEngineUrlRequestInfo.NavigationType
     NavigationTypeOther = ...  # type: QWebEngineUrlRequestInfo.NavigationType
 
-    class ResourceType(int):
+    @typing.final
+    class ResourceType(int, metaclass=sip._enumtype):
         ResourceTypeMainFrame = ... # type: QWebEngineUrlRequestInfo.ResourceType
         ResourceTypeSubFrame = ... # type: QWebEngineUrlRequestInfo.ResourceType
         ResourceTypeStylesheet = ... # type: QWebEngineUrlRequestInfo.ResourceType
@@ -239,7 +242,8 @@ class QWebEngineUrlRequestInterceptor(QtCore.QObject):
 
 class QWebEngineUrlRequestJob(QtCore.QObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QWebEngineUrlRequestJob.Error
         UrlNotFound = ... # type: QWebEngineUrlRequestJob.Error
         UrlInvalid = ... # type: QWebEngineUrlRequestJob.Error
@@ -265,9 +269,10 @@ class QWebEngineUrlRequestJob(QtCore.QObject):
 
 class QWebEngineUrlScheme(sip.simplewrapper):
 
-    class Flag(int):
-        def __or__ (self, other: 'QWebEngineUrlScheme.Flag') -> 'QWebEngineUrlScheme.Flags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QWebEngineUrlScheme.Flags': ...                          # type: ignore[override, misc]
+    @typing.final
+    class Flag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QWebEngineUrlScheme.Flag', /) -> 'QWebEngineUrlScheme.Flags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QWebEngineUrlScheme.Flags': ...                          # type: ignore[override, misc]
         
         SecureScheme = ... # type: QWebEngineUrlScheme.Flag
         LocalScheme = ... # type: QWebEngineUrlScheme.Flag
@@ -287,7 +292,8 @@ class QWebEngineUrlScheme(sip.simplewrapper):
     ContentSecurityPolicyIgnored = ...  # type: QWebEngineUrlScheme.Flag
     CorsEnabled = ...  # type: QWebEngineUrlScheme.Flag
 
-    class SpecialPort(int):
+    @typing.final
+    class SpecialPort(int, metaclass=sip._enumtype):
         PortUnspecified = ... # type: QWebEngineUrlScheme.SpecialPort
 
     PortUnspecified = ...  # type: QWebEngineUrlScheme.SpecialPort
@@ -319,12 +325,12 @@ class QWebEngineUrlScheme(sip.simplewrapper):
         def __invert__(self) -> 'QWebEngineUrlScheme.Flags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QWebEngineUrlScheme.Flags', 'QWebEngineUrlScheme.Flag', int]) -> 'QWebEngineUrlScheme.Flags': ...
-        def __and__(self, other: typing.Union['QWebEngineUrlScheme.Flags', 'QWebEngineUrlScheme.Flag', int]) -> 'QWebEngineUrlScheme.Flags': ...
-        def __xor__(self, other: typing.Union['QWebEngineUrlScheme.Flags', 'QWebEngineUrlScheme.Flag', int]) -> 'QWebEngineUrlScheme.Flags': ...
-        def __ror__ (self, other: 'QWebEngineUrlScheme.Flag') -> 'QWebEngineUrlScheme.Flags': ...
-        def __rand__(self, other: 'QWebEngineUrlScheme.Flag') -> 'QWebEngineUrlScheme.Flags': ...
-        def __rxor__(self, other: 'QWebEngineUrlScheme.Flag') -> 'QWebEngineUrlScheme.Flags': ...
+        def __or__ (self, other: typing.Union['QWebEngineUrlScheme.Flags', 'QWebEngineUrlScheme.Flag', int], /) -> 'QWebEngineUrlScheme.Flags': ...
+        def __and__(self, other: typing.Union['QWebEngineUrlScheme.Flags', 'QWebEngineUrlScheme.Flag', int], /) -> 'QWebEngineUrlScheme.Flags': ...
+        def __xor__(self, other: typing.Union['QWebEngineUrlScheme.Flags', 'QWebEngineUrlScheme.Flag', int], /) -> 'QWebEngineUrlScheme.Flags': ...
+        def __ror__ (self, other: 'QWebEngineUrlScheme.Flag', /) -> 'QWebEngineUrlScheme.Flags': ...
+        def __rand__(self, other: 'QWebEngineUrlScheme.Flag', /) -> 'QWebEngineUrlScheme.Flags': ...
+        def __rxor__(self, other: 'QWebEngineUrlScheme.Flag', /) -> 'QWebEngineUrlScheme.Flags': ...
 
     @typing.overload
     def __init__(self) -> None: ...

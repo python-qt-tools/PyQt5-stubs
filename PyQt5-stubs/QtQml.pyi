@@ -30,14 +30,15 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QJSEngine(QtCore.QObject):
 
-    class Extension(int):
-        def __or__ (self, other: 'QJSEngine.Extension') -> 'QJSEngine.Extensions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QJSEngine.Extensions': ...                     # type: ignore[override, misc]
+    @typing.final
+    class Extension(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QJSEngine.Extension', /) -> 'QJSEngine.Extensions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QJSEngine.Extensions': ...                     # type: ignore[override, misc]
         
         TranslationExtension = ... # type: QJSEngine.Extension
         ConsoleExtension = ... # type: QJSEngine.Extension
@@ -65,12 +66,12 @@ class QJSEngine(QtCore.QObject):
         def __invert__(self) -> 'QJSEngine.Extensions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QJSEngine.Extensions', 'QJSEngine.Extension', int]) -> 'QJSEngine.Extensions': ...
-        def __and__(self, other: typing.Union['QJSEngine.Extensions', 'QJSEngine.Extension', int]) -> 'QJSEngine.Extensions': ...
-        def __xor__(self, other: typing.Union['QJSEngine.Extensions', 'QJSEngine.Extension', int]) -> 'QJSEngine.Extensions': ...
-        def __ror__ (self, other: 'QJSEngine.Extension') -> 'QJSEngine.Extensions': ...
-        def __rand__(self, other: 'QJSEngine.Extension') -> 'QJSEngine.Extensions': ...
-        def __rxor__(self, other: 'QJSEngine.Extension') -> 'QJSEngine.Extensions': ...
+        def __or__ (self, other: typing.Union['QJSEngine.Extensions', 'QJSEngine.Extension', int], /) -> 'QJSEngine.Extensions': ...
+        def __and__(self, other: typing.Union['QJSEngine.Extensions', 'QJSEngine.Extension', int], /) -> 'QJSEngine.Extensions': ...
+        def __xor__(self, other: typing.Union['QJSEngine.Extensions', 'QJSEngine.Extension', int], /) -> 'QJSEngine.Extensions': ...
+        def __ror__ (self, other: 'QJSEngine.Extension', /) -> 'QJSEngine.Extensions': ...
+        def __rand__(self, other: 'QJSEngine.Extension', /) -> 'QJSEngine.Extensions': ...
+        def __rxor__(self, other: 'QJSEngine.Extension', /) -> 'QJSEngine.Extensions': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -101,7 +102,8 @@ class QJSEngine(QtCore.QObject):
 
 class QJSValue(sip.simplewrapper):
 
-    class ErrorType(int):
+    @typing.final
+    class ErrorType(int, metaclass=sip._enumtype):
         GenericError = ... # type: QJSValue.ErrorType
         EvalError = ... # type: QJSValue.ErrorType
         RangeError = ... # type: QJSValue.ErrorType
@@ -118,7 +120,8 @@ class QJSValue(sip.simplewrapper):
     TypeError = ...  # type: QJSValue.ErrorType
     URIError = ...  # type: QJSValue.ErrorType
 
-    class SpecialValue(int):
+    @typing.final
+    class SpecialValue(int, metaclass=sip._enumtype):
         NullValue = ... # type: QJSValue.SpecialValue
         UndefinedValue = ... # type: QJSValue.SpecialValue
 
@@ -184,7 +187,8 @@ class QJSValueIterator(sip.simplewrapper):
 
 class QQmlAbstractUrlInterceptor(sip.simplewrapper):
 
-    class DataType(int):
+    @typing.final
+    class DataType(int, metaclass=sip._enumtype):
         QmlFile = ... # type: QQmlAbstractUrlInterceptor.DataType
         JavaScriptFile = ... # type: QQmlAbstractUrlInterceptor.DataType
         QmldirFile = ... # type: QQmlAbstractUrlInterceptor.DataType
@@ -205,7 +209,8 @@ class QQmlAbstractUrlInterceptor(sip.simplewrapper):
 
 class QQmlEngine(QJSEngine):
 
-    class ObjectOwnership(int):
+    @typing.final
+    class ObjectOwnership(int, metaclass=sip._enumtype):
         CppOwnership = ... # type: QQmlEngine.ObjectOwnership
         JavaScriptOwnership = ... # type: QQmlEngine.ObjectOwnership
 
@@ -277,7 +282,8 @@ class QQmlApplicationEngine(QQmlEngine):
 
 class QQmlComponent(QtCore.QObject):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         Null = ... # type: QQmlComponent.Status
         Ready = ... # type: QQmlComponent.Status
         Loading = ... # type: QQmlComponent.Status
@@ -288,7 +294,8 @@ class QQmlComponent(QtCore.QObject):
     Loading = ...  # type: QQmlComponent.Status
     Error = ...  # type: QQmlComponent.Status
 
-    class CompilationMode(int):
+    @typing.final
+    class CompilationMode(int, metaclass=sip._enumtype):
         PreferSynchronous = ... # type: QQmlComponent.CompilationMode
         Asynchronous = ... # type: QQmlComponent.CompilationMode
 
@@ -371,15 +378,17 @@ class QQmlContext(QtCore.QObject):
 
 class QQmlImageProviderBase(sip.wrapper):
 
-    class Flag(int):
-        def __or__ (self, other: 'QQmlImageProviderBase.Flag') -> 'QQmlImageProviderBase.Flags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QQmlImageProviderBase.Flags': ...                            # type: ignore[override, misc]
+    @typing.final
+    class Flag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QQmlImageProviderBase.Flag', /) -> 'QQmlImageProviderBase.Flags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QQmlImageProviderBase.Flags': ...                            # type: ignore[override, misc]
         
         ForceAsynchronousImageLoading = ... # type: QQmlImageProviderBase.Flag
 
     ForceAsynchronousImageLoading = ...  # type: QQmlImageProviderBase.Flag
 
-    class ImageType(int):
+    @typing.final
+    class ImageType(int, metaclass=sip._enumtype):
         Image = ... # type: QQmlImageProviderBase.ImageType
         Pixmap = ... # type: QQmlImageProviderBase.ImageType
         Texture = ... # type: QQmlImageProviderBase.ImageType
@@ -406,12 +415,12 @@ class QQmlImageProviderBase(sip.wrapper):
         def __invert__(self) -> 'QQmlImageProviderBase.Flags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QQmlImageProviderBase.Flags', 'QQmlImageProviderBase.Flag', int]) -> 'QQmlImageProviderBase.Flags': ...
-        def __and__(self, other: typing.Union['QQmlImageProviderBase.Flags', 'QQmlImageProviderBase.Flag', int]) -> 'QQmlImageProviderBase.Flags': ...
-        def __xor__(self, other: typing.Union['QQmlImageProviderBase.Flags', 'QQmlImageProviderBase.Flag', int]) -> 'QQmlImageProviderBase.Flags': ...
-        def __ror__ (self, other: 'QQmlImageProviderBase.Flag') -> 'QQmlImageProviderBase.Flags': ...
-        def __rand__(self, other: 'QQmlImageProviderBase.Flag') -> 'QQmlImageProviderBase.Flags': ...
-        def __rxor__(self, other: 'QQmlImageProviderBase.Flag') -> 'QQmlImageProviderBase.Flags': ...
+        def __or__ (self, other: typing.Union['QQmlImageProviderBase.Flags', 'QQmlImageProviderBase.Flag', int], /) -> 'QQmlImageProviderBase.Flags': ...
+        def __and__(self, other: typing.Union['QQmlImageProviderBase.Flags', 'QQmlImageProviderBase.Flag', int], /) -> 'QQmlImageProviderBase.Flags': ...
+        def __xor__(self, other: typing.Union['QQmlImageProviderBase.Flags', 'QQmlImageProviderBase.Flag', int], /) -> 'QQmlImageProviderBase.Flags': ...
+        def __ror__ (self, other: 'QQmlImageProviderBase.Flag', /) -> 'QQmlImageProviderBase.Flags': ...
+        def __rand__(self, other: 'QQmlImageProviderBase.Flag', /) -> 'QQmlImageProviderBase.Flags': ...
+        def __rxor__(self, other: 'QQmlImageProviderBase.Flag', /) -> 'QQmlImageProviderBase.Flags': ...
 
     def __init__(self, a0: 'QQmlImageProviderBase') -> None: ...
 
@@ -498,7 +507,8 @@ class QQmlFileSelector(QtCore.QObject):
 
 class QQmlIncubator(sip.simplewrapper):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         Null = ... # type: QQmlIncubator.Status
         Ready = ... # type: QQmlIncubator.Status
         Loading = ... # type: QQmlIncubator.Status
@@ -509,7 +519,8 @@ class QQmlIncubator(sip.simplewrapper):
     Loading = ...  # type: QQmlIncubator.Status
     Error = ...  # type: QQmlIncubator.Status
 
-    class IncubationMode(int):
+    @typing.final
+    class IncubationMode(int, metaclass=sip._enumtype):
         Asynchronous = ... # type: QQmlIncubator.IncubationMode
         AsynchronousIfNested = ... # type: QQmlIncubator.IncubationMode
         Synchronous = ... # type: QQmlIncubator.IncubationMode
@@ -596,7 +607,8 @@ class QQmlParserStatus(sip.simplewrapper):
 
 class QQmlProperty(sip.simplewrapper):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         Invalid = ... # type: QQmlProperty.Type
         Property = ... # type: QQmlProperty.Type
         SignalProperty = ... # type: QQmlProperty.Type
@@ -605,7 +617,8 @@ class QQmlProperty(sip.simplewrapper):
     Property = ...  # type: QQmlProperty.Type
     SignalProperty = ...  # type: QQmlProperty.Type
 
-    class PropertyTypeCategory(int):
+    @typing.final
+    class PropertyTypeCategory(int, metaclass=sip._enumtype):
         InvalidCategory = ... # type: QQmlProperty.PropertyTypeCategory
         List = ... # type: QQmlProperty.PropertyTypeCategory
         Object = ... # type: QQmlProperty.PropertyTypeCategory
@@ -641,7 +654,7 @@ class QQmlProperty(sip.simplewrapper):
     def isDesignable(self) -> bool: ...
     def isWritable(self) -> bool: ...
     @typing.overload
-    def connectNotifySignal(self, slot: PYQT_SLOT) -> bool: ...
+    def connectNotifySignal(self, slot: _PYQT_SLOT) -> bool: ...
     @typing.overload
     def connectNotifySignal(self, dest: QtCore.QObject, method: int) -> bool: ...
     def needsNotifySignal(self) -> bool: ...
@@ -686,7 +699,7 @@ class QQmlPropertyMap(QtCore.QObject):
 
     def updateValue(self, key: str, input: typing.Any) -> typing.Any: ...
     valueChanged: typing.ClassVar[QtCore.pyqtSignal]
-    def __getitem__(self, key: str) -> typing.Any: ...
+    def __getitem__(self, key: str, /) -> typing.Any: ...
     def contains(self, key: str) -> bool: ...
     def isEmpty(self) -> bool: ...
     def __len__(self) -> int: ...

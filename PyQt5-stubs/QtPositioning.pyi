@@ -29,7 +29,7 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QGeoAddress(sip.wrapper):
@@ -85,14 +85,16 @@ class QGeoAreaMonitorInfo(sip.wrapper):
 
 class QGeoAreaMonitorSource(QtCore.QObject):
 
-    class AreaMonitorFeature(int):
+    @typing.final
+    class AreaMonitorFeature(int, metaclass=sip._enumtype):
         PersistentAreaMonitorFeature = ... # type: QGeoAreaMonitorSource.AreaMonitorFeature
         AnyAreaMonitorFeature = ... # type: QGeoAreaMonitorSource.AreaMonitorFeature
 
     PersistentAreaMonitorFeature = ...  # type: QGeoAreaMonitorSource.AreaMonitorFeature
     AnyAreaMonitorFeature = ...  # type: QGeoAreaMonitorSource.AreaMonitorFeature
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         AccessError = ... # type: QGeoAreaMonitorSource.Error
         InsufficientPositionInfo = ... # type: QGeoAreaMonitorSource.Error
         UnknownSourceError = ... # type: QGeoAreaMonitorSource.Error
@@ -119,12 +121,12 @@ class QGeoAreaMonitorSource(QtCore.QObject):
         def __invert__(self) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QGeoAreaMonitorSource.AreaMonitorFeatures', 'QGeoAreaMonitorSource.AreaMonitorFeature', int]) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
-        def __and__(self, other: typing.Union['QGeoAreaMonitorSource.AreaMonitorFeatures', 'QGeoAreaMonitorSource.AreaMonitorFeature', int]) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
-        def __xor__(self, other: typing.Union['QGeoAreaMonitorSource.AreaMonitorFeatures', 'QGeoAreaMonitorSource.AreaMonitorFeature', int]) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
-        def __ror__ (self, other: 'QGeoAreaMonitorSource.AreaMonitorFeature') -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
-        def __rand__(self, other: 'QGeoAreaMonitorSource.AreaMonitorFeature') -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
-        def __rxor__(self, other: 'QGeoAreaMonitorSource.AreaMonitorFeature') -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
+        def __or__ (self, other: typing.Union['QGeoAreaMonitorSource.AreaMonitorFeatures', 'QGeoAreaMonitorSource.AreaMonitorFeature', int], /) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
+        def __and__(self, other: typing.Union['QGeoAreaMonitorSource.AreaMonitorFeatures', 'QGeoAreaMonitorSource.AreaMonitorFeature', int], /) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
+        def __xor__(self, other: typing.Union['QGeoAreaMonitorSource.AreaMonitorFeatures', 'QGeoAreaMonitorSource.AreaMonitorFeature', int], /) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
+        def __ror__ (self, other: 'QGeoAreaMonitorSource.AreaMonitorFeature', /) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
+        def __rand__(self, other: 'QGeoAreaMonitorSource.AreaMonitorFeature', /) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
+        def __rxor__(self, other: 'QGeoAreaMonitorSource.AreaMonitorFeature', /) -> 'QGeoAreaMonitorSource.AreaMonitorFeatures': ...
 
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
@@ -153,7 +155,8 @@ class QGeoAreaMonitorSource(QtCore.QObject):
 
 class QGeoShape(sip.wrapper):
 
-    class ShapeType(int):
+    @typing.final
+    class ShapeType(int, metaclass=sip._enumtype):
         UnknownType = ... # type: QGeoShape.ShapeType
         RectangleType = ... # type: QGeoShape.ShapeType
         CircleType = ... # type: QGeoShape.ShapeType
@@ -204,7 +207,8 @@ class QGeoCircle(QGeoShape):
 
 class QGeoCoordinate(sip.wrapper):
 
-    class CoordinateFormat(int):
+    @typing.final
+    class CoordinateFormat(int, metaclass=sip._enumtype):
         Degrees = ... # type: QGeoCoordinate.CoordinateFormat
         DegreesWithHemisphere = ... # type: QGeoCoordinate.CoordinateFormat
         DegreesMinutes = ... # type: QGeoCoordinate.CoordinateFormat
@@ -219,7 +223,8 @@ class QGeoCoordinate(sip.wrapper):
     DegreesMinutesSeconds = ...  # type: QGeoCoordinate.CoordinateFormat
     DegreesMinutesSecondsWithHemisphere = ...  # type: QGeoCoordinate.CoordinateFormat
 
-    class CoordinateType(int):
+    @typing.final
+    class CoordinateType(int, metaclass=sip._enumtype):
         InvalidCoordinate = ... # type: QGeoCoordinate.CoordinateType
         Coordinate2D = ... # type: QGeoCoordinate.CoordinateType
         Coordinate3D = ... # type: QGeoCoordinate.CoordinateType
@@ -343,7 +348,8 @@ class QGeoPolygon(QGeoShape):
 
 class QGeoPositionInfo(sip.wrapper):
 
-    class Attribute(int):
+    @typing.final
+    class Attribute(int, metaclass=sip._enumtype):
         Direction = ... # type: QGeoPositionInfo.Attribute
         GroundSpeed = ... # type: QGeoPositionInfo.Attribute
         VerticalSpeed = ... # type: QGeoPositionInfo.Attribute
@@ -378,9 +384,10 @@ class QGeoPositionInfo(sip.wrapper):
 
 class QGeoPositionInfoSource(QtCore.QObject):
 
-    class PositioningMethod(int):
-        def __or__ (self, other: 'QGeoPositionInfoSource.PositioningMethod') -> 'QGeoPositionInfoSource.PositioningMethods': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QGeoPositionInfoSource.PositioningMethods': ...                                          # type: ignore[override, misc]
+    @typing.final
+    class PositioningMethod(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QGeoPositionInfoSource.PositioningMethod', /) -> 'QGeoPositionInfoSource.PositioningMethods': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QGeoPositionInfoSource.PositioningMethods': ...                                          # type: ignore[override, misc]
         
         NoPositioningMethods = ... # type: QGeoPositionInfoSource.PositioningMethod
         SatellitePositioningMethods = ... # type: QGeoPositionInfoSource.PositioningMethod
@@ -392,7 +399,8 @@ class QGeoPositionInfoSource(QtCore.QObject):
     NonSatellitePositioningMethods = ...  # type: QGeoPositionInfoSource.PositioningMethod
     AllPositioningMethods = ...  # type: QGeoPositionInfoSource.PositioningMethod
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         AccessError = ... # type: QGeoPositionInfoSource.Error
         ClosedError = ... # type: QGeoPositionInfoSource.Error
         UnknownSourceError = ... # type: QGeoPositionInfoSource.Error
@@ -419,12 +427,12 @@ class QGeoPositionInfoSource(QtCore.QObject):
         def __invert__(self) -> 'QGeoPositionInfoSource.PositioningMethods': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QGeoPositionInfoSource.PositioningMethods', 'QGeoPositionInfoSource.PositioningMethod', int]) -> 'QGeoPositionInfoSource.PositioningMethods': ...
-        def __and__(self, other: typing.Union['QGeoPositionInfoSource.PositioningMethods', 'QGeoPositionInfoSource.PositioningMethod', int]) -> 'QGeoPositionInfoSource.PositioningMethods': ...
-        def __xor__(self, other: typing.Union['QGeoPositionInfoSource.PositioningMethods', 'QGeoPositionInfoSource.PositioningMethod', int]) -> 'QGeoPositionInfoSource.PositioningMethods': ...
-        def __ror__ (self, other: 'QGeoPositionInfoSource.PositioningMethod') -> 'QGeoPositionInfoSource.PositioningMethods': ...
-        def __rand__(self, other: 'QGeoPositionInfoSource.PositioningMethod') -> 'QGeoPositionInfoSource.PositioningMethods': ...
-        def __rxor__(self, other: 'QGeoPositionInfoSource.PositioningMethod') -> 'QGeoPositionInfoSource.PositioningMethods': ...
+        def __or__ (self, other: typing.Union['QGeoPositionInfoSource.PositioningMethods', 'QGeoPositionInfoSource.PositioningMethod', int], /) -> 'QGeoPositionInfoSource.PositioningMethods': ...
+        def __and__(self, other: typing.Union['QGeoPositionInfoSource.PositioningMethods', 'QGeoPositionInfoSource.PositioningMethod', int], /) -> 'QGeoPositionInfoSource.PositioningMethods': ...
+        def __xor__(self, other: typing.Union['QGeoPositionInfoSource.PositioningMethods', 'QGeoPositionInfoSource.PositioningMethod', int], /) -> 'QGeoPositionInfoSource.PositioningMethods': ...
+        def __ror__ (self, other: 'QGeoPositionInfoSource.PositioningMethod', /) -> 'QGeoPositionInfoSource.PositioningMethods': ...
+        def __rand__(self, other: 'QGeoPositionInfoSource.PositioningMethod', /) -> 'QGeoPositionInfoSource.PositioningMethods': ...
+        def __rxor__(self, other: 'QGeoPositionInfoSource.PositioningMethod', /) -> 'QGeoPositionInfoSource.PositioningMethods': ...
 
     def __init__(self, parent: QtCore.QObject) -> None: ...
 
@@ -502,7 +510,8 @@ class QGeoRectangle(QGeoShape):
 
 class QGeoSatelliteInfo(sip.wrapper):
 
-    class SatelliteSystem(int):
+    @typing.final
+    class SatelliteSystem(int, metaclass=sip._enumtype):
         Undefined = ... # type: QGeoSatelliteInfo.SatelliteSystem
         GPS = ... # type: QGeoSatelliteInfo.SatelliteSystem
         GLONASS = ... # type: QGeoSatelliteInfo.SatelliteSystem
@@ -511,7 +520,8 @@ class QGeoSatelliteInfo(sip.wrapper):
     GPS = ...  # type: QGeoSatelliteInfo.SatelliteSystem
     GLONASS = ...  # type: QGeoSatelliteInfo.SatelliteSystem
 
-    class Attribute(int):
+    @typing.final
+    class Attribute(int, metaclass=sip._enumtype):
         Elevation = ... # type: QGeoSatelliteInfo.Attribute
         Azimuth = ... # type: QGeoSatelliteInfo.Attribute
 
@@ -537,7 +547,8 @@ class QGeoSatelliteInfo(sip.wrapper):
 
 class QGeoSatelliteInfoSource(QtCore.QObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         AccessError = ... # type: QGeoSatelliteInfoSource.Error
         ClosedError = ... # type: QGeoSatelliteInfoSource.Error
         NoError = ... # type: QGeoSatelliteInfoSource.Error
@@ -579,7 +590,8 @@ class QGeoSatelliteInfoSource(QtCore.QObject):
 
 class QNmeaPositionInfoSource(QGeoPositionInfoSource):
 
-    class UpdateMode(int):
+    @typing.final
+    class UpdateMode(int, metaclass=sip._enumtype):
         RealTimeMode = ... # type: QNmeaPositionInfoSource.UpdateMode
         SimulationMode = ... # type: QNmeaPositionInfoSource.UpdateMode
 

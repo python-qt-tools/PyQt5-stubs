@@ -69,8 +69,21 @@ PyQt5.QtXmlPatterns.QAbstractXmlNodeModel.__init__
 PyQt5.QtXmlPatterns.QAbstractXmlReceiver.__init__
 PyQt5.QtXmlPatterns.QXmlResultItems.__init__
 PyQt5.sip.simplewrapper.__init__
-PyQt5.sip.wrappertype.__init__
 
 # modules can not be imported as wheel on linux + macosx. Ignore for now
 PyQt5.QtWebKit
 PyQt5.QtWebKitWidgets
+
+# SIP exposes these slots, but valid scalar and value operands return
+# NotImplemented: reverse division is not a supported operation.
+PyQt5.QtCore.QPoint.__rtruediv__
+PyQt5.QtCore.QPointF.__rtruediv__
+PyQt5.QtCore.QSize.__rtruediv__
+PyQt5.QtCore.QSizeF.__rtruediv__
+
+# Modules outside the supported stub coverage documented in README.md.
+PyQt5\.Qt
+PyQt5\.QtTextToSpeech
+PyQt5\.pylupdate(?:_main)?
+PyQt5\.pyrcc(?:_main)?
+PyQt5\.uic(?:\..*)?

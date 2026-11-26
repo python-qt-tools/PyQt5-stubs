@@ -31,7 +31,7 @@ import datetime
 import enum
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QOcspRevocationReason(enum.IntEnum):
@@ -91,9 +91,10 @@ class QAbstractNetworkCache(QtCore.QObject):
 
 class QAbstractSocket(QtCore.QIODevice):
 
-    class PauseMode(int):
-        def __or__ (self, other: 'QAbstractSocket.PauseMode') -> 'QAbstractSocket.PauseModes': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QAbstractSocket.PauseModes': ...                           # type: ignore[override, misc]
+    @typing.final
+    class PauseMode(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QAbstractSocket.PauseMode', /) -> 'QAbstractSocket.PauseModes': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QAbstractSocket.PauseModes': ...                           # type: ignore[override, misc]
         
         PauseNever = ... # type: QAbstractSocket.PauseMode
         PauseOnSslErrors = ... # type: QAbstractSocket.PauseMode
@@ -101,9 +102,10 @@ class QAbstractSocket(QtCore.QIODevice):
     PauseNever = ...  # type: QAbstractSocket.PauseMode
     PauseOnSslErrors = ...  # type: QAbstractSocket.PauseMode
 
-    class BindFlag(int):
-        def __or__ (self, other: 'QAbstractSocket.BindFlag') -> 'QAbstractSocket.BindMode': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QAbstractSocket.BindMode': ...                          # type: ignore[override, misc]
+    @typing.final
+    class BindFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QAbstractSocket.BindFlag', /) -> 'QAbstractSocket.BindMode': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QAbstractSocket.BindMode': ...                          # type: ignore[override, misc]
         
         DefaultForPlatform = ... # type: QAbstractSocket.BindFlag
         ShareAddress = ... # type: QAbstractSocket.BindFlag
@@ -115,7 +117,8 @@ class QAbstractSocket(QtCore.QIODevice):
     DontShareAddress = ...  # type: QAbstractSocket.BindFlag
     ReuseAddressHint = ...  # type: QAbstractSocket.BindFlag
 
-    class SocketOption(int):
+    @typing.final
+    class SocketOption(int, metaclass=sip._enumtype):
         LowDelayOption = ... # type: QAbstractSocket.SocketOption
         KeepAliveOption = ... # type: QAbstractSocket.SocketOption
         MulticastTtlOption = ... # type: QAbstractSocket.SocketOption
@@ -134,7 +137,8 @@ class QAbstractSocket(QtCore.QIODevice):
     ReceiveBufferSizeSocketOption = ...  # type: QAbstractSocket.SocketOption
     PathMtuSocketOption = ...  # type: QAbstractSocket.SocketOption
 
-    class SocketState(int):
+    @typing.final
+    class SocketState(int, metaclass=sip._enumtype):
         UnconnectedState = ... # type: QAbstractSocket.SocketState
         HostLookupState = ... # type: QAbstractSocket.SocketState
         ConnectingState = ... # type: QAbstractSocket.SocketState
@@ -151,7 +155,8 @@ class QAbstractSocket(QtCore.QIODevice):
     ListeningState = ...  # type: QAbstractSocket.SocketState
     ClosingState = ...  # type: QAbstractSocket.SocketState
 
-    class SocketError(int):
+    @typing.final
+    class SocketError(int, metaclass=sip._enumtype):
         ConnectionRefusedError = ... # type: QAbstractSocket.SocketError
         RemoteHostClosedError = ... # type: QAbstractSocket.SocketError
         HostNotFoundError = ... # type: QAbstractSocket.SocketError
@@ -202,7 +207,8 @@ class QAbstractSocket(QtCore.QIODevice):
     TemporaryError = ...  # type: QAbstractSocket.SocketError
     UnknownSocketError = ...  # type: QAbstractSocket.SocketError
 
-    class NetworkLayerProtocol(int):
+    @typing.final
+    class NetworkLayerProtocol(int, metaclass=sip._enumtype):
         IPv4Protocol = ... # type: QAbstractSocket.NetworkLayerProtocol
         IPv6Protocol = ... # type: QAbstractSocket.NetworkLayerProtocol
         AnyIPProtocol = ... # type: QAbstractSocket.NetworkLayerProtocol
@@ -213,7 +219,8 @@ class QAbstractSocket(QtCore.QIODevice):
     AnyIPProtocol = ...  # type: QAbstractSocket.NetworkLayerProtocol
     UnknownNetworkLayerProtocol = ...  # type: QAbstractSocket.NetworkLayerProtocol
 
-    class SocketType(int):
+    @typing.final
+    class SocketType(int, metaclass=sip._enumtype):
         TcpSocket = ... # type: QAbstractSocket.SocketType
         UdpSocket = ... # type: QAbstractSocket.SocketType
         SctpSocket = ... # type: QAbstractSocket.SocketType
@@ -240,12 +247,12 @@ class QAbstractSocket(QtCore.QIODevice):
         def __invert__(self) -> 'QAbstractSocket.BindMode': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QAbstractSocket.BindMode', 'QAbstractSocket.BindFlag', int]) -> 'QAbstractSocket.BindMode': ...
-        def __and__(self, other: typing.Union['QAbstractSocket.BindMode', 'QAbstractSocket.BindFlag', int]) -> 'QAbstractSocket.BindMode': ...
-        def __xor__(self, other: typing.Union['QAbstractSocket.BindMode', 'QAbstractSocket.BindFlag', int]) -> 'QAbstractSocket.BindMode': ...
-        def __ror__ (self, other: 'QAbstractSocket.BindFlag') -> 'QAbstractSocket.BindMode': ...
-        def __rand__(self, other: 'QAbstractSocket.BindFlag') -> 'QAbstractSocket.BindMode': ...
-        def __rxor__(self, other: 'QAbstractSocket.BindFlag') -> 'QAbstractSocket.BindMode': ...
+        def __or__ (self, other: typing.Union['QAbstractSocket.BindMode', 'QAbstractSocket.BindFlag', int], /) -> 'QAbstractSocket.BindMode': ...
+        def __and__(self, other: typing.Union['QAbstractSocket.BindMode', 'QAbstractSocket.BindFlag', int], /) -> 'QAbstractSocket.BindMode': ...
+        def __xor__(self, other: typing.Union['QAbstractSocket.BindMode', 'QAbstractSocket.BindFlag', int], /) -> 'QAbstractSocket.BindMode': ...
+        def __ror__ (self, other: 'QAbstractSocket.BindFlag', /) -> 'QAbstractSocket.BindMode': ...
+        def __rand__(self, other: 'QAbstractSocket.BindFlag', /) -> 'QAbstractSocket.BindMode': ...
+        def __rxor__(self, other: 'QAbstractSocket.BindFlag', /) -> 'QAbstractSocket.BindMode': ...
 
     class PauseModes(sip.simplewrapper):
 
@@ -263,12 +270,12 @@ class QAbstractSocket(QtCore.QIODevice):
         def __invert__(self) -> 'QAbstractSocket.PauseModes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QAbstractSocket.PauseModes', 'QAbstractSocket.PauseMode', int]) -> 'QAbstractSocket.PauseModes': ...
-        def __and__(self, other: typing.Union['QAbstractSocket.PauseModes', 'QAbstractSocket.PauseMode', int]) -> 'QAbstractSocket.PauseModes': ...
-        def __xor__(self, other: typing.Union['QAbstractSocket.PauseModes', 'QAbstractSocket.PauseMode', int]) -> 'QAbstractSocket.PauseModes': ...
-        def __ror__ (self, other: 'QAbstractSocket.PauseMode') -> 'QAbstractSocket.PauseModes': ...
-        def __rand__(self, other: 'QAbstractSocket.PauseMode') -> 'QAbstractSocket.PauseModes': ...
-        def __rxor__(self, other: 'QAbstractSocket.PauseMode') -> 'QAbstractSocket.PauseModes': ...
+        def __or__ (self, other: typing.Union['QAbstractSocket.PauseModes', 'QAbstractSocket.PauseMode', int], /) -> 'QAbstractSocket.PauseModes': ...
+        def __and__(self, other: typing.Union['QAbstractSocket.PauseModes', 'QAbstractSocket.PauseMode', int], /) -> 'QAbstractSocket.PauseModes': ...
+        def __xor__(self, other: typing.Union['QAbstractSocket.PauseModes', 'QAbstractSocket.PauseMode', int], /) -> 'QAbstractSocket.PauseModes': ...
+        def __ror__ (self, other: 'QAbstractSocket.PauseMode', /) -> 'QAbstractSocket.PauseModes': ...
+        def __rand__(self, other: 'QAbstractSocket.PauseMode', /) -> 'QAbstractSocket.PauseModes': ...
+        def __rxor__(self, other: 'QAbstractSocket.PauseMode', /) -> 'QAbstractSocket.PauseModes': ...
 
     def __init__(self, socketType: 'QAbstractSocket.SocketType', parent: QtCore.QObject) -> None: ...
 
@@ -422,7 +429,8 @@ class QDnsTextRecord(sip.simplewrapper):
 
 class QDnsLookup(QtCore.QObject):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         A = ... # type: QDnsLookup.Type
         AAAA = ... # type: QDnsLookup.Type
         ANY = ... # type: QDnsLookup.Type
@@ -443,7 +451,8 @@ class QDnsLookup(QtCore.QObject):
     SRV = ...  # type: QDnsLookup.Type
     TXT = ...  # type: QDnsLookup.Type
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QDnsLookup.Error
         ResolverError = ... # type: QDnsLookup.Error
         OperationCancelledError = ... # type: QDnsLookup.Error
@@ -495,9 +504,10 @@ class QDnsLookup(QtCore.QObject):
 
 class QHostAddress(sip.simplewrapper):
 
-    class ConversionModeFlag(int):
-        def __or__ (self, other: 'QHostAddress.ConversionModeFlag') -> 'QHostAddress.ConversionMode': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QHostAddress.ConversionMode': ...                                 # type: ignore[override, misc]
+    @typing.final
+    class ConversionModeFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QHostAddress.ConversionModeFlag', /) -> 'QHostAddress.ConversionMode': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QHostAddress.ConversionMode': ...                                 # type: ignore[override, misc]
         
         ConvertV4MappedToIPv4 = ... # type: QHostAddress.ConversionModeFlag
         ConvertV4CompatToIPv4 = ... # type: QHostAddress.ConversionModeFlag
@@ -513,7 +523,8 @@ class QHostAddress(sip.simplewrapper):
     TolerantConversion = ...  # type: QHostAddress.ConversionModeFlag
     StrictConversion = ...  # type: QHostAddress.ConversionModeFlag
 
-    class SpecialAddress(int):
+    @typing.final
+    class SpecialAddress(int, metaclass=sip._enumtype):
         Null = ... # type: QHostAddress.SpecialAddress
         Broadcast = ... # type: QHostAddress.SpecialAddress
         LocalHost = ... # type: QHostAddress.SpecialAddress
@@ -546,12 +557,12 @@ class QHostAddress(sip.simplewrapper):
         def __invert__(self) -> 'QHostAddress.ConversionMode': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QHostAddress.ConversionMode', 'QHostAddress.ConversionModeFlag', int]) -> 'QHostAddress.ConversionMode': ...
-        def __and__(self, other: typing.Union['QHostAddress.ConversionMode', 'QHostAddress.ConversionModeFlag', int]) -> 'QHostAddress.ConversionMode': ...
-        def __xor__(self, other: typing.Union['QHostAddress.ConversionMode', 'QHostAddress.ConversionModeFlag', int]) -> 'QHostAddress.ConversionMode': ...
-        def __ror__ (self, other: 'QHostAddress.ConversionModeFlag') -> 'QHostAddress.ConversionMode': ...
-        def __rand__(self, other: 'QHostAddress.ConversionModeFlag') -> 'QHostAddress.ConversionMode': ...
-        def __rxor__(self, other: 'QHostAddress.ConversionModeFlag') -> 'QHostAddress.ConversionMode': ...
+        def __or__ (self, other: typing.Union['QHostAddress.ConversionMode', 'QHostAddress.ConversionModeFlag', int], /) -> 'QHostAddress.ConversionMode': ...
+        def __and__(self, other: typing.Union['QHostAddress.ConversionMode', 'QHostAddress.ConversionModeFlag', int], /) -> 'QHostAddress.ConversionMode': ...
+        def __xor__(self, other: typing.Union['QHostAddress.ConversionMode', 'QHostAddress.ConversionModeFlag', int], /) -> 'QHostAddress.ConversionMode': ...
+        def __ror__ (self, other: 'QHostAddress.ConversionModeFlag', /) -> 'QHostAddress.ConversionMode': ...
+        def __rand__(self, other: 'QHostAddress.ConversionModeFlag', /) -> 'QHostAddress.ConversionMode': ...
+        def __rxor__(self, other: 'QHostAddress.ConversionModeFlag', /) -> 'QHostAddress.ConversionMode': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -602,7 +613,8 @@ class QHostAddress(sip.simplewrapper):
 
 class QHostInfo(sip.simplewrapper):
 
-    class HostInfoError(int):
+    @typing.final
+    class HostInfoError(int, metaclass=sip._enumtype):
         NoError = ... # type: QHostInfo.HostInfoError
         HostNotFound = ... # type: QHostInfo.HostInfoError
         UnknownError = ... # type: QHostInfo.HostInfoError
@@ -626,7 +638,7 @@ class QHostInfo(sip.simplewrapper):
     @staticmethod
     def abortHostLookup(lookupId: int) -> None: ...
     @staticmethod
-    def lookupHost(name: str, slot: PYQT_SLOT) -> int: ...
+    def lookupHost(name: str, slot: _PYQT_SLOT) -> int: ...
     def lookupId(self) -> int: ...
     def setLookupId(self, id: int) -> None: ...
     def setErrorString(self, errorString: str) -> None: ...
@@ -641,9 +653,10 @@ class QHostInfo(sip.simplewrapper):
 
 class QHstsPolicy(sip.simplewrapper):
 
-    class PolicyFlag(int):
-        def __or__ (self, other: 'QHstsPolicy.PolicyFlag') -> 'QHstsPolicy.PolicyFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QHstsPolicy.PolicyFlags': ...                        # type: ignore[override, misc]
+    @typing.final
+    class PolicyFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QHstsPolicy.PolicyFlag', /) -> 'QHstsPolicy.PolicyFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QHstsPolicy.PolicyFlags': ...                        # type: ignore[override, misc]
         
         IncludeSubDomains = ... # type: QHstsPolicy.PolicyFlag
 
@@ -665,12 +678,12 @@ class QHstsPolicy(sip.simplewrapper):
         def __invert__(self) -> 'QHstsPolicy.PolicyFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QHstsPolicy.PolicyFlags', 'QHstsPolicy.PolicyFlag', int]) -> 'QHstsPolicy.PolicyFlags': ...
-        def __and__(self, other: typing.Union['QHstsPolicy.PolicyFlags', 'QHstsPolicy.PolicyFlag', int]) -> 'QHstsPolicy.PolicyFlags': ...
-        def __xor__(self, other: typing.Union['QHstsPolicy.PolicyFlags', 'QHstsPolicy.PolicyFlag', int]) -> 'QHstsPolicy.PolicyFlags': ...
-        def __ror__ (self, other: 'QHstsPolicy.PolicyFlag') -> 'QHstsPolicy.PolicyFlags': ...
-        def __rand__(self, other: 'QHstsPolicy.PolicyFlag') -> 'QHstsPolicy.PolicyFlags': ...
-        def __rxor__(self, other: 'QHstsPolicy.PolicyFlag') -> 'QHstsPolicy.PolicyFlags': ...
+        def __or__ (self, other: typing.Union['QHstsPolicy.PolicyFlags', 'QHstsPolicy.PolicyFlag', int], /) -> 'QHstsPolicy.PolicyFlags': ...
+        def __and__(self, other: typing.Union['QHstsPolicy.PolicyFlags', 'QHstsPolicy.PolicyFlag', int], /) -> 'QHstsPolicy.PolicyFlags': ...
+        def __xor__(self, other: typing.Union['QHstsPolicy.PolicyFlags', 'QHstsPolicy.PolicyFlag', int], /) -> 'QHstsPolicy.PolicyFlags': ...
+        def __ror__ (self, other: 'QHstsPolicy.PolicyFlag', /) -> 'QHstsPolicy.PolicyFlags': ...
+        def __rand__(self, other: 'QHstsPolicy.PolicyFlag', /) -> 'QHstsPolicy.PolicyFlags': ...
+        def __rxor__(self, other: 'QHstsPolicy.PolicyFlag', /) -> 'QHstsPolicy.PolicyFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -725,7 +738,8 @@ class QHttpPart(sip.simplewrapper):
 
 class QHttpMultiPart(QtCore.QObject):
 
-    class ContentType(int):
+    @typing.final
+    class ContentType(int, metaclass=sip._enumtype):
         MixedType = ... # type: QHttpMultiPart.ContentType
         RelatedType = ... # type: QHttpMultiPart.ContentType
         FormDataType = ... # type: QHttpMultiPart.ContentType
@@ -749,9 +763,10 @@ class QHttpMultiPart(QtCore.QObject):
 
 class QLocalServer(QtCore.QObject):
 
-    class SocketOption(int):
-        def __or__ (self, other: 'QLocalServer.SocketOption') -> 'QLocalServer.SocketOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QLocalServer.SocketOptions': ...                           # type: ignore[override, misc]
+    @typing.final
+    class SocketOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QLocalServer.SocketOption', /) -> 'QLocalServer.SocketOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QLocalServer.SocketOptions': ...                           # type: ignore[override, misc]
         
         UserAccessOption = ... # type: QLocalServer.SocketOption
         GroupAccessOption = ... # type: QLocalServer.SocketOption
@@ -779,12 +794,12 @@ class QLocalServer(QtCore.QObject):
         def __invert__(self) -> 'QLocalServer.SocketOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QLocalServer.SocketOptions', 'QLocalServer.SocketOption', int]) -> 'QLocalServer.SocketOptions': ...
-        def __and__(self, other: typing.Union['QLocalServer.SocketOptions', 'QLocalServer.SocketOption', int]) -> 'QLocalServer.SocketOptions': ...
-        def __xor__(self, other: typing.Union['QLocalServer.SocketOptions', 'QLocalServer.SocketOption', int]) -> 'QLocalServer.SocketOptions': ...
-        def __ror__ (self, other: 'QLocalServer.SocketOption') -> 'QLocalServer.SocketOptions': ...
-        def __rand__(self, other: 'QLocalServer.SocketOption') -> 'QLocalServer.SocketOptions': ...
-        def __rxor__(self, other: 'QLocalServer.SocketOption') -> 'QLocalServer.SocketOptions': ...
+        def __or__ (self, other: typing.Union['QLocalServer.SocketOptions', 'QLocalServer.SocketOption', int], /) -> 'QLocalServer.SocketOptions': ...
+        def __and__(self, other: typing.Union['QLocalServer.SocketOptions', 'QLocalServer.SocketOption', int], /) -> 'QLocalServer.SocketOptions': ...
+        def __xor__(self, other: typing.Union['QLocalServer.SocketOptions', 'QLocalServer.SocketOption', int], /) -> 'QLocalServer.SocketOptions': ...
+        def __ror__ (self, other: 'QLocalServer.SocketOption', /) -> 'QLocalServer.SocketOptions': ...
+        def __rand__(self, other: 'QLocalServer.SocketOption', /) -> 'QLocalServer.SocketOptions': ...
+        def __rxor__(self, other: 'QLocalServer.SocketOption', /) -> 'QLocalServer.SocketOptions': ...
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -814,7 +829,8 @@ class QLocalServer(QtCore.QObject):
 
 class QLocalSocket(QtCore.QIODevice):
 
-    class LocalSocketState(int):
+    @typing.final
+    class LocalSocketState(int, metaclass=sip._enumtype):
         UnconnectedState = ... # type: QLocalSocket.LocalSocketState
         ConnectingState = ... # type: QLocalSocket.LocalSocketState
         ConnectedState = ... # type: QLocalSocket.LocalSocketState
@@ -825,7 +841,8 @@ class QLocalSocket(QtCore.QIODevice):
     ConnectedState = ...  # type: QLocalSocket.LocalSocketState
     ClosingState = ...  # type: QLocalSocket.LocalSocketState
 
-    class LocalSocketError(int):
+    @typing.final
+    class LocalSocketError(int, metaclass=sip._enumtype):
         ConnectionRefusedError = ... # type: QLocalSocket.LocalSocketError
         PeerClosedError = ... # type: QLocalSocket.LocalSocketError
         ServerNotFoundError = ... # type: QLocalSocket.LocalSocketError
@@ -889,7 +906,8 @@ class QLocalSocket(QtCore.QIODevice):
 
 class QNetworkAccessManager(QtCore.QObject):
 
-    class NetworkAccessibility(int):
+    @typing.final
+    class NetworkAccessibility(int, metaclass=sip._enumtype):
         UnknownAccessibility = ... # type: QNetworkAccessManager.NetworkAccessibility
         NotAccessible = ... # type: QNetworkAccessManager.NetworkAccessibility
         Accessible = ... # type: QNetworkAccessManager.NetworkAccessibility
@@ -898,7 +916,8 @@ class QNetworkAccessManager(QtCore.QObject):
     NotAccessible = ...  # type: QNetworkAccessManager.NetworkAccessibility
     Accessible = ...  # type: QNetworkAccessManager.NetworkAccessibility
 
-    class Operation(int):
+    @typing.final
+    class Operation(int, metaclass=sip._enumtype):
         HeadOperation = ... # type: QNetworkAccessManager.Operation
         GetOperation = ... # type: QNetworkAccessManager.Operation
         PutOperation = ... # type: QNetworkAccessManager.Operation
@@ -953,8 +972,8 @@ class QNetworkAccessManager(QtCore.QObject):
     def setProxyFactory(self, factory: 'QNetworkProxyFactory') -> None: ...
     def proxyFactory(self) -> 'QNetworkProxyFactory': ...
     def createRequest(self, op: 'QNetworkAccessManager.Operation', request: 'QNetworkRequest', device: typing.Optional[QtCore.QIODevice] = ...) -> 'QNetworkReply': ...
-    preSharedKeyAuthenticationRequired = typing.ClassVar[QtCore.pyqtSignal]
-    networkAccessibleChanged = typing.ClassVar[QtCore.pyqtSignal]
+    preSharedKeyAuthenticationRequired: typing.ClassVar[QtCore.pyqtSignal]
+    networkAccessibleChanged: typing.ClassVar[QtCore.pyqtSignal]
     sslErrors: typing.ClassVar[QtCore.pyqtSignal]
     encrypted: typing.ClassVar[QtCore.pyqtSignal]
     finished: typing.ClassVar[QtCore.pyqtSignal]
@@ -982,9 +1001,10 @@ class QNetworkAccessManager(QtCore.QObject):
 
 class QNetworkConfigurationManager(QtCore.QObject):
 
-    class Capability(int):
-        def __or__ (self, other: typing.Union[int, 'QNetworkConfigurationManager.Capability']) -> 'QNetworkConfigurationManager.Capabilities': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QNetworkConfigurationManager.Capabilities': ...                                                            # type: ignore[override, misc]
+    @typing.final
+    class Capability(int, metaclass=sip._enumtype):
+        def __or__ (self, other: typing.Union[int, 'QNetworkConfigurationManager.Capability'], /) -> 'QNetworkConfigurationManager.Capabilities': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QNetworkConfigurationManager.Capabilities': ...                                                            # type: ignore[override, misc]
         
         CanStartAndStopInterfaces = ... # type: QNetworkConfigurationManager.Capability
         DirectConnectionRouting = ... # type: QNetworkConfigurationManager.Capability
@@ -1018,12 +1038,12 @@ class QNetworkConfigurationManager(QtCore.QObject):
         def __invert__(self) -> 'QNetworkConfigurationManager.Capabilities': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QNetworkConfigurationManager.Capabilities', 'QNetworkConfigurationManager.Capability', int]) -> 'QNetworkConfigurationManager.Capabilities': ...
-        def __and__(self, other: typing.Union['QNetworkConfigurationManager.Capabilities', 'QNetworkConfigurationManager.Capability', int]) -> 'QNetworkConfigurationManager.Capabilities': ...
-        def __xor__(self, other: typing.Union['QNetworkConfigurationManager.Capabilities', 'QNetworkConfigurationManager.Capability', int]) -> 'QNetworkConfigurationManager.Capabilities': ...
-        def __ror__ (self, other: 'QNetworkConfigurationManager.Capability') -> 'QNetworkConfigurationManager.Capabilities': ...
-        def __rand__(self, other: 'QNetworkConfigurationManager.Capability') -> 'QNetworkConfigurationManager.Capabilities': ...
-        def __rxor__(self, other: 'QNetworkConfigurationManager.Capability') -> 'QNetworkConfigurationManager.Capabilities': ...
+        def __or__ (self, other: typing.Union['QNetworkConfigurationManager.Capabilities', 'QNetworkConfigurationManager.Capability', int], /) -> 'QNetworkConfigurationManager.Capabilities': ...
+        def __and__(self, other: typing.Union['QNetworkConfigurationManager.Capabilities', 'QNetworkConfigurationManager.Capability', int], /) -> 'QNetworkConfigurationManager.Capabilities': ...
+        def __xor__(self, other: typing.Union['QNetworkConfigurationManager.Capabilities', 'QNetworkConfigurationManager.Capability', int], /) -> 'QNetworkConfigurationManager.Capabilities': ...
+        def __ror__ (self, other: 'QNetworkConfigurationManager.Capability', /) -> 'QNetworkConfigurationManager.Capabilities': ...
+        def __rand__(self, other: 'QNetworkConfigurationManager.Capability', /) -> 'QNetworkConfigurationManager.Capabilities': ...
+        def __rxor__(self, other: 'QNetworkConfigurationManager.Capability', /) -> 'QNetworkConfigurationManager.Capabilities': ...
 
     def __init__(self, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1042,7 +1062,8 @@ class QNetworkConfigurationManager(QtCore.QObject):
 
 class QNetworkConfiguration(sip.simplewrapper):
 
-    class BearerType(int):
+    @typing.final
+    class BearerType(int, metaclass=sip._enumtype):
         BearerUnknown = ... # type: QNetworkConfiguration.BearerType
         BearerEthernet = ... # type: QNetworkConfiguration.BearerType
         BearerWLAN = ... # type: QNetworkConfiguration.BearerType
@@ -1071,7 +1092,8 @@ class QNetworkConfiguration(sip.simplewrapper):
     Bearer3G = ...  # type: QNetworkConfiguration.BearerType
     Bearer4G = ...  # type: QNetworkConfiguration.BearerType
 
-    class StateFlag(int):
+    @typing.final
+    class StateFlag(int, metaclass=sip._enumtype):
         Undefined = ... # type: QNetworkConfiguration.StateFlag
         Defined = ... # type: QNetworkConfiguration.StateFlag
         Discovered = ... # type: QNetworkConfiguration.StateFlag
@@ -1082,7 +1104,8 @@ class QNetworkConfiguration(sip.simplewrapper):
     Discovered = ...  # type: QNetworkConfiguration.StateFlag
     Active = ...  # type: QNetworkConfiguration.StateFlag
 
-    class Purpose(int):
+    @typing.final
+    class Purpose(int, metaclass=sip._enumtype):
         UnknownPurpose = ... # type: QNetworkConfiguration.Purpose
         PublicPurpose = ... # type: QNetworkConfiguration.Purpose
         PrivatePurpose = ... # type: QNetworkConfiguration.Purpose
@@ -1093,7 +1116,8 @@ class QNetworkConfiguration(sip.simplewrapper):
     PrivatePurpose = ...  # type: QNetworkConfiguration.Purpose
     ServiceSpecificPurpose = ...  # type: QNetworkConfiguration.Purpose
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         InternetAccessPoint = ... # type: QNetworkConfiguration.Type
         ServiceNetwork = ... # type: QNetworkConfiguration.Type
         UserChoice = ... # type: QNetworkConfiguration.Type
@@ -1120,12 +1144,12 @@ class QNetworkConfiguration(sip.simplewrapper):
         def __invert__(self) -> 'QNetworkConfiguration.StateFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QNetworkConfiguration.StateFlags', 'QNetworkConfiguration.StateFlag', int]) -> 'QNetworkConfiguration.StateFlags': ...
-        def __and__(self, other: typing.Union['QNetworkConfiguration.StateFlags', 'QNetworkConfiguration.StateFlag', int]) -> 'QNetworkConfiguration.StateFlags': ...
-        def __xor__(self, other: typing.Union['QNetworkConfiguration.StateFlags', 'QNetworkConfiguration.StateFlag', int]) -> 'QNetworkConfiguration.StateFlags': ...
-        def __ror__ (self, other: 'QNetworkConfiguration.StateFlag') -> 'QNetworkConfiguration.StateFlags': ...
-        def __rand__(self, other: 'QNetworkConfiguration.StateFlag') -> 'QNetworkConfiguration.StateFlags': ...
-        def __rxor__(self, other: 'QNetworkConfiguration.StateFlag') -> 'QNetworkConfiguration.StateFlags': ...
+        def __or__ (self, other: typing.Union['QNetworkConfiguration.StateFlags', 'QNetworkConfiguration.StateFlag', int], /) -> 'QNetworkConfiguration.StateFlags': ...
+        def __and__(self, other: typing.Union['QNetworkConfiguration.StateFlags', 'QNetworkConfiguration.StateFlag', int], /) -> 'QNetworkConfiguration.StateFlags': ...
+        def __xor__(self, other: typing.Union['QNetworkConfiguration.StateFlags', 'QNetworkConfiguration.StateFlag', int], /) -> 'QNetworkConfiguration.StateFlags': ...
+        def __ror__ (self, other: 'QNetworkConfiguration.StateFlag', /) -> 'QNetworkConfiguration.StateFlags': ...
+        def __rand__(self, other: 'QNetworkConfiguration.StateFlag', /) -> 'QNetworkConfiguration.StateFlags': ...
+        def __rxor__(self, other: 'QNetworkConfiguration.StateFlag', /) -> 'QNetworkConfiguration.StateFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1150,7 +1174,8 @@ class QNetworkConfiguration(sip.simplewrapper):
 
 class QNetworkCookie(sip.simplewrapper):
 
-    class RawForm(int):
+    @typing.final
+    class RawForm(int, metaclass=sip._enumtype):
         NameAndValueOnly = ... # type: QNetworkCookie.RawForm
         Full = ... # type: QNetworkCookie.RawForm
 
@@ -1249,7 +1274,8 @@ class QNetworkDiskCache(QAbstractNetworkCache):
 
 class QNetworkAddressEntry(sip.simplewrapper):
 
-    class DnsEligibilityStatus(int):
+    @typing.final
+    class DnsEligibilityStatus(int, metaclass=sip._enumtype):
         DnsEligibilityUnknown = ... # type: QNetworkAddressEntry.DnsEligibilityStatus
         DnsIneligible = ... # type: QNetworkAddressEntry.DnsEligibilityStatus
         DnsEligible = ... # type: QNetworkAddressEntry.DnsEligibilityStatus
@@ -1285,7 +1311,8 @@ class QNetworkAddressEntry(sip.simplewrapper):
 
 class QNetworkInterface(sip.simplewrapper):
 
-    class InterfaceType(int):
+    @typing.final
+    class InterfaceType(int, metaclass=sip._enumtype):
         Unknown = ... # type: QNetworkInterface.InterfaceType
         Loopback = ... # type: QNetworkInterface.InterfaceType
         Virtual = ... # type: QNetworkInterface.InterfaceType
@@ -1318,9 +1345,10 @@ class QNetworkInterface(sip.simplewrapper):
     Ieee80216 = ...  # type: QNetworkInterface.InterfaceType
     Ieee1394 = ...  # type: QNetworkInterface.InterfaceType
 
-    class InterfaceFlag(int):
-        def __or__ (self, other: 'QNetworkInterface.InterfaceFlag') -> 'QNetworkInterface.InterfaceFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QNetworkInterface.InterfaceFlags': ...                                 # type: ignore[override, misc]
+    @typing.final
+    class InterfaceFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QNetworkInterface.InterfaceFlag', /) -> 'QNetworkInterface.InterfaceFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QNetworkInterface.InterfaceFlags': ...                                 # type: ignore[override, misc]
         
         IsUp = ... # type: QNetworkInterface.InterfaceFlag
         IsRunning = ... # type: QNetworkInterface.InterfaceFlag
@@ -1352,12 +1380,12 @@ class QNetworkInterface(sip.simplewrapper):
         def __invert__(self) -> 'QNetworkInterface.InterfaceFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QNetworkInterface.InterfaceFlags', 'QNetworkInterface.InterfaceFlag', int]) -> 'QNetworkInterface.InterfaceFlags': ...
-        def __and__(self, other: typing.Union['QNetworkInterface.InterfaceFlags', 'QNetworkInterface.InterfaceFlag', int]) -> 'QNetworkInterface.InterfaceFlags': ...
-        def __xor__(self, other: typing.Union['QNetworkInterface.InterfaceFlags', 'QNetworkInterface.InterfaceFlag', int]) -> 'QNetworkInterface.InterfaceFlags': ...
-        def __ror__ (self, other: 'QNetworkInterface.InterfaceFlag') -> 'QNetworkInterface.InterfaceFlags': ...
-        def __rand__(self, other: 'QNetworkInterface.InterfaceFlag') -> 'QNetworkInterface.InterfaceFlags': ...
-        def __rxor__(self, other: 'QNetworkInterface.InterfaceFlag') -> 'QNetworkInterface.InterfaceFlags': ...
+        def __or__ (self, other: typing.Union['QNetworkInterface.InterfaceFlags', 'QNetworkInterface.InterfaceFlag', int], /) -> 'QNetworkInterface.InterfaceFlags': ...
+        def __and__(self, other: typing.Union['QNetworkInterface.InterfaceFlags', 'QNetworkInterface.InterfaceFlag', int], /) -> 'QNetworkInterface.InterfaceFlags': ...
+        def __xor__(self, other: typing.Union['QNetworkInterface.InterfaceFlags', 'QNetworkInterface.InterfaceFlag', int], /) -> 'QNetworkInterface.InterfaceFlags': ...
+        def __ror__ (self, other: 'QNetworkInterface.InterfaceFlag', /) -> 'QNetworkInterface.InterfaceFlags': ...
+        def __rand__(self, other: 'QNetworkInterface.InterfaceFlag', /) -> 'QNetworkInterface.InterfaceFlags': ...
+        def __rxor__(self, other: 'QNetworkInterface.InterfaceFlag', /) -> 'QNetworkInterface.InterfaceFlags': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1390,7 +1418,8 @@ class QNetworkInterface(sip.simplewrapper):
 
 class QNetworkProxy(sip.simplewrapper):
 
-    class Capability(int):
+    @typing.final
+    class Capability(int, metaclass=sip._enumtype):
         TunnelingCapability = ... # type: QNetworkProxy.Capability
         ListeningCapability = ... # type: QNetworkProxy.Capability
         UdpTunnelingCapability = ... # type: QNetworkProxy.Capability
@@ -1407,7 +1436,8 @@ class QNetworkProxy(sip.simplewrapper):
     SctpTunnelingCapability = ...  # type: QNetworkProxy.Capability
     SctpListeningCapability = ...  # type: QNetworkProxy.Capability
 
-    class ProxyType(int):
+    @typing.final
+    class ProxyType(int, metaclass=sip._enumtype):
         DefaultProxy = ... # type: QNetworkProxy.ProxyType
         Socks5Proxy = ... # type: QNetworkProxy.ProxyType
         NoProxy = ... # type: QNetworkProxy.ProxyType
@@ -1438,12 +1468,12 @@ class QNetworkProxy(sip.simplewrapper):
         def __invert__(self) -> 'QNetworkProxy.Capabilities': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QNetworkProxy.Capabilities', 'QNetworkProxy.Capability', int]) -> 'QNetworkProxy.Capabilities': ...
-        def __and__(self, other: typing.Union['QNetworkProxy.Capabilities', 'QNetworkProxy.Capability', int]) -> 'QNetworkProxy.Capabilities': ...
-        def __xor__(self, other: typing.Union['QNetworkProxy.Capabilities', 'QNetworkProxy.Capability', int]) -> 'QNetworkProxy.Capabilities': ...
-        def __ror__ (self, other: 'QNetworkProxy.Capability') -> 'QNetworkProxy.Capabilities': ...
-        def __rand__(self, other: 'QNetworkProxy.Capability') -> 'QNetworkProxy.Capabilities': ...
-        def __rxor__(self, other: 'QNetworkProxy.Capability') -> 'QNetworkProxy.Capabilities': ...
+        def __or__ (self, other: typing.Union['QNetworkProxy.Capabilities', 'QNetworkProxy.Capability', int], /) -> 'QNetworkProxy.Capabilities': ...
+        def __and__(self, other: typing.Union['QNetworkProxy.Capabilities', 'QNetworkProxy.Capability', int], /) -> 'QNetworkProxy.Capabilities': ...
+        def __xor__(self, other: typing.Union['QNetworkProxy.Capabilities', 'QNetworkProxy.Capability', int], /) -> 'QNetworkProxy.Capabilities': ...
+        def __ror__ (self, other: 'QNetworkProxy.Capability', /) -> 'QNetworkProxy.Capabilities': ...
+        def __rand__(self, other: 'QNetworkProxy.Capability', /) -> 'QNetworkProxy.Capabilities': ...
+        def __rxor__(self, other: 'QNetworkProxy.Capability', /) -> 'QNetworkProxy.Capabilities': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1481,7 +1511,8 @@ class QNetworkProxy(sip.simplewrapper):
 
 class QNetworkProxyQuery(sip.simplewrapper):
 
-    class QueryType(int):
+    @typing.final
+    class QueryType(int, metaclass=sip._enumtype):
         TcpSocket = ... # type: QNetworkProxyQuery.QueryType
         UdpSocket = ... # type: QNetworkProxyQuery.QueryType
         TcpServer = ... # type: QNetworkProxyQuery.QueryType
@@ -1552,7 +1583,8 @@ class QNetworkProxyFactory(sip.wrapper):
 
 class QNetworkReply(QtCore.QIODevice):
 
-    class NetworkError(int):
+    @typing.final
+    class NetworkError(int, metaclass=sip._enumtype):
         NoError = ... # type: QNetworkReply.NetworkError
         ConnectionRefusedError = ... # type: QNetworkReply.NetworkError
         RemoteHostClosedError = ... # type: QNetworkReply.NetworkError
@@ -1675,12 +1707,14 @@ class QNetworkReply(QtCore.QIODevice):
 
 class QNetworkRequest(sip.simplewrapper):
 
-    class TransferTimeoutConstant(int):
+    @typing.final
+    class TransferTimeoutConstant(int, metaclass=sip._enumtype):
         DefaultTransferTimeoutConstant = ... # type: QNetworkRequest.TransferTimeoutConstant
 
     DefaultTransferTimeoutConstant = ...  # type: QNetworkRequest.TransferTimeoutConstant
 
-    class RedirectPolicy(int):
+    @typing.final
+    class RedirectPolicy(int, metaclass=sip._enumtype):
         ManualRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
         NoLessSafeRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
         SameOriginRedirectPolicy = ... # type: QNetworkRequest.RedirectPolicy
@@ -1691,7 +1725,8 @@ class QNetworkRequest(sip.simplewrapper):
     SameOriginRedirectPolicy = ...  # type: QNetworkRequest.RedirectPolicy
     UserVerifiedRedirectPolicy = ...  # type: QNetworkRequest.RedirectPolicy
 
-    class Priority(int):
+    @typing.final
+    class Priority(int, metaclass=sip._enumtype):
         HighPriority = ... # type: QNetworkRequest.Priority
         NormalPriority = ... # type: QNetworkRequest.Priority
         LowPriority = ... # type: QNetworkRequest.Priority
@@ -1700,14 +1735,16 @@ class QNetworkRequest(sip.simplewrapper):
     NormalPriority = ...  # type: QNetworkRequest.Priority
     LowPriority = ...  # type: QNetworkRequest.Priority
 
-    class LoadControl(int):
+    @typing.final
+    class LoadControl(int, metaclass=sip._enumtype):
         Automatic = ... # type: QNetworkRequest.LoadControl
         Manual = ... # type: QNetworkRequest.LoadControl
 
     Automatic = ...  # type: QNetworkRequest.LoadControl
     Manual = ...  # type: QNetworkRequest.LoadControl
 
-    class CacheLoadControl(int):
+    @typing.final
+    class CacheLoadControl(int, metaclass=sip._enumtype):
         AlwaysNetwork = ... # type: QNetworkRequest.CacheLoadControl
         PreferNetwork = ... # type: QNetworkRequest.CacheLoadControl
         PreferCache = ... # type: QNetworkRequest.CacheLoadControl
@@ -1718,7 +1755,8 @@ class QNetworkRequest(sip.simplewrapper):
     PreferCache = ...  # type: QNetworkRequest.CacheLoadControl
     AlwaysCache = ...  # type: QNetworkRequest.CacheLoadControl
 
-    class Attribute(int):
+    @typing.final
+    class Attribute(int, metaclass=sip._enumtype):
         HttpStatusCodeAttribute = ... # type: QNetworkRequest.Attribute
         HttpReasonPhraseAttribute = ... # type: QNetworkRequest.Attribute
         RedirectionTargetAttribute = ... # type: QNetworkRequest.Attribute
@@ -1779,7 +1817,8 @@ class QNetworkRequest(sip.simplewrapper):
     User = ...  # type: QNetworkRequest.Attribute
     UserMax = ...  # type: QNetworkRequest.Attribute
 
-    class KnownHeaders(int):
+    @typing.final
+    class KnownHeaders(int, metaclass=sip._enumtype):
         ContentTypeHeader = ... # type: QNetworkRequest.KnownHeaders
         ContentLengthHeader = ... # type: QNetworkRequest.KnownHeaders
         LocationHeader = ... # type: QNetworkRequest.KnownHeaders
@@ -1842,14 +1881,16 @@ class QNetworkRequest(sip.simplewrapper):
 
 class QNetworkSession(QtCore.QObject):
 
-    class UsagePolicy(int):
+    @typing.final
+    class UsagePolicy(int, metaclass=sip._enumtype):
         NoPolicy = ... # type: QNetworkSession.UsagePolicy
         NoBackgroundTrafficPolicy = ... # type: QNetworkSession.UsagePolicy
 
     NoPolicy = ...  # type: QNetworkSession.UsagePolicy
     NoBackgroundTrafficPolicy = ...  # type: QNetworkSession.UsagePolicy
 
-    class SessionError(int):
+    @typing.final
+    class SessionError(int, metaclass=sip._enumtype):
         UnknownSessionError = ... # type: QNetworkSession.SessionError
         SessionAbortedError = ... # type: QNetworkSession.SessionError
         RoamingError = ... # type: QNetworkSession.SessionError
@@ -1862,7 +1903,8 @@ class QNetworkSession(QtCore.QObject):
     OperationNotSupportedError = ...  # type: QNetworkSession.SessionError
     InvalidConfigurationError = ...  # type: QNetworkSession.SessionError
 
-    class State(int):
+    @typing.final
+    class State(int, metaclass=sip._enumtype):
         Invalid = ... # type: QNetworkSession.State
         NotAvailable = ... # type: QNetworkSession.State
         Connecting = ... # type: QNetworkSession.State
@@ -1895,12 +1937,12 @@ class QNetworkSession(QtCore.QObject):
         def __invert__(self) -> 'QNetworkSession.UsagePolicies': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QNetworkSession.UsagePolicies', 'QNetworkSession.UsagePolicy', int]) -> 'QNetworkSession.UsagePolicies': ...
-        def __and__(self, other: typing.Union['QNetworkSession.UsagePolicies', 'QNetworkSession.UsagePolicy', int]) -> 'QNetworkSession.UsagePolicies': ...
-        def __xor__(self, other: typing.Union['QNetworkSession.UsagePolicies', 'QNetworkSession.UsagePolicy', int]) -> 'QNetworkSession.UsagePolicies': ...
-        def __ror__ (self, other: 'QNetworkSession.UsagePolicy') -> 'QNetworkSession.UsagePolicies': ...
-        def __rand__(self, other: 'QNetworkSession.UsagePolicy') -> 'QNetworkSession.UsagePolicies': ...
-        def __rxor__(self, other: 'QNetworkSession.UsagePolicy') -> 'QNetworkSession.UsagePolicies': ...
+        def __or__ (self, other: typing.Union['QNetworkSession.UsagePolicies', 'QNetworkSession.UsagePolicy', int], /) -> 'QNetworkSession.UsagePolicies': ...
+        def __and__(self, other: typing.Union['QNetworkSession.UsagePolicies', 'QNetworkSession.UsagePolicy', int], /) -> 'QNetworkSession.UsagePolicies': ...
+        def __xor__(self, other: typing.Union['QNetworkSession.UsagePolicies', 'QNetworkSession.UsagePolicy', int], /) -> 'QNetworkSession.UsagePolicies': ...
+        def __ror__ (self, other: 'QNetworkSession.UsagePolicy', /) -> 'QNetworkSession.UsagePolicies': ...
+        def __rand__(self, other: 'QNetworkSession.UsagePolicy', /) -> 'QNetworkSession.UsagePolicies': ...
+        def __rxor__(self, other: 'QNetworkSession.UsagePolicy', /) -> 'QNetworkSession.UsagePolicies': ...
 
     def __init__(self, connConfig: QNetworkConfiguration, parent: typing.Optional[QtCore.QObject] = ...) -> None: ...
 
@@ -1957,9 +1999,10 @@ class QPasswordDigestor(sip.simplewrapper):
 
 class QSsl(sip.simplewrapper):
 
-    class SslOption(int):
-        def __or__ (self, other: 'QSsl.SslOption') -> 'QSsl.SslOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QSsl.SslOptions': ...                # type: ignore[override, misc]
+    @typing.final
+    class SslOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QSsl.SslOption', /) -> 'QSsl.SslOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QSsl.SslOptions': ...                # type: ignore[override, misc]
         
         SslOptionDisableEmptyFragments = ... # type: QSsl.SslOption
         SslOptionDisableSessionTickets = ... # type: QSsl.SslOption
@@ -1979,7 +2022,8 @@ class QSsl(sip.simplewrapper):
     SslOptionDisableSessionPersistence = ...  # type: QSsl.SslOption
     SslOptionDisableServerCipherPreference = ...  # type: QSsl.SslOption
 
-    class SslProtocol(int):
+    @typing.final
+    class SslProtocol(int, metaclass=sip._enumtype):
         UnknownProtocol = ... # type: QSsl.SslProtocol
         SslV3 = ... # type: QSsl.SslProtocol
         SslV2 = ... # type: QSsl.SslProtocol
@@ -2018,7 +2062,8 @@ class QSsl(sip.simplewrapper):
     TlsV1_3 = ...  # type: QSsl.SslProtocol
     TlsV1_3OrLater = ...  # type: QSsl.SslProtocol
 
-    class AlternativeNameEntryType(int):
+    @typing.final
+    class AlternativeNameEntryType(int, metaclass=sip._enumtype):
         EmailEntry = ... # type: QSsl.AlternativeNameEntryType
         DnsEntry = ... # type: QSsl.AlternativeNameEntryType
         IpAddressEntry = ... # type: QSsl.AlternativeNameEntryType
@@ -2027,7 +2072,8 @@ class QSsl(sip.simplewrapper):
     DnsEntry = ...  # type: QSsl.AlternativeNameEntryType
     IpAddressEntry = ...  # type: QSsl.AlternativeNameEntryType
 
-    class KeyAlgorithm(int):
+    @typing.final
+    class KeyAlgorithm(int, metaclass=sip._enumtype):
         Opaque = ... # type: QSsl.KeyAlgorithm
         Rsa = ... # type: QSsl.KeyAlgorithm
         Dsa = ... # type: QSsl.KeyAlgorithm
@@ -2040,14 +2086,16 @@ class QSsl(sip.simplewrapper):
     Ec = ...  # type: QSsl.KeyAlgorithm
     Dh = ...  # type: QSsl.KeyAlgorithm
 
-    class EncodingFormat(int):
+    @typing.final
+    class EncodingFormat(int, metaclass=sip._enumtype):
         Pem = ... # type: QSsl.EncodingFormat
         Der = ... # type: QSsl.EncodingFormat
 
     Pem = ...  # type: QSsl.EncodingFormat
     Der = ...  # type: QSsl.EncodingFormat
 
-    class KeyType(int):
+    @typing.final
+    class KeyType(int, metaclass=sip._enumtype):
         PrivateKey = ... # type: QSsl.KeyType
         PublicKey = ... # type: QSsl.KeyType
 
@@ -2070,12 +2118,12 @@ class QSsl(sip.simplewrapper):
         def __invert__(self) -> 'QSsl.SslOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSsl.SslOptions', 'QSsl.SslOption', int]) -> 'QSsl.SslOptions': ...
-        def __and__(self, other: typing.Union['QSsl.SslOptions', 'QSsl.SslOption', int]) -> 'QSsl.SslOptions': ...
-        def __xor__(self, other: typing.Union['QSsl.SslOptions', 'QSsl.SslOption', int]) -> 'QSsl.SslOptions': ...
-        def __ror__ (self, other: 'QSsl.SslOption') -> 'QSsl.SslOptions': ...
-        def __rand__(self, other: 'QSsl.SslOption') -> 'QSsl.SslOptions': ...
-        def __rxor__(self, other: 'QSsl.SslOption') -> 'QSsl.SslOptions': ...
+        def __or__ (self, other: typing.Union['QSsl.SslOptions', 'QSsl.SslOption', int], /) -> 'QSsl.SslOptions': ...
+        def __and__(self, other: typing.Union['QSsl.SslOptions', 'QSsl.SslOption', int], /) -> 'QSsl.SslOptions': ...
+        def __xor__(self, other: typing.Union['QSsl.SslOptions', 'QSsl.SslOption', int], /) -> 'QSsl.SslOptions': ...
+        def __ror__ (self, other: 'QSsl.SslOption', /) -> 'QSsl.SslOptions': ...
+        def __rand__(self, other: 'QSsl.SslOption', /) -> 'QSsl.SslOptions': ...
+        def __rxor__(self, other: 'QSsl.SslOption', /) -> 'QSsl.SslOptions': ...
 
 
 class QSslCertificate(sip.simplewrapper):
@@ -2089,7 +2137,8 @@ class QSslCertificate(sip.simplewrapper):
     Wildcard = ...  # type: QSslCertificate.PatternSyntax
     FixedString = ...  # type: QSslCertificate.PatternSyntax
 
-    class SubjectInfo(int):
+    @typing.final
+    class SubjectInfo(int, metaclass=sip._enumtype):
         Organization = ... # type: QSslCertificate.SubjectInfo
         CommonName = ... # type: QSslCertificate.SubjectInfo
         LocalityName = ... # type: QSslCertificate.SubjectInfo
@@ -2199,7 +2248,8 @@ class QSslCipher(sip.simplewrapper):
 
 class QSslConfiguration(sip.simplewrapper):
 
-    class NextProtocolNegotiationStatus(int):
+    @typing.final
+    class NextProtocolNegotiationStatus(int, metaclass=sip._enumtype):
         NextProtocolNegotiationNone = ... # type: QSslConfiguration.NextProtocolNegotiationStatus
         NextProtocolNegotiationNegotiated = ... # type: QSslConfiguration.NextProtocolNegotiationStatus
         NextProtocolNegotiationUnsupported = ... # type: QSslConfiguration.NextProtocolNegotiationStatus
@@ -2278,7 +2328,8 @@ class QSslConfiguration(sip.simplewrapper):
 
 class QSslDiffieHellmanParameters(sip.simplewrapper):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QSslDiffieHellmanParameters.Error
         InvalidInputDataError = ... # type: QSslDiffieHellmanParameters.Error
         UnsafeParametersError = ... # type: QSslDiffieHellmanParameters.Error
@@ -2328,7 +2379,8 @@ class QSslEllipticCurve(sip.simplewrapper):
 
 class QSslError(sip.simplewrapper):
 
-    class SslError(int):
+    @typing.final
+    class SslError(int, metaclass=sip._enumtype):
         UnspecifiedError = ... # type: QSslError.SslError
         NoError = ... # type: QSslError.SslError
         UnableToGetIssuerCertificate = ... # type: QSslError.SslError
@@ -2471,7 +2523,8 @@ class QTcpSocket(QAbstractSocket):
 
 class QSslSocket(QTcpSocket):
 
-    class PeerVerifyMode(int):
+    @typing.final
+    class PeerVerifyMode(int, metaclass=sip._enumtype):
         VerifyNone = ... # type: QSslSocket.PeerVerifyMode
         QueryPeer = ... # type: QSslSocket.PeerVerifyMode
         VerifyPeer = ... # type: QSslSocket.PeerVerifyMode
@@ -2482,7 +2535,8 @@ class QSslSocket(QTcpSocket):
     VerifyPeer = ...  # type: QSslSocket.PeerVerifyMode
     AutoVerifyPeer = ...  # type: QSslSocket.PeerVerifyMode
 
-    class SslMode(int):
+    @typing.final
+    class SslMode(int, metaclass=sip._enumtype):
         UnencryptedMode = ... # type: QSslSocket.SslMode
         SslClientMode = ... # type: QSslSocket.SslMode
         SslServerMode = ... # type: QSslSocket.SslMode

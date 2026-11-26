@@ -29,7 +29,7 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QSensorReading(QtCore.QObject):
@@ -72,7 +72,8 @@ class QAccelerometerFilter(QSensorFilter):
 
 class QSensor(QtCore.QObject):
 
-    class AxesOrientationMode(int):
+    @typing.final
+    class AxesOrientationMode(int, metaclass=sip._enumtype):
         FixedOrientation = ... # type: QSensor.AxesOrientationMode
         AutomaticOrientation = ... # type: QSensor.AxesOrientationMode
         UserOrientation = ... # type: QSensor.AxesOrientationMode
@@ -81,7 +82,8 @@ class QSensor(QtCore.QObject):
     AutomaticOrientation = ...  # type: QSensor.AxesOrientationMode
     UserOrientation = ...  # type: QSensor.AxesOrientationMode
 
-    class Feature(int):
+    @typing.final
+    class Feature(int, metaclass=sip._enumtype):
         Buffering = ... # type: QSensor.Feature
         AlwaysOn = ... # type: QSensor.Feature
         GeoValues = ... # type: QSensor.Feature
@@ -165,7 +167,8 @@ class QSensor(QtCore.QObject):
 
 class QAccelerometer(QSensor):
 
-    class AccelerationMode(int):
+    @typing.final
+    class AccelerationMode(int, metaclass=sip._enumtype):
         Combined = ... # type: QAccelerometer.AccelerationMode
         Gravity = ... # type: QAccelerometer.AccelerationMode
         User = ... # type: QAccelerometer.AccelerationMode
@@ -207,7 +210,8 @@ class QAltimeter(QSensor):
 
 class QAmbientLightReading(QSensorReading):
 
-    class LightLevel(int):
+    @typing.final
+    class LightLevel(int, metaclass=sip._enumtype):
         Undefined = ... # type: QAmbientLightReading.LightLevel
         Dark = ... # type: QAmbientLightReading.LightLevel
         Twilight = ... # type: QAmbientLightReading.LightLevel
@@ -499,7 +503,8 @@ class QMagnetometer(QSensor):
 
 class QOrientationReading(QSensorReading):
 
-    class Orientation(int):
+    @typing.final
+    class Orientation(int, metaclass=sip._enumtype):
         Undefined = ... # type: QOrientationReading.Orientation
         TopUp = ... # type: QOrientationReading.Orientation
         TopDown = ... # type: QOrientationReading.Orientation
@@ -599,7 +604,8 @@ class qoutputrange(sip.simplewrapper):
 
 class QTapReading(QSensorReading):
 
-    class TapDirection(int):
+    @typing.final
+    class TapDirection(int, metaclass=sip._enumtype):
         Undefined = ... # type: QTapReading.TapDirection
         X = ... # type: QTapReading.TapDirection
         Y = ... # type: QTapReading.TapDirection

@@ -30,7 +30,7 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QMaskGenerator(QtCore.QObject):
@@ -130,7 +130,8 @@ class QWebSocketCorsAuthenticator(sip.simplewrapper):
 
 class QWebSocketProtocol(sip.simplewrapper):
 
-    class CloseCode(int):
+    @typing.final
+    class CloseCode(int, metaclass=sip._enumtype):
         CloseCodeNormal = ... # type: QWebSocketProtocol.CloseCode
         CloseCodeGoingAway = ... # type: QWebSocketProtocol.CloseCode
         CloseCodeProtocolError = ... # type: QWebSocketProtocol.CloseCode
@@ -159,7 +160,8 @@ class QWebSocketProtocol(sip.simplewrapper):
     CloseCodeBadOperation = ...  # type: QWebSocketProtocol.CloseCode
     CloseCodeTlsHandshakeFailed = ...  # type: QWebSocketProtocol.CloseCode
 
-    class Version(int):
+    @typing.final
+    class Version(int, metaclass=sip._enumtype):
         VersionUnknown = ... # type: QWebSocketProtocol.Version
         Version0 = ... # type: QWebSocketProtocol.Version
         Version4 = ... # type: QWebSocketProtocol.Version
@@ -183,7 +185,8 @@ class QWebSocketProtocol(sip.simplewrapper):
 
 class QWebSocketServer(QtCore.QObject):
 
-    class SslMode(int):
+    @typing.final
+    class SslMode(int, metaclass=sip._enumtype):
         SecureMode = ... # type: QWebSocketServer.SslMode
         NonSecureMode = ... # type: QWebSocketServer.SslMode
 

@@ -45,6 +45,9 @@ Or clone the latest version from Github and install it via Python setuptools:
 
 # Supported Modules
 
+The aggregate `PyQt5.Qt` module, `QtTextToSpeech`, translation/resource command-line
+tools, and `uic` and its implementation modules are outside the current stub coverage.
+
 The modules supported by PyQt5-stubs include modules from the PyQt5 package as well as modules from the other
 packages released by Riverbank Computing (PyQt3D, PyQtCharts, ...). Here is the full list
 of packages and modules:

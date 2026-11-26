@@ -32,20 +32,21 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstractPrintDialog(QtWidgets.QDialog):
 
-    class PrintDialogOption(int):
-        def __or__ (self, other: 'QAbstractPrintDialog.PrintDialogOption') -> 'QAbstractPrintDialog.PrintDialogOptions': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QAbstractPrintDialog.PrintDialogOptions': ...                                        # type: ignore[override, misc]
+    @typing.final
+    class PrintDialogOption(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QAbstractPrintDialog.PrintDialogOption', /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...                                        # type: ignore[override, misc]
         
         None_ = ... # type: QAbstractPrintDialog.PrintDialogOption
         PrintToFile = ... # type: QAbstractPrintDialog.PrintDialogOption
@@ -63,7 +64,8 @@ class QAbstractPrintDialog(QtWidgets.QDialog):
     PrintShowPageSize = ...  # type: QAbstractPrintDialog.PrintDialogOption
     PrintCurrentPage = ...  # type: QAbstractPrintDialog.PrintDialogOption
 
-    class PrintRange(int):
+    @typing.final
+    class PrintRange(int, metaclass=sip._enumtype):
         AllPages = ... # type: QAbstractPrintDialog.PrintRange
         Selection = ... # type: QAbstractPrintDialog.PrintRange
         PageRange = ... # type: QAbstractPrintDialog.PrintRange
@@ -90,12 +92,12 @@ class QAbstractPrintDialog(QtWidgets.QDialog):
         def __invert__(self) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QAbstractPrintDialog.PrintDialogOptions', 'QAbstractPrintDialog.PrintDialogOption', int]) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
-        def __and__(self, other: typing.Union['QAbstractPrintDialog.PrintDialogOptions', 'QAbstractPrintDialog.PrintDialogOption', int]) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
-        def __xor__(self, other: typing.Union['QAbstractPrintDialog.PrintDialogOptions', 'QAbstractPrintDialog.PrintDialogOption', int]) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
-        def __ror__ (self, other: 'QAbstractPrintDialog.PrintDialogOption') -> 'QAbstractPrintDialog.PrintDialogOptions': ...
-        def __rand__(self, other: 'QAbstractPrintDialog.PrintDialogOption') -> 'QAbstractPrintDialog.PrintDialogOptions': ...
-        def __rxor__(self, other: 'QAbstractPrintDialog.PrintDialogOption') -> 'QAbstractPrintDialog.PrintDialogOptions': ...
+        def __or__ (self, other: typing.Union['QAbstractPrintDialog.PrintDialogOptions', 'QAbstractPrintDialog.PrintDialogOption', int], /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
+        def __and__(self, other: typing.Union['QAbstractPrintDialog.PrintDialogOptions', 'QAbstractPrintDialog.PrintDialogOption', int], /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
+        def __xor__(self, other: typing.Union['QAbstractPrintDialog.PrintDialogOptions', 'QAbstractPrintDialog.PrintDialogOption', int], /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
+        def __ror__ (self, other: 'QAbstractPrintDialog.PrintDialogOption', /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
+        def __rand__(self, other: 'QAbstractPrintDialog.PrintDialogOption', /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
+        def __rxor__(self, other: 'QAbstractPrintDialog.PrintDialogOption', /) -> 'QAbstractPrintDialog.PrintDialogOptions': ...
 
     def __init__(self, printer: 'QPrinter', parent: typing.Optional[QtWidgets.QWidget] = ...) -> None: ...
 
@@ -127,7 +129,7 @@ class QPageSetupDialog(QtWidgets.QDialog):
     @typing.overload
     def open(self) -> None: ...
     @typing.overload
-    def open(self, slot: PYQT_SLOT) -> None: ...
+    def open(self, slot: _PYQT_SLOT) -> None: ...
     def exec(self) -> int: ...
     def exec_(self) -> int: ...
     def setVisible(self, visible: bool) -> None: ...
@@ -144,7 +146,7 @@ class QPrintDialog(QAbstractPrintDialog):
     @typing.overload
     def open(self) -> None: ...
     @typing.overload
-    def open(self, slot: PYQT_SLOT) -> None: ...
+    def open(self, slot: _PYQT_SLOT) -> None: ...
     def setVisible(self, visible: bool) -> None: ...
     def options(self) -> QAbstractPrintDialog.PrintDialogOptions: ...
     def setOptions(self, options: typing.Union[QAbstractPrintDialog.PrintDialogOptions, QAbstractPrintDialog.PrintDialogOption]) -> None: ...
@@ -158,7 +160,8 @@ class QPrintDialog(QAbstractPrintDialog):
 
 class QPrintEngine(sip.simplewrapper):
 
-    class PrintEnginePropertyKey(int):
+    @typing.final
+    class PrintEnginePropertyKey(int, metaclass=sip._enumtype):
         PPK_CollateCopies = ... # type: QPrintEngine.PrintEnginePropertyKey
         PPK_ColorMode = ... # type: QPrintEngine.PrintEnginePropertyKey
         PPK_Creator = ... # type: QPrintEngine.PrintEnginePropertyKey
@@ -240,7 +243,8 @@ class QPrintEngine(sip.simplewrapper):
 
 class QPrinter(QtGui.QPagedPaintDevice):
 
-    class DuplexMode(int):
+    @typing.final
+    class DuplexMode(int, metaclass=sip._enumtype):
         DuplexNone = ... # type: QPrinter.DuplexMode
         DuplexAuto = ... # type: QPrinter.DuplexMode
         DuplexLongSide = ... # type: QPrinter.DuplexMode
@@ -251,7 +255,8 @@ class QPrinter(QtGui.QPagedPaintDevice):
     DuplexLongSide = ...  # type: QPrinter.DuplexMode
     DuplexShortSide = ...  # type: QPrinter.DuplexMode
 
-    class Unit(int):
+    @typing.final
+    class Unit(int, metaclass=sip._enumtype):
         Millimeter = ... # type: QPrinter.Unit
         Point = ... # type: QPrinter.Unit
         Inch = ... # type: QPrinter.Unit
@@ -268,7 +273,8 @@ class QPrinter(QtGui.QPagedPaintDevice):
     Cicero = ...  # type: QPrinter.Unit
     DevicePixel = ...  # type: QPrinter.Unit
 
-    class PrintRange(int):
+    @typing.final
+    class PrintRange(int, metaclass=sip._enumtype):
         AllPages = ... # type: QPrinter.PrintRange
         Selection = ... # type: QPrinter.PrintRange
         PageRange = ... # type: QPrinter.PrintRange
@@ -279,14 +285,16 @@ class QPrinter(QtGui.QPagedPaintDevice):
     PageRange = ...  # type: QPrinter.PrintRange
     CurrentPage = ...  # type: QPrinter.PrintRange
 
-    class OutputFormat(int):
+    @typing.final
+    class OutputFormat(int, metaclass=sip._enumtype):
         NativeFormat = ... # type: QPrinter.OutputFormat
         PdfFormat = ... # type: QPrinter.OutputFormat
 
     NativeFormat = ...  # type: QPrinter.OutputFormat
     PdfFormat = ...  # type: QPrinter.OutputFormat
 
-    class PrinterState(int):
+    @typing.final
+    class PrinterState(int, metaclass=sip._enumtype):
         Idle = ... # type: QPrinter.PrinterState
         Active = ... # type: QPrinter.PrinterState
         Aborted = ... # type: QPrinter.PrinterState
@@ -297,7 +305,8 @@ class QPrinter(QtGui.QPagedPaintDevice):
     Aborted = ...  # type: QPrinter.PrinterState
     Error = ...  # type: QPrinter.PrinterState
 
-    class PaperSource(int):
+    @typing.final
+    class PaperSource(int, metaclass=sip._enumtype):
         OnlyOne = ... # type: QPrinter.PaperSource
         Lower = ... # type: QPrinter.PaperSource
         Middle = ... # type: QPrinter.PaperSource
@@ -334,28 +343,32 @@ class QPrinter(QtGui.QPagedPaintDevice):
     CustomSource = ...  # type: QPrinter.PaperSource
     LastPaperSource = ...  # type: QPrinter.PaperSource
 
-    class ColorMode(int):
+    @typing.final
+    class ColorMode(int, metaclass=sip._enumtype):
         GrayScale = ... # type: QPrinter.ColorMode
         Color = ... # type: QPrinter.ColorMode
 
     GrayScale = ...  # type: QPrinter.ColorMode
     Color = ...  # type: QPrinter.ColorMode
 
-    class PageOrder(int):
+    @typing.final
+    class PageOrder(int, metaclass=sip._enumtype):
         FirstPageFirst = ... # type: QPrinter.PageOrder
         LastPageFirst = ... # type: QPrinter.PageOrder
 
     FirstPageFirst = ...  # type: QPrinter.PageOrder
     LastPageFirst = ...  # type: QPrinter.PageOrder
 
-    class Orientation(int):
+    @typing.final
+    class Orientation(int, metaclass=sip._enumtype):
         Portrait = ... # type: QPrinter.Orientation
         Landscape = ... # type: QPrinter.Orientation
 
     Portrait = ...  # type: QPrinter.Orientation
     Landscape = ...  # type: QPrinter.Orientation
 
-    class PrinterMode(int):
+    @typing.final
+    class PrinterMode(int, metaclass=sip._enumtype):
         ScreenResolution = ... # type: QPrinter.PrinterMode
         PrinterResolution = ... # type: QPrinter.PrinterMode
         HighResolution = ... # type: QPrinter.PrinterMode
@@ -501,13 +514,14 @@ class QPrintPreviewDialog(QtWidgets.QDialog):
     @typing.overload
     def open(self) -> None: ...
     @typing.overload
-    def open(self, slot: PYQT_SLOT) -> None: ...
+    def open(self, slot: _PYQT_SLOT) -> None: ...
     def setVisible(self, visible: bool) -> None: ...
 
 
 class QPrintPreviewWidget(QtWidgets.QWidget):
 
-    class ZoomMode(int):
+    @typing.final
+    class ZoomMode(int, metaclass=sip._enumtype):
         CustomZoom = ... # type: QPrintPreviewWidget.ZoomMode
         FitToWidth = ... # type: QPrintPreviewWidget.ZoomMode
         FitInView = ... # type: QPrintPreviewWidget.ZoomMode
@@ -516,7 +530,8 @@ class QPrintPreviewWidget(QtWidgets.QWidget):
     FitToWidth = ...  # type: QPrintPreviewWidget.ZoomMode
     FitInView = ...  # type: QPrintPreviewWidget.ZoomMode
 
-    class ViewMode(int):
+    @typing.final
+    class ViewMode(int, metaclass=sip._enumtype):
         SinglePageView = ... # type: QPrintPreviewWidget.ViewMode
         FacingPagesView = ... # type: QPrintPreviewWidget.ViewMode
         AllPagesView = ... # type: QPrintPreviewWidget.ViewMode

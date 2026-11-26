@@ -30,18 +30,19 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QQuickWebEngineProfile(QtCore.QObject):
 
-    class PersistentCookiesPolicy(int):
+    @typing.final
+    class PersistentCookiesPolicy(int, metaclass=sip._enumtype):
         NoPersistentCookies = ... # type: QQuickWebEngineProfile.PersistentCookiesPolicy
         AllowPersistentCookies = ... # type: QQuickWebEngineProfile.PersistentCookiesPolicy
         ForcePersistentCookies = ... # type: QQuickWebEngineProfile.PersistentCookiesPolicy
@@ -50,7 +51,8 @@ class QQuickWebEngineProfile(QtCore.QObject):
     AllowPersistentCookies = ...  # type: QQuickWebEngineProfile.PersistentCookiesPolicy
     ForcePersistentCookies = ...  # type: QQuickWebEngineProfile.PersistentCookiesPolicy
 
-    class HttpCacheType(int):
+    @typing.final
+    class HttpCacheType(int, metaclass=sip._enumtype):
         MemoryHttpCache = ... # type: QQuickWebEngineProfile.HttpCacheType
         DiskHttpCache = ... # type: QQuickWebEngineProfile.HttpCacheType
         NoCache = ... # type: QQuickWebEngineProfile.HttpCacheType
@@ -117,7 +119,8 @@ class QQuickWebEngineProfile(QtCore.QObject):
 
 class QQuickWebEngineScript(QtCore.QObject):
 
-    class ScriptWorldId(int):
+    @typing.final
+    class ScriptWorldId(int, metaclass=sip._enumtype):
         MainWorld = ... # type: QQuickWebEngineScript.ScriptWorldId
         ApplicationWorld = ... # type: QQuickWebEngineScript.ScriptWorldId
         UserWorld = ... # type: QQuickWebEngineScript.ScriptWorldId
@@ -126,7 +129,8 @@ class QQuickWebEngineScript(QtCore.QObject):
     ApplicationWorld = ...  # type: QQuickWebEngineScript.ScriptWorldId
     UserWorld = ...  # type: QQuickWebEngineScript.ScriptWorldId
 
-    class InjectionPoint(int):
+    @typing.final
+    class InjectionPoint(int, metaclass=sip._enumtype):
         Deferred = ... # type: QQuickWebEngineScript.InjectionPoint
         DocumentReady = ... # type: QQuickWebEngineScript.InjectionPoint
         DocumentCreation = ... # type: QQuickWebEngineScript.InjectionPoint

@@ -31,13 +31,13 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QSqlDriverCreatorBase(sip.wrapper):
@@ -125,7 +125,8 @@ class QSqlDatabase(sip.simplewrapper):
 
 class QSqlDriver(QtCore.QObject):
 
-    class DbmsType(int):
+    @typing.final
+    class DbmsType(int, metaclass=sip._enumtype):
         UnknownDbms = ... # type: QSqlDriver.DbmsType
         MSSqlServer = ... # type: QSqlDriver.DbmsType
         MySqlServer = ... # type: QSqlDriver.DbmsType
@@ -146,7 +147,8 @@ class QSqlDriver(QtCore.QObject):
     Interbase = ...  # type: QSqlDriver.DbmsType
     DB2 = ...  # type: QSqlDriver.DbmsType
 
-    class NotificationSource(int):
+    @typing.final
+    class NotificationSource(int, metaclass=sip._enumtype):
         UnknownSource = ... # type: QSqlDriver.NotificationSource
         SelfSource = ... # type: QSqlDriver.NotificationSource
         OtherSource = ... # type: QSqlDriver.NotificationSource
@@ -155,14 +157,16 @@ class QSqlDriver(QtCore.QObject):
     SelfSource = ...  # type: QSqlDriver.NotificationSource
     OtherSource = ...  # type: QSqlDriver.NotificationSource
 
-    class IdentifierType(int):
+    @typing.final
+    class IdentifierType(int, metaclass=sip._enumtype):
         FieldName = ... # type: QSqlDriver.IdentifierType
         TableName = ... # type: QSqlDriver.IdentifierType
 
     FieldName = ...  # type: QSqlDriver.IdentifierType
     TableName = ...  # type: QSqlDriver.IdentifierType
 
-    class StatementType(int):
+    @typing.final
+    class StatementType(int, metaclass=sip._enumtype):
         WhereStatement = ... # type: QSqlDriver.StatementType
         SelectStatement = ... # type: QSqlDriver.StatementType
         UpdateStatement = ... # type: QSqlDriver.StatementType
@@ -175,7 +179,8 @@ class QSqlDriver(QtCore.QObject):
     InsertStatement = ...  # type: QSqlDriver.StatementType
     DeleteStatement = ...  # type: QSqlDriver.StatementType
 
-    class DriverFeature(int):
+    @typing.final
+    class DriverFeature(int, metaclass=sip._enumtype):
         Transactions = ... # type: QSqlDriver.DriverFeature
         QuerySize = ... # type: QSqlDriver.DriverFeature
         BLOB = ... # type: QSqlDriver.DriverFeature
@@ -241,7 +246,8 @@ class QSqlDriver(QtCore.QObject):
 
 class QSqlError(sip.simplewrapper):
 
-    class ErrorType(int):
+    @typing.final
+    class ErrorType(int, metaclass=sip._enumtype):
         NoError = ... # type: QSqlError.ErrorType
         ConnectionError = ... # type: QSqlError.ErrorType
         StatementError = ... # type: QSqlError.ErrorType
@@ -277,7 +283,8 @@ class QSqlError(sip.simplewrapper):
 
 class QSqlField(sip.simplewrapper):
 
-    class RequiredStatus(int):
+    @typing.final
+    class RequiredStatus(int, metaclass=sip._enumtype):
         Unknown = ... # type: QSqlField.RequiredStatus
         Optional = ... # type: QSqlField.RequiredStatus
         Required = ... # type: QSqlField.RequiredStatus
@@ -394,7 +401,8 @@ class QSqlIndex(QSqlRecord):
 
 class QSqlQuery(sip.simplewrapper):
 
-    class BatchExecutionMode(int):
+    @typing.final
+    class BatchExecutionMode(int, metaclass=sip._enumtype):
         ValuesAsRows = ... # type: QSqlQuery.BatchExecutionMode
         ValuesAsColumns = ... # type: QSqlQuery.BatchExecutionMode
 
@@ -532,7 +540,8 @@ class QSqlRelation(sip.simplewrapper):
 
 class QSqlTableModel(QSqlQueryModel):
 
-    class EditStrategy(int):
+    @typing.final
+    class EditStrategy(int, metaclass=sip._enumtype):
         OnFieldChange = ... # type: QSqlTableModel.EditStrategy
         OnRowChange = ... # type: QSqlTableModel.EditStrategy
         OnManualSubmit = ... # type: QSqlTableModel.EditStrategy
@@ -597,7 +606,8 @@ class QSqlTableModel(QSqlQueryModel):
 
 class QSqlRelationalTableModel(QSqlTableModel):
 
-    class JoinMode(int):
+    @typing.final
+    class JoinMode(int, metaclass=sip._enumtype):
         InnerJoin = ... # type: QSqlRelationalTableModel.JoinMode
         LeftJoin = ... # type: QSqlRelationalTableModel.JoinMode
 
@@ -625,7 +635,8 @@ class QSqlRelationalTableModel(QSqlTableModel):
 
 class QSqlResult(sip.wrapper):
 
-    class BindingSyntax(int):
+    @typing.final
+    class BindingSyntax(int, metaclass=sip._enumtype):
         PositionalBinding = ... # type: QSqlResult.BindingSyntax
         NamedBinding = ... # type: QSqlResult.BindingSyntax
 
@@ -689,7 +700,8 @@ class QSqlResult(sip.wrapper):
 
 class QSql(sip.simplewrapper):
 
-    class NumericalPrecisionPolicy(int):
+    @typing.final
+    class NumericalPrecisionPolicy(int, metaclass=sip._enumtype):
         LowPrecisionInt32 = ... # type: QSql.NumericalPrecisionPolicy
         LowPrecisionInt64 = ... # type: QSql.NumericalPrecisionPolicy
         LowPrecisionDouble = ... # type: QSql.NumericalPrecisionPolicy
@@ -700,7 +712,8 @@ class QSql(sip.simplewrapper):
     LowPrecisionDouble = ...  # type: QSql.NumericalPrecisionPolicy
     HighPrecision = ...  # type: QSql.NumericalPrecisionPolicy
 
-    class TableType(int):
+    @typing.final
+    class TableType(int, metaclass=sip._enumtype):
         Tables = ... # type: QSql.TableType
         SystemTables = ... # type: QSql.TableType
         Views = ... # type: QSql.TableType
@@ -711,9 +724,10 @@ class QSql(sip.simplewrapper):
     Views = ...  # type: QSql.TableType
     AllTables = ...  # type: QSql.TableType
 
-    class ParamTypeFlag(int):
-        def __or__ (self, other: 'QSql.ParamTypeFlag') -> 'QSql.ParamType': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QSql.ParamType': ...                    # type: ignore[override, misc]
+    @typing.final
+    class ParamTypeFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QSql.ParamTypeFlag', /) -> 'QSql.ParamType': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QSql.ParamType': ...                    # type: ignore[override, misc]
         
         In = ... # type: QSql.ParamTypeFlag
         Out = ... # type: QSql.ParamTypeFlag
@@ -725,7 +739,8 @@ class QSql(sip.simplewrapper):
     InOut = ...  # type: QSql.ParamTypeFlag
     Binary = ...  # type: QSql.ParamTypeFlag
 
-    class Location(int):
+    @typing.final
+    class Location(int, metaclass=sip._enumtype):
         BeforeFirstRow = ... # type: QSql.Location
         AfterLastRow = ... # type: QSql.Location
 
@@ -748,9 +763,9 @@ class QSql(sip.simplewrapper):
         def __invert__(self) -> 'QSql.ParamType': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSql.ParamType', 'QSql.ParamTypeFlag', int]) -> 'QSql.ParamType': ...
-        def __and__(self, other: typing.Union['QSql.ParamType', 'QSql.ParamTypeFlag', int]) -> 'QSql.ParamType': ...
-        def __xor__(self, other: typing.Union['QSql.ParamType', 'QSql.ParamTypeFlag', int]) -> 'QSql.ParamType': ...
-        def __ror__ (self, other: 'QSql.ParamTypeFlag') -> 'QSql.ParamType': ...
-        def __rand__(self, other: 'QSql.ParamTypeFlag') -> 'QSql.ParamType': ...
-        def __rxor__(self, other: 'QSql.ParamTypeFlag') -> 'QSql.ParamType': ...
+        def __or__ (self, other: typing.Union['QSql.ParamType', 'QSql.ParamTypeFlag', int], /) -> 'QSql.ParamType': ...
+        def __and__(self, other: typing.Union['QSql.ParamType', 'QSql.ParamTypeFlag', int], /) -> 'QSql.ParamType': ...
+        def __xor__(self, other: typing.Union['QSql.ParamType', 'QSql.ParamTypeFlag', int], /) -> 'QSql.ParamType': ...
+        def __ror__ (self, other: 'QSql.ParamTypeFlag', /) -> 'QSql.ParamType': ...
+        def __rand__(self, other: 'QSql.ParamTypeFlag', /) -> 'QSql.ParamType': ...
+        def __rxor__(self, other: 'QSql.ParamTypeFlag', /) -> 'QSql.ParamType': ...

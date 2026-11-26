@@ -30,20 +30,21 @@ from PyQt5 import QtCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstract3DGraph(QtGui.QWindow):
 
-    class OptimizationHint(int):
-        def __or__ (self, other: 'QAbstract3DGraph.OptimizationHint') -> 'QAbstract3DGraph.OptimizationHints': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QAbstract3DGraph.OptimizationHints': ...                                   # type: ignore[override, misc]
+    @typing.final
+    class OptimizationHint(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QAbstract3DGraph.OptimizationHint', /) -> 'QAbstract3DGraph.OptimizationHints': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QAbstract3DGraph.OptimizationHints': ...                                   # type: ignore[override, misc]
         
         OptimizationDefault = ... # type: QAbstract3DGraph.OptimizationHint
         OptimizationStatic = ... # type: QAbstract3DGraph.OptimizationHint
@@ -51,7 +52,8 @@ class QAbstract3DGraph(QtGui.QWindow):
     OptimizationDefault = ...  # type: QAbstract3DGraph.OptimizationHint
     OptimizationStatic = ...  # type: QAbstract3DGraph.OptimizationHint
 
-    class ElementType(int):
+    @typing.final
+    class ElementType(int, metaclass=sip._enumtype):
         ElementNone = ... # type: QAbstract3DGraph.ElementType
         ElementSeries = ... # type: QAbstract3DGraph.ElementType
         ElementAxisXLabel = ... # type: QAbstract3DGraph.ElementType
@@ -66,7 +68,8 @@ class QAbstract3DGraph(QtGui.QWindow):
     ElementAxisZLabel = ...  # type: QAbstract3DGraph.ElementType
     ElementCustomItem = ...  # type: QAbstract3DGraph.ElementType
 
-    class ShadowQuality(int):
+    @typing.final
+    class ShadowQuality(int, metaclass=sip._enumtype):
         ShadowQualityNone = ... # type: QAbstract3DGraph.ShadowQuality
         ShadowQualityLow = ... # type: QAbstract3DGraph.ShadowQuality
         ShadowQualityMedium = ... # type: QAbstract3DGraph.ShadowQuality
@@ -83,9 +86,10 @@ class QAbstract3DGraph(QtGui.QWindow):
     ShadowQualitySoftMedium = ...  # type: QAbstract3DGraph.ShadowQuality
     ShadowQualitySoftHigh = ...  # type: QAbstract3DGraph.ShadowQuality
 
-    class SelectionFlag(int):
-        def __or__ (self, other: 'QAbstract3DGraph.SelectionFlag') -> 'QAbstract3DGraph.SelectionFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QAbstract3DGraph.SelectionFlags': ...                                # type: ignore[override, misc]
+    @typing.final
+    class SelectionFlag(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QAbstract3DGraph.SelectionFlag', /) -> 'QAbstract3DGraph.SelectionFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QAbstract3DGraph.SelectionFlags': ...                                # type: ignore[override, misc]
         
         SelectionNone = ... # type: QAbstract3DGraph.SelectionFlag
         SelectionItem = ... # type: QAbstract3DGraph.SelectionFlag
@@ -125,12 +129,12 @@ class QAbstract3DGraph(QtGui.QWindow):
         def __invert__(self) -> 'QAbstract3DGraph.SelectionFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QAbstract3DGraph.SelectionFlags', 'QAbstract3DGraph.SelectionFlag', int]) -> 'QAbstract3DGraph.SelectionFlags': ...
-        def __and__(self, other: typing.Union['QAbstract3DGraph.SelectionFlags', 'QAbstract3DGraph.SelectionFlag', int]) -> 'QAbstract3DGraph.SelectionFlags': ...
-        def __xor__(self, other: typing.Union['QAbstract3DGraph.SelectionFlags', 'QAbstract3DGraph.SelectionFlag', int]) -> 'QAbstract3DGraph.SelectionFlags': ...
-        def __ror__ (self, other: 'QAbstract3DGraph.SelectionFlag') -> 'QAbstract3DGraph.SelectionFlags': ...
-        def __rand__(self, other: 'QAbstract3DGraph.SelectionFlag') -> 'QAbstract3DGraph.SelectionFlags': ...
-        def __rxor__(self, other: 'QAbstract3DGraph.SelectionFlag') -> 'QAbstract3DGraph.SelectionFlags': ...
+        def __or__ (self, other: typing.Union['QAbstract3DGraph.SelectionFlags', 'QAbstract3DGraph.SelectionFlag', int], /) -> 'QAbstract3DGraph.SelectionFlags': ...
+        def __and__(self, other: typing.Union['QAbstract3DGraph.SelectionFlags', 'QAbstract3DGraph.SelectionFlag', int], /) -> 'QAbstract3DGraph.SelectionFlags': ...
+        def __xor__(self, other: typing.Union['QAbstract3DGraph.SelectionFlags', 'QAbstract3DGraph.SelectionFlag', int], /) -> 'QAbstract3DGraph.SelectionFlags': ...
+        def __ror__ (self, other: 'QAbstract3DGraph.SelectionFlag', /) -> 'QAbstract3DGraph.SelectionFlags': ...
+        def __rand__(self, other: 'QAbstract3DGraph.SelectionFlag', /) -> 'QAbstract3DGraph.SelectionFlags': ...
+        def __rxor__(self, other: 'QAbstract3DGraph.SelectionFlag', /) -> 'QAbstract3DGraph.SelectionFlags': ...
 
     class OptimizationHints(sip.simplewrapper):
 
@@ -148,12 +152,12 @@ class QAbstract3DGraph(QtGui.QWindow):
         def __invert__(self) -> 'QAbstract3DGraph.OptimizationHints': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QAbstract3DGraph.OptimizationHints', 'QAbstract3DGraph.OptimizationHint', int]) -> 'QAbstract3DGraph.OptimizationHints': ...
-        def __and__(self, other: typing.Union['QAbstract3DGraph.OptimizationHints', 'QAbstract3DGraph.OptimizationHint', int]) -> 'QAbstract3DGraph.OptimizationHints': ...
-        def __xor__(self, other: typing.Union['QAbstract3DGraph.OptimizationHints', 'QAbstract3DGraph.OptimizationHint', int]) -> 'QAbstract3DGraph.OptimizationHints': ...
-        def __ror__ (self, other: 'QAbstract3DGraph.OptimizationHint') -> 'QAbstract3DGraph.OptimizationHints': ...
-        def __rand__(self, other: 'QAbstract3DGraph.OptimizationHint') -> 'QAbstract3DGraph.OptimizationHints': ...
-        def __rxor__(self, other: 'QAbstract3DGraph.OptimizationHint') -> 'QAbstract3DGraph.OptimizationHints': ...
+        def __or__ (self, other: typing.Union['QAbstract3DGraph.OptimizationHints', 'QAbstract3DGraph.OptimizationHint', int], /) -> 'QAbstract3DGraph.OptimizationHints': ...
+        def __and__(self, other: typing.Union['QAbstract3DGraph.OptimizationHints', 'QAbstract3DGraph.OptimizationHint', int], /) -> 'QAbstract3DGraph.OptimizationHints': ...
+        def __xor__(self, other: typing.Union['QAbstract3DGraph.OptimizationHints', 'QAbstract3DGraph.OptimizationHint', int], /) -> 'QAbstract3DGraph.OptimizationHints': ...
+        def __ror__ (self, other: 'QAbstract3DGraph.OptimizationHint', /) -> 'QAbstract3DGraph.OptimizationHints': ...
+        def __rand__(self, other: 'QAbstract3DGraph.OptimizationHint', /) -> 'QAbstract3DGraph.OptimizationHints': ...
+        def __rxor__(self, other: 'QAbstract3DGraph.OptimizationHint', /) -> 'QAbstract3DGraph.OptimizationHints': ...
 
     def hasContext(self) -> bool: ...
     marginChanged: typing.ClassVar[QtCore.pyqtSignal]
@@ -292,7 +296,8 @@ class Q3DObject(QtCore.QObject):
 
 class Q3DCamera('Q3DObject'):
 
-    class CameraPreset(int):
+    @typing.final
+    class CameraPreset(int, metaclass=sip._enumtype):
         CameraPresetNone = ... # type: Q3DCamera.CameraPreset
         CameraPresetFrontLow = ... # type: Q3DCamera.CameraPreset
         CameraPresetFront = ... # type: Q3DCamera.CameraPreset
@@ -379,7 +384,8 @@ class Q3DCamera('Q3DObject'):
 
 class QAbstract3DInputHandler(QtCore.QObject):
 
-    class InputView(int):
+    @typing.final
+    class InputView(int, metaclass=sip._enumtype):
         InputViewNone = ... # type: QAbstract3DInputHandler.InputView
         InputViewOnPrimary = ... # type: QAbstract3DInputHandler.InputView
         InputViewOnSecondary = ... # type: QAbstract3DInputHandler.InputView
@@ -526,7 +532,8 @@ class Q3DSurface('QAbstract3DGraph'):
 
 class Q3DTheme(QtCore.QObject):
 
-    class Theme(int):
+    @typing.final
+    class Theme(int, metaclass=sip._enumtype):
         ThemeQt = ... # type: Q3DTheme.Theme
         ThemePrimaryColors = ... # type: Q3DTheme.Theme
         ThemeDigia = ... # type: Q3DTheme.Theme
@@ -547,7 +554,8 @@ class Q3DTheme(QtCore.QObject):
     ThemeIsabelle = ...  # type: Q3DTheme.Theme
     ThemeUserDefined = ...  # type: Q3DTheme.Theme
 
-    class ColorStyle(int):
+    @typing.final
+    class ColorStyle(int, metaclass=sip._enumtype):
         ColorStyleUniform = ... # type: Q3DTheme.ColorStyle
         ColorStyleObjectGradient = ... # type: Q3DTheme.ColorStyle
         ColorStyleRangeGradient = ... # type: Q3DTheme.ColorStyle
@@ -630,7 +638,8 @@ class Q3DTheme(QtCore.QObject):
 
 class QAbstract3DAxis(QtCore.QObject):
 
-    class AxisType(int):
+    @typing.final
+    class AxisType(int, metaclass=sip._enumtype):
         AxisTypeNone = ... # type: QAbstract3DAxis.AxisType
         AxisTypeCategory = ... # type: QAbstract3DAxis.AxisType
         AxisTypeValue = ... # type: QAbstract3DAxis.AxisType
@@ -639,7 +648,8 @@ class QAbstract3DAxis(QtCore.QObject):
     AxisTypeCategory = ...  # type: QAbstract3DAxis.AxisType
     AxisTypeValue = ...  # type: QAbstract3DAxis.AxisType
 
-    class AxisOrientation(int):
+    @typing.final
+    class AxisOrientation(int, metaclass=sip._enumtype):
         AxisOrientationNone = ... # type: QAbstract3DAxis.AxisOrientation
         AxisOrientationX = ... # type: QAbstract3DAxis.AxisOrientation
         AxisOrientationY = ... # type: QAbstract3DAxis.AxisOrientation
@@ -682,7 +692,8 @@ class QAbstract3DAxis(QtCore.QObject):
 
 class QAbstract3DSeries(QtCore.QObject):
 
-    class Mesh(int):
+    @typing.final
+    class Mesh(int, metaclass=sip._enumtype):
         MeshUserDefined = ... # type: QAbstract3DSeries.Mesh
         MeshBar = ... # type: QAbstract3DSeries.Mesh
         MeshCube = ... # type: QAbstract3DSeries.Mesh
@@ -709,7 +720,8 @@ class QAbstract3DSeries(QtCore.QObject):
     MeshArrow = ...  # type: QAbstract3DSeries.Mesh
     MeshPoint = ...  # type: QAbstract3DSeries.Mesh
 
-    class SeriesType(int):
+    @typing.final
+    class SeriesType(int, metaclass=sip._enumtype):
         SeriesTypeNone = ... # type: QAbstract3DSeries.SeriesType
         SeriesTypeBar = ... # type: QAbstract3DSeries.SeriesType
         SeriesTypeScatter = ... # type: QAbstract3DSeries.SeriesType
@@ -772,7 +784,8 @@ class QAbstract3DSeries(QtCore.QObject):
 
 class QAbstractDataProxy(QtCore.QObject):
 
-    class DataType(int):
+    @typing.final
+    class DataType(int, metaclass=sip._enumtype):
         DataTypeNone = ... # type: QAbstractDataProxy.DataType
         DataTypeBar = ... # type: QAbstractDataProxy.DataType
         DataTypeScatter = ... # type: QAbstractDataProxy.DataType
@@ -1092,7 +1105,8 @@ class QHeightMapSurfaceDataProxy('QSurfaceDataProxy'):
 
 class QItemModelBarDataProxy('QBarDataProxy'):
 
-    class MultiMatchBehavior(int):
+    @typing.final
+    class MultiMatchBehavior(int, metaclass=sip._enumtype):
         MMBFirst = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
         MMBLast = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
         MMBAverage = ... # type: QItemModelBarDataProxy.MultiMatchBehavior
@@ -1257,7 +1271,8 @@ class QItemModelScatterDataProxy('QScatterDataProxy'):
 
 class QItemModelSurfaceDataProxy('QSurfaceDataProxy'):
 
-    class MultiMatchBehavior(int):
+    @typing.final
+    class MultiMatchBehavior(int, metaclass=sip._enumtype):
         MMBFirst = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
         MMBLast = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
         MMBAverage = ... # type: QItemModelSurfaceDataProxy.MultiMatchBehavior
@@ -1438,7 +1453,8 @@ class QScatterDataItem(sip.simplewrapper):
 
 class QSurface3DSeries('QAbstract3DSeries'):
 
-    class DrawFlag(int):
+    @typing.final
+    class DrawFlag(int, metaclass=sip._enumtype):
         DrawWireframe = ... # type: QSurface3DSeries.DrawFlag
         DrawSurface = ... # type: QSurface3DSeries.DrawFlag
         DrawSurfaceAndWireframe = ... # type: QSurface3DSeries.DrawFlag
@@ -1463,12 +1479,12 @@ class QSurface3DSeries('QAbstract3DSeries'):
         def __invert__(self) -> 'QSurface3DSeries.DrawFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QSurface3DSeries.DrawFlags', 'QSurface3DSeries.DrawFlag', int]) -> 'QSurface3DSeries.DrawFlags': ...
-        def __and__(self, other: typing.Union['QSurface3DSeries.DrawFlags', 'QSurface3DSeries.DrawFlag', int]) -> 'QSurface3DSeries.DrawFlags': ...
-        def __xor__(self, other: typing.Union['QSurface3DSeries.DrawFlags', 'QSurface3DSeries.DrawFlag', int]) -> 'QSurface3DSeries.DrawFlags': ...
-        def __ror__ (self, other: 'QSurface3DSeries.DrawFlag') -> 'QSurface3DSeries.DrawFlags': ...
-        def __rand__(self, other: 'QSurface3DSeries.DrawFlag') -> 'QSurface3DSeries.DrawFlags': ...
-        def __rxor__(self, other: 'QSurface3DSeries.DrawFlag') -> 'QSurface3DSeries.DrawFlags': ...
+        def __or__ (self, other: typing.Union['QSurface3DSeries.DrawFlags', 'QSurface3DSeries.DrawFlag', int], /) -> 'QSurface3DSeries.DrawFlags': ...
+        def __and__(self, other: typing.Union['QSurface3DSeries.DrawFlags', 'QSurface3DSeries.DrawFlag', int], /) -> 'QSurface3DSeries.DrawFlags': ...
+        def __xor__(self, other: typing.Union['QSurface3DSeries.DrawFlags', 'QSurface3DSeries.DrawFlag', int], /) -> 'QSurface3DSeries.DrawFlags': ...
+        def __ror__ (self, other: 'QSurface3DSeries.DrawFlag', /) -> 'QSurface3DSeries.DrawFlags': ...
+        def __rand__(self, other: 'QSurface3DSeries.DrawFlag', /) -> 'QSurface3DSeries.DrawFlags': ...
+        def __rxor__(self, other: 'QSurface3DSeries.DrawFlag', /) -> 'QSurface3DSeries.DrawFlags': ...
 
     @typing.overload
     def __init__(self, dataProxy: 'QSurfaceDataProxy', parent: typing.Optional[QtCore.QObject] = ...) -> None: ...

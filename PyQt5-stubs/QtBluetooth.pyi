@@ -30,14 +30,15 @@ import datetime
 import enum
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 
 class QBluetooth(sip.simplewrapper):
 
-    class AttAccessConstraint(int):
-        def __or__ (self, other: 'QBluetooth.AttAccessConstraint') -> 'QBluetooth.AttAccessConstraints': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QBluetooth.AttAccessConstraints': ...                                # type: ignore[override, misc]
+    @typing.final
+    class AttAccessConstraint(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QBluetooth.AttAccessConstraint', /) -> 'QBluetooth.AttAccessConstraints': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QBluetooth.AttAccessConstraints': ...                                # type: ignore[override, misc]
         
         AttAuthorizationRequired = ... # type: QBluetooth.AttAccessConstraint
         AttAuthenticationRequired = ... # type: QBluetooth.AttAccessConstraint
@@ -47,9 +48,10 @@ class QBluetooth(sip.simplewrapper):
     AttAuthenticationRequired = ...  # type: QBluetooth.AttAccessConstraint
     AttEncryptionRequired = ...  # type: QBluetooth.AttAccessConstraint
 
-    class Security(int):
-        def __or__ (self, other: 'QBluetooth.Security') -> 'QBluetooth.SecurityFlags': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QBluetooth.SecurityFlags': ...                     # type: ignore[override, misc]
+    @typing.final
+    class Security(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QBluetooth.Security', /) -> 'QBluetooth.SecurityFlags': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QBluetooth.SecurityFlags': ...                     # type: ignore[override, misc]
         
         NoSecurity = ... # type: QBluetooth.Security
         Authorization = ... # type: QBluetooth.Security
@@ -79,12 +81,12 @@ class QBluetooth(sip.simplewrapper):
         def __invert__(self) -> 'QBluetooth.SecurityFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QBluetooth.SecurityFlags', 'QBluetooth.Security', int]) -> 'QBluetooth.SecurityFlags': ...
-        def __and__(self, other: typing.Union['QBluetooth.SecurityFlags', 'QBluetooth.Security', int]) -> 'QBluetooth.SecurityFlags': ...
-        def __xor__(self, other: typing.Union['QBluetooth.SecurityFlags', 'QBluetooth.Security', int]) -> 'QBluetooth.SecurityFlags': ...
-        def __ror__ (self, other: 'QBluetooth.Security') -> 'QBluetooth.SecurityFlags': ...
-        def __rand__(self, other: 'QBluetooth.Security') -> 'QBluetooth.SecurityFlags': ...
-        def __rxor__(self, other: 'QBluetooth.Security') -> 'QBluetooth.SecurityFlags': ...
+        def __or__ (self, other: typing.Union['QBluetooth.SecurityFlags', 'QBluetooth.Security', int], /) -> 'QBluetooth.SecurityFlags': ...
+        def __and__(self, other: typing.Union['QBluetooth.SecurityFlags', 'QBluetooth.Security', int], /) -> 'QBluetooth.SecurityFlags': ...
+        def __xor__(self, other: typing.Union['QBluetooth.SecurityFlags', 'QBluetooth.Security', int], /) -> 'QBluetooth.SecurityFlags': ...
+        def __ror__ (self, other: 'QBluetooth.Security', /) -> 'QBluetooth.SecurityFlags': ...
+        def __rand__(self, other: 'QBluetooth.Security', /) -> 'QBluetooth.SecurityFlags': ...
+        def __rxor__(self, other: 'QBluetooth.Security', /) -> 'QBluetooth.SecurityFlags': ...
 
     class AttAccessConstraints(sip.wrapper):
 
@@ -102,12 +104,12 @@ class QBluetooth(sip.simplewrapper):
         def __invert__(self) -> 'QBluetooth.AttAccessConstraints': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QBluetooth.AttAccessConstraints', 'QBluetooth.AttAccessConstraint', int]) -> 'QBluetooth.AttAccessConstraints': ...
-        def __and__(self, other: typing.Union['QBluetooth.AttAccessConstraints', 'QBluetooth.AttAccessConstraint', int]) -> 'QBluetooth.AttAccessConstraints': ...
-        def __xor__(self, other: typing.Union['QBluetooth.AttAccessConstraints', 'QBluetooth.AttAccessConstraint', int]) -> 'QBluetooth.AttAccessConstraints': ...
-        def __ror__ (self, other: 'QBluetooth.AttAccessConstraint') -> 'QBluetooth.AttAccessConstraints': ...
-        def __rand__(self, other: 'QBluetooth.AttAccessConstraint') -> 'QBluetooth.AttAccessConstraints': ...
-        def __rxor__(self, other: 'QBluetooth.AttAccessConstraint') -> 'QBluetooth.AttAccessConstraints': ...
+        def __or__ (self, other: typing.Union['QBluetooth.AttAccessConstraints', 'QBluetooth.AttAccessConstraint', int], /) -> 'QBluetooth.AttAccessConstraints': ...
+        def __and__(self, other: typing.Union['QBluetooth.AttAccessConstraints', 'QBluetooth.AttAccessConstraint', int], /) -> 'QBluetooth.AttAccessConstraints': ...
+        def __xor__(self, other: typing.Union['QBluetooth.AttAccessConstraints', 'QBluetooth.AttAccessConstraint', int], /) -> 'QBluetooth.AttAccessConstraints': ...
+        def __ror__ (self, other: 'QBluetooth.AttAccessConstraint', /) -> 'QBluetooth.AttAccessConstraints': ...
+        def __rand__(self, other: 'QBluetooth.AttAccessConstraint', /) -> 'QBluetooth.AttAccessConstraints': ...
+        def __rxor__(self, other: 'QBluetooth.AttAccessConstraint', /) -> 'QBluetooth.AttAccessConstraints': ...
 
 
 class QBluetoothAddress(sip.wrapper):
@@ -129,7 +131,8 @@ class QBluetoothAddress(sip.wrapper):
 
 class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
 
-    class DiscoveryMethod(int):
+    @typing.final
+    class DiscoveryMethod(int, metaclass=sip._enumtype):
         NoMethod = ... # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
         ClassicMethod = ... # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
         LowEnergyMethod = ... # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
@@ -138,14 +141,16 @@ class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
     ClassicMethod = ...  # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
     LowEnergyMethod = ...  # type: QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
 
-    class InquiryType(int):
+    @typing.final
+    class InquiryType(int, metaclass=sip._enumtype):
         GeneralUnlimitedInquiry = ... # type: QBluetoothDeviceDiscoveryAgent.InquiryType
         LimitedInquiry = ... # type: QBluetoothDeviceDiscoveryAgent.InquiryType
 
     GeneralUnlimitedInquiry = ...  # type: QBluetoothDeviceDiscoveryAgent.InquiryType
     LimitedInquiry = ...  # type: QBluetoothDeviceDiscoveryAgent.InquiryType
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QBluetoothDeviceDiscoveryAgent.Error
         InputOutputError = ... # type: QBluetoothDeviceDiscoveryAgent.Error
         PoweredOffError = ... # type: QBluetoothDeviceDiscoveryAgent.Error
@@ -216,9 +221,10 @@ class QBluetoothDeviceInfo(sip.wrapper):
     ManufacturerData = ...  # type: QBluetoothDeviceInfo.Field
     All = ...  # type: QBluetoothDeviceInfo.Field
 
-    class CoreConfiguration(int):
-        def __or__ (self, other: 'QBluetoothDeviceInfo.CoreConfiguration') -> 'QBluetoothDeviceInfo.CoreConfigurations': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...                                        # type: ignore[override, misc]
+    @typing.final
+    class CoreConfiguration(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QBluetoothDeviceInfo.CoreConfiguration', /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...                                        # type: ignore[override, misc]
         
         UnknownCoreConfiguration = ... # type: QBluetoothDeviceInfo.CoreConfiguration
         LowEnergyCoreConfiguration = ... # type: QBluetoothDeviceInfo.CoreConfiguration
@@ -230,7 +236,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     BaseRateCoreConfiguration = ...  # type: QBluetoothDeviceInfo.CoreConfiguration
     BaseRateAndLowEnergyCoreConfiguration = ...  # type: QBluetoothDeviceInfo.CoreConfiguration
 
-    class DataCompleteness(int):
+    @typing.final
+    class DataCompleteness(int, metaclass=sip._enumtype):
         DataComplete = ... # type: QBluetoothDeviceInfo.DataCompleteness
         DataIncomplete = ... # type: QBluetoothDeviceInfo.DataCompleteness
         DataUnavailable = ... # type: QBluetoothDeviceInfo.DataCompleteness
@@ -239,9 +246,10 @@ class QBluetoothDeviceInfo(sip.wrapper):
     DataIncomplete = ...  # type: QBluetoothDeviceInfo.DataCompleteness
     DataUnavailable = ...  # type: QBluetoothDeviceInfo.DataCompleteness
 
-    class ServiceClass(int):
-        def __or__ (self, other: 'QBluetoothDeviceInfo.ServiceClass') -> 'QBluetoothDeviceInfo.ServiceClasses': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QBluetoothDeviceInfo.ServiceClasses': ...                                   # type: ignore[override, misc]
+    @typing.final
+    class ServiceClass(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QBluetoothDeviceInfo.ServiceClass', /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...                                   # type: ignore[override, misc]
         
         NoService = ... # type: QBluetoothDeviceInfo.ServiceClass
         PositioningService = ... # type: QBluetoothDeviceInfo.ServiceClass
@@ -265,7 +273,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     InformationService = ...  # type: QBluetoothDeviceInfo.ServiceClass
     AllServices = ...  # type: QBluetoothDeviceInfo.ServiceClass
 
-    class MinorHealthClass(int):
+    @typing.final
+    class MinorHealthClass(int, metaclass=sip._enumtype):
         UncategorizedHealthDevice = ... # type: QBluetoothDeviceInfo.MinorHealthClass
         HealthBloodPressureMonitor = ... # type: QBluetoothDeviceInfo.MinorHealthClass
         HealthThermometer = ... # type: QBluetoothDeviceInfo.MinorHealthClass
@@ -284,7 +293,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     HealthDataDisplay = ...  # type: QBluetoothDeviceInfo.MinorHealthClass
     HealthStepCounter = ...  # type: QBluetoothDeviceInfo.MinorHealthClass
 
-    class MinorToyClass(int):
+    @typing.final
+    class MinorToyClass(int, metaclass=sip._enumtype):
         UncategorizedToy = ... # type: QBluetoothDeviceInfo.MinorToyClass
         ToyRobot = ... # type: QBluetoothDeviceInfo.MinorToyClass
         ToyVehicle = ... # type: QBluetoothDeviceInfo.MinorToyClass
@@ -299,7 +309,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     ToyController = ...  # type: QBluetoothDeviceInfo.MinorToyClass
     ToyGame = ...  # type: QBluetoothDeviceInfo.MinorToyClass
 
-    class MinorWearableClass(int):
+    @typing.final
+    class MinorWearableClass(int, metaclass=sip._enumtype):
         UncategorizedWearableDevice = ... # type: QBluetoothDeviceInfo.MinorWearableClass
         WearableWristWatch = ... # type: QBluetoothDeviceInfo.MinorWearableClass
         WearablePager = ... # type: QBluetoothDeviceInfo.MinorWearableClass
@@ -314,7 +325,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     WearableHelmet = ...  # type: QBluetoothDeviceInfo.MinorWearableClass
     WearableGlasses = ...  # type: QBluetoothDeviceInfo.MinorWearableClass
 
-    class MinorImagingClass(int):
+    @typing.final
+    class MinorImagingClass(int, metaclass=sip._enumtype):
         UncategorizedImagingDevice = ... # type: QBluetoothDeviceInfo.MinorImagingClass
         ImageDisplay = ... # type: QBluetoothDeviceInfo.MinorImagingClass
         ImageCamera = ... # type: QBluetoothDeviceInfo.MinorImagingClass
@@ -327,7 +339,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     ImageScanner = ...  # type: QBluetoothDeviceInfo.MinorImagingClass
     ImagePrinter = ...  # type: QBluetoothDeviceInfo.MinorImagingClass
 
-    class MinorPeripheralClass(int):
+    @typing.final
+    class MinorPeripheralClass(int, metaclass=sip._enumtype):
         UncategorizedPeripheral = ... # type: QBluetoothDeviceInfo.MinorPeripheralClass
         KeyboardPeripheral = ... # type: QBluetoothDeviceInfo.MinorPeripheralClass
         PointingDevicePeripheral = ... # type: QBluetoothDeviceInfo.MinorPeripheralClass
@@ -350,7 +363,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     DigitizerTabletPeripheral = ...  # type: QBluetoothDeviceInfo.MinorPeripheralClass
     CardReaderPeripheral = ...  # type: QBluetoothDeviceInfo.MinorPeripheralClass
 
-    class MinorAudioVideoClass(int):
+    @typing.final
+    class MinorAudioVideoClass(int, metaclass=sip._enumtype):
         UncategorizedAudioVideoDevice = ... # type: QBluetoothDeviceInfo.MinorAudioVideoClass
         WearableHeadsetDevice = ... # type: QBluetoothDeviceInfo.MinorAudioVideoClass
         HandsFreeDevice = ... # type: QBluetoothDeviceInfo.MinorAudioVideoClass
@@ -387,7 +401,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     VideoConferencing = ...  # type: QBluetoothDeviceInfo.MinorAudioVideoClass
     GamingDevice = ...  # type: QBluetoothDeviceInfo.MinorAudioVideoClass
 
-    class MinorNetworkClass(int):
+    @typing.final
+    class MinorNetworkClass(int, metaclass=sip._enumtype):
         NetworkFullService = ... # type: QBluetoothDeviceInfo.MinorNetworkClass
         NetworkLoadFactorOne = ... # type: QBluetoothDeviceInfo.MinorNetworkClass
         NetworkLoadFactorTwo = ... # type: QBluetoothDeviceInfo.MinorNetworkClass
@@ -406,7 +421,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     NetworkLoadFactorSix = ...  # type: QBluetoothDeviceInfo.MinorNetworkClass
     NetworkNoService = ...  # type: QBluetoothDeviceInfo.MinorNetworkClass
 
-    class MinorPhoneClass(int):
+    @typing.final
+    class MinorPhoneClass(int, metaclass=sip._enumtype):
         UncategorizedPhone = ... # type: QBluetoothDeviceInfo.MinorPhoneClass
         CellularPhone = ... # type: QBluetoothDeviceInfo.MinorPhoneClass
         CordlessPhone = ... # type: QBluetoothDeviceInfo.MinorPhoneClass
@@ -421,7 +437,8 @@ class QBluetoothDeviceInfo(sip.wrapper):
     WiredModemOrVoiceGatewayPhone = ...  # type: QBluetoothDeviceInfo.MinorPhoneClass
     CommonIsdnAccessPhone = ...  # type: QBluetoothDeviceInfo.MinorPhoneClass
 
-    class MinorComputerClass(int):
+    @typing.final
+    class MinorComputerClass(int, metaclass=sip._enumtype):
         UncategorizedComputer = ... # type: QBluetoothDeviceInfo.MinorComputerClass
         DesktopComputer = ... # type: QBluetoothDeviceInfo.MinorComputerClass
         ServerComputer = ... # type: QBluetoothDeviceInfo.MinorComputerClass
@@ -438,12 +455,14 @@ class QBluetoothDeviceInfo(sip.wrapper):
     HandheldComputer = ...  # type: QBluetoothDeviceInfo.MinorComputerClass
     WearableComputer = ...  # type: QBluetoothDeviceInfo.MinorComputerClass
 
-    class MinorMiscellaneousClass(int):
+    @typing.final
+    class MinorMiscellaneousClass(int, metaclass=sip._enumtype):
         UncategorizedMiscellaneous = ... # type: QBluetoothDeviceInfo.MinorMiscellaneousClass
 
     UncategorizedMiscellaneous = ...  # type: QBluetoothDeviceInfo.MinorMiscellaneousClass
 
-    class MajorDeviceClass(int):
+    @typing.final
+    class MajorDeviceClass(int, metaclass=sip._enumtype):
         MiscellaneousDevice = ... # type: QBluetoothDeviceInfo.MajorDeviceClass
         ComputerDevice = ... # type: QBluetoothDeviceInfo.MajorDeviceClass
         PhoneDevice = ... # type: QBluetoothDeviceInfo.MajorDeviceClass
@@ -486,12 +505,12 @@ class QBluetoothDeviceInfo(sip.wrapper):
         def __invert__(self) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QBluetoothDeviceInfo.ServiceClasses', 'QBluetoothDeviceInfo.ServiceClass', int]) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
-        def __and__(self, other: typing.Union['QBluetoothDeviceInfo.ServiceClasses', 'QBluetoothDeviceInfo.ServiceClass', int]) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
-        def __xor__(self, other: typing.Union['QBluetoothDeviceInfo.ServiceClasses', 'QBluetoothDeviceInfo.ServiceClass', int]) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
-        def __ror__ (self, other: 'QBluetoothDeviceInfo.ServiceClass') -> 'QBluetoothDeviceInfo.ServiceClasses': ...
-        def __rand__(self, other: 'QBluetoothDeviceInfo.ServiceClass') -> 'QBluetoothDeviceInfo.ServiceClasses': ...
-        def __rxor__(self, other: 'QBluetoothDeviceInfo.ServiceClass') -> 'QBluetoothDeviceInfo.ServiceClasses': ...
+        def __or__ (self, other: typing.Union['QBluetoothDeviceInfo.ServiceClasses', 'QBluetoothDeviceInfo.ServiceClass', int], /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
+        def __and__(self, other: typing.Union['QBluetoothDeviceInfo.ServiceClasses', 'QBluetoothDeviceInfo.ServiceClass', int], /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
+        def __xor__(self, other: typing.Union['QBluetoothDeviceInfo.ServiceClasses', 'QBluetoothDeviceInfo.ServiceClass', int], /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
+        def __ror__ (self, other: 'QBluetoothDeviceInfo.ServiceClass', /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
+        def __rand__(self, other: 'QBluetoothDeviceInfo.ServiceClass', /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
+        def __rxor__(self, other: 'QBluetoothDeviceInfo.ServiceClass', /) -> 'QBluetoothDeviceInfo.ServiceClasses': ...
 
     class CoreConfigurations(sip.wrapper):
 
@@ -509,12 +528,12 @@ class QBluetoothDeviceInfo(sip.wrapper):
         def __invert__(self) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QBluetoothDeviceInfo.CoreConfigurations', 'QBluetoothDeviceInfo.CoreConfiguration', int]) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
-        def __and__(self, other: typing.Union['QBluetoothDeviceInfo.CoreConfigurations', 'QBluetoothDeviceInfo.CoreConfiguration', int]) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
-        def __xor__(self, other: typing.Union['QBluetoothDeviceInfo.CoreConfigurations', 'QBluetoothDeviceInfo.CoreConfiguration', int]) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
-        def __ror__ (self, other: 'QBluetoothDeviceInfo.CoreConfiguration') -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
-        def __rand__(self, other: 'QBluetoothDeviceInfo.CoreConfiguration') -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
-        def __rxor__(self, other: 'QBluetoothDeviceInfo.CoreConfiguration') -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
+        def __or__ (self, other: typing.Union['QBluetoothDeviceInfo.CoreConfigurations', 'QBluetoothDeviceInfo.CoreConfiguration', int], /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
+        def __and__(self, other: typing.Union['QBluetoothDeviceInfo.CoreConfigurations', 'QBluetoothDeviceInfo.CoreConfiguration', int], /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
+        def __xor__(self, other: typing.Union['QBluetoothDeviceInfo.CoreConfigurations', 'QBluetoothDeviceInfo.CoreConfiguration', int], /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
+        def __ror__ (self, other: 'QBluetoothDeviceInfo.CoreConfiguration', /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
+        def __rand__(self, other: 'QBluetoothDeviceInfo.CoreConfiguration', /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
+        def __rxor__(self, other: 'QBluetoothDeviceInfo.CoreConfiguration', /) -> 'QBluetoothDeviceInfo.CoreConfigurations': ...
 
     class Fields(sip.wrapper):
 
@@ -532,12 +551,12 @@ class QBluetoothDeviceInfo(sip.wrapper):
         def __invert__(self) -> 'QBluetoothDeviceInfo.Fields': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QBluetoothDeviceInfo.Fields', 'QBluetoothDeviceInfo.Field', int]) -> 'QBluetoothDeviceInfo.Fields': ...
-        def __and__(self, other: typing.Union['QBluetoothDeviceInfo.Fields', 'QBluetoothDeviceInfo.Field', int]) -> 'QBluetoothDeviceInfo.Fields': ...
-        def __xor__(self, other: typing.Union['QBluetoothDeviceInfo.Fields', 'QBluetoothDeviceInfo.Field', int]) -> 'QBluetoothDeviceInfo.Fields': ...
-        def __ror__ (self, other: 'QBluetoothDeviceInfo.Field') -> 'QBluetoothDeviceInfo.Fields': ...
-        def __rand__(self, other: 'QBluetoothDeviceInfo.Field') -> 'QBluetoothDeviceInfo.Fields': ...
-        def __rxor__(self, other: 'QBluetoothDeviceInfo.Field') -> 'QBluetoothDeviceInfo.Fields': ...
+        def __or__ (self, other: typing.Union['QBluetoothDeviceInfo.Fields', 'QBluetoothDeviceInfo.Field', int], /) -> 'QBluetoothDeviceInfo.Fields': ...
+        def __and__(self, other: typing.Union['QBluetoothDeviceInfo.Fields', 'QBluetoothDeviceInfo.Field', int], /) -> 'QBluetoothDeviceInfo.Fields': ...
+        def __xor__(self, other: typing.Union['QBluetoothDeviceInfo.Fields', 'QBluetoothDeviceInfo.Field', int], /) -> 'QBluetoothDeviceInfo.Fields': ...
+        def __ror__ (self, other: 'QBluetoothDeviceInfo.Field', /) -> 'QBluetoothDeviceInfo.Fields': ...
+        def __rand__(self, other: 'QBluetoothDeviceInfo.Field', /) -> 'QBluetoothDeviceInfo.Fields': ...
+        def __rxor__(self, other: 'QBluetoothDeviceInfo.Field', /) -> 'QBluetoothDeviceInfo.Fields': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -591,7 +610,8 @@ class QBluetoothHostInfo(sip.wrapper):
 
 class QBluetoothLocalDevice(QtCore.QObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QBluetoothLocalDevice.Error
         PairingError = ... # type: QBluetoothLocalDevice.Error
         UnknownError = ... # type: QBluetoothLocalDevice.Error
@@ -600,7 +620,8 @@ class QBluetoothLocalDevice(QtCore.QObject):
     PairingError = ...  # type: QBluetoothLocalDevice.Error
     UnknownError = ...  # type: QBluetoothLocalDevice.Error
 
-    class HostMode(int):
+    @typing.final
+    class HostMode(int, metaclass=sip._enumtype):
         HostPoweredOff = ... # type: QBluetoothLocalDevice.HostMode
         HostConnectable = ... # type: QBluetoothLocalDevice.HostMode
         HostDiscoverable = ... # type: QBluetoothLocalDevice.HostMode
@@ -611,7 +632,8 @@ class QBluetoothLocalDevice(QtCore.QObject):
     HostDiscoverable = ...  # type: QBluetoothLocalDevice.HostMode
     HostDiscoverableLimitedInquiry = ...  # type: QBluetoothLocalDevice.HostMode
 
-    class Pairing(int):
+    @typing.final
+    class Pairing(int, metaclass=sip._enumtype):
         Unpaired = ... # type: QBluetoothLocalDevice.Pairing
         Paired = ... # type: QBluetoothLocalDevice.Pairing
         AuthorizedPaired = ... # type: QBluetoothLocalDevice.Pairing
@@ -648,7 +670,8 @@ class QBluetoothLocalDevice(QtCore.QObject):
 
 class QBluetoothServer(QtCore.QObject):
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QBluetoothServer.Error
         UnknownError = ... # type: QBluetoothServer.Error
         PoweredOffError = ... # type: QBluetoothServer.Error
@@ -686,14 +709,16 @@ class QBluetoothServer(QtCore.QObject):
 
 class QBluetoothServiceDiscoveryAgent(QtCore.QObject):
 
-    class DiscoveryMode(int):
+    @typing.final
+    class DiscoveryMode(int, metaclass=sip._enumtype):
         MinimalDiscovery = ... # type: QBluetoothServiceDiscoveryAgent.DiscoveryMode
         FullDiscovery = ... # type: QBluetoothServiceDiscoveryAgent.DiscoveryMode
 
     MinimalDiscovery = ...  # type: QBluetoothServiceDiscoveryAgent.DiscoveryMode
     FullDiscovery = ...  # type: QBluetoothServiceDiscoveryAgent.DiscoveryMode
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QBluetoothServiceDiscoveryAgent.Error
         InputOutputError = ... # type: QBluetoothServiceDiscoveryAgent.Error
         PoweredOffError = ... # type: QBluetoothServiceDiscoveryAgent.Error
@@ -732,7 +757,8 @@ class QBluetoothServiceDiscoveryAgent(QtCore.QObject):
 
 class QBluetoothServiceInfo(sip.wrapper):
 
-    class Protocol(int):
+    @typing.final
+    class Protocol(int, metaclass=sip._enumtype):
         UnknownProtocol = ... # type: QBluetoothServiceInfo.Protocol
         L2capProtocol = ... # type: QBluetoothServiceInfo.Protocol
         RfcommProtocol = ... # type: QBluetoothServiceInfo.Protocol
@@ -741,7 +767,8 @@ class QBluetoothServiceInfo(sip.wrapper):
     L2capProtocol = ...  # type: QBluetoothServiceInfo.Protocol
     RfcommProtocol = ...  # type: QBluetoothServiceInfo.Protocol
 
-    class AttributeId(int):
+    @typing.final
+    class AttributeId(int, metaclass=sip._enumtype):
         ServiceRecordHandle = ... # type: QBluetoothServiceInfo.AttributeId
         ServiceClassIds = ... # type: QBluetoothServiceInfo.AttributeId
         ServiceRecordState = ... # type: QBluetoothServiceInfo.AttributeId
@@ -821,7 +848,8 @@ class QBluetoothServiceInfo(sip.wrapper):
 
 class QBluetoothSocket(QtCore.QIODevice):
 
-    class SocketError(int):
+    @typing.final
+    class SocketError(int, metaclass=sip._enumtype):
         NoSocketError = ... # type: QBluetoothSocket.SocketError
         UnknownSocketError = ... # type: QBluetoothSocket.SocketError
         HostNotFoundError = ... # type: QBluetoothSocket.SocketError
@@ -840,7 +868,8 @@ class QBluetoothSocket(QtCore.QIODevice):
     OperationError = ...  # type: QBluetoothSocket.SocketError
     RemoteHostClosedError = ...  # type: QBluetoothSocket.SocketError
 
-    class SocketState(int):
+    @typing.final
+    class SocketState(int, metaclass=sip._enumtype):
         UnconnectedState = ... # type: QBluetoothSocket.SocketState
         ServiceLookupState = ... # type: QBluetoothSocket.SocketState
         ConnectingState = ... # type: QBluetoothSocket.SocketState
@@ -909,7 +938,8 @@ class QBluetoothTransferManager(QtCore.QObject):
 
 class QBluetoothTransferReply(QtCore.QObject):
 
-    class TransferError(int):
+    @typing.final
+    class TransferError(int, metaclass=sip._enumtype):
         NoError = ... # type: QBluetoothTransferReply.TransferError
         UnknownError = ... # type: QBluetoothTransferReply.TransferError
         FileNotFoundError = ... # type: QBluetoothTransferReply.TransferError
@@ -945,7 +975,8 @@ class QBluetoothTransferReply(QtCore.QObject):
 
 class QBluetoothTransferRequest(sip.wrapper):
 
-    class Attribute(int):
+    @typing.final
+    class Attribute(int, metaclass=sip._enumtype):
         DescriptionAttribute = ... # type: QBluetoothTransferRequest.Attribute
         TimeAttribute = ... # type: QBluetoothTransferRequest.Attribute
         TypeAttribute = ... # type: QBluetoothTransferRequest.Attribute
@@ -970,7 +1001,8 @@ class QBluetoothTransferRequest(sip.wrapper):
 
 class QBluetoothUuid(QtCore.QUuid):
 
-    class DescriptorType(int):
+    @typing.final
+    class DescriptorType(int, metaclass=sip._enumtype):
         UnknownDescriptorType = ... # type: QBluetoothUuid.DescriptorType
         CharacteristicExtendedProperties = ... # type: QBluetoothUuid.DescriptorType
         CharacteristicUserDescription = ... # type: QBluetoothUuid.DescriptorType
@@ -999,7 +1031,8 @@ class QBluetoothUuid(QtCore.QUuid):
     EnvironmentalSensingMeasurement = ...  # type: QBluetoothUuid.DescriptorType
     EnvironmentalSensingTriggerSetting = ...  # type: QBluetoothUuid.DescriptorType
 
-    class CharacteristicType(int):
+    @typing.final
+    class CharacteristicType(int, metaclass=sip._enumtype):
         DeviceName = ... # type: QBluetoothUuid.CharacteristicType
         Appearance = ... # type: QBluetoothUuid.CharacteristicType
         PeripheralPrivacyFlag = ... # type: QBluetoothUuid.CharacteristicType
@@ -1276,7 +1309,8 @@ class QBluetoothUuid(QtCore.QUuid):
     Language = ...  # type: QBluetoothUuid.CharacteristicType
     BarometricPressureTrend = ...  # type: QBluetoothUuid.CharacteristicType
 
-    class ServiceClassUuid(int):
+    @typing.final
+    class ServiceClassUuid(int, metaclass=sip._enumtype):
         ServiceDiscoveryServer = ... # type: QBluetoothUuid.ServiceClassUuid
         BrowseGroupDescriptor = ... # type: QBluetoothUuid.ServiceClassUuid
         PublicBrowseGroup = ... # type: QBluetoothUuid.ServiceClassUuid
@@ -1461,7 +1495,8 @@ class QBluetoothUuid(QtCore.QUuid):
     BondManagement = ...  # type: QBluetoothUuid.ServiceClassUuid
     ContinuousGlucoseMonitoring = ...  # type: QBluetoothUuid.ServiceClassUuid
 
-    class ProtocolUuid(int):
+    @typing.final
+    class ProtocolUuid(int, metaclass=sip._enumtype):
         Sdp = ... # type: QBluetoothUuid.ProtocolUuid
         Udp = ... # type: QBluetoothUuid.ProtocolUuid
         Rfcomm = ... # type: QBluetoothUuid.ProtocolUuid
@@ -1543,7 +1578,8 @@ class QBluetoothUuid(QtCore.QUuid):
 
 class QLowEnergyAdvertisingData(sip.wrapper):
 
-    class Discoverability(int):
+    @typing.final
+    class Discoverability(int, metaclass=sip._enumtype):
         DiscoverabilityNone = ... # type: QLowEnergyAdvertisingData.Discoverability
         DiscoverabilityLimited = ... # type: QLowEnergyAdvertisingData.Discoverability
         DiscoverabilityGeneral = ... # type: QLowEnergyAdvertisingData.Discoverability
@@ -1577,7 +1613,8 @@ class QLowEnergyAdvertisingData(sip.wrapper):
 
 class QLowEnergyAdvertisingParameters(sip.wrapper):
 
-    class FilterPolicy(int):
+    @typing.final
+    class FilterPolicy(int, metaclass=sip._enumtype):
         IgnoreWhiteList = ... # type: QLowEnergyAdvertisingParameters.FilterPolicy
         UseWhiteListForScanning = ... # type: QLowEnergyAdvertisingParameters.FilterPolicy
         UseWhiteListForConnecting = ... # type: QLowEnergyAdvertisingParameters.FilterPolicy
@@ -1588,7 +1625,8 @@ class QLowEnergyAdvertisingParameters(sip.wrapper):
     UseWhiteListForConnecting = ...  # type: QLowEnergyAdvertisingParameters.FilterPolicy
     UseWhiteListForScanningAndConnecting = ...  # type: QLowEnergyAdvertisingParameters.FilterPolicy
 
-    class Mode(int):
+    @typing.final
+    class Mode(int, metaclass=sip._enumtype):
         AdvInd = ... # type: QLowEnergyAdvertisingParameters.Mode
         AdvScanInd = ... # type: QLowEnergyAdvertisingParameters.Mode
         AdvNonConnInd = ... # type: QLowEnergyAdvertisingParameters.Mode
@@ -1627,9 +1665,10 @@ class QLowEnergyAdvertisingParameters(sip.wrapper):
 
 class QLowEnergyCharacteristic(sip.wrapper):
 
-    class PropertyType(int):
-        def __or__ (self, other: 'QLowEnergyCharacteristic.PropertyType') -> 'QLowEnergyCharacteristic.PropertyTypes': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QLowEnergyCharacteristic.PropertyTypes': ...                                       # type: ignore[override, misc]
+    @typing.final
+    class PropertyType(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QLowEnergyCharacteristic.PropertyType', /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...                                       # type: ignore[override, misc]
         
         Unknown = ... # type: QLowEnergyCharacteristic.PropertyType
         Broadcasting = ... # type: QLowEnergyCharacteristic.PropertyType
@@ -1667,12 +1706,12 @@ class QLowEnergyCharacteristic(sip.wrapper):
         def __invert__(self) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QLowEnergyCharacteristic.PropertyTypes', 'QLowEnergyCharacteristic.PropertyType', int]) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
-        def __and__(self, other: typing.Union['QLowEnergyCharacteristic.PropertyTypes', 'QLowEnergyCharacteristic.PropertyType', int]) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
-        def __xor__(self, other: typing.Union['QLowEnergyCharacteristic.PropertyTypes', 'QLowEnergyCharacteristic.PropertyType', int]) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
-        def __ror__ (self, other: 'QLowEnergyCharacteristic.PropertyType') -> 'QLowEnergyCharacteristic.PropertyTypes': ...
-        def __rand__(self, other: 'QLowEnergyCharacteristic.PropertyType') -> 'QLowEnergyCharacteristic.PropertyTypes': ...
-        def __rxor__(self, other: 'QLowEnergyCharacteristic.PropertyType') -> 'QLowEnergyCharacteristic.PropertyTypes': ...
+        def __or__ (self, other: typing.Union['QLowEnergyCharacteristic.PropertyTypes', 'QLowEnergyCharacteristic.PropertyType', int], /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
+        def __and__(self, other: typing.Union['QLowEnergyCharacteristic.PropertyTypes', 'QLowEnergyCharacteristic.PropertyType', int], /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
+        def __xor__(self, other: typing.Union['QLowEnergyCharacteristic.PropertyTypes', 'QLowEnergyCharacteristic.PropertyType', int], /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
+        def __ror__ (self, other: 'QLowEnergyCharacteristic.PropertyType', /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
+        def __rand__(self, other: 'QLowEnergyCharacteristic.PropertyType', /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
+        def __rxor__(self, other: 'QLowEnergyCharacteristic.PropertyType', /) -> 'QLowEnergyCharacteristic.PropertyTypes': ...
 
     @typing.overload
     def __init__(self) -> None: ...
@@ -1735,21 +1774,24 @@ class QLowEnergyConnectionParameters(sip.wrapper):
 
 class QLowEnergyController(QtCore.QObject):
 
-    class Role(int):
+    @typing.final
+    class Role(int, metaclass=sip._enumtype):
         CentralRole = ... # type: QLowEnergyController.Role
         PeripheralRole = ... # type: QLowEnergyController.Role
 
     CentralRole = ...  # type: QLowEnergyController.Role
     PeripheralRole = ...  # type: QLowEnergyController.Role
 
-    class RemoteAddressType(int):
+    @typing.final
+    class RemoteAddressType(int, metaclass=sip._enumtype):
         PublicAddress = ... # type: QLowEnergyController.RemoteAddressType
         RandomAddress = ... # type: QLowEnergyController.RemoteAddressType
 
     PublicAddress = ...  # type: QLowEnergyController.RemoteAddressType
     RandomAddress = ...  # type: QLowEnergyController.RemoteAddressType
 
-    class ControllerState(int):
+    @typing.final
+    class ControllerState(int, metaclass=sip._enumtype):
         UnconnectedState = ... # type: QLowEnergyController.ControllerState
         ConnectingState = ... # type: QLowEnergyController.ControllerState
         ConnectedState = ... # type: QLowEnergyController.ControllerState
@@ -1766,7 +1808,8 @@ class QLowEnergyController(QtCore.QObject):
     ClosingState = ...  # type: QLowEnergyController.ControllerState
     AdvertisingState = ...  # type: QLowEnergyController.ControllerState
 
-    class Error(int):
+    @typing.final
+    class Error(int, metaclass=sip._enumtype):
         NoError = ... # type: QLowEnergyController.Error
         UnknownError = ... # type: QLowEnergyController.Error
         UnknownRemoteDeviceError = ... # type: QLowEnergyController.Error
@@ -1869,7 +1912,8 @@ class QLowEnergyDescriptorData(sip.wrapper):
 
 class QLowEnergyService(QtCore.QObject):
 
-    class WriteMode(int):
+    @typing.final
+    class WriteMode(int, metaclass=sip._enumtype):
         WriteWithResponse = ... # type: QLowEnergyService.WriteMode
         WriteWithoutResponse = ... # type: QLowEnergyService.WriteMode
         WriteSigned = ... # type: QLowEnergyService.WriteMode
@@ -1878,7 +1922,8 @@ class QLowEnergyService(QtCore.QObject):
     WriteWithoutResponse = ...  # type: QLowEnergyService.WriteMode
     WriteSigned = ...  # type: QLowEnergyService.WriteMode
 
-    class ServiceState(int):
+    @typing.final
+    class ServiceState(int, metaclass=sip._enumtype):
         InvalidService = ... # type: QLowEnergyService.ServiceState
         DiscoveryRequired = ... # type: QLowEnergyService.ServiceState
         DiscoveringServices = ... # type: QLowEnergyService.ServiceState
@@ -1891,7 +1936,8 @@ class QLowEnergyService(QtCore.QObject):
     ServiceDiscovered = ...  # type: QLowEnergyService.ServiceState
     LocalService = ...  # type: QLowEnergyService.ServiceState
 
-    class ServiceError(int):
+    @typing.final
+    class ServiceError(int, metaclass=sip._enumtype):
         NoError = ... # type: QLowEnergyService.ServiceError
         OperationError = ... # type: QLowEnergyService.ServiceError
         CharacteristicWriteError = ... # type: QLowEnergyService.ServiceError
@@ -1908,9 +1954,10 @@ class QLowEnergyService(QtCore.QObject):
     DescriptorReadError = ...  # type: QLowEnergyService.ServiceError
     UnknownError = ...  # type: QLowEnergyService.ServiceError
 
-    class ServiceType(int):
-        def __or__ (self, other: 'QLowEnergyService.ServiceType') -> 'QLowEnergyService.ServiceTypes': ...    # type: ignore[override]
-        def __ror__ (self, other: int) -> 'QLowEnergyService.ServiceTypes': ...                               # type: ignore[override, misc]
+    @typing.final
+    class ServiceType(int, metaclass=sip._enumtype):
+        def __or__ (self, other: 'QLowEnergyService.ServiceType', /) -> 'QLowEnergyService.ServiceTypes': ...    # type: ignore[override]
+        def __ror__ (self, other: int, /) -> 'QLowEnergyService.ServiceTypes': ...                               # type: ignore[override, misc]
         
         PrimaryService = ... # type: QLowEnergyService.ServiceType
         IncludedService = ... # type: QLowEnergyService.ServiceType
@@ -1934,12 +1981,12 @@ class QLowEnergyService(QtCore.QObject):
         def __invert__(self) -> 'QLowEnergyService.ServiceTypes': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QLowEnergyService.ServiceTypes', 'QLowEnergyService.ServiceType', int]) -> 'QLowEnergyService.ServiceTypes': ...
-        def __and__(self, other: typing.Union['QLowEnergyService.ServiceTypes', 'QLowEnergyService.ServiceType', int]) -> 'QLowEnergyService.ServiceTypes': ...
-        def __xor__(self, other: typing.Union['QLowEnergyService.ServiceTypes', 'QLowEnergyService.ServiceType', int]) -> 'QLowEnergyService.ServiceTypes': ...
-        def __ror__ (self, other: 'QLowEnergyService.ServiceType') -> 'QLowEnergyService.ServiceTypes': ...
-        def __rand__(self, other: 'QLowEnergyService.ServiceType') -> 'QLowEnergyService.ServiceTypes': ...
-        def __rxor__(self, other: 'QLowEnergyService.ServiceType') -> 'QLowEnergyService.ServiceTypes': ...
+        def __or__ (self, other: typing.Union['QLowEnergyService.ServiceTypes', 'QLowEnergyService.ServiceType', int], /) -> 'QLowEnergyService.ServiceTypes': ...
+        def __and__(self, other: typing.Union['QLowEnergyService.ServiceTypes', 'QLowEnergyService.ServiceType', int], /) -> 'QLowEnergyService.ServiceTypes': ...
+        def __xor__(self, other: typing.Union['QLowEnergyService.ServiceTypes', 'QLowEnergyService.ServiceType', int], /) -> 'QLowEnergyService.ServiceTypes': ...
+        def __ror__ (self, other: 'QLowEnergyService.ServiceType', /) -> 'QLowEnergyService.ServiceTypes': ...
+        def __rand__(self, other: 'QLowEnergyService.ServiceType', /) -> 'QLowEnergyService.ServiceTypes': ...
+        def __rxor__(self, other: 'QLowEnergyService.ServiceType', /) -> 'QLowEnergyService.ServiceTypes': ...
 
     descriptorRead: typing.ClassVar[QtCore.pyqtSignal]
     characteristicRead: typing.ClassVar[QtCore.pyqtSignal]
@@ -1968,7 +2015,8 @@ class QLowEnergyService(QtCore.QObject):
 
 class QLowEnergyServiceData(sip.wrapper):
 
-    class ServiceType(int):
+    @typing.final
+    class ServiceType(int, metaclass=sip._enumtype):
         ServiceTypePrimary = ... # type: QLowEnergyServiceData.ServiceType
         ServiceTypeSecondary = ... # type: QLowEnergyServiceData.ServiceType
 

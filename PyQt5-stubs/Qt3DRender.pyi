@@ -31,13 +31,13 @@ from PyQt5 import Qt3DCore
 import datetime
 
 # Convenient type aliases.
-PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
+_PYQT_SLOT = typing.Union[typing.Callable[..., None], QtCore.pyqtBoundSignal]
 
 # Convenient aliases for complicated OpenGL types.
-PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
-        sip.Buffer, None]
-PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
-        typing.Sequence[float], sip.Buffer, int, None]
+_PYQT_OPENGL_ARRAY = typing.Union[typing.Sequence[int], typing.Sequence[float],
+        sip._Buffer, None]
+_PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
+        typing.Sequence[float], sip._Buffer, int, None]
 
 
 class QAbstractFunctor(sip.simplewrapper):
@@ -46,7 +46,8 @@ class QAbstractFunctor(sip.simplewrapper):
 
 class QAbstractLight(Qt3DCore.QComponent):
 
-    class Type(int):
+    @typing.final
+    class Type(int, metaclass=sip._enumtype):
         PointLight = ... # type: QAbstractLight.Type
         DirectionalLight = ... # type: QAbstractLight.Type
         SpotLight = ... # type: QAbstractLight.Type
@@ -65,7 +66,8 @@ class QAbstractLight(Qt3DCore.QComponent):
 
 class QAbstractRayCaster(Qt3DCore.QComponent):
 
-    class FilterMode(int):
+    @typing.final
+    class FilterMode(int, metaclass=sip._enumtype):
         AcceptAnyMatchingLayers = ... # type: QAbstractRayCaster.FilterMode
         AcceptAllMatchingLayers = ... # type: QAbstractRayCaster.FilterMode
         DiscardAnyMatchingLayers = ... # type: QAbstractRayCaster.FilterMode
@@ -76,7 +78,8 @@ class QAbstractRayCaster(Qt3DCore.QComponent):
     DiscardAnyMatchingLayers = ...  # type: QAbstractRayCaster.FilterMode
     DiscardAllMatchingLayers = ...  # type: QAbstractRayCaster.FilterMode
 
-    class RunMode(int):
+    @typing.final
+    class RunMode(int, metaclass=sip._enumtype):
         Continuous = ... # type: QAbstractRayCaster.RunMode
         SingleShot = ... # type: QAbstractRayCaster.RunMode
 
@@ -100,21 +103,24 @@ class QAbstractRayCaster(Qt3DCore.QComponent):
 
 class QAbstractTexture(Qt3DCore.QNode):
 
-    class HandleType(int):
+    @typing.final
+    class HandleType(int, metaclass=sip._enumtype):
         NoHandle = ... # type: QAbstractTexture.HandleType
         OpenGLTextureId = ... # type: QAbstractTexture.HandleType
 
     NoHandle = ...  # type: QAbstractTexture.HandleType
     OpenGLTextureId = ...  # type: QAbstractTexture.HandleType
 
-    class ComparisonMode(int):
+    @typing.final
+    class ComparisonMode(int, metaclass=sip._enumtype):
         CompareRefToTexture = ... # type: QAbstractTexture.ComparisonMode
         CompareNone = ... # type: QAbstractTexture.ComparisonMode
 
     CompareRefToTexture = ...  # type: QAbstractTexture.ComparisonMode
     CompareNone = ...  # type: QAbstractTexture.ComparisonMode
 
-    class ComparisonFunction(int):
+    @typing.final
+    class ComparisonFunction(int, metaclass=sip._enumtype):
         CompareLessEqual = ... # type: QAbstractTexture.ComparisonFunction
         CompareGreaterEqual = ... # type: QAbstractTexture.ComparisonFunction
         CompareLess = ... # type: QAbstractTexture.ComparisonFunction
@@ -135,7 +141,8 @@ class QAbstractTexture(Qt3DCore.QNode):
     CompareAlways = ...  # type: QAbstractTexture.ComparisonFunction
     CompareNever = ...  # type: QAbstractTexture.ComparisonFunction
 
-    class CubeMapFace(int):
+    @typing.final
+    class CubeMapFace(int, metaclass=sip._enumtype):
         CubeMapPositiveX = ... # type: QAbstractTexture.CubeMapFace
         CubeMapNegativeX = ... # type: QAbstractTexture.CubeMapFace
         CubeMapPositiveY = ... # type: QAbstractTexture.CubeMapFace
@@ -152,7 +159,8 @@ class QAbstractTexture(Qt3DCore.QNode):
     CubeMapNegativeZ = ...  # type: QAbstractTexture.CubeMapFace
     AllFaces = ...  # type: QAbstractTexture.CubeMapFace
 
-    class Filter(int):
+    @typing.final
+    class Filter(int, metaclass=sip._enumtype):
         Nearest = ... # type: QAbstractTexture.Filter
         Linear = ... # type: QAbstractTexture.Filter
         NearestMipMapNearest = ... # type: QAbstractTexture.Filter
@@ -167,7 +175,8 @@ class QAbstractTexture(Qt3DCore.QNode):
     LinearMipMapNearest = ...  # type: QAbstractTexture.Filter
     LinearMipMapLinear = ...  # type: QAbstractTexture.Filter
 
-    class TextureFormat(int):
+    @typing.final
+    class TextureFormat(int, metaclass=sip._enumtype):
         NoFormat = ... # type: QAbstractTexture.TextureFormat
         Automatic = ... # type: QAbstractTexture.TextureFormat
         R8_UNorm = ... # type: QAbstractTexture.TextureFormat
@@ -368,7 +377,8 @@ class QAbstractTexture(Qt3DCore.QNode):
     LuminanceAlphaFormat = ...  # type: QAbstractTexture.TextureFormat
     RGB10A2U = ...  # type: QAbstractTexture.TextureFormat
 
-    class Target(int):
+    @typing.final
+    class Target(int, metaclass=sip._enumtype):
         TargetAutomatic = ... # type: QAbstractTexture.Target
         Target1D = ... # type: QAbstractTexture.Target
         Target1DArray = ... # type: QAbstractTexture.Target
@@ -395,7 +405,8 @@ class QAbstractTexture(Qt3DCore.QNode):
     TargetRectangle = ...  # type: QAbstractTexture.Target
     TargetBuffer = ...  # type: QAbstractTexture.Target
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         None_ = ... # type: QAbstractTexture.Status
         Loading = ... # type: QAbstractTexture.Status
         Ready = ... # type: QAbstractTexture.Status
@@ -489,7 +500,8 @@ class QAlphaCoverage('QRenderState'):
 
 class QAlphaTest('QRenderState'):
 
-    class AlphaFunction(int):
+    @typing.final
+    class AlphaFunction(int, metaclass=sip._enumtype):
         Never = ... # type: QAlphaTest.AlphaFunction
         Always = ... # type: QAlphaTest.AlphaFunction
         Less = ... # type: QAlphaTest.AlphaFunction
@@ -519,7 +531,8 @@ class QAlphaTest('QRenderState'):
 
 class QAttribute(Qt3DCore.QNode):
 
-    class VertexBaseType(int):
+    @typing.final
+    class VertexBaseType(int, metaclass=sip._enumtype):
         Byte = ... # type: QAttribute.VertexBaseType
         UnsignedByte = ... # type: QAttribute.VertexBaseType
         Short = ... # type: QAttribute.VertexBaseType
@@ -540,7 +553,8 @@ class QAttribute(Qt3DCore.QNode):
     Float = ...  # type: QAttribute.VertexBaseType
     Double = ...  # type: QAttribute.VertexBaseType
 
-    class AttributeType(int):
+    @typing.final
+    class AttributeType(int, metaclass=sip._enumtype):
         VertexAttribute = ... # type: QAttribute.AttributeType
         IndexAttribute = ... # type: QAttribute.AttributeType
         DrawIndirectAttribute = ... # type: QAttribute.AttributeType
@@ -608,7 +622,8 @@ class QAttribute(Qt3DCore.QNode):
 
 class QBlendEquation('QRenderState'):
 
-    class BlendFunction(int):
+    @typing.final
+    class BlendFunction(int, metaclass=sip._enumtype):
         Add = ... # type: QBlendEquation.BlendFunction
         Subtract = ... # type: QBlendEquation.BlendFunction
         ReverseSubtract = ... # type: QBlendEquation.BlendFunction
@@ -629,7 +644,8 @@ class QBlendEquation('QRenderState'):
 
 class QBlendEquationArguments('QRenderState'):
 
-    class Blending(int):
+    @typing.final
+    class Blending(int, metaclass=sip._enumtype):
         Zero = ... # type: QBlendEquationArguments.Blending
         One = ... # type: QBlendEquationArguments.Blending
         SourceColor = ... # type: QBlendEquationArguments.Blending
@@ -702,7 +718,8 @@ class QFrameGraphNode(Qt3DCore.QNode):
 
 class QBlitFramebuffer('QFrameGraphNode'):
 
-    class InterpolationMethod(int):
+    @typing.final
+    class InterpolationMethod(int, metaclass=sip._enumtype):
         Nearest = ... # type: QBlitFramebuffer.InterpolationMethod
         Linear = ... # type: QBlitFramebuffer.InterpolationMethod
 
@@ -735,7 +752,8 @@ class QBlitFramebuffer('QFrameGraphNode'):
 
 class QBuffer(Qt3DCore.QNode):
 
-    class AccessType(int):
+    @typing.final
+    class AccessType(int, metaclass=sip._enumtype):
         Write = ... # type: QBuffer.AccessType
         Read = ... # type: QBuffer.AccessType
         ReadWrite = ... # type: QBuffer.AccessType
@@ -744,7 +762,8 @@ class QBuffer(Qt3DCore.QNode):
     Read = ...  # type: QBuffer.AccessType
     ReadWrite = ...  # type: QBuffer.AccessType
 
-    class UsageType(int):
+    @typing.final
+    class UsageType(int, metaclass=sip._enumtype):
         StreamDraw = ... # type: QBuffer.UsageType
         StreamRead = ... # type: QBuffer.UsageType
         StreamCopy = ... # type: QBuffer.UsageType
@@ -765,7 +784,8 @@ class QBuffer(Qt3DCore.QNode):
     DynamicRead = ...  # type: QBuffer.UsageType
     DynamicCopy = ...  # type: QBuffer.UsageType
 
-    class BufferType(int):
+    @typing.final
+    class BufferType(int, metaclass=sip._enumtype):
         VertexBuffer = ... # type: QBuffer.BufferType
         IndexBuffer = ... # type: QBuffer.BufferType
         PixelPackBuffer = ... # type: QBuffer.BufferType
@@ -814,7 +834,8 @@ class QBufferDataGenerator('QAbstractFunctor'):
 
 class QCamera(Qt3DCore.QEntity):
 
-    class CameraTranslationOption(int):
+    @typing.final
+    class CameraTranslationOption(int, metaclass=sip._enumtype):
         TranslateViewCenter = ... # type: QCamera.CameraTranslationOption
         DontTranslateViewCenter = ... # type: QCamera.CameraTranslationOption
 
@@ -897,7 +918,8 @@ class QCamera(Qt3DCore.QEntity):
 
 class QCameraLens(Qt3DCore.QComponent):
 
-    class ProjectionType(int):
+    @typing.final
+    class ProjectionType(int, metaclass=sip._enumtype):
         OrthographicProjection = ... # type: QCameraLens.ProjectionType
         PerspectiveProjection = ... # type: QCameraLens.ProjectionType
         FrustumProjection = ... # type: QCameraLens.ProjectionType
@@ -960,7 +982,8 @@ class QCameraSelector('QFrameGraphNode'):
 
 class QClearBuffers('QFrameGraphNode'):
 
-    class BufferType(int):
+    @typing.final
+    class BufferType(int, metaclass=sip._enumtype):
         None_ = ... # type: QClearBuffers.BufferType
         ColorBuffer = ... # type: QClearBuffers.BufferType
         DepthBuffer = ... # type: QClearBuffers.BufferType
@@ -995,12 +1018,12 @@ class QClearBuffers('QFrameGraphNode'):
         def __invert__(self) -> 'QClearBuffers.BufferTypeFlags': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QClearBuffers.BufferTypeFlags', 'QClearBuffers.BufferType', int]) -> 'QClearBuffers.BufferTypeFlags': ...
-        def __and__(self, other: typing.Union['QClearBuffers.BufferTypeFlags', 'QClearBuffers.BufferType', int]) -> 'QClearBuffers.BufferTypeFlags': ...
-        def __xor__(self, other: typing.Union['QClearBuffers.BufferTypeFlags', 'QClearBuffers.BufferType', int]) -> 'QClearBuffers.BufferTypeFlags': ...
-        def __ror__ (self, other: 'QClearBuffers.BufferType') -> 'QClearBuffers.BufferTypeFlags': ...
-        def __rand__(self, other: 'QClearBuffers.BufferType') -> 'QClearBuffers.BufferTypeFlags': ...
-        def __rxor__(self, other: 'QClearBuffers.BufferType') -> 'QClearBuffers.BufferTypeFlags': ...
+        def __or__ (self, other: typing.Union['QClearBuffers.BufferTypeFlags', 'QClearBuffers.BufferType', int], /) -> 'QClearBuffers.BufferTypeFlags': ...
+        def __and__(self, other: typing.Union['QClearBuffers.BufferTypeFlags', 'QClearBuffers.BufferType', int], /) -> 'QClearBuffers.BufferTypeFlags': ...
+        def __xor__(self, other: typing.Union['QClearBuffers.BufferTypeFlags', 'QClearBuffers.BufferType', int], /) -> 'QClearBuffers.BufferTypeFlags': ...
+        def __ror__ (self, other: 'QClearBuffers.BufferType', /) -> 'QClearBuffers.BufferTypeFlags': ...
+        def __rand__(self, other: 'QClearBuffers.BufferType', /) -> 'QClearBuffers.BufferTypeFlags': ...
+        def __rxor__(self, other: 'QClearBuffers.BufferType', /) -> 'QClearBuffers.BufferTypeFlags': ...
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1036,7 +1059,8 @@ class QClipPlane('QRenderState'):
 
 class QComputeCommand(Qt3DCore.QComponent):
 
-    class RunType(int):
+    @typing.final
+    class RunType(int, metaclass=sip._enumtype):
         Continuous = ... # type: QComputeCommand.RunType
         Manual = ... # type: QComputeCommand.RunType
 
@@ -1081,7 +1105,8 @@ class QColorMask('QRenderState'):
 
 class QCullFace('QRenderState'):
 
-    class CullingMode(int):
+    @typing.final
+    class CullingMode(int, metaclass=sip._enumtype):
         NoCulling = ... # type: QCullFace.CullingMode
         Front = ... # type: QCullFace.CullingMode
         Back = ... # type: QCullFace.CullingMode
@@ -1111,7 +1136,8 @@ class QDepthRange('QRenderState'):
 
 class QDepthTest('QRenderState'):
 
-    class DepthFunction(int):
+    @typing.final
+    class DepthFunction(int, metaclass=sip._enumtype):
         Never = ... # type: QDepthTest.DepthFunction
         Always = ... # type: QDepthTest.DepthFunction
         Less = ... # type: QDepthTest.DepthFunction
@@ -1197,7 +1223,8 @@ class QFilterKey(Qt3DCore.QNode):
 
 class QFrontFace('QRenderState'):
 
-    class WindingDirection(int):
+    @typing.final
+    class WindingDirection(int, metaclass=sip._enumtype):
         ClockWise = ... # type: QFrontFace.WindingDirection
         CounterClockWise = ... # type: QFrontFace.WindingDirection
 
@@ -1236,7 +1263,8 @@ class QGeometryFactory('QAbstractFunctor'):
 
 class QGeometryRenderer(Qt3DCore.QComponent):
 
-    class PrimitiveType(int):
+    @typing.final
+    class PrimitiveType(int, metaclass=sip._enumtype):
         Points = ... # type: QGeometryRenderer.PrimitiveType
         Lines = ... # type: QGeometryRenderer.PrimitiveType
         LineLoop = ... # type: QGeometryRenderer.PrimitiveType
@@ -1304,7 +1332,8 @@ class QGeometryRenderer(Qt3DCore.QComponent):
 
 class QGraphicsApiFilter(QtCore.QObject):
 
-    class OpenGLProfile(int):
+    @typing.final
+    class OpenGLProfile(int, metaclass=sip._enumtype):
         NoProfile = ... # type: QGraphicsApiFilter.OpenGLProfile
         CoreProfile = ... # type: QGraphicsApiFilter.OpenGLProfile
         CompatibilityProfile = ... # type: QGraphicsApiFilter.OpenGLProfile
@@ -1313,7 +1342,8 @@ class QGraphicsApiFilter(QtCore.QObject):
     CoreProfile = ...  # type: QGraphicsApiFilter.OpenGLProfile
     CompatibilityProfile = ...  # type: QGraphicsApiFilter.OpenGLProfile
 
-    class Api(int):
+    @typing.final
+    class Api(int, metaclass=sip._enumtype):
         OpenGLES = ... # type: QGraphicsApiFilter.Api
         OpenGL = ... # type: QGraphicsApiFilter.Api
         Vulkan = ... # type: QGraphicsApiFilter.Api
@@ -1358,7 +1388,8 @@ class QLayer(Qt3DCore.QComponent):
 
 class QLayerFilter('QFrameGraphNode'):
 
-    class FilterMode(int):
+    @typing.final
+    class FilterMode(int, metaclass=sip._enumtype):
         AcceptAnyMatchingLayers = ... # type: QLayerFilter.FilterMode
         AcceptAllMatchingLayers = ... # type: QLayerFilter.FilterMode
         DiscardAnyMatchingLayers = ... # type: QLayerFilter.FilterMode
@@ -1380,7 +1411,8 @@ class QLayerFilter('QFrameGraphNode'):
 
 class QLevelOfDetail(Qt3DCore.QComponent):
 
-    class ThresholdType(int):
+    @typing.final
+    class ThresholdType(int, metaclass=sip._enumtype):
         DistanceToCameraThreshold = ... # type: QLevelOfDetail.ThresholdType
         ProjectedScreenPixelSizeThreshold = ... # type: QLevelOfDetail.ThresholdType
 
@@ -1448,7 +1480,8 @@ class QMaterial(Qt3DCore.QComponent):
 
 class QMemoryBarrier('QFrameGraphNode'):
 
-    class Operation(int):
+    @typing.final
+    class Operation(int, metaclass=sip._enumtype):
         None_ = ... # type: QMemoryBarrier.Operation
         VertexAttributeArray = ... # type: QMemoryBarrier.Operation
         ElementArray = ... # type: QMemoryBarrier.Operation
@@ -1499,12 +1532,12 @@ class QMemoryBarrier('QFrameGraphNode'):
         def __invert__(self) -> 'QMemoryBarrier.Operations': ...
         def __index__(self) -> int: ...
         def __int__(self) -> int: ...
-        def __or__ (self, other: typing.Union['QMemoryBarrier.Operations', 'QMemoryBarrier.Operation', int]) -> 'QMemoryBarrier.Operations': ...
-        def __and__(self, other: typing.Union['QMemoryBarrier.Operations', 'QMemoryBarrier.Operation', int]) -> 'QMemoryBarrier.Operations': ...
-        def __xor__(self, other: typing.Union['QMemoryBarrier.Operations', 'QMemoryBarrier.Operation', int]) -> 'QMemoryBarrier.Operations': ...
-        def __ror__ (self, other: 'QMemoryBarrier.Operation') -> 'QMemoryBarrier.Operations': ...
-        def __rand__(self, other: 'QMemoryBarrier.Operation') -> 'QMemoryBarrier.Operations': ...
-        def __rxor__(self, other: 'QMemoryBarrier.Operation') -> 'QMemoryBarrier.Operations': ...
+        def __or__ (self, other: typing.Union['QMemoryBarrier.Operations', 'QMemoryBarrier.Operation', int], /) -> 'QMemoryBarrier.Operations': ...
+        def __and__(self, other: typing.Union['QMemoryBarrier.Operations', 'QMemoryBarrier.Operation', int], /) -> 'QMemoryBarrier.Operations': ...
+        def __xor__(self, other: typing.Union['QMemoryBarrier.Operations', 'QMemoryBarrier.Operation', int], /) -> 'QMemoryBarrier.Operations': ...
+        def __ror__ (self, other: 'QMemoryBarrier.Operation', /) -> 'QMemoryBarrier.Operations': ...
+        def __rand__(self, other: 'QMemoryBarrier.Operation', /) -> 'QMemoryBarrier.Operations': ...
+        def __rxor__(self, other: 'QMemoryBarrier.Operation', /) -> 'QMemoryBarrier.Operations': ...
 
     def __init__(self, parent: typing.Optional[Qt3DCore.QNode] = ...) -> None: ...
 
@@ -1514,7 +1547,8 @@ class QMemoryBarrier('QFrameGraphNode'):
 
 class QMesh('QGeometryRenderer'):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         None_ = ... # type: QMesh.Status
         Loading = ... # type: QMesh.Status
         Ready = ... # type: QMesh.Status
@@ -1612,7 +1646,8 @@ class QParameter(Qt3DCore.QNode):
 
 class QPickEvent(QtCore.QObject):
 
-    class Modifiers(int):
+    @typing.final
+    class Modifiers(int, metaclass=sip._enumtype):
         NoModifier = ... # type: QPickEvent.Modifiers
         ShiftModifier = ... # type: QPickEvent.Modifiers
         ControlModifier = ... # type: QPickEvent.Modifiers
@@ -1627,7 +1662,8 @@ class QPickEvent(QtCore.QObject):
     MetaModifier = ...  # type: QPickEvent.Modifiers
     KeypadModifier = ...  # type: QPickEvent.Modifiers
 
-    class Buttons(int):
+    @typing.final
+    class Buttons(int, metaclass=sip._enumtype):
         LeftButton = ... # type: QPickEvent.Buttons
         RightButton = ... # type: QPickEvent.Buttons
         MiddleButton = ... # type: QPickEvent.Buttons
@@ -1662,7 +1698,8 @@ class QPickEvent(QtCore.QObject):
 
 class QPickingSettings(Qt3DCore.QNode):
 
-    class FaceOrientationPickingMode(int):
+    @typing.final
+    class FaceOrientationPickingMode(int, metaclass=sip._enumtype):
         FrontFace = ... # type: QPickingSettings.FaceOrientationPickingMode
         BackFace = ... # type: QPickingSettings.FaceOrientationPickingMode
         FrontAndBackFace = ... # type: QPickingSettings.FaceOrientationPickingMode
@@ -1671,7 +1708,8 @@ class QPickingSettings(Qt3DCore.QNode):
     BackFace = ...  # type: QPickingSettings.FaceOrientationPickingMode
     FrontAndBackFace = ...  # type: QPickingSettings.FaceOrientationPickingMode
 
-    class PickResultMode(int):
+    @typing.final
+    class PickResultMode(int, metaclass=sip._enumtype):
         NearestPick = ... # type: QPickingSettings.PickResultMode
         AllPicks = ... # type: QPickingSettings.PickResultMode
         NearestPriorityPick = ... # type: QPickingSettings.PickResultMode
@@ -1680,7 +1718,8 @@ class QPickingSettings(Qt3DCore.QNode):
     AllPicks = ...  # type: QPickingSettings.PickResultMode
     NearestPriorityPick = ...  # type: QPickingSettings.PickResultMode
 
-    class PickMethod(int):
+    @typing.final
+    class PickMethod(int, metaclass=sip._enumtype):
         BoundingVolumePicking = ... # type: QPickingSettings.PickMethod
         TrianglePicking = ... # type: QPickingSettings.PickMethod
         LinePicking = ... # type: QPickingSettings.PickMethod
@@ -1759,7 +1798,8 @@ class QPointLight('QAbstractLight'):
 
 class QPointSize('QRenderState'):
 
-    class SizeMode(int):
+    @typing.final
+    class SizeMode(int, metaclass=sip._enumtype):
         Fixed = ... # type: QPointSize.SizeMode
         Programmable = ... # type: QPointSize.SizeMode
 
@@ -1799,7 +1839,8 @@ class QProximityFilter('QFrameGraphNode'):
 
 class QRasterMode('QRenderState'):
 
-    class FaceMode(int):
+    @typing.final
+    class FaceMode(int, metaclass=sip._enumtype):
         Front = ... # type: QRasterMode.FaceMode
         Back = ... # type: QRasterMode.FaceMode
         FrontAndBack = ... # type: QRasterMode.FaceMode
@@ -1808,7 +1849,8 @@ class QRasterMode('QRenderState'):
     Back = ...  # type: QRasterMode.FaceMode
     FrontAndBack = ...  # type: QRasterMode.FaceMode
 
-    class RasterMode(int):
+    @typing.final
+    class RasterMode(int, metaclass=sip._enumtype):
         Points = ... # type: QRasterMode.RasterMode
         Lines = ... # type: QRasterMode.RasterMode
         Fill = ... # type: QRasterMode.RasterMode
@@ -1846,7 +1888,8 @@ class QRayCaster('QAbstractRayCaster'):
 
 class QRayCasterHit(sip.simplewrapper):
 
-    class HitType(int):
+    @typing.final
+    class HitType(int, metaclass=sip._enumtype):
         TriangleHit = ... # type: QRayCasterHit.HitType
         LineHit = ... # type: QRayCasterHit.HitType
         PointHit = ... # type: QRayCasterHit.HitType
@@ -1879,7 +1922,8 @@ class Render(sip.simplewrapper): ...
 
 class QRenderAspect(Qt3DCore.QAbstractAspect):
 
-    class RenderType(int):
+    @typing.final
+    class RenderType(int, metaclass=sip._enumtype):
         Synchronous = ... # type: QRenderAspect.RenderType
         Threaded = ... # type: QRenderAspect.RenderType
 
@@ -1893,7 +1937,8 @@ class QRenderAspect(Qt3DCore.QAbstractAspect):
 
 class QRenderCapabilities(QtCore.QObject):
 
-    class Profile(int):
+    @typing.final
+    class Profile(int, metaclass=sip._enumtype):
         NoProfile = ... # type: QRenderCapabilities.Profile
         CoreProfile = ... # type: QRenderCapabilities.Profile
         CompatibilityProfile = ... # type: QRenderCapabilities.Profile
@@ -1902,7 +1947,8 @@ class QRenderCapabilities(QtCore.QObject):
     CoreProfile = ...  # type: QRenderCapabilities.Profile
     CompatibilityProfile = ...  # type: QRenderCapabilities.Profile
 
-    class API(int):
+    @typing.final
+    class API(int, metaclass=sip._enumtype):
         OpenGL = ... # type: QRenderCapabilities.API
         OpenGLES = ... # type: QRenderCapabilities.API
         Vulkan = ... # type: QRenderCapabilities.API
@@ -2001,7 +2047,8 @@ class QRenderPassFilter('QFrameGraphNode'):
 
 class QRenderSettings(Qt3DCore.QComponent):
 
-    class RenderPolicy(int):
+    @typing.final
+    class RenderPolicy(int, metaclass=sip._enumtype):
         OnDemand = ... # type: QRenderSettings.RenderPolicy
         Always = ... # type: QRenderSettings.RenderPolicy
 
@@ -2051,7 +2098,8 @@ class QRenderTarget(Qt3DCore.QComponent):
 
 class QRenderTargetOutput(Qt3DCore.QNode):
 
-    class AttachmentPoint(int):
+    @typing.final
+    class AttachmentPoint(int, metaclass=sip._enumtype):
         Color0 = ... # type: QRenderTargetOutput.AttachmentPoint
         Color1 = ... # type: QRenderTargetOutput.AttachmentPoint
         Color2 = ... # type: QRenderTargetOutput.AttachmentPoint
@@ -2121,7 +2169,8 @@ class QRenderTargetSelector('QFrameGraphNode'):
 
 class QSceneLoader(Qt3DCore.QComponent):
 
-    class ComponentType(int):
+    @typing.final
+    class ComponentType(int, metaclass=sip._enumtype):
         UnknownComponent = ... # type: QSceneLoader.ComponentType
         GeometryRendererComponent = ... # type: QSceneLoader.ComponentType
         TransformComponent = ... # type: QSceneLoader.ComponentType
@@ -2136,7 +2185,8 @@ class QSceneLoader(Qt3DCore.QComponent):
     LightComponent = ...  # type: QSceneLoader.ComponentType
     CameraLensComponent = ...  # type: QSceneLoader.ComponentType
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         None_ = ... # type: QSceneLoader.Status
         Loading = ... # type: QSceneLoader.Status
         Ready = ... # type: QSceneLoader.Status
@@ -2194,7 +2244,8 @@ class QSeamlessCubemap('QRenderState'):
 
 class QSetFence('QFrameGraphNode'):
 
-    class HandleType(int):
+    @typing.final
+    class HandleType(int, metaclass=sip._enumtype):
         NoHandle = ... # type: QSetFence.HandleType
         OpenGLFenceId = ... # type: QSetFence.HandleType
 
@@ -2222,7 +2273,8 @@ class QShaderData(Qt3DCore.QComponent):
 
 class QShaderImage(Qt3DCore.QNode):
 
-    class ImageFormat(int):
+    @typing.final
+    class ImageFormat(int, metaclass=sip._enumtype):
         NoFormat = ... # type: QShaderImage.ImageFormat
         Automatic = ... # type: QShaderImage.ImageFormat
         R8_UNorm = ... # type: QShaderImage.ImageFormat
@@ -2307,7 +2359,8 @@ class QShaderImage(Qt3DCore.QNode):
     RGB10A2 = ...  # type: QShaderImage.ImageFormat
     RGB10A2U = ...  # type: QShaderImage.ImageFormat
 
-    class Access(int):
+    @typing.final
+    class Access(int, metaclass=sip._enumtype):
         ReadOnly = ... # type: QShaderImage.Access
         WriteOnly = ... # type: QShaderImage.Access
         ReadWrite = ... # type: QShaderImage.Access
@@ -2339,14 +2392,16 @@ class QShaderImage(Qt3DCore.QNode):
 
 class QShaderProgram(Qt3DCore.QNode):
 
-    class Format(int):
+    @typing.final
+    class Format(int, metaclass=sip._enumtype):
         GLSL = ... # type: QShaderProgram.Format
         SPIRV = ... # type: QShaderProgram.Format
 
     GLSL = ...  # type: QShaderProgram.Format
     SPIRV = ...  # type: QShaderProgram.Format
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         NotReady = ... # type: QShaderProgram.Status
         Ready = ... # type: QShaderProgram.Status
         Error = ... # type: QShaderProgram.Status
@@ -2355,7 +2410,8 @@ class QShaderProgram(Qt3DCore.QNode):
     Ready = ...  # type: QShaderProgram.Status
     Error = ...  # type: QShaderProgram.Status
 
-    class ShaderType(int):
+    @typing.final
+    class ShaderType(int, metaclass=sip._enumtype):
         Vertex = ... # type: QShaderProgram.ShaderType
         Fragment = ... # type: QShaderProgram.ShaderType
         TessellationControl = ... # type: QShaderProgram.ShaderType
@@ -2447,7 +2503,8 @@ class QShaderProgramBuilder(Qt3DCore.QNode):
 
 class QSortPolicy('QFrameGraphNode'):
 
-    class SortType(int):
+    @typing.final
+    class SortType(int, metaclass=sip._enumtype):
         StateChangeCost = ... # type: QSortPolicy.SortType
         BackToFront = ... # type: QSortPolicy.SortType
         Material = ... # type: QSortPolicy.SortType
@@ -2512,7 +2569,8 @@ class QStencilOperation('QRenderState'):
 
 class QStencilOperationArguments(QtCore.QObject):
 
-    class Operation(int):
+    @typing.final
+    class Operation(int, metaclass=sip._enumtype):
         Zero = ... # type: QStencilOperationArguments.Operation
         Keep = ... # type: QStencilOperationArguments.Operation
         Replace = ... # type: QStencilOperationArguments.Operation
@@ -2531,7 +2589,8 @@ class QStencilOperationArguments(QtCore.QObject):
     DecrementWrap = ...  # type: QStencilOperationArguments.Operation
     Invert = ...  # type: QStencilOperationArguments.Operation
 
-    class FaceMode(int):
+    @typing.final
+    class FaceMode(int, metaclass=sip._enumtype):
         Front = ... # type: QStencilOperationArguments.FaceMode
         Back = ... # type: QStencilOperationArguments.FaceMode
         FrontAndBack = ... # type: QStencilOperationArguments.FaceMode
@@ -2561,7 +2620,8 @@ class QStencilTest('QRenderState'):
 
 class QStencilTestArguments(QtCore.QObject):
 
-    class StencilFunction(int):
+    @typing.final
+    class StencilFunction(int, metaclass=sip._enumtype):
         Never = ... # type: QStencilTestArguments.StencilFunction
         Always = ... # type: QStencilTestArguments.StencilFunction
         Less = ... # type: QStencilTestArguments.StencilFunction
@@ -2580,7 +2640,8 @@ class QStencilTestArguments(QtCore.QObject):
     Greater = ...  # type: QStencilTestArguments.StencilFunction
     NotEqual = ...  # type: QStencilTestArguments.StencilFunction
 
-    class StencilFaceMode(int):
+    @typing.final
+    class StencilFaceMode(int, metaclass=sip._enumtype):
         Front = ... # type: QStencilTestArguments.StencilFaceMode
         Back = ... # type: QStencilTestArguments.StencilFaceMode
         FrontAndBack = ... # type: QStencilTestArguments.StencilFaceMode
@@ -2603,7 +2664,8 @@ class QStencilTestArguments(QtCore.QObject):
 
 class QSubtreeEnabler('QFrameGraphNode'):
 
-    class Enablement(int):
+    @typing.final
+    class Enablement(int, metaclass=sip._enumtype):
         Persistent = ... # type: QSubtreeEnabler.Enablement
         SingleShot = ... # type: QSubtreeEnabler.Enablement
 
@@ -2775,7 +2837,8 @@ class QTextureGenerator('QAbstractFunctor'):
 
 class QTextureImage('QAbstractTextureImage'):
 
-    class Status(int):
+    @typing.final
+    class Status(int, metaclass=sip._enumtype):
         None_ = ... # type: QTextureImage.Status
         Loading = ... # type: QTextureImage.Status
         Ready = ... # type: QTextureImage.Status
@@ -2838,7 +2901,8 @@ class QTextureImageDataGenerator('QAbstractFunctor'):
 
 class QTextureWrapMode(QtCore.QObject):
 
-    class WrapMode(int):
+    @typing.final
+    class WrapMode(int, metaclass=sip._enumtype):
         Repeat = ... # type: QTextureWrapMode.WrapMode
         MirroredRepeat = ... # type: QTextureWrapMode.WrapMode
         ClampToEdge = ... # type: QTextureWrapMode.WrapMode
@@ -2877,7 +2941,8 @@ class QViewport('QFrameGraphNode'):
 
 class QWaitFence('QFrameGraphNode'):
 
-    class HandleType(int):
+    @typing.final
+    class HandleType(int, metaclass=sip._enumtype):
         NoHandle = ... # type: QWaitFence.HandleType
         OpenGLFenceId = ... # type: QWaitFence.HandleType
 
