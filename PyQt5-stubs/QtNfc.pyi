@@ -237,10 +237,10 @@ class QNdefNfcUriRecord(QNdefRecord):
 class QNearFieldManager(QtCore.QObject):
 
     class AdapterState(enum.IntEnum):
-        Offline = ... # type: QNearFieldManager.AdapterState
-        TurningOn = ... # type: QNearFieldManager.AdapterState
-        Online = ... # type: QNearFieldManager.AdapterState
-        TurningOff = ... # type: QNearFieldManager.AdapterState
+        Offline = ...
+        TurningOn = ...
+        Online = ...
+        TurningOff = ...
 
     Offline = ...  # type: QNearFieldManager.AdapterState
     TurningOn = ...  # type: QNearFieldManager.AdapterState

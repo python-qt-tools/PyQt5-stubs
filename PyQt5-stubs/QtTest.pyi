@@ -45,9 +45,9 @@ PYQT_OPENGL_BOUND_ARRAY = typing.Union[typing.Sequence[int],
 class QAbstractItemModelTester(QtCore.QObject):
 
     class FailureReportingMode(enum.IntEnum):
-        QtTest = ... # type: QAbstractItemModelTester.FailureReportingMode
-        Warning = ... # type: QAbstractItemModelTester.FailureReportingMode
-        Fatal = ... # type: QAbstractItemModelTester.FailureReportingMode
+        QtTest = ...
+        Warning = ...
+        Fatal = ...
 
     QtTest = ...  # type: QAbstractItemModelTester.FailureReportingMode
     Warning = ...  # type: QAbstractItemModelTester.FailureReportingMode

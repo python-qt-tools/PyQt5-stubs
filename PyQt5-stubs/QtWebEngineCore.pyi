@@ -293,10 +293,10 @@ class QWebEngineUrlScheme(sip.simplewrapper):
     PortUnspecified = ...  # type: QWebEngineUrlScheme.SpecialPort
 
     class Syntax(enum.IntEnum):
-        HostPortAndUserInformation = ... # type: QWebEngineUrlScheme.Syntax
-        HostAndPort = ... # type: QWebEngineUrlScheme.Syntax
-        Host = ... # type: QWebEngineUrlScheme.Syntax
-        Path = ... # type: QWebEngineUrlScheme.Syntax
+        HostPortAndUserInformation = ...
+        HostAndPort = ...
+        Host = ...
+        Path = ...
 
     HostPortAndUserInformation = ...  # type: QWebEngineUrlScheme.Syntax
     HostAndPort = ...  # type: QWebEngineUrlScheme.Syntax

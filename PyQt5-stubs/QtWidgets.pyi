@@ -1199,9 +1199,9 @@ class QAction(QtCore.QObject):
 class QActionGroup(QtCore.QObject):
 
     class ExclusionPolicy(enum.IntEnum):
-        None_ = ... # type: QActionGroup.ExclusionPolicy
-        Exclusive = ... # type: QActionGroup.ExclusionPolicy
-        ExclusiveOptional = ... # type: QActionGroup.ExclusionPolicy
+        None_ = ...
+        Exclusive = ...
+        ExclusiveOptional = ...
 
     None_ = ...  # type: QActionGroup.ExclusionPolicy
     Exclusive = ...  # type: QActionGroup.ExclusionPolicy

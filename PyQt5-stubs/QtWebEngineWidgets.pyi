@@ -404,9 +404,9 @@ class QWebEngineHistory(sip.simplewrapper):
 class QWebEnginePage(QtCore.QObject):
 
     class LifecycleState(enum.IntEnum):
-        Active = ... # type: QWebEnginePage.LifecycleState
-        Frozen = ... # type: QWebEnginePage.LifecycleState
-        Discarded = ... # type: QWebEnginePage.LifecycleState
+        Active = ...
+        Frozen = ...
+        Discarded = ...
 
     Active = ...  # type: QWebEnginePage.LifecycleState
     Frozen = ...  # type: QWebEnginePage.LifecycleState

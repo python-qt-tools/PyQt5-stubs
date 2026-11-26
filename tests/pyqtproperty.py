@@ -105,7 +105,7 @@ class UseProps2(QObject):
     )
 
     # create another property, with just the setter being different
-    prop4 = prop3.setter(prop3_another_setter)      # type: ignore[type-var] # I can not figure out how to make this work
+    prop4 = prop3.setter(prop3_another_setter)
 
 
 

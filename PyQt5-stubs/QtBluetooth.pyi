@@ -206,10 +206,10 @@ class QBluetoothDeviceDiscoveryAgent(QtCore.QObject):
 class QBluetoothDeviceInfo(sip.wrapper):
 
     class Field(enum.IntEnum):
-        None_ = ... # type: QBluetoothDeviceInfo.Field
-        RSSI = ... # type: QBluetoothDeviceInfo.Field
-        ManufacturerData = ... # type: QBluetoothDeviceInfo.Field
-        All = ... # type: QBluetoothDeviceInfo.Field
+        None_ = ...
+        RSSI = ...
+        ManufacturerData = ...
+        All = ...
 
     None_ = ...  # type: QBluetoothDeviceInfo.Field
     RSSI = ...  # type: QBluetoothDeviceInfo.Field
