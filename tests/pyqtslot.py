@@ -51,19 +51,19 @@ class Foo(QObject):
     @pyqtSlot(int, result=int)
     def foo_int2(self, arg1: int) -> int:
         """ C++: int foo(int) """
-        pass
+        return arg1
 
     # make sure that the return type is type-checked
     @pyqtSlot(int, result=int)  # type: ignore[arg-type]
     def foo_int_with_return_arg_error(self, arg1: int) -> str:
         """ C++: int foo(int) """
-        pass
+        return str(arg1)
 
     # mypy can not typecheck the pyqtSlot() arguments vs method arguments
     @pyqtSlot(int, result=int)
     def foo_int_with_arg_error(self, arg1: str) -> int:
         """ C++: int foo(int) """
-        pass
+        return int(arg1)
 
     @pyqtSlot(int, QObject)
     def foo_qobject(self, arg1: QObject) -> None:
